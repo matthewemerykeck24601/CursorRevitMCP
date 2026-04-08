@@ -45,6 +45,10 @@ const apsQueryMcpTools = [
         family: { type: "string" },
         type: { type: "string" },
         limit: { type: "number", default: 500 },
+        product_prefix: {
+          type: "string",
+          enum: ["WPA", "WPB", "CLA", "COLUMN", "ALL"],
+        },
         access_token: { type: "string" },
         accessToken: { type: "string" },
         model_urn: { type: "string" },
@@ -117,7 +121,7 @@ const designAutomationMcpTools = [
       properties: {
         product_prefix: {
           type: "string",
-          enum: ["WPA", "WPB", "CLA", "ALL"],
+          enum: ["WPA", "WPB", "CLA", "COLUMN", "ALL"],
           default: "ALL",
         },
         dry_run: { type: "boolean", default: true },
@@ -287,7 +291,7 @@ export function buildServer() {
           properties: {
             product_prefix: {
               type: "string",
-              enum: ["WPA", "WPB", "CLA", "ALL"],
+              enum: ["WPA", "WPB", "CLA", "COLUMN", "ALL"],
             },
             dry_run: { type: "boolean", default: true },
           },

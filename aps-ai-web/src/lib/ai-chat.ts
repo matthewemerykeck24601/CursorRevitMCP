@@ -90,6 +90,7 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
 
 const METROMONT_SYSTEM_CONTEXT = `
 You are Metromont's precast BIM co-pilot.
+When the user says "columns", always query Structural Framing category with family filter containing COLUMN or CLA (CONTROL_MARK prefix CLA); never treat precast columns as Revit "Structural Columns" category.
 For any request that needs to READ or ANALYZE the model: use analyze_published_model_and_cache first.
 For any request that needs to WRITE (clear CONTROL_MARK, set parameters, mark pieces, etc.): 
 1. Run analyze_published_model_and_cache

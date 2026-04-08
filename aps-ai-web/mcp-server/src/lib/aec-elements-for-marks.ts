@@ -45,7 +45,7 @@ const ELEMENTS_PAGE_QUERY = `
   }
 `;
 
-export type ProductPrefix = "WPA" | "WPB" | "CLA" | "ALL";
+export type ProductPrefix = "WPA" | "WPB" | "CLA" | "COLUMN" | "ALL";
 
 export type AecElementForMark = {
   aecElementId: string;
@@ -119,6 +119,9 @@ function matchesProductPrefix(props: Record<string, string>, prefix: ProductPref
   const type = norm(props["Type Name"] ?? "");
   const product = norm(props["CONSTRUCTION_PRODUCT"] ?? "");
   const hay = `${family} ${type} ${product}`;
+  if (prefix === "COLUMN") {
+    return family.includes("column") || hay.includes("cla");
+  }
   const p = prefix.toLowerCase();
   return hay.includes(p.toLowerCase());
 }
@@ -141,6 +144,7 @@ function samenessKeyV0(props: Record<string, string>): string {
 }
 
 function markPrefixForGroup(prefix: ProductPrefix, props: Record<string, string>): string {
+  if (prefix === "COLUMN") return "CLA";
   if (prefix !== "ALL") return prefix;
   const fam = props["Family Name"] ?? "";
   if (/^WPA/i.test(fam)) return "WPA";

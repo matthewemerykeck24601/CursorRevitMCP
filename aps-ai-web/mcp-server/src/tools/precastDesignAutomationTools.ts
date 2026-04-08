@@ -40,7 +40,7 @@ export type CachedAnalysisResult = {
 const analysisCache = new Map<string, CachedAnalysisResult>();
 
 const AnalyzePublishedModelParamsSchema = z.object({
-  product_prefix: z.enum(["WPA", "WPB", "CLA", "ALL"]).default("ALL"),
+  product_prefix: z.enum(["WPA", "WPB", "CLA", "COLUMN", "ALL"]).default("ALL"),
   dry_run: z.boolean().default(true),
   model_urn: z.string().optional(),
   urn: z.string().optional(),
@@ -108,8 +108,15 @@ export const analyzePublishedModelAndCache = {
         const queryResult = await getElementsByCategory.handler(
           {
             limit: 500,
-            family: product_prefix === "ALL" ? undefined : product_prefix,
-            category: undefined,
+            category: "Structural Framing",
+            family:
+              product_prefix === "ALL"
+                ? undefined
+                : product_prefix === "COLUMN"
+                  ? "COLUMN"
+                  : product_prefix,
+            product_prefix:
+              product_prefix === "ALL" ? undefined : product_prefix,
             type: undefined,
             accessToken: token,
             access_token: token,

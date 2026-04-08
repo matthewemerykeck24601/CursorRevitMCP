@@ -177,6 +177,10 @@ export function AppClient() {
   const [workspaceTab, setWorkspaceTab] = useState<WorkspaceTab>("viewer");
   const [modelDataRows, setModelDataRows] = useState<ModelDataRow[]>([]);
   const [elementDataRows, setElementDataRows] = useState<ModelDataRow[]>([]);
+  /** AEC element API rows per dbId — BIM table merge (Revit Element ID, shared params). */
+  const [aecRowsByDbId, setAecRowsByDbId] = useState<
+    Record<number, ModelDataRow[]>
+  >({});
   const [loadingModelData, setLoadingModelData] = useState(false);
   const [loadingElementData, setLoadingElementData] = useState(false);
   const [issues, setIssues] = useState<IssueRecord[]>([]);
@@ -249,8 +253,11 @@ export function AppClient() {
     });
   }, [selectedElements]);
   const bimTableRows = useMemo(
-    () => buildBimTableRows(selectedElements),
-    [selectedElements],
+    () =>
+      buildBimTableRows(selectedElements, {
+        aecRowsByDbId,
+      }),
+    [selectedElements, aecRowsByDbId],
   );
 
   useEffect(() => {
@@ -422,21 +429,39 @@ export function AppClient() {
   const loadElementData = useCallback(async () => {
     if (!selectedHub || !selectedProject || !selectedModelData) {
       setElementDataRows([]);
+      setAecRowsByDbId({});
       return;
     }
     if (selectedElements.length === 0) {
       setElementDataRows([]);
+      setAecRowsByDbId({});
       return;
     }
-    const first = selectedElements[0];
     setLoadingElementData(true);
-    try {
-      const response = await fetch(
-        `/api/aps/projects/${encodeURIComponent(selectedProject)}/aec-element?hubId=${encodeURIComponent(selectedHub)}&itemId=${encodeURIComponent(selectedModelData.itemId)}&externalId=${encodeURIComponent(first.externalId ?? "")}&dbId=${encodeURIComponent(String(first.dbId))}&elementName=${encodeURIComponent(first.name ?? "")}`,
-      );
-      if (!response.ok) throw new Error("Failed to load element data");
+    const projectPath = encodeURIComponent(selectedProject);
+    const hubQ = encodeURIComponent(selectedHub);
+    const itemQ = encodeURIComponent(selectedModelData.itemId);
+    const fetchOne = async (el: SelectedElementSnapshot) => {
+      const url = `/api/aps/projects/${projectPath}/aec-element?hubId=${hubQ}&itemId=${itemQ}&externalId=${encodeURIComponent(el.externalId ?? "")}&dbId=${encodeURIComponent(String(el.dbId))}&elementName=${encodeURIComponent(el.name ?? "")}`;
+      const response = await fetch(url);
+      if (!response.ok) return { dbId: el.dbId, rows: [] as ModelDataRow[] };
       const json = (await response.json()) as { rows?: ModelDataRow[] };
-      setElementDataRows(json.rows ?? []);
+      return { dbId: el.dbId, rows: json.rows ?? [] };
+    };
+    try {
+      const slice = selectedElements.slice(0, 80);
+      const byDb: Record<number, ModelDataRow[]> = {};
+      const chunkSize = 6;
+      for (let i = 0; i < slice.length; i += chunkSize) {
+        const chunk = slice.slice(i, i + chunkSize);
+        const results = await Promise.all(chunk.map((el) => fetchOne(el)));
+        for (const { dbId, rows } of results) {
+          byDb[dbId] = rows;
+        }
+      }
+      setAecRowsByDbId(byDb);
+      const first = selectedElements[0];
+      setElementDataRows(byDb[first.dbId] ?? []);
     } catch (err) {
       setElementDataRows([
         {
@@ -446,6 +471,7 @@ export function AppClient() {
           source: "app",
         },
       ]);
+      setAecRowsByDbId({});
     } finally {
       setLoadingElementData(false);
     }
@@ -1208,16 +1234,17 @@ export function AppClient() {
         <div
           className={`${
             workspaceMode === "model" ? "grid" : "hidden"
-          } min-h-0 grid-cols-[minmax(280px,1fr)_minmax(0,3fr)] gap-3 ${
+          } min-h-0 grid-rows-[minmax(0,1fr)_minmax(200px,38%)] gap-3 ${
             workspaceExpanded ? "h-[calc(100%-2.25rem)]" : "h-[72vh] min-h-[780px]"
           }`}
         >
-          <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
-            <h3 className="mb-2 text-sm font-semibold">AI Chat</h3>
-            <div className="mb-2 rounded border border-black/10 bg-gray-50 px-2 py-1 text-xs text-black">
-              Selection: {selectedDbIds.length} element{selectedDbIds.length === 1 ? "" : "s"}
-            </div>
-            <div className="mb-2 grid grid-cols-3 gap-2">
+          <div className="grid h-full min-h-0 grid-cols-[minmax(280px,1fr)_minmax(0,3fr)] gap-3 overflow-hidden">
+            <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
+              <h3 className="mb-2 text-sm font-semibold">AI Chat</h3>
+              <div className="mb-2 rounded border border-black/10 bg-gray-50 px-2 py-1 text-xs text-black">
+                Selection: {selectedDbIds.length} element{selectedDbIds.length === 1 ? "" : "s"}
+              </div>
+              <div className="mb-2 grid grid-cols-3 gap-2">
               <div className="flex flex-col gap-1 text-xs">
                 <span className="font-medium">Assistant</span>
                 <div className="rounded border px-2 py-1.5 text-black bg-white">
@@ -1269,72 +1296,6 @@ export function AppClient() {
                 ))
               )}
             </div>
-            <div className="mb-2 flex max-h-[min(38vh,260px)] min-h-[100px] flex-col rounded border border-black/10 bg-white">
-              <div className="flex shrink-0 items-center justify-between gap-2 border-b border-black/10 px-2 py-1.5">
-                <span className="text-xs font-semibold text-black">
-                  BIM selection
-                </span>
-                <button
-                  type="button"
-                  onClick={() => void exportBimSelectionCsv()}
-                  disabled={bimTableRows.length === 0}
-                  className="rounded border border-black/20 bg-white px-2 py-0.5 text-xs font-medium text-black hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  Export CSV
-                </button>
-              </div>
-              <div className="min-h-0 flex-1 overflow-auto p-1">
-                {bimTableRows.length === 0 ? (
-                  <p className="px-1 py-2 text-xs text-gray-600">
-                    Select elements in the Viewer to populate this table.
-                  </p>
-                ) : (
-                  <table className="w-full border-collapse text-xs text-black">
-                    <thead>
-                      <tr>
-                        {BIM_TABLE_HEADERS.map((h) => (
-                          <th
-                            key={h}
-                            className="sticky top-0 border border-black/10 bg-gray-100 px-1.5 py-1 text-left font-semibold"
-                          >
-                            {h}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {bimTableRows.map((row, idx) => (
-                        <tr key={`${row.elementId}-${idx}`}>
-                          <td className="border border-black/10 px-1.5 py-0.5">
-                            {row.elementId}
-                          </td>
-                          <td className="border border-black/10 px-1.5 py-0.5">
-                            {row.category}
-                          </td>
-                          <td className="border border-black/10 px-1.5 py-0.5">
-                            {row.family}
-                          </td>
-                          <td className="border border-black/10 px-1.5 py-0.5">
-                            {row.type}
-                          </td>
-                          <td className="border border-black/10 px-1.5 py-0.5">
-                            {row.controlMark}
-                          </td>
-                          <td className="border border-black/10 px-1.5 py-0.5">
-                            {row.controlNumber}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )}
-              </div>
-              {bimExportNotice ? (
-                <p className="shrink-0 border-t border-black/10 px-2 py-1 text-[10px] text-gray-600">
-                  {bimExportNotice}
-                </p>
-              ) : null}
-            </div>
             <div className="flex gap-2">
               <input
                 value={chatInput}
@@ -1352,9 +1313,9 @@ export function AppClient() {
                 Send
               </button>
             </div>
-          </section>
+            </section>
 
-          <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
+            <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
             <div className="mb-2 flex items-center gap-2">
               <button
                 onClick={() => setWorkspaceTab("viewer")}
@@ -1624,8 +1585,80 @@ export function AppClient() {
                 )}
               </div>
             ) : null}
-          </section>
+            </section>
           </div>
+
+          <section className="flex min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white text-black">
+            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-black/10 px-3 py-2">
+              <span className="text-sm font-semibold text-black">
+                BIM selection (viewer)
+              </span>
+              <button
+                type="button"
+                onClick={() => void exportBimSelectionCsv()}
+                disabled={bimTableRows.length === 0}
+                className="rounded border border-black/20 bg-white px-3 py-1 text-sm font-medium text-black hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Export CSV
+              </button>
+            </div>
+            <div className="min-h-0 flex-1 overflow-auto p-2">
+              {bimTableRows.length === 0 ? (
+                <p className="py-4 text-center text-sm text-gray-600">
+                  Select elements in the Viewer tab to populate this table.
+                </p>
+              ) : (
+                <table className="w-full min-w-[720px] border-collapse text-sm text-black">
+                  <thead>
+                    <tr>
+                      {BIM_TABLE_HEADERS.map((h) => (
+                        <th
+                          key={h}
+                          className="sticky top-0 z-[1] border border-black/10 bg-gray-100 px-3 py-2 text-left text-sm font-semibold"
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bimTableRows.map((row, idx) => (
+                      <tr
+                        key={`${row.elementId}-${idx}`}
+                        className="hover:bg-gray-50/80"
+                      >
+                        <td className="border border-black/10 px-3 py-2 align-top">
+                          {row.elementId}
+                        </td>
+                        <td className="border border-black/10 px-3 py-2 align-top">
+                          {row.category}
+                        </td>
+                        <td className="border border-black/10 px-3 py-2 align-top">
+                          {row.family}
+                        </td>
+                        <td className="border border-black/10 px-3 py-2 align-top">
+                          {row.type}
+                        </td>
+                        <td className="border border-black/10 px-3 py-2 align-top">
+                          {row.controlMark}
+                        </td>
+                        <td className="border border-black/10 px-3 py-2 align-top">
+                          {row.controlNumber}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+            {bimExportNotice ? (
+              <p className="shrink-0 border-t border-black/10 px-3 py-1.5 text-xs text-gray-600">
+                {bimExportNotice}
+              </p>
+            ) : null}
+          </section>
+        </div>
+
           <div
             className={`${
               workspaceMode === "product-analysis" ? "grid" : "hidden"

@@ -1,10 +1,15 @@
-const PREFIXES = new Set(["WPA", "WPB", "CLA", "ALL"]);
+const PREFIXES = new Set(["WPA", "WPB", "CLA", "COLUMN", "ALL"]);
 
 /** Same payloads as aps-ai-web MCP tools; used to enrich Alice chat context. */
 export function analyzeProductsAndMarkContract(raw: unknown) {
   const o = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const p = String(o.product_prefix ?? "ALL");
-  const product_prefix = (PREFIXES.has(p) ? p : "ALL") as "WPA" | "WPB" | "CLA" | "ALL";
+  const product_prefix = (PREFIXES.has(p) ? p : "ALL") as
+    | "WPA"
+    | "WPB"
+    | "CLA"
+    | "COLUMN"
+    | "ALL";
   const dry_run = o.dry_run !== false;
   return {
     ok: true,

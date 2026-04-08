@@ -39,7 +39,7 @@ const analysisCache = new Map<string, CachedAnalysisResult>();
 function parsePrefix(raw: unknown): ProductPrefix {
   const o = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const p = String(o.product_prefix ?? "ALL");
-  return ["WPA", "WPB", "CLA", "ALL"].includes(p)
+  return ["WPA", "WPB", "CLA", "COLUMN", "ALL"].includes(p)
     ? (p as ProductPrefix)
     : "ALL";
 }
@@ -83,7 +83,13 @@ export async function analyzePublishedModelAndCacheContract(
         accessToken: token,
         aecProjectId,
         modelUrn: model_urn,
-        family: product_prefix === "ALL" ? undefined : product_prefix,
+        category: "Structural Framing",
+        family:
+          product_prefix === "ALL"
+            ? undefined
+            : product_prefix === "COLUMN"
+              ? "COLUMN"
+              : product_prefix,
         limit: 500,
       });
       if (rows.length > 0) {

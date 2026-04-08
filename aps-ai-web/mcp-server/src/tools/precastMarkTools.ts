@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const AnalyzeArgs = z.object({
-  product_prefix: z.enum(["WPA", "WPB", "CLA", "ALL"]),
+  product_prefix: z.enum(["WPA", "WPB", "CLA", "COLUMN", "ALL"]),
   dry_run: z.boolean().optional().default(true),
 });
 

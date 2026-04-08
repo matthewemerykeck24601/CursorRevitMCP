@@ -108,7 +108,7 @@ async function fetchElementByExternalIdPaged(
         results {
           id
           name
-          properties(filter: { names: ["External ID", "CONTROL_MARK", "CONTROL_NUMBER", "Category", "Family Name", "Type Name", "Length", "Width", "Height"] }) {
+          properties(filter: { names: ["External ID", "Element Id", "Element ID", "CONTROL_MARK", "CONTROL_NUMBER", "Category", "Family Name", "Type Name", "Length", "Width", "Height"] }) {
             results {
               name
               value

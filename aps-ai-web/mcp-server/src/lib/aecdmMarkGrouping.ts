@@ -53,16 +53,19 @@ function isStructuralFramingishRow(el: AecdmElementRow): boolean {
 
 function matchesProductPrefix(
   el: AecdmElementRow,
-  prefix: "WPA" | "WPB" | "CLA" | "ALL",
+  prefix: "WPA" | "WPB" | "CLA" | "COLUMN" | "ALL",
 ): boolean {
   if (prefix === "ALL") return true;
   const hay = `${normCat(el.family)} ${normCat(el.type)}`;
+  if (prefix === "COLUMN") {
+    return hay.includes("column") || hay.includes("cla");
+  }
   return hay.includes(prefix.toLowerCase());
 }
 
 export type GroupAecdmParams = {
   elements: AecdmElementRow[];
-  product_prefix: "WPA" | "WPB" | "CLA" | "ALL";
+  product_prefix: "WPA" | "WPB" | "CLA" | "COLUMN" | "ALL";
   modelUrn: string;
   hubId: string;
   dmProjectId: string;
@@ -121,7 +124,12 @@ export function groupAecdmElementsForMarks(params: GroupAecdmParams): {
   }
 
   let markCounter = 100;
-  const prefix = params.product_prefix === "ALL" ? "MK" : params.product_prefix;
+  const prefix =
+    params.product_prefix === "ALL"
+      ? "MK"
+      : params.product_prefix === "COLUMN"
+        ? "CLA"
+        : params.product_prefix;
 
   const proposed_marks: Array<{
     groupId: number;

@@ -1,9 +1,11 @@
 # Metromont Precast Revit Ontology & Grok System Context
 # Last updated: 2026-04-08 | Owner: Matt Keck
 
-## 1. Core Family Strategy (NEVER violate)
-- Structural Framing = Primary precast products (the "pieces")
-  - WALL_PANEL_INSULATED (WPB*), WALL_PANEL (WPA*), COLUMN (CLA*), etc.
+## 1. Core Family Strategy (CRITICAL)
+- **Structural Framing** = ALL primary precast products (the "pieces")
+  - Includes: COLUMN families (16" x 16", 16" x 24", etc.), WALL_PANEL, WALL_PANEL_INSULATED, beams, girders, double tees, etc.
+  - **NEVER** use **"Structural Columns"** category for our products.
+- When the user says **"columns"**, translate to **Structural Framing** category with family filter containing **COLUMN** and/or **CONTROL_MARK** prefix **CLA** (and related column piece logic).
 - Specialty Equipment = Nested connections, rebar, strands, lifting anchors, plates, insulation, grout joints, shear grids (almost always nested)
 - Generic Models = Hosted modifiers (voids, corbels, wood nailers, solid zones, openings)
 

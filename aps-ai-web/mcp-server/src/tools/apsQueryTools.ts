@@ -79,6 +79,10 @@ const GetElementsByCategoryParamsSchema = z.object({
   family: z.string().optional(),
   type: z.string().optional(),
   limit: z.number().default(500),
+  /** Metromont workflow: narrows AECDM query to Structural Framing + family hints (WPA/WPB/CLA/COLUMN). */
+  product_prefix: z
+    .enum(["WPA", "WPB", "CLA", "COLUMN", "ALL"])
+    .optional(),
   ...tokenAndProjectFields,
 });
 type GetElementsByCategoryParams = z.infer<
@@ -110,11 +114,35 @@ type AnalyzePublishedModelAecdmParams = z.infer<
 export const getElementsByCategory = {
   name: "get_elements_by_category" as const,
   description:
-    "Queries the published APS model using AEC Data Model REST-style API for elements in a specific category or family (e.g., Structural Columns, WALL_PANEL_INSULATED). Returns a structured list with ids and key properties. Pass access_token, project_id, and model_urn.",
+    "Queries AEC Data Model REST for design elements. For Metromont: precast pieces live under Structural Framing (not Structural Columns). Pass product_prefix or say 'column' in category to force Structural Framing + COLUMN/CLA-style family filters. Pass access_token, project_id, model_urn.",
   parameters: GetElementsByCategoryParamsSchema,
 
   async handler(params: GetElementsByCategoryParams, context: ApsQueryContext) {
-    const { category, family, type, limit } = params;
+    const { category, family, type, limit, product_prefix } = params;
+
+    let filterCategory = category;
+    let filterFamily = family;
+
+    const catLower = (category ?? "").toLowerCase();
+    const columnIntent =
+      product_prefix === "COLUMN" ||
+      (!!category && catLower.includes("column"));
+
+    if (
+      (product_prefix && product_prefix !== "ALL") ||
+      (!!category && catLower.includes("column"))
+    ) {
+      filterCategory = "Structural Framing";
+      if (columnIntent) {
+        filterFamily = family?.trim() ? family : "COLUMN";
+      } else if (
+        product_prefix &&
+        ["WPA", "WPB", "CLA"].includes(product_prefix)
+      ) {
+        filterFamily = family?.trim() ? family : product_prefix;
+      }
+    }
+
     const ctx: ApsQueryContext = {
       ...context,
       ...contextFromArgs(params as unknown as Record<string, unknown>),
@@ -137,8 +165,8 @@ export const getElementsByCategory = {
     const url = `https://developer.api.autodesk.com/aecdm/v1/projects/${encodeURIComponent(projectId)}/designs/${encodeURIComponent(designId)}/elements`;
 
     const queryParams: Record<string, string | number> = { limit };
-    if (category) queryParams["filter[category]"] = category;
-    if (family) queryParams["filter[family]"] = family;
+    if (filterCategory) queryParams["filter[category]"] = filterCategory;
+    if (filterFamily) queryParams["filter[family]"] = filterFamily;
     if (type) queryParams["filter[type]"] = type;
 
     const response = await axios.get(url, {
@@ -241,8 +269,15 @@ export const analyzePublishedModelAecdmCache = {
 
     const queryResult = await getElementsByCategory.handler(
       {
-        category: undefined,
-        family: product_prefix === "ALL" ? undefined : product_prefix,
+        category: "Structural Framing",
+        family:
+          product_prefix === "ALL"
+            ? undefined
+            : product_prefix === "COLUMN"
+              ? "COLUMN"
+              : product_prefix,
+        product_prefix:
+          product_prefix === "ALL" ? undefined : product_prefix,
         type: undefined,
         limit: 500,
         access_token: ctx.access_token,
