@@ -7,6 +7,11 @@ import {
   type ViewerAction,
 } from "@/components/ViewerPanel";
 import { DesignViewSplit3D } from "@/components/DesignViewSplit3D";
+import {
+  BIM_TABLE_HEADERS,
+  bimRowsToCsv,
+  buildBimTableRows,
+} from "@/lib/bimSelectionTable";
 
 type Hub = { id: string; name: string; type: string };
 type Project = { id: string; name: string; type: string };
@@ -125,6 +130,32 @@ export function AppClient() {
   const [selectedModel, setSelectedModel] = useState<string>("");
   const [chatInput, setChatInput] = useState("");
   const [chatLog, setChatLog] = useState<string[]>([]);
+  const [bimExportNotice, setBimExportNotice] = useState("");
+  const viewerFeedbackQueueRef = useRef<string[]>([]);
+  const viewerFeedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const debouncedSetChatLog = useCallback((message: string) => {
+    viewerFeedbackQueueRef.current.push(message);
+    if (viewerFeedbackTimerRef.current) {
+      clearTimeout(viewerFeedbackTimerRef.current);
+    }
+    viewerFeedbackTimerRef.current = setTimeout(() => {
+      viewerFeedbackTimerRef.current = null;
+      const batch = viewerFeedbackQueueRef.current.splice(0);
+      if (batch.length === 0) return;
+      setChatLog((prev) => [...prev, ...batch.map((m) => `AI: ${m}`)]);
+    }, 300);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (viewerFeedbackTimerRef.current) {
+        clearTimeout(viewerFeedbackTimerRef.current);
+      }
+    };
+  }, []);
+
   const [viewerActions, setViewerActions] = useState<ViewerAction[]>([]);
   const [error, setError] = useState<string>("");
   const [hubsError, setHubsError] = useState<string>("");
@@ -217,6 +248,54 @@ export function AppClient() {
       };
     });
   }, [selectedElements]);
+  const bimTableRows = useMemo(
+    () => buildBimTableRows(selectedElements),
+    [selectedElements],
+  );
+
+  useEffect(() => {
+    setBimExportNotice("");
+  }, [selectedElements]);
+
+  const exportBimSelectionCsv = useCallback(async () => {
+    const csv = bimRowsToCsv(bimTableRows);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "bim-selection-export.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+    try {
+      const res = await fetch("/api/export/bim-selection-csv", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ csv }),
+      });
+      const json = (await res.json()) as {
+        ok?: boolean;
+        error?: string;
+        filePath?: string;
+        fileName?: string;
+      };
+      if (res.ok && json.ok) {
+        setBimExportNotice(
+          `Also saved to app root: ${json.fileName ?? "bim-selection-export.csv"}`,
+        );
+      } else {
+        setBimExportNotice(
+          json.error
+            ? `Browser download OK; server save failed: ${json.error}`
+            : "Browser download OK; server save failed.",
+        );
+      }
+    } catch {
+      setBimExportNotice(
+        "Browser download OK; server save unavailable (offline or read-only).",
+      );
+    }
+  }, [bimTableRows]);
+
   const semanticModelRows = useMemo<SemanticDataRow[]>(() => {
     return modelDataRows.slice(0, 250).map((row) => {
       const key = row.key || "";
@@ -1190,6 +1269,72 @@ export function AppClient() {
                 ))
               )}
             </div>
+            <div className="mb-2 flex max-h-[min(38vh,260px)] min-h-[100px] flex-col rounded border border-black/10 bg-white">
+              <div className="flex shrink-0 items-center justify-between gap-2 border-b border-black/10 px-2 py-1.5">
+                <span className="text-xs font-semibold text-black">
+                  BIM selection
+                </span>
+                <button
+                  type="button"
+                  onClick={() => void exportBimSelectionCsv()}
+                  disabled={bimTableRows.length === 0}
+                  className="rounded border border-black/20 bg-white px-2 py-0.5 text-xs font-medium text-black hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Export CSV
+                </button>
+              </div>
+              <div className="min-h-0 flex-1 overflow-auto p-1">
+                {bimTableRows.length === 0 ? (
+                  <p className="px-1 py-2 text-xs text-gray-600">
+                    Select elements in the Viewer to populate this table.
+                  </p>
+                ) : (
+                  <table className="w-full border-collapse text-xs text-black">
+                    <thead>
+                      <tr>
+                        {BIM_TABLE_HEADERS.map((h) => (
+                          <th
+                            key={h}
+                            className="sticky top-0 border border-black/10 bg-gray-100 px-1.5 py-1 text-left font-semibold"
+                          >
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {bimTableRows.map((row, idx) => (
+                        <tr key={`${row.elementId}-${idx}`}>
+                          <td className="border border-black/10 px-1.5 py-0.5">
+                            {row.elementId}
+                          </td>
+                          <td className="border border-black/10 px-1.5 py-0.5">
+                            {row.category}
+                          </td>
+                          <td className="border border-black/10 px-1.5 py-0.5">
+                            {row.family}
+                          </td>
+                          <td className="border border-black/10 px-1.5 py-0.5">
+                            {row.type}
+                          </td>
+                          <td className="border border-black/10 px-1.5 py-0.5">
+                            {row.controlMark}
+                          </td>
+                          <td className="border border-black/10 px-1.5 py-0.5">
+                            {row.controlNumber}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+              {bimExportNotice ? (
+                <p className="shrink-0 border-t border-black/10 px-2 py-1 text-[10px] text-gray-600">
+                  {bimExportNotice}
+                </p>
+              ) : null}
+            </div>
             <div className="flex gap-2">
               <input
                 value={chatInput}
@@ -1262,9 +1407,7 @@ export function AppClient() {
                 isActive={workspaceMode === "model" && workspaceTab === "viewer"}
                 actions={viewerActions}
                 onActionComplete={() => setViewerActions([])}
-                onViewerFeedback={(message) => {
-                  setChatLog((prev) => [...prev, `AI: ${message}`]);
-                }}
+                onViewerFeedback={debouncedSetChatLog}
                 onSelectionChange={setSelectedDbIds}
                 onSelectionDetails={setSelectedElements}
               />

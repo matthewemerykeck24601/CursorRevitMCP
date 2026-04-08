@@ -106,6 +106,9 @@ export function ViewerPanel({
   onSelectionChange,
   onSelectionDetails,
 }: ViewerPanelProps) {
+  const onViewerFeedbackRef = useRef(onViewerFeedback);
+  onViewerFeedbackRef.current = onViewerFeedback;
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const viewerRef = useRef<ViewerInstance | null>(null);
   const documentRef = useRef<unknown>(null);
@@ -129,7 +132,7 @@ export function ViewerPanel({
       return;
     }
 
-    const idsToLoad = ids.slice(0, 5);
+    const idsToLoad = ids.slice(0, 150);
     const readOne = (dbId: number) =>
       new Promise<SelectedElementSnapshot>((resolve) => {
         viewerRef.current?.getProperties(
@@ -588,7 +591,7 @@ export function ViewerPanel({
         if (action.type === "viewer.showAll") {
           viewerRef.current.showAll?.();
           viewerRef.current.isolate([]);
-          onViewerFeedback?.("Visibility reset to show all elements.");
+          onViewerFeedbackRef.current?.("Visibility reset to show all elements.");
           continue;
         }
         if (action.type === "viewer.isolateSelection") {
@@ -597,22 +600,22 @@ export function ViewerPanel({
           if (currentIds.length > 0) {
             viewerRef.current.isolate(currentIds);
             viewerRef.current.fitToView();
-            onViewerFeedback?.(
+            onViewerFeedbackRef.current?.(
               `Isolated ${currentIds.length} selected element${currentIds.length === 1 ? "" : "s"}.`,
             );
           } else {
-            onViewerFeedback?.("No selected elements available to isolate.");
+            onViewerFeedbackRef.current?.("No selected elements available to isolate.");
           }
           continue;
         }
         if (action.type === "viewer.search") {
           const ids = await searchIds(action.query);
           if (ids.length === 0) {
-            onViewerFeedback?.(`I found 0 matches for "${action.query}".`);
+            onViewerFeedbackRef.current?.(`I found 0 matches for "${action.query}".`);
           } else {
             viewerRef.current.select(ids);
             viewerRef.current.fitToView();
-            onViewerFeedback?.(
+            onViewerFeedbackRef.current?.(
               `I found ${ids.length} match${ids.length === 1 ? "" : "es"} for "${action.query}" and selected them.`,
             );
           }
@@ -621,13 +624,13 @@ export function ViewerPanel({
         if (action.type === "viewer.isolateByQuery") {
           const ids = await searchIds(action.query);
           if (ids.length === 0) {
-            onViewerFeedback?.(`I found 0 matches to isolate for "${action.query}".`);
+            onViewerFeedbackRef.current?.(`I found 0 matches to isolate for "${action.query}".`);
           } else {
             viewerRef.current.setGhosting?.(true);
             viewerRef.current.select(ids);
             viewerRef.current.isolate(ids);
             viewerRef.current.fitToView();
-            onViewerFeedback?.(
+            onViewerFeedbackRef.current?.(
               `Isolated ${ids.length} match${ids.length === 1 ? "" : "es"} for "${action.query}".`,
             );
           }
@@ -636,14 +639,14 @@ export function ViewerPanel({
         if (action.type === "viewer.hideByQuery") {
           const ids = await searchIds(action.query);
           if (ids.length === 0) {
-            onViewerFeedback?.(`I found 0 matches to hide for "${action.query}".`);
+            onViewerFeedbackRef.current?.(`I found 0 matches to hide for "${action.query}".`);
           } else if (viewerRef.current.hide) {
             viewerRef.current.hide(ids);
-            onViewerFeedback?.(
+            onViewerFeedbackRef.current?.(
               `Hid ${ids.length} match${ids.length === 1 ? "" : "es"} for "${action.query}".`,
             );
           } else {
-            onViewerFeedback?.("Hide is not supported by current viewer runtime.");
+            onViewerFeedbackRef.current?.("Hide is not supported by current viewer runtime.");
           }
         }
       }
@@ -653,7 +656,6 @@ export function ViewerPanel({
   }, [
     actions,
     onActionComplete,
-    onViewerFeedback,
     emitSelection,
     saveMarkupSnapshot,
     loadMarkupSnapshot,

@@ -3,6 +3,12 @@ import {
   analyzeAecElementsForMarks,
   type ProductPrefix,
 } from "@/lib/aec-elements-for-marks";
+import {
+  groupAecdmElementsForMarks,
+  queryAecdmElementsForMarks,
+  type AecdmElementRow,
+} from "@/lib/aecdmMarkGrouping";
+import { resolveAecProjectId } from "@/lib/aps";
 import { submitMarkUpdateWorkitem } from "@/lib/da-workitems";
 
 /** Mirrors MCP `CachedAnalysisResult` (separate in-memory cache in Next.js). */
@@ -68,8 +74,54 @@ export async function analyzePublishedModelAndCacheContract(
   const warnings: unknown[] = [];
   let workitem_arguments: Record<string, unknown> | undefined;
   let aec_summary: CachedAnalysisResult["aec_summary"];
+  let usedAecdm = false;
 
-  if (token && hubId && projectId) {
+  if (token && hubId && projectId && model_urn) {
+    try {
+      const aecProjectId = await resolveAecProjectId(token, hubId, projectId);
+      const rows = await queryAecdmElementsForMarks({
+        accessToken: token,
+        aecProjectId,
+        modelUrn: model_urn,
+        family: product_prefix === "ALL" ? undefined : product_prefix,
+        limit: 500,
+      });
+      if (rows.length > 0) {
+        const grouped = groupAecdmElementsForMarks({
+          elements: rows as AecdmElementRow[],
+          product_prefix,
+          modelUrn: model_urn,
+          hubId,
+          dmProjectId: projectId,
+          aecProjectId,
+        });
+        proposed_marks = grouped.proposed_marks;
+        sameness_groups = grouped.sameness_groups;
+        workitem_arguments = { ...grouped.workitem_arguments };
+        warnings.push(...grouped.warnings);
+        aec_summary = {
+          elements_fetched: grouped.elements_fetched,
+          elements_after_filter: grouped.elements_after_filter,
+          aec_project_id: aecProjectId,
+        };
+        usedAecdm = true;
+      } else {
+        warnings.push(
+          "AECDM REST returned 0 elements; falling back to AEC GraphQL.",
+        );
+      }
+    } catch (e) {
+      warnings.push(
+        `AECDM query failed (${e instanceof Error ? e.message : String(e)}); falling back to AEC GraphQL.`,
+      );
+    }
+  } else if (token && hubId && projectId && !model_urn) {
+    warnings.push(
+      "model_urn not provided — skipping AECDM REST; using AEC GraphQL only.",
+    );
+  }
+
+  if (!usedAecdm && token && hubId && projectId) {
     try {
       const analysis = await analyzeAecElementsForMarks({
         accessToken: token,
@@ -97,10 +149,10 @@ export async function analyzePublishedModelAndCacheContract(
       };
     } catch (e) {
       warnings.push(
-        `AEC analysis failed: ${e instanceof Error ? e.message : String(e)}`,
+        `AEC GraphQL analysis failed: ${e instanceof Error ? e.message : String(e)}`,
       );
     }
-  } else if (!model_urn) {
+  } else if (!(token && hubId && projectId) && !model_urn) {
     throw new Error(
       "Provide hub/project with session for AEC analysis, or pass model_urn for a minimal cache entry.",
     );
@@ -121,6 +173,10 @@ export async function analyzePublishedModelAndCacheContract(
 
   if (workitem_arguments) {
     workitem_arguments.cache_id = analysisResult.cache_id;
+    if (model_urn) workitem_arguments.viewerModelUrn = model_urn;
+    if (options.itemId != null && options.itemId !== "") {
+      workitem_arguments.itemId = options.itemId;
+    }
   }
 
   analysisCache.set(analysisResult.cache_id, analysisResult);

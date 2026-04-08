@@ -17,10 +17,146 @@ import {
   getProductSamenessReport,
 } from "./tools/precastMarkTools.js";
 import {
+  analyzePublishedModelAndCache,
+  triggerDesignAutomationMarkUpdate,
+  getCachedMarkAnalysis,
   runAnalyzePublishedModelAndCache,
   runGetCachedMarkAnalysis,
   runTriggerDesignAutomationMarkUpdate,
 } from "./tools/precastDesignAutomationTools.js";
+import {
+  analyzePublishedModelAecdmCache,
+  getElementProperties,
+  getElementsByCategory,
+  runAnalyzePublishedModelAecdmCache,
+  runGetElementProperties,
+  runGetElementsByCategory,
+} from "./tools/apsQueryTools.js";
+
+/** MCP listTools entries — names/descriptions stay in sync with apsQueryTools.ts */
+const apsQueryMcpTools = [
+  {
+    name: getElementsByCategory.name,
+    description: getElementsByCategory.description,
+    inputSchema: {
+      type: "object",
+      properties: {
+        category: { type: "string" },
+        family: { type: "string" },
+        type: { type: "string" },
+        limit: { type: "number", default: 500 },
+        access_token: { type: "string" },
+        accessToken: { type: "string" },
+        model_urn: { type: "string" },
+        urn: { type: "string" },
+        project_id: { type: "string" },
+        projectId: { type: "string" },
+        hub_id: { type: "string" },
+        hubId: { type: "string" },
+      },
+      required: [],
+    },
+  },
+  {
+    name: getElementProperties.name,
+    description: getElementProperties.description,
+    inputSchema: {
+      type: "object",
+      properties: {
+        dbIds: {
+          type: "array",
+          items: {
+            anyOf: [{ type: "string" }, { type: "number" }],
+          },
+        },
+        access_token: { type: "string" },
+        accessToken: { type: "string" },
+        model_urn: { type: "string" },
+        urn: { type: "string" },
+        project_id: { type: "string" },
+        projectId: { type: "string" },
+        hub_id: { type: "string" },
+        hubId: { type: "string" },
+      },
+      required: ["dbIds"],
+    },
+  },
+  {
+    name: analyzePublishedModelAecdmCache.name,
+    description: analyzePublishedModelAecdmCache.description,
+    inputSchema: {
+      type: "object",
+      properties: {
+        product_prefix: {
+          type: "string",
+          enum: ["WPA", "WPB", "CLA", "COLUMN", "ALL"],
+          default: "ALL",
+        },
+        dry_run: { type: "boolean", default: true },
+        access_token: { type: "string" },
+        accessToken: { type: "string" },
+        model_urn: { type: "string" },
+        urn: { type: "string" },
+        project_id: { type: "string" },
+        projectId: { type: "string" },
+        hub_id: { type: "string" },
+        hubId: { type: "string" },
+      },
+      required: [],
+    },
+  },
+];
+
+/** MCP listTools entries — names/descriptions stay in sync with precastDesignAutomationTools.ts */
+const designAutomationMcpTools = [
+  {
+    name: analyzePublishedModelAndCache.name,
+    description: analyzePublishedModelAndCache.description,
+    inputSchema: {
+      type: "object",
+      properties: {
+        product_prefix: {
+          type: "string",
+          enum: ["WPA", "WPB", "CLA", "ALL"],
+          default: "ALL",
+        },
+        dry_run: { type: "boolean", default: true },
+        model_urn: { type: "string" },
+        urn: { type: "string" },
+        access_token: { type: "string" },
+        accessToken: { type: "string" },
+        hub_id: { type: "string" },
+        hubId: { type: "string" },
+        project_id: { type: "string" },
+        projectId: { type: "string" },
+        item_id: { type: "string" },
+        itemId: { type: "string" },
+      },
+      required: [],
+    },
+  },
+  {
+    name: triggerDesignAutomationMarkUpdate.name,
+    description: triggerDesignAutomationMarkUpdate.description,
+    inputSchema: {
+      type: "object",
+      properties: {
+        cache_id: { type: "string" },
+        confirm: { type: "boolean", default: false },
+        additional_updates: { type: "object", additionalProperties: true },
+      },
+      required: ["cache_id"],
+    },
+  },
+  {
+    name: getCachedMarkAnalysis.name,
+    description: getCachedMarkAnalysis.description,
+    inputSchema: {
+      type: "object",
+      properties: {},
+    },
+  },
+];
 
 const ToolArgsSchema = z.record(z.string(), z.unknown());
 
@@ -183,55 +319,8 @@ export function buildServer() {
           required: ["mark_groups"],
         },
       },
-      {
-        name: "analyze_published_model_and_cache",
-        description:
-          "Queries the current APS published model (Viewer / AEC Data Model), runs mark verification & sameness logic, proposes CONTROL_MARKs starting at 100, and caches results for Design Automation. Pass model_urn when the host does not inject context.",
-        inputSchema: {
-          type: "object",
-          properties: {
-            product_prefix: {
-              type: "string",
-              enum: ["WPA", "WPB", "CLA", "ALL"],
-              default: "ALL",
-            },
-            dry_run: { type: "boolean", default: true },
-            model_urn: { type: "string" },
-            urn: { type: "string" },
-            access_token: { type: "string" },
-            accessToken: { type: "string" },
-            hub_id: { type: "string" },
-            hubId: { type: "string" },
-            project_id: { type: "string" },
-            projectId: { type: "string" },
-            item_id: { type: "string" },
-            itemId: { type: "string" },
-          },
-          required: [],
-        },
-      },
-      {
-        name: "trigger_design_automation_mark_update",
-        description:
-          "Uses the cached analysis results to run APS Design Automation on the central Revit model. Applies CONTROL_MARKs and any other parameter updates.",
-        inputSchema: {
-          type: "object",
-          properties: {
-            cache_id: { type: "string" },
-            confirm: { type: "boolean", default: false },
-          },
-          required: ["cache_id"],
-        },
-      },
-      {
-        name: "get_cached_mark_analysis",
-        description:
-          "Returns the latest cached mark verification results for preview before running Design Automation.",
-        inputSchema: {
-          type: "object",
-          properties: {},
-        },
-      },
+      ...apsQueryMcpTools,
+      ...designAutomationMcpTools,
     ],
   }));
 
@@ -268,6 +357,15 @@ export function buildServer() {
     }
     if (name === "assign_control_marks") {
       return textResult(assignControlMarks(args));
+    }
+    if (name === "get_elements_by_category") {
+      return textResult(await runGetElementsByCategory(args, {}));
+    }
+    if (name === "get_element_properties") {
+      return textResult(await runGetElementProperties(args, {}));
+    }
+    if (name === "analyze_published_model_aecdm_cache") {
+      return textResult(await runAnalyzePublishedModelAecdmCache(args, {}));
     }
     if (name === "analyze_published_model_and_cache") {
       return textResult(await runAnalyzePublishedModelAndCache(args, {}));

@@ -1,7 +1,13 @@
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 import { analyzeAecElementsForMarks } from "../lib/aec-elements-for-marks.js";
+import {
+  groupAecdmElementsForMarks,
+  type AecdmElementRow,
+} from "../lib/aecdmMarkGrouping.js";
+import { resolveAecProjectId } from "../lib/apsForAecMarks.js";
 import { submitMarkUpdateWorkitemMcp } from "../lib/daWorkitemsMcp.js";
+import { getElementsByCategory } from "./apsQueryTools.js";
 
 /** Host-provided context (MCP stdio may pass URNs via tool args instead). */
 export type PrecastDaContext = {
@@ -58,7 +64,7 @@ type AnalyzePublishedModelParams = z.infer<
 export const analyzePublishedModelAndCache = {
   name: "analyze_published_model_and_cache" as const,
   description:
-    "Queries the current APS published model (Viewer / AEC Data Model), runs mark verification & sameness logic, proposes CONTROL_MARKs starting at 100, and caches results for later Design Automation. Pass access_token, hub_id, project_id for AEC GraphQL; pass model_urn for viewer correlation.",
+    "Primary analyzer: tries AEC Data Model REST (get_elements_by_category) for live elements, groups for CONTROL_MARKs (starts at 100), caches for Design Automation; falls back to AEC GraphQL if REST returns no rows or fails. Pass access_token, hub_id, project_id, and model_urn for the REST path.",
   parameters: AnalyzePublishedModelParamsSchema,
 
   async handler(parsed: AnalyzePublishedModelParams, context: PrecastDaContext) {
@@ -87,8 +93,71 @@ export const analyzePublishedModelAndCache = {
     const warnings: unknown[] = [];
     let workitem_arguments: Record<string, unknown> | undefined;
     let aec_summary: CachedAnalysisResult["aec_summary"];
+    let usedAecdm = false;
 
-    if (token && hubId && projectId) {
+    if (token && hubId && projectId && modelUrn) {
+      try {
+        console.log(
+          `[Analyze] AECDM REST first (project ${projectId}, prefix ${product_prefix})`,
+        );
+        const aecProjectId = await resolveAecProjectId(
+          token,
+          hubId,
+          projectId,
+        );
+        const queryResult = await getElementsByCategory.handler(
+          {
+            limit: 500,
+            family: product_prefix === "ALL" ? undefined : product_prefix,
+            category: undefined,
+            type: undefined,
+            accessToken: token,
+            access_token: token,
+            projectId: aecProjectId,
+            project_id: aecProjectId,
+            model_urn: modelUrn,
+            urn: modelUrn,
+          },
+          {},
+        );
+
+        const rowCount = queryResult.count ?? 0;
+        if (queryResult.success && rowCount > 0) {
+          const grouped = groupAecdmElementsForMarks({
+            elements: queryResult.elements as AecdmElementRow[],
+            product_prefix,
+            modelUrn,
+            hubId,
+            dmProjectId: projectId,
+            aecProjectId,
+          });
+          proposed_marks = grouped.proposed_marks;
+          sameness_groups = grouped.sameness_groups;
+          workitem_arguments = { ...grouped.workitem_arguments };
+          warnings.push(...grouped.warnings);
+          aec_summary = {
+            elements_fetched: grouped.elements_fetched,
+            elements_after_filter: grouped.elements_after_filter,
+            aec_project_id: aecProjectId,
+          };
+          usedAecdm = true;
+        } else if (queryResult.success && rowCount === 0) {
+          warnings.push(
+            "AECDM REST returned 0 elements; falling back to AEC GraphQL.",
+          );
+        }
+      } catch (e) {
+        warnings.push(
+          `AECDM query failed (${e instanceof Error ? e.message : String(e)}); falling back to AEC GraphQL.`,
+        );
+      }
+    } else if (token && hubId && projectId && !modelUrn) {
+      warnings.push(
+        "model_urn not provided — skipping AECDM REST; using AEC GraphQL only.",
+      );
+    }
+
+    if (!usedAecdm && token && hubId && projectId) {
       try {
         console.log(
           `[Analyze] AEC GraphQL for project ${projectId}, prefix ${product_prefix}`,
@@ -119,7 +188,7 @@ export const analyzePublishedModelAndCache = {
         };
       } catch (e) {
         warnings.push(
-          `AEC analysis failed: ${e instanceof Error ? e.message : String(e)}`,
+          `AEC GraphQL analysis failed: ${e instanceof Error ? e.message : String(e)}`,
         );
       }
     }
@@ -139,6 +208,8 @@ export const analyzePublishedModelAndCache = {
 
     if (workitem_arguments) {
       workitem_arguments.cache_id = analysisResult.cache_id;
+      if (modelUrn) workitem_arguments.viewerModelUrn = modelUrn;
+      if (itemId != null && itemId !== "") workitem_arguments.itemId = itemId;
     }
 
     analysisCache.set(analysisResult.cache_id, analysisResult);
@@ -151,7 +222,7 @@ export const analyzePublishedModelAndCache = {
       aec_summary,
       warnings,
       next_step: dry_run
-        ? "Review the preview above. If correct, call trigger_design_automation_mark_update with this cache_id."
+        ? "Review the preview. If correct, call trigger_design_automation_mark_update with this cache_id and confirm: true."
         : "Dry-run disabled — proceeding to Design Automation (safety gate still applies).",
     };
   },
@@ -167,13 +238,19 @@ export const triggerDesignAutomationMarkUpdate = {
   parameters: z.object({
     cache_id: z.string(),
     confirm: z.boolean().default(false),
+    /** Merged into the Design Automation payload when present (e.g. extra parameter intents). */
+    additional_updates: z.record(z.string(), z.unknown()).optional(),
   }),
 
   async handler(
-    params: { cache_id: string; confirm: boolean },
+    params: {
+      cache_id: string;
+      confirm: boolean;
+      additional_updates?: Record<string, unknown>;
+    },
     _context: PrecastDaContext,
   ) {
-    const { cache_id, confirm } = params;
+    const { cache_id, confirm, additional_updates } = params;
 
     if (!confirm) {
       return {
@@ -193,7 +270,7 @@ export const triggerDesignAutomationMarkUpdate = {
 
     console.log(`[Design Automation] Triggering update for cache ${cache_id}`);
 
-    const args =
+    const args: Record<string, unknown> =
       cached.workitem_arguments && typeof cached.workitem_arguments === "object"
         ? { ...cached.workitem_arguments, cache_id: cached.cache_id }
         : {
@@ -201,6 +278,10 @@ export const triggerDesignAutomationMarkUpdate = {
             product_prefix: cached.product_prefix,
             proposed_marks: cached.proposed_marks,
           };
+
+    if (additional_updates && Object.keys(additional_updates).length > 0) {
+      args.additional_updates = additional_updates;
+    }
 
     try {
       const da = await submitMarkUpdateWorkitemMcp({ workitemArguments: args });
@@ -290,3 +371,10 @@ export async function runGetCachedMarkAnalysis(
   const parsed = getCachedMarkAnalysis.parameters.parse(args);
   return getCachedMarkAnalysis.handler(parsed, context);
 }
+
+/** Convenience bundle for imports / registration docs (server uses `designAutomationMcpTools` + `run*`). */
+export const precastDesignAutomationTools = {
+  analyzePublishedModelAndCache,
+  triggerDesignAutomationMarkUpdate,
+  getCachedMarkAnalysis,
+} as const;
