@@ -1,0 +1,25 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: EDGE.TicketTools.AutoDimensioning.SSNotifier
+// Assembly: EDGEforREVIT, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8F55B9C3-A92E-41C0-AD06-820A67FFC8AF
+// Assembly location: C:\ProgramData\Autodesk\Revit\Addins\2024\PTAC_EDGE_BUNDLE\EDGEforREVIT.dll
+
+using System.ComponentModel;
+
+#nullable disable
+namespace EDGE.TicketTools.AutoDimensioning;
+
+public class SSNotifier : INotifyPropertyChanged
+{
+  public event PropertyChangedEventHandler PropertyChanged;
+
+  public void OnPropertyChanged(string propertyName)
+  {
+    if (this.PropertyChanged == null)
+      return;
+    PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+    if (propertyChanged == null)
+      return;
+    propertyChanged((object) this, new PropertyChangedEventArgs(propertyName));
+  }
+}

@@ -1,0 +1,194 @@
+<Window x:Class="EDGE.__Testing.BulkFamilyUpdater.Views.BFUParameterTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.__Testing.BulkFamilyUpdater.Views"
+        Height="450" Width="300" ResizeMode="NoResize" Background="LightGray">
+  <FrameworkElement.Resources>
+    <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type TextBox}">
+            <Grid>
+              <Border Name="border" Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+              <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center"/>
+              <Label x:Name="WaterMarkLabel" Margin="0,0,0,0" Height="22" VerticalAlignment="Center"
+                     Visibility="Collapsed" Foreground="Gray" FontSize="10.9" FontFamily="Arial"
+                     Content="{Binding ValueTextBoxHint}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="TextBox.Text" Value=""/>
+                  <Condition Property="UIElement.IsMouseOver" Value="false"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="WaterMarkLabel" Property="UIElement.Visibility" Value="Visible"/>
+              </MultiTrigger>
+              <Trigger Property="UIElement.IsEnabled" Value="false">
+                <Setter TargetName="WaterMarkLabel" Property="ContentControl.Content" Value=""/>
+                <Setter TargetName="border" Property="Border.Background" Value="#f0f0f0"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.1*"/>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="0.1*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.9*"/>
+      <RowDefinition Height="0.8*"/>
+      <RowDefinition x:Name="typeInstanceRow" Height="0.35*"/>
+      <RowDefinition Height="0.8*"/>
+      <RowDefinition Height="0.8*"/>
+      <RowDefinition x:Name="groupRow" Height="0.8*"/>
+      <RowDefinition x:Name="valueRow" Height="1*"/>
+      <RowDefinition Height="0.5*"/>
+    </Grid.RowDefinitions>
+    <Grid Column="1" Row="0">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Label x:Name="parameterTypeLabel" Grid.Row="0" Margin="-4,0,0,0" Content="Parameter Type:"
+             VerticalAlignment="Center"/>
+      <Grid Row="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Click="familyParameterButton_Click" x:Name="familyParameterButton" Grid.Column="0"
+                Content="Family parameter" Background="DarkGray" IsEnabled="false" Margin="0,2.5,5,7.5"
+                TabIndex="0"/>
+        <Button Click="sharedParameterButton_Click" x:Name="sharedParameterButton" Grid.Column="1"
+                Content="Shared parameter" Background="DarkGray" IsEnabled="false" Margin="5,2.5,0,7.5"
+                TabIndex="1"/>
+      </Grid>
+    </Grid>
+    <Grid Column="1" Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="parameterNameLabel" Grid.Column="0" Margin="-4,0,0,0" Content="Parameter Name:"
+               VerticalAlignment="Center"/>
+        <Viewbox Grid.Column="1" Margin="-20,2,0,0" Stretch="Uniform" HorizontalAlignment="Left"
+                 VerticalAlignment="Center" MaxHeight="14.5">
+          <TextBox x:Name="currentParameterNameLabel" Visibility="Hidden" FontSize="12" FontStyle="Italic"
+                   IsReadOnly="true" VerticalAlignment="Center" IsInactiveSelectionHighlightEnabled="false"
+                   Cursor="Arrow" BorderThickness="0" Background="LightGray"
+                   Text="{Binding CurrentParmaeterName, UpdateSourceTrigger=PropertyChanged}"/>
+        </Viewbox>
+      </Grid>
+      <TextBox x:Name="parameterNameTextBox" Grid.Row="1" Height="20" VerticalAlignment="Top" TabIndex="3"
+               Text="{Binding ParameterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+    <Grid Column="1" Row="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <CheckBox Checked="typeCheckBox_Checked" Unchecked="typeCheckBox_Unchecked" x:Name="typeCheckBox"
+                Grid.Column="0" Content="Type" TabIndex="4" HorizontalAlignment="Left"
+                IsChecked="{Binding TypeCheckBoxBool}"/>
+      <CheckBox Checked="instanceCheckBox_Checked" Unchecked="instanceCheckBox_Unchecked" x:Name="instanceCheckBox"
+                Grid.Column="1" Content="Instance" TabIndex="5" HorizontalAlignment="Left"
+                IsChecked="{Binding InstanceCheckBoxBool}"/>
+    </Grid>
+    <Grid Column="1" Row="3">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Label x:Name="disciplineLabel" Grid.Row="0" Margin="-4,0,0,0" VerticalAlignment="Center"
+             Content="Discipline:"/>
+      <ComboBox SelectionChanged="disciplineComboBox_SelectionChanged" x:Name="disciplineComboBox" Grid.Row="1"
+                Height="22" VerticalAlignment="Top" TabIndex="6" DisplayMemberPath="ValueString"
+                SelectedValuePath="ValueString" ItemsSource="{Binding DisciplineItems}"
+                SelectedValue="{Binding SelectedDisciplineItem}"/>
+    </Grid>
+    <Grid Column="1" Row="4">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Label x:Name="typeLabel" Grid.Row="0" Margin="-4,0,0,0" VerticalAlignment="Center"
+             Content="Type of parameter:"/>
+      <ComboBox SelectionChanged="typeComboBox_SelectionChanged" x:Name="typeComboBox" Grid.Row="1" Height="22"
+                VerticalAlignment="Top" TabIndex="7" SelectedValuePath="ValueString"
+                DisplayMemberPath="ValueString" ItemsSource="{Binding TypeItems}"
+                SelectedValue="{Binding SelectedTypeItem}"/>
+    </Grid>
+    <Grid Column="1" Row="5">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Label x:Name="groupUnderLabel" Grid.Row="0" Margin="-4,0,0,0" VerticalAlignment="Center"
+             Content="Group parameter under:"/>
+      <ComboBox x:Name="groupUnderComboBox" Grid.Row="1" Height="22" TabIndex="8" VerticalAlignment="Top"
+                SelectedValuePath="ValueString" DisplayMemberPath="ValueString"
+                ItemsSource="{Binding GroupUnderItems}" SelectedValue="{Binding SelectedGroupUnderItem}"/>
+    </Grid>
+    <Label x:Name="formulaEqualLabel" Grid.Column="0" Grid.Row="6" Content="=" Visibility="Hidden"
+           HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center" Margin="0,0,0,6"/>
+    <Grid Column="1" Row="6">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Label x:Name="valueLabel" Grid.Row="0" Margin="-4,0,0,0" VerticalAlignment="Center" Content="Value:"/>
+      <Grid Row="1">
+        <TextBox x:Name="valueTextBox" Height="20" Width="140" HorizontalAlignment="Left" TabIndex="10"
+                 Style="{StaticResource MyWaterMarkStyle}"
+                 Text="{Binding ParameterValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label x:Name="unitLabel" HorizontalAlignment="Right" VerticalAlignment="Top"
+               HorizontalContentAlignment="Left" Width="100" Margin="0,-2,0,0"
+               Content="{Binding ParameterValueUnits, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox Checked="yesValueCheckBox_Checked" Unchecked="yesValueCheckBox_Unchecked" x:Name="yesValueCheckBox"
+                  HorizontalAlignment="Left" Content="Yes" VerticalAlignment="Center" Visibility="Collapsed"
+                  IsChecked="{Binding YesCheckBoxBool}"/>
+        <CheckBox Checked="noCheckBox_Checked" Unchecked="noValueCheckBox_Unchecked" x:Name="noValueCheckBox"
+                  HorizontalAlignment="Left" Content="No" VerticalAlignment="Center" Margin="75,0,0,0"
+                  Visibility="Collapsed" IsChecked="{Binding NoCheckBoxBool}"/>
+      </Grid>
+      <Grid Row="2">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Checked="formulaCheckBox_Checked" Unchecked="formulaCheckBox_Unchecked" x:Name="formulaCheckBox"
+                  Grid.Column="0" Content="Formula" VerticalAlignment="Center" TabIndex="11"
+                  HorizontalAlignment="Left" IsChecked="{Binding FormulaCheckBoxBool}"/>
+        <CheckBox Checked="clearValueCheckBox_Checked" Unchecked="clearValueCheckBox_Unchecked"
+                  x:Name="clearValueCheckBox" Grid.Column="1" Content="Clear Value" VerticalAlignment="Center"
+                  TabIndex="12" HorizontalAlignment="Left" Visibility="Hidden"
+                  IsChecked="{Binding ClearValueCheckBoxBool}"/>
+      </Grid>
+    </Grid>
+    <Grid Column="1" Row="7">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Click="oKButton_Click" x:Name="oKButton" Grid.Column="0" Content="OK" Background="DarkGray"
+              VerticalAlignment="Center" Margin="0,2.5,5,10" TabIndex="13"/>
+      <Button Click="cancelButton_Click" x:Name="cancelButton" Grid.Column="1" Content="Cancel"
+              Background="DarkGray" VerticalAlignment="Center" Margin="5,2.5,0,10" TabIndex="14"/>
+    </Grid>
+  </Grid>
+</Window>

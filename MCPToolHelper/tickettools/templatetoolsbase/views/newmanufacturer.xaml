@@ -1,0 +1,36 @@
+<Window x:Class="EDGE.TicketTools.TemplateToolsBase.Views.NewManufacturer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.TicketTools.TemplateToolsBase.Views"
+        Height="160" Width="300" Background="LightGray" ResizeMode="NoResize" Title="New Manufacturer">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="15"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="15"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="15"/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <Label x:Name="newManufacturerNameLabel" Grid.Column="1" Grid.Row="1" Content="Enter Manufacturer Name:"
+           FontSize="16" VerticalAlignment="Bottom" Margin="5,0,0,0"/>
+    <TextBox TextChanged="manufacturerNameTextBox_TextChanged" x:Name="manufacturerNameTextBox" Grid.Column="1"
+             Grid.Row="2" Height="25" Width="250" VerticalAlignment="Top" Margin="5,5,5,0" TabIndex="0"/>
+    <Grid Column="1" Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="addButton" Grid.Column="0" Content="Add" Height="25" Width="115" Margin="5,0,5,0"
+              HorizontalAlignment="Left" TabIndex="1" Command="{Binding AddManufacturerCommand}"/>
+      <Button x:Name="cancelButton" Grid.Column="1" Content="Cancel" Height="25" Width="115" Margin="5,0,5,0"
+              HorizontalAlignment="Right" TabIndex="2" Command="{Binding CloseCommand}"/>
+    </Grid>
+  </Grid>
+</Window>

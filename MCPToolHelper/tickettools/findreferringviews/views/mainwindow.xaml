@@ -1,0 +1,94 @@
+<Window x:Class="EDGE.TicketTools.FindReferringViews.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:EDGE.TicketTools.FindReferringViews.ViewModels"
+        xmlns:models="clr-namespace:EDGE.TicketTools.FindReferringViews.Models"
+        WindowStartupLocation="CenterOwner" SizeToContent="Width" WindowStyle="SingleBorderWindow"
+        Width="350" Height="350" MinWidth="350" MinHeight="350">
+  <FrameworkElement.Resources>
+    <viewModels:MainViewModel x:Key="MainViewModel"/>
+  </FrameworkElement.Resources>
+  <Grid Margin="0,2,0,0" Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="235*"/>
+      <ColumnDefinition Width="107*"/>
+    </Grid.ColumnDefinitions>
+    <TabControl SelectionChanged="TabControl_SelectionChanged" Margin="10,10,10,42" Padding="0" Grid.ColumnSpan="2">
+      <TabItem x:Name="selectionTab" Header="Selection">
+        <Grid>
+          <TreeView x:Name="legendTree" Margin="10">
+            <TreeViewItem x:Name="legendsItem" Header="Legends" FontWeight="Bold">
+              <FrameworkElement.Resources>
+                <DataTemplate DataType="{x:Type models:LegendModel}">
+                  <StackPanel Orientation="Horizontal">
+                    <CheckBox FontWeight="Normal" VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                              Content="{Binding Name}"/>
+                  </StackPanel>
+                </DataTemplate>
+              </FrameworkElement.Resources>
+            </TreeViewItem>
+            <TreeViewItem x:Name="symbolsItem" Header="Symbols" FontWeight="Bold">
+              <FrameworkElement.Resources>
+                <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type models:SymbolFamilyModel}}"
+                                          DataType="{x:Type models:SymbolFamilyModel}" ItemsSource="{Binding SymbolTypeList}">
+                  <StackPanel Orientation="Horizontal">
+                    <CheckBox FontWeight="Normal" VerticalAlignment="Center" IsChecked="{Binding IsChecked}"
+                              Content="{Binding Name}"/>
+                  </StackPanel>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type models:SymbolTypeModel}">
+                  <StackPanel Orientation="Horizontal">
+                    <CheckBox FontWeight="Normal" VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                              Content="{Binding Name}"/>
+                  </StackPanel>
+                </DataTemplate>
+              </FrameworkElement.Resources>
+            </TreeViewItem>
+          </TreeView>
+        </Grid>
+      </TabItem>
+      <TabItem x:Name="viewsTab" Header="Referring Views">
+        <Grid>
+          <TreeView SelectedItemChanged="referringViewTree_SelectedItemChanged" x:Name="referringViewTree" Margin="10"
+                    ItemsSource="{Binding}">
+            <TreeViewItem x:Name="referringLegendTreeItem" Header="Legends" FontWeight="Bold">
+              <FrameworkElement.Resources>
+                <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type models:LegendModel}}" DataType="{x:Type models:LegendModel}"
+                                          ItemsSource="{Binding AssociatedViewSheets}">
+                  <TextBlock FontWeight="Normal" Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type models:ViewSheetModel}">
+                  <TextBlock FontWeight="Normal" Text="{Binding Name}"/>
+                </DataTemplate>
+              </FrameworkElement.Resources>
+            </TreeViewItem>
+            <TreeViewItem x:Name="referringSymbolTreeItem" Header="Symbols" FontWeight="Bold">
+              <FrameworkElement.Resources>
+                <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type models:SymbolFamilyModel}}"
+                                          DataType="{x:Type models:SymbolFamilyModel}" ItemsSource="{Binding CheckedSymbols}">
+                  <TextBlock FontWeight="Normal" Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate x:Key="{DataTemplateKey {x:Type models:SymbolTypeModel}}"
+                                          DataType="{x:Type models:SymbolTypeModel}" ItemsSource="{Binding AssociatedViewSheets}">
+                  <TextBlock FontWeight="Normal" Text="{Binding Name}"/>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type models:ViewSheetModel}">
+                  <TextBlock FontWeight="Normal" Text="{Binding Name}"/>
+                </DataTemplate>
+              </FrameworkElement.Resources>
+            </TreeViewItem>
+          </TreeView>
+        </Grid>
+      </TabItem>
+    </TabControl>
+    <Button Click="closeButton_Click" x:Name="closeButton" Content="Close" HorizontalAlignment="Right"
+            Margin="0,0,10,10" Width="75" Height="20" VerticalAlignment="Bottom"
+            Background="{DynamicResource {x:Static JetSystemColors.MenuBrushKey}}" Grid.Column="1"/>
+    <Button Click="activateViewButton_Click" x:Name="activateViewButton" Content="Sheet Selection Required"
+            Margin="0,0,92,10" Padding="5,0" HorizontalAlignment="Right" Height="20" VerticalAlignment="Bottom"
+            Background="{DynamicResource {x:Static JetSystemColors.MenuBrushKey}}" IsEnabled="false"
+            Grid.ColumnSpan="2" VerticalContentAlignment="Center"/>
+  </Grid>
+</Window>

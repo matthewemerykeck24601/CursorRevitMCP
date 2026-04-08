@@ -1,0 +1,67 @@
+<Window x:Class="EDGE.AssemblyTools.MarkVerification.CompareEngine_Selection_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.AssemblyTools.MarkVerification"
+        Height="330" Width="350" MinHeight="330" MinWidth="300" Title="Compare Engine Selection Window">
+  <Grid Margin="0,0,-0.4,0.8">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="2*"/>
+      <RowDefinition Height="8*"/>
+      <RowDefinition Height="2.5*"/>
+    </Grid.RowDefinitions>
+    <TextBlock Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Width="309" Margin="10,7,0,3.6"/>
+    <Grid Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <CheckBox Checked="CheckAllBox_Checked" Unchecked="CheckAllBox_Unchecked" Name="CheckAllBox" Content="All"
+                HorizontalAlignment="Left" Margin="10,0,0,20.4" Grid.RowSpan="2" Width="39"/>
+      <CheckBox Checked="familyParametercheckBox_Checked" Unchecked="familyParametercheckBox_Unchecked"
+                Name="familyParametercheckBox" Grid.Row="1" Content="Family Parameter Comparison"
+                HorizontalAlignment="Left" Width="189" Margin="31,0.4,0,21" Grid.RowSpan="2"/>
+      <CheckBox Checked="mainMaterialVolumncheckBox_Checked" Unchecked="mainMaterialVolumncheckBox_Unchecked"
+                Name="mainMaterialVolumncheckBox" Grid.Row="1" Content="Main Material Volume Parameter Comparison"
+                HorizontalAlignment="Left" Width="269" Margin="30,20.4,0,0" Grid.RowSpan="2"/>
+      <CheckBox Checked="addonFamilycheckBox_Checked" Unchecked="addonFamilycheckBox_Unchecked"
+                Name="addonFamilycheckBox" Grid.Row="3" Content="Addon Family Type, Count, and Volume Comparison"
+                HorizontalAlignment="Left" Width="304" Margin="30,0,0,0"/>
+      <CheckBox Checked="plateFamilycheckBox_Checked" Unchecked="plateFamilycheckBox_Unchecked"
+                Name="plateFamilycheckBox" Grid.Row="4" Content="Plate Family Type and Count Comparison"
+                HorizontalAlignment="Left" Width="240" Margin="30,0,0,0"/>
+      <CheckBox Checked="memberGeometry_AddonLocation_checkBox_Checked"
+                Unchecked="memberGeometry_AddonLocation_checkBox_Unchecked"
+                Name="memberGeometry_AddonLocation_checkBox" Grid.Row="4" Content="Addon Location Comparison"
+                HorizontalAlignment="Left" Width="269" Margin="30,21.2,0,20.8" Grid.RowSpan="3"/>
+      <CheckBox Checked="memberGeometry_EmbededLocation_checkBox_Checked"
+                Unchecked="memberGeometry_EmbededLocation_checkBox_Unchecked"
+                Name="memberGeometry_EmbededLocation_checkBox" Grid.Row="6" Content="Plate Location Comparison"
+                HorizontalAlignment="Left" Width="269" Margin="30,0.8,0,20.6" Grid.RowSpan="2"/>
+      <CheckBox Checked="memberGeometry_Solid_checkBox_Checked" Unchecked="memberGeometry_Solid_checkBox_Unchecked"
+                Name="memberGeometry_Solid_checkBox" Grid.Row="7" Content="Solid Comparison"
+                HorizontalAlignment="Left" Width="269" Margin="30,0.2,0,21.2" Grid.RowSpan="2"/>
+      <TextBlock Name="detailTitle" Grid.Row="8" Text="Select method for comparison:" Visibility="Collapsed"
+                 HorizontalAlignment="Left" Padding="10,0,0,0" VerticalAlignment="Center"/>
+      <RadioButton Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked" Name="DetailBox" Grid.Row="9"
+                   Content="Detailed Approach" Visibility="Collapsed" HorizontalAlignment="Left"
+                   VerticalAlignment="Top" Margin="10,0,0,0" IsChecked="True"/>
+      <RadioButton Name="traditionalBox" Grid.Row="9" HorizontalAlignment="Right" Content="Traditional Approach"
+                   VerticalAlignment="Top" Visibility="Collapsed" Margin="0,0,10,0"/>
+    </Grid>
+    <Button Click="okButton_Click" Name="okButton" Grid.Row="2" HorizontalAlignment="Left"
+            VerticalAlignment="Center" Width="70" Height="20" Content="OK" Margin="40,14.4,0,13.6"/>
+    <Button Click="cancelButton_Click" Name="cancelButton" Grid.Row="2" HorizontalAlignment="Right"
+            VerticalAlignment="Center" Width="70" Height="20" Content="Cancel" Margin="0,14.4,40,13.6"/>
+  </Grid>
+</Window>

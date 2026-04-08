@@ -1,0 +1,85 @@
+<Window x:Class="EDGE.__Testing.BulkFamilyUpdater.Views.BFUMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.__Testing.BulkFamilyUpdater.Views"
+        Height="600" Width="1000" ResizeMode="NoResize" Background="LightGray" Title="Bulk Family Updater">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="0.02*"/>
+      <ColumnDefinition/>
+      <ColumnDefinition Width="0.022*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.01*"/>
+      <RowDefinition Height="0.125*"/>
+      <RowDefinition/>
+      <RowDefinition Height="0.06*"/>
+      <RowDefinition Height="0.10*"/>
+    </Grid.RowDefinitions>
+    <Grid Column="1" Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Click="addParameterButton_Click" x:Name="addParameterButton" Grid.Column="0"
+              Content="Add Parameter" Background="DarkGray" Margin="0,10,7.5,10" TabIndex="0"/>
+      <Button Click="modifyParameterButton_Click" x:Name="modifyParameterButton" Grid.Column="1"
+              Content="Modify Parameter" Background="DarkGray" Margin="5,10,5,10" TabIndex="1"/>
+      <Button Click="deleteParameterButton_Click" x:Name="deleteParameterButton" Grid.Column="2"
+              Content="Delete Parameter" Background="DarkGray" Margin="7.5,10,0,10" TabIndex="2"/>
+    </Grid>
+    <DataGrid x:Name="DataGrid" Grid.Column="1" TabIndex="3" Grid.Row="2" AutoGenerateColumns="false"
+              IsReadOnly="true" CanUserResizeRows="false" CanUserAddRows="false" CanUserDeleteRows="false"
+              VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" BorderBrush="Black"
+              BorderThickness="1" ItemsSource="{Binding Tasks}"
+              SelectedItem="{Binding SelectedTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+      <FrameworkElement.Resources>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+          <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+        </Style>
+      </FrameworkElement.Resources>
+      <DataGrid.Columns>
+        <DataGridTextColumn Width="100" MinWidth="100" MaxWidth="450" Header="Parameter Name" Binding="{Binding parameterName}"/>
+        <DataGridTextColumn Width="45" MinWidth="45" MaxWidth="450" Header="Action" Binding="{Binding action}"/>
+        <DataGridTextColumn Width="85" MinWidth="85" MaxWidth="450" Header="Shared/Family"
+                            Binding="{Binding isSharedParameter}"/>
+        <DataGridTextColumn Width="85" MinWidth="85" MaxWidth="450" Header="Type/Instance" Binding="{Binding isTypeParameter}"/>
+        <DataGridTextColumn Width="60" MinWidth="60" MaxWidth="450" Header="Discipline" Binding="{Binding discipline}"/>
+        <DataGridTextColumn Width="100" MinWidth="110" MaxWidth="450" Header="Type of Parameter" Binding="{Binding specType}"/>
+        <DataGridTextColumn Width="100" MinWidth="100" MaxWidth="400" Header="Parameter Group" Binding="{Binding paramGroup}"/>
+        <DataGridTextColumn Width="100" MinWidth="100" MaxWidth="300" Header="Value" Binding="{Binding value}"/>
+        <DataGridTemplateColumn Width="60" MaxWidth="60" MinWidth="60">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button x:Name="editTaskButton" Width="60" IsEnabled="{Binding canEdit}">Edit</Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTemplateColumn Width="60" MaxWidth="60" MinWidth="60">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button x:Name="removeTaskButton" Width="60">Remove</Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+    <CheckBox x:Name="addEdgeDimLinesCheckBox" Grid.Column="1" Grid.Row="3" Content="Add EDGE Dim Lines"
+              VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,5,0,0" Width="130" TabIndex="4"
+              IsChecked="{Binding EDGEDimLines}"/>
+    <Grid Column="1" Row="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Click="OKButton_Click" x:Name="OKButton" Grid.Column="0" Content="OK" Background="DarkGray"
+              Margin="0,2.5,7.5,10" TabIndex="5"/>
+      <Button Click="cancelButton_Click" x:Name="cancelButton" Grid.Column="2" Content="Cancel"
+              Background="DarkGray" Margin="7.5,2.5,0,10" TabIndex="6"/>
+    </Grid>
+  </Grid>
+</Window>

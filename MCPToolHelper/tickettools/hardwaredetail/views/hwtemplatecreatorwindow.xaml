@@ -1,0 +1,94 @@
+<Window x:Class="EDGE.TicketTools.HardwareDetail.Views.HWTemplateCreatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:EDGE.TicketTools.HardwareDetail.ViewModels"
+        Loaded="OnPageLoaded" Closing="OnClosing" Title="Hardware Detail Template Manager Tool"
+        ResizeMode="NoResize" HorizontalAlignment="Left" Height="325" Width="450" Background="LightGray">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="10"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="10"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="15"/>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="80"/>
+      <RowDefinition Height="70"/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="15"/>
+    </Grid.RowDefinitions>
+    <Grid Column="1" Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="375"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Label Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" Content="Hardware Detail Template Settings File"/>
+      <TextBox x:Name="TemplateSettingsFile" Grid.Column="0" Grid.Row="1" Margin="5,20,0,0" Width="375"
+               Height="20" HorizontalAlignment="Left" TabIndex="0"
+               Text="{Binding HardwareDetailTemplateSettingsPath}"/>
+      <Button Click="FileSelection_Click" x:Name="FileSelection" Grid.Column="1" Grid.Row="1" Width="30"
+              Height="20" Margin="0,20,0,0" Content="..." ClickMode="Release" HorizontalAlignment="Center"
+              TabIndex="1"/>
+    </Grid>
+    <Grid Column="1" Row="2">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="30"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <Button Click="manageManufacturers_Click" x:Name="manageManufacturers" Grid.Row="0" Margin="5"
+              Content="Manage Manufacturers" Height="20" Width="150" HorizontalAlignment="Left" TabIndex="2"/>
+      <Label x:Name="manufacturerNameLabel" Grid.Row="1" Content="Manufacturer Name:" HorizontalAlignment="Left"/>
+      <ComboBox x:Name="manufacturerComboBox" Grid.Row="1" Margin="5,20,0,10" HorizontalAlignment="Left"
+                TabIndex="3" Width="410" Height="22" DisplayMemberPath="ValueString"
+                SelectedValuePath="ValueString" ItemsSource="{Binding manufacturerList}"
+                SelectedValue="{Binding ManufacturerString}"/>
+    </Grid>
+    <Grid Column="1" Row="3">
+      <Label x:Name="tamplateNameSelectLabel"
+             Content="Specify a new Template name or select an existing one to modify"
+             HorizontalAlignment="Left"/>
+      <ComboBox TextBoxBase.TextChanged="templateComboBox_TextChanged" x:Name="templateNameComboBox" TabIndex="5"
+                Margin="5,22,0,28" Width="410" Height="22" HorizontalAlignment="Left" IsEditable="true"
+                IsReadOnly="false" IsTextSearchEnabled="false" Padding="0" DisplayMemberPath="ValueString"
+                SelectedValuePath="ValueString" ItemsSource="{Binding templateList}"
+                SelectedValue="{Binding TemplateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+    <Grid Column="1" Row="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Click="createButon_Click" x:Name="createButon" Grid.Column="0" Content="Create Template"
+              FontSize="10" Height="20" Width="92" HorizontalAlignment="Left" Margin="5,0,5,0" TabIndex="6"/>
+      <Button Click="editTitleblockButon_Click" x:Name="editTitleblockButon" Grid.Column="1"
+              Content="Edit Titleblock" FontSize="10" Height="20" Width="92" HorizontalAlignment="Center"
+              Margin="5,0,5,0" TabIndex="8"/>
+      <Button Click="renameButon_Click" x:Name="renameButon" Grid.Column="2" Content="Rename Template"
+              FontSize="10" Height="20" Width="92" HorizontalAlignment="Center" Margin="5,0,5,0" TabIndex="7"/>
+      <Button Click="deleteButon_Click" x:Name="deleteButon" Grid.Column="3" Content="Delete Template"
+              FontSize="10" Height="20" Width="92" HorizontalAlignment="Right" Margin="5,0,5,0" TabIndex="8"/>
+    </Grid>
+    <Grid Column="1" Row="5">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Click="helpButton_Click" x:Name="helpButton" Grid.Column="0" Content="Help" Height="25" Width="92"
+              Margin="5,0,5,0" HorizontalAlignment="Left" TabIndex="9"/>
+      <Button Click="saveButton_Click" x:Name="saveButton" Grid.Column="1" Content="Save" Height="25" Width="92"
+              Margin="5,0,5,0" HorizontalAlignment="Center" TabIndex="10"/>
+      <Button Click="saveCloseButton_Click" x:Name="saveCloseButton" Grid.Column="2" Content="Save and Close"
+              Height="25" Width="92" Margin="5,0,5,0" HorizontalAlignment="Center" TabIndex="11"/>
+      <Button Click="cancelButton_Click" x:Name="cancelButton" Grid.Column="3" Content="Cancel" Height="25"
+              Width="92" Margin="5,0,5,0" HorizontalAlignment="Right" TabIndex="12"/>
+    </Grid>
+  </Grid>
+</Window>

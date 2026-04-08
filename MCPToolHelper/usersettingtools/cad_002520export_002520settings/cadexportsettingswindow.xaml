@@ -1,0 +1,997 @@
+<Window x:Class="EDGE.UserSettingTools.CAD_Export_Settings.CADExportSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.UserSettingTools.CAD_Export_Settings"
+        Closing="Window_Closing" Background="LightGray" Title="CAD Export Settings" Width="475"
+        Height="360" MinWidth="475" MinHeight="360" MaxWidth="650" MaxHeight="430">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="5"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="5"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="5"/>
+    </Grid.RowDefinitions>
+    <Grid Row="1" Column="1">
+      <TabControl x:Name="ToolTabMenu">
+        <TabItem x:Name="CADExportSettingsTab" Header="CAD Export Settings">
+          <TabControl SelectionChanged="TabMenu_SelectionChanged" x:Name="CADExportTabMenu">
+            <TabItem Header="File Setup">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="5"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height=".2*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height=".2*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Row="1" Column="1">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".2*"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Export Folder Path:" VerticalAlignment="Bottom"/>
+                  <TextBox Name="CADExportFolderPathTextBox" Grid.Row="1" Height="22" Margin="5,0,5,0">
+                    <Binding Path="CADExportFolderPathString" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                      <Binding.ValidationRules>
+                        <local:FolderPathRule/>
+                      </Binding.ValidationRules>
+                    </Binding>
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type TextBox}">
+                        <Style.Triggers>
+                          <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </Trigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </TextBox>
+                  <Button Click="ExportFilePathButton_Click" Name="CADExportFilePathButton" Grid.Row="1" Grid.Column="1"
+                          Content="..." Height="22" Width="50" Margin="5,0,0,0" HorizontalAlignment="Left"
+                          VerticalAlignment="Top"/>
+                </Grid>
+                <Grid Row="3" Column="1">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width=".4*" MaxWidth="100"/>
+                    <ColumnDefinition Width=".4*" MaxWidth="100"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                  </Grid.RowDefinitions>
+                  <Label x:Name="CADExportFileNameSuffixLabel" Grid.Row="0" Grid.Column="0" Content="File Name Suffix:"
+                         VerticalAlignment="Bottom"/>
+                  <TextBox x:Name="CADExportFileNameSuffixTextBox" Grid.Row="1" Grid.Column="0" Height="22" Margin="5,0,2,0">
+                    <Binding Path="CADExportFileNameSuffixString" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                      <Binding.ValidationRules>
+                        <local:FolderPathRule/>
+                      </Binding.ValidationRules>
+                    </Binding>
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type TextBox}">
+                        <Style.Triggers>
+                          <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </Trigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </TextBox>
+                  <Label x:Name="CADExportFileTypeLabel" Grid.Row="0" Grid.Column="2" Content="File Type Exported:"
+                         Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+                  <CheckBox x:Name="CADExportDWGFileTypeCheckBox" Grid.Row="1" Grid.Column="2" Content=".dwg"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding CADExportDWGFileExport}">
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type CheckBox}">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding CADFileExportTypeError}" Value="True">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </CheckBox>
+                  <CheckBox x:Name="CADExportDXFFileTypeCheckBox" Grid.Row="1" Grid.Column="3" Content=".dxf"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding CADExportDXFFileExport}">
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type CheckBox}">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding CADFileExportTypeError}" Value="True">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </CheckBox>
+                </Grid>
+                <Grid Row="5" Column="1" RowSpan="2">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                    <RowDefinition Height="1.25*" MaxHeight="100"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Example File Path:" VerticalAlignment="Center"/>
+                  <TextBlock Grid.Row="1" Margin="5,0,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"
+                             Text="{Binding CADExportExampleFilePath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="Layer Setup">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="30"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" Content="CAD Export Layers"/>
+                <DataGrid RowEditEnding="LayerDataGrid_RowEditEnding" x:Name="CADExportLayerDataGrid" Grid.Row="1"
+                          Grid.Column="1" AutoGenerateColumns="false" ColumnWidth="*" CanUserDeleteRows="false"
+                          CanUserAddRows="true" CanUserSortColumns="false" CanUserResizeColumns="false"
+                          CanUserResizeRows="false" CanUserReorderColumns="false"
+                          ItemsSource="{Binding CADExportLayersDataGridList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding LayerError}" Value="true">
+                          <Setter Property="Control.Background" Value="Red"/>
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </DataGrid.RowStyle>
+                  <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Layer Name">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Label VerticalAlignment="Center" Height="25"
+                                 Content="{Binding LayerName, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                      <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                          <TextBox Height="25" VerticalContentAlignment="Center">
+                            <Binding Path="LayerName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                          </TextBox>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Layer Color">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto"/>
+                              <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Height="10" Width="10" Margin="5,0,0,0" Fill="{Binding LayerColor.colorString}">
+                              <FrameworkElement.Style>
+                                <Style TargetType="{x:Type Rectangle}">
+                                  <Style.Setters>
+                                    <Setter Property="Shape.Stroke" Value="White"/>
+                                    <Setter Property="Shape.StrokeThickness" Value="0"/>
+                                  </Style.Setters>
+                                  <Style.Triggers>
+                                    <DataTrigger Binding="{Binding strokeColor}" Value="true">
+                                      <Setter Property="Shape.Stroke" Value="Black"/>
+                                      <Setter Property="Shape.StrokeThickness" Value="1"/>
+                                    </DataTrigger>
+                                  </Style.Triggers>
+                                </Style>
+                              </FrameworkElement.Style>
+                            </Rectangle>
+                            <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerColor.DisplayValue}"/>
+                          </Grid>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                      <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                          <ComboBox ItemsSource="{Binding DataContext.ColorList, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    SelectedItem="{Binding LayerColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ItemsControl.ItemTemplate>
+                              <DataTemplate>
+                                <Grid>
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                  </Grid.ColumnDefinitions>
+                                  <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                             Fill="{Binding colorString}"/>
+                                  <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding DisplayValue}"/>
+                                </Grid>
+                              </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                          </ComboBox>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Button x:Name="Delete" Content="Delete" IsEnabled="{Binding DeleteEnabled}"/>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="LIF Layers">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" MinWidth="280"/>
+                  <ColumnDefinition Width=".05*" MinWidth="5" MaxWidth="10"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Column="0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" MinHeight="5"/>
+                  </Grid.RowDefinitions>
+                  <Grid Row="0" Column="1">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="5"/>
+                      <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Content="TIF Elements:"/>
+                    <ComboBox x:Name="TIFLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                              SelectedItem="{Binding TIFLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto"/>
+                              <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                       Fill="{Binding LayerColor.colorString}"/>
+                            <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ComboBox>
+                    <Grid Row="3" Column="1">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" MinWidth="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <RadioButton Name="TIFExportBoundingBoxRadioButton" Grid.Column="0" Content="Export Bounding Box"
+                                   GroupName="TIFRadioButtons" IsChecked="{Binding TIFExportBoundingBoxBool}"/>
+                      <RadioButton Name="TIFExportFixedCircle" Grid.Column="2" Content="Export Fixed Circle"
+                                   GroupName="TIFRadioButtons" IsChecked="{Binding TIFExportFixedCircleBool}"/>
+                    </Grid>
+                  </Grid>
+                  <Grid Row="2" Column="1">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="5"/>
+                      <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Content="BIF Elements:"/>
+                    <ComboBox x:Name="BIFLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                              SelectedItem="{Binding BIFLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto"/>
+                              <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                       Fill="{Binding LayerColor.colorString}"/>
+                            <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ComboBox>
+                    <Grid Row="3" Column="1">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" MinWidth="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <RadioButton Name="BIFExportBoundingBoxRadioButton" Grid.Column="0" Content="Export Bounding Box"
+                                   GroupName="BIFRadioButtons" IsChecked="{Binding BIFExportBoundingBoxBool}"/>
+                      <RadioButton Name="BIFExportFixedCircle" Grid.Column="2" Content="Export Fixed Circle"
+                                   GroupName="BIFRadioButtons" IsChecked="{Binding BIFExportFixedCircleBool}"/>
+                    </Grid>
+                  </Grid>
+                  <Grid Row="4" Column="1">
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Content="SIF Elements:"/>
+                    <ComboBox x:Name="SIFLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                              SelectedItem="{Binding SIFLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto"/>
+                              <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                       Fill="{Binding LayerColor.colorString}"/>
+                            <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ComboBox>
+                  </Grid>
+                </Grid>
+                <GroupBox Grid.Column="2" Header="Graphic Settings" BorderBrush="Black" BorderThickness="1">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="Auto"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="*" MaxHeight="20"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="*" MaxHeight="15"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="*"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Row="1" Column="1">
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                      </Grid.RowDefinitions>
+                      <Label Grid.Row="0" Content="Fixed Circle Radius"/>
+                      <Grid Row="1">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="FixedCircleRadiusTextBox" Grid.Column="0" HorizontalContentAlignment="Right" Height="22"
+                                 Margin="5,0,0,0">
+                          <Binding Path="FixedCircleRadius" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                              <local:UnitTextBoxRules/>
+                            </Binding.ValidationRules>
+                          </Binding>
+                          <FrameworkElement.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                              <Style.Triggers>
+                                <Trigger Property="Validation.HasError" Value="true">
+                                  <Setter Property="Control.BorderBrush" Value="Red"/>
+                                </Trigger>
+                              </Style.Triggers>
+                            </Style>
+                          </FrameworkElement.Style>
+                        </TextBox>
+                        <Label Grid.Column="1" Content="{Binding Units}"/>
+                      </Grid>
+                    </Grid>
+                    <Grid Row="3" Column="1">
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                      </Grid.RowDefinitions>
+                      <Label Grid.Row="0" Content="Tick Mark Length"/>
+                      <Grid Row="1">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="TickMarkLengthTextBox" Grid.Column="0" HorizontalContentAlignment="Right" Height="22"
+                                 Margin="5,0,0,0">
+                          <Binding Path="TickMarkLength" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                              <local:UnitTextBoxRules/>
+                            </Binding.ValidationRules>
+                          </Binding>
+                          <FrameworkElement.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                              <Style.Triggers>
+                                <Trigger Property="Validation.HasError" Value="true">
+                                  <Setter Property="Control.BorderBrush" Value="Red"/>
+                                </Trigger>
+                              </Style.Triggers>
+                            </Style>
+                          </FrameworkElement.Style>
+                        </TextBox>
+                        <Label Grid.Column="1" Content="{Binding Units}"/>
+                      </Grid>
+                    </Grid>
+                    <CheckBox x:Name="EdgeCadLinesCheckBox" Grid.Row="5" Grid.Column="1" Content="EDGE CAD Lines"
+                              Margin="5,0,0,0"
+                              IsChecked="{Binding UseEdgeCADLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </Grid>
+                </GroupBox>
+              </Grid>
+            </TabItem>
+            <TabItem Header="Other Layers">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*" MinHeight="5"/>
+                </Grid.RowDefinitions>
+                <Grid Row="0" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Form Elements:"/>
+                  <ComboBox x:Name="FormLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding FormLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="2" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Corbel Elements:"/>
+                  <ComboBox x:Name="CorbelLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding CorbelLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="4" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Arch Elements:"/>
+                  <ComboBox x:Name="ArchLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding ArchLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="6" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Strand Elements:"/>
+                  <ComboBox x:Name="StrandLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding StrandLayer}" ItemsSource="{Binding CADExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+              </Grid>
+            </TabItem>
+          </TabControl>
+        </TabItem>
+        <TabItem x:Name="InsulationExportSettingsTab" Header="Insulation Export Settings">
+          <TabControl SelectionChanged="TabMenu_SelectionChanged" x:Name="InsulationExportTabMenu">
+            <TabItem Header="File Setup">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="5"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height=".2*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height=".2*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Row="1" Column="1">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".2*"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Export Folder Path:" VerticalAlignment="Bottom"/>
+                  <TextBox Name="InsulationExportFolderPathTextBox" Grid.Row="1" Height="22" Margin="5,0,5,0">
+                    <Binding Path="InsulationExportFolderPathString" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                      <Binding.ValidationRules>
+                        <local:FolderPathRule/>
+                      </Binding.ValidationRules>
+                    </Binding>
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type TextBox}">
+                        <Style.Triggers>
+                          <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </Trigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </TextBox>
+                  <Button Click="ExportFilePathButton_Click" Name="InsulationExportFilePathButton" Grid.Row="1"
+                          Grid.Column="1" Content="..." Height="22" Width="50" Margin="5,0,0,0" HorizontalAlignment="Left"
+                          VerticalAlignment="Top"/>
+                </Grid>
+                <Grid Row="3" Column="1">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width=".4*" MaxWidth="100"/>
+                    <ColumnDefinition Width=".4*" MaxWidth="100"/>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                  </Grid.RowDefinitions>
+                  <Label x:Name="InsulationExportFileNameSuffixLabel" Grid.Row="0" Grid.Column="0"
+                         Content="File Name Suffix:" VerticalAlignment="Bottom"/>
+                  <TextBox x:Name="InsulationExportFileNameSuffixTextBox" Grid.Row="1" Grid.Column="0" Height="22"
+                           Margin="5,0,2,0">
+                    <Binding Path="InsulationExportFileNameSuffixString" Mode="TwoWay" UpdateSourceTrigger="LostFocus">
+                      <Binding.ValidationRules>
+                        <local:FolderPathRule/>
+                      </Binding.ValidationRules>
+                    </Binding>
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type TextBox}">
+                        <Style.Triggers>
+                          <Trigger Property="Validation.HasError" Value="true">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </Trigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </TextBox>
+                  <Label x:Name="InsulationExportFileTypeLabel" Grid.Row="0" Grid.Column="2" Content="File Type Exported:"
+                         Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+                  <CheckBox x:Name="InsulationExportDWGFileTypeCheckBox" Grid.Row="1" Grid.Column="2" Content=".dwg"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            IsChecked="{Binding InsulationExportDWGFileExport}">
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type CheckBox}">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding InsulationFileExportTypeLayer}" Value="True">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </CheckBox>
+                  <CheckBox x:Name="InsulationExportDXFFileTypeCheckBox" Grid.Row="1" Grid.Column="3" Content=".dxf"
+                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                            IsChecked="{Binding InsulationExportDXFFileExport}">
+                    <FrameworkElement.Style>
+                      <Style TargetType="{x:Type CheckBox}">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding InsulationFileExportTypeLayer}" Value="True">
+                            <Setter Property="Control.BorderBrush" Value="Red"/>
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </FrameworkElement.Style>
+                  </CheckBox>
+                </Grid>
+                <Grid Row="5" Column="1" RowSpan="2">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="50"/>
+                    <RowDefinition Height="1.25*" MaxHeight="100"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Example File Path:" VerticalAlignment="Center"/>
+                  <TextBlock Grid.Row="1" Margin="5,0,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top"
+                             Text="{Binding InsulationExportExampleFilePath, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="Layer Setup">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="30"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="1" Content="Insulation Export Layers"/>
+                <DataGrid RowEditEnding="LayerDataGrid_RowEditEnding" x:Name="InsulationExportLayerDataGrid" Grid.Row="1"
+                          Grid.Column="1" AutoGenerateColumns="false" ColumnWidth="*" CanUserDeleteRows="false"
+                          CanUserAddRows="true" CanUserSortColumns="false" CanUserResizeColumns="false"
+                          CanUserResizeRows="false" CanUserReorderColumns="false"
+                          ItemsSource="{Binding InsulationExportLayersDataGridList}">
+                  <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding LayerError}" Value="true">
+                          <Setter Property="Control.Background" Value="Red"/>
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </DataGrid.RowStyle>
+                  <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Layer Name">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Label VerticalAlignment="Center" Height="25"
+                                 Content="{Binding LayerName, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                      <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                          <TextBox Height="25" VerticalContentAlignment="Center">
+                            <Binding Path="LayerName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                          </TextBox>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Layer Color">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Grid>
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto"/>
+                              <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Height="10" Width="10" Margin="5,0,0,0" Fill="{Binding LayerColor.colorString}">
+                              <FrameworkElement.Style>
+                                <Style TargetType="{x:Type Rectangle}">
+                                  <Style.Setters>
+                                    <Setter Property="Shape.Stroke" Value="White"/>
+                                    <Setter Property="Shape.StrokeThickness" Value="0"/>
+                                  </Style.Setters>
+                                  <Style.Triggers>
+                                    <DataTrigger Binding="{Binding strokeColor}" Value="true">
+                                      <Setter Property="Shape.Stroke" Value="Black"/>
+                                      <Setter Property="Shape.StrokeThickness" Value="1"/>
+                                    </DataTrigger>
+                                  </Style.Triggers>
+                                </Style>
+                              </FrameworkElement.Style>
+                            </Rectangle>
+                            <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerColor.DisplayValue}"/>
+                          </Grid>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                      <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                          <ComboBox ItemsSource="{Binding DataContext.ColorList, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    SelectedItem="{Binding LayerColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ItemsControl.ItemTemplate>
+                              <DataTemplate>
+                                <Grid>
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                  </Grid.ColumnDefinitions>
+                                  <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                             Fill="{Binding colorString}"/>
+                                  <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding DisplayValue}"/>
+                                </Grid>
+                              </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                          </ComboBox>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100">
+                      <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Button x:Name="Delete" Content="Delete" IsEnabled="{Binding DeleteEnabled}"/>
+                        </DataTemplate>
+                      </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="Insulation Layers">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*" MinHeight="5"/>
+                </Grid.RowDefinitions>
+                <Grid Row="0" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Insulation:"/>
+                  <ComboBox x:Name="InsulationLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding InsulationLayer}"
+                            ItemsSource="{Binding InsulationExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="2" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Cutouts and Recesses:"/>
+                  <ComboBox x:Name="CutoutsLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding CutoutsLayer}" ItemsSource="{Binding InsulationExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="4" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Pins:"/>
+                  <ComboBox x:Name="PinsLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding PinsLayer}" ItemsSource="{Binding InsulationExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="6" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Slots:"/>
+                  <ComboBox x:Name="SlotLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            SelectedItem="{Binding SlotLayer}" ItemsSource="{Binding InsulationExportLayerComboBoxesList}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="Annotation Layers">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="5"/>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="0.15*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="0.15*"/>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Row="0" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Extra Ties:"/>
+                  <ComboBox x:Name="ExtraTiesLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            ItemsSource="{Binding InsulationExportLayerComboBoxesList}" SelectedItem="{Binding ExtraTiesLayer}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="2" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Mark Symbol:"/>
+                  <ComboBox x:Name="MarkSymbolLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            ItemsSource="{Binding InsulationExportLayerComboBoxesList}"
+                            SelectedItem="{Binding MarkSymbolLayer}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+                <Grid Row="4" Column="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Label Grid.Row="0" Content="Mark Text:"/>
+                  <ComboBox x:Name="InsulationMarkLayerComboBox" Grid.Row="1" Height="22" Margin="5,0,0,0"
+                            ItemsSource="{Binding InsulationExportLayerComboBoxesList}"
+                            SelectedItem="{Binding InsulationMarkLayer}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                          </Grid.ColumnDefinitions>
+                          <Rectangle Grid.Column="0" Height="10" Width="10" Stroke="Black" StrokeThickness="1"
+                                     Fill="{Binding LayerColor.colorString}"/>
+                          <TextBlock Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Text="{Binding LayerName}"/>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ComboBox>
+                </Grid>
+              </Grid>
+            </TabItem>
+          </TabControl>
+        </TabItem>
+      </TabControl>
+    </Grid>
+    <Grid Row="2" Column="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1.5*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Button Click="ResetButton_Click" x:Name="ResetButton" Grid.Column="0" Content="Restore Defaults"
+              Height="22" VerticalAlignment="Bottom" Margin="5,0,5,14"/>
+      <Button Click="SaveButton_Click" x:Name="SaveButton" Grid.Column="2" Content="Save" Height="22"
+              VerticalAlignment="Bottom" Margin="5,0,5,14"/>
+      <Button Click="CancelButton_Click" x:Name="CancelButton" Grid.Column="3" Content="Cancel" Height="22"
+              VerticalAlignment="Bottom" Margin="5,0,5,14"/>
+    </Grid>
+  </Grid>
+</Window>

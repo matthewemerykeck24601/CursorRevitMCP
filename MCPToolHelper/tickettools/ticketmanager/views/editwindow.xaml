@@ -1,0 +1,98 @@
+<Window x:Class="EDGE.TicketTools.TicketManager.Views.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:EDGE.TicketTools.TicketManager.ViewModels"
+        Height="541.922" MinHeight="300" MaxHeight="575" MaxWidth="900" WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight" Width="498.787" Title="{Binding WindowTitle}">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="4.8"/>
+      <ColumnDefinition MaxWidth="980"/>
+      <ColumnDefinition Width="10"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="27"/>
+      <RowDefinition Height="*" MaxHeight="390"/>
+      <RowDefinition Height="22"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <Label x:Name="DataGridTitle" Grid.Row="1" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center"
+           HorizontalAlignment="Center" Height="9" Margin="231.2,9.6,235.6,9.4" Width="10"
+           Content="{Binding DataGridLabel}"/>
+    <Button Click="ConfirmButton_Click" Grid.Row="3" Grid.Column="1" Width="74" HorizontalAlignment="Left"
+            Content="Save" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+            Margin="3.2,0.4,0,10.2" RenderTransformOrigin="0.452,2.902" Grid.RowSpan="2"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <Button Click="CancelButton_Click" Grid.Row="3" Grid.Column="1" Width="75" HorizontalAlignment="Right"
+            Content="Cancel" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+            Margin="0,0.4,0.6,10.2" RenderTransformOrigin="0.44,-0.288" Grid.RowSpan="2"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <Label x:Name="label" Content="Edit row for MARK NUMBER and click save to commit changes:"
+           HorizontalAlignment="Left" Margin="3.4,1.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="353"
+           Height="26" Grid.Column="1"/>
+    <TextBox x:Name="custom1TextBox" TabIndex="8" Grid.Column="1" HorizontalAlignment="Left" Height="23"
+             Margin="6,57.6,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="376"/>
+    <TextBox x:Name="custom2TextBox" TabIndex="11" Grid.Column="1" HorizontalAlignment="Left" Height="23"
+             Margin="6,105.6,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="376"/>
+    <Label x:Name="label1" Content="" Grid.Column="1" HorizontalContentAlignment="Left"
+           HorizontalAlignment="Left" Margin="6,365.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="452"
+           Grid.RowSpan="2" Height="26"/>
+    <Label x:Name="custom1Label" Content="Custom Column 1" HorizontalContentAlignment="Left"
+           HorizontalAlignment="Left" Margin="3.4,34.6,0,0" Grid.Row="2" VerticalAlignment="Top"
+           RenderTransformOrigin="-0.737,-0.287" Width="391" Grid.ColumnSpan="2" Height="26"/>
+    <Label x:Name="custom2Label" Content="Custom Column 2" HorizontalContentAlignment="Left"
+           HorizontalAlignment="Left" Margin="3.4,79.6,0,0" Grid.Row="2" VerticalAlignment="Top"
+           RenderTransformOrigin="-0.737,-0.287" Width="392" Grid.ColumnSpan="2" Height="26"/>
+    <Label x:Name="label2_Copy3" Content="Update one or more fields to continue" Foreground="Red"
+           Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="188.2,2.6,0,0" Grid.Row="2"
+           VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.287" Height="26" Width="213"/>
+    <Label x:Name="label2_Copy4" Content="Duplicate Custom Parameters are not allowed" Foreground="Red"
+           Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="10.4,252.6,0,0" Grid.Row="2"
+           VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.287" Height="26" Width="252"/>
+    <Button Click="ResetButton4_Click" x:Name="custom2ClearButton" Grid.Row="2" Grid.Column="1" Width="79"
+            HorizontalAlignment="Left" Content="Clear" HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center" Margin="389.2,105.6,0,262.6" RenderTransformOrigin="0.502,-2.39"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <Button Click="ResetButton3_Click" x:Name="custom1ClearButton" Grid.Row="2" Grid.Column="1" Width="79"
+            HorizontalAlignment="Left" Content="Clear" HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center" Margin="389.2,57.6,0,310.6" RenderTransformOrigin="0.532,-2.851"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <Label x:Name="custom3Label" Content="Custom Column 3" HorizontalContentAlignment="Left"
+           HorizontalAlignment="Left" Margin="3.4,128.6,0,0" Grid.Row="2" VerticalAlignment="Top"
+           RenderTransformOrigin="-0.737,-0.287" Width="390" Grid.ColumnSpan="2" Height="26"/>
+    <TextBox x:Name="custom3TextBox" TabIndex="11" HorizontalAlignment="Left" Height="23" Margin="6,154.6,0,0"
+             Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="377" Grid.Column="1"/>
+    <Button Click="ResetButton5_Click" x:Name="custom3ClearButton" Grid.Row="2" Grid.Column="1" Width="79"
+            HorizontalAlignment="Left" Content="Clear" HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center" Margin="389.2,154.6,0,213.6" RenderTransformOrigin="0.502,-2.39"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <Label x:Name="custom4Label" Content="Custom Column 4" HorizontalContentAlignment="Left"
+           HorizontalAlignment="Left" Margin="3.4,177.6,0,0" Grid.Row="2" VerticalAlignment="Top"
+           RenderTransformOrigin="-0.737,-0.287" Width="391" Grid.ColumnSpan="2" Height="26"/>
+    <TextBox x:Name="custom4TextBox" TabIndex="11" Grid.Column="1" HorizontalAlignment="Left" Height="23"
+             Margin="6,202.6,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="377"/>
+    <Button Click="ResetButton6_Click" x:Name="custom4ClearButton" Grid.Row="2" Grid.Column="1" Width="78"
+            HorizontalAlignment="Left" Content="Clear" HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center" Margin="389.2,202.6,0,165.6" RenderTransformOrigin="0.502,-2.39"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <Button Click="ClearAllButton_Click" Grid.Row="3" Grid.Column="1" Width="75" HorizontalAlignment="Left"
+            Content="Clear All" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+            Margin="316.2,0.4,0,10.2" RenderTransformOrigin="0.573,1.855" Grid.RowSpan="2"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+    <ComboBox x:Name="custom1ComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="6,57.6,0,0"
+              Grid.Row="2" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.184,0.431" Height="22"
+              Grid.Column="1"/>
+    <ComboBox x:Name="custom2ComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="6,105.6,0,0"
+              Grid.Row="2" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.184,0.431" Height="22"
+              Grid.Column="1"/>
+    <ComboBox x:Name="custom3ComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="6,154.6,0,0"
+              Grid.Row="2" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.184,0.431" Height="22"
+              Grid.Column="1"/>
+    <ComboBox x:Name="custom4ComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="6,202.6,0,0"
+              Grid.Row="2" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.184,0.431" Height="22"
+              Grid.Column="1"/>
+  </Grid>
+</Window>

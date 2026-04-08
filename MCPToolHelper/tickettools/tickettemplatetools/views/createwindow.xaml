@@ -1,0 +1,77 @@
+<Window x:Class="EDGE.TicketTools.TicketTemplateTools.Views.CreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.TicketTools.TicketTemplateTools.Views"
+        Height="300" Width="350" Title="Create Template" ResizeMode="NoResize" Background="LightGray">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="10"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="10"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="60"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <Grid Column="1" Row="1">
+      <Label x:Name="createTemplateTitleLabel" Content="Create Template:" FontSize="12"
+             HorizontalAlignment="Center" Height="30" Margin="0,0,0,15"/>
+      <Label x:Name="templateNameLabel" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Height="30"
+             Margin="0,12,0,0" Content="{Binding TemplateName}"/>
+    </Grid>
+    <Grid Column="1" Row="2">
+      <Label x:Name="constructionProductTitleLabel" Content="Construction Product:" FontSize="10"
+             HorizontalAlignment="Center" Height="30" Margin="0,0,0,15"/>
+      <Label x:Name="construcionProductNameLabel" FontSize="10" HorizontalAlignment="Center" Height="30"
+             Margin="0,10,0,0" Content="{Binding ConstructionProduct}"/>
+    </Grid>
+    <Grid Column="1" Row="3">
+      <Label x:Name="sourceSheetTitleLabel" Content="SourceSheet:" FontSize="10" HorizontalAlignment="Center"
+             Height="30" Margin="0,0,0,15"/>
+      <Label x:Name="sourceSheetNameLabel" FontSize="10" HorizontalAlignment="Center" Height="30"
+             Margin="0,10,0,0" Content="{Binding SourceSheet}"/>
+    </Grid>
+    <Grid Column="1" Row="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="15"/>
+        <RowDefinition Height="15"/>
+      </Grid.RowDefinitions>
+      <Label x:Name="bomAlignmentSelection" Grid.Column="0" Grid.Row="0" Content="BOM Alignment" FontSize="12"
+             Margin="-10,5,0,0" HorizontalAlignment="Center"/>
+      <RadioButton Checked="HandleCheck" x:Name="alignTop" Grid.Column="0" Grid.Row="1" GroupName="bomAlignmentGroup"
+                   Content="Align Top" FontSize="10" Margin="30,0,0,0" IsChecked="True" TabIndex="0"/>
+      <RadioButton Checked="HandleCheck" x:Name="alignBottom" Grid.Column="0" Grid.Row="2"
+                   GroupName="bomAlignmentGroup" Content="Align Bottom" FontSize="10" Margin="30,0,0,0" TabIndex="1"/>
+      <Label x:Name="bomStackingSelection" Grid.Column="1" Grid.Row="0" Content="BOM Stacking" FontSize="12"
+             Margin="0,5,0,0" HorizontalAlignment="Center"/>
+      <RadioButton Checked="stackBOM_Checked" x:Name="stackBOM" Grid.Column="1" Grid.Row="1" GroupName="stackingGroup"
+                   Content="Stack BOM" FontSize="10" Margin="40,0,0,0" IsChecked="True" TabIndex="2"/>
+      <RadioButton Checked="stackBOM_Checked" x:Name="independentBOM" Grid.Column="1" Grid.Row="2"
+                   GroupName="stackingGroup" Content="Independent BOM" FontSize="10" Margin="40,0,0,0" TabIndex="3"/>
+    </Grid>
+    <Grid Column="1" Row="5">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="createButton" Grid.Column="0" Content="Create" Height="35" Width="100"
+              HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" TabIndex="4"
+              Command="{Binding CreateCommand}"/>
+      <Button x:Name="cancelButton" Grid.Column="1" Content="Cancel" Height="35" Width="100"
+              HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,15,0,0" TabIndex="5"
+              Command="{Binding CloseCommand}"/>
+    </Grid>
+  </Grid>
+</Window>

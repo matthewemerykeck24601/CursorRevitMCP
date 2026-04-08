@@ -1,0 +1,46 @@
+<Window x:Class="EDGE.QATools.ExportDWGTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.QATools"
+        Height="469.053" Width="497.46">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="8*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="2*"/>
+    </Grid.RowDefinitions>
+    <TextBlock Name="subCatNameTextBlock" HorizontalAlignment="Left" Grid.Row="1" Margin="15,5.4,0,5.4"
+               TextWrapping="Wrap" Text="Sub-Category Name" Width="97"/>
+    <TextBox Name="subCatNameTextBox" HorizontalAlignment="Left" Grid.Row="1" Margin="134,5.4,0,4.4" Width="105"/>
+    <TextBlock Name="layerNameTextBlock" HorizontalAlignment="Left" Grid.Row="2" Margin="15,4.6,0,5"
+               TextWrapping="Wrap" Text="Layer Name" Width="77"/>
+    <TextBox Name="layerNameTextBox" HorizontalAlignment="Left" Grid.Row="2" Margin="134,5.4,0,4.4" Width="105"/>
+    <TextBlock Name="layerColorTextBlock" HorizontalAlignment="Left" Margin="15,5,0,4.6" Grid.Row="3"
+               TextWrapping="Wrap" Text="Layer Color" Width="77"/>
+    <TextBox Name="layerColorTextBox" HorizontalAlignment="Left" Margin="134,4.6,0,5" Grid.Row="3" Width="105"/>
+    <Button Click="AddToListButton_Click" Name="AddToListButton" Content="Add to list"
+            HorizontalAlignment="Right" Margin="0,4.8,15.2,4.8" Grid.Row="5" Width="73"/>
+    <TextBlock Name="familyNameTextBlock" HorizontalAlignment="Left" Grid.Row="4" Margin="15,5,0,4.6"
+               TextWrapping="Wrap" Text="Family Name" Width="97"/>
+    <ComboBox Name="familyNameComboBox" HorizontalAlignment="Left" Grid.Row="4" Margin="134,5,0,4.6" Width="105"/>
+    <Button Click="AddToSubCatButton_Click" Name="AddToSubCatButton" Content="Add to Sub-Cat"
+            HorizontalAlignment="Right" Margin="0,4.8,15.2,4.8" Grid.Row="4" Width="100"/>
+    <DataGrid Name="SubCatList" AutoGenerateColumns="false" CanUserAddRows="false" Margin="15"
+              HorizontalAlignment="Left" Grid.Row="0">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Sub-Category Name" IsReadOnly="false" Width="5*" Binding="{Binding subCatName}"/>
+        <DataGridTextColumn Header="Layer Name" IsReadOnly="false" Width="4*" Binding="{Binding layerName}"/>
+        <DataGridTextColumn Header="Layer Color" IsReadOnly="false" Width="4*" Binding="{Binding layerColor}"/>
+        <DataGridTextColumn Header="Filter Category" IsReadOnly="true" Width="4*" Binding="{Binding failter}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+    <Button Click="Button_Click" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            Margin="10" Width="40" Height="20">Export</Button>
+  </Grid>
+</Window>

@@ -1,0 +1,45 @@
+<Window x:Class="EDGE.TicketTools.HardwareDetail.Views.HWDSelectMultipleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.TicketTools.HardwareDetail.Views"
+        Background="LightGray" Height="300" Width="300" Title="Select Templates" ResizeMode="NoResize">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="15"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="15"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <DataGrid PreviewKeyDown="templateDataGrid_KeyDown" Name="templateDataGrid" Grid.Row="1" Grid.Column="1"
+              AutoGenerateColumns="false" CanUserResizeColumns="false">
+      <DataGrid.Columns>
+        <DataGridCheckBoxColumn Header="" CanUserSort="false"
+                                Binding="{Binding Path=Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridCheckBoxColumn>
+        <DataGridTextColumn Header="Template" IsReadOnly="true" CanUserSort="false" Width="160"
+                            Binding="{Binding Path=Template, Mode=TwoWay}"/>
+        <DataGridTextColumn Header="Order" IsReadOnly="true" CanUserSort="false" Binding="{Binding Path=Order, Mode=TwoWay}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+    <Grid Row="2" Column="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Button Click="OKButton_Click" Name="OKButton" Grid.Column="0" Content="OK" Width="80" Height="20"/>
+      <Button Click="CancelButton_Click" Name="CancelButton" Grid.Column="1" Content="Cancel" Width="80"
+              Height="20"/>
+    </Grid>
+  </Grid>
+</Window>

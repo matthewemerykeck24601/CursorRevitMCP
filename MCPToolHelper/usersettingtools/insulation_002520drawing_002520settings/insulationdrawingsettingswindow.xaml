@@ -1,0 +1,142 @@
+<Window x:Class="EDGE.UserSettingTools.Insulation_Drawing_Settings.InsulationDrawingSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.UserSettingTools.Insulation_Drawing_Settings"
+        Title="Insulation Drawing Settings" Width="450" SizeToContent="Height" MinWidth="450"
+        ResizeMode="NoResize" Background="LightGray">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="5"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="5"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="5"/>
+    </Grid.RowDefinitions>
+    <GroupBox BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="1">
+      <HeaderedContentControl.Header>
+        <Label Grid.Row="0" Grid.Column="0" Content="Linework" FontSize="14" FontWeight="Bold"/>
+      </HeaderedContentControl.Header>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.4*" MinWidth="170" MaxWidth="200"/>
+          <ColumnDefinition Width="0.5*" MaxWidth="425"/>
+          <ColumnDefinition Width=".01*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Insulation Line Style:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="InsulationLineStyleComboBox" Grid.Row="1" Grid.Column="1" Height="22" MaxWidth="400"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Mark Circle Line Style:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="MarkCircleLineStyleComboBox" Grid.Row="2" Grid.Column="1" Height="22" MaxWidth="400"/>
+      </Grid>
+    </GroupBox>
+    <GroupBox BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="2">
+      <HeaderedContentControl.Header>
+        <Label Grid.Row="0" Grid.Column="0" Content="Annotations" FontSize="14" FontWeight="Bold"/>
+      </HeaderedContentControl.Header>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.4*" MinWidth="170" MaxWidth="200"/>
+          <ColumnDefinition Width="0.5*" MaxWidth="425"/>
+          <ColumnDefinition Width=".01*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Recess Callouts Text Style:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="RecessCalloutsTextStyleComboBox" Grid.Row="1" Grid.Column="1" Height="22" MaxWidth="400"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Insulation Mark Text Style:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="InsulationMarkTextStyleComboBox" Grid.Row="2" Grid.Column="1" Height="22" MaxWidth="400"/>
+      </Grid>
+    </GroupBox>
+    <GroupBox BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="3">
+      <HeaderedContentControl.Header>
+        <Label Grid.Row="0" Grid.Column="0" Content="Dimensioning" FontSize="14" FontWeight="Bold"/>
+      </HeaderedContentControl.Header>
+      <Grid Column="1" Row="3">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.4*" MinWidth="170" MaxWidth="200"/>
+          <ColumnDefinition Width="0.5*" MaxWidth="425"/>
+          <ColumnDefinition Width=".01*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Overall Dimension Style:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="OverallDimensionStyleComboBox" Grid.Row="1" Grid.Column="1" Height="22" MaxWidth="400"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="General Dimension Style:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="GeneralDimensionStyleComboBox" Grid.Row="2" Grid.Column="1" Height="22" MaxWidth="400"/>
+      </Grid>
+    </GroupBox>
+    <GroupBox BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="4">
+      <HeaderedContentControl.Header>
+        <Label Grid.Row="0" Grid.Column="0" Content="Insulation Drawing - Master" FontSize="14" FontWeight="Bold"/>
+      </HeaderedContentControl.Header>
+      <Grid Column="1" Row="4">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.4*" MinWidth="170" MaxWidth="200"/>
+          <ColumnDefinition Width="0.5*" MaxWidth="425"/>
+          <ColumnDefinition Width=".01*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Title Block:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="TitleBlockComboBox" Grid.Row="1" Grid.Column="1" Height="22" MaxWidth="400"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Default Scale:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="MasterScalesComboBox" Grid.Row="2" Grid.Column="1" Height="22" MaxWidth="400"/>
+      </Grid>
+    </GroupBox>
+    <GroupBox BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="5">
+      <HeaderedContentControl.Header>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Insulation Drawing - Assembly"
+               FontSize="14" FontWeight="Bold"/>
+      </HeaderedContentControl.Header>
+      <Grid Column="1" Row="5">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.4*" MinWidth="170" MaxWidth="200"/>
+          <ColumnDefinition Width="0.5*" MaxWidth="425"/>
+          <ColumnDefinition Width=".01*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Default Scale:" Margin="20,0,0,0"/>
+        <ComboBox x:Name="PerPieceScalesComboBox" Grid.Row="1" Grid.Column="1" Height="22" MaxWidth="400"/>
+      </Grid>
+    </GroupBox>
+    <Grid Column="1" Row="6">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Click="ApplySettingsButton_Click" x:Name="ApplySettingsButton" Grid.Column="0"
+              Content="Apply Settings" VerticalAlignment="Center" Margin="10" Padding="10,5"
+              HorizontalAlignment="Stretch"/>
+      <Button Click="CancelButton_Click" x:Name="CancelButton" Grid.Column="2" Content="Cancel"
+              VerticalAlignment="Center" Margin="10" Padding="10,5" HorizontalAlignment="Stretch"/>
+    </Grid>
+  </Grid>
+</Window>

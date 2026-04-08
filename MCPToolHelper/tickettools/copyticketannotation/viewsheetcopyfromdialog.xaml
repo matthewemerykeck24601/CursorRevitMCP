@@ -1,0 +1,30 @@
+<Window x:Class="EDGE.TicketTools.CopyTicketAnnotation.ViewSheetCopyFromDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.TicketTools.CopyTicketAnnotation"
+        Height="300" Width="320" Title="Selection Form" WindowStartupLocation="CenterScreen"
+        MinHeight="300" MinWidth="320">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="0.4*"/>
+      <RowDefinition Height="0.4*"/>
+      <RowDefinition Height="3*"/>
+      <RowDefinition Height="1*"/>
+    </Grid.RowDefinitions>
+    <TextBlock Name="selectionFromInstruction" Margin="5,5,0,0"/>
+    <TextBlock Name="selectionFromInstruction2" Grid.Row="1" Margin="5,0,0,0" VerticalAlignment="Top"/>
+    <ListBox Name="lbTodoList" Grid.Row="2" SelectionMode="Single" Margin="5">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <CheckBox Name="ElementName" Content="{Binding elemName}" IsChecked="{Binding IsSelected}"/>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ListBox>
+    <Button Click="Button_Click" Grid.Row="3" Width="65" HorizontalAlignment="Left" VerticalAlignment="Center"
+            Margin="60,15,0,20">Continue</Button>
+    <Button Click="Button_Click_1" Grid.Row="3" Width="64" HorizontalAlignment="Left"
+            VerticalAlignment="Center" Margin="183,15,0,20">Cancel</Button>
+  </Grid>
+</Window>

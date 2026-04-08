@@ -1,0 +1,607 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="theAccentColor">#FFA45329</Color>
+    <Color x:Key="theBlueColor">#FF007897</Color>
+    <Color x:Key="theGreenColor">#FF08A46E</Color>
+    <Color x:Key="theBackGroundColor">#FF2d2d2f</Color>
+    <Color x:Key="theMagentaColor">#FFA41043</Color>
+
+    <SolidColorBrush x:Key="theBackGround" Color="{StaticResource theBackGroundColor}"/>
+    <SolidColorBrush x:Key="theAccent" Color="{StaticResource theAccentColor}"/>
+    <SolidColorBrush x:Key="theBlue" Color="{StaticResource theBlueColor}"/>
+    <SolidColorBrush x:Key="theGreen" Color="{StaticResource theGreenColor}"/>
+    <SolidColorBrush x:Key="theMagenta" Color="{StaticResource theMagentaColor}"/>
+
+    <LinearGradientBrush x:Key="BackgroundBrush4C" StartPoint="0.504,-0.319" EndPoint="0.504,0.351">
+        <GradientStop Color="#FFACB8B9" Offset="0.416"/>
+        <GradientStop Color="#FFACB8B9" Offset="0.54"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="TextBoxShadow" StartPoint="0.0,0.0" EndPoint="0,1">
+        <!--<GradientStop Color="White" Offset="0.0"/>-->
+        <GradientStop Color="LightGray" Offset="0.0"/>
+        <GradientStop Color="White" Offset="0.4"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="TabItem1" TargetType="{x:Type TabItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid>
+                        <Border Name="Border" Background="Black" BorderBrush="Goldenrod" 
+                                BorderThickness="1,1,1,1" CornerRadius="6,6,6,6" >
+                            <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    ContentSource="Header" Margin="12,2,12,2"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="TextBoxValidatortemplate">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Red" BorderThickness="3" CornerRadius="4">
+                <AdornedElementPlaceholder/>
+            </Border>
+            <Image Source="/Images/Error.png" Height="36"/>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TextBoxValidatortemplateSmall">
+        <StackPanel Orientation="Horizontal" Visibility="{TemplateBinding Visibility}">
+            <Border BorderBrush="Red" BorderThickness="2" CornerRadius="4">
+                <AdornedElementPlaceholder/>
+            </Border>
+            <Image Source="/Images/Error.png" Height="24"/>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TextBoxValidatortemplate2">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Red" BorderThickness="3" CornerRadius="4">
+                <AdornedElementPlaceholder/>
+            </Border>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ComboBoxValidatortemplate">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Red" BorderThickness="3" CornerRadius="4">
+                <AdornedElementPlaceholder/>
+            </Border>
+        </StackPanel>
+    </ControlTemplate>
+
+    <Style x:Key="InputTextBoxNoGlow"  TargetType="TextBox" >
+        <Setter Property="Margin" Value="2,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalContentAlignment"  Value="Center"/>
+        <Setter Property="CharacterCasing" Value="Upper"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxValidatortemplateSmall}"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <OuterGlowBitmapEffect x:Key="txtGlow" GlowColor="Goldenrod" GlowSize="6" />
+
+    <Style x:Key="InputTextBox"  TargetType="TextBox" >
+        <Setter Property="Background" Value="{StaticResource TextBoxShadow}"/>
+        <Setter Property="Margin" Value="2,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalContentAlignment"  Value="Center"/>
+        <Setter Property="CharacterCasing" Value="Upper"/>
+        <!--<Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxValidatortemplateSmall}"/>-->
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BitmapEffect" Value="{StaticResource txtGlow}"/>
+            </Trigger>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxValidatortemplateSmall}"/>
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+            <Trigger Property="Visibility" Value="Collapsed">
+                <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+            <Trigger Property="Visibility" Value="Visible">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxValidatortemplateSmall}"/>
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <OuterGlowBitmapEffect x:Key="txtGlowAccent" GlowColor="{StaticResource theAccentColor}" GlowSize="10"/>
+    <Style x:Key="InputTextBoxAccent"  TargetType="TextBox" >
+        <Setter Property="Background" Value="{StaticResource TextBoxShadow}"/>
+        <Setter Property="Margin" Value="2,0"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalContentAlignment"  Value="Center"/>
+        <Setter Property="CharacterCasing" Value="Upper"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource TextBoxValidatortemplateSmall}"/>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BitmapEffect" Value="{StaticResource txtGlowAccent}"/>
+            </Trigger>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LCTextBox" TargetType="TextBox" BasedOn="{StaticResource InputTextBox}">
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+
+    <Style x:Key="InputComboBox"  TargetType="ComboBox" >
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ComboBoxValidatortemplate}"/>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BitmapEffect" Value="{StaticResource txtGlow}"/>
+            </Trigger>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PropertyLabel" TargetType="Label" >
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="Goldenrod"/>
+        <Setter Property="Label.Margin" Value="0,0,3,0"/>
+        <Setter Property="Label.HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="Label.VerticalContentAlignment" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="PropertyTextBlock" >
+        <Setter Property="Control.FontSize" Value="18"/>
+        <Setter Property="Control.Foreground" Value="White"/>
+        <Setter Property="Control.Margin" Value="0,0,3,0"/>
+        <Setter Property="Control.HorizontalContentAlignment" Value="Right"/>
+    </Style>
+
+    <Style x:Key="PopupDataLabel"  TargetType="Label">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="Goldenrod"/>
+        <Setter Property="Margin" Value="0,0,3,0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+    </Style>
+
+    <SolidColorBrush x:Key="ButtonBorder" Color="#FF003C74"/>
+    
+    <ControlTemplate x:Key="LCRadioButton" TargetType="RadioButton">
+        <BulletDecorator>
+            <BulletDecorator.Bullet>
+                <Grid Height="24" Width="24" Background="Transparent" Margin="6,0,0,6">
+                    <Ellipse Stroke="{StaticResource BackgroundBrush4C}" StrokeThickness="2" />
+                    <Path Name="pathChecked" Data="M0,24 L24,0 M0,0 L24,24"
+						 Stroke="Yellow" StrokeThickness="3" Opacity="1" Visibility="Collapsed"/>
+                    <Image Name="imgChecked" Source="/Images/Checkmark.png"/>
+                </Grid>
+            </BulletDecorator.Bullet>
+            <ContentPresenter Margin="12,0,0,6" />
+        </BulletDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Yellow"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter TargetName="pathChecked" Property="Opacity" Value="0"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Gray"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <LinearGradientBrush x:Key="DefaultButtonBackgroundFill" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Color="#FF043F76" Offset="0"/>
+        <GradientStop Color="#FF04427C" Offset="1"/>
+        <GradientStop Color="#FF5F91C1" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DefaultToggleButtonBackgroundFill" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#FF00cccc" Offset="0"/>
+        <GradientStop Color="#FF000000" Offset="0.25"/>
+        <GradientStop Color="#FF000000" Offset="0.75"/>
+        <GradientStop Color="#FF00cccc" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="DisabledButtonBackgroundFill" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Color="#FF4B4B32" Offset="0"/>
+        <GradientStop Color="#FFAFAF96" Offset="1"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="{x:Type Button}" TargetType="Button">
+        <Setter Property="Padding" Value="15,0" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="MaxHeight" Value="72" />
+        <Setter Property="MinWidth" Value="50" />
+        <Setter Property="FontFamily" Value="Tahoma"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Rectangle RadiusX="10" RadiusY="10" Stroke="Gold" StrokeThickness="1" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="rootGrid" RenderTransformOrigin=".5,.5">
+                        <Grid.Resources>
+                            <SolidColorBrush x:Key="borderBrush" Color="Black" />
+                        </Grid.Resources>
+
+                        <Grid.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Grid.RenderTransform>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Rectangle Grid.RowSpan="2" 
+                                           x:Name="bottomBorder" 
+                                           RadiusX="10" RadiusY="10" 
+                                           Stroke="{StaticResource borderBrush}" 
+                                           StrokeThickness="2"
+                                           Fill="{StaticResource DefaultButtonBackgroundFill}" >
+
+                            <Rectangle.Triggers>
+                                <EventTrigger RoutedEvent="Button.MouseEnter">
+                                    <BeginStoryboard Name="CycleBorder">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Stroke.Color"  
+                                                                    To="Orange" 
+                                                                    Duration="0:0:0.5" 
+                                                                    AutoReverse="True" 
+                                                                    RepeatBehavior="Forever" />
+
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+
+                                <EventTrigger RoutedEvent="Button.MouseLeave">
+                                    <StopStoryboard BeginStoryboardName="CycleBorder"/>
+                                </EventTrigger>
+                            </Rectangle.Triggers>
+                        </Rectangle>
+
+                        <Rectangle x:Name="highlight" Margin="2.5" Fill="White" RadiusX="10" RadiusY="10">
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#90FFFFFF" Offset="0"/>
+                                    <GradientStop Color="#00FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+						
+                        <ContentPresenter Grid.RowSpan="2"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                          Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                          RecognizesAccessKey="True" 
+                                          RenderTransformOrigin="0.5,0.5" 
+                                          x:Name="contentPresenter" />
+                    </Grid>
+
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="buttonDown_Animation">
+                            <DoubleAnimation Storyboard.TargetName="rootGrid" 
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                 From="0" To="0" Duration="0:0:0" />
+
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Visibility" TargetName="highlight" Value="Hidden"/>
+                            <Setter Property="Stroke" TargetName="bottomBorder" Value="Black"/>
+                            <Setter Property="Fill" TargetName="bottomBorder">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                        <GradientStop Color="#FF0C4E8B" Offset="0"/>
+                                        <GradientStop Color="#FF2B4864" Offset="0.42"/>
+                                        <GradientStop Color="Black" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bottomBorder" Property="Fill" Value="{StaticResource DisabledButtonBackgroundFill}" />
+                            <Setter TargetName="bottomBorder" Property="Stroke" Value="Silver" />
+                            <Setter TargetName="bottomBorder" Property="StrokeThickness" Value="4" />
+                            <Setter TargetName="highlight" Property="Fill" Value="#20FFFFFF" />
+                            <Setter Property="Foreground" Value="#FFAFAFAF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{x:Type ToggleButton}" TargetType="ToggleButton">
+        <Setter Property="Padding" Value="15,0" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="MaxHeight" Value="72" />
+        <Setter Property="MinWidth" Value="50" />
+        <Setter Property="FontFamily" Value="Tahoma"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Rectangle RadiusX="10" RadiusY="10" Stroke="Gold" StrokeThickness="1" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid x:Name="rootGrid" RenderTransformOrigin=".5,.5">
+                        <Grid.Resources>
+                            <SolidColorBrush x:Key="borderBrush" Color="#FF00cccc" />
+                        </Grid.Resources>
+
+                        <Grid.RenderTransform>
+                            <TranslateTransform X="0" Y="0"/>
+                        </Grid.RenderTransform>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Rectangle Grid.RowSpan="2" 
+                                           x:Name="bottomBorder" 
+                                           RadiusX="10" RadiusY="10" 
+                                           Stroke="{StaticResource borderBrush}" 
+                                           StrokeThickness="2"
+                                           Fill="{StaticResource DefaultToggleButtonBackgroundFill}" >
+
+                            <Rectangle.Triggers>
+                                <EventTrigger RoutedEvent="Button.MouseEnter">
+                                    <BeginStoryboard Name="CycleBorder">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Stroke.Color"  
+                                                                    To="Orange" 
+                                                                    Duration="0:0:0.5" 
+                                                                    AutoReverse="True" 
+                                                                    RepeatBehavior="Forever" />
+
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+
+                                <EventTrigger RoutedEvent="Button.MouseLeave">
+                                    <StopStoryboard BeginStoryboardName="CycleBorder"/>
+                                </EventTrigger>
+                            </Rectangle.Triggers>
+                        </Rectangle>
+
+                        <Rectangle x:Name="highlight" Margin="2.5" Fill="Transparent" RadiusX="10" RadiusY="10">
+                            <Rectangle.OpacityMask>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#D0FFFFFF" Offset="0"/>
+                                    <GradientStop Color="#00FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+
+                        <ContentPresenter Grid.RowSpan="2"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                          Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                          RecognizesAccessKey="True" 
+                                          RenderTransformOrigin="0.5,0.5" 
+                                          x:Name="contentPresenter" />
+                    </Grid>
+
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="buttonDown_Animation">
+                            <DoubleAnimation Storyboard.TargetName="rootGrid" 
+                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                 From="0" To="0" Duration="0:0:0" />
+
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Visibility" TargetName="highlight" Value="Hidden"/>
+                            <Setter Property="Stroke" TargetName="bottomBorder" Value="Black"/>
+                            <Setter Property="Fill" TargetName="bottomBorder">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                        <GradientStop Color="#FF0C4E8B" Offset="0"/>
+                                        <GradientStop Color="#FF2B4864" Offset="0.42"/>
+                                        <GradientStop Color="Black" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bottomBorder" Property="Fill" Value="{StaticResource DisabledButtonBackgroundFill}" />
+                            <Setter TargetName="bottomBorder" Property="Stroke" Value="Silver" />
+                            <Setter TargetName="bottomBorder" Property="StrokeThickness" Value="4" />
+                            <Setter TargetName="highlight" Property="Fill" Value="#20FFFFFF" />
+                            <Setter Property="Foreground" Value="#FFAFAFAF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
+
+    <LinearGradientBrush x:Key="StandardBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0"/>
+                <GradientStop Color="#CCC" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+     
+    <ControlTemplate x:Key="tempCheckBox1" TargetType="CheckBox">
+        <BulletDecorator>
+            <BulletDecorator.Bullet>
+                <Grid Height="24" Width="24" Background="Transparent" Margin="6,0,0,6">
+                    <Ellipse Stroke="{StaticResource BackgroundBrush4C}" StrokeThickness="2" />
+                    <Path Name="pathChecked" Data="M0,24 L24,0 M0,0 L24,24"
+						 Stroke="Yellow" StrokeThickness="3" Opacity="1"/>
+                </Grid>
+            </BulletDecorator.Bullet>
+            <ContentPresenter Margin="12,0,0,6" />
+        </BulletDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Yellow"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter TargetName="pathChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Gray"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="tempCheckBox2" TargetType="CheckBox">
+        <BulletDecorator>
+            <BulletDecorator.Bullet>
+                <Grid Height="24" Width="24" Background="Transparent" Margin="6,0,0,6">
+                    <Ellipse Stroke="{StaticResource BackgroundBrush4C}" StrokeThickness="2" />
+                    <Path Name="pathChecked" Data="M0,24 L24,0 M0,0 L24,24"
+						 Stroke="Yellow" StrokeThickness="3" Opacity="1" Visibility="Collapsed"/>
+                    <Image Name="imgChecked" Source="/Images/Checkmark.png"/>
+                </Grid>
+            </BulletDecorator.Bullet>
+            <ContentPresenter Margin="12,0,0,0" />
+        </BulletDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Yellow"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter TargetName="pathChecked" Property="Opacity" Value="0"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Gray"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="CheckBoxBlack" TargetType="CheckBox">
+        <BulletDecorator>
+            <BulletDecorator.Bullet>
+                <Grid Height="24" Width="24" Background="Black" Margin="6,0,0,6">
+                    <Ellipse Stroke="{StaticResource BackgroundBrush4C}" StrokeThickness="2" />
+                    <Path Name="pathChecked" Data="M0,24 L24,0 M0,0 L24,24"
+						 Stroke="Yellow" StrokeThickness="3" Opacity="1" Visibility="Collapsed"/>
+                    <Image Name="imgChecked" Source="/Images/Checkmark.png"/>
+                </Grid>
+            </BulletDecorator.Bullet>
+            <ContentPresenter Margin="12,0,0,6" />
+        </BulletDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Yellow"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter TargetName="pathChecked" Property="Opacity" Value="0"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Gray"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="LCRadioButton2" TargetType="RadioButton">
+        <BulletDecorator>
+            <BulletDecorator.Bullet>
+                <Grid Height="24" Width="24" Background="Transparent" Margin="6,0,0,6">
+                    <Ellipse Stroke="{StaticResource BackgroundBrush4C}" StrokeThickness="2" />
+                    <Path Name="pathChecked" Data="M0,24 L24,0 M0,0 L24,24"
+						 Stroke="Orange" StrokeThickness="3" Opacity="1" />
+                    <Image Name="imgChecked" Source="/Images/Checkmark.png"/>
+                </Grid>
+            </BulletDecorator.Bullet>
+            <ContentPresenter Margin="12,0,0,6" />
+        </BulletDecorator>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Black"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="1"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter TargetName="pathChecked" Property="Opacity" Value="0"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter TargetName="pathChecked" Property="Stroke" Value="Gray"/>
+                <Setter TargetName="pathChecked" Property="Opacity" Value="1"/>
+                <Setter TargetName="imgChecked" Property="Opacity" Value="0"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!--#FF043F76-->
+</ResourceDictionary>

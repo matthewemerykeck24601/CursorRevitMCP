@@ -1,0 +1,49 @@
+<Window x:Class="EDGE.AssemblyTools.MarkVerification.ResultsPresentation.mkExistingWarning"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.AssemblyTools.MarkVerification.ResultsPresentation"
+        Title="Warning" WindowStartupLocation="CenterScreen" Height="350" Width="500" MaxHeight="350"
+        MaxWidth="500" MinHeight="350" MinWidth="500">
+  <FrameworkElement.Resources>
+    <local:ExclamationConverters x:Key="ExclamationConverters"/>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1.5*"/>
+      <RowDefinition Height="1.2*"/>
+    </Grid.RowDefinitions>
+    <TextBlock FontSize="13.5" Margin="15">
+      <Run Text="Note: "/>
+      <LineBreak/>
+      <Run Text="Mirroring and rotating of precast and embed elements has been ignored"/>
+      <LineBreak/>
+      <Run Text="when assigning mark number values. "/>
+      <LineBreak/>
+      <Run/>
+      <LineBreak/>
+      <Run Text="This is to ensure efficiency in modeling and assigning mark number values. "/>
+      <LineBreak/>
+      <Run Text="Because of this, please ensure that all elements that have ignored rotation of"/>
+      <LineBreak/>
+      <Run Text="embed elements and precast are closely evaluated by the user."/>
+    </TextBlock>
+    <TextBlock FontSize="12" Margin="15,4.6,6.6,58.8" Grid.Row="1">
+      <Run Text="*All members that have ignored rotation in their assignment of mark number"/>
+      <LineBreak/>
+    </TextBlock>
+    <TextBlock FontSize="12" Margin="15,23.6,298.6,75.8" Grid.Row="1">
+      <Run Text="values are denoted with the icon"/>
+      <LineBreak/>
+    </TextBlock>
+    <Image Grid.Row="1" Margin="195,23.6,266.6,93.8"
+           Source="{Binding Converter={StaticResource ExclamationConverters}}"/>
+    <TextBlock FontSize="12" Margin="232,23.6,14.6,75.8" Grid.Row="1">
+      <Run Text=" in the mark verification results dialogs."/>
+      <LineBreak/>
+    </TextBlock>
+    <Button Grid.Row="1" Margin="124,71.6,298.6,44.8" FontSize="12">OK</Button>
+    <Button Grid.Row="1" Margin="297,71.6,126.6,44.8" FontSize="12">Cancel</Button>
+  </Grid>
+</Window>

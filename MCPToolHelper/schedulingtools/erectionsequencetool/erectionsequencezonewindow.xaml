@@ -1,0 +1,107 @@
+<Window x:Class="EDGE.SchedulingTools.ErectionSequenceTool.ErectionSequenceZoneWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.SchedulingTools.ErectionSequenceTool"
+        Background="LightGray" Title="Erection Sequence" SizeToContent="Height" MaxHeight="400" Width="450"
+        ResizeMode="NoResize" MinHeight="350" MinWidth="350">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/EDGEforREVIT;component/EDGELogo.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <Grid Row="1" ColumnSpan="4">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+      </Grid.RowDefinitions>
+      <Label Grid.Row="0" Content="Erection Sequence Zones" FontSize="14" Margin="5,0,0,0"/>
+      <DataGrid UnloadingRow="Zone_List_UnloadingRow" Drop="zoneDataGrid_Drop"
+                PreviewMouseLeftButtonDown="Zone_List_PreviewMouseLeftButtonDown"
+                PreviewKeyDown="Zone_List_PreviewKeyDown" Name="Zone_List" Margin="10"
+                VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Row="1" AutoGenerateColumns="false"
+                CanUserAddRows="false" Height="220" AllowDrop="true" CanUserSortColumns="false"
+                ItemsSource="{Binding ZoneSettings.ZoneEntryList}">
+        <DataGrid.RowStyle>
+          <Style TargetType="{x:Type DataGridRow}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding IsDuplicateName}" Value="True">
+                <Setter Property="Control.Background" Value="#FFF589A1"/>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </DataGrid.RowStyle>
+        <DataGrid.Columns>
+          <DataGridTextColumn IsReadOnly="true" Width="25" Binding="{Binding ZoneIndex}">
+            <DataGridBoundColumn.ElementStyle>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding IsDuplicateName}" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="DarkRed"/>
+                    <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+                  </DataTrigger>
+                </Style.Triggers>
+                <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"/>
+                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+              </Style>
+            </DataGridBoundColumn.ElementStyle>
+          </DataGridTextColumn>
+          <DataGridTextColumn Header="Zone" IsReadOnly="false" Width="*" Binding="{Binding ZoneName}">
+            <DataGridBoundColumn.ElementStyle>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"/>
+                <Setter Property="FrameworkElement.Margin" Value="5"/>
+              </Style>
+            </DataGridBoundColumn.ElementStyle>
+            <DataGridColumn.CellStyle>
+              <Style TargetType="{x:Type DataGridCell}">
+              </Style>
+            </DataGridColumn.CellStyle>
+          </DataGridTextColumn>
+          <DataGridTextColumn Header="Total" IsReadOnly="true" Width="40" Binding="{Binding ZoneCount}">
+            <DataGridBoundColumn.ElementStyle>
+              <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="FrameworkElement.VerticalAlignment" Value="Center"/>
+                <Setter Property="FrameworkElement.Margin" Value="5"/>
+              </Style>
+            </DataGridBoundColumn.ElementStyle>
+          </DataGridTextColumn>
+        </DataGrid.Columns>
+      </DataGrid>
+    </Grid>
+    <Button Click="AssignButton_Click" Name="AssignButton" Width="95" Grid.Row="2" Grid.Column="0" Margin="5"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Content="Assign"/>
+    <Button Click="AddRow_Click" Name="AddRow" Width="95" Grid.Row="2" Grid.Column="1" Margin="5"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Content="Add Zone"/>
+    <Button Click="DeleteRow_Click" Name="DelRow" Width="95" Grid.Row="2" Grid.Column="2" Margin="5"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Content="Delete Zone"/>
+    <Button Click="ResetZone_Click" Name="ResetZone" Width="95" Grid.Row="2" Grid.Column="3" Margin="5"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Content="Reset Zones"/>
+    <Button Click="ResetModel_Click" Name="ResetSequence" Width="132.5" Grid.Row="3" Grid.Column="0"
+            Grid.ColumnSpan="2" Margin="7,5,0,7.5" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Content="Reset Sequence"/>
+    <Button Click="SaveButton_Click" Name="SaveButton" Width="132.5" Grid.Row="3" Grid.Column="1"
+            Grid.ColumnSpan="2" Margin="0,5,0,7.5" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            Content="Save"/>
+    <Button Click="CloseButton_Click" Name="CloseButton" Width="132.5" Grid.Row="3" Grid.Column="2"
+            Grid.ColumnSpan="2" Margin="0,5,7,7.5" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Content="Close"/>
+  </Grid>
+</Window>

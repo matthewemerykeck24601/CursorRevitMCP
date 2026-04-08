@@ -1,0 +1,33 @@
+<Window x:Class="EDGE.TicketTools.CopyTicketViews.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:self="clr-namespace:EDGE.TicketTools.CopyTicketViews"
+        Title="View Sheet List" Height="400" Width="420" MinWidth="410" MinHeight="320"
+        WindowStartupLocation="CenterOwner" SizeToContent="Width">
+  <Grid Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}">
+    <TextBlock Name="textBlock" Margin="10,10,5,241.4">
+      Please select the sheets to which the selected views should be copied to.
+    </TextBlock>
+    <Button Content="Close" Margin="0,0,9.6,11.4" HorizontalAlignment="Right" Width="75" Height="20"
+            VerticalAlignment="Bottom"
+            Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}" IsCancel="true"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+            Command="{Binding Close}"/>
+    <Button Content="OK" Margin="0,0,89.6,11.4" HorizontalAlignment="Right" Width="75" Height="20"
+            VerticalAlignment="Bottom"
+            Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+            Command="{Binding Paste}"/>
+    <ListBox x:Name="ListBox" Margin="10,34,9.6,40.4">
+      <FrameworkElement.Resources>
+        <DataTemplate DataType="{x:Type self:ViewSheetModel}">
+          <StackPanel>
+            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+          </StackPanel>
+        </DataTemplate>
+      </FrameworkElement.Resources>
+    </ListBox>
+  </Grid>
+</Window>

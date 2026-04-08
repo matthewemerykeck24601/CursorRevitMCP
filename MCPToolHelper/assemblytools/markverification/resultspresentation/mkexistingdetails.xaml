@@ -1,0 +1,115 @@
+<Window x:Class="EDGE.AssemblyTools.MarkVerification.ResultsPresentation.MKExistingDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.AssemblyTools.MarkVerification.ResultsPresentation"
+        Activated="Window_Activated" Closed="Window_Closed" WindowStartupLocation="CenterScreen"
+        Height="640" Width="641" MinHeight="500" MinWidth="600"
+        Title="Mark Verification Existing Detail Group Results">
+  <FrameworkElement.Resources>
+    <local:ImagePathConverter x:Key="ImagePathConverter"/>
+  </FrameworkElement.Resources>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="2*"/>
+    </Grid.ColumnDefinitions>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="37*"/>
+        <RowDefinition Height="441*"/>
+        <RowDefinition Height="58*"/>
+        <RowDefinition Height="28*"/>
+      </Grid.RowDefinitions>
+      <TextBlock Margin="7,0,7,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="20" Width="80">Detail Groups:</TextBlock>
+      <TextBlock Name="Baseline" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="17,0,7,0"
+                 Foreground="Red" HorizontalAlignment="Center" Height="20">BASELINE</TextBlock>
+      <ListBox GotFocus="GroupTestResults_GotFocus" SelectionChanged="GroupTestResults_SelectionChanged"
+               Name="GroupTestResults" Margin="7" HorizontalContentAlignment="Stretch" Grid.Row="1">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid Margin="0" Background="White">
+              <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                <Grid Margin="3">
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <TextBlock FontWeight="Bold" Text="{Binding Path=GroupQuantity}"/>
+                </Grid>
+              </Border>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ListBox>
+      <TextBlock Grid.Row="2" Margin="7,0,0,5" VerticalAlignment="Top" Height="20" Grid.Column="0" FontWeight="Bold">
+        Suggested next mark number:
+      </TextBlock>
+      <TextBlock Name="NextControlMark" Grid.Row="2" Margin="7,0,3,0" Grid.Column="0" VerticalAlignment="Center"
+                 Height="20" FontWeight="Bold" TextWrapping="Wrap"/>
+      <Button Click="Export_Click" Name="Export" Content="Export" Grid.Row="3" Visibility="Visible" Height="23"
+              Width="45" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5"/>
+      <Button Click="Detail_Click" Name="Detail" Content="Run Detail Comparison" Grid.Row="3"
+              Visibility="Visible" Height="23" Width="130" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+              Margin="5,0,5,5" IsEnabled="true"/>
+    </Grid>
+    <Grid Name="evenBiggerGrid" Column="1"
+          DataContext="{Binding ElementName=GroupTestResults, Path=SelectedItem}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="36*"/>
+        <RowDefinition Height="145*"/>
+        <RowDefinition MinHeight="36" MaxHeight="36"/>
+        <RowDefinition MaxHeight="241" MinHeight="241"/>
+        <RowDefinition Height="12*"/>
+      </Grid.RowDefinitions>
+      <TextBlock Margin="10,0,3,0" VerticalAlignment="Bottom">Group Members:</TextBlock>
+      <ListBox SelectionChanged="DetailResults_SelectionChanged" Name="DetailResults" Grid.Row="1"
+               Margin="7,7,7,6.8" HorizontalContentAlignment="Stretch" ItemsSource="{Binding GroupDetails}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid Margin="0" Background="White">
+              <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                <Grid Margin="3">
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <TextBlock FontWeight="Bold" Text="{Binding Path=ElementId}"/>
+                  <TextBlock Grid.Row="1" FontWeight="Bold" Text="{Binding Path=ControlMark}"/>
+                  <TextBlock Grid.Row="2" FontWeight="Bold" Text="{Binding Path=ControlNumber}"/>
+                </Grid>
+              </Border>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ListBox>
+      <TextBlock Height="Auto" Width="Auto" Grid.Row="2" Margin="10,0,3,10" VerticalAlignment="Bottom">Test Results:</TextBlock>
+      <TextBlock Name="ElementDisplay" Height="Auto" Width="Auto" Grid.Row="2" Margin="80,0,3,10"
+                 VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+      <ScrollViewer PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Name="ScrollViewerResults" Grid.Row="3"
+                    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <ListBox SelectionChanged="Results_SelectionChanged" Name="Results" Grid.Row="3" Margin="7"
+                 HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 ItemsSource="{Binding GroupResults}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Grid Name="bigGrid" Margin="0" Background="White">
+                <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                  <Grid Name="GridforTest" Margin="3">
+                    <Image HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="20" Width="20"
+                           Source="{Binding Path=ImageDecider, Converter={StaticResource ImagePathConverter}}"/>
+                    <TreeView Name="Treeview" Selector.IsSelected="true" Margin="0,0,25,0">
+                      <TreeViewItem IsSelected="true" Visibility="Visible" Header="{Binding Path=TestName}"
+                                    ToolTip="{Binding Path=TestDescription}"/>
+                    </TreeView>
+                  </Grid>
+                </Border>
+              </Grid>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ListBox>
+      </ScrollViewer>
+    </Grid>
+  </Grid>
+</Window>

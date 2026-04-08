@@ -1,0 +1,44 @@
+<Window x:Class="EDGE.InsulationTools.InsulationDrawing.Views.InsulationDrawingSelectInsulationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.InsulationTools.InsulationDrawing.Views"
+        Title="Insulation Drawing - Mark" ResizeMode="NoResize" Height="340" Width="250"
+        Background="LightGray">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="230"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height=".3*"/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="2*"/>
+      <RowDefinition Height=".5*"/>
+    </Grid.RowDefinitions>
+    <TextBlock Name="DescriptionTextBlock" Grid.Row="0" Grid.Column="1" Text="Please select Insulation Marks:"
+               TextWrapping="WrapWithOverflow" Margin="5,5,5,0"/>
+    <TextBox TextChanged="SearchBox_TextChanged" Name="SearchBox" Grid.Row="1" Grid.Column="1" Height="20"/>
+    <Label Name="WaterMarkLabel" Grid.Row="1" Grid.Column="1" Margin="-2,1,0,0" IsHitTestVisible="false"
+           Content="Search Insulation Marks" Foreground="Gray"/>
+    <ListBox Name="CheckBoxList" Grid.Row="2" Grid.Column="1" SelectionMode="Single"
+             ItemsSource="{Binding AssemblyList}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ListBox>
+    <Grid Row="3" Column="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Button Click="ContinueButton_Click" Name="ContinueButton" Grid.Column="0" Content="Continue"
+              Margin="5,10,5,10" IsEnabled="false"/>
+      <Button Click="CancelButton_Click" Name="CancelButton" Grid.Column="1" Content="Cancel" Margin="5,10,5,10"/>
+    </Grid>
+  </Grid>
+</Window>

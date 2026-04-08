@@ -1,0 +1,348 @@
+<Window x:Class="EDGE.TicketTools.TicketManager.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModels="clr-namespace:EDGE.TicketTools.TicketManager.ViewModels"
+        Activated="App_Activated" Closing="TicketManager_Closing" Height="485" Width="800" MinHeight="326"
+        MaxHeight="1000" MinWidth="426" WindowStartupLocation="CenterOwner" SnapsToDevicePixels="true"
+        ResizeMode="CanResizeWithGrip" HorizontalAlignment="Left" Title="{Binding WindowTitle}">
+  <FrameworkElement.Resources>
+    <viewModels:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+  </FrameworkElement.Resources>
+  <Grid Name="GridForm" SnapsToDevicePixels="true" VerticalAlignment="Stretch">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="10"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="10"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="26"/>
+      <RowDefinition MinHeight="100" Height="*"/>
+      <RowDefinition Height="54"/>
+      <RowDefinition Height="54"/>
+      <RowDefinition Height="10"/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="10"/>
+    </Grid.RowDefinitions>
+    <Grid Column="1" Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="5*"/>
+        <RowDefinition Height="9*"/>
+        <RowDefinition Height="8*"/>
+        <RowDefinition Height="4*"/>
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="142"/>
+        <ColumnDefinition Width="137"/>
+        <ColumnDefinition Width="100"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="130"/>
+        <ColumnDefinition Width="130"/>
+      </Grid.ColumnDefinitions>
+      <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,-1" Height="27"
+              Grid.RowSpan="4">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="84"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Margin="0" Grid.Column="0" Content="Total Pieces:" FontWeight="Bold"/>
+          <Label Margin="0" Grid.Column="1"
+                 Content="{Binding TotalPieces, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+      </Border>
+      <Border BorderBrush="Black" BorderThickness="1" Margin="141,0,0,-1" Height="27" Grid.ColumnSpan="2"
+              Grid.RowSpan="4">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="84"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Margin="0" Grid.Column="0" Content="Total Marks:" FontWeight="Bold"/>
+          <Label Margin="0" Grid.Column="1"
+                 Content="{Binding TotalMarks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+      </Border>
+      <CheckBox Grid.Column="2" Margin="5,1,5,2" Content="Show Users" VerticalAlignment="Center" Grid.RowSpan="2"
+                Grid.Row="1" IsChecked="{Binding ShowUsers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+      <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,-1" Height="27"
+              Grid.RowSpan="4">
+        <Grid>
+          <TextBlock Margin="5,2" Width="125" Text="Filter list by..." Foreground="Gray" HorizontalAlignment="Left"
+                     Visibility="{Binding ElementName=SearchBox, Path=Text.Length, Converter={StaticResource IntToVisibilityConverter}}"/>
+          <TextBox x:Name="SearchBox" Margin="5,2,0,-0.4" VerticalAlignment="Top" FontWeight="Light"
+                   HorizontalAlignment="Left" Width="113" Height="24"
+                   Text="{Binding Search, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}"
+                   BorderBrush="{x:Null}">
+            <Control.Template>
+              <ControlTemplate TargetType="{x:Type TextBox}">
+                <ScrollViewer Name="PART_ContentHost"/>
+              </ControlTemplate>
+            </Control.Template>
+          </TextBox>
+        </Grid>
+      </Border>
+      <Border BorderBrush="Black" BorderThickness="1" Margin="129.2,0,0,-1.4" Height="27" Grid.RowSpan="4"
+              Grid.Column="4" Grid.ColumnSpan="2">
+        <Grid Margin="1.2,0.2,-1.2,-0.6">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Grid.Column="0" Content="Total Result:" FontWeight="Bold" HorizontalAlignment="Left" Width="80"/>
+          <Label Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="39" RenderTransformOrigin="0.035,0.555"
+                 Content="{Binding SearchCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+      </Border>
+    </Grid>
+    <DataGrid SelectionChanged="DataGrid_SelectionChanged" x:Name="DataGrid" Grid.Column="1" Grid.Row="2"
+              AutoGenerateColumns="false" SelectionMode="Extended" CanUserAddRows="false"
+              CanUserDeleteRows="false" IsReadOnly="true" VerticalScrollBarVisibility="Visible"
+              VerticalAlignment="Stretch" CanUserResizeColumns="true" CanUserResizeRows="false" RowHeight="22"
+              SnapsToDevicePixels="true" BorderBrush="Black" BorderThickness="1"
+              ItemsSource="{Binding AssemblyList.AssemblyList}"
+              SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+      <FrameworkElement.Resources>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+          <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
+        </Style>
+      </FrameworkElement.Resources>
+      <FrameworkElement.ContextMenu>
+        <ContextMenu x:Name="ContextMenu">
+          <MenuItem Click="ToggleOnHold_Click" x:Name="OnHoldToggle" Header="Toggle On Hold" IsEnabled="true"
+                    ItemsSource="{Binding DataContext.SelectedItem}"/>
+          <MenuItem Click="EditIdentityComment_Click" x:Name="IdentCommentEdit" Header="Edit Identity Comment"
+                    IsEnabled="true" ItemsSource="{Binding DataContext.SelectedItem}"/>
+          <MenuItem Click="EditButton_Click" x:Name="EditButton" Header="Edit Custom Parameter Values" IsEnabled="true"
+                    ItemsSource="{Binding DataContext.SelectedItem}"/>
+          <MenuItem Header="Review Ticket Edit History" IsEnabled="true" Command="{Binding ViewHistoryCommand}"/>
+          <MenuItem Header="Accept Ticket Edits (If Flagged)" IsEnabled="true" Command="{Binding AcceptEditsCommand}"/>
+          <MenuItem Click="SheetsMenuItem_Click" x:Name="SheetsMenuItem" Header="Open Ticket Sheet"
+                    ItemsSource="{Binding SelectedItem.AssociatedViewSheets}">
+            <ItemsControl.ItemContainerStyle>
+              <Style TargetType="{x:Type MenuItem}">
+                <Setter Property="HeaderedItemsControl.Header" Value="{Binding Title}"/>
+                <Setter Property="MenuItem.Command"
+                        Value="{Binding DataContext.ShowViewSheetCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type MenuItem}, AncestorLevel=1}}"/>
+                <Setter Property="MenuItem.CommandParameter" Value="{Binding}"/>
+              </Style>
+            </ItemsControl.ItemContainerStyle>
+          </MenuItem>
+          <MenuItem Header="Release Selected Ticket" Command="{Binding ReleaseTicketCommand}"/>
+          <MenuItem x:Name="RefreshButton" Header="Refresh Ticket Manager Window"
+                    Command="{Binding RefreshButtonCommand}"/>
+        </ContextMenu>
+      </FrameworkElement.ContextMenu>
+      <DataGrid.Columns>
+        <DataGridTextColumn MinWidth="70" Header="Mark #" Width="74" Binding="{Binding MarkNumber}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.Background" Value="{Binding MarkNumberBackgroundColor}"/>
+              <Setter Property="TextBlock.Foreground" Value="{Binding MarkNumberTextColor}"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn MinWidth="70" Header="Assembled" Width="74" Binding="{Binding Assemblied}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}"/>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn MinWidth="61" Header="Quantity" Binding="{Binding Quantity}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+              <Setter Property="TextBlock.Background" Value="{Binding QuantityBackgroundColor}"/>
+              <Setter Property="TextBlock.Foreground" Value="{Binding QuantityTextColor}"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn MinWidth="120" Header="Reinforced Date" Binding="{Binding ReinforcedDate}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="ReinforcedByColumn" Visibility="Hidden" MinWidth="120" Header="Reinforced By"
+                            Binding="{Binding ReinforcedBy}"/>
+        <DataGridTextColumn MinWidth="120" Header="Created Date" Binding="{Binding CreatedDate}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="CreatedByColumn" Visibility="Hidden" MinWidth="120" Header="Created By"
+                            Binding="{Binding CreatedBy}"/>
+        <DataGridTextColumn MinWidth="120" Header="Detailed Date" Binding="{Binding DetailedDate}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="DetailedByColumn" Visibility="Hidden" MinWidth="120" Header="Detailed By"
+                            Binding="{Binding DetailedBy}"/>
+        <DataGridTextColumn MinWidth="120" Header="Date Released" Binding="{Binding ReleasedDate}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="ReleasedByColumn" Visibility="Hidden" MinWidth="120" Header="Released By"
+                            Binding="{Binding ReleasedBy}"/>
+        <DataGridTextColumn MinWidth="120" Header="On Hold" Binding="{Binding OnHold}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="OnHoldColumn" Visibility="Hidden" MinWidth="120" Header="On Hold"
+                            Binding="{Binding OnHold}"/>
+        <DataGridTextColumn MinWidth="120" Header="Identity Comment" Binding="{Binding IdentityComment}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="IdentityCommentColumn" Visibility="Hidden" MinWidth="120" Header="Identity Comment"
+                            Binding="{Binding IdentityComment}"/>
+        <DataGridTextColumn MinWidth="120" Header="" Binding="{Binding Custom1}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="Custom1Column" Visibility="Hidden" MinWidth="120" Header="" Binding="{Binding Custom1}"/>
+        <DataGridTextColumn MinWidth="120" Binding="{Binding Custom2}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="Custom2Column" Visibility="Hidden" MinWidth="120" Binding="{Binding Custom2}"/>
+        <DataGridTextColumn MinWidth="120" Header="" Binding="{Binding Custom3}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="Custom3Column" Visibility="Hidden" MinWidth="120" Header="" Binding="{Binding Custom3}"/>
+        <DataGridTextColumn MinWidth="120" Header="" Binding="{Binding Custom4}">
+          <DataGridBoundColumn.ElementStyle>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+              <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            </Style>
+          </DataGridBoundColumn.ElementStyle>
+        </DataGridTextColumn>
+        <DataGridTextColumn x:Name="Custom4Column" Visibility="Hidden" MinWidth="120" Header="" Binding="{Binding Custom4}"/>
+        <DataGridTextColumn x:Name="ElementIdColumn" Visibility="Hidden" MinWidth="120" Header="" Binding="{Binding ElementId}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+    <Border Grid.Column="1" Grid.Row="3" BorderThickness="1" BorderBrush="Black"
+            MaxWidth="{Binding ElementName=DataGrid, Path=ActualWidth}">
+      <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Label Grid.Column="0" Content="Warnings: " FontWeight="Bold"/>
+          <TextBlock Margin="75,0,1.6,-0.2" FontSize="12" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                     LineHeight="12" Grid.ColumnSpan="2" Text="{Binding SelectedItem.Warnings}"/>
+        </Grid>
+      </ScrollViewer>
+    </Border>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Column="1" Row="4"
+          MaxWidth="{Binding ElementName=DataGrid, Path=ActualWidth}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="150"/>
+        <ColumnDefinition Width="150"/>
+        <ColumnDefinition Width="150"/>
+      </Grid.ColumnDefinitions>
+      <Border Grid.Column="0" Margin="0 -1 0 0" BorderBrush="Black" BorderThickness="1"
+              HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="112"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Margin="0" Grid.Column="0" Content="Reinforced Marks:" FontWeight="Bold"/>
+            <Label Margin="0" Grid.Column="1"
+                   Content="{Binding MarksReinforced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+          </Grid>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="112"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Margin="0,0,0,-0.4" Grid.Column="0" Content="Reinforced Pieces:" FontWeight="Bold" Height="26"
+                   VerticalAlignment="Bottom"/>
+            <Label Margin="0" Grid.Column="1"
+                   Content="{Binding PiecesReinforced, UpdateSourceTrigger=PropertyChanged}"/>
+          </Grid>
+        </StackPanel>
+      </Border>
+      <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Stretch"
+              Margin="0,-1,0,0" HorizontalAlignment="Stretch">
+        <StackPanel>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="112"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Margin="0" Grid.Column="0" Content="Detailed Marks:" FontWeight="Bold"/>
+            <Label Margin="0" Grid.Column="1" Content="{Binding MarksDetailed, UpdateSourceTrigger=PropertyChanged}"/>
+          </Grid>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="112"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Margin="0" Grid.Column="0" Content="Detailed Pieces:" FontWeight="Bold"/>
+            <Label Margin="0" Grid.Column="1" Content="{Binding PiecesDetailed, UpdateSourceTrigger=PropertyChanged}"/>
+          </Grid>
+        </StackPanel>
+      </Border>
+      <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Stretch"
+              Margin="0,-1,0,0" HorizontalAlignment="Stretch">
+        <StackPanel>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="112"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Margin="0" Grid.Column="0" Content="Released Marks:" FontWeight="Bold"/>
+            <Label Margin="0" Grid.Column="1" Content="{Binding MarksReleased, UpdateSourceTrigger=PropertyChanged}"/>
+          </Grid>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="112"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Margin="0" Grid.Column="0" Content="Released Pieces:" FontWeight="Bold"/>
+            <Label Margin="0" Grid.Column="1"
+                   Content="{Binding PiecesReleased, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+          </Grid>
+        </StackPanel>
+      </Border>
+    </Grid>
+    <Button Grid.Column="1" Grid.Row="6" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Content="Export" Command="{Binding ExportCommand}"/>
+    <Button Grid.Column="1" Grid.Row="6" Width="104" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+            Content="Ticket Populator" Command="{Binding PopulatorCommand}"/>
+    <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Width="75" VerticalAlignment="Bottom"
+            Content="Close"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+            Command="{Binding CloseCommand}"/>
+  </Grid>
+</Window>

@@ -1,0 +1,36 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: EDGE.QATools.CheckoutInvestigation
+// Assembly: EDGEforREVIT, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8F55B9C3-A92E-41C0-AD06-820A67FFC8AF
+// Assembly location: C:\ProgramData\Autodesk\Revit\Addins\2024\PTAC_EDGE_BUNDLE\EDGEforREVIT.dll
+
+using Autodesk.Revit.Attributes;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using System.Collections.Generic;
+using System.Linq;
+
+#nullable disable
+namespace EDGE.QATools;
+
+[Transaction(TransactionMode.Manual)]
+[Regeneration(RegenerationOption.Manual)]
+internal class CheckoutInvestigation : IExternalCommand
+{
+  public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+  {
+    Document document = commandData.Application.ActiveUIDocument.Document;
+    ICollection<ElementId> elementIds = commandData.Application.ActiveUIDocument.Selection.GetElementIds();
+    WorksharingUtils.CheckoutElements(document, elementIds);
+    using (Transaction transaction = new Transaction(document, "test checkout"))
+    {
+      int num1 = (int) transaction.Start();
+      int status = (int) transaction.GetStatus();
+      document.GetElement(elementIds.First<ElementId>()).LookupParameter("CONTROL_MARK").Set("TESTING");
+      WorksharingUtils.CheckoutElements(document, elementIds);
+      int num2 = (int) transaction.Commit();
+    }
+    WorksharingUtils.CheckoutElements(document, elementIds);
+    return (Result) 0;
+  }
+}

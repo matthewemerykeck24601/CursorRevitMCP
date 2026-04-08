@@ -1,0 +1,77 @@
+<Window x:Class="EDGE.AnnotationTools.FreezeDrawingTools.SettingsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.AnnotationTools.FreezeDrawingTools"
+        Title="Freeze Active View Options" MinWidth="500" MaxHeight="500" MaxWidth="600" Width="Auto"
+        ResizeMode="NoResize" Height="Auto" SizeToContent="WidthAndHeight">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <GroupBox Header="Export Settings" Margin="5" Height="Auto" VerticalAlignment="Stretch">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Line Scaling" Grid.Row="0"/>
+        <ComboBox Name="LineScaleCmb" Grid.Row="1" Height="Auto" VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch" Margin="5" SelectedIndex="0">
+          <ComboBoxItem Tag="0" Content="View Scale"/>
+          <ComboBoxItem Tag="1" Content="Model Space"/>
+          <ComboBoxItem Tag="2" Content="Paper Space"/>
+        </ComboBox>
+        <Label Grid.Row="2" Content="Coordinate System"/>
+        <ComboBox Name="CoordSysCmb" Grid.Row="3" Height="Auto" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                  Margin="5" SelectedIndex="0">
+          <ComboBoxItem Tag="0" Content="Project Internal"/>
+          <ComboBoxItem Tag="1" Content="Shared"/>
+        </ComboBox>
+        <Label Grid.Row="4" Content="DWG Units"/>
+        <ComboBox Name="DWGUnitsCmb" Grid.Row="5" Height="Auto" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                  Margin="5" SelectedIndex="0">
+          <ComboBoxItem Tag="0" Content="Default"/>
+          <ComboBoxItem Tag="1" Content="Inch"/>
+          <ComboBoxItem Tag="2" Content="Foot"/>
+          <ComboBoxItem Tag="3" Content="Millimeter"/>
+          <ComboBoxItem Tag="4" Content="Centimeter"/>
+          <ComboBoxItem Tag="5" Content="Meter"/>
+        </ComboBox>
+      </Grid>
+    </GroupBox>
+    <Grid Column="1" VerticalAlignment="Top">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <GroupBox Header="Color Settings" Margin="5" Height="Auto" VerticalAlignment="Top" Grid.Column="1">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          <RadioButton Name="BWRadio" GroupName="ColorSettings" Grid.Row="0 " Content="Black and White" Margin="10"
+                       IsChecked="True"/>
+          <RadioButton Name="ColorsRadio" GroupName="ColorSettings" Grid.Row="1" Content="View Color" Margin="10"/>
+          <RadioButton Name="InvColorsRadio" GroupName="ColorSettings" Grid.Row="2" Content="Inverted Color" Margin="10"/>
+        </Grid>
+      </GroupBox>
+      <Button Click="OKBtn_Click" Name="OKBtn" Content="OK" Grid.Row="1" VerticalAlignment="Bottom"
+              Margin="10,10,10,5"/>
+      <Button Click="CancelBtn_Click" Name="CancelBtn" Content="Cancel" Grid.Row="2" Grid.Column="1"
+              VerticalAlignment="Bottom" Margin="10,5,10,10"/>
+    </Grid>
+  </Grid>
+</Window>

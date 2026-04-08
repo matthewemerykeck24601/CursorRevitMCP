@@ -1,0 +1,43 @@
+<Window x:Class="EDGE.InsulationTools.InsulationDrawing.Views.MasterInsulationDrawingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.InsulationTools.InsulationDrawing.Views"
+        Title="Insulation Marking - Master" Width="275" Background="LightGray" SizeToContent="Height"
+        ResizeMode="NoResize">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="5"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="5"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="5"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="5"/>
+    </Grid.RowDefinitions>
+    <TextBlock Name="InsulationTitleLable" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"
+               Text="All valid insulation will be drawn." TextWrapping="WrapWithOverflow"/>
+    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,5,0,0" Text="Select scale for new legends:"/>
+    <ComboBox Name="ScaleComboBox" Grid.Column="1" Grid.Row="3" Height="22" Margin="5,5,5,0"/>
+    <Grid Column="1" Row="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <CheckBox Checked="StartOnNewSheet_Checked" Unchecked="StartOnNewSheet_Unchecked" Name="StartOnNewSheet"
+                Grid.Column="0" Grid.Row="0" Content="Start drawing insulation on a new sheet" Margin="7.5,5,0,0"
+                Visibility="Collapsed"/>
+      <Button Click="ContinueButton_Click" x:Name="ContinueButton" Grid.Column="0" Grid.Row="1"
+              Content="Draw Insulation" Margin="5,7.5,5,5" Height="22"/>
+    </Grid>
+  </Grid>
+</Window>

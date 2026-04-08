@@ -1,0 +1,47 @@
+<Window x:Class="EDGE.TicketTools.TemplateToolsBase.Views.ManufacturerManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.TicketTools.TemplateToolsBase.Views"
+        Height="450" Width="400" Background="LightGray" Title="Manufacturer Management"
+        ResizeMode="NoResize">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="15"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="15"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="15"/>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="15"/>
+    </Grid.RowDefinitions>
+    <Label x:Name="manufacturerManagementTitle" Grid.Column="1" Grid.Row="1" Content="Manufacturer Management"
+           HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="0,-10,0,0"/>
+    <ListBox SelectionChanged="manufacturerListBox_SelectionChanged" x:Name="manufacturerListBox"
+             Grid.Column="1" Grid.Row="2" Width="350" Height="260" HorizontalAlignment="Center"
+             VerticalAlignment="Center" TabIndex="0" DisplayMemberPath="ValueString"
+             SelectedValuePath="ValueString" ItemsSource="{Binding manufacturerList}"
+             SelectedValue="{Binding ManufacturerString}"/>
+    <Grid Column="1" Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="addButton" Grid.Column="0" Content="Add" Width="110" Height="40" Margin="0,0,3.33,0"
+              HorizontalAlignment="Right" TabIndex="1" Command="{Binding AddCommand}"/>
+      <Button x:Name="renameButton" Grid.Column="1" Content="Rename" Width="110" Height="40"
+              HorizontalAlignment="Center" TabIndex="2" Command="{Binding RenameCommand}"/>
+      <Button x:Name="deleteButton" Grid.Column="2" Content="Delete" Width="110" Height="40" Margin="3.33,0,0,0"
+              HorizontalAlignment="Left" TabIndex="3" Command="{Binding DeleteCommand}"/>
+    </Grid>
+    <Button x:Name="closeButton" Grid.Column="1" Grid.Row="4" Content="Close" Height="25" Width="350"
+            Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" TabIndex="4"
+            Command="{Binding CloseCommand}"/>
+  </Grid>
+</Window>

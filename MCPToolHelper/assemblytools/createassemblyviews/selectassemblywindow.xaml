@@ -1,0 +1,22 @@
+<Window x:Class="EDGE.AssemblyTools.CreateAssemblyViews.SelectAssemblyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:EDGE.AssemblyTools.CreateAssemblyViews"
+        xmlns:self="clr-namespace:EDGE.AssemblyTools.CreateAssemblyViews"
+        Width="200" Height="500">
+  <Grid Background="{DynamicResource {x:Static JetSystemColors.ControlBrushKey}}">
+    <Button Click="Button_Click" Content="OK" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75"
+            Height="20" VerticalAlignment="Bottom"/>
+    <Button Click="Button_Click_1" Content="Cancel" Margin="0,0,90,10" HorizontalAlignment="Right" Width="75"
+            Height="20" VerticalAlignment="Bottom" IsCancel="true"/>
+    <ListBox x:Name="lstAssemblyList" Margin="10,10,10,40">
+      <FrameworkElement.Resources>
+        <DataTemplate DataType="{x:Type self:AssemblyDataModel}">
+          <TextBlock Text="{Binding Name}"/>
+        </DataTemplate>
+      </FrameworkElement.Resources>
+    </ListBox>
+  </Grid>
+</Window>

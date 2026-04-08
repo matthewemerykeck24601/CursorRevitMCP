@@ -1,0 +1,1536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\ProgramData\Autodesk\Revit\Addins\2024\PTAC_EDGE_BUNDLE\EDGEforREVIT.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77281A60-64F1-4749-ABA0-56BAE8CEB8FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>EDGEforREVIT</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ApplicationVersion>3.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CNCExport">
+      <HintPath>lib\CNCExport.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EDGE_Utils">
+      <HintPath>lib\EDGE_Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicNP.CryptoLicensing">
+      <HintPath>lib\LogicNP.CryptoLicensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.WindowsAzure.Storage">
+      <HintPath>lib\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>lib\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPI" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GridAndLevelFilter.cs" />
+    <Compile Include="DimElementType.cs" />
+    <Compile Include="HiddenGeomReferenceCalculatorEDrawing.cs" />
+    <Compile Include="SameControlMarkFilterEDrawing.cs" />
+    <Compile Include="DimensionableItemsFilterEDrawing.cs" />
+    <Compile Include="ValidStructFraming.cs" />
+    <Compile Include="ValidVoids.cs" />
+    <Compile Include="StructuralFramingBoundsObjectEDrawing.cs" />
+    <Compile Include="System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
+    <Compile Include="EDGE\App.cs" />
+    <Compile Include="EDGE\AutoTicketSettingsReader.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSet.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSet1.cs" />
+    <Compile Include="EDGE\EdgePrefsReader.cs" />
+    <Compile Include="EDGE\EULAForm.cs" />
+    <Compile Include="EDGE\LicenseForm.cs" />
+    <Compile Include="EDGE\LicenseHelper.cs" />
+    <Compile Include="EDGE\LicensePostponeForm.cs" />
+    <Compile Include="EDGE\LicenseRequestForm.cs" />
+    <Compile Include="EDGE\LicenseRequestInfoForm.cs" />
+    <Compile Include="EDGE\QA.cs" />
+    <Compile Include="EDGE\__Testing\DialogTest.cs" />
+    <Compile Include="EDGE\__Testing\PointTest3D.cs" />
+    <Compile Include="EDGE\__Testing\PlanGeometryTest_Command.cs" />
+    <Compile Include="EDGE\__Testing\CheckoutDebugging.cs" />
+    <Compile Include="EDGE\__Testing\DisplayDebugInfoForm.cs" />
+    <Compile Include="EDGE\__Testing\MarkVerificaitonGeometryComparerTesting_Command.cs" />
+    <Compile Include="EDGE\__Testing\NrfCopy.cs" />
+    <Compile Include="EDGE\__Testing\DimensionSegmentTest.cs" />
+    <Compile Include="EDGE\__Testing\NrfMove.cs" />
+    <Compile Include="EDGE\__Testing\ParameterValueDisplayTest.cs" />
+    <Compile Include="EDGE\__Testing\PopulateAssemblyFields.cs" />
+    <Compile Include="EDGE\__Testing\ProjectParameters.cs" />
+    <Compile Include="EDGE\__Testing\TextFileReaderConsoleDisplay.cs" />
+    <Compile Include="EDGE\__Testing\UpdateProjectSharedParameters.cs" />
+    <Compile Include="EDGE\__Testing\ShopTicketCheckingTool\TicketCheckingUtils.cs" />
+    <Compile Include="EDGE\__Testing\ProgressReporter\LongRunningTry2_Command.cs" />
+    <Compile Include="EDGE\__Testing\ProgressReporter\ProgressMonitor.cs" />
+    <Compile Include="EDGE\__Testing\ProgressReporter\LongRunningTask.cs" />
+    <Compile Include="EDGE\__Testing\MultiVoidTools\NoVoids.cs" />
+    <Compile Include="EDGE\__Testing\MultiVoidTools\OnlyVoids.cs" />
+    <Compile Include="EDGE\__Testing\MultiVoidTools\MultiVoidTools.cs" />
+    <Compile Include="EDGE\__Testing\MultiVoidTools\MultiVoidCutUncutTest.cs" />
+    <Compile Include="EDGE\__Testing\LocationInFormTool\LocationInForm_Command.cs" />
+    <Compile Include="EDGE\__Testing\LocationInFormTool\FormSide.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\FailurePreproccessor.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\FamilyUpdaterTask.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\TaskManager.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\BulkFamilyUpdater_Command.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\Views\BFUMainWindow.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\Views\BFUMainViewModel.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\Views\BFUParameterTaskWindow.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\Views\BFUParameterTaskViewModel.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\Views\BFUSelectWindow.cs" />
+    <Compile Include="EDGE\__Testing\BulkFamilyUpdater\Views\BFUSelectViewModel.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\GridsPinAll.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\GridsUnpinAll.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\LevelsPinAll.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\LevelsUnpinAll.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\PinAllComponents.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\PinAllStructFraming.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\PinAllVoids.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\SelectAllComponents.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\SelectAllStructFraming.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\SelectAllVoids.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\UnpinAllComponents.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\UnpinAllStructFraming.cs" />
+    <Compile Include="EDGE\SelectionAndPinningTools\UnpinAllVoids.cs" />
+    <Compile Include="EDGE\VisibilityTools\EditPrecastOpacity.cs" />
+    <Compile Include="EDGE\VisibilityTools\PrecastForm.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleCIP.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleEmbeds.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleErection.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleFoundation.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleGrout.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleInsulation.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleLifting.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleMesh.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleRebar.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleWWF.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleFlat.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleWarped.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleVoids.cs" />
+    <Compile Include="EDGE\VisibilityTools\ToggleOverrides.cs" />
+    <Compile Include="EDGE\VisibilityTools\VisibilityToggleFunctions.cs" />
+    <Compile Include="EDGE\VisibilityTools\VisibilityToggleButtonData.cs" />
+    <Compile Include="EDGE\VisibilityTools\VisibilityToggles.cs" />
+    <Compile Include="EDGE\VisibilityTools\CastInPlaceVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\CastInPlaceVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\EmbedVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\EmbedVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\ErectionVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\ErectionVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\FlatVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\FlatVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\FoundationVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\FoundationVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\GroutVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\GroutVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\InsulationVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\InsulationVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\LiftingVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\LiftingVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\MeshVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\MeshVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\ProductVisibility_25Percent.cs" />
+    <Compile Include="EDGE\VisibilityTools\ProductVisibility_50Percent.cs" />
+    <Compile Include="EDGE\VisibilityTools\ProductVisibility_Opaque.cs" />
+    <Compile Include="EDGE\VisibilityTools\RebarVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\RebarVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\SetVisiblityOverridesOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\SetVisiblityOverridesOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\VoidVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\VoidVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\WarpedVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\WarpedVisibilityOn.cs" />
+    <Compile Include="EDGE\VisibilityTools\WeldedWireFabricVisibilityOff.cs" />
+    <Compile Include="EDGE\VisibilityTools\WeldedWireFabricVisibilityOn.cs" />
+    <Compile Include="EDGE\UserSettingTools\AutoTicketUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\EdgePreferenceUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\MarkPrefixUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\RebarUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\HWDBOMUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\TicketBOMUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\TicketManagerCustomizationSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\HWTitleBlockPopulatorUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\TitleBlockPopulatorUserSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\AutoTicketSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\HWDetailUserSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\HWDBOMSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\DGEntry.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\BOMUserSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\TKTBOMSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\ItemEntry.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\Converters.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\FontColorConverter.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\RebarShapeConverter.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\EdgePreferencesUserSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\AdminItem.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\RebarShapeSelectionWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\RebarShape.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\MarkVerificationSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\RebarUserSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\StandardRebarItem.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\HWTitleBlockPopulatorSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\TitleBlockPopulatorSettingWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\TBParameterSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\Views\DatagridItemEntry.cs" />
+    <Compile Include="EDGE\UserSettingTools\Insulation_Drawing_Settings\InsulationDrawingSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\Insulation_Drawing_Settings\InsulationDrawingSettingsObject.cs" />
+    <Compile Include="EDGE\UserSettingTools\Insulation_Drawing_Settings\InsulationDrawingSettingsWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\Insulation_Drawing_Settings\InsulationDrawingSetting_Command.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\CADExportSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\XMLDictionary`2.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\DefaultCADExportSettings.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\CADExportSettingsWindow.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\CADExportSettingsDataViewModel.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\CADExportLayer.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\ComboBoxExportColorItem.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\FolderPathRule.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\FileSuffixRule.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\UnitValidationParameters.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\UnitTextBoxRules.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\LayerNameRule.cs" />
+    <Compile Include="EDGE\UserSettingTools\CAD_Export_Settings\CADExportSettings_Command.cs" />
+    <Compile Include="EDGE\TicketTools\BatchTitleBlockPopulator.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopCreationUtils.cs" />
+    <Compile Include="EDGE\TicketTools\TicketBOMCore.cs" />
+    <Compile Include="EDGE\TicketTools\TitleblockPopCore.cs" />
+    <Compile Include="EDGE\TicketTools\TitleBlockPopulatorBatch.cs" />
+    <Compile Include="EDGE\TicketTools\ParentClass.cs" />
+    <Compile Include="EDGE\TicketTools\HierarchyCheckBoxItems.cs" />
+    <Compile Include="EDGE\TicketTools\Sheets.cs" />
+    <Compile Include="EDGE\TicketTools\BatchTBViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\UpdtTktAcceptEdits.cs" />
+    <Compile Include="EDGE\TicketTools\AnnotateEmbedLong.cs" />
+    <Compile Include="EDGE\TicketTools\AnnotateEmbedShort.cs" />
+    <Compile Include="EDGE\TicketTools\ControlNumberPopulator.cs" />
+    <Compile Include="EDGE\TicketTools\OldCopyTicketViews.cs" />
+    <Compile Include="EDGE\TicketTools\TicketBomPartsList.cs" />
+    <Compile Include="EDGE\TicketTools\TicketBomDuplicateSchedules.cs" />
+    <Compile Include="EDGE\TicketTools\TitleBlockPopulator.cs" />
+    <Compile Include="EDGE\TicketTools\UpdtTktDetailedInformation.cs" />
+    <Compile Include="EDGE\TicketTools\UpdtTktCreatedInformation.cs" />
+    <Compile Include="EDGE\TicketTools\UpdtTktFlagStatus.cs" />
+    <Compile Include="EDGE\TicketTools\UpdtTktReleasedStatus.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\FindReferringViews.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\Views\MainWindow.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\ViewModels\MainViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\Models\LegendModel.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\Models\SymbolFamilyModel.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\Models\SymbolTypeModel.cs" />
+    <Compile Include="EDGE\TicketTools\FindReferringViews\Models\ViewSheetModel.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketViews\CopyTicketViews.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketViews\MainWindow.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketViews\ViewSheetModel.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketViews\ViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketViews\Command.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\TemplateCreatorForm.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\EDGERTemplateCreatorTool.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\Views\CreateWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\Views\TicketTemplateCreatorWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\ViewModels\TicketCreateWindowViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\ViewModels\TicketTemplateCreatorViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketTemplateTools\Debugging\TemplateDebugUtils.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\BatchPopulatorForm.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\SourceAssembly.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TemplateForm.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TemplateListView.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TemplateItem.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TemplateItemComparer.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\NameIdObject.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\ScaleUnits.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\PopulatorForm.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\PopulatorQA.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\ScalesManager.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TemplateViewsTool.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\EDGERTicketPopulator.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\BatchTicketPopulator.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\BatchPopulatorCore.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TicketPopulatorCore.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TicketTemplatesHistoryManager.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\TicketWindowOutline.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\ViewSectionRotateTest.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\FormExtras\CustomBackgroundComboBoxItem.cs" />
+    <Compile Include="EDGE\TicketTools\TicketPopulator\FormExtras\CustomDrawComboBox.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\TicketManagerExport.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\TicketManager.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\UpdateParametersHelper.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\UpdateParametersEvent.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\TicketPopulatorEvent.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\WriteCommentEvent.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\AcceptChangesEvent.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ReleaseTicketEvent.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Resources\Command.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\EditIdentCommentWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\EditTitleblockWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\EditTitleblockViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\EditWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\CustomizeWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\HistoryWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\MainWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\Views\IntToVisibilityConverter.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\WBHelper.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\AssemblyListViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\AssemblyViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\HistoryWindowViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\Comment.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\RowToIndexConverter.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\MainViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TicketManager\ViewModels\IntToVisibilityConverter.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\CheckWin.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\InfoType.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\InfoStruct.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\FlaggerUtils.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\CheckFlaggerToolUtils.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\FlagUtilCommand.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\EngCheckCommand.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\DraftCheckCommand.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\NeedRevAllCommand.cs" />
+    <Compile Include="EDGE\TicketTools\CheckFlagger\IssueRevAllCommand.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TemplateSettings.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\AnchorGroup.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\EDGERCreateTemplate.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\SimpleVector.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TicketLegendInfo.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TicketScheduleInfo.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TicketTemplate.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TicketTemplateSettings.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TicketViewportInfo.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TitleBlockGeometryAnalyzer.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TemplateViewOrientation.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\BOMJustification.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\AnchorPosition.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TemplateConstants.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\BOMScheduleType.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\TemplateEnumExtensions.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\ViewModels\CreateWindowViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\ViewModels\ManufacturerManagementWindowViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\ViewModels\NewManufacturerViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\ViewModels\TemplateCreatorViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\ViewModels\ComboBoxItemString.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\Views\ManufacturerManagementWindow_old.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\Views\NewManufacturer_old.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\Views\TemplateCreatorWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\Views\ManufacturerManagementWindow.cs" />
+    <Compile Include="EDGE\TicketTools\TemplateToolsBase\Views\NewManufacturer.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\HardwareDetail.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\HardwareDetailDimension.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\HardwareDetailScheduleInfo.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\HardwareDetailTemplateSettings.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\HWDCreateTemplate.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\HWDetailTemplate.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HWDSelectMultipleWindow.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\TemplateDataGridItem.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HWEditTitleblockWindow.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HWEditTitleblockViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HWCreateWindow.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HardwareDetailWindow.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HardwareDetailWindowViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\Views\HWTemplateCreatorWindow.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\ViewModels\HardwareDetailWindowViewModel_old.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\ViewModels\HWCreateWindowViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\HardwareDetail\ViewModels\HWTemplateCreatorViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketDimensions\CopyTicketDimensions.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketDimensions\CopyTicketDimensions_Command.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\CopyTicketAnnotations.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\WarningSwallower.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\CopyTicketAnnotations_Command.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\CopyTicketAnnotation_Command.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\Message.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\WarningMessage.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\ViewSheetCopyFromDialog.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\ViewSheetCopyToDialog.cs" />
+    <Compile Include="EDGE\TicketTools\CopyTicketAnnotation\ViewSheetItemEntry.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\AssemblySelectionWindow.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\AssemblySelectionViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\AssemblyListObject.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\BOMFormattingWindow.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\BOMFormattingViewModel.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\sheetListItem.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\CloneTicket.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\SectionViewInfo.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\SortingInfoCloneTicketElement.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\SortingInfoCloneTicketElementComparer.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\DimensionInfo.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\ElementReferenceInfo.cs" />
+    <Compile Include="EDGE\TicketTools\CloneTicket\AssemblyBoundingBoxInfo.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\CalloutQuadrant.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\SquarePlacement.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoTicketPlacementSquare.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoTicketTag.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\StructuralFramingBoundsObject.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoTicketCalloutHandler.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\BatchAutoDimension.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimensionElement.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoTicketHandler.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimPlacementCalculatorEDrawing.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimFinder.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\NoteFinder.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\EDrawingAutoDim_Command.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoDimGroupingsHelper.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\EnhancementSpreadSheet.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\SpreadSheetData.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\SSNotifier.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoTicketForm.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimensionEdge.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimensioningGeometryUtils.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\ExtremePointType.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimPlacementCalculator.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimPlacementInfo.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\HiddenGeomReferenceCalculator.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\DimSegmentDummy.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoTicketDimSegment.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\TicketAutoDim_Command.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoDimUtils\AutoDimforEDWGsManager.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoDimUtils\DimStyle.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoDimUtils\DimReferencesManager.cs" />
+    <Compile Include="EDGE\TicketTools\AutoDimensioning\AutoDimUtils\ReferencedPoint.cs" />
+    <Compile Include="EDGE\SchedulingTools\CoreslabRebarUpdater_Command.cs" />
+    <Compile Include="EDGE\SchedulingTools\OnlyStructuralFraming.cs" />
+    <Compile Include="EDGE\SchedulingTools\BphUpdater.cs" />
+    <Compile Include="EDGE\SchedulingTools\ControlNumberIncrementor.cs" />
+    <Compile Include="EDGE\SchedulingTools\OnlySructuralFramingControlNumberFilter.cs" />
+    <Compile Include="EDGE\SchedulingTools\CphUpdater.cs" />
+    <Compile Include="EDGE\SchedulingTools\ScheduleSequenceByView.cs" />
+    <Compile Include="EDGE\SchedulingTools\ErectionSequenceTool\ErectionSequenceZoneWindow.cs" />
+    <Compile Include="EDGE\SchedulingTools\ErectionSequenceTool\ZoneSettings.cs" />
+    <Compile Include="EDGE\SchedulingTools\ErectionSequenceTool\ErectionSequenceZone.cs" />
+    <Compile Include="EDGE\SchedulingTools\ErectionSequenceTool\ErectionSequence_Command.cs" />
+    <Compile Include="EDGE\SchedulingTools\ErectionSequenceTool\ErectionSequenceZoneExtensibleStorage.cs" />
+    <Compile Include="EDGE\SchedulingTools\ErectionSequenceTool\ErectionSequenceFilter.cs" />
+    <Compile Include="EDGE\SchedulingTools\ControlNumberIncrementorTools\ControlNumberIncrementorWindow.cs" />
+    <Compile Include="EDGE\RebarTools\BarDiameterOracle.cs" />
+    <Compile Include="EDGE\RebarTools\BarHasher.cs" />
+    <Compile Include="EDGE\RebarTools\LengthHashOption.cs" />
+    <Compile Include="EDGE\RebarTools\BarMarkInfo.cs" />
+    <Compile Include="EDGE\RebarTools\CoreSlabMarkingUtil.cs" />
+    <Compile Include="EDGE\RebarTools\ExtensionMethods.cs" />
+    <Compile Include="EDGE\RebarTools\ManufacturerRebarSettings.cs" />
+    <Compile Include="EDGE\RebarTools\ManufacturerKeying.cs" />
+    <Compile Include="EDGE\RebarTools\Rebar.cs" />
+    <Compile Include="EDGE\RebarTools\BarSide.cs" />
+    <Compile Include="EDGE\RebarTools\RebarControlMarkManager3.cs" />
+    <Compile Include="EDGE\RebarTools\CatalogAction.cs" />
+    <Compile Include="EDGE\RebarTools\RebarInfo.cs" />
+    <Compile Include="EDGE\RebarTools\RebarListUpdaterAddition.cs" />
+    <Compile Include="EDGE\RebarTools\RebarListUpdaterDeletion.cs" />
+    <Compile Include="EDGE\RebarTools\RebarListUpdaterModify.cs" />
+    <Compile Include="EDGE\RebarTools\RebarMatchProperties.cs" />
+    <Compile Include="EDGE\RebarTools\RebarSelectionFilter.cs" />
+    <Compile Include="EDGE\RebarTools\RebarSessionManager.cs" />
+    <Compile Include="EDGE\RebarTools\AddDocTrackerResult.cs" />
+    <Compile Include="EDGE\RebarTools\RebarWorksharingUtilities.cs" />
+    <Compile Include="EDGE\RebarTools\RebarEditingUpdateUtility.cs" />
+    <Compile Include="EDGE\RebarTools\RebarTest.cs" />
+    <Compile Include="EDGE\QATools\CheckoutInvestigation.cs" />
+    <Compile Include="EDGE\QATools\CompareControlMarkManagersCommand.cs" />
+    <Compile Include="EDGE\QATools\ComputeCentroid.cs" />
+    <Compile Include="EDGE\QATools\CopyAnnotation.cs" />
+    <Compile Include="EDGE\QATools\ElementBoundingBox_Command.cs" />
+    <Compile Include="EDGE\QATools\ExportDWGTest.cs" />
+    <Compile Include="EDGE\QATools\ExportDWGTestWindow.cs" />
+    <Compile Include="EDGE\QATools\BulkUpdatorItemEntry.cs" />
+    <Compile Include="EDGE\QATools\GeometryViewerForm.cs" />
+    <Compile Include="EDGE\QATools\GetElementGeometryMap_Command.cs" />
+    <Compile Include="EDGE\QATools\IntersectsElementFilter_Test.cs" />
+    <Compile Include="EDGE\QATools\QATimer.cs" />
+    <Compile Include="EDGE\QATools\RebarMarkJournaling_Command.cs" />
+    <Compile Include="EDGE\QATools\TextEntryForm.cs" />
+    <Compile Include="EDGE\QATools\TransformUtils.cs" />
+    <Compile Include="EDGE\QATools\TransformVisualizer.cs" />
+    <Compile Include="EDGE\QATools\VerifyRebarMarksList_Command.cs" />
+    <Compile Include="EDGE\QATools\WriteEdgeJournalComment.cs" />
+    <Compile Include="EDGE\QATools\RegTestGen_Command\RegTestConfig_Form.cs" />
+    <Compile Include="EDGE\QATools\RegTestGen_Command\RegTestGen_Command.cs" />
+    <Compile Include="EDGE\QATools\RegTestGen_Command\Strings.cs" />
+    <Compile Include="EDGE\Properties\Resources.cs" />
+    <Compile Include="EDGE\Properties\Settings.cs" />
+    <Compile Include="EDGE\IUpdaters\EntourageWarning.cs" />
+    <Compile Include="EDGE\IUpdaters\StandardRebarUpdater.cs" />
+    <Compile Include="EDGE\IUpdaters\RebarUpdater.cs" />
+    <Compile Include="EDGE\IUpdaters\AssemblySheetUpdater.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ManageAdmins.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingToolPermissions.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingUtils.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingAdmin_Command.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingElementData.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingElementTrackingUpdater.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingManager.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingOracle.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\Disposition.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingPermissionsSchema.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelPermissionsCategory.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingSettingsForm.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\PermissionStatus.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\PermissionFlags.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingUpdater.cs" />
+    <Compile Include="EDGE\IUpdaters\ModelLocking\ModelLockingQA\ModelLockingQA.cs" />
+    <Compile Include="EDGE\InsulationTools\PinPlacement\MainPlacement.cs" />
+    <Compile Include="EDGE\InsulationTools\PinPlacement\errorMessageInfo.cs" />
+    <Compile Include="EDGE\InsulationTools\PinPlacement\PinFamilySelection.cs" />
+    <Compile Include="EDGE\InsulationTools\PinPlacement\PinPlacementChoice.cs" />
+    <Compile Include="EDGE\InsulationTools\PinPlacement\InsulationFilter.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\InsulationRemovalActiveView.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\InsulationRemovalSelectionGroup.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\InsulationRemoveWholeModel.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\MainInsulationRemoval.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\UtilityFunctions\InsulationRemoval.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\UtilityFunctions\InsulationSFFilter.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\UtilityFunctions\RemovalStatus.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationRemoval\UtilityFunctions\InsulErrorType.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\Insulation.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\AutomaticPlacement.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\InsulationSelection.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\ManualPlacement.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\PlacementUtilities.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\WarningSwallower.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\InsulationPlacementFilter.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\TransformedFace.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\ManualPlacementErrorType.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\PointOrientation.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\MaxMinStatus.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationPlacement\UtilityFunctions\ExpandError.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationMarking\InsulationMarkingMain.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationMarking\InsulationMarkingScope.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationMarking\AssemblyInstancesAndStructuralFraming.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationMarking\UtilityFunction\Marking.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationMarking\UtilityFunction\InsulationFilter.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDetail.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\CurveArrayBoundingObject.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\RecessDetailInfo.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDetailLineInfo.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingLegendInfo.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\RowInfo.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingUtils.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingMaster_Command.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingPerPiece.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingPerPieceObject.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingPerPiece_Command.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\AssemblyInstancesAndStructuralFraming.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawing_Command.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\InsulationDrawingExternalEvent.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\Views\InsulationDrawingSelectInsulationWindow.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\Views\InsulationMarkListObject.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\Views\InsulationDrawingPerPieceWindow.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\Views\InsulationDrawingWindow.cs" />
+    <Compile Include="EDGE\InsulationTools\InsulationDrawing\Views\MasterInsulationDrawingWindow.cs" />
+    <Compile Include="EDGE\InsulationTools\DirectionalMarker\DirectionalMarkerMain.cs" />
+    <Compile Include="EDGE\InsulationTools\CopyInsulation\CopyInsulationFamily.cs" />
+    <Compile Include="EDGE\InsulationTools\CopyInsulation\CopyInsulation_Command.cs" />
+    <Compile Include="EDGE\InsulationTools\CopyInsulation\SourceAssemblyInstancesAndStructuralFraming.cs" />
+    <Compile Include="EDGE\InsulationTools\CopyInsulation\TargetAssemblyInstancesAndStructuralFraming.cs" />
+    <Compile Include="EDGE\InsulationTools\CopyInsulation\CopyFailure.cs" />
+    <Compile Include="EDGE\FamilyTools\ConnectionFamilyReloader.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyFinishesRemover.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterBlaster.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterCast.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterConnection.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterEmbed.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterErection.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterInsulation.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterLift.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterPBO.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterProducts.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterRebar.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterRebarAssemblyEmbed.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterStemMesh.cs" />
+    <Compile Include="EDGE\FamilyTools\FamilyUpdaterWwf.cs" />
+    <Compile Include="EDGE\EDGECollections\AppSwitches.cs" />
+    <Compile Include="EDGE\EDGEBrowser\BrowserViewModel.cs" />
+    <Compile Include="EDGE\EDGEBrowser\EDGEBrowser.cs" />
+    <Compile Include="EDGE\EDGEBrowser\LoadFamily.cs" />
+    <Compile Include="EDGE\EDGEBrowser\Search.cs" />
+    <Compile Include="EDGE\EDGEBrowser\Forms\PaneWindowProvider.cs" />
+    <Compile Include="EDGE\EDGEBrowser\Forms\WindowState.cs" />
+    <Compile Include="EDGE\EDGEBrowser\Forms\PaneWindow.cs" />
+    <Compile Include="EDGE\EDGEBrowser\Forms\FamilyTypeSelectionPaneWindow.cs" />
+    <Compile Include="EDGE\EDGEBrowser\Forms\PopOutMediaPaneWindow.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSet1TableAdapters\LicenseTableAdapter.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSet1TableAdapters\LicenseTableTableAdapter.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSet1TableAdapters\MachinesTableAdapter.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSet1TableAdapters\TableAdapterManager.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSetTableAdapters\LicenseTableAdapter.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSetTableAdapters\LicensesTableAdapter.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSetTableAdapters\MachinesTableAdapter.cs" />
+    <Compile Include="EDGE\edgeahos_EdgeLicensingDataSetTableAdapters\TableAdapterManager.cs" />
+    <Compile Include="EDGE\Cloud\Application.cs" />
+    <Compile Include="EDGE\Cloud\CloudExportCommand.cs" />
+    <Compile Include="EDGE\Cloud\AvailabilityNoOpenDocument.cs" />
+    <Compile Include="EDGE\Cloud\AssemblyInfo.cs" />
+    <Compile Include="EDGE\Cloud\AsyncDialog.cs" />
+    <Compile Include="EDGE\Cloud\NaturalComparer.cs" />
+    <Compile Include="EDGE\Cloud\CloudExportForm.cs" />
+    <Compile Include="EDGE\Cloud\ComboBoxItem.cs" />
+    <Compile Include="EDGE\Cloud\CloudUploadForm.cs" />
+    <Compile Include="EDGE\Cloud\ForgeExporter.cs" />
+    <Compile Include="EDGE\Cloud\JsonExporter.cs" />
+    <Compile Include="EDGE\Cloud\JsonExportContext.cs" />
+    <Compile Include="EDGE\Cloud\JsonContainer.cs" />
+    <Compile Include="EDGE\Cloud\JsonMaterial.cs" />
+    <Compile Include="EDGE\Cloud\JsonGeometryData.cs" />
+    <Compile Include="EDGE\Cloud\JsonGeometry.cs" />
+    <Compile Include="EDGE\Cloud\JsonObject.cs" />
+    <Compile Include="EDGE\Cloud\JsonMetadata.cs" />
+    <Compile Include="EDGE\Cloud\JsonChart.cs" />
+    <Compile Include="EDGE\Cloud\Util.cs" />
+    <Compile Include="EDGE\Cloud\Compressor.cs" />
+    <Compile Include="EDGE\Cloud\Models\Assembly.cs" />
+    <Compile Include="EDGE\Cloud\Models\AssemblyDTO.cs" />
+    <Compile Include="EDGE\Cloud\Models\AssemblyData.cs" />
+    <Compile Include="EDGE\Cloud\Models\AuthenticationModel.cs" />
+    <Compile Include="EDGE\Cloud\Models\OnTokenRefreshedHandler.cs" />
+    <Compile Include="EDGE\Cloud\Models\ForgeModel.cs" />
+    <Compile Include="EDGE\Cloud\Models\RestClientExtensions.cs" />
+    <Compile Include="EDGE\Cloud\Models\stringExtensions.cs" />
+    <Compile Include="EDGE\Cloud\Models\Manufacture.cs" />
+    <Compile Include="EDGE\Cloud\Models\Model.cs" />
+    <Compile Include="EDGE\Cloud\Models\Plant.cs" />
+    <Compile Include="EDGE\Cloud\Models\Project.cs" />
+    <Compile Include="EDGE\Cloud\Models\ProjectData.cs" />
+    <Compile Include="EDGE\Cloud\Models\ProjectType.cs" />
+    <Compile Include="EDGE\Cloud\Models\UploadAssembly.cs" />
+    <Compile Include="EDGE\Cloud\Models\View.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\BucketPolicyEnum.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\BucketCreationData.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\BucketDetailsResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\FormatResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ObjectDetailsResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ThumbnailResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ServicesAllowed.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\FileUploadInfo.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ObjectDetails.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\TokenResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ViewableOptionEnum.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\RegisterResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ViewableResponse.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ViewableMessage.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ViewDataError.cs" />
+    <Compile Include="EDGE\Cloud\Models\DataContracts\ViewDataResponseBase.cs" />
+    <Compile Include="EDGE\GeometryTools\HKInsulationMarking.cs" />
+    <Compile Include="EDGE\GeometryTools\WallPanelSelectionFilter.cs" />
+    <Compile Include="EDGE\GeometryTools\InsulationMarking.cs" />
+    <Compile Include="EDGE\GeometryTools\InsulationSolid.cs" />
+    <Compile Include="EDGE\GeometryTools\InsulationVerificationFamily.cs" />
+    <Compile Include="EDGE\GeometryTools\InsulationSelectionFilter.cs" />
+    <Compile Include="EDGE\GeometryTools\AddonHostingUpdater.cs" />
+    <Compile Include="EDGE\GeometryTools\GetCentroid.cs" />
+    <Compile Include="EDGE\GeometryTools\MarkOppIndicatorsOffActiveView.cs" />
+    <Compile Include="EDGE\GeometryTools\MarkOppIndicatorsOnActiveView.cs" />
+    <Compile Include="EDGE\GeometryTools\MultiVoidCutting.cs" />
+    <Compile Include="EDGE\GeometryTools\VoidHostingUpdater.cs" />
+    <Compile Include="EDGE\GeometryTools\NewReferencePoint.cs" />
+    <Compile Include="EDGE\GeometryTools\NewRefPointForm.cs" />
+    <Compile Include="EDGE\GeometryTools\MultiVoidCuttingNested.cs" />
+    <Compile Include="EDGE\GeometryTools\MultiVoidUncutting.cs" />
+    <Compile Include="EDGE\GeometryTools\WarpedParameterUpdater.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\SpotFilter.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\AutoWarping.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\SearchDirectionOptions.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\OverlappingEdgeException.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\PathFinder.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\SlopeIntersection.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\SpotElevationPoint.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\WarpedBeamData.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\WarpingEdge.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\WarpingEdgeLoop.cs" />
+    <Compile Include="EDGE\GeometryTools\AutoWarping\WarpingUtils.cs" />
+    <Compile Include="EDGE\AssemblyTools\AssemblyandFilter.cs" />
+    <Compile Include="EDGE\AssemblyTools\AssemblyInstancesAndStructuralFraming.cs" />
+    <Compile Include="EDGE\AssemblyTools\CopyReinforcing_Command.cs" />
+    <Compile Include="EDGE\AssemblyTools\MatchTopAsCast.cs" />
+    <Compile Include="EDGE\AssemblyTools\WarningWindow.cs" />
+    <Compile Include="EDGE\AssemblyTools\AssemblyCreationAndUpdating.cs" />
+    <Compile Include="EDGE\AssemblyTools\AssemblyCreationRevit.cs" />
+    <Compile Include="EDGE\AssemblyTools\AssemblyReinforcedUpdateStatus.cs" />
+    <Compile Include="EDGE\AssemblyTools\Assembly_TopAsCast_Command.cs" />
+    <Compile Include="EDGE\AssemblyTools\AVFViewTimer.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\CompareEngine_Selection_Window.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ImageConverters.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\MarkVerification_Existing_Command.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\HighLightElements.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\allElements.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\MarkVerification_Initial_Command.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\SetControlmarkEvent.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\MKComparisonEngine.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\LocationCompareResult.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\UserSettingWindow.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\Tools\MKComparer.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\Tools\MKTolerances.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\Tools\MKToleranceAspect.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\Tools\ComparisonOption.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\Tools\MKUtils.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\StructuralFramingDatas\ComponentizedVector.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\QA\DebugModeSwitches.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\QA\MarkQA.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\QA\MarkDebugSwitches_Command.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\HighlightEvent.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\Command.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\MVEEnhancedDetails.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\CompareVolume.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\PlateWarnings.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\GroupTestResult.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\MemberDetails.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\MKExistingDetails.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\mkExistingWarning.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\MKVerificationResults_Existing.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\storingTestTypesAndItsData.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\ExclamationConverters.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\OrangeExclamationConverters.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\ImagePathConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\PassFailColorConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\IntToVisibilityConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\RotateImagePathConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\CountMultiplierImagePathConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\VisibilityConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\MarkResult.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\Plates.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\TestResult.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\MKTest.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\dataForAddonTest.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\AddonLocation.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\PlateTypes.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\TestResultData.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\ResultsPresentation\EmbedMatchData.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\InitialRotateImagePathConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\ExclamationConverters.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\OrangeExclamationConverters.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\CountMultiplierImagePathConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\VisibilityConverter.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\InitialResult.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\MarkGroupResultData.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\MKInitialUserSelection.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\SFEntry.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\mkInitialWarning.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\InitialPresentation\MKVerificationResult_Initial.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\ComparableFace.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\ContinuousCurveLoopIterator.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\EDGEAddonComponent.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\EDGEFinishComponent.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\EDGEAssemblyComponent_Base.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\EDGEEmbedComponent.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\GeometryVerificationFamily.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\SolidComparison.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\MVEfailedResults.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\RotationWarning.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\MarkVerificationData.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\TransformableGeometry_Base.cs" />
+    <Compile Include="EDGE\AssemblyTools\MarkVerification\GeometryComparer\TransformableSolid.cs" />
+    <Compile Include="EDGE\AssemblyTools\CreateAssemblyViews\AssemblyDataModel.cs" />
+    <Compile Include="EDGE\AssemblyTools\CreateAssemblyViews\SelectAssemblyWindow.cs" />
+    <Compile Include="EDGE\AssemblyTools\CreateAssemblyViews\ViewModel.cs" />
+    <Compile Include="EDGE\ApplicationRibbon\AppRibbonSetup.cs" />
+    <Compile Include="EDGE\AnnotationTools\DimensionAddAbove.cs" />
+    <Compile Include="EDGE\AnnotationTools\DimensionAddBelow.cs" />
+    <Compile Include="EDGE\AnnotationTools\DimensionAddPrefix.cs" />
+    <Compile Include="EDGE\AnnotationTools\DimensionAddSuffix.cs" />
+    <Compile Include="EDGE\AnnotationTools\FormatTextNoteLowerActiveView.cs" />
+    <Compile Include="EDGE\AnnotationTools\FormatTextNoteLowerSelectedElements.cs" />
+    <Compile Include="EDGE\AnnotationTools\FormatTextNoteUpperActiveView.cs" />
+    <Compile Include="EDGE\AnnotationTools\FormatTextNoteUpperSelectedElements.cs" />
+    <Compile Include="EDGE\AnnotationTools\FreezeDrawingTools\FreezeDrawingCommand.cs" />
+    <Compile Include="EDGE\AnnotationTools\FreezeDrawingTools\SettingsWin.cs" />
+    <Compile Include="EDGE\AdminTools\BphCphParameterErrorFinder.cs" />
+    <Compile Include="EDGE\AdminTools\EDGECAM_Steel.cs" />
+    <Compile Include="EDGE\AdminTools\CAM_Reinforcement_Utils.cs" />
+    <Compile Include="EDGE\AdminTools\CAM_Utils.cs" />
+    <Compile Include="EDGE\AdminTools\EDGECAM.cs" />
+    <Compile Include="EDGE\AdminTools\EmbedClashVerification.cs" />
+    <Compile Include="EDGE\AdminTools\PDMExport.cs" />
+    <Compile Include="EDGE\AdminTools\ProjectSharedParameters.cs" />
+    <Compile Include="EDGE\AdminTools\RemoveTemplatesAndFilters.cs" />
+    <Compile Include="EDGE\AdminTools\ResetBPH.cs" />
+    <Compile Include="EDGE\AdminTools\ResetCPH.cs" />
+    <Compile Include="EDGE\AdminTools\ExcelExport.cs" />
+    <Compile Include="EDGE\AdminTools\WarningAnalyzer\WarningAnalyzer.cs" />
+    <Compile Include="EDGE\AdminTools\WarningAnalyzer\Views\MainWindow.cs" />
+    <Compile Include="EDGE\AdminTools\WarningAnalyzer\Views\ResultsWindow.cs" />
+    <Compile Include="EDGE\AdminTools\WarningAnalyzer\ViewModel\ViewModel.cs" />
+    <Compile Include="EDGE\AdminTools\WarningAnalyzer\ViewModel\Command.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\TextDetails.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\InsulationRectangle.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\AssemblyFilter.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\LineStyleDetails.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\LaserUtils.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\LineStyleManager.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\InsulationExport.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\LaserProjection.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\LaserProjectionUI\CADExportWindow.cs" />
+    <Compile Include="EDGE\AdminTools\CAM\LaserProjectionUI\CADExportWindowViewModel.cs" />
+    <Compile Include="EDGE\About\AboutEdge.cs" />
+    <Compile Include="EDGE\About\ChangeLog.cs" />
+    <Compile Include="EDGE\About\EDGEChangeLogDialog.cs" />
+    <Compile Include="XamlGeneratedNamespace\GeneratedInternalTypeHelper.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="edgelogo.xaml" />
+    <Resource Include="iconresources\edge_r_logo_002520(black).png" />
+    <Resource Include="iconresources\edge_r_logo_002520(black)_002520-_002520old.png" />
+    <Resource Include="iconresources\edge_r_logo_no_bg.png" />
+    <Resource Include="iconresources\edge_r_logo_no_bg_lg-old.png" />
+    <Resource Include="resources\common.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EDGE\__Testing\DisplayDebugInfoForm.resx" />
+    <EmbeddedResource Include="EDGE\AssemblyTools\MarkVerification\QA\DebugModeSwitches.resx" />
+    <EmbeddedResource Include="EDGE\Cloud\CloudExportForm.resx" />
+    <EmbeddedResource Include="EDGE\Cloud\CloudUploadForm.resx" />
+    <EmbeddedResource Include="EDGE\EULAForm.resx" />
+    <EmbeddedResource Include="EDGE\GeometryTools\NewRefPointForm.resx" />
+    <EmbeddedResource Include="EDGE\IconResources\1.png" />
+    <EmbeddedResource Include="EDGE\IconResources\10.png" />
+    <EmbeddedResource Include="EDGE\IconResources\11.png" />
+    <EmbeddedResource Include="EDGE\IconResources\12.png" />
+    <EmbeddedResource Include="EDGE\IconResources\12A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\12B.png" />
+    <EmbeddedResource Include="EDGE\IconResources\13.png" />
+    <EmbeddedResource Include="EDGE\IconResources\14.png" />
+    <EmbeddedResource Include="EDGE\IconResources\14A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\14B.png" />
+    <EmbeddedResource Include="EDGE\IconResources\16.png" />
+    <EmbeddedResource Include="EDGE\IconResources\16A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\17.png" />
+    <EmbeddedResource Include="EDGE\IconResources\17A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\18.png" />
+    <EmbeddedResource Include="EDGE\IconResources\19.png" />
+    <EmbeddedResource Include="EDGE\IconResources\19A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\1A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\2.png" />
+    <EmbeddedResource Include="EDGE\IconResources\20.png" />
+    <EmbeddedResource Include="EDGE\IconResources\22.png" />
+    <EmbeddedResource Include="EDGE\IconResources\23.png" />
+    <EmbeddedResource Include="EDGE\IconResources\24.png" />
+    <EmbeddedResource Include="EDGE\IconResources\25.png" />
+    <EmbeddedResource Include="EDGE\IconResources\26.png" />
+    <EmbeddedResource Include="EDGE\IconResources\26A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\26B.png" />
+    <EmbeddedResource Include="EDGE\IconResources\26C.png" />
+    <EmbeddedResource Include="EDGE\IconResources\3.png" />
+    <EmbeddedResource Include="EDGE\IconResources\3A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\4.png" />
+    <EmbeddedResource Include="EDGE\IconResources\4A.png" />
+    <EmbeddedResource Include="EDGE\IconResources\5.png" />
+    <EmbeddedResource Include="EDGE\IconResources\6.png" />
+    <EmbeddedResource Include="EDGE\IconResources\7.png" />
+    <EmbeddedResource Include="EDGE\IconResources\8.png" />
+    <EmbeddedResource Include="EDGE\IconResources\9.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AddonHostingUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AddonHostingUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Admin.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Admin_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AnnotateEmbedLong.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AnnotateEmbedLong_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AnnotateEmbedShort.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AnnotateEmbedShort_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Annotation.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Annotation_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Assembly.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Assembly_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyEDGE.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyEDGE_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyPulldown.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyPulldown_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyReinforced.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyReinforced_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyRevit.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AssemblyRevit_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Auto_Dim_E_Drawing_Large.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Auto_Dim_E_Drawing_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Auto_Ins_Placement.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Auto_Pin_Placement.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AutoWarping.png" />
+    <EmbeddedResource Include="EDGE\IconResources\AutoWarping_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPH_CPH_ErrorFinder.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPH_CPH_ErrorFinder_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPH_Updater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPH_Updater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPHReset.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPHReset_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPUModel.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPUModel_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPUSelected.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPUSelected_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPUView.png" />
+    <EmbeddedResource Include="EDGE\IconResources\BPUView_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Bulk_Family_Updater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Bulk_Family_Updater_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CAD_Export_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Centroid_Tool.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Centroid_Tool_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\checkForMarkVerification.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIP.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIP_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIPFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIPFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIPOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIPOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIPON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CIPON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Clone_Ticket.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Clone_Ticket_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CloudExport.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CloudExport_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CNC.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CNC_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Connection.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Connection_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ConnectionFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ConnectionFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ControlIncrementor.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ControlIncrementor_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ControlIncrementorDialog.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ControlIncrementorDialog_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ControlNumberPopulator.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ControlNumberPopulator_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Copy_Reinforcing.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Copy_Reinforcing_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Copy_Ticket_Annotation.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Copy_Ticket_Annotation_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CopyTicketViews.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CopyTicketViews_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Corbel.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Corbel_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CorbelModel.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CorbelModel_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CorbelSelected.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CorbelSelected_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CorbelView.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CorbelView_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPH_Updater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPH_Updater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHModel.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHModel_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHReset.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHReset_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHSelected.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHSelected_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHView.png" />
+    <EmbeddedResource Include="EDGE\IconResources\CPHView_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\crossForMarkVerification.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextAbove.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextAbove_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextBelow.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextBelow_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextPrefix.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextPrefix_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextSuffix.png" />
+    <EmbeddedResource Include="EDGE\IconResources\DimensionTextSuffix_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EDGE_Glyph_16.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EDGE_R_LOGO - old.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EDGE_R_LOGO.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EDGE_R_LOGO_no_bg-old.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EdgeCAM.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EdgeCAM_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EdgeforRevit.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Embed.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Embed_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedWarningAnalyzer.png" />
+    <EmbeddedResource Include="EDGE\IconResources\EmbedWarningAnalyzer_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Erection.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Erection_Sequence.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Erection_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ErectionFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ErectionFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ErectionOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ErectionOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ErectionON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ErectionON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\exclamationForMarkVerification.png" />
+    <EmbeddedResource Include="EDGE\IconResources\exclamationForMarkVerificationOrange.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Existing_Mark_Verification.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Existing_Mark_Verification_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Family.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Family_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FindReferringViews.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FindReferringViews_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FinsihRemover.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FinsihRemover_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Flat.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Flat_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FlatOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FlatOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FlatON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FlatON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Footing.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Footing_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FootingOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FootingOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FootingON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\FootingON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Freeze_Active_View.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Geometry.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Geometry_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GridsPinned.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GridsPinned_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GridsUnpinned.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GridsUnpinned_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Grout.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Grout_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GroutOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GroutOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GroutON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\GroutON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Hardware_Detail.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Hardware_Detail_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Hardware_Tools.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Hardware_Tools_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\HardwareDetailTemplateManager.png" />
+    <EmbeddedResource Include="EDGE\IconResources\HardwareDetailTemplateManager_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\HW_BOM_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\HW_BOM_Settings_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\HW_Title_Block_Popular_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\HW_Title_Block_Popular_Settings_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\iconTemp.png" />
+    <EmbeddedResource Include="EDGE\IconResources\iconTemp_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Initial_Mark_Verification.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Initial_Mark_Verification_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Drawing.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Drawing_Assembly.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Drawing_Master.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Drawing_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Marking.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Removal.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Insulation_Tab.png" />
+    <EmbeddedResource Include="EDGE\IconResources\InsulationFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\InsulationFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\InsulationOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\InsulationOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\InsulationON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\InsulationON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Laser.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Laser_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LevelsPinned.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LevelsPinned_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LevelsUnpinned.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LevelsUnpinned_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Lifting.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Lifting_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LiftingFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LiftingFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LiftingOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LiftingOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LiftingON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\LiftingON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Manual_Ins_Placement.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Mark_Verification_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Mark_Verification_Settings_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MarkOppOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MarkOppOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MarkOppON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MarkOppON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Mesh.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Mesh_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MeshFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MeshFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MeshOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MeshOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MeshON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MeshON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Model_Locking.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Model_Locking_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Move.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Move_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MultiVoidCutting.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MultiVoidCutting_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MultiVoidUnCutting.png" />
+    <EmbeddedResource Include="EDGE\IconResources\MultiVoidUnCutting_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\neutralForMarkVerificationExisting.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PBO.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PBO_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PBOFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PBOFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PDMExport.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PDMExport_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PEExport.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PEExport_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProduct.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProduct_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProduct25.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProduct25_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProduct50.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProduct50_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductOpaque.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PrecastProductOpaque_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ProjectSharedParameters.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ProjectSharedParameters_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PTACTesting.png" />
+    <EmbeddedResource Include="EDGE\IconResources\PTACTesting_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Rebar.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Rebar_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Rebar_Settings_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Rebar_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarAssembly.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarAssembly_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarAssemblyFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarAssemblyFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\RebarON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Reference_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Reference_Settings_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ResourceTest.png" />
+    <EmbeddedResource Include="EDGE\IconResources\ResourceTest_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S1.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S11.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S2.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S3.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S4.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S5.png" />
+    <EmbeddedResource Include="EDGE\IconResources\S6.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Scheduling.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Scheduling_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\SelectionAndPinning.png" />
+    <EmbeddedResource Include="EDGE\IconResources\SelectionAndPinning_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\SelectStructuralFraming.png" />
+    <EmbeddedResource Include="EDGE\IconResources\SelectStructuralFraming_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Setting_Tools.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Setting_Tools_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\SSBV.png" />
+    <EmbeddedResource Include="EDGE\IconResources\SSBV_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T1.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T2.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T3.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T6.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T7.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T8.png" />
+    <EmbeddedResource Include="EDGE\IconResources\T9.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TemplateCreatorLarge.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TemplateCreatorSmall.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextLowerSelected.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextLowerSelected_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextLowerView.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextLowerView_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextToLowerActiveViewSmall.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextToLowerSelectedSmall.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextToUpperActiveViewSmall.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextToUpperSelectedSmall.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextUpperSelected.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextUpperSelected_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextUpperView.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TextUpperView_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_and_Dimension_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_Auto_Dimension.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_Auto_Dimension_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_BOM_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_BOM_Settings_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_Manager_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_Manager_Settings_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_refresh.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticket_refresh_sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketBOMDS.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketBOMDS_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketBOMPL.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketBOMPL_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketCompleted.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketCompleted_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketCreated.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketCreated_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketFlagReview.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketFlagReview_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticketing.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Ticketing_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketManager.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketManager_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketPopulatorLarge.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketPopulatorSmall.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketReleased.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TicketReleased_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Title_Block_Popular_Settings.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Title_Block_Popular_Settings_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TitleBlockUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\TitleBlockUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Top_as_Cast.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Top_as_Cast_Sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Top_as_Cast_w_Check.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Top_as_Cast_w_Check_sm.png" />
+    <EmbeddedResource Include="EDGE\IconResources\transparentImage.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VisibilityOverrides.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VisibilityOverrides_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VisibilityOverridesOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VisibilityOverridesOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VisibilityOverridesON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VisibilityOverridesON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Void.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Void_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VoidHostingUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VoidHostingUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VoidOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VoidOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VoidON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\VoidON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarningAnalyzer.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarningAnalyzer_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Warped.png" />
+    <EmbeddedResource Include="EDGE\IconResources\Warped_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarpedOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarpedOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarpedON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarpedON_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarpParamUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WarpParamUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWFFamilyUpdater.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWFFamilyUpdater_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWFOFF.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWFOFF_Small.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWFON.png" />
+    <EmbeddedResource Include="EDGE\IconResources\WWFON_Small.png" />
+    <EmbeddedResource Include="EDGE\IUpdaters\ModelLocking\ManageAdmins.resx" />
+    <EmbeddedResource Include="EDGE\IUpdaters\ModelLocking\ModelLockingSettingsForm.resx" />
+    <EmbeddedResource Include="EDGE\LicenseForm.resx" />
+    <EmbeddedResource Include="EDGE\LicensePostponeForm.resx" />
+    <EmbeddedResource Include="EDGE\LicenseRequestForm.resx" />
+    <EmbeddedResource Include="EDGE\LicenseRequestInfoForm.resx" />
+    <EmbeddedResource Include="EDGE\Properties\Resources.resx" />
+    <EmbeddedResource Include="EDGE\QATools\GeometryViewerForm.resx" />
+    <EmbeddedResource Include="EDGE\QATools\TextEntryForm.resx" />
+    <EmbeddedResource Include="EDGE\TicketTools\AutoDimensioning\AutoTicketForm.resx" />
+    <EmbeddedResource Include="EDGE\TicketTools\TicketPopulator\BatchPopulatorForm.resx" />
+    <EmbeddedResource Include="EDGE\TicketTools\TicketPopulator\PopulatorForm.resx" />
+    <EmbeddedResource Include="EDGE\TicketTools\TicketPopulator\TemplateForm.resx" />
+    <EmbeddedResource Include="EDGE\TicketTools\TicketPopulator\TemplateViewsTool.resx" />
+    <EmbeddedResource Include="EDGE\TicketTools\TicketTemplateTools\TemplateCreatorForm.resx" />
+    <EmbeddedResource Include="EDGE\VisibilityTools\PrecastForm.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="__testing\bulkfamilyupdater\views\bfumainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="__testing\bulkfamilyupdater\views\bfuparametertaskwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="__testing\bulkfamilyupdater\views\bfuselectwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="__testing\progressreporter\progressmonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admintools\cam\laserprojectionui\cadexportwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admintools\warninganalyzer\views\mainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admintools\warninganalyzer\views\resultswindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="annotationtools\freezedrawingtools\settingswin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\createassemblyviews\selectassemblywindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\compareengine_selection_window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\initialpresentation\mkinitialuserselection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\initialpresentation\mkinitialwarning.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\initialpresentation\mkverificationresult_initial.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\resultspresentation\mkexistingdetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\resultspresentation\mkexistingwarning.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\resultspresentation\mkverificationresults_existing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\resultspresentation\platewarnings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\markverification\usersettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="assemblytools\warningwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="dictionaries\common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="edgebrowser\forms\familytypeselectionpanewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="edgebrowser\forms\panewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="edgebrowser\forms\popoutmediapanewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="insulationtools\insulationdrawing\views\insulationdrawingperpiecewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="insulationtools\insulationdrawing\views\insulationdrawingselectinsulationwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="insulationtools\insulationdrawing\views\insulationdrawingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="insulationtools\insulationdrawing\views\masterinsulationdrawingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="insulationtools\insulationplacement\insulationselection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="insulationtools\pinplacement\pinfamilyselection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="qatools\exportdwgtestwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="qatools\regtestgen_command\regtestconfig_form.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="schedulingtools\controlnumberincrementortools\controlnumberincrementor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="schedulingtools\erectionsequencetool\erectionsequencezonewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\autodimensioning\enhancementspreadsheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\batchtitleblockpopulator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\cloneticket\assemblyselectionwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\cloneticket\bomformattingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\copyticketannotation\message.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\copyticketannotation\viewsheetcopyfromdialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\copyticketannotation\viewsheetcopytodialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\copyticketviews\mainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\findreferringviews\views\mainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\hardwaredetail\views\hardwaredetailwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\hardwaredetail\views\hwcreatewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\hardwaredetail\views\hwdselectmultiplewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\hardwaredetail\views\hwedittitleblockwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\hardwaredetail\views\hwtemplatecreatorwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\templatetoolsbase\views\manufacturermanagementwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\templatetoolsbase\views\newmanufacturer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\ticketmanager\checkflagger\checkwin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\ticketmanager\views\customizewindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\ticketmanager\views\editidentcommentwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\ticketmanager\views\editwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\ticketmanager\views\historywindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\ticketmanager\views\mainwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\tickettemplatetools\views\createwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\tickettemplatetools\views\edittitleblockwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="tickettools\tickettemplatetools\views\tickettemplatecreatorwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\cad_002520export_002520settings\cadexportsettingswindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\insulation_002520drawing_002520settings\insulationdrawingsettingswindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\autoticketsettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\bomusersettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\edgepreferencesusersettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\hwdetailusersettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\hwtitleblockpopulatorsettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\markverificationsettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\rebarshapeselectionwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\rebarusersettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="usersettingtools\views\titleblockpopulatorsettingwindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
