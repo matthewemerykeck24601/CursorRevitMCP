@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
 const VIEWER_SCRIPT_URL =
   "https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js";
@@ -74,7 +81,22 @@ export type ViewerAction =
   | { type: "viewer.setGhosting"; enabled: boolean }
   | { type: "viewer.markupsSave" }
   | { type: "viewer.markupsLoad" }
-  | { type: "viewer.markupsClear" };
+  | { type: "viewer.markupsClear" }
+  | {
+      type: "viewer.selectDbIds";
+      dbIds: number[];
+      clearFirst?: boolean;
+      fitToView?: boolean;
+    }
+  | { type: "viewer.isolateDbIds"; dbIds: number[] };
+
+export type ViewerPanelHandle = {
+  /** APS Viewer selection by dbId; same behavior as chat `viewer.selectDbIds` actions. */
+  selectElements: (
+    dbIds: Array<string | number>,
+    options?: { clearFirst?: boolean; zoomToSelection?: boolean },
+  ) => void;
+};
 
 export type SelectedElementSnapshot = {
   dbId: number;
@@ -97,15 +119,19 @@ type ViewerPanelProps = {
   onSelectionDetails?: (elements: SelectedElementSnapshot[]) => void;
 };
 
-export function ViewerPanel({
-  viewerUrn,
-  isActive = true,
-  actions,
-  onActionComplete,
-  onViewerFeedback,
-  onSelectionChange,
-  onSelectionDetails,
-}: ViewerPanelProps) {
+export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
+  function ViewerPanel(
+    {
+      viewerUrn,
+      isActive = true,
+      actions,
+      onActionComplete,
+      onViewerFeedback,
+      onSelectionChange,
+      onSelectionDetails,
+    },
+    ref,
+  ) {
   const onViewerFeedbackRef = useRef(onViewerFeedback);
   onViewerFeedbackRef.current = onViewerFeedback;
 
@@ -119,6 +145,52 @@ export function ViewerPanel({
   const [activeViewKey, setActiveViewKey] = useState("");
   const [markupsEnabled, setMarkupsEnabled] = useState(false);
   const [markupSnapshot, setMarkupSnapshot] = useState("");
+  const runSelectElements = useCallback(
+    (
+      dbIds: Array<string | number>,
+      options: { clearFirst: boolean; zoomToSelection: boolean },
+    ) => {
+      const viewer = viewerRef.current;
+      if (!viewer) return;
+      const ids = dbIds
+        .map((x) => (typeof x === "number" ? x : Number(x)))
+        .filter((n) => Number.isFinite(n))
+        .map((n) => Math.trunc(n))
+        .slice(0, 500);
+      if (options.clearFirst) {
+        viewer.clearSelection();
+      }
+      if (ids.length > 0) {
+        viewer.select(ids);
+      }
+      if (options.zoomToSelection && ids.length > 0) {
+        viewer.fitToView();
+      }
+      onViewerFeedbackRef.current?.(
+        ids.length === 0
+          ? "selectElements: no valid dbIds."
+          : `Selected ${ids.length} element(s) by dbId${options.zoomToSelection ? " (fit view)." : "."}`,
+      );
+    },
+    [],
+  );
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      selectElements: (
+        dbIds: Array<string | number>,
+        options?: { clearFirst?: boolean; zoomToSelection?: boolean },
+      ) => {
+        runSelectElements(dbIds, {
+          clearFirst: options?.clearFirst !== false,
+          zoomToSelection: options?.zoomToSelection === true,
+        });
+      },
+    }),
+    [runSelectElements],
+  );
+
   const emitSelection = useCallback(() => {
     const ids = viewerRef.current?.getSelection() ?? [];
     const key = ids.join(",");
@@ -594,6 +666,28 @@ export function ViewerPanel({
           onViewerFeedbackRef.current?.("Visibility reset to show all elements.");
           continue;
         }
+        if (action.type === "viewer.selectDbIds") {
+          runSelectElements(action.dbIds, {
+            clearFirst: action.clearFirst !== false,
+            zoomToSelection: action.fitToView === true,
+          });
+          continue;
+        }
+        if (action.type === "viewer.isolateDbIds") {
+          const ids = action.dbIds.filter((n) => Number.isFinite(n)).map((n) => Math.trunc(n));
+          if (ids.length === 0) {
+            onViewerFeedbackRef.current?.("isolateDbIds: no valid dbIds.");
+          } else {
+            viewerRef.current.setGhosting?.(true);
+            viewerRef.current.select(ids);
+            viewerRef.current.isolate(ids);
+            viewerRef.current.fitToView();
+            onViewerFeedbackRef.current?.(
+              `Isolated ${ids.length} element(s) by dbId.`,
+            );
+          }
+          continue;
+        }
         if (action.type === "viewer.isolateSelection") {
           const currentIds = viewerRef.current.getSelection();
           viewerRef.current.setGhosting?.(true);
@@ -657,6 +751,7 @@ export function ViewerPanel({
     actions,
     onActionComplete,
     emitSelection,
+    runSelectElements,
     saveMarkupSnapshot,
     loadMarkupSnapshot,
     clearMarkups,
@@ -718,5 +813,6 @@ export function ViewerPanel({
       />
     </section>
   );
-}
+});
 
+ViewerPanel.displayName = "ViewerPanel";

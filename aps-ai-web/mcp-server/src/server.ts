@@ -32,6 +32,7 @@ import {
   runGetElementProperties,
   runGetElementsByCategory,
 } from "./tools/apsQueryTools.js";
+import { runSelectElements, selectElements } from "./tools/viewerControlTools.js";
 
 /** MCP listTools entries — names/descriptions stay in sync with apsQueryTools.ts */
 const apsQueryMcpTools = [
@@ -243,6 +244,23 @@ export function buildServer() {
         },
       },
       {
+        name: selectElements.name,
+        description: selectElements.description,
+        inputSchema: {
+          type: "object",
+          properties: {
+            dbIds: {
+              type: "array",
+              items: { anyOf: [{ type: "string" }, { type: "number" }] },
+              minItems: 1,
+            },
+            clearFirst: { type: "boolean", default: true },
+            zoomToSelection: { type: "boolean", default: false },
+          },
+          required: ["dbIds"],
+        },
+      },
+      {
         name: "aec_query",
         description:
           "Query AEC Data Model API and return flattened rows for table display.",
@@ -346,6 +364,9 @@ export function buildServer() {
     }
     if (name === "viewer_action") {
       return textResult(fitOrIsolate(args));
+    }
+    if (name === "select_elements") {
+      return textResult(await runSelectElements(args, {}));
     }
     if (name === "aec_query") {
       return textResult(await aecQuery(args));

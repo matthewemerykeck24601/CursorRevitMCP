@@ -6,6 +6,10 @@ import {
   resolveViewerIntent,
   type ViewerIntentAction,
 } from "@/lib/ai-chat";
+import {
+  fetchAecdmElementsByCategory,
+  type AecdmProductPrefix,
+} from "@/lib/aecdm-get-elements";
 import { env, hasAnyAiProviderKey } from "@/lib/env";
 import { log } from "@/lib/logger";
 import { getRequestId } from "@/lib/request";
@@ -70,6 +74,31 @@ type ChatRequest = {
 };
 
 type ChatToolAction = ViewerIntentAction;
+
+function parseToolDbIds(raw: unknown): number[] {
+  if (!Array.isArray(raw)) return [];
+  const out: number[] = [];
+  for (const x of raw) {
+    const n = typeof x === "number" ? x : Number(x);
+    if (Number.isFinite(n)) out.push(Math.trunc(n));
+  }
+  return out.slice(0, 500);
+}
+
+function parseProductPrefix(
+  raw: unknown,
+): AecdmProductPrefix | undefined {
+  if (
+    raw === "WPA" ||
+    raw === "WPB" ||
+    raw === "CLA" ||
+    raw === "COLUMN" ||
+    raw === "ALL"
+  ) {
+    return raw;
+  }
+  return undefined;
+}
 
 function fallbackIntent(message: string): {
   actions: ChatToolAction[];
@@ -204,6 +233,7 @@ export async function POST(request: NextRequest) {
   const workspaceMode = body.workspaceMode ?? "model";
   const productAnalysis = body.productAnalysis;
   let actions: ChatToolAction[] = [];
+  const toolViewerActions: ChatToolAction[] = [];
   let modelQueryRequested = false;
   let responseText = "";
   const queryResult: Record<string, unknown> = {};
@@ -442,6 +472,86 @@ export async function POST(request: NextRequest) {
           externalContext =
             `${externalContext}\nPRECAST_ASSIGN_CONTROL_MARKS: ${JSON.stringify(payload)}`.trim();
         }
+
+        if (
+          call.tool === "get_elements_by_category" &&
+          selectedHubId &&
+          selectedProjectId &&
+          body.selectedModelUrn
+        ) {
+          const baseArgs =
+            call.args &&
+            typeof call.args === "object" &&
+            !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          try {
+            const limitRaw = baseArgs.limit;
+            const limit =
+              typeof limitRaw === "number" && Number.isFinite(limitRaw)
+                ? Math.min(Math.max(Math.trunc(limitRaw), 1), 2000)
+                : 500;
+            const result = await fetchAecdmElementsByCategory({
+              accessToken: auth.session.accessToken,
+              hubId: selectedHubId,
+              dmProjectId: selectedProjectId,
+              modelUrn: body.selectedModelUrn,
+              category:
+                typeof baseArgs.category === "string"
+                  ? baseArgs.category
+                  : undefined,
+              family:
+                typeof baseArgs.family === "string"
+                  ? baseArgs.family
+                  : undefined,
+              type:
+                typeof baseArgs.type === "string" ? baseArgs.type : undefined,
+              limit,
+              product_prefix: parseProductPrefix(baseArgs.product_prefix),
+            });
+            const dbIds = result.elements
+              .map((e) => e.dbId)
+              .filter((id): id is number => id != null);
+            externalContext =
+              `${externalContext}\nGET_ELEMENTS_BY_CATEGORY: ${JSON.stringify({
+                count: result.count,
+                dbIds: dbIds.slice(0, 300),
+                preview: result.elements.slice(0, 20).map((e) => ({
+                  dbId: e.dbId,
+                  category: e.category,
+                  family: e.family,
+                  type: e.type,
+                  controlMark: e.controlMark,
+                  externalId: e.externalId,
+                })),
+              })}`.trim();
+          } catch (error) {
+            externalContext =
+              `${externalContext}\nGET_ELEMENTS_BY_CATEGORY_ERROR: ${JSON.stringify({
+                message:
+                  error instanceof Error ? error.message : "Unknown error",
+              })}`.trim();
+          }
+        }
+
+        if (call.tool === "select_elements") {
+          const baseArgs =
+            call.args &&
+            typeof call.args === "object" &&
+            !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          const dbIds = parseToolDbIds(baseArgs.dbIds);
+          if (dbIds.length > 0) {
+            toolViewerActions.push({
+              type: "viewer.selectDbIds",
+              dbIds,
+              clearFirst: baseArgs.clearFirst !== false,
+              fitToView: baseArgs.zoomToSelection === true,
+            });
+          }
+        }
+
       }
     } catch (error) {
       log("warn", "local-agent-tool-plan-failed", {
@@ -509,13 +619,13 @@ export async function POST(request: NextRequest) {
         chatHistory: body.chatHistory,
         externalContext: externalContext.trim(),
       });
-      actions = aiIntent.actions;
+      actions = [...toolViewerActions, ...aiIntent.actions];
       modelQueryRequested =
         aiIntent.requestModelViews || modelViewsFromTool.length > 0;
       responseText = aiIntent.message;
     } else {
       const fallback = fallbackIntent(message);
-      actions = fallback.actions;
+      actions = [...toolViewerActions, ...fallback.actions];
       modelQueryRequested = fallback.modelQueryRequested;
       responseText = fallback.message;
     }
@@ -525,7 +635,7 @@ export async function POST(request: NextRequest) {
       details: error instanceof Error ? error.message : "Unknown error",
     });
     const fallback = fallbackIntent(message);
-    actions = fallback.actions;
+    actions = [...toolViewerActions, ...fallback.actions];
     modelQueryRequested = fallback.modelQueryRequested;
     responseText = fallback.message;
   }

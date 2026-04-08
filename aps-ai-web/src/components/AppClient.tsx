@@ -5,6 +5,7 @@ import {
   ViewerPanel,
   type SelectedElementSnapshot,
   type ViewerAction,
+  type ViewerPanelHandle,
 } from "@/components/ViewerPanel";
 import { DesignViewSplit3D } from "@/components/DesignViewSplit3D";
 import {
@@ -157,6 +158,34 @@ export function AppClient() {
   }, []);
 
   const [viewerActions, setViewerActions] = useState<ViewerAction[]>([]);
+  const viewerPanelRef = useRef<ViewerPanelHandle>(null);
+  const handleSelectElements = useCallback(
+    (
+      dbIds: (string | number)[],
+      options: { clearFirst: boolean; zoomToSelection: boolean } = {
+        clearFirst: true,
+        zoomToSelection: false,
+      },
+    ) => {
+      viewerPanelRef.current?.selectElements(dbIds, {
+        clearFirst: options.clearFirst,
+        zoomToSelection: options.zoomToSelection,
+      });
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "development") return;
+    const w = window as unknown as {
+      __apsSelectElements?: typeof handleSelectElements;
+    };
+    w.__apsSelectElements = handleSelectElements;
+    return () => {
+      delete w.__apsSelectElements;
+    };
+  }, [handleSelectElements]);
+
   const [error, setError] = useState<string>("");
   const [hubsError, setHubsError] = useState<string>("");
   const [workspaceExpanded, setWorkspaceExpanded] = useState(false);
@@ -1364,6 +1393,7 @@ export function AppClient() {
 
             <div className={workspaceTab === "viewer" ? "min-h-0 flex-1" : "hidden min-h-0 flex-1"}>
               <ViewerPanel
+                ref={viewerPanelRef}
                 viewerUrn={selectedModelData?.viewerUrn ?? null}
                 isActive={workspaceMode === "model" && workspaceTab === "viewer"}
                 actions={viewerActions}

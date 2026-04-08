@@ -14,7 +14,14 @@ export type ViewerIntentAction =
   | { type: "viewer.setGhosting"; enabled: boolean }
   | { type: "viewer.markupsSave" }
   | { type: "viewer.markupsLoad" }
-  | { type: "viewer.markupsClear" };
+  | { type: "viewer.markupsClear" }
+  | {
+      type: "viewer.selectDbIds";
+      dbIds: number[];
+      clearFirst?: boolean;
+      fitToView?: boolean;
+    }
+  | { type: "viewer.isolateDbIds"; dbIds: number[] };
 
 export type AiIntentResult = {
   message: string;
@@ -28,6 +35,8 @@ export type AgentToolName =
   | "model_views"
   | "issues_list"
   | "issues_create"
+  | "get_elements_by_category"
+  | "select_elements"
   | "analyze_published_model_and_cache"
   | "get_cached_mark_analysis"
   | "trigger_design_automation_mark_update"
@@ -88,16 +97,26 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
   return parts.join("\n");
 }
 
-const METROMONT_SYSTEM_CONTEXT = `
-You are Metromont's precast BIM co-pilot.
-When the user says "columns", always query Structural Framing category with family filter containing COLUMN or CLA (CONTROL_MARK prefix CLA); never treat precast columns as Revit "Structural Columns" category.
-For any request that needs to READ or ANALYZE the model: use analyze_published_model_and_cache first.
-For any request that needs to WRITE (clear CONTROL_MARK, set parameters, mark pieces, etc.): 
-1. Run analyze_published_model_and_cache
-2. Show the user the preview
-3. Only after confirmation, call trigger_design_automation_mark_update with confirm: true.
-Never tell the user "open in Revit" — we use Design Automation to update the central model directly.
+const STRONG_TOOL_GUIDANCE = `
+CRITICAL INSTRUCTIONS FOR SELECTION AND ANALYSIS:
+- When the user asks to "select", "highlight", "show", or "find" any elements (e.g. columns, panels), ALWAYS call the select_elements tool with the correct dbIds (use get_elements_by_category first when dbIds are unknown).
+- Do NOT call old generic viewer commands for that workflow.
+- Do NOT add extra actions like isolate or fit view unless the user specifically asks for them; use select_elements with clearFirst true and zoomToSelection false by default.
+- For columns: always query Structural Framing + COLUMN/CLA (product_prefix COLUMN or family COLUMN/CLA); never Revit "Structural Columns" category.
 `.trim();
+
+const METROMONT_SYSTEM_CONTEXT = [
+  STRONG_TOOL_GUIDANCE,
+  "",
+  "You are Metromont's precast BIM co-pilot.",
+  'When the user says "columns", always query Structural Framing category with family filter containing COLUMN or CLA (CONTROL_MARK prefix CLA); never treat precast columns as Revit "Structural Columns" category.',
+  "For any request that needs to READ or ANALYZE the model: use analyze_published_model_and_cache first.",
+  "For any request that needs to WRITE (clear CONTROL_MARK, set parameters, mark pieces, etc.):",
+  "1. Run analyze_published_model_and_cache",
+  "2. Show the user the preview",
+  "3. Only after confirmation, call trigger_design_automation_mark_update with confirm: true.",
+  "Never tell the user \"open in Revit\" — we use Design Automation to update the central model directly.",
+].join("\n");
 
 const ALICE_AGENT_CHARTER = [
   "Identity: You are Alice.",
@@ -159,10 +178,45 @@ function sanitizeActions(actions: unknown): ViewerIntentAction[] {
       clean.push({ type: "viewer.markupsLoad" });
     } else if (candidate.type === "viewer.markupsClear") {
       clean.push({ type: "viewer.markupsClear" });
+    } else if (candidate.type === "viewer.selectDbIds") {
+      const raw = (candidate as { dbIds?: unknown }).dbIds;
+      const dbIds = Array.isArray(raw)
+        ? raw
+            .map((x) => (typeof x === "number" ? x : Number(x)))
+            .filter((n) => Number.isFinite(n))
+            .map((n) => Math.trunc(n))
+        : [];
+      if (dbIds.length > 0) {
+        const c = candidate as {
+          clearFirst?: unknown;
+          fitToView?: unknown;
+        };
+        clean.push({
+          type: "viewer.selectDbIds",
+          dbIds: dbIds.slice(0, 500),
+          clearFirst:
+            c.clearFirst === undefined ? true : Boolean(c.clearFirst),
+          fitToView: Boolean(c.fitToView),
+        });
+      }
+    } else if (candidate.type === "viewer.isolateDbIds") {
+      const raw = (candidate as { dbIds?: unknown }).dbIds;
+      const dbIds = Array.isArray(raw)
+        ? raw
+            .map((x) => (typeof x === "number" ? x : Number(x)))
+            .filter((n) => Number.isFinite(n))
+            .map((n) => Math.trunc(n))
+        : [];
+      if (dbIds.length > 0) {
+        clean.push({
+          type: "viewer.isolateDbIds",
+          dbIds: dbIds.slice(0, 500),
+        });
+      }
     }
   }
 
-  return clean.slice(0, 4);
+  return clean.slice(0, 8);
 }
 
 function extractJsonObject(raw: string): string | null {
@@ -380,6 +434,8 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     "model_views",
     "issues_list",
     "issues_create",
+    "get_elements_by_category",
+    "select_elements",
     "analyze_published_model_and_cache",
     "get_cached_mark_analysis",
     "trigger_design_automation_mark_update",
@@ -398,7 +454,7 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
         ? (rawArgs as Record<string, unknown>)
         : undefined;
     out.push({ tool, reason, args });
-    if (out.length >= 5) break;
+    if (out.length >= 6) break;
   }
   return out;
 }
@@ -448,8 +504,11 @@ function buildPlannerPrompt(
     '- { "type": "viewer.markupsSave" }',
     '- { "type": "viewer.markupsLoad" }',
     '- { "type": "viewer.markupsClear" }',
+    '- { "type": "viewer.selectDbIds", "dbIds": number[], "clearFirst"?: boolean, "fitToView"?: boolean }',
+    '- { "type": "viewer.isolateDbIds", "dbIds": number[] }',
     "",
     "Rules:",
+    "- Prefer viewer.selectDbIds over viewer.search when exact dbIds are known (e.g. from get_elements_by_category). Default clearFirst true, fitToView false unless user asks to zoom/fit.",
     "- Keep selection stable unless user explicitly asks to change it.",
     "- For pure question answering, prefer actions=[] and answer from provided context.",
     "- If PRODUCT_ANALYSIS_CONTEXT is provided, use it for product-level reasoning and code/standards-oriented guidance.",
@@ -495,6 +554,8 @@ function buildFinalizerPrompt(
     '- { "type": "viewer.markupsSave" }',
     '- { "type": "viewer.markupsLoad" }',
     '- { "type": "viewer.markupsClear" }',
+    '- { "type": "viewer.selectDbIds", "dbIds": number[], "clearFirst"?: boolean, "fitToView"?: boolean }',
+    '- { "type": "viewer.isolateDbIds", "dbIds": number[] }',
     "",
     `Selected model: ${selectedModelName}`,
     `User message: ${userMessage}`,
@@ -521,9 +582,11 @@ function buildToolPlannerPrompt(
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
     "Then end with a single ```json code block containing ONLY:",
-    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "model_views" | "issues_list" | "issues_create" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
+    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "model_views" | "issues_list" | "issues_create" | "get_elements_by_category" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
     "",
     "Tool selection guidance:",
+    '- Use "get_elements_by_category" first when the user wants to select/find/highlight elements by category/family/type; args: category?, family?, type?, limit?, product_prefix? (WPA|WPB|CLA|COLUMN|ALL). Requires hub/project/model context — web injects token and URNs.',
+    '- Use "select_elements" with dbIds from AECDM results; args: { "dbIds": (string|number)[], "clearFirst"?: boolean (default true), "zoomToSelection"?: boolean (default false) }.',
     '- Use "aec_query" for model-wide questions, counts, categories, or when semantic model data is required.',
     '- Use "selected_element_parameters" when the user asks about currently selected elements.',
     '- Use "model_views" only when asked for model views/metadata/sheets listing.',
@@ -537,7 +600,7 @@ function buildToolPlannerPrompt(
     '- Use "assign_control_marks" only after verified groups (args: { "mark_groups": object[], "start_number"?: number }).',
     "",
     "Rules:",
-    "- Keep toolCalls length 0..5.",
+    "- Keep toolCalls length 0..6.",
     "- If no tool is needed, return empty array.",
     "",
     `Selected model: ${selectedModelName}`,
