@@ -396,73 +396,6 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
   return out;
 }
 
-function buildPrompt(
-  userMessage: string,
-  selectedModelName: string,
-  options: IntentOptions,
-): string {
-  const history = Array.isArray(options.chatHistory)
-    ? options.chatHistory.slice(-8)
-    : [];
-  const selectedElements = Array.isArray(options.selectedElements)
-    ? options.selectedElements.slice(0, 3).map((el) => ({
-        dbId: el.dbId,
-        name: el.name,
-        externalId: el.externalId,
-        properties: (el.properties ?? []).slice(0, 80),
-      }))
-    : [];
-
-  const context = {
-    selectedCount: options.selectedCount ?? 0,
-    selectedDbIds: (options.selectedDbIds ?? []).slice(0, 20),
-    selectedElements,
-    history,
-    externalContext: options.externalContext ?? "",
-  };
-
-  return [
-    ALICE_SYSTEM_BASE,
-    "",
-    "You are a conversational assistant for an APS Viewer.",
-    "You may answer in full natural language (markdown welcome). When you also want the app to run viewer actions, end your reply with a single fenced JSON block (see below).",
-    "",
-    "Optional machine block — after your conversational text, add one ```json code block containing ONLY:",
-    '{ "message": string (short echo optional), "actions": Array<ViewerAction>, "requestModelViews": boolean }',
-    "If no viewer actions are needed, you may omit the block entirely or use actions: [].",
-    "",
-    "Allowed ViewerAction values:",
-    '- { "type": "viewer.fitToView" }',
-    '- { "type": "viewer.clearSelection" }',
-    '- { "type": "viewer.isolateSelection" }',
-    '- { "type": "viewer.search", "query": string }',
-    '- { "type": "viewer.isolateByQuery", "query": string }',
-    '- { "type": "viewer.hideByQuery", "query": string }',
-    '- { "type": "viewer.showAll" }',
-    '- { "type": "viewer.setGhosting", "enabled": boolean }',
-    '- { "type": "viewer.markupsSave" }',
-    '- { "type": "viewer.markupsLoad" }',
-    '- { "type": "viewer.markupsClear" }',
-    "",
-    "Rules:",
-    "- Never return actions outside the allowlist.",
-    "- Keep actions to at most 4 items.",
-    "- Do not emit viewer actions for pure Q&A unless user clearly requests a viewer operation.",
-    "- Keep existing selection stable unless user explicitly asks to change it.",
-    "- Set requestModelViews=true only when user asks for model views/metadata.",
-    "- If selected element properties are provided, use them to answer parameter questions directly.",
-    "- If PRODUCT_ANALYSIS_CONTEXT is provided, use it for product-level reasoning and code/standards-oriented guidance.",
-    "- User vernacular: Piece/Product/Panel usually refers to Structural Framing precast elements.",
-    "- Piece ID is an alias of CONTROL_MARK.",
-    "- Prefer targeted answers (e.g., only width/height asked) instead of dumping all properties unless user asks for all.",
-    "- Be as brief or as detailed as the question warrants; do not artificially shorten helpful explanations.",
-    "",
-    `Selected model: ${selectedModelName}`,
-    `Context JSON: ${JSON.stringify(context)}`,
-    `User message: ${userMessage}`,
-  ].join("\n");
-}
-
 function buildPlannerPrompt(
   userMessage: string,
   selectedModelName: string,
@@ -605,11 +538,6 @@ function buildToolPlannerPrompt(
   ].join("\n");
 }
 
-async function callOpenAi(prompt: string, modelOverride?: string): Promise<AiIntentResult> {
-  const raw = await callOpenAiRaw(prompt, modelOverride);
-  return parseIntentResponse(raw);
-}
-
 async function callXaiResponsesRaw(
   prompt: string,
   modelOverride?: string,
@@ -723,7 +651,7 @@ async function runAgenticLoop(
   return parseIntentResponse(finalRaw);
 }
 
-function normalizeAssistantMode(input?: string): AssistantMode {
+function normalizeAssistantMode(): AssistantMode {
   return "agent";
 }
 
@@ -753,7 +681,7 @@ export async function resolveViewerIntent(
     );
   }
 
-  normalizeAssistantMode(options.assistantMode);
+  normalizeAssistantMode();
   return runAgenticLoop(provider, model, userMessage, selectedModelName, options);
 }
 

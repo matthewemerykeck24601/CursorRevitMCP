@@ -416,7 +416,7 @@ export function ViewerPanel({
     return () => {
       cancelled = true;
     };
-  }, [viewerUrn, initViewer, emitSelection]);
+  }, [viewerUrn, initViewer, emitSelection, getViewOptionsFromDocument]);
 
   const onChangeView = useCallback(
     async (viewKey: string) => {

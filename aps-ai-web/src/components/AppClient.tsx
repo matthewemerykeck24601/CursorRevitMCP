@@ -822,7 +822,6 @@ export function AppClient() {
       createdAt: new Date().toISOString(),
       pieceLinks: selectedPieceRefs,
       productInput: analysisInputs,
-      analysisResults: null,
       selectionContext: {
         hubId: selectedHub || "",
         hubName: selectedHubData?.name ?? "",

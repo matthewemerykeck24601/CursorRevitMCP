@@ -205,7 +205,14 @@ export async function GET(
       ...(await listLocalFiles(legacyPrefix)),
     ];
     localCount = localFiles.length;
-    files.push(...localFiles);
+    files.push(
+      ...localFiles.map((f) => ({
+        ...f,
+        baseName: "",
+        version: 1,
+        isLatest: false,
+      })),
+    );
 
     const dedup = new Map<
       string,

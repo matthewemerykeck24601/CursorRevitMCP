@@ -1,8 +1,3 @@
----
-description: Metromont precast Revit ontology & Grok system context
-alwaysApply: false
----
-
 # Metromont Precast Revit Ontology & Grok System Context
 # Last updated: 2026-04-08 | Owner: Matt Keck
 
@@ -13,10 +8,10 @@ alwaysApply: false
 - Generic Models = Hosted modifiers (voids, corbels, wood nailers, solid zones, openings)
 
 ## 2. Product Naming & Aliases
-- Team shorthand: Family name derivatives or CONSTRUCTION_PRODUCT (column, Metrowall, double tee / T's / tee's, beam, raker beam, girder, tgirder, lgirder, insulated panel, panel, WPA's, WPB's)
+- Team shorthand: Family name derivatives or CONSTRUCTION_PRODUCT (column, Metrowall, double tee / T’s / tee’s, beam, raker beam, girder, tgirder, lgirder, insulated panel, panel, WPA’s, WPB’s)
 - CONTROL_MARK = Product code + iteration (e.g., CLA001, WPB026, WPA100)
 - CONTROL_NUMBER = Sequential piece number (starts at 100+ to avoid leading-zero issues)
-- Grok task: "Mark the pieces" = run analysis → assign CONTROL_MARK after verification
+- Grok task: “Mark the pieces” = run analysis → assign CONTROL_MARK after verification
 
 ## 3. Sameness Logic (Mark Verification)
 Two pieces are identical for production/scheduling/reuse **ONLY** if:
@@ -44,7 +39,7 @@ Identical pieces share the **same CONTROL_MARK** (e.g., all WPA100 pieces).
 - Never place standalone (use non-`do_not_use_` variants only when required).
 
 ## 6. Key Grok Behaviors
-- When user says "Analyze the WPA's" or "Mark the pieces" → run full mark verification, group by sameness, assign CONTROL_MARK starting at 100 (WPA100, WPA101…)
+- When user says “Analyze the WPA’s” or “Mark the pieces” → run full mark verification, group by sameness, assign CONTROL_MARK starting at 100 (WPA100, WPA101…)
 - Always report: changed families/types/IDs/counts + validation + next step
 - For APS writes: use AEC Data Model API for properties, Model Derivative for geometry, Design Automation for batch
 
