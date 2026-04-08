@@ -11,6 +11,11 @@ import { listModelViews } from "./tools/listModelViews.js";
 import { fitOrIsolate } from "./tools/fitOrIsolate.js";
 import { proposeParameterWrite } from "./tools/proposeParameterWrite.js";
 import { aecQuery } from "./tools/aecQuery.js";
+import {
+  analyzeProductsAndMark,
+  assignControlMarks,
+  getProductSamenessReport,
+} from "./tools/precastMarkTools.js";
 
 const ToolArgsSchema = z.record(z.string(), z.unknown());
 
@@ -132,6 +137,47 @@ export function buildServer() {
           required: ["changes"],
         },
       },
+      {
+        name: "analyze_products_and_mark",
+        description:
+          "Analyzes selected Structural Framing elements (or all WPA/WPB/COLUMN), runs mark verification using geometric bounds + intersecting elements, groups identical pieces, and assigns CONTROL_MARK starting at 100.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            product_prefix: {
+              type: "string",
+              enum: ["WPA", "WPB", "CLA", "ALL"],
+            },
+            dry_run: { type: "boolean", default: true },
+          },
+          required: ["product_prefix"],
+        },
+      },
+      {
+        name: "get_product_sameness_report",
+        description:
+          "Returns sameness analysis for given elements using tolerances and intersecting geometry (mirrors MCPToolHelper logic).",
+        inputSchema: {
+          type: "object",
+          properties: {
+            element_ids: { type: "array", items: { type: "string" } },
+          },
+          required: ["element_ids"],
+        },
+      },
+      {
+        name: "assign_control_marks",
+        description:
+          "Applies CONTROL_MARK to verified identical pieces (guarded write).",
+        inputSchema: {
+          type: "object",
+          properties: {
+            mark_groups: { type: "array", items: { type: "object" } },
+            start_number: { type: "integer", default: 100 },
+          },
+          required: ["mark_groups"],
+        },
+      },
     ],
   }));
 
@@ -159,6 +205,15 @@ export function buildServer() {
     }
     if (name === "set_element_parameters_guarded") {
       return textResult(proposeParameterWrite(args));
+    }
+    if (name === "analyze_products_and_mark") {
+      return textResult(analyzeProductsAndMark(args));
+    }
+    if (name === "get_product_sameness_report") {
+      return textResult(getProductSamenessReport(args));
+    }
+    if (name === "assign_control_marks") {
+      return textResult(assignControlMarks(args));
     }
 
     throw new Error(`Unknown tool: ${name}`);

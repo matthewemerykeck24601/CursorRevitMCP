@@ -27,11 +27,15 @@ export type AgentToolName =
   | "selected_element_parameters"
   | "model_views"
   | "issues_list"
-  | "issues_create";
+  | "issues_create"
+  | "analyze_products_and_mark"
+  | "get_product_sameness_report"
+  | "assign_control_marks";
 
 export type AgentToolCall = {
   tool: AgentToolName;
   reason: string;
+  args?: Record<string, unknown>;
 };
 
 type IntentOptions = {
@@ -81,6 +85,16 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
   return parts.join("\n");
 }
 
+const METROMONT_SYSTEM_CONTEXT = `
+You are Metromont's precast BIM co-pilot. You have full access to the precast-revit-ontology.mdc above.
+When the user asks to "Analyze the WPA's", "run mark verification", or "mark the pieces":
+1. Call analyze_products_and_mark with appropriate prefix
+2. Use get_product_sameness_report if needed
+3. Propose CONTROL_MARK assignments starting at 100
+4. Always confirm with tolerances and intersecting-element logic
+Never place do_not_use_ families standalone. Always respect nested rules.
+`.trim();
+
 const ALICE_AGENT_CHARTER = [
   "Identity: You are Alice.",
   "Response style: Use normal conversational responses; do not self-identify by name unless explicitly asked.",
@@ -91,6 +105,8 @@ const ALICE_AGENT_CHARTER = [
   "Interaction style: Practical and collaborative. You may write as much detail as useful—headings, bullet lists, markdown, and step-by-step guidance are encouraged when they help the user work with the model.",
   "Domain vocabulary: Piece/Product/Panel refers to Structural Framing precast context; Piece ID can map to CONTROL_MARK.",
 ].join("\n");
+
+const ALICE_SYSTEM_BASE = [METROMONT_SYSTEM_CONTEXT, "", ALICE_AGENT_CHARTER].join("\n");
 
 function sanitizeActions(actions: unknown): ViewerIntentAction[] {
   if (!Array.isArray(actions)) return [];
@@ -343,10 +359,12 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     extractJsonObject(slice.trim()) ??
     (slice.trim().startsWith("{") ? slice.trim() : null);
   if (!jsonText) return [];
-  let parsed: { toolCalls?: Array<{ tool?: unknown; reason?: unknown }> };
+  let parsed: {
+    toolCalls?: Array<{ tool?: unknown; reason?: unknown; args?: unknown }>;
+  };
   try {
     parsed = JSON.parse(jsonText) as {
-      toolCalls?: Array<{ tool?: unknown; reason?: unknown }>;
+      toolCalls?: Array<{ tool?: unknown; reason?: unknown; args?: unknown }>;
     };
   } catch {
     return [];
@@ -358,13 +376,21 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     "model_views",
     "issues_list",
     "issues_create",
+    "analyze_products_and_mark",
+    "get_product_sameness_report",
+    "assign_control_marks",
   ];
   const out: AgentToolCall[] = [];
   for (const item of parsed.toolCalls) {
     const tool = String(item.tool ?? "") as AgentToolName;
     if (!allowed.includes(tool)) continue;
     const reason = String(item.reason ?? "").trim() || "No reason provided.";
-    out.push({ tool, reason });
+    const rawArgs = item.args;
+    const args =
+      rawArgs && typeof rawArgs === "object" && !Array.isArray(rawArgs)
+        ? (rawArgs as Record<string, unknown>)
+        : undefined;
+    out.push({ tool, reason, args });
     if (out.length >= 3) break;
   }
   return out;
@@ -396,7 +422,7 @@ function buildPrompt(
   };
 
   return [
-    ALICE_AGENT_CHARTER,
+    ALICE_SYSTEM_BASE,
     "",
     "You are a conversational assistant for an APS Viewer.",
     "You may answer in full natural language (markdown welcome). When you also want the app to run viewer actions, end your reply with a single fenced JSON block (see below).",
@@ -462,7 +488,7 @@ function buildPlannerPrompt(
   };
 
   return [
-    ALICE_AGENT_CHARTER,
+    ALICE_SYSTEM_BASE,
     "",
     "You are an agentic planner for an APS Viewer assistant.",
     "Think in natural language: outline your approach, note BIM/viewer considerations, and draft how Alice should answer the user.",
@@ -508,7 +534,7 @@ function buildFinalizerPrompt(
   },
 ): string {
   return [
-    ALICE_AGENT_CHARTER,
+    ALICE_SYSTEM_BASE,
     "",
     "You are the final responder for an APS Viewer assistant.",
     "Write the full reply the user will see: conversational, clear, and as long or short as appropriate (markdown is fine).",
@@ -550,12 +576,12 @@ function buildToolPlannerPrompt(
     options.externalContext.includes("HUB_PROJECT_AVAILABLE");
 
   return [
-    ALICE_AGENT_CHARTER,
+    ALICE_SYSTEM_BASE,
     "",
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
     "Then end with a single ```json code block containing ONLY:",
-    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "model_views" | "issues_list" | "issues_create", "reason": string }> }',
+    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "model_views" | "issues_list" | "issues_create" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
     "",
     "Tool selection guidance:",
     '- Use "aec_query" for model-wide questions, counts, categories, or when semantic model data is required.',
@@ -563,6 +589,9 @@ function buildToolPlannerPrompt(
     '- Use "model_views" only when asked for model views/metadata/sheets listing.',
     '- Use "issues_list" when the user asks to list/show/open project issues.',
     '- Use "issues_create" when the user asks to create a new issue.',
+    '- Use "analyze_products_and_mark" for WPA/WPB/COLUMN mark verification, "mark the pieces", or "Analyze the WPA\'s" (include args: { "product_prefix": "WPA"|"WPB"|"CLA"|"ALL", "dry_run": boolean }).',
+    '- Use "get_product_sameness_report" when comparing specific element IDs for sameness (args: { "element_ids": string[] }).',
+    '- Use "assign_control_marks" only after verified groups (args: { "mark_groups": object[], "start_number"?: number }).',
     "",
     "Rules:",
     "- Keep toolCalls length 0..3.",
@@ -598,8 +627,11 @@ async function callXaiResponsesRaw(
       temperature: 0.25,
       store: false,
       max_output_tokens: 8192,
-      instructions:
+      instructions: [
+        METROMONT_SYSTEM_CONTEXT,
+        "",
         "You are Alice, assisting with Autodesk APS Viewer and BIM models. Follow the user prompt: reply helpfully and conversationally when asked, and include structured JSON in a fenced ```json block only when the prompt specifies it.",
+      ].join("\n"),
       input: prompt,
     }),
     cache: "no-store",
@@ -632,8 +664,11 @@ async function callOpenAiRaw(
       messages: [
         {
           role: "system",
-          content:
+          content: [
+            METROMONT_SYSTEM_CONTEXT,
+            "",
             "You are Alice's reasoning layer for APS Viewer / BIM. Be conversational when the user prompt asks for it; output fenced ```json blocks when the prompt requires structured data.",
+          ].join("\n"),
         },
         { role: "user", content: prompt },
       ],

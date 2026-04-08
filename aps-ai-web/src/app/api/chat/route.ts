@@ -15,6 +15,11 @@ import {
   getIssuesContainerId,
   listProjectIssues,
 } from "@/lib/aps-issues";
+import {
+  analyzeProductsAndMarkContract,
+  assignControlMarksContract,
+  getProductSamenessReportContract,
+} from "@/lib/precast-mark-contract";
 
 type ChatRequest = {
   message?: string;
@@ -359,6 +364,30 @@ export async function POST(request: NextRequest) {
               }`;
             }
           }
+        }
+        if (call.tool === "analyze_products_and_mark") {
+          const payload = analyzeProductsAndMarkContract(
+            call.args ?? {
+              product_prefix: "ALL",
+              dry_run: true,
+            },
+          );
+          externalContext =
+            `${externalContext}\nPRECAST_ANALYZE_PRODUCTS_AND_MARK: ${JSON.stringify(payload)}`.trim();
+        }
+        if (call.tool === "get_product_sameness_report") {
+          const payload = getProductSamenessReportContract(
+            call.args ?? { element_ids: selectedDbIds.map(String) },
+          );
+          externalContext =
+            `${externalContext}\nPRECAST_SAMENESS_REPORT: ${JSON.stringify(payload)}`.trim();
+        }
+        if (call.tool === "assign_control_marks") {
+          const payload = assignControlMarksContract(
+            call.args ?? { mark_groups: [], start_number: 100 },
+          );
+          externalContext =
+            `${externalContext}\nPRECAST_ASSIGN_CONTROL_MARKS: ${JSON.stringify(payload)}`.trim();
         }
       }
     } catch (error) {

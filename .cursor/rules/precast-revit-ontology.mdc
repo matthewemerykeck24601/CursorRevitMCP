@@ -1,0 +1,57 @@
+---
+description: Metromont precast Revit ontology & Grok system context
+alwaysApply: false
+---
+
+# Metromont Precast Revit Ontology & Grok System Context
+# Last updated: 2026-04-08 | Owner: Matt Keck
+
+## 1. Core Family Strategy (NEVER violate)
+- Structural Framing = Primary precast products (the "pieces")
+  - WALL_PANEL_INSULATED (WPB*), WALL_PANEL (WPA*), COLUMN (CLA*), etc.
+- Specialty Equipment = Nested connections, rebar, strands, lifting anchors, plates, insulation, grout joints, shear grids (almost always nested)
+- Generic Models = Hosted modifiers (voids, corbels, wood nailers, solid zones, openings)
+
+## 2. Product Naming & Aliases
+- Team shorthand: Family name derivatives or CONSTRUCTION_PRODUCT (column, Metrowall, double tee / T's / tee's, beam, raker beam, girder, tgirder, lgirder, insulated panel, panel, WPA's, WPB's)
+- CONTROL_MARK = Product code + iteration (e.g., CLA001, WPB026, WPA100)
+- CONTROL_NUMBER = Sequential piece number (starts at 100+ to avoid leading-zero issues)
+- Grok task: "Mark the pieces" = run analysis → assign CONTROL_MARK after verification
+
+## 3. Sameness Logic (Mark Verification)
+Two pieces are identical for production/scheduling/reuse **ONLY** if:
+- Geometric bounds match within tolerances (see below)
+- Intersecting elements (Specialty Equipment, Generic Models/voids, corbels, openings) are in identical relative positions
+- Reference: MCPToolHelper logic (SameControlMarkFilterEDrawing, StructuralFramingBoundsObjectEDrawing, ValidStructFraming, ValidVoids)
+
+**Mark Tolerances (METROMONT_Mark_Tolerance.txt)**
+- Geometry: ±0' - 0.125"
+- EmbeddedPosition: ±0' - 0.250"
+- Volume / AddonVolume: ±0.5
+- FinishArea: ±1
+- Weight: ±25
+- Angle: ±1°
+
+Identical pieces share the **same CONTROL_MARK** (e.g., all WPA100 pieces).
+
+## 4. Sacred / Driving Parameters
+- DIM_LENGTH, DIM_HEIGHT, DIM_THICKNESS, DIM_WIDTH, DIM_DEPTH, DIM_AREA → drive size/volume/weight
+- Once marked: CONTROL_MARK is sacred
+- Use APS APIs to read/write internal Revit parameters when possible
+
+## 5. Nested Family Rules
+- Any family starting with `do_not_use_` or `CONNECTOR_COMPONENT`, insulation, rebar, lifting anchors, grout joints, etc. **MUST** be nested inside a Structural Framing host.
+- Never place standalone (use non-`do_not_use_` variants only when required).
+
+## 6. Key Grok Behaviors
+- When user says "Analyze the WPA's" or "Mark the pieces" → run full mark verification, group by sameness, assign CONTROL_MARK starting at 100 (WPA100, WPA101…)
+- Always report: changed families/types/IDs/counts + validation + next step
+- For APS writes: use AEC Data Model API for properties, Model Derivative for geometry, Design Automation for batch
+
+## 7. Product Catalog Summary (extracted from CSVs)
+- Primary products: WALL_PANEL_INSULATED (11"/12" BEADBOARD), WALL_PANEL, COLUMN
+- CONTROL_MARK examples: WPB026, CLA001, WPA060
+- Common hosted: VOID_RECTANGULAR, CORBEL_ADJUSTABLE, WOOD_NAILER, SOLID_ZONE_RECTANGULAR-ADDON
+- Common nested: do_not_use_INSULATION_*, do_not_use_GROUT_JOINT_*, CONNECTOR_COMPONENT, rebar (S04/S05/S11), strands, lifting anchors (LPA_4T, ALP_*)
+
+Grok must speak this language fluently and never hallucinate family usage.
