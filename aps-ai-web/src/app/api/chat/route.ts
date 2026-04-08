@@ -16,6 +16,11 @@ import {
   listProjectIssues,
 } from "@/lib/aps-issues";
 import {
+  analyzePublishedModelAndCacheContract,
+  getCachedMarkAnalysisContract,
+  triggerDesignAutomationMarkUpdateContract,
+} from "@/lib/precast-design-automation-contract";
+import {
   analyzeProductsAndMarkContract,
   assignControlMarksContract,
   getProductSamenessReportContract,
@@ -363,6 +368,54 @@ export async function POST(request: NextRequest) {
                 error instanceof Error ? error.message : "unknown error"
               }`;
             }
+          }
+        }
+        if (call.tool === "analyze_published_model_and_cache") {
+          const baseArgs =
+            call.args &&
+            typeof call.args === "object" &&
+            !Array.isArray(call.args)
+              ? { ...call.args }
+              : {};
+          try {
+            const payload = await analyzePublishedModelAndCacheContract(
+              baseArgs,
+              {
+                modelUrn: body.selectedModelUrn,
+                accessToken: auth.session.accessToken,
+                hubId: body.selectedHubId,
+                projectId: body.selectedProjectId,
+                itemId: body.selectedItemId,
+              },
+            );
+            externalContext =
+              `${externalContext}\nPRECAST_ANALYZE_PUBLISHED_CACHE: ${JSON.stringify(payload)}`.trim();
+          } catch (error) {
+            externalContext =
+              `${externalContext}\nPRECAST_ANALYZE_PUBLISHED_CACHE_ERROR: ${JSON.stringify({
+                message:
+                  error instanceof Error ? error.message : "Unknown error",
+              })}`.trim();
+          }
+        }
+        if (call.tool === "get_cached_mark_analysis") {
+          const payload = getCachedMarkAnalysisContract();
+          externalContext =
+            `${externalContext}\nPRECAST_CACHED_MARK_ANALYSIS: ${JSON.stringify(payload)}`.trim();
+        }
+        if (call.tool === "trigger_design_automation_mark_update") {
+          try {
+            const payload = await triggerDesignAutomationMarkUpdateContract(
+              call.args ?? { cache_id: "", confirm: false },
+            );
+            externalContext =
+              `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(payload)}`.trim();
+          } catch (error) {
+            externalContext =
+              `${externalContext}\nPRECAST_DA_MARK_UPDATE_ERROR: ${JSON.stringify({
+                message:
+                  error instanceof Error ? error.message : "Unknown error",
+              })}`.trim();
           }
         }
         if (call.tool === "analyze_products_and_mark") {

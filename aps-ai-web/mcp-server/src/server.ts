@@ -16,6 +16,11 @@ import {
   assignControlMarks,
   getProductSamenessReport,
 } from "./tools/precastMarkTools.js";
+import {
+  runAnalyzePublishedModelAndCache,
+  runGetCachedMarkAnalysis,
+  runTriggerDesignAutomationMarkUpdate,
+} from "./tools/precastDesignAutomationTools.js";
 
 const ToolArgsSchema = z.record(z.string(), z.unknown());
 
@@ -178,6 +183,55 @@ export function buildServer() {
           required: ["mark_groups"],
         },
       },
+      {
+        name: "analyze_published_model_and_cache",
+        description:
+          "Queries the current APS published model (Viewer / AEC Data Model), runs mark verification & sameness logic, proposes CONTROL_MARKs starting at 100, and caches results for Design Automation. Pass model_urn when the host does not inject context.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            product_prefix: {
+              type: "string",
+              enum: ["WPA", "WPB", "CLA", "ALL"],
+              default: "ALL",
+            },
+            dry_run: { type: "boolean", default: true },
+            model_urn: { type: "string" },
+            urn: { type: "string" },
+            access_token: { type: "string" },
+            accessToken: { type: "string" },
+            hub_id: { type: "string" },
+            hubId: { type: "string" },
+            project_id: { type: "string" },
+            projectId: { type: "string" },
+            item_id: { type: "string" },
+            itemId: { type: "string" },
+          },
+          required: [],
+        },
+      },
+      {
+        name: "trigger_design_automation_mark_update",
+        description:
+          "Uses the cached analysis results to run APS Design Automation on the central Revit model. Applies CONTROL_MARKs and any other parameter updates.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            cache_id: { type: "string" },
+            confirm: { type: "boolean", default: false },
+          },
+          required: ["cache_id"],
+        },
+      },
+      {
+        name: "get_cached_mark_analysis",
+        description:
+          "Returns the latest cached mark verification results for preview before running Design Automation.",
+        inputSchema: {
+          type: "object",
+          properties: {},
+        },
+      },
     ],
   }));
 
@@ -214,6 +268,15 @@ export function buildServer() {
     }
     if (name === "assign_control_marks") {
       return textResult(assignControlMarks(args));
+    }
+    if (name === "analyze_published_model_and_cache") {
+      return textResult(await runAnalyzePublishedModelAndCache(args, {}));
+    }
+    if (name === "trigger_design_automation_mark_update") {
+      return textResult(await runTriggerDesignAutomationMarkUpdate(args, {}));
+    }
+    if (name === "get_cached_mark_analysis") {
+      return textResult(await runGetCachedMarkAnalysis(args, {}));
     }
 
     throw new Error(`Unknown tool: ${name}`);

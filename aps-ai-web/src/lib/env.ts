@@ -66,6 +66,10 @@ export const env = {
   apsIssuesContainerId: getEnv("APS_ISSUES_CONTAINER_ID"),
   apsIssuesDefaultTypeId: getEnv("APS_ISSUES_DEFAULT_TYPE_ID"),
   apsDesignFilesBucket: getEnv("APS_DESIGN_FILES_BUCKET", ""),
+  /** Design Automation: set DA_ENABLED=true to POST workitems from trigger_design_automation_mark_update */
+  daEnabled: getEnv("DA_ENABLED", "").toLowerCase(),
+  daRegion: getEnv("DA_REGION", "us-east"),
+  daActivityId: getEnv("DA_ACTIVITY_ID"),
 };
 
 export function assertApsCredentials(): void {

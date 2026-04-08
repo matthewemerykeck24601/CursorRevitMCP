@@ -1,0 +1,23 @@
+{
+  "version": "aec_analyze_v1",
+  "intent": "apply_control_marks",
+  "idResolution": "externalId",
+  "source": "aec_analyze_v1",
+  "product_prefix": "WPA",
+  "cache_id": "00000000-0000-4000-8000-000000000000",
+  "provenance": {
+    "hubId": "b.xxx",
+    "projectId": "b.yyy",
+    "aecProjectId": "urn:adsk.wipprod:dm.project:...",
+    "analyzedAt": "2026-01-01T00:00:00.000Z"
+  },
+  "marks": [
+    {
+      "groupId": 1,
+      "control_mark": "WPA100",
+      "externalIds": ["abc-123"],
+      "aecElementIds": ["urn:adsk.aec:element:..."]
+    }
+  ],
+  "note": "v0 property-based sameness; validate in Revit DA with MCPToolHelper tolerances."
+}

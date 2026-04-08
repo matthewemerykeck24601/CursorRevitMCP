@@ -35,3 +35,7 @@ Thumbs.db
 
 # Cursor: local MCP paths are machine-specific
 .cursor/mcp.json
+
+# C# / Revit DA local builds
+design-automation/**/bin/
+design-automation/**/obj/

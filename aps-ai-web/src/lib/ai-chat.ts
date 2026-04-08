@@ -28,6 +28,9 @@ export type AgentToolName =
   | "model_views"
   | "issues_list"
   | "issues_create"
+  | "analyze_published_model_and_cache"
+  | "get_cached_mark_analysis"
+  | "trigger_design_automation_mark_update"
   | "analyze_products_and_mark"
   | "get_product_sameness_report"
   | "assign_control_marks";
@@ -86,13 +89,15 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
 }
 
 const METROMONT_SYSTEM_CONTEXT = `
-You are Metromont's precast BIM co-pilot. You have full access to the precast-revit-ontology.mdc above.
-When the user asks to "Analyze the WPA's", "run mark verification", or "mark the pieces":
-1. Call analyze_products_and_mark with appropriate prefix
-2. Use get_product_sameness_report if needed
-3. Propose CONTROL_MARK assignments starting at 100
-4. Always confirm with tolerances and intersecting-element logic
-Never place do_not_use_ families standalone. Always respect nested rules.
+You are Metromont's precast BIM co-pilot.
+Workflow for any "mark the pieces" or "analyze WPA's" request:
+1. First call analyze_published_model_and_cache (on the current published model).
+2. Show the user the proposed CONTROL_MARKs and sameness groups.
+3. Only after user confirmation, call trigger_design_automation_mark_update.
+Always respect tolerances, nested family rules, and CONTROL_MARK starting at 100.
+Use get_cached_mark_analysis to refresh preview of the latest cached run.
+Legacy helpers (analyze_products_and_mark, get_product_sameness_report, assign_control_marks) remain available for granular Revit-side steps when needed.
+Never place do_not_use_ families standalone.
 `.trim();
 
 const ALICE_AGENT_CHARTER = [
@@ -376,6 +381,9 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     "model_views",
     "issues_list",
     "issues_create",
+    "analyze_published_model_and_cache",
+    "get_cached_mark_analysis",
+    "trigger_design_automation_mark_update",
     "analyze_products_and_mark",
     "get_product_sameness_report",
     "assign_control_marks",
@@ -391,7 +399,7 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
         ? (rawArgs as Record<string, unknown>)
         : undefined;
     out.push({ tool, reason, args });
-    if (out.length >= 3) break;
+    if (out.length >= 5) break;
   }
   return out;
 }
@@ -514,7 +522,7 @@ function buildToolPlannerPrompt(
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
     "Then end with a single ```json code block containing ONLY:",
-    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "model_views" | "issues_list" | "issues_create" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
+    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "model_views" | "issues_list" | "issues_create" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
     "",
     "Tool selection guidance:",
     '- Use "aec_query" for model-wide questions, counts, categories, or when semantic model data is required.',
@@ -522,12 +530,15 @@ function buildToolPlannerPrompt(
     '- Use "model_views" only when asked for model views/metadata/sheets listing.',
     '- Use "issues_list" when the user asks to list/show/open project issues.',
     '- Use "issues_create" when the user asks to create a new issue.',
-    '- Use "analyze_products_and_mark" for WPA/WPB/COLUMN mark verification, "mark the pieces", or "Analyze the WPA\'s" (include args: { "product_prefix": "WPA"|"WPB"|"CLA"|"ALL", "dry_run": boolean }).',
-    '- Use "get_product_sameness_report" when comparing specific element IDs for sameness (args: { "element_ids": string[] }).',
+    '- Use "analyze_published_model_and_cache" for published-model mark workflow / Design Automation prep (web injects token + hub + project; MCP may pass access_token, hub_id, project_id, model_urn, product_prefix, dry_run).',
+    '- Use "get_cached_mark_analysis" to show latest cached marks/sameness preview (no args).',
+    '- Use "trigger_design_automation_mark_update" only after user confirms (args: { "cache_id": string, "confirm": true }).',
+    '- Use "analyze_products_and_mark" for granular legacy mark analysis (args: { "product_prefix", "dry_run" }).',
+    '- Use "get_product_sameness_report" when comparing specific element IDs (args: { "element_ids": string[] }).',
     '- Use "assign_control_marks" only after verified groups (args: { "mark_groups": object[], "start_number"?: number }).',
     "",
     "Rules:",
-    "- Keep toolCalls length 0..3.",
+    "- Keep toolCalls length 0..5.",
     "- If no tool is needed, return empty array.",
     "",
     `Selected model: ${selectedModelName}`,
