@@ -1,0 +1,48 @@
+{
+  "updatedAt": "2026-04-07",
+  "project": "aps-ai-web",
+  "decisions": {
+    "todo1": {
+      "fixtureScope": "single-current",
+      "safetyPolicy": "read-plus-guarded-writes",
+      "writeScopeV1": "param-only"
+    },
+    "todo2": {
+      "runtimeChoice": "node-ts"
+    },
+    "todo3": {
+      "readOutputStyle": "targeted-minimal"
+    },
+    "todo4": {
+      "confirmFlow": "two-step-chat"
+    },
+    "todo5": {
+      "rolloutStrategy": "all-modes"
+    },
+    "todo6": {
+      "verificationFormat": "runbook-plus-json"
+    }
+  },
+  "domainVocabulary": {
+    "categoryAlias": {
+      "structuralFraming": [
+        "piece",
+        "product",
+        "panel",
+        "precast",
+        "concrete product"
+      ]
+    },
+    "parameterPriority": [
+      "CONTROL_MARK",
+      "CONTROL_NUMBER",
+      "DIM_*",
+      "IDENTITY_DESCRIPTION",
+      "CONSTRUCTION_PRODUCT",
+      "DESIGN_NUMBER"
+    ],
+    "aliases": {
+      "PIECE_ID": "CONTROL_MARK"
+    }
+  }
+}

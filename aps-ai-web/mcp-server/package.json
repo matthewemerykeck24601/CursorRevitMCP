@@ -1,0 +1,20 @@
+{
+  "name": "aps-ai-web-mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "latest",
+    "typescript": "^5"
+  }
+}

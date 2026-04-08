@@ -1,0 +1,37 @@
+# Secrets and local env (never commit)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Revit / large CAD binaries
+*.rvt
+*.rfa
+*.rte
+
+# Dependencies and build outputs
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+
+# Logs and debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tooling / deploy
+.vercel
+*.tsbuildinfo
+
+# Cursor: local MCP paths are machine-specific
+.cursor/mcp.json

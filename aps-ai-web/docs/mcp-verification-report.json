@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-04-07",
+  "status": "partial-pass",
+  "checks": [
+    {
+      "id": "mcp-server-scaffold",
+      "result": "pass",
+      "details": "mcp-server package, stdio entrypoint, tool schemas, and tool handlers created."
+    },
+    {
+      "id": "cursor-mcp-registration",
+      "result": "pass",
+      "details": ".cursor/mcp.json now includes aps-ai-web-mcp entry."
+    },
+    {
+      "id": "guarded-write-contract",
+      "result": "pass",
+      "details": "Two-step preview/apply confirmation token flow implemented in tool scaffold."
+    },
+    {
+      "id": "chat-routing-through-tools",
+      "result": "pass",
+      "details": "chat route now injects MCP-style read context from local tool contract in both modes."
+    },
+    {
+      "id": "end-to-end-stdio-smoke",
+      "result": "partial",
+      "details": "npm install + tsc build succeeded for mcp-server; runtime handshake in Cursor MCP UI still needs manual confirmation."
+    },
+    {
+      "id": "app-build-validation",
+      "result": "pass",
+      "details": "aps-ai-web Next.js production build completes after MCP integration updates."
+    }
+  ]
+}

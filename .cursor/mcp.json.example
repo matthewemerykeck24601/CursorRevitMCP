@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "revit-public-mcp": {
+      "command": "C:\\Program Files\\Autodesk\\Revit 2026\\Autodesk.RevitMcpServer.Stdio.exe",
+      "args": []
+    },
+    "revit-2026-community-mcp": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "mcp-server-for-revit@1.0.0"]
+    },
+    "aps-ai-web-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "aps-ai-web/mcp-server/src/index.ts"
+      ]
+    }
+  }
+}

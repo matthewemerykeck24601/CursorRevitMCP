@@ -1,0 +1,1629 @@
+{
+  "fileName": "WAP060_061StackDesign",
+  "createdAt": "2026-04-07T20:01:28.222Z",
+  "pieceLinks": [
+    {
+      "dbId": 107124,
+      "externalId": "453edbad-c663-4c33-ab9b-f466decd28d3-00409390",
+      "pieceId": "WPA060"
+    },
+    {
+      "dbId": 107213,
+      "externalId": "55658ee6-93f9-4068-933a-252635871646-004263c9",
+      "pieceId": "WPA061"
+    }
+  ],
+  "selectionContext": {
+    "hubId": "b.f61b9f7b-5481-4d25-a552-365ba99077b8",
+    "hubName": "Metromont Development",
+    "projectId": "b.f6b781df-a455-4a6d-adc7-a358bca27cfe",
+    "projectNumber": "REVIT",
+    "projectName": "REVIT 2025 TEST MODELS",
+    "modelItemId": "urn:adsk.wipprod:dm.lineage:xYBJTKUzQqSdrvxjkwMjVA",
+    "modelVersionId": "urn:adsk.wipprod:fs.file:vf.xYBJTKUzQqSdrvxjkwMjVA?version=4",
+    "modelName": "02025 - Clemson Parking Deck.rvt",
+    "modelUrn": "dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLnhZQkpUS1V6UXFTZHJ2eGprd01qVkE_dmVyc2lvbj00"
+  },
+  "products": [
+    {
+      "dbId": 107124,
+      "name": "WALL_PANEL [4232080]",
+      "externalId": "453edbad-c663-4c33-ab9b-f466decd28d3-00409390",
+      "controlMark": "WPA060",
+      "controlNumber": "581",
+      "constructionProduct": "WALL PANEL VERTICAL",
+      "designNumber": "WP2",
+      "level": "",
+      "elevations": {
+        "base": "",
+        "top": ""
+      },
+      "dimensions": {
+        "length": "37.645833333333336",
+        "width": "11.9375",
+        "height": "",
+        "volume": "11.096225565843923",
+        "lengthNum": 37.645833333333336,
+        "widthNum": 11.9375,
+        "heightNum": 0,
+        "volumeNum": 11.096225565843923
+      },
+      "levelCrossings": {
+        "note": "Placeholder: level crossing geometry extraction to be refined.",
+        "points": []
+      },
+      "properties": [
+        {
+          "displayName": "child",
+          "displayValue": "107417",
+          "units": null
+        },
+        {
+          "displayName": "parent",
+          "displayValue": "107105",
+          "units": null
+        },
+        {
+          "displayName": "viewable_in",
+          "displayValue": "532ad1e8-06ea-4fdc-981b-69bbbe40b20f-00aaed67",
+          "units": null
+        },
+        {
+          "displayName": "viewable_in",
+          "displayValue": "c884ae1b-61e7-4f9d-0001-719e20b22d0b-00b1ca92",
+          "units": null
+        },
+        {
+          "displayName": "Category",
+          "displayValue": "Revit Structural Framing",
+          "units": null
+        },
+        {
+          "displayName": "Workset",
+          "displayValue": "Workset1",
+          "units": ""
+        },
+        {
+          "displayName": "Edited by",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CategoryId",
+          "displayValue": "-2001320",
+          "units": null
+        },
+        {
+          "displayName": "Export to IFC",
+          "displayValue": "By Type",
+          "units": ""
+        },
+        {
+          "displayName": "IfcGUID",
+          "displayValue": "15FjkjncDCCwkRz6RUZRj3",
+          "units": ""
+        },
+        {
+          "displayName": "Image",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Export to IFC As",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "IFC Predefined Type",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Comments",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Mark",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Name",
+          "displayValue": "08\"",
+          "units": ""
+        },
+        {
+          "displayName": "Room Name",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Room Number",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "IDENTITY_DESCRIPTION_SHORT",
+          "displayValue": "WPAXX",
+          "units": ""
+        },
+        {
+          "displayName": "HOST_GUID",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Phase Created",
+          "displayValue": "New Construction",
+          "units": ""
+        },
+        {
+          "displayName": "Phase Demolished",
+          "displayValue": "None",
+          "units": ""
+        },
+        {
+          "displayName": "Rebar Cover - Other Faces",
+          "displayValue": "Rebar Cover 1 <0' - 1\">",
+          "units": ""
+        },
+        {
+          "displayName": "Volume",
+          "displayValue": "11.096225565843923",
+          "units": "autodesk.unit.unit:cubicYards-1.0.1"
+        },
+        {
+          "displayName": "--",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "---",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_LENGTH",
+          "displayValue": "37.645833333333336",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "LENGTH",
+          "displayValue": "37.645833333333336",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Rebar Cover - Top Face",
+          "displayValue": "Rebar Cover 1 <0' - 1\">",
+          "units": ""
+        },
+        {
+          "displayName": "Rebar Cover - Bottom Face",
+          "displayValue": "Rebar Cover 1 <0' - 1\">",
+          "units": ""
+        },
+        {
+          "displayName": "Schedule Level",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Work Plane",
+          "displayValue": "<not associated>",
+          "units": ""
+        },
+        {
+          "displayName": "Offset from Host",
+          "displayValue": "-2.660982545421575e-12",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "IDENTITY_COMMENT",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "WEIGHT_PER_UNIT",
+          "displayValue": "150",
+          "units": ""
+        },
+        {
+          "displayName": "PROD_ERECT_SEQUENCE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CONSTRUCTION_PRODUCT_HOST",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "BOM_PRODUCT_HOST",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_SQFT",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DESIGN_NUMBER",
+          "displayValue": "WP2",
+          "units": ""
+        },
+        {
+          "displayName": "LOC_ID",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "PRODUCT_CODE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "HANDLING_CODE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "RELEASE_STRENGTH",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "FINAL_STRENGTH",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_3",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_4",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_5",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_6",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_SF_1",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "ARCH_SF_2",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "ARCH_SF_3",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "ARCH_SF_4",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "MEMBER_WEIGHT_CAST",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:poundsForce-1.0.1"
+        },
+        {
+          "displayName": "MEMBER_VOLUME_CAST",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:cubicYards-1.0.1"
+        },
+        {
+          "displayName": "ORDER_BY",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "TICKET_IS_REINFORCED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "TICKET_IS_DETAILED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "TICKET_IS_RELEASED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "PIECE_PLANT",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_DIAGONAL",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "FABRICATOR_NOTES",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ERECTION_SEQUENCE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "STRUCT_MIX_NUM",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_1",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_2",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_3",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_4",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "TOP_FINISH",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CROSS_SECTION",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_WIDTH",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Viewpoint Constant",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "VIEWPOINT_INV_NUMBER",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Element ID",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Back_ON_OFF1",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Back_ON_OFF2",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Face_ON_OFF1",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Face_ON_OFF2",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter1_flip_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter1_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter2_flip_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter2_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_1_FLIP_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_1_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_2_FLIP_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_2_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "miter_half_joint",
+          "displayValue": "0.03125",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "PANEL_WIDTH",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "XX",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "YY",
+          "displayValue": "37.645833333333336",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Reference Level",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "VERT_PANEL",
+          "displayValue": "1",
+          "units": ""
+        },
+        {
+          "displayName": "HORIZ_PANEL",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "-",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CONSTRUCTION_PRODUCT",
+          "displayValue": "WALL PANEL VERTICAL",
+          "units": ""
+        },
+        {
+          "displayName": "CONTROL_NUMBER",
+          "displayValue": "581",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_LENGTH_ACTUAL",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "DIM_WIDTH_ACTUAL",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "DESIGN_SHEET",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DESIGN_TYPE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ON_HOLD",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "ELECTRICAL_CONTAINED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "WIDTH",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "_",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Slope_Angle",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:degrees-1.0.1"
+        },
+        {
+          "displayName": "__",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CHAMFER_SIZE",
+          "displayValue": "0.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "____",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "MITER_JOINT",
+          "displayValue": "0.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "QUIRK_SIZE",
+          "displayValue": "0.10416666666666669",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "___",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Base_Grout_Joint_Thickness",
+          "displayValue": "0.08333333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Back_Edge1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Back_Edge2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Face_Edge1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Face_Edge2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Miter_Edge1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Miter_Edge2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Flip_Miter",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Grout_Included",
+          "displayValue": "1",
+          "units": ""
+        },
+        {
+          "displayName": "CONTROL_MARK",
+          "displayValue": "WPA060",
+          "units": ""
+        },
+        {
+          "displayName": "IDENTITY_DESCRIPTION",
+          "displayValue": "PRECAST CONCRETE VERTICAL WALL PANEL",
+          "units": ""
+        },
+        {
+          "displayName": "PIECE_STATUS",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Host Family",
+          "displayValue": "107417",
+          "units": null
+        },
+        {
+          "displayName": "Keynote",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Model",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Manufacturer",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "URL",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Description",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Cost",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:currency-1.0.0"
+        },
+        {
+          "displayName": "OmniClass Title",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Export Type to IFC",
+          "displayValue": "Default",
+          "units": ""
+        },
+        {
+          "displayName": "Type IfcGUID",
+          "displayValue": "0vjB434CP0jQ4raGRoFvY8",
+          "units": ""
+        },
+        {
+          "displayName": "Section Shape",
+          "displayValue": "Not Defined",
+          "units": ""
+        },
+        {
+          "displayName": "Export Type to IFC As",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type IFC Predefined Type",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Comments",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Section Name Key",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Assembly Description",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Assembly Code",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Mark",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Image",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "OmniClass Number",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Code Name",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Fire Rating",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Structural Material",
+          "displayValue": "PRECAST CONCRETE",
+          "units": ""
+        },
+        {
+          "displayName": "Default Elevation",
+          "displayValue": "4",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "SORTING_ORDER",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_THICKNESS",
+          "displayValue": "0.6666666666666667",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MAX_WIDTH",
+          "displayValue": "13.333333333333334",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Grout_Material",
+          "displayValue": "NON-SHRINK NON-METALLIC GROUT",
+          "units": ""
+        },
+        {
+          "displayName": "Precaster",
+          "displayValue": "Metromont",
+          "units": ""
+        }
+      ]
+    },
+    {
+      "dbId": 107213,
+      "name": "WALL_PANEL [4351159]",
+      "externalId": "55658ee6-93f9-4068-933a-252635871646-004263c9",
+      "controlMark": "WPA061",
+      "controlNumber": "596",
+      "constructionProduct": "WALL PANEL VERTICAL",
+      "designNumber": "WP2",
+      "level": "",
+      "elevations": {
+        "base": "",
+        "top": ""
+      },
+      "dimensions": {
+        "length": "25.0625",
+        "width": "11.9375",
+        "height": "",
+        "volume": "7.387249228395261",
+        "lengthNum": 25.0625,
+        "widthNum": 11.9375,
+        "heightNum": 0,
+        "volumeNum": 7.387249228395261
+      },
+      "levelCrossings": {
+        "note": "Placeholder: level crossing geometry extraction to be refined.",
+        "points": []
+      },
+      "properties": [
+        {
+          "displayName": "child",
+          "displayValue": "108988",
+          "units": null
+        },
+        {
+          "displayName": "parent",
+          "displayValue": "107105",
+          "units": null
+        },
+        {
+          "displayName": "viewable_in",
+          "displayValue": "532ad1e8-06ea-4fdc-981b-69bbbe40b20f-00aaed67",
+          "units": null
+        },
+        {
+          "displayName": "viewable_in",
+          "displayValue": "c884ae1b-61e7-4f9d-0001-719e20b22d0b-00b1ca92",
+          "units": null
+        },
+        {
+          "displayName": "Category",
+          "displayValue": "Revit Structural Framing",
+          "units": null
+        },
+        {
+          "displayName": "Workset",
+          "displayValue": "Workset1",
+          "units": ""
+        },
+        {
+          "displayName": "Edited by",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CategoryId",
+          "displayValue": "-2001320",
+          "units": null
+        },
+        {
+          "displayName": "Export to IFC",
+          "displayValue": "By Type",
+          "units": ""
+        },
+        {
+          "displayName": "IfcGUID",
+          "displayValue": "1LPOxca$b0Q9Cw9IOrnNMF",
+          "units": ""
+        },
+        {
+          "displayName": "Image",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Export to IFC As",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "IFC Predefined Type",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Comments",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Mark",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Name",
+          "displayValue": "08\"",
+          "units": ""
+        },
+        {
+          "displayName": "Room Name",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Room Number",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "IDENTITY_DESCRIPTION_SHORT",
+          "displayValue": "WPAXX",
+          "units": ""
+        },
+        {
+          "displayName": "HOST_GUID",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Phase Created",
+          "displayValue": "New Construction",
+          "units": ""
+        },
+        {
+          "displayName": "Phase Demolished",
+          "displayValue": "None",
+          "units": ""
+        },
+        {
+          "displayName": "Rebar Cover - Other Faces",
+          "displayValue": "Rebar Cover 1 <0' - 1\">",
+          "units": ""
+        },
+        {
+          "displayName": "Volume",
+          "displayValue": "7.387249228395261",
+          "units": "autodesk.unit.unit:cubicYards-1.0.1"
+        },
+        {
+          "displayName": "--",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "---",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_LENGTH",
+          "displayValue": "25.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "LENGTH",
+          "displayValue": "25.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Rebar Cover - Top Face",
+          "displayValue": "Rebar Cover 1 <0' - 1\">",
+          "units": ""
+        },
+        {
+          "displayName": "Rebar Cover - Bottom Face",
+          "displayValue": "Rebar Cover 1 <0' - 1\">",
+          "units": ""
+        },
+        {
+          "displayName": "Schedule Level",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Work Plane",
+          "displayValue": "<not associated>",
+          "units": ""
+        },
+        {
+          "displayName": "Offset from Host",
+          "displayValue": "2.333333333336988",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "IDENTITY_COMMENT",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "WEIGHT_PER_UNIT",
+          "displayValue": "150",
+          "units": ""
+        },
+        {
+          "displayName": "PROD_ERECT_SEQUENCE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CONSTRUCTION_PRODUCT_HOST",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "BOM_PRODUCT_HOST",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_SQFT",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DESIGN_NUMBER",
+          "displayValue": "WP2",
+          "units": ""
+        },
+        {
+          "displayName": "LOC_ID",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "PRODUCT_CODE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "HANDLING_CODE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "RELEASE_STRENGTH",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "FINAL_STRENGTH",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_3",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_4",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_5",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "AW_6",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_SF_1",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "ARCH_SF_2",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "ARCH_SF_3",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "ARCH_SF_4",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:squareFeet-1.0.1"
+        },
+        {
+          "displayName": "MEMBER_WEIGHT_CAST",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:poundsForce-1.0.1"
+        },
+        {
+          "displayName": "MEMBER_VOLUME_CAST",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:cubicYards-1.0.1"
+        },
+        {
+          "displayName": "ORDER_BY",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "TICKET_IS_REINFORCED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "TICKET_IS_DETAILED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "TICKET_IS_RELEASED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "PIECE_PLANT",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_DIAGONAL",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "FABRICATOR_NOTES",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ERECTION_SEQUENCE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "STRUCT_MIX_NUM",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_1",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_2",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_3",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ARCH_MIX_NUM_4",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "TOP_FINISH",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CROSS_SECTION",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_WIDTH",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Viewpoint Constant",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "VIEWPOINT_INV_NUMBER",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Element ID",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Back_ON_OFF1",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Back_ON_OFF2",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Face_ON_OFF1",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Face_ON_OFF2",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter1_flip_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter1_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter2_flip_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "grout_miter2_onoff",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_1_FLIP_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_1_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_2_FLIP_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MITER_EDGE_2_ON_OFF",
+          "displayValue": "0.005208333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "miter_half_joint",
+          "displayValue": "0.03125",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "PANEL_WIDTH",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "XX",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "YY",
+          "displayValue": "25.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Reference Level",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "VERT_PANEL",
+          "displayValue": "1",
+          "units": ""
+        },
+        {
+          "displayName": "HORIZ_PANEL",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "-",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CONSTRUCTION_PRODUCT",
+          "displayValue": "WALL PANEL VERTICAL",
+          "units": ""
+        },
+        {
+          "displayName": "CONTROL_NUMBER",
+          "displayValue": "596",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_LENGTH_ACTUAL",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "DIM_WIDTH_ACTUAL",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "DESIGN_SHEET",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "DESIGN_TYPE",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "ON_HOLD",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "ELECTRICAL_CONTAINED",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "WIDTH",
+          "displayValue": "11.9375",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "_",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Slope_Angle",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:degrees-1.0.1"
+        },
+        {
+          "displayName": "__",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "CHAMFER_SIZE",
+          "displayValue": "0.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "____",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "MITER_JOINT",
+          "displayValue": "0.0625",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "QUIRK_SIZE",
+          "displayValue": "0.10416666666666669",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "___",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Base_Grout_Joint_Thickness",
+          "displayValue": "0.08333333333333333",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Chamfer_Back_Edge1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Back_Edge2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Face_Edge1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Chamfer_Face_Edge2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Miter_Edge1",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Miter_Edge2",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Flip_Miter",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "Grout_Included",
+          "displayValue": "1",
+          "units": ""
+        },
+        {
+          "displayName": "CONTROL_MARK",
+          "displayValue": "WPA061",
+          "units": ""
+        },
+        {
+          "displayName": "IDENTITY_DESCRIPTION",
+          "displayValue": "PRECAST CONCRETE VERTICAL WALL PANEL",
+          "units": ""
+        },
+        {
+          "displayName": "PIECE_STATUS",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Host Family",
+          "displayValue": "108988",
+          "units": null
+        },
+        {
+          "displayName": "Keynote",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Model",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Manufacturer",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "URL",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Description",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Cost",
+          "displayValue": "0",
+          "units": "autodesk.unit.unit:currency-1.0.0"
+        },
+        {
+          "displayName": "OmniClass Title",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Export Type to IFC",
+          "displayValue": "Default",
+          "units": ""
+        },
+        {
+          "displayName": "Type IfcGUID",
+          "displayValue": "0vjB434CP0jQ4raGRoFvY8",
+          "units": ""
+        },
+        {
+          "displayName": "Section Shape",
+          "displayValue": "Not Defined",
+          "units": ""
+        },
+        {
+          "displayName": "Export Type to IFC As",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type IFC Predefined Type",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Comments",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Section Name Key",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Assembly Description",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Assembly Code",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Mark",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Type Image",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "OmniClass Number",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Code Name",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Fire Rating",
+          "displayValue": "",
+          "units": ""
+        },
+        {
+          "displayName": "Structural Material",
+          "displayValue": "PRECAST CONCRETE",
+          "units": ""
+        },
+        {
+          "displayName": "Default Elevation",
+          "displayValue": "4",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "SORTING_ORDER",
+          "displayValue": "0",
+          "units": ""
+        },
+        {
+          "displayName": "DIM_THICKNESS",
+          "displayValue": "0.6666666666666667",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "MAX_WIDTH",
+          "displayValue": "13.333333333333334",
+          "units": "autodesk.unit.unit:feetFractionalInches-1.0.0"
+        },
+        {
+          "displayName": "Grout_Material",
+          "displayValue": "NON-SHRINK NON-METALLIC GROUT",
+          "units": ""
+        },
+        {
+          "displayName": "Precaster",
+          "displayValue": "Metromont",
+          "units": ""
+        }
+      ]
+    }
+  ]
+}

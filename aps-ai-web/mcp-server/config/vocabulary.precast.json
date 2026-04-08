@@ -1,0 +1,16 @@
+{
+  "aliases": {
+    "piece": "structural_framing",
+    "product": "structural_framing",
+    "panel": "structural_framing",
+    "piece_id": "CONTROL_MARK"
+  },
+  "phrases": {
+    "structural_framing": [
+      "structural framing",
+      "structrual framing",
+      "precast",
+      "concrete product"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "priorityOrder": [
+    "CONTROL_MARK",
+    "CONTROL_NUMBER",
+    "DIM_*",
+    "IDENTITY_DESCRIPTION",
+    "CONSTRUCTION_PRODUCT",
+    "DESIGN_NUMBER"
+  ],
+  "aliases": {
+    "PIECE_ID": "CONTROL_MARK",
+    "piece id": "CONTROL_MARK"
+  }
+}

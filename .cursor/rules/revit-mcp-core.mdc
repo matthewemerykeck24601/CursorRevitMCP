@@ -1,0 +1,18 @@
+---
+description: Persistent Revit MCP workflow defaults
+alwaysApply: true
+---
+
+# Revit MCP Core Defaults
+
+- Use `user-revit-2026-community-mcp` as the default execution server for model edits.
+- Before any model-edit action, verify the active document context (`project` vs `family`) with a lightweight query.
+- Prefer `send_code_to_revit` for controlled Revit API operations and include clear success/error payloads.
+- Keep operations deterministic:
+  - stable element filtering
+  - explicit family/type selection
+  - explicit level selection
+  - explicit tags in `Comments` for traceability and cleanup
+- For large model actions, split into small batches to avoid MCP timeout.
+- After every edit pass, run a verification query and report counts/results to user.
+- Never assume model state from prior chats; re-query current IDs and geometry first.

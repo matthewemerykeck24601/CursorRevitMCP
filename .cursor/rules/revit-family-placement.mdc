@@ -1,0 +1,20 @@
+---
+description: Structural family placement and filtering conventions
+alwaysApply: true
+---
+
+# Structural Family Placement Conventions
+
+- Treat user terms like `pieces`, `products`, and family-name shorthand as Structural Framing intent first.
+- Exclude standalone placement of families whose **family name** contains `DO NOT USE` unless user explicitly asks.
+- If a placed host family creates nested `DO NOT USE` content, this is valid and should not be blocked.
+- Place one representative type per family by default; avoid type names with `DO NOT USE` when alternatives exist.
+- Always return:
+  - placed family/type
+  - created element IDs
+  - key dimensions/behavior readback when relevant
+- For comparison/study layouts:
+  - place inside current grid bounds
+  - enforce no-touch spacing via bbox checks
+  - tag with a run label in `Comments` for cleanup
+- Keep family behavior notes concise: placement type, primary driving params, known clamps/formulas.
