@@ -6,6 +6,10 @@ import {
   type AecdmElementRow,
 } from "../lib/aecdmMarkGrouping.js";
 import { resolveAecProjectId } from "../lib/apsForAecMarks.js";
+import {
+  mergeParameterPatchesIntoWorkitemArgs,
+  parseDaParameterPatchesFromRequest,
+} from "../lib/da-parameter-patch.js";
 import { submitMarkUpdateWorkitemMcp } from "../lib/daWorkitemsMcp.js";
 import { getElementsByCategory } from "./apsQueryTools.js";
 
@@ -241,12 +245,33 @@ export const analyzePublishedModelAndCache = {
 export const triggerDesignAutomationMarkUpdate = {
   name: "trigger_design_automation_mark_update" as const,
   description:
-    "Takes cached analysis results and runs APS Design Automation on the central Revit model to apply CONTROL_MARKs and other parameter updates.",
+    "Runs APS Design Automation on the central Revit model. Uses standard parameter names in marks/parameter_patches; optional shared_parameter_guid_map only when duplicate definition names exist on elements.",
   parameters: z.object({
     cache_id: z.string(),
     confirm: z.boolean().default(false),
     /** Merged into the Design Automation payload when present (e.g. extra parameter intents). */
     additional_updates: z.record(z.string(), z.unknown()).optional(),
+    /**
+     * Generic instance-parameter edits (same Revit code path for all names).
+     * Each row: externalIds + set { PARAM_NAME: value }.
+     */
+    parameter_patches: z
+      .array(
+        z.object({
+          externalIds: z.array(z.string()),
+          set: z.record(
+            z.string(),
+            z.union([z.string(), z.number(), z.boolean(), z.null()]),
+          ),
+        }),
+      )
+      .optional(),
+    /**
+     * Only when Revit has duplicate definition names on elements: map param name → shared GUID.
+     */
+    shared_parameter_guid_map: z
+      .record(z.string(), z.string())
+      .optional(),
   }),
 
   async handler(
@@ -254,14 +279,24 @@ export const triggerDesignAutomationMarkUpdate = {
       cache_id: string;
       confirm: boolean;
       additional_updates?: Record<string, unknown>;
+      parameter_patches?: unknown[];
+      shared_parameter_guid_map?: Record<string, string>;
     },
     _context: PrecastDaContext,
   ) {
-    const { cache_id, confirm, additional_updates } = params;
+    const {
+      cache_id,
+      confirm,
+      additional_updates,
+      parameter_patches,
+      shared_parameter_guid_map,
+    } = params;
 
     if (!confirm) {
       return {
         success: false,
+        workitem_submitted: false,
+        revit_cloud_model_updated: false,
         message:
           "Confirmation required. Set confirm: true to proceed with Design Automation.",
         cache_id,
@@ -290,21 +325,42 @@ export const triggerDesignAutomationMarkUpdate = {
       args.additional_updates = additional_updates;
     }
 
+    const patches = parseDaParameterPatchesFromRequest(parameter_patches);
+    let workitemArguments = mergeParameterPatchesIntoWorkitemArgs(args, patches);
+    if (
+      shared_parameter_guid_map &&
+      Object.keys(shared_parameter_guid_map).length > 0
+    ) {
+      const existing = workitemArguments.sharedParameterGuidMap;
+      const base =
+        existing && typeof existing === "object" && !Array.isArray(existing)
+          ? { ...(existing as Record<string, string>) }
+          : {};
+      workitemArguments = {
+        ...workitemArguments,
+        sharedParameterGuidMap: { ...base, ...shared_parameter_guid_map },
+      };
+    }
+
     try {
-      const da = await submitMarkUpdateWorkitemMcp({ workitemArguments: args });
+      const da = await submitMarkUpdateWorkitemMcp({ workitemArguments });
       if (da) {
         return {
           success: true,
+          workitem_submitted: true,
+          revit_cloud_model_updated: false,
           workitem_id: da.id,
           status: da.status ?? "submitted",
           applied_marks: cached.proposed_marks,
-          note: "Workitem submitted. Sync central model in Revit; next publish updates Viewer.",
+          note: "Workitem submitted to Design Automation. Revit central file updates only after the activity completes; then users sync locally. Viewer updates after next publish.",
           da_raw: da.raw,
         };
       }
     } catch (e) {
       return {
         success: false,
+        workitem_submitted: false,
+        revit_cloud_model_updated: false,
         message: `DA submit failed: ${e instanceof Error ? e.message : String(e)}`,
         cache_id,
       };
@@ -312,12 +368,15 @@ export const triggerDesignAutomationMarkUpdate = {
 
     return {
       success: true,
+      workitem_submitted: false,
+      da_stub: true,
+      revit_cloud_model_updated: false,
       workitem_id: "da-stub-" + Date.now(),
       status: "stub",
       message:
-        "DA_ENABLED is not true — no workitem posted. Set DA_ENABLED=true and DA_ACTIVITY_ID in MCP server environment.",
+        "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true and DA_ACTIVITY_ID in MCP server environment.",
       applied_marks: cached.proposed_marks,
-      note: "Users must Sync their local model to see changes. Next publish will update the Viewer.",
+      note: "No cloud write occurred. CONTROL_MARK values in Revit are unchanged by this action.",
     };
   },
 };

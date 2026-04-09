@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage
+  SchemaVersion="1.0"
+  AutodeskProduct="Revit"
+  Name="RevitMarkWorkitem"
+  Description="Apply cached CONTROL_MARK and parameterPatches from JSON payload (Design Automation)."
+  AppVersion="1.0.0"
+  FriendlyVersion="1.0.0"
+  ProductType="Application"
+  SupportedLocales="Enu"
+  AppNameSpace="appstore.autodesk.com">
+  <CompanyDetails Name="Metromont" Url="" Email="" />
+  <Components Description="Revit 2024">
+    <RuntimeRequirements SeriesMax="R2024" SeriesMin="R2024" OS="Win64" Platform="Revit" />
+    <ComponentEntry AppName="RevitMarkWorkitem" Version="1.0.0" ModuleName="./Contents/RevitMarkWorkitem.dll" />
+  </Components>
+</ApplicationPackage>

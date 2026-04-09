@@ -9,12 +9,18 @@ Starter bundle for applying **cached CONTROL_MARK proposals** to the **central**
 - `Source/MarkWorkitemApp.cs` — entry stub: read JSON payload, locate elements by **External ID** (must match AEC `External ID` / Viewer `externalId`), set `CONTROL_MARK`, optional SWC.
 - `RevitMarkWorkitem.csproj` — targets **.NET Framework 4.8** + Revit API (adjust `RevitInstallPath` for your engine, e.g. DA **Revit 2024**).
 
-## Build
+## Build & publish AppBundle
 
-1. Install matching **Revit** or copy `RevitAPI.dll` / `RevitAPIUI.dll` from the DA engine image.
-2. Set `RevitInstallPath` in the `.csproj` or define `REVIT_API_PATH` and use `Directory.Build.props`.
-3. `dotnet build -c Release`
-4. Zip for AppBundle: `RevitMarkWorkitem.dll`, dependencies, `PackageContents.xml` (create per [DA Revit bundle](https://aps.autodesk.com/en/docs/design-automation/v3/developers_guide/revit/) docs).
+1. Install **Revit 2024** (or set `REVIT_INSTALL_PATH` / `-RevitInstallPath` to the folder that contains `RevitAPI.dll`).
+2. From this folder, run:
+   - `.\build-appbundle.ps1` — `dotnet build` + `RevitMarkWorkitem-AppBundle.zip` (`PackageContents.xml` + `Contents/*.dll`).
+3. Upload a **new version** to Design Automation (two-legged `code:all`):
+   - Set `APS_CLIENT_ID`, `APS_CLIENT_SECRET`, `DA_APPBUNDLE_ID` (your registered bundle id).
+   - `.\publish-appbundle.ps1` — POST new version + multipart upload to signed URL (see [Revit publish tutorial](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step4-publish-appbundle/)).
+4. First-time bundle only: `.\publish-appbundle.ps1 -InitializeBundle` with `DA_APPBUNDLE_ID` set to the **new** id and `DA_ENGINE` if not `Autodesk.Revit+2024`.
+5. Bump your **Activity** alias (or `DA_ACTIVITY_ID`) to the new AppBundle version after upload.
+
+Manual reference: [DA Revit developer guide](https://aps.autodesk.com/en/docs/design-automation/v3/developers_guide/revit/).
 
 ## Workitem arguments (from web/MCP)
 

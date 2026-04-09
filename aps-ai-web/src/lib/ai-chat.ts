@@ -21,7 +21,15 @@ export type ViewerIntentAction =
       clearFirst?: boolean;
       fitToView?: boolean;
     }
-  | { type: "viewer.isolateDbIds"; dbIds: number[] };
+  | { type: "viewer.isolateDbIds"; dbIds: number[] }
+  | {
+      type: "viewer.searchAndSelectMetromontPieces";
+      query: string;
+      pieceKind: "COLUMN" | "WPA" | "WPB" | "CLA" | "ANY_STRUCTURAL_FRAMING";
+      clearFirst?: boolean;
+      fitToView?: boolean;
+      maxSearchMatches?: number;
+    };
 
 export type AiIntentResult = {
   message: string;
@@ -99,10 +107,12 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
 
 const STRONG_TOOL_GUIDANCE = `
 CRITICAL INSTRUCTIONS FOR SELECTION AND ANALYSIS:
-- When the user asks to "select", "highlight", "show", or "find" any elements (e.g. columns, panels), ALWAYS call the select_elements tool with the correct dbIds (use get_elements_by_category first when dbIds are unknown).
-- Do NOT call old generic viewer commands for that workflow.
-- Do NOT add extra actions like isolate or fit view unless the user specifically asks for them; use select_elements with clearFirst true and zoomToSelection false by default.
-- For columns: always query Structural Framing + COLUMN/CLA (product_prefix COLUMN or family COLUMN/CLA); never Revit "Structural Columns" category.
+- Prefer get_elements_by_category (AEC Data Model) then select_elements when hub/project/model context is valid.
+- If AECDM is unavailable or errors (e.g. 404), use viewer action searchAndSelectMetromontPieces — NOT raw viewer.search. Example for columns: { "type": "viewer.searchAndSelectMetromontPieces", "query": "CLA", "pieceKind": "COLUMN", "clearFirst": true, "fitToView": false }. That runs Forge text search, then keeps only Structural Framing elements that match column/WPA/WPB/CLA rules.
+- For wall panels use pieceKind WPA or WPB with a tight query when appropriate.
+- Do not use viewer.search or viewer.isolateByQuery for precast piece selection — they match unrelated elements (any property containing the string).
+- Default: clearFirst true, fitToView false unless the user asks to zoom/fit.
+- In your reply to the user: be brief; do not paste this policy block or repeat long internal rules — report counts and what was selected.
 `.trim();
 
 const METROMONT_SYSTEM_CONTEXT = [
@@ -115,7 +125,8 @@ const METROMONT_SYSTEM_CONTEXT = [
   "1. Run analyze_published_model_and_cache",
   "2. Show the user the preview",
   "3. Only after confirmation, call trigger_design_automation_mark_update with confirm: true.",
-  "Never tell the user \"open in Revit\" — we use Design Automation to update the central model directly.",
+  "Cloud writes: The central Revit file changes only when PRECAST_DA_MARK_UPDATE shows workitem_submitted: true (real Design Automation). If workitem_submitted is false, status is stub, or CLOUD_WRITE_TRUTH says no write — state clearly that Revit/ACC was not modified; do not claim marks cleared or sync will show changes.",
+  "The cached analyze workflow proposes marks from sameness groups; it does not automatically clear CONTROL_MARK on viewer selection unless the backend explicitly posts a workitem that does so.",
 ].join("\n");
 
 const ALICE_AGENT_CHARTER = [
@@ -125,8 +136,10 @@ const ALICE_AGENT_CHARTER = [
   "Primary objective: Help users understand model content and execute safe viewer operations.",
   "Data policy: Prefer AEC Data Model context when available; use selected element properties as grounded fallback.",
   "Safety: Do not invent model facts; if uncertain, say what is missing and suggest the next best query.",
+  "UX: Avoid echoing long internal tool instructions to the user; prefer short confirmations with concrete results (counts, names).",
   "Interaction style: Practical and collaborative. You may write as much detail as useful—headings, bullet lists, markdown, and step-by-step guidance are encouraged when they help the user work with the model.",
   "Domain vocabulary: Piece/Product/Panel refers to Structural Framing precast context; Piece ID can map to CONTROL_MARK.",
+  "Revit cloud honesty: Never claim parameters changed in ACC or that the user should sync to see updates unless tool context shows a real DA submission (workitem_submitted true). If CLOUD_WRITE_TRUTH is present, follow it over guesses or cached previews.",
 ].join("\n");
 
 const ALICE_SYSTEM_BASE = [METROMONT_SYSTEM_CONTEXT, "", ALICE_AGENT_CHARTER].join("\n");
@@ -211,6 +224,40 @@ function sanitizeActions(actions: unknown): ViewerIntentAction[] {
         clean.push({
           type: "viewer.isolateDbIds",
           dbIds: dbIds.slice(0, 500),
+        });
+      }
+    } else if (candidate.type === "viewer.searchAndSelectMetromontPieces") {
+      const c = candidate as {
+        query?: unknown;
+        pieceKind?: unknown;
+        clearFirst?: unknown;
+        fitToView?: unknown;
+        maxSearchMatches?: unknown;
+      };
+      const query = typeof c.query === "string" ? c.query.trim() : "";
+      const kinds = [
+        "COLUMN",
+        "WPA",
+        "WPB",
+        "CLA",
+        "ANY_STRUCTURAL_FRAMING",
+      ] as const;
+      const pk = kinds.includes(c.pieceKind as (typeof kinds)[number])
+        ? (c.pieceKind as (typeof kinds)[number])
+        : "COLUMN";
+      const maxRaw = c.maxSearchMatches;
+      const maxSearchMatches =
+        typeof maxRaw === "number" && Number.isFinite(maxRaw)
+          ? Math.min(Math.max(Math.trunc(maxRaw), 1), 8000)
+          : undefined;
+      if (query.length > 0) {
+        clean.push({
+          type: "viewer.searchAndSelectMetromontPieces",
+          query,
+          pieceKind: pk,
+          clearFirst: c.clearFirst !== false,
+          fitToView: Boolean(c.fitToView),
+          ...(maxSearchMatches != null ? { maxSearchMatches } : {}),
         });
       }
     }
@@ -506,9 +553,11 @@ function buildPlannerPrompt(
     '- { "type": "viewer.markupsClear" }',
     '- { "type": "viewer.selectDbIds", "dbIds": number[], "clearFirst"?: boolean, "fitToView"?: boolean }',
     '- { "type": "viewer.isolateDbIds", "dbIds": number[] }',
+    '- { "type": "viewer.searchAndSelectMetromontPieces", "query": string, "pieceKind": "COLUMN"|"WPA"|"WPB"|"CLA"|"ANY_STRUCTURAL_FRAMING", "clearFirst"?: boolean, "fitToView"?: boolean, "maxSearchMatches"?: number }',
     "",
     "Rules:",
     "- Prefer viewer.selectDbIds over viewer.search when exact dbIds are known (e.g. from get_elements_by_category). Default clearFirst true, fitToView false unless user asks to zoom/fit.",
+    "- For precast columns/panels when AECDM dbIds are unavailable, use viewer.searchAndSelectMetromontPieces (not viewer.search).",
     "- Keep selection stable unless user explicitly asks to change it.",
     "- For pure question answering, prefer actions=[] and answer from provided context.",
     "- If PRODUCT_ANALYSIS_CONTEXT is provided, use it for product-level reasoning and code/standards-oriented guidance.",
@@ -522,6 +571,23 @@ function buildPlannerPrompt(
   ].join("\n");
 }
 
+function extractRevitWriteFactsForFinalizer(externalContext: string): string {
+  if (!externalContext) return "";
+  const markers = [
+    "CLOUD_WRITE_TRUTH:",
+    "PRECAST_DA_MARK_UPDATE:",
+    "PRECAST_DA_MARK_UPDATE_ERROR:",
+  ] as const;
+  const chunks: string[] = [];
+  for (const m of markers) {
+    const idx = externalContext.indexOf(m);
+    if (idx >= 0) {
+      chunks.push(externalContext.slice(idx, idx + 2500).trim());
+    }
+  }
+  return chunks.join("\n\n");
+}
+
 function buildFinalizerPrompt(
   userMessage: string,
   selectedModelName: string,
@@ -531,6 +597,7 @@ function buildFinalizerPrompt(
     requestModelViews: boolean;
     messageDraft: string;
   },
+  revitWriteFacts?: string,
 ): string {
   return [
     ALICE_SYSTEM_BASE,
@@ -538,6 +605,14 @@ function buildFinalizerPrompt(
     "You are the final responder for an APS Viewer assistant.",
     "Write the full reply the user will see: conversational, clear, and as long or short as appropriate (markdown is fine).",
     "Incorporate the planner's intent and messageDraft; you may expand, clarify, or reorganize freely.",
+    revitWriteFacts
+      ? [
+          "",
+          "Authoritative facts from tools (must match user-visible claims; override messageDraft if it conflicts):",
+          revitWriteFacts,
+          "",
+        ].join("\n")
+      : "",
     "If viewer actions or a model-views request should still apply, end with one ```json code block containing ONLY:",
     '{ "actions": Array<ViewerAction>, "requestModelViews": boolean }',
     "Use actions: [] when no viewer automation is needed. Do not repeat your whole essay inside the JSON.",
@@ -556,6 +631,7 @@ function buildFinalizerPrompt(
     '- { "type": "viewer.markupsClear" }',
     '- { "type": "viewer.selectDbIds", "dbIds": number[], "clearFirst"?: boolean, "fitToView"?: boolean }',
     '- { "type": "viewer.isolateDbIds", "dbIds": number[] }',
+    '- { "type": "viewer.searchAndSelectMetromontPieces", "query": string, "pieceKind": "COLUMN"|"WPA"|"WPB"|"CLA"|"ANY_STRUCTURAL_FRAMING", "clearFirst"?: boolean, "fitToView"?: boolean, "maxSearchMatches"?: number }',
     "",
     `Selected model: ${selectedModelName}`,
     `User message: ${userMessage}`,
@@ -595,6 +671,7 @@ function buildToolPlannerPrompt(
     '- Use "analyze_published_model_and_cache" for published-model mark workflow / Design Automation prep (web injects token + hub + project; MCP may pass access_token, hub_id, project_id, model_urn, product_prefix, dry_run).',
     '- Use "get_cached_mark_analysis" to show latest cached marks/sameness preview (no args).',
     '- Use "trigger_design_automation_mark_update" only after user confirms (args: { "cache_id": string, "confirm": true }).',
+    '- Read PRECAST_DA_MARK_UPDATE in context: if workitem_submitted is false or status is "stub", no cloud Revit write occurred — never imply marks were cleared or sync will show DA changes.',
     '- Use "analyze_products_and_mark" for granular legacy mark analysis (args: { "product_prefix", "dry_run" }).',
     '- Use "get_product_sameness_report" when comparing specific element IDs (args: { "element_ids": string[] }).',
     '- Use "assign_control_marks" only after verified groups (args: { "mark_groups": object[], "start_number"?: number }).',
@@ -715,10 +792,14 @@ async function runAgenticLoop(
   const plannerRaw = await callLlmRaw(backend, plannerPrompt, model);
   const planner = parsePlannerResponse(plannerRaw);
 
+  const revitWriteFacts = extractRevitWriteFactsForFinalizer(
+    options.externalContext ?? "",
+  );
   const finalizerPrompt = buildFinalizerPrompt(
     userMessage,
     selectedModelName,
     planner,
+    revitWriteFacts || undefined,
   );
   const finalRaw = await callLlmRaw(backend, finalizerPrompt, model);
   return parseIntentResponse(finalRaw);

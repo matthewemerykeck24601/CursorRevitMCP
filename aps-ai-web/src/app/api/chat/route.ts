@@ -440,12 +440,25 @@ export async function POST(request: NextRequest) {
             );
             externalContext =
               `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(payload)}`.trim();
+            const p = payload as {
+              workitem_submitted?: boolean;
+              status?: string;
+            };
+            const noCloudWrite =
+              p.workitem_submitted === false ||
+              (p.workitem_submitted === undefined && p.status === "stub");
+            if (noCloudWrite) {
+              externalContext =
+                `${externalContext}\nCLOUD_WRITE_TRUTH: The central Revit cloud model was NOT modified. Design Automation did not submit a workitem (disabled/stub or pre-confirm). Do NOT tell the user CONTROL_MARK was cleared in Revit or that syncing will show parameter changes. Quote PRECAST_DA_MARK_UPDATE message/note. Selection-based "clear marks" is not a live cloud write unless DA is enabled and the activity applies that change.`.trim();
+            }
           } catch (error) {
             externalContext =
               `${externalContext}\nPRECAST_DA_MARK_UPDATE_ERROR: ${JSON.stringify({
                 message:
                   error instanceof Error ? error.message : "Unknown error",
               })}`.trim();
+            externalContext =
+              `${externalContext}\nCLOUD_WRITE_TRUTH: Design Automation failed; the central Revit model was not updated.`.trim();
           }
         }
         if (call.tool === "analyze_products_and_mark") {

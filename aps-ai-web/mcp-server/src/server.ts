@@ -33,6 +33,10 @@ import {
   runGetElementsByCategory,
 } from "./tools/apsQueryTools.js";
 import { runSelectElements, selectElements } from "./tools/viewerControlTools.js";
+import {
+  runSharedParametersCatalogStats,
+  runSharedParametersLookup,
+} from "./tools/sharedParametersTools.js";
 
 /** MCP listTools entries — names/descriptions stay in sync with apsQueryTools.ts */
 const apsQueryMcpTools = [
@@ -149,6 +153,18 @@ const designAutomationMcpTools = [
         cache_id: { type: "string" },
         confirm: { type: "boolean", default: false },
         additional_updates: { type: "object", additionalProperties: true },
+        parameter_patches: {
+          type: "array",
+          description:
+            "Generic instance edits: { externalIds[], set: { PARAM: value } } rows; Revit resolves by parameter name; use shared_parameter_guid_map only if duplicate definition names exist on elements.",
+          items: { type: "object", additionalProperties: true },
+        },
+        shared_parameter_guid_map: {
+          type: "object",
+          additionalProperties: { type: "string" },
+          description:
+            "Optional. Param name → Revit shared-parameter GUID, only when multiple parameters share the same definition name on an element.",
+        },
       },
       required: ["cache_id"],
     },
@@ -301,6 +317,45 @@ export function buildServer() {
         },
       },
       {
+        name: "shared_parameters_lookup",
+        description:
+          "Look up Revit shared parameter GUID/datatype/group from bundled Shared_Params_2015_v01.txt (or SHARED_PARAMETERS_FILE_PATH). If no file hit, optional fallback: Autodesk Parameters API (https://aps.autodesk.com/developer/overview/parameters-api) when access_token + parameters_account_id + parameters_group_id + parameters_collection_id are provided (or APS_PARAMETERS_* env for IDs).",
+        inputSchema: {
+          type: "object",
+          properties: {
+            query: { type: "string" },
+            mode: {
+              type: "string",
+              enum: ["exact", "contains", "prefix"],
+              default: "contains",
+            },
+            limit: { type: "integer", default: 30 },
+            by_guid: { type: "boolean", default: false },
+            parameters_api_fallback: { type: "boolean", default: true },
+            access_token: { type: "string" },
+            accessToken: { type: "string" },
+            parameters_account_id: { type: "string" },
+            parametersAccountId: { type: "string" },
+            parameters_group_id: { type: "string" },
+            parametersGroupId: { type: "string" },
+            parameters_collection_id: { type: "string" },
+            parametersCollectionId: { type: "string" },
+          },
+          required: ["query"],
+        },
+      },
+      {
+        name: "shared_parameters_catalog_stats",
+        description:
+          "Report shared-parameter catalog size and source path; set reload=true to clear cache.",
+        inputSchema: {
+          type: "object",
+          properties: {
+            reload: { type: "boolean", default: false },
+          },
+        },
+      },
+      {
         name: "analyze_products_and_mark",
         description:
           "Analyzes selected Structural Framing elements (or all WPA/WPB/COLUMN), runs mark verification using geometric bounds + intersecting elements, groups identical pieces, and assigns CONTROL_MARK starting at 100.",
@@ -373,6 +428,12 @@ export function buildServer() {
     }
     if (name === "set_element_parameters_guarded") {
       return textResult(proposeParameterWrite(args));
+    }
+    if (name === "shared_parameters_lookup") {
+      return textResult(await runSharedParametersLookup(args));
+    }
+    if (name === "shared_parameters_catalog_stats") {
+      return textResult(runSharedParametersCatalogStats(args));
     }
     if (name === "analyze_products_and_mark") {
       return textResult(analyzeProductsAndMark(args));

@@ -1,4 +1,8 @@
 import type { SelectedElementSnapshot } from "@/components/ViewerPanel";
+import {
+  extractFromForgeObjectName,
+  isUsableRevitElementId,
+} from "@/lib/forge-revit-object-name";
 
 export type BimTableRow = {
   elementId: string;
@@ -30,6 +34,10 @@ export const REVIT_ELEMENT_ID_KEYS = [
   "element id",
   "elementid",
   "revit element id",
+  "element id revit",
+  "host element id",
+  "ifc guid",
+  "ifcguid",
 ] as const;
 
 export const REVIT_CATEGORY_KEYS = [
@@ -39,6 +47,9 @@ export const REVIT_CATEGORY_KEYS = [
 export const REVIT_FAMILY_NAME_KEYS = [
   "family name",
   "family",
+  "loadable family name",
+  "structural family name",
+  "symbol family name",
 ] as const;
 
 export const REVIT_TYPE_KEYS = [
@@ -49,11 +60,15 @@ export const REVIT_TYPE_KEYS = [
 export const SHARED_CONTROL_MARK_KEYS = [
   "control_mark",
   "control mark",
+  "controlmark",
+  "metromont_control_mark",
 ] as const;
 
 export const SHARED_CONTROL_NUMBER_KEYS = [
   "control_number",
   "control number",
+  "controlnumber",
+  "metromont_control_number",
 ] as const;
 
 function normalizeKey(s: string): string {
@@ -67,6 +82,57 @@ function propMap(el: SelectedElementSnapshot): Map<string, string> {
     if (!m.has(k)) m.set(k, p.displayValue);
   }
   return m;
+}
+
+/**
+ * Forge/Revit property panels often use "Family" without "Family Name", etc.
+ * Duplicate into canonical keys used by pickParameter.
+ */
+function enrichViewerPropMap(m: Map<string, string>): void {
+  const get = (logical: string) => m.get(normalizeKey(logical))?.trim() ?? "";
+
+  if (!get("family name") && get("family")) {
+    m.set("family name", get("family"));
+  }
+  if (!get("type name") && get("type")) {
+    m.set("type name", get("type"));
+  }
+
+  if (!get("element id")) {
+    for (const alt of [
+      "elementid",
+      "revit element id",
+      "element id revit",
+      "host element id",
+      "ifc guid",
+      "ifcguid",
+    ]) {
+      const v = get(alt);
+      if (v) {
+        m.set("element id", v);
+        break;
+      }
+    }
+  }
+
+  if (!get("control mark")) {
+    for (const alt of ["control_mark", "controlmark", "metromont_control_mark"]) {
+      const v = get(alt);
+      if (v) {
+        m.set("control mark", v);
+        break;
+      }
+    }
+  }
+  if (!get("control number")) {
+    for (const alt of ["control_number", "controlnumber", "metromont_control_number"]) {
+      const v = get(alt);
+      if (v) {
+        m.set("control number", v);
+        break;
+      }
+    }
+  }
 }
 
 /** Exact display-name match only (parseable, no fuzzy substring collisions). */
@@ -143,17 +209,43 @@ export function buildBimTableRows(
 ): BimTableRow[] {
   return elements.map((el) => {
     const viewerM = propMap(el);
+    enrichViewerPropMap(viewerM);
+    const forgeMeta = extractFromForgeObjectName(el.name);
+    if (!isUsableRevitElementId(viewerM.get("element id"))) {
+      if (forgeMeta.elementId) {
+        viewerM.set("element id", forgeMeta.elementId);
+      }
+    }
+    const hasFamily =
+      (viewerM.get("family name")?.trim() ||
+        viewerM.get("family")?.trim() ||
+        "") !== "";
+    if (!hasFamily && forgeMeta.familyHint) {
+      viewerM.set("family name", forgeMeta.familyHint);
+    }
+
     const aecM =
       options?.aecRowsByDbId?.[el.dbId] != null
         ? aecDataRowsToPropMap(options.aecRowsByDbId[el.dbId]!)
         : new Map<string, string>();
+    enrichViewerPropMap(aecM);
 
-    const elementId = pickParameter(
+    const pickedElementId = pickParameter(
       viewerM,
       aecM,
       REVIT_ELEMENT_ID_KEYS,
       "aecFirst",
     );
+    let elementId = pickedElementId;
+    if (!isUsableRevitElementId(elementId)) {
+      elementId = forgeMeta.elementId ?? "";
+    }
+    if (!isUsableRevitElementId(elementId)) {
+      elementId = String(el.dbId);
+    }
+    if (!isUsableRevitElementId(elementId) && el.externalId?.trim()) {
+      elementId = el.externalId.trim();
+    }
 
     return {
       elementId,
@@ -161,26 +253,26 @@ export function buildBimTableRows(
         viewerM,
         aecM,
         REVIT_CATEGORY_KEYS,
-        "viewerFirst",
+        "aecFirst",
       ),
       family: pickParameter(
         viewerM,
         aecM,
         REVIT_FAMILY_NAME_KEYS,
-        "viewerFirst",
+        "aecFirst",
       ),
-      type: pickParameter(viewerM, aecM, REVIT_TYPE_KEYS, "viewerFirst"),
+      type: pickParameter(viewerM, aecM, REVIT_TYPE_KEYS, "aecFirst"),
       controlMark: pickParameter(
         viewerM,
         aecM,
         SHARED_CONTROL_MARK_KEYS,
-        "viewerFirst",
+        "aecFirst",
       ),
       controlNumber: pickParameter(
         viewerM,
         aecM,
         SHARED_CONTROL_NUMBER_KEYS,
-        "viewerFirst",
+        "aecFirst",
       ),
     };
   });

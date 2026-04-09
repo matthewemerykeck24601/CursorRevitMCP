@@ -6,6 +6,8 @@
     <RootNamespace>Metromont.RevitMarkWorkitem</RootNamespace>
     <AssemblyName>RevitMarkWorkitem</AssemblyName>
     <RevitInstallPath Condition="'$(RevitInstallPath)' == ''">C:\Program Files\Autodesk\Revit 2024</RevitInstallPath>
+    <!-- Copy Newtonsoft.Json.dll next to output for AppBundle zip -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RevitAPI">

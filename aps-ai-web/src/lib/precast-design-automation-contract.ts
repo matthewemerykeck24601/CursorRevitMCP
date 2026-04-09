@@ -9,6 +9,10 @@ import {
   type AecdmElementRow,
 } from "@/lib/aecdmMarkGrouping";
 import { resolveAecProjectId } from "@/lib/aps";
+import {
+  mergeParameterPatchesIntoWorkitemArgs,
+  parseDaParameterPatchesFromRequest,
+} from "@/lib/da-parameter-patch";
 import { submitMarkUpdateWorkitem } from "@/lib/da-workitems";
 
 /** Mirrors MCP `CachedAnalysisResult` (separate in-memory cache in Next.js). */
@@ -228,6 +232,8 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   if (!confirm) {
     return {
       success: false as const,
+      workitem_submitted: false as const,
+      revit_cloud_model_updated: false as const,
       message:
         "Confirmation required. Set confirm: true to proceed with Design Automation.",
       cache_id: cache_id || undefined,
@@ -237,6 +243,8 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   if (!cache_id) {
     return {
       success: false as const,
+      workitem_submitted: false as const,
+      revit_cloud_model_updated: false as const,
       message: "cache_id is required.",
     };
   }
@@ -257,12 +265,33 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
           proposed_marks: cached.proposed_marks,
         };
 
+  const parameterPatches = parseDaParameterPatchesFromRequest(o.parameter_patches);
+  let workitemArguments = mergeParameterPatchesIntoWorkitemArgs(
+    args,
+    parameterPatches,
+  );
+  const spgm = o.shared_parameter_guid_map;
+  if (spgm && typeof spgm === "object" && !Array.isArray(spgm)) {
+    const incoming = spgm as Record<string, string>;
+    const existing = workitemArguments.sharedParameterGuidMap;
+    const base =
+      existing && typeof existing === "object" && !Array.isArray(existing)
+        ? { ...(existing as Record<string, string>) }
+        : {};
+    workitemArguments = {
+      ...workitemArguments,
+      sharedParameterGuidMap: { ...base, ...incoming },
+    };
+  }
+
   let daResult: Awaited<ReturnType<typeof submitMarkUpdateWorkitem>> = null;
   try {
-    daResult = await submitMarkUpdateWorkitem({ workitemArguments: args });
+    daResult = await submitMarkUpdateWorkitem({ workitemArguments });
   } catch (e) {
     return {
       success: false as const,
+      workitem_submitted: false as const,
+      revit_cloud_model_updated: false as const,
       message: `Design Automation submit failed: ${e instanceof Error ? e.message : String(e)}`,
       cache_id,
     };
@@ -271,21 +300,27 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   if (daResult) {
     return {
       success: true as const,
+      workitem_submitted: true as const,
+      /** Workitem accepted by DA; Revit file changes only after the activity runs successfully. */
+      revit_cloud_model_updated: false as const,
       workitem_id: daResult.id,
       status: daResult.status ?? "submitted",
       applied_marks: cached.proposed_marks,
-      note: "Workitem submitted. Users must Sync their local central model to see changes; next publish updates the Viewer.",
+      note: "Workitem submitted to Design Automation. Revit central file updates only after the activity completes; then users sync locally. Viewer updates after next publish.",
       da_raw: daResult.raw,
     };
   }
 
   return {
     success: true as const,
+    workitem_submitted: false as const,
+    da_stub: true as const,
+    revit_cloud_model_updated: false as const,
     workitem_id: "da-stub-" + Date.now(),
     status: "stub" as const,
     message:
-      "DA_ENABLED is not true — no cloud workitem posted. Set DA_ENABLED=true, DA_ACTIVITY_ID, and APS credentials with code:all for live Design Automation.",
+      "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true, DA_ACTIVITY_ID, and APS credentials (scope code:all) to post real workitems.",
     applied_marks: cached.proposed_marks,
-    note: "Users must Sync their local model to see changes. Next publish will update the Viewer.",
+    note: "No cloud write occurred. CONTROL_MARK values in Revit are unchanged by this action. Cached analysis preview is informational only.",
   };
 }

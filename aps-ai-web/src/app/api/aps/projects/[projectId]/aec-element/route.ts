@@ -91,13 +91,41 @@ type AecElementScanResponse = {
   };
 };
 
-async function fetchElementByExternalIdPaged(
+const ELEMENT_SCAN_PROPERTY_NAMES = [
+  "External ID",
+  "Element Id",
+  "Element ID",
+  "CONTROL_MARK",
+  "CONTROL_NUMBER",
+  "CONTROL MARK",
+  "Control Mark",
+  "Category",
+  "Family Name",
+  "Family",
+  "Type Name",
+  "Type",
+  "Length",
+  "Width",
+  "Height",
+] as const;
+
+function normElementName(s: string): string {
+  return s.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+/**
+ * Resolve AEC GraphQL element: prefer External ID match, then viewer element name (Forge name vs AEC name).
+ */
+async function fetchElementPaged(
   accessToken: string,
   aecProjectId: string,
   externalId: string,
-): Promise<{ element: GraphElement | null; pagesScanned: number }> {
-  if (!externalId) return { element: null, pagesScanned: 0 };
-  const target = externalId.toLowerCase();
+  elementName: string,
+): Promise<{
+  element: GraphElement | null;
+  pagesScanned: number;
+  matchedBy?: "externalId" | "elementName";
+}> {
   const query = `
     query ElementScan($projectId: ID!, $cursor: String) {
       elementsByProject(
@@ -108,7 +136,7 @@ async function fetchElementByExternalIdPaged(
         results {
           id
           name
-          properties(filter: { names: ["External ID", "Element Id", "Element ID", "CONTROL_MARK", "CONTROL_NUMBER", "Category", "Family Name", "Type Name", "Length", "Width", "Height"] }) {
+          properties(filter: { names: ${JSON.stringify([...ELEMENT_SCAN_PROPERTY_NAMES])} }) {
             results {
               name
               value
@@ -122,32 +150,70 @@ async function fetchElementByExternalIdPaged(
     }
   `;
 
-  let cursor: string | null = null;
+  const targetExt = externalId.trim().toLowerCase();
+  const targetName = normElementName(elementName);
   let pagesScanned = 0;
-  for (let i = 0; i < 60; i += 1) {
-    pagesScanned += 1;
-    const scanResponse: AecElementScanResponse = (await apsPost(
-      "/aec/graphql",
-      accessToken,
-      {
-        query,
-        variables: { projectId: aecProjectId, cursor },
-      },
-    )) as AecElementScanResponse;
-    const page = scanResponse.data?.elementsByProject?.results ?? [];
-    for (const element of page) {
-      const props = element.properties?.results ?? [];
-      const extValue = props.find(
-        (p) => String(p.name ?? "").toLowerCase() === "external id",
-      )?.value;
-      if (String(extValue ?? "").toLowerCase() === target) {
-        return { element, pagesScanned };
+
+  const runScan = async (
+    mode: "external" | "name",
+  ): Promise<GraphElement | null> => {
+    let cursor: string | null = null;
+    for (let p = 0; p < 60; p += 1) {
+      pagesScanned += 1;
+      const scanResponse: AecElementScanResponse = (await apsPost(
+        "/aec/graphql",
+        accessToken,
+        {
+          query,
+          variables: { projectId: aecProjectId, cursor },
+        },
+      )) as AecElementScanResponse;
+      const page = scanResponse.data?.elementsByProject?.results ?? [];
+      for (const element of page) {
+        if (mode === "external") {
+          if (!targetExt) continue;
+          const props = element.properties?.results ?? [];
+          const extValue = props.find(
+            (prop) => String(prop.name ?? "").toLowerCase() === "external id",
+          )?.value;
+          if (String(extValue ?? "").trim().toLowerCase() === targetExt) {
+            return element;
+          }
+        } else {
+          if (targetName.length < 4) continue;
+          const en = normElementName(element.name ?? "");
+          if (en === targetName) {
+            return element;
+          }
+          if (targetName.length >= 12 || en.length >= 12) {
+            if (en.includes(targetName) || targetName.includes(en)) {
+              return element;
+            }
+          }
+        }
       }
+      const next =
+        scanResponse.data?.elementsByProject?.pagination?.cursor ?? null;
+      if (!next || next === cursor) break;
+      cursor = next;
     }
-    const next = scanResponse.data?.elementsByProject?.pagination?.cursor ?? null;
-    if (!next || next === cursor) break;
-    cursor = next;
+    return null;
+  };
+
+  if (targetExt) {
+    const hit = await runScan("external");
+    if (hit) {
+      return { element: hit, pagesScanned, matchedBy: "externalId" };
+    }
   }
+
+  if (targetName.length >= 4) {
+    const hit = await runScan("name");
+    if (hit) {
+      return { element: hit, pagesScanned, matchedBy: "elementName" };
+    }
+  }
+
   return { element: null, pagesScanned };
 }
 
@@ -185,10 +251,11 @@ export async function GET(
   );
 
   const rows: DataRow[] = [];
-  const graphScan = await fetchElementByExternalIdPaged(
+  const graphScan = await fetchElementPaged(
     auth.session.accessToken,
     aecProjectId,
     externalId,
+    elementName,
   );
   rows.push({
     key: "diagnostics.externalId",
@@ -199,6 +266,11 @@ export async function GET(
     key: "diagnostics.elementName",
     value: elementName || "(empty)",
     source: "request",
+  });
+  rows.push({
+    key: "diagnostics.graphqlMatch",
+    value: graphScan.matchedBy ?? "(none)",
+    source: "aecdatamodel",
   });
   rows.push({
     key: "diagnostics.pagesScanned",

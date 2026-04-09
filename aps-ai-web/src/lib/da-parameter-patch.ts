@@ -1,0 +1,77 @@
+/**
+ * Data-driven edits for Design Automation: one Revit implementation applies all
+ * `set` key/value pairs per element group — no new C# per parameter name.
+ *
+ * Workitem JSON may include `parameterPatches` at the root, or under
+ * `additional_updates.parameterPatches` (MCP merge).
+ *
+ * Identity: resolve elements via External ID parameter (same as mark workflow).
+ *
+ * Optional root field `sharedParameterGuidMap`: only when Revit has more than one
+ * parameter with the same definition name on an element — then set
+ * `{ "PARAM_NAME": "<revit-shared-guid>" }` to disambiguate (see MarkWorkitemApp).
+ */
+
+export type DaParameterPatch = {
+  /** Revit "External ID" values (AECDM / Forge externalId), one patch row per group. */
+  externalIds: string[];
+  /** Instance parameter names → values. Use "" or null to clear text params where allowed. */
+  set: Record<string, string | number | boolean | null>;
+};
+
+export type DaParameterPatchPayload = {
+  version?: number;
+  parameterPatches?: DaParameterPatch[];
+};
+
+/** Merge patches into workitem arguments (DA bundle reads root or additional_updates). */
+export function mergeParameterPatchesIntoWorkitemArgs(
+  workitemArguments: Record<string, unknown>,
+  patches: DaParameterPatch[],
+): Record<string, unknown> {
+  if (patches.length === 0) return workitemArguments;
+  const existing = workitemArguments.parameterPatches;
+  const prior = Array.isArray(existing)
+    ? (existing as DaParameterPatch[])
+    : [];
+  return {
+    ...workitemArguments,
+    parameterPatches: [...prior, ...patches],
+  };
+}
+
+/** Build one patch row from cached selection external IDs and a single set map. */
+export function parameterPatchForExternalIds(
+  externalIds: string[],
+  set: Record<string, string | number | boolean | null>,
+): DaParameterPatch {
+  const ids = externalIds.map((s) => s.trim()).filter(Boolean);
+  return { externalIds: ids, set };
+}
+
+/**
+ * Parse `parameter_patches` from tool/API JSON (e.g. AI-built payload).
+ * Ignores invalid rows; only string | number | boolean | null values in `set`.
+ */
+export function parseDaParameterPatchesFromRequest(raw: unknown): DaParameterPatch[] {
+  if (!Array.isArray(raw)) return [];
+  const out: DaParameterPatch[] = [];
+  for (const row of raw) {
+    if (!row || typeof row !== "object") continue;
+    const r = row as Record<string, unknown>;
+    const ext = r.externalIds;
+    const set = r.set;
+    if (!Array.isArray(ext) || !set || typeof set !== "object" || Array.isArray(set)) continue;
+    const ids = ext.filter((x): x is string => typeof x === "string").map((s) => s.trim()).filter(Boolean);
+    const setObj: Record<string, string | number | boolean | null> = {};
+    for (const [k, v] of Object.entries(set as Record<string, unknown>)) {
+      if (typeof v === "string" || typeof v === "number" || typeof v === "boolean" || v === null) {
+        setObj[k] = v;
+      }
+    }
+    if (ids.length > 0 && Object.keys(setObj).length > 0) {
+      out.push({ externalIds: ids, set: setObj });
+    }
+  }
+  return out;
+}

@@ -8,6 +8,15 @@ import {
   useRef,
   useState,
 } from "react";
+import type { MetromontPieceKind } from "@/lib/metromont-viewer-filter";
+import {
+  matchesMetromontPieceKind,
+  propsMapFromViewerProperties,
+} from "@/lib/metromont-viewer-filter";
+import {
+  FORGE_VIEWER_BULK_PROPERTY_NAMES,
+  mergeForgeBulkProperties,
+} from "@/lib/forge-revit-object-name";
 
 const VIEWER_SCRIPT_URL =
   "https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js";
@@ -88,7 +97,16 @@ export type ViewerAction =
       clearFirst?: boolean;
       fitToView?: boolean;
     }
-  | { type: "viewer.isolateDbIds"; dbIds: number[] };
+  | { type: "viewer.isolateDbIds"; dbIds: number[] }
+  | {
+      type: "viewer.searchAndSelectMetromontPieces";
+      query: string;
+      pieceKind: MetromontPieceKind;
+      clearFirst?: boolean;
+      fitToView?: boolean;
+      /** Cap Forge text-search hits before property filter (default 3500). */
+      maxSearchMatches?: number;
+    };
 
 export type ViewerPanelHandle = {
   /** APS Viewer selection by dbId; same behavior as chat `viewer.selectDbIds` actions. */
@@ -205,24 +223,110 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
     }
 
     const idsToLoad = ids.slice(0, 150);
+    type PropRow = {
+      displayName: string;
+      displayValue: string;
+      units?: string;
+    };
     const readOne = (dbId: number) =>
       new Promise<SelectedElementSnapshot>((resolve) => {
-        viewerRef.current?.getProperties(
+        const viewer = viewerRef.current;
+        if (!viewer) {
+          resolve({ dbId, properties: [] });
+          return;
+        }
+        viewer.getProperties(
           dbId,
           (result) => {
-            const properties = (result.properties ?? [])
+            let properties: PropRow[] = (result.properties ?? [])
               .filter((p) => p.displayName)
               .map((p) => ({
                 displayName: String(p.displayName),
                 displayValue: String(p.displayValue ?? ""),
                 units: p.units,
               }));
-            resolve({
-              dbId: result.dbId,
-              name: result.name,
-              externalId: result.externalId,
-              properties,
-            });
+            const norm = (s: string) =>
+              s.trim().toLowerCase().replace(/\s+/g, " ");
+            const keys = new Set(properties.map((p) => norm(p.displayName)));
+            if (result.externalId && !keys.has("external id")) {
+              properties.unshift({
+                displayName: "External ID",
+                displayValue: String(result.externalId),
+                units: undefined,
+              });
+            }
+
+            const deliver = () => {
+              resolve({
+                dbId: result.dbId,
+                name: result.name,
+                externalId: result.externalId,
+                properties,
+              });
+            };
+
+            const model = (
+              viewer as unknown as {
+                model?: {
+                  getBulkProperties?: (
+                    dbIds: number[],
+                    spec: readonly string[] | { propFilter: readonly string[] },
+                    onSuccess: (
+                      rows: Array<{
+                        dbId: number;
+                        properties?: Array<{
+                          displayName?: string;
+                          displayValue?: unknown;
+                          attributeName?: string;
+                          units?: string;
+                        }>;
+                      }>,
+                    ) => void,
+                    onError?: (err?: unknown) => void,
+                  ) => void;
+                };
+              }
+            ).model;
+
+            const mergeFromBulk = (
+              bulkResults: Array<{
+                dbId: number;
+                properties?: Array<{
+                  displayName?: string;
+                  displayValue?: unknown;
+                  attributeName?: string;
+                  units?: string;
+                }>;
+              }>,
+            ) => {
+              const row = bulkResults?.[0];
+              if (row?.properties?.length) {
+                properties = mergeForgeBulkProperties(properties, row.properties);
+              }
+              deliver();
+            };
+
+            const bulk = model?.getBulkProperties;
+            const names = [...FORGE_VIEWER_BULK_PROPERTY_NAMES];
+            if (model && typeof bulk === "function") {
+              bulk.call(
+                model,
+                [dbId],
+                { propFilter: names },
+                mergeFromBulk,
+                () => {
+                  bulk.call(
+                    model,
+                    [dbId],
+                    names,
+                    mergeFromBulk,
+                    deliver,
+                  );
+                },
+              );
+            } else {
+              deliver();
+            }
           },
           () => {
             resolve({
@@ -671,6 +775,135 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
             clearFirst: action.clearFirst !== false,
             zoomToSelection: action.fitToView === true,
           });
+          continue;
+        }
+        if (action.type === "viewer.searchAndSelectMetromontPieces") {
+          const maxScan = Math.min(
+            Math.max(action.maxSearchMatches ?? 3500, 1),
+            8000,
+          );
+          const searchHits = await searchIds(action.query);
+          const candidates = searchHits.slice(0, maxScan);
+          const viewerNow = viewerRef.current;
+          if (!viewerNow) break;
+          if (candidates.length === 0) {
+            onViewerFeedbackRef.current?.(
+              `Metromont search: no viewer hits for "${action.query}".`,
+            );
+            continue;
+          }
+
+          const propNames = [
+            "Category",
+            "Category Name",
+            "Family",
+            "Family Name",
+            "Type",
+            "Type Name",
+            "CONSTRUCTION_PRODUCT",
+            "CONTROL_MARK",
+          ];
+
+          const kept: number[] = [];
+          const processBulkResults = (
+            results: Array<{
+              dbId: number;
+              properties?: Array<{
+                displayName?: string;
+                displayValue?: unknown;
+              }>;
+            }>,
+          ) => {
+            for (const row of results) {
+              const m = propsMapFromViewerProperties(row.properties);
+              if (matchesMetromontPieceKind(m, action.pieceKind)) {
+                kept.push(row.dbId);
+              }
+            }
+          };
+
+          const rawModel = viewerNow as unknown as {
+            model?: {
+              getBulkProperties?: (
+                dbIds: number[],
+                opts: { propFilter: string[] },
+                onSuccess: (
+                  results: Array<{
+                    dbId: number;
+                    properties?: Array<{
+                      displayName?: string;
+                      displayValue?: unknown;
+                    }>;
+                  }>,
+                ) => void,
+                onError?: (err: unknown) => void,
+              ) => void;
+            };
+          };
+          const model = rawModel.model;
+          const chunkSize = 120;
+          let bulkOk = false;
+
+          if (typeof model?.getBulkProperties === "function") {
+            try {
+              for (let i = 0; i < candidates.length; i += chunkSize) {
+                const chunk = candidates.slice(i, i + chunkSize);
+                await new Promise<void>((resolve, reject) => {
+                  model.getBulkProperties!(
+                    chunk,
+                    { propFilter: propNames },
+                    (results) => {
+                      processBulkResults(results);
+                      resolve();
+                    },
+                    (err) =>
+                      reject(err ?? new Error("getBulkProperties failed")),
+                  );
+                });
+              }
+              bulkOk = true;
+            } catch {
+              kept.length = 0;
+              bulkOk = false;
+            }
+          }
+
+          if (!bulkOk && candidates.length > 0) {
+            const cap = Math.min(candidates.length, 450);
+            for (let i = 0; i < cap; i++) {
+              const id = candidates[i];
+              await new Promise<void>((r) => {
+                viewerNow.getProperties(
+                  id,
+                  (result) => {
+                    const m = propsMapFromViewerProperties(result.properties);
+                    if (matchesMetromontPieceKind(m, action.pieceKind)) {
+                      kept.push(id);
+                    }
+                    r();
+                  },
+                  () => r(),
+                );
+              });
+            }
+          }
+
+          const clearFirst = action.clearFirst !== false;
+          const zoom = action.fitToView === true;
+          if (clearFirst) {
+            viewerNow.clearSelection();
+          }
+          if (kept.length > 0) {
+            viewerNow.select(kept);
+          }
+          if (zoom && kept.length > 0) {
+            viewerNow.fitToView();
+          }
+          onViewerFeedbackRef.current?.(
+            bulkOk
+              ? `Metromont ${action.pieceKind}: kept ${kept.length} of ${candidates.length} search hits (Structural Framing + piece rules).`
+              : `Metromont ${action.pieceKind}: kept ${kept.length} (limited scan: bulk properties unavailable or failed).`,
+          );
           continue;
         }
         if (action.type === "viewer.isolateDbIds") {
