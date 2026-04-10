@@ -128,6 +128,43 @@ export type DaWorkitemPollResult = {
  * GET workitem status (Design Automation v3). Use after submit for a quick poll;
  * often still `pending`/`inprogress` on first call.
  */
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Poll GET /workitems/:id up to `maxAttempts` times, waiting `delayBetweenMs`
+ * between attempts while status is pending/inprogress (rate-limit friendly).
+ */
+export async function pollDaWorkitemWithRetries(
+  workitemId: string,
+  options?: { maxAttempts?: number; delayBetweenMs?: number },
+): Promise<{
+  polls: DaWorkitemPollResult[];
+  last: DaWorkitemPollResult | null;
+  attempts_used: number;
+}> {
+  const maxAttempts = Math.min(4, Math.max(1, options?.maxAttempts ?? 2));
+  const delayBetweenMs = Math.min(
+    15_000,
+    Math.max(0, options?.delayBetweenMs ?? 2000),
+  );
+  const polls: DaWorkitemPollResult[] = [];
+  for (let i = 0; i < maxAttempts; i++) {
+    const r = await fetchDaWorkitemStatus(workitemId);
+    polls.push(r);
+    const st = r.status?.toLowerCase() ?? "";
+    if (st === "success" || st.startsWith("failed") || st === "cancelled") {
+      return { polls, last: r, attempts_used: i + 1 };
+    }
+    if (i < maxAttempts - 1 && delayBetweenMs > 0) {
+      await sleep(delayBetweenMs);
+    }
+  }
+  const last = polls.length > 0 ? polls[polls.length - 1]! : null;
+  return { polls, last, attempts_used: polls.length };
+}
+
 export async function fetchDaWorkitemStatus(
   workitemId: string,
 ): Promise<DaWorkitemPollResult> {
@@ -175,14 +212,85 @@ export async function fetchDaWorkitemStatus(
 }
 
 type DaAuditJson = {
+  resolved_operation?: string;
+  payload_operation?: string;
   modify?: {
     parameter_actions_ok?: number;
     parameter_actions_failed?: number;
   };
-  summary?: { unique_elements_resolved_modify?: number };
+  summary?: {
+    unique_elements_resolved_modify?: number;
+    parameter_actions_ok?: number;
+    parameter_actions_failed?: number;
+  };
   post_run?: { summary_line?: string };
   swc?: { status?: string };
+  log?: Array<{ text?: string; level?: string }>;
 };
+
+function inferPrimaryParamFromAuditLog(
+  log: DaAuditJson["log"],
+): { param: string; action: string } | null {
+  if (!Array.isArray(log)) return null;
+  for (const row of log) {
+    if (!row || typeof row !== "object") continue;
+    const text = String((row as { text?: unknown }).text ?? "");
+    const m = text.match(/Modify:\s*(\w+)\s+'([^']+)'/i);
+    if (m?.[1] && m?.[2]) {
+      return { action: m[1].toLowerCase(), param: m[2] };
+    }
+  }
+  return null;
+}
+
+/**
+ * Build chat-oriented lines from parsed audit_report.json (Revit add-in).
+ */
+export function summarizeDaAuditJson(
+  json: unknown,
+): { one_liner: string; assistant_hint: string } | null {
+  if (!json || typeof json !== "object") return null;
+  const j = json as DaAuditJson;
+  const ok = j.modify?.parameter_actions_ok ?? j.summary?.parameter_actions_ok ?? 0;
+  const fail =
+    j.modify?.parameter_actions_failed ?? j.summary?.parameter_actions_failed ?? 0;
+  const unique = j.summary?.unique_elements_resolved_modify ?? 0;
+  const swcStatus = j.swc?.status?.trim() ?? "";
+  const postLine =
+    typeof j.post_run?.summary_line === "string"
+      ? j.post_run.summary_line.trim()
+      : "";
+  const syncNote =
+    swcStatus.toLowerCase() === "success"
+      ? " Sync completed successfully."
+      : swcStatus && swcStatus.toLowerCase() !== "skipped"
+        ? ` SWC: ${swcStatus}.`
+        : "";
+  const op = (j.resolved_operation ?? j.payload_operation ?? "").toLowerCase();
+  const fromLog = inferPrimaryParamFromAuditLog(j.log);
+  let one_liner: string;
+  if (fromLog && unique > 0 && fail === 0) {
+    const verb =
+      fromLog.action === "clear"
+        ? "Cleared"
+        : fromLog.action === "set"
+          ? "Updated"
+          : "Applied changes to";
+    one_liner =
+      `${verb} ${fromLog.param} on ${unique} element(s) (${ok} action(s)).${syncNote}`.trim();
+  } else if (op.includes("modify") && unique > 0) {
+    one_liner =
+      `Parameter updates on ${unique} element(s): ${ok} succeeded, ${fail} failed.${syncNote}`.trim();
+  } else {
+    one_liner =
+      unique > 0
+        ? `Parameter actions: ${ok} succeeded, ${fail} failed, across ${unique} element(s).${syncNote}`.trim()
+        : (postLine ||
+            `Parameter actions: ${ok} succeeded, ${fail} failed.${syncNote}`).trim();
+  }
+  const assistant_hint = `Design Automation audit is available. Reply in exactly ONE short sentence using: ${one_liner} Do not ask for confirmation; do not say still preparing.`;
+  return { one_liner, assistant_hint };
+}
 
 /**
  * Fetch audit_report.json from DA workitem reportUrl (after status success).
@@ -195,28 +303,8 @@ export async function fetchDaAuditReportSummary(
   try {
     const res = await fetch(reportUrl, { cache: "no-store" });
     if (!res.ok) return null;
-    const json = (await res.json()) as DaAuditJson;
-    const ok = json.modify?.parameter_actions_ok ?? 0;
-    const fail = json.modify?.parameter_actions_failed ?? 0;
-    const unique = json.summary?.unique_elements_resolved_modify ?? 0;
-    const swcStatus = json.swc?.status?.trim() ?? "";
-    const postLine =
-      typeof json.post_run?.summary_line === "string"
-        ? json.post_run.summary_line.trim()
-        : "";
-    const syncNote =
-      swcStatus.toLowerCase() === "success"
-        ? " Sync completed."
-        : swcStatus && swcStatus.toLowerCase() !== "skipped"
-          ? ` SWC: ${swcStatus}.`
-          : "";
-    const one_liner =
-      unique > 0
-        ? `Parameter actions: ${ok} succeeded, ${fail} failed, across ${unique} element(s).${syncNote}`.trim()
-        : (postLine ||
-            `Parameter actions: ${ok} succeeded, ${fail} failed.${syncNote}`).trim();
-    const assistant_hint = `Design Automation audit is available. Reply in exactly ONE short sentence for the user using: ${one_liner} Do not ask for confirmation; do not say still preparing.`;
-    return { one_liner, assistant_hint };
+    const json: unknown = await res.json();
+    return summarizeDaAuditJson(json);
   } catch {
     return null;
   }

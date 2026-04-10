@@ -11,6 +11,10 @@ import {
   type AecdmProductPrefix,
 } from "@/lib/aecdm-get-elements";
 import { env, hasAnyAiProviderKey } from "@/lib/env";
+import {
+  pollDesignAutomationStatusContract,
+  type PollDesignAutomationStatusPayload,
+} from "@/lib/da-poll-contract";
 import { log } from "@/lib/logger";
 import { getRequestId } from "@/lib/request";
 import { mcpGetElementParameters } from "@/lib/mcp-local-tools";
@@ -40,8 +44,9 @@ import {
 } from "@/lib/discovery-cached-selection";
 import type { AecdmElementListRow } from "@/lib/aecdm-get-elements";
 import {
-  inferDaUpdatesFromUserMessage,
+  augmentSkipAnalysisTriggerArgs,
   shouldAutoExecuteDesignAutomation,
+  shouldAutoPollDaFollowUp,
 } from "@/lib/chat-da-intent";
 
 type ChatRequest = {
@@ -70,6 +75,12 @@ type ChatRequest = {
   workspaceMode?: "model" | "product-analysis";
   /** Last discovery payload from prior chat turn — resend for DA / follow-ups. */
   discoveryCachedSelection?: DiscoveryCachedSelection | Record<string, unknown>;
+  /** Last Design Automation workitem from a prior submit (client resends for status polls). */
+  lastDaJob?: {
+    workitem_id: string;
+    submitted_at?: string;
+    cache_id?: string;
+  };
   productAnalysis?: {
     rulesText?: string;
     selectedDesignFile?: Record<string, unknown> | null;
@@ -114,6 +125,35 @@ function parseProductPrefix(
     return raw;
   }
   return undefined;
+}
+
+function normalizeLastDaJob(
+  raw: unknown,
+): { workitem_id: string; submitted_at?: string; cache_id?: string } | undefined {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
+  const o = raw as Record<string, unknown>;
+  const id = typeof o.workitem_id === "string" ? o.workitem_id.trim() : "";
+  if (!id) return undefined;
+  return {
+    workitem_id: id,
+    submitted_at:
+      typeof o.submitted_at === "string" ? o.submitted_at : undefined,
+    cache_id: typeof o.cache_id === "string" ? o.cache_id : undefined,
+  };
+}
+
+function appendDaPollToExternalContext(
+  ctx: string,
+  pollPayload: PollDesignAutomationStatusPayload,
+): string {
+  let next = `${ctx}\nPRECAST_DA_POLL_RESULT: ${JSON.stringify(pollPayload)}`.trim();
+  if (pollPayload.da_audit_summary?.one_liner) {
+    next = `${next}\nDA_AUDIT_SUMMARY: ${pollPayload.da_audit_summary.one_liner}`.trim();
+  }
+  if (pollPayload.execution_assistant_hint?.trim()) {
+    next = `${next}\nDA_EXECUTION_HINT: ${pollPayload.execution_assistant_hint.trim()}`.trim();
+  }
+  return next;
 }
 
 function buildSelectionRulesLabel(baseArgs: Record<string, unknown>): string {
@@ -294,6 +334,8 @@ export async function POST(request: NextRequest) {
   let activeDiscovery: DiscoveryCachedSelection | null =
     parseDiscoveryCachedSelectionFromClient(body.discoveryCachedSelection);
   let lastAecdmRows: AecdmElementListRow[] = [];
+  let lastDaJobForResponse = normalizeLastDaJob(body.lastDaJob);
+  let daSubmittedThisTurn = false;
 
   if (activeDiscovery) {
     externalContext = `${externalContext}\nLAST_DISCOVERY_CACHED_SELECTION: ${JSON.stringify({
@@ -303,6 +345,11 @@ export async function POST(request: NextRequest) {
       intended_operation: activeDiscovery.intended_operation,
       provenance: activeDiscovery.provenance,
     })}`.trim();
+  }
+
+  if (lastDaJobForResponse?.workitem_id) {
+    externalContext =
+      `${externalContext}\nLAST_DA_JOB: ${JSON.stringify(lastDaJobForResponse)}`.trim();
   }
 
   if (shouldLogFull()) {
@@ -549,53 +596,65 @@ export async function POST(request: NextRequest) {
                   base.operation = "modify_parameters";
                 }
               }
-              if (
-                !base.updates &&
-                !base.parameter_updates &&
-                !base.parameter_patches
-              ) {
-                const inf = inferDaUpdatesFromUserMessage(message);
-                base.updates =
-                  inf.length > 0
-                    ? inf
-                    : [{ paramName: "CONTROL_MARK", action: "clear" }];
-              }
-            }
-            if (
-              activeDiscovery &&
-              activeDiscovery.externalIds.length > 0 &&
-              base.cached_selection == null
-            ) {
-              base.cached_selection = toDaCachedSelectionPayload(activeDiscovery);
             }
             if (activeDiscovery?.cache_id && base.cache_id == null) {
               base.cache_id = activeDiscovery.cache_id;
             }
-            const payload = await triggerDesignAutomationMarkUpdateContract(
-              Object.keys(base).length > 0 ? base : { cache_id: "", confirm: false },
-            );
-            externalContext =
-              `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(payload)}`.trim();
-            const p = payload as {
-              workitem_submitted?: boolean;
-              status?: string;
-              execution_assistant_hint?: string;
-              da_audit_summary?: { one_liner?: string };
-            };
-            if (p.execution_assistant_hint) {
+            const daSel =
+              activeDiscovery && activeDiscovery.externalIds.length > 0
+                ? toDaCachedSelectionPayload(activeDiscovery)
+                : null;
+            const aug = augmentSkipAnalysisTriggerArgs(message, base, daSel);
+            if (aug.blocked) {
               externalContext =
-                `${externalContext}\nDA_EXECUTION_HINT: ${p.execution_assistant_hint}`.trim();
-            }
-            if (p.da_audit_summary?.one_liner) {
+                `${externalContext}\n${aug.blocked}`.trim();
+              if (aug.userHint) {
+                externalContext =
+                  `${externalContext}\nDA_USER_HINT: ${aug.userHint}`.trim();
+              }
+            } else {
+              const payload = await triggerDesignAutomationMarkUpdateContract(
+                Object.keys(base).length > 0 ? base : { cache_id: "", confirm: false },
+              );
               externalContext =
-                `${externalContext}\nDA_AUDIT_SUMMARY: ${p.da_audit_summary.one_liner}`.trim();
-            }
-            const noCloudWrite =
-              p.workitem_submitted === false ||
-              (p.workitem_submitted === undefined && p.status === "stub");
-            if (noCloudWrite) {
-              externalContext =
-                `${externalContext}\nCLOUD_WRITE_TRUTH: The central Revit cloud model was NOT modified. Design Automation did not submit a workitem (disabled/stub or pre-confirm). Do NOT tell the user CONTROL_MARK was cleared in Revit or that syncing will show parameter changes. Quote PRECAST_DA_MARK_UPDATE message/note. Selection-based "clear marks" is not a live cloud write unless DA is enabled and the activity applies that change.`.trim();
+                `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(payload)}`.trim();
+              const p = payload as {
+                workitem_submitted?: boolean;
+                workitem_id?: string;
+                status?: string;
+                execution_assistant_hint?: string;
+                da_audit_summary?: { one_liner?: string };
+              };
+              if (p.execution_assistant_hint) {
+                externalContext =
+                  `${externalContext}\nDA_EXECUTION_HINT: ${p.execution_assistant_hint}`.trim();
+              }
+              if (p.da_audit_summary?.one_liner) {
+                externalContext =
+                  `${externalContext}\nDA_AUDIT_SUMMARY: ${p.da_audit_summary.one_liner}`.trim();
+              }
+              const noCloudWrite =
+                p.workitem_submitted === false ||
+                (p.workitem_submitted === undefined && p.status === "stub");
+              if (noCloudWrite) {
+                externalContext =
+                  `${externalContext}\nCLOUD_WRITE_TRUTH: The central Revit cloud model was NOT modified. Design Automation did not submit a workitem (disabled/stub or pre-confirm). Do NOT tell the user CONTROL_MARK was cleared in Revit or that syncing will show parameter changes. Quote PRECAST_DA_MARK_UPDATE message/note. Selection-based "clear marks" is not a live cloud write unless DA is enabled and the activity applies that change.`.trim();
+              }
+              if (p.workitem_submitted === true) {
+                daSubmittedThisTurn = true;
+                if (
+                  typeof p.workitem_id === "string" &&
+                  p.workitem_id &&
+                  !p.workitem_id.startsWith("da-stub")
+                ) {
+                  lastDaJobForResponse = {
+                    workitem_id: p.workitem_id,
+                    submitted_at: new Date().toISOString(),
+                    cache_id:
+                      activeDiscovery?.cache_id ?? lastDaJobForResponse?.cache_id,
+                  };
+                }
+              }
             }
           } catch (error) {
             externalContext =
@@ -605,6 +664,34 @@ export async function POST(request: NextRequest) {
               })}`.trim();
             externalContext =
               `${externalContext}\nCLOUD_WRITE_TRUTH: Design Automation failed; the central Revit model was not updated.`.trim();
+          }
+        }
+        if (call.tool === "poll_design_automation_status") {
+          try {
+            const base =
+              call.args && typeof call.args === "object" && !Array.isArray(call.args)
+                ? (call.args as Record<string, unknown>)
+                : {};
+            const fromArgs =
+              typeof base.workitem_id === "string" ? base.workitem_id.trim() : "";
+            const workitemId =
+              fromArgs ||
+              lastDaJobForResponse?.workitem_id ||
+              "";
+            const pollPayload = await pollDesignAutomationStatusContract({
+              ...base,
+              workitem_id: workitemId,
+            });
+            externalContext = appendDaPollToExternalContext(
+              externalContext,
+              pollPayload,
+            );
+          } catch (error) {
+            externalContext =
+              `${externalContext}\nPRECAST_DA_POLL_ERROR: ${JSON.stringify({
+                message:
+                  error instanceof Error ? error.message : "Unknown error",
+              })}`.trim();
           }
         }
         if (call.tool === "analyze_products_and_mark") {
@@ -839,43 +926,66 @@ export async function POST(request: NextRequest) {
           !/\b(analyze|verify marks|sameness|grouping)\b/i.test(message)
         ) {
           try {
-            const inf = inferDaUpdatesFromUserMessage(message);
-            const updates =
-              inf.length > 0
-                ? inf
-                : [{ paramName: "CONTROL_MARK", action: "clear" as const }];
             const autoBase: Record<string, unknown> = {
               confirm: true,
               skip_analysis: true,
               operation: "modify_parameters",
-              updates,
-              cached_selection: toDaCachedSelectionPayload(activeDiscovery),
               cache_id: activeDiscovery.cache_id,
             };
-            const autoPayload =
-              await triggerDesignAutomationMarkUpdateContract(autoBase);
-            externalContext =
-              `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(autoPayload)}`.trim();
-            const ap = autoPayload as {
-              workitem_submitted?: boolean;
-              status?: string;
-              execution_assistant_hint?: string;
-              da_audit_summary?: { one_liner?: string };
-            };
-            if (ap.execution_assistant_hint) {
+            const autoAug = augmentSkipAnalysisTriggerArgs(
+              message,
+              autoBase,
+              toDaCachedSelectionPayload(activeDiscovery),
+            );
+            if (autoAug.blocked) {
               externalContext =
-                `${externalContext}\nDA_EXECUTION_HINT: ${ap.execution_assistant_hint}`.trim();
-            }
-            if (ap.da_audit_summary?.one_liner) {
+                `${externalContext}\n${autoAug.blocked}`.trim();
+              if (autoAug.userHint) {
+                externalContext =
+                  `${externalContext}\nDA_USER_HINT: ${autoAug.userHint}`.trim();
+              }
+            } else {
+              const autoPayload =
+                await triggerDesignAutomationMarkUpdateContract(autoBase);
               externalContext =
-                `${externalContext}\nDA_AUDIT_SUMMARY: ${ap.da_audit_summary.one_liner}`.trim();
-            }
-            const autoNoWrite =
-              ap.workitem_submitted === false ||
-              (ap.workitem_submitted === undefined && ap.status === "stub");
-            if (autoNoWrite) {
-              externalContext =
-                `${externalContext}\nCLOUD_WRITE_TRUTH: The central Revit cloud model was NOT modified. Design Automation did not submit a workitem (disabled/stub or pre-confirm). Do NOT tell the user CONTROL_MARK was cleared in Revit or that syncing will show parameter changes. Quote PRECAST_DA_MARK_UPDATE message/note. Selection-based "clear marks" is not a live cloud write unless DA is enabled and the activity applies that change.`.trim();
+                `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(autoPayload)}`.trim();
+              const ap = autoPayload as {
+                workitem_submitted?: boolean;
+                workitem_id?: string;
+                status?: string;
+                execution_assistant_hint?: string;
+                da_audit_summary?: { one_liner?: string };
+              };
+              if (ap.execution_assistant_hint) {
+                externalContext =
+                  `${externalContext}\nDA_EXECUTION_HINT: ${ap.execution_assistant_hint}`.trim();
+              }
+              if (ap.da_audit_summary?.one_liner) {
+                externalContext =
+                  `${externalContext}\nDA_AUDIT_SUMMARY: ${ap.da_audit_summary.one_liner}`.trim();
+              }
+              const autoNoWrite =
+                ap.workitem_submitted === false ||
+                (ap.workitem_submitted === undefined && ap.status === "stub");
+              if (ap.workitem_submitted === true) {
+                daSubmittedThisTurn = true;
+                if (
+                  typeof ap.workitem_id === "string" &&
+                  ap.workitem_id &&
+                  !ap.workitem_id.startsWith("da-stub")
+                ) {
+                  lastDaJobForResponse = {
+                    workitem_id: ap.workitem_id,
+                    submitted_at: new Date().toISOString(),
+                    cache_id:
+                      activeDiscovery?.cache_id ?? lastDaJobForResponse?.cache_id,
+                  };
+                }
+              }
+              if (autoNoWrite) {
+                externalContext =
+                  `${externalContext}\nCLOUD_WRITE_TRUTH: The central Revit cloud model was NOT modified. Design Automation did not submit a workitem (disabled/stub or pre-confirm). Do NOT tell the user CONTROL_MARK was cleared in Revit or that syncing will show parameter changes. Quote PRECAST_DA_MARK_UPDATE message/note. Selection-based "clear marks" is not a live cloud write unless DA is enabled and the activity applies that change.`.trim();
+              }
             }
           } catch (error) {
             externalContext =
@@ -893,6 +1003,33 @@ export async function POST(request: NextRequest) {
         requestId,
         details: error instanceof Error ? error.message : "Unknown error",
       });
+    }
+  }
+
+  if (
+    env.daEnabled === "true" &&
+    shouldAutoPollDaFollowUp(message) &&
+    lastDaJobForResponse?.workitem_id &&
+    !lastDaJobForResponse.workitem_id.startsWith("da-stub") &&
+    !externalContext.includes("PRECAST_DA_POLL_RESULT") &&
+    !daSubmittedThisTurn
+  ) {
+    try {
+      const pollPayload = await pollDesignAutomationStatusContract({
+        workitem_id: lastDaJobForResponse.workitem_id,
+        max_attempts: env.daPollMaxAttempts,
+        delay_ms_between_attempts: env.daPollDelayMs,
+      });
+      externalContext = appendDaPollToExternalContext(
+        externalContext,
+        pollPayload,
+      );
+    } catch (error) {
+      externalContext =
+        `${externalContext}\nPRECAST_DA_POLL_ERROR: ${JSON.stringify({
+          message:
+            error instanceof Error ? error.message : "Unknown error",
+        })}`.trim();
     }
   }
 
@@ -1023,6 +1160,7 @@ export async function POST(request: NextRequest) {
     queryResult,
     requestId,
     discoveryCachedSelection: activeDiscovery,
+    lastDaJob: lastDaJobForResponse ?? null,
   });
   for (const cookie of auth.response.cookies.getAll()) {
     response.cookies.set(cookie);

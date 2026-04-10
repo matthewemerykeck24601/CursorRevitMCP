@@ -72,6 +72,18 @@ export const env = {
   daActivityId: getEnv("DA_ACTIVITY_ID"),
   /** When true, skip GET /workitems/:id after submit (saves one round-trip). */
   daSkipWorkitemPoll: getEnv("DA_SKIP_WORKITEM_POLL", "").toLowerCase() === "true",
+  /**
+   * GET /workitems/:id attempts after submit or on follow-up poll (1–4).
+   * Delay is applied between attempts when status is pending/inprogress.
+   */
+  daPollMaxAttempts: Math.min(
+    4,
+    Math.max(1, Number.parseInt(getEnv("DA_POLL_MAX_ATTEMPTS", "2"), 10) || 2),
+  ),
+  daPollDelayMs: Math.min(
+    15_000,
+    Math.max(0, Number.parseInt(getEnv("DA_POLL_DELAY_MS", "2000"), 10) || 2000),
+  ),
 };
 
 export function assertApsCredentials(): void {

@@ -207,6 +207,12 @@ export function AppClient() {
   /** Server-built discovery session for DA (resend each chat turn). */
   const [discoveryCachedSelection, setDiscoveryCachedSelection] =
     useState<DiscoveryCachedSelection | null>(null);
+  /** Last DA workitem id from chat API (resend for status / server auto-poll). */
+  const [lastDaJob, setLastDaJob] = useState<{
+    workitem_id: string;
+    submitted_at?: string;
+    cache_id?: string;
+  } | null>(null);
   const [workspaceTab, setWorkspaceTab] = useState<WorkspaceTab>("viewer");
   const [modelDataRows, setModelDataRows] = useState<ModelDataRow[]>([]);
   const [elementDataRows, setElementDataRows] = useState<ModelDataRow[]>([]);
@@ -275,6 +281,7 @@ export function AppClient() {
 
   useEffect(() => {
     setDiscoveryCachedSelection(null);
+    setLastDaJob(null);
   }, [selectedHub, selectedProject, selectedModel]);
 
   const selectedPieceRefs = useMemo(() => {
@@ -799,6 +806,7 @@ export function AppClient() {
         selectedCount: selectedDbIds.length,
         selectedElements,
         discoveryCachedSelection: discoveryCachedSelection ?? undefined,
+        lastDaJob: lastDaJob ?? undefined,
         assistantMode,
         aiProvider,
         aiModel,
@@ -833,9 +841,17 @@ export function AppClient() {
       actions: ViewerAction[];
       queryResult?: { views?: Array<{ guid: string; name: string; role: string }> };
       discoveryCachedSelection?: DiscoveryCachedSelection | null;
+      lastDaJob?: {
+        workitem_id: string;
+        submitted_at?: string;
+        cache_id?: string;
+      } | null;
     };
     if ("discoveryCachedSelection" in json) {
       setDiscoveryCachedSelection(json.discoveryCachedSelection ?? null);
+    }
+    if ("lastDaJob" in json) {
+      setLastDaJob(json.lastDaJob ?? null);
     }
     setChatLog((prev) => [...prev, `AI: ${json.message}`]);
     if (json.queryResult?.views?.length) {

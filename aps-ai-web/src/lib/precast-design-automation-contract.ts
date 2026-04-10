@@ -18,8 +18,9 @@ import {
 import { env } from "@/lib/env";
 import {
   fetchDaAuditReportSummary,
-  fetchDaWorkitemStatus,
+  pollDaWorkitemWithRetries,
   submitMarkUpdateWorkitem,
+  type DaWorkitemPollResult,
 } from "@/lib/da-workitems";
 
 /** Mirrors MCP `CachedAnalysisResult` (separate in-memory cache in Next.js). */
@@ -271,6 +272,8 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
       revit_cloud_model_updated: false as const,
       message:
         "skip_analysis requires parameter_patches and/or parameter_updates, or cached_selection.externalIds + updates[] (param actions). No mark-analysis workitem will be sent.",
+      execution_assistant_hint:
+        "Tell the user in one short sentence: the cloud job was not sent because the request was missing a valid updates list (e.g. CONTROL_MARK clear) or cached_selection.externalIds. For phrases like “clear the marks”, use updates: [{ paramName: \"CONTROL_MARK\", action: \"clear\" }] with the full discovery cached_selection.",
     };
   }
 
@@ -382,11 +385,15 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   }
 
   if (daResult) {
-    let workitemPoll: Awaited<ReturnType<typeof fetchDaWorkitemStatus>> | undefined;
+    let workitemPoll: DaWorkitemPollResult | undefined;
     let execution_assistant_hint = "";
     let da_audit_summary: { one_liner: string } | undefined;
     if (!env.daSkipWorkitemPoll) {
-      workitemPoll = await fetchDaWorkitemStatus(daResult.id);
+      const bundle = await pollDaWorkitemWithRetries(daResult.id, {
+        maxAttempts: env.daPollMaxAttempts,
+        delayBetweenMs: env.daPollDelayMs,
+      });
+      workitemPoll = bundle.last ?? undefined;
     }
     const polled = workitemPoll?.status;
     if (polled === "success") {

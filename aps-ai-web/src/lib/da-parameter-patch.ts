@@ -126,6 +126,20 @@ export type DaModifyUpdateSpec = {
  * Expands `cached_selection.externalIds` × `updates[]` into `parameter_updates` rows for the DA bundle.
  * The C# dispatcher performs the same expansion if the payload is sent as-is.
  */
+/** True when patches or expanded parameter_updates rows exist (same gate as DA skip_analysis validation). */
+export function hasExecutableDirectEdits(raw: Record<string, unknown>): boolean {
+  const parameterPatches = parseDaParameterPatchesFromRequest(raw.parameter_patches);
+  const fromCachedSelection = expandParameterUpdatesFromCachedSelection(
+    raw.cached_selection,
+    raw.updates,
+  );
+  const parameterUpdates = [
+    ...fromCachedSelection,
+    ...parseDaParameterUpdatesFromRequest(raw.parameter_updates),
+  ];
+  return parameterPatches.length > 0 || parameterUpdates.length > 0;
+}
+
 export function expandParameterUpdatesFromCachedSelection(
   cached_selection: unknown,
   updates: unknown,
