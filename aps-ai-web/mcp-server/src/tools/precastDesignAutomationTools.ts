@@ -9,6 +9,7 @@ import { resolveAecProjectId } from "../lib/apsForAecMarks.js";
 import {
   mergeParameterPatchesIntoWorkitemArgs,
   parseDaParameterPatchesFromRequest,
+  parseDaParameterUpdatesFromRequest,
 } from "../lib/da-parameter-patch.js";
 import { submitMarkUpdateWorkitemMcp } from "../lib/daWorkitemsMcp.js";
 import { getElementsByCategory } from "./apsQueryTools.js";
@@ -245,16 +246,13 @@ export const analyzePublishedModelAndCache = {
 export const triggerDesignAutomationMarkUpdate = {
   name: "trigger_design_automation_mark_update" as const,
   description:
-    "Runs APS Design Automation on the central Revit model. Uses standard parameter names in marks/parameter_patches; optional shared_parameter_guid_map only when duplicate definition names exist on elements.",
+    "APS Design Automation: mark grouping (cached analysis) OR direct parameter edits. Use skip_analysis: true with parameter_patches and/or parameter_updates (externalIds) to skip analyze/cache. Optional operation: apply_marks | modify_parameters | apply_marks_and_modify.",
   parameters: z.object({
-    cache_id: z.string(),
+    cache_id: z.string().optional(),
     confirm: z.boolean().default(false),
-    /** Merged into the Design Automation payload when present (e.g. extra parameter intents). */
+    skip_analysis: z.boolean().optional(),
+    operation: z.string().optional(),
     additional_updates: z.record(z.string(), z.unknown()).optional(),
-    /**
-     * Generic instance-parameter edits (same Revit code path for all names).
-     * Each row: externalIds + set { PARAM_NAME: value }.
-     */
     parameter_patches: z
       .array(
         z.object({
@@ -266,29 +264,40 @@ export const triggerDesignAutomationMarkUpdate = {
         }),
       )
       .optional(),
-    /**
-     * Only when Revit has duplicate definition names on elements: map param name → shared GUID.
-     */
-    shared_parameter_guid_map: z
-      .record(z.string(), z.string())
+    parameter_updates: z
+      .array(
+        z.object({
+          externalIds: z.array(z.string()),
+          paramName: z.string(),
+          action: z.enum(["clear", "set", "toggle"]),
+          value: z.union([z.string(), z.number(), z.boolean(), z.null()]).optional(),
+        }),
+      )
       .optional(),
+    shared_parameter_guid_map: z.record(z.string(), z.string()).optional(),
   }),
 
   async handler(
     params: {
-      cache_id: string;
+      cache_id?: string;
       confirm: boolean;
+      skip_analysis?: boolean;
+      operation?: string;
       additional_updates?: Record<string, unknown>;
       parameter_patches?: unknown[];
+      parameter_updates?: unknown[];
       shared_parameter_guid_map?: Record<string, string>;
     },
     _context: PrecastDaContext,
   ) {
     const {
-      cache_id,
+      cache_id = "",
       confirm,
+      skip_analysis = false,
+      operation = "",
       additional_updates,
       parameter_patches,
+      parameter_updates,
       shared_parameter_guid_map,
     } = params;
 
@@ -299,34 +308,93 @@ export const triggerDesignAutomationMarkUpdate = {
         revit_cloud_model_updated: false,
         message:
           "Confirmation required. Set confirm: true to proceed with Design Automation.",
-        cache_id,
+        cache_id: cache_id || undefined,
       };
     }
 
-    const cached = analysisCache.get(cache_id);
-    if (!cached) {
-      throw new Error(
-        `Cache ID ${cache_id} not found or expired. Run analyze_published_model_and_cache first.`,
-      );
-    }
-
-    console.log(`[Design Automation] Triggering update for cache ${cache_id}`);
-
-    const args: Record<string, unknown> =
-      cached.workitem_arguments && typeof cached.workitem_arguments === "object"
-        ? { ...cached.workitem_arguments, cache_id: cached.cache_id }
-        : {
-            cache_id: cached.cache_id,
-            product_prefix: cached.product_prefix,
-            proposed_marks: cached.proposed_marks,
-          };
-
-    if (additional_updates && Object.keys(additional_updates).length > 0) {
-      args.additional_updates = additional_updates;
-    }
-
     const patches = parseDaParameterPatchesFromRequest(parameter_patches);
-    let workitemArguments = mergeParameterPatchesIntoWorkitemArgs(args, patches);
+    const updates = parseDaParameterUpdatesFromRequest(parameter_updates);
+    const hasDirectEdits = patches.length > 0 || updates.length > 0;
+
+    if (skip_analysis && !hasDirectEdits) {
+      return {
+        success: false,
+        workitem_submitted: false,
+        revit_cloud_model_updated: false,
+        message:
+          "skip_analysis requires parameter_patches and/or parameter_updates with externalIds.",
+      };
+    }
+
+    const directMode = skip_analysis && hasDirectEdits;
+    let workitemArguments: Record<string, unknown>;
+    let da_mode: "direct_parameter_modify" | "cached_analysis" = "cached_analysis";
+    let applied_marks: CachedAnalysisResult["proposed_marks"] = [];
+
+    if (directMode) {
+      da_mode = "direct_parameter_modify";
+      workitemArguments = {
+        version: 2,
+        intent: "direct_parameter_modify",
+        operation: operation.trim() || "modify_parameters",
+        skip_analysis: true,
+        cache_id: cache_id || "direct",
+        product_prefix: "ALL",
+      };
+      if (updates.length > 0) workitemArguments.parameter_updates = updates;
+      workitemArguments = mergeParameterPatchesIntoWorkitemArgs(
+        workitemArguments,
+        patches,
+      );
+    } else {
+      if (!cache_id) {
+        return {
+          success: false,
+          workitem_submitted: false,
+          revit_cloud_model_updated: false,
+          message:
+            "cache_id is required unless skip_analysis is true with parameter_patches or parameter_updates.",
+        };
+      }
+      const cached = analysisCache.get(cache_id);
+      if (!cached) {
+        throw new Error(
+          `Cache ID ${cache_id} not found or expired. Run analyze_published_model_and_cache first, or use skip_analysis with patches/updates.`,
+        );
+      }
+      applied_marks = cached.proposed_marks;
+      console.log(`[Design Automation] Triggering update for cache ${cache_id}`);
+
+      const args: Record<string, unknown> =
+        cached.workitem_arguments && typeof cached.workitem_arguments === "object"
+          ? { ...cached.workitem_arguments, cache_id: cached.cache_id }
+          : {
+              cache_id: cached.cache_id,
+              product_prefix: cached.product_prefix,
+              proposed_marks: cached.proposed_marks,
+            };
+
+      if (additional_updates && Object.keys(additional_updates).length > 0) {
+        args.additional_updates = additional_updates;
+      }
+
+      workitemArguments = mergeParameterPatchesIntoWorkitemArgs(args, patches);
+      if (updates.length > 0) workitemArguments.parameter_updates = updates;
+
+      if (skip_analysis) {
+        workitemArguments = { ...workitemArguments };
+        delete (workitemArguments as { marks?: unknown }).marks;
+        workitemArguments = {
+          ...workitemArguments,
+          operation: operation.trim() || "modify_parameters",
+          skip_analysis: true,
+          intent: "direct_parameter_modify",
+        };
+      } else if (operation.trim()) {
+        workitemArguments = { ...workitemArguments, operation: operation.trim() };
+      }
+    }
+
     if (
       shared_parameter_guid_map &&
       Object.keys(shared_parameter_guid_map).length > 0
@@ -351,8 +419,12 @@ export const triggerDesignAutomationMarkUpdate = {
           revit_cloud_model_updated: false,
           workitem_id: da.id,
           status: da.status ?? "submitted",
-          applied_marks: cached.proposed_marks,
-          note: "Workitem submitted to Design Automation. Revit central file updates only after the activity completes; then users sync locally. Viewer updates after next publish.",
+          da_mode,
+          applied_marks,
+          note:
+            da_mode === "direct_parameter_modify"
+              ? "Direct parameter modify (no mark grouping from cache)."
+              : "Workitem submitted to Design Automation. Revit updates after activity completes.",
           da_raw: da.raw,
         };
       }
@@ -362,7 +434,7 @@ export const triggerDesignAutomationMarkUpdate = {
         workitem_submitted: false,
         revit_cloud_model_updated: false,
         message: `DA submit failed: ${e instanceof Error ? e.message : String(e)}`,
-        cache_id,
+        cache_id: cache_id || undefined,
       };
     }
 
@@ -373,10 +445,11 @@ export const triggerDesignAutomationMarkUpdate = {
       revit_cloud_model_updated: false,
       workitem_id: "da-stub-" + Date.now(),
       status: "stub",
+      da_mode,
       message:
-        "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true and DA_ACTIVITY_ID in MCP server environment.",
-      applied_marks: cached.proposed_marks,
-      note: "No cloud write occurred. CONTROL_MARK values in Revit are unchanged by this action.",
+        "DA_ENABLED is not true — no cloud workitem was posted. Set DA_ENABLED=true and DA_ACTIVITY_ID in MCP server environment.",
+      applied_marks,
+      note: "No cloud write occurred.",
     };
   },
 };

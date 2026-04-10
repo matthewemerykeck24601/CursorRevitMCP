@@ -75,3 +75,35 @@ export function parseDaParameterPatchesFromRequest(raw: unknown): DaParameterPat
   }
   return out;
 }
+
+/** Structured clear/set/toggle rows for the Revit dispatcher (`parameter_updates`). */
+export type DaParameterUpdateRow = {
+  externalIds: string[];
+  paramName: string;
+  action: "clear" | "set" | "toggle";
+  value?: string | number | boolean | null;
+};
+
+export function parseDaParameterUpdatesFromRequest(raw: unknown): DaParameterUpdateRow[] {
+  if (!Array.isArray(raw)) return [];
+  const out: DaParameterUpdateRow[] = [];
+  for (const row of raw) {
+    if (!row || typeof row !== "object") continue;
+    const r = row as Record<string, unknown>;
+    const ext = r.externalIds;
+    const paramName = typeof r.paramName === "string" ? r.paramName.trim() : "";
+    const actionRaw = typeof r.action === "string" ? r.action.trim().toLowerCase() : "";
+    if (!Array.isArray(ext) || !paramName) continue;
+    if (actionRaw !== "clear" && actionRaw !== "set" && actionRaw !== "toggle") continue;
+    const ids = ext.filter((x): x is string => typeof x === "string").map((s) => s.trim()).filter(Boolean);
+    if (ids.length === 0) continue;
+    const action = actionRaw as DaParameterUpdateRow["action"];
+    const v = r.value;
+    const value =
+      typeof v === "string" || typeof v === "number" || typeof v === "boolean" || v === null
+        ? v
+        : undefined;
+    out.push({ externalIds: ids, paramName, action, value });
+  }
+  return out;
+}

@@ -11,8 +11,11 @@ using Newtonsoft.Json.Linq;
 namespace Metromont.RevitMarkWorkitem;
 
 /// <summary>
-/// Local test entry (IExternalCommand). For Design Automation, switch to IExternalDBApplication
-/// or the DA entry class pattern required by your Activity.
+/// Design Automation / local command: dispatches on <c>operation</c> and <c>skip_analysis</c>.
+/// - <c>modify_parameters</c>: <c>parameter_updates</c> + <c>parameterPatches</c> only (no mark grouping).
+/// - <c>apply_marks</c>: legacy <c>marks[]</c> loop for CONTROL_MARK.
+/// - <c>apply_marks_and_modify</c>: both.
+/// When <c>skip_analysis</c> is true, mark application is always skipped.
 /// </summary>
 [Transaction(TransactionMode.Manual)]
 public class MarkWorkitemApp : IExternalCommand
@@ -27,7 +30,6 @@ public class MarkWorkitemApp : IExternalCommand
             return Result.Failed;
         }
 
-        // TODO: In DA, read from DesignAutomationData.GetArguments() or workitem input zip path.
         var payloadPath = Environment.GetEnvironmentVariable("MARK_PAYLOAD_JSON")
                           ?? Path.Combine(Path.GetTempPath(), "mark-payload.json");
         if (!File.Exists(payloadPath))
@@ -40,33 +42,62 @@ public class MarkWorkitemApp : IExternalCommand
         var root = JObject.Parse(json);
         var marks = root["marks"] as JArray ?? new JArray();
         var sharedGuidMap = root["sharedParameterGuidMap"] as JObject;
+        var skipAnalysis = root["skip_analysis"]?.Value<bool>() == true;
+        var op = root["operation"]?.ToString()?.Trim() ?? "";
 
-        using var tx = new Transaction(doc, "Apply cached analysis + parameter patches");
+        if (string.IsNullOrEmpty(op))
+        {
+            if (skipAnalysis)
+                op = "modify_parameters";
+            else if (marks.Count > 0)
+                op = "apply_marks_and_modify";
+            else
+                op = "modify_parameters";
+        }
+
+        if (skipAnalysis)
+            op = "modify_parameters";
+
+        var runMarks = !skipAnalysis && (string.Equals(op, "apply_marks", StringComparison.OrdinalIgnoreCase)
+                                         || string.Equals(op, "apply_marks_and_modify", StringComparison.OrdinalIgnoreCase));
+        var runModify = string.Equals(op, "modify_parameters", StringComparison.OrdinalIgnoreCase)
+                        || string.Equals(op, "apply_marks_and_modify", StringComparison.OrdinalIgnoreCase);
+
+        var txLabel = runMarks && runModify
+            ? "DA: marks + parameters"
+            : runMarks
+                ? "DA: apply marks"
+                : "DA: modify parameters";
+        using var tx = new Transaction(doc, txLabel);
         tx.Start();
         try
         {
-            foreach (var m in marks)
+            if (runMarks)
             {
-                var mark = m?["control_mark"]?.ToString();
-                var extIds = m?["externalIds"]?.ToObject<List<string>>() ?? new List<string>();
-                if (string.IsNullOrEmpty(mark)) continue;
-
-                foreach (var ext in extIds)
+                foreach (var m in marks)
                 {
-                    if (string.IsNullOrWhiteSpace(ext)) continue;
-                    var target = FindByExternalId(doc, ext);
-                    if (target == null) continue;
-                    var p = ResolveParameter(target, "CONTROL_MARK", sharedGuidMap);
-                    if (p is { IsReadOnly: false })
+                    var mark = m?["control_mark"]?.ToString();
+                    var extIds = m?["externalIds"]?.ToObject<List<string>>() ?? new List<string>();
+                    if (string.IsNullOrEmpty(mark)) continue;
+
+                    foreach (var ext in extIds)
                     {
-                        p.Set(mark);
+                        if (string.IsNullOrWhiteSpace(ext)) continue;
+                        var target = FindByExternalId(doc, ext);
+                        if (target == null) continue;
+                        var p = ResolveParameter(target, "CONTROL_MARK", sharedGuidMap);
+                        if (p is { IsReadOnly: false })
+                            p.Set(mark);
                     }
                 }
             }
 
-            ApplyParameterPatches(doc, root, sharedGuidMap);
+            if (runModify)
+            {
+                ApplyParameterUpdates(doc, root, sharedGuidMap);
+                ApplyParameterPatches(doc, root, sharedGuidMap);
+            }
 
-            // TODO: SynchronizeWithCentral — only when doc.IsWorkshared; ACC cloud workflow in DA bundle.
             tx.Commit();
         }
         catch (Exception ex)
@@ -79,11 +110,103 @@ public class MarkWorkitemApp : IExternalCommand
         return Result.Succeeded;
     }
 
-    /// <summary>
-    /// Generic instance-parameter writes: JSON drives names/values; same code for every parameter.
-    /// Root <c>parameterPatches</c> or <c>additional_updates.parameterPatches</c>:
-    /// [{ "externalIds": ["..."], "set": { "CONTROL_MARK": "", "COMMENTS": "run-42" } }, ...]
-    /// </summary>
+    private static void ApplyParameterUpdates(Document doc, JObject root, JObject sharedGuidMap)
+    {
+        if (root["parameter_updates"] is not JArray arr) return;
+        foreach (var item in arr)
+        {
+            if (item is not JObject row) continue;
+            var extIds = row["externalIds"]?.ToObject<List<string>>() ?? new List<string>();
+            var paramName = row["paramName"]?.ToString()?.Trim();
+            var action = row["action"]?.ToString()?.Trim()?.ToLowerInvariant();
+            if (string.IsNullOrEmpty(paramName) || string.IsNullOrEmpty(action)) continue;
+
+            foreach (var ext in extIds)
+            {
+                if (string.IsNullOrWhiteSpace(ext)) continue;
+                var target = FindByExternalId(doc, ext);
+                if (target == null) continue;
+                var p = ResolveParameter(target, paramName, sharedGuidMap);
+                if (p == null || p.IsReadOnly) continue;
+
+                if (action == "clear")
+                    ClearParameterValue(p);
+                else if (action == "set")
+                    SetParameterFromToken(p, row["value"]);
+                else if (action == "toggle")
+                    ToggleParameterValue(p);
+            }
+        }
+    }
+
+    private static void ClearParameterValue(Parameter p)
+    {
+        switch (p.StorageType)
+        {
+            case StorageType.String:
+                p.Set(string.Empty);
+                break;
+            case StorageType.Double:
+                p.Set(0.0);
+                break;
+            case StorageType.Integer:
+                p.Set(0);
+                break;
+            case StorageType.ElementId:
+                p.Set(ElementId.InvalidElementId);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static void ToggleParameterValue(Parameter p)
+    {
+        if (p.StorageType == StorageType.Integer)
+        {
+            var v = p.AsInteger();
+            p.Set(v == 0 ? 1 : 0);
+        }
+        else if (p.StorageType == StorageType.String)
+        {
+            var s = p.AsString() ?? "";
+            if (string.Equals(s, "Yes", StringComparison.OrdinalIgnoreCase))
+                p.Set("No");
+            else if (string.Equals(s, "No", StringComparison.OrdinalIgnoreCase))
+                p.Set("Yes");
+        }
+    }
+
+    private static void SetParameterFromToken(Parameter p, JToken valueToken)
+    {
+        switch (p.StorageType)
+        {
+            case StorageType.String:
+                var s = valueToken == null || valueToken.Type == JTokenType.Null ? "" : valueToken.ToString();
+                p.Set(s ?? "");
+                break;
+            case StorageType.Double:
+                if (valueToken != null && (valueToken.Type == JTokenType.Float || valueToken.Type == JTokenType.Integer))
+                    p.Set(valueToken.Value<double>());
+                else if (valueToken != null && double.TryParse(valueToken.ToString(), System.Globalization.NumberStyles.Any,
+                             System.Globalization.CultureInfo.InvariantCulture, out var d))
+                    p.Set(d);
+                break;
+            case StorageType.Integer:
+                if (valueToken != null && (valueToken.Type == JTokenType.Integer || valueToken.Type == JTokenType.Float))
+                    p.Set(valueToken.Value<int>());
+                else if (valueToken != null && int.TryParse(valueToken.ToString(), out var i))
+                    p.Set(i);
+                break;
+            case StorageType.ElementId:
+                if (valueToken != null && valueToken.Type == JTokenType.Integer)
+                    p.Set(new ElementId(valueToken.Value<long>()));
+                break;
+            default:
+                break;
+        }
+    }
+
     private static void ApplyParameterPatches(Document doc, JObject root, JObject sharedGuidMap)
     {
         var combined = new List<JToken>();
@@ -113,11 +236,6 @@ public class MarkWorkitemApp : IExternalCommand
         }
     }
 
-    /// <summary>
-    /// Resolve by parameter definition name first (standard Metromont names). If more than one parameter
-    /// on the element shares that definition name, require <c>sharedParameterGuidMap[parameterName]</c>
-    /// (Revit shared GUID string) to pick the correct <see cref="ExternalDefinition"/>.
-    /// </summary>
     private static Parameter ResolveParameter(Element target, string parameterName, JObject sharedGuidMap)
     {
         var matches = FindParametersWithDefinitionName(target, parameterName);
@@ -166,33 +284,7 @@ public class MarkWorkitemApp : IExternalCommand
         if (string.IsNullOrWhiteSpace(parameterName)) return;
         var p = ResolveParameter(target, parameterName, sharedGuidMap);
         if (p == null || p.IsReadOnly) return;
-
-        switch (p.StorageType)
-        {
-            case StorageType.String:
-                var s = valueToken.Type == JTokenType.Null ? "" : valueToken.ToString();
-                p.Set(s ?? "");
-                break;
-            case StorageType.Double:
-                if (valueToken.Type == JTokenType.Float || valueToken.Type == JTokenType.Integer)
-                    p.Set(valueToken.Value<double>());
-                else if (double.TryParse(valueToken.ToString(), System.Globalization.NumberStyles.Any,
-                             System.Globalization.CultureInfo.InvariantCulture, out var d))
-                    p.Set(d);
-                break;
-            case StorageType.Integer:
-                if (valueToken.Type == JTokenType.Integer || valueToken.Type == JTokenType.Float)
-                    p.Set(valueToken.Value<int>());
-                else if (int.TryParse(valueToken.ToString(), out var i))
-                    p.Set(i);
-                break;
-            case StorageType.ElementId:
-                if (valueToken.Type == JTokenType.Integer)
-                    p.Set(new ElementId(valueToken.Value<long>()));
-                break;
-            default:
-                break;
-        }
+        SetParameterFromToken(p, valueToken);
     }
 
     private static Element FindByExternalId(Document doc, string externalId)
@@ -201,9 +293,7 @@ public class MarkWorkitemApp : IExternalCommand
         {
             var p = e.LookupParameter("External ID");
             if (p != null && string.Equals(p.AsString(), externalId, StringComparison.Ordinal))
-            {
                 return e;
-            }
         }
 
         return null;

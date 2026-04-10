@@ -12,6 +12,7 @@ import { resolveAecProjectId } from "@/lib/aps";
 import {
   mergeParameterPatchesIntoWorkitemArgs,
   parseDaParameterPatchesFromRequest,
+  parseDaParameterUpdatesFromRequest,
 } from "@/lib/da-parameter-patch";
 import { submitMarkUpdateWorkitem } from "@/lib/da-workitems";
 
@@ -228,6 +229,16 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   const o = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const cache_id = String(o.cache_id ?? "");
   const confirm = o.confirm === true;
+  const skip_analysis = o.skip_analysis === true;
+  const operation =
+    typeof o.operation === "string" && o.operation.trim()
+      ? o.operation.trim()
+      : "";
+  const parameterPatches = parseDaParameterPatchesFromRequest(o.parameter_patches);
+  const parameterUpdates = parseDaParameterUpdatesFromRequest(o.parameter_updates);
+  const hasDirectEdits = parameterPatches.length > 0 || parameterUpdates.length > 0;
+  /** No analyze cache: viewer-driven edits using externalIds only. */
+  const directMode = skip_analysis && hasDirectEdits;
 
   if (!confirm) {
     return {
@@ -240,36 +251,89 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
     };
   }
 
-  if (!cache_id) {
+  if (skip_analysis && !hasDirectEdits) {
     return {
       success: false as const,
       workitem_submitted: false as const,
       revit_cloud_model_updated: false as const,
-      message: "cache_id is required.",
+      message:
+        "skip_analysis requires parameter_patches and/or parameter_updates (externalIds + param changes). No mark-analysis workitem will be sent.",
     };
   }
 
-  const cached = analysisCache.get(cache_id);
-  if (!cached) {
-    throw new Error(
-      `Cache ID ${cache_id} not found or expired. Run analyze_published_model_and_cache first.`,
+  let workitemArguments: Record<string, unknown>;
+  let da_mode: "direct_parameter_modify" | "cached_analysis" = "cached_analysis";
+  let applied_marks_preview: CachedAnalysisResult["proposed_marks"] = [];
+
+  if (directMode) {
+    da_mode = "direct_parameter_modify";
+    workitemArguments = {
+      version: 2,
+      intent: "direct_parameter_modify",
+      operation: operation || "modify_parameters",
+      skip_analysis: true,
+      cache_id: cache_id || "direct",
+      product_prefix: parsePrefix(raw),
+    };
+    if (parameterUpdates.length > 0) {
+      workitemArguments.parameter_updates = parameterUpdates;
+    }
+    workitemArguments = mergeParameterPatchesIntoWorkitemArgs(
+      workitemArguments,
+      parameterPatches,
     );
+  } else {
+    if (!cache_id) {
+      return {
+        success: false as const,
+        workitem_submitted: false as const,
+        revit_cloud_model_updated: false as const,
+        message:
+          "cache_id is required unless skip_analysis is true with parameter_patches or parameter_updates.",
+      };
+    }
+
+    const cached = analysisCache.get(cache_id);
+    if (!cached) {
+      throw new Error(
+        `Cache ID ${cache_id} not found or expired. Run analyze_published_model_and_cache first, or use skip_analysis with parameter_patches for direct edits.`,
+      );
+    }
+
+    applied_marks_preview = cached.proposed_marks;
+
+    const args =
+      cached.workitem_arguments && typeof cached.workitem_arguments === "object"
+        ? { ...cached.workitem_arguments, cache_id: cached.cache_id }
+        : {
+            cache_id: cached.cache_id,
+            product_prefix: cached.product_prefix,
+            proposed_marks: cached.proposed_marks,
+          };
+
+    workitemArguments = mergeParameterPatchesIntoWorkitemArgs(
+      args,
+      parameterPatches,
+    );
+
+    if (parameterUpdates.length > 0) {
+      workitemArguments.parameter_updates = parameterUpdates;
+    }
+
+    if (skip_analysis) {
+      workitemArguments = { ...workitemArguments };
+      delete (workitemArguments as { marks?: unknown }).marks;
+      workitemArguments = {
+        ...workitemArguments,
+        operation: operation || "modify_parameters",
+        skip_analysis: true,
+        intent: "direct_parameter_modify",
+      };
+    } else if (operation) {
+      workitemArguments = { ...workitemArguments, operation };
+    }
   }
 
-  const args =
-    cached.workitem_arguments && typeof cached.workitem_arguments === "object"
-      ? { ...cached.workitem_arguments, cache_id: cached.cache_id }
-      : {
-          cache_id: cached.cache_id,
-          product_prefix: cached.product_prefix,
-          proposed_marks: cached.proposed_marks,
-        };
-
-  const parameterPatches = parseDaParameterPatchesFromRequest(o.parameter_patches);
-  let workitemArguments = mergeParameterPatchesIntoWorkitemArgs(
-    args,
-    parameterPatches,
-  );
   const spgm = o.shared_parameter_guid_map;
   if (spgm && typeof spgm === "object" && !Array.isArray(spgm)) {
     const incoming = spgm as Record<string, string>;
@@ -305,8 +369,12 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
       revit_cloud_model_updated: false as const,
       workitem_id: daResult.id,
       status: daResult.status ?? "submitted",
-      applied_marks: cached.proposed_marks,
-      note: "Workitem submitted to Design Automation. Revit central file updates only after the activity completes; then users sync locally. Viewer updates after next publish.",
+      da_mode,
+      applied_marks: applied_marks_preview,
+      note:
+        da_mode === "direct_parameter_modify"
+          ? "Direct parameter modify workitem (no mark grouping). Revit updates after the activity completes; sync locally; Viewer after publish."
+          : "Workitem submitted to Design Automation. Revit central file updates only after the activity completes; then users sync locally. Viewer updates after next publish.",
       da_raw: daResult.raw,
     };
   }
@@ -318,9 +386,10 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
     revit_cloud_model_updated: false as const,
     workitem_id: "da-stub-" + Date.now(),
     status: "stub" as const,
+    da_mode,
     message:
       "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true, DA_ACTIVITY_ID, and APS credentials (scope code:all) to post real workitems.",
-    applied_marks: cached.proposed_marks,
-    note: "No cloud write occurred. CONTROL_MARK values in Revit are unchanged by this action. Cached analysis preview is informational only.",
+    applied_marks: applied_marks_preview,
+    note: "No cloud write occurred. Revit parameters are unchanged by this action.",
   };
 }

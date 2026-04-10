@@ -4,6 +4,7 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
+import { getCachedSelection } from "./tools/getCachedSelection.js";
 import { readSelectedElements } from "./tools/readSelectedElements.js";
 import { getElementParameters } from "./tools/getElementParameters.js";
 import { searchElements } from "./tools/searchElements.js";
@@ -150,13 +151,33 @@ const designAutomationMcpTools = [
     inputSchema: {
       type: "object",
       properties: {
-        cache_id: { type: "string" },
+        cache_id: {
+          type: "string",
+          description:
+            "From analyze_published_model_and_cache. Omit when skip_analysis is true with parameter_patches/parameter_updates.",
+        },
         confirm: { type: "boolean", default: false },
+        skip_analysis: {
+          type: "boolean",
+          description:
+            "If true with parameter_patches and/or parameter_updates, runs direct parameter modify only (no mark analysis).",
+        },
+        operation: {
+          type: "string",
+          description:
+            "Revit workitem operation hint, e.g. modify_parameters, apply_marks, apply_marks_and_modify.",
+        },
         additional_updates: { type: "object", additionalProperties: true },
         parameter_patches: {
           type: "array",
           description:
             "Generic instance edits: { externalIds[], set: { PARAM: value } } rows; Revit resolves by parameter name; use shared_parameter_guid_map only if duplicate definition names exist on elements.",
+          items: { type: "object", additionalProperties: true },
+        },
+        parameter_updates: {
+          type: "array",
+          description:
+            "Structured edits: { externalIds[], paramName, action: clear|set|toggle, value? } per row.",
           items: { type: "object", additionalProperties: true },
         },
         shared_parameter_guid_map: {
@@ -166,7 +187,7 @@ const designAutomationMcpTools = [
             "Optional. Param name → Revit shared-parameter GUID, only when multiple parameters share the same definition name on an element.",
         },
       },
-      required: ["cache_id"],
+      required: [],
     },
   },
   {
@@ -219,6 +240,19 @@ export function buildServer() {
             selectedElements: { type: "array" },
             dbIds: { type: "array", items: { type: "number" } },
             parameterQueries: { type: "array", items: { type: "string" } },
+          },
+          required: ["selectedElements"],
+        },
+      },
+      {
+        name: "get_cached_selection",
+        description:
+          "Return dbIds, externalIds, and names for the current selection for skip_analysis Design Automation (parameter_patches / parameter_updates).",
+        inputSchema: {
+          type: "object",
+          properties: {
+            selectedElements: { type: "array" },
+            dbIds: { type: "array", items: { type: "number" } },
           },
           required: ["selectedElements"],
         },
@@ -410,6 +444,9 @@ export function buildServer() {
     }
     if (name === "get_element_parameters") {
       return textResult(getElementParameters(args));
+    }
+    if (name === "get_cached_selection") {
+      return textResult(getCachedSelection(args));
     }
     if (name === "search_elements") {
       return textResult(searchElements(args));

@@ -332,6 +332,23 @@ export async function POST(request: NextRequest) {
           )}`.trim();
         }
 
+        if (call.tool === "get_cached_selection") {
+          const snapshot = selectedElements.slice(0, 200).map((el) => ({
+            dbId: el.dbId,
+            externalId: el.externalId ?? "",
+            name: el.name ?? "",
+          }));
+          const payload = {
+            success: true,
+            count: selectedElements.length,
+            dbIds: selectedDbIds.slice(0, 200),
+            elements: snapshot,
+            note: "Use externalId in parameter_patches.externalIds or parameter_updates for skip_analysis Design Automation payloads.",
+          };
+          externalContext =
+            `${externalContext}\nGET_CACHED_SELECTION: ${JSON.stringify(payload)}`.trim();
+        }
+
         if (call.tool === "model_views" && body.selectedModelUrn) {
           try {
             const metadata = await getModelMetadata(
