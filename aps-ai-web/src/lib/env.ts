@@ -70,6 +70,8 @@ export const env = {
   daEnabled: getEnv("DA_ENABLED", "").toLowerCase(),
   daRegion: getEnv("DA_REGION", "us-east"),
   daActivityId: getEnv("DA_ACTIVITY_ID"),
+  /** When true, skip GET /workitems/:id after submit (saves one round-trip). */
+  daSkipWorkitemPoll: getEnv("DA_SKIP_WORKITEM_POLL", "").toLowerCase() === "true",
 };
 
 export function assertApsCredentials(): void {

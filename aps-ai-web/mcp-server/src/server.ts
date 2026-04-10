@@ -29,9 +29,11 @@ import {
   analyzePublishedModelAecdmCache,
   getElementProperties,
   getElementsByCategory,
+  inspectPublishedSelection,
   runAnalyzePublishedModelAecdmCache,
   runGetElementProperties,
   runGetElementsByCategory,
+  runInspectPublishedSelection,
 } from "./tools/apsQueryTools.js";
 import { runSelectElements, selectElements } from "./tools/viewerControlTools.js";
 import {
@@ -44,6 +46,32 @@ const apsQueryMcpTools = [
   {
     name: getElementsByCategory.name,
     description: getElementsByCategory.description,
+    inputSchema: {
+      type: "object",
+      properties: {
+        category: { type: "string" },
+        family: { type: "string" },
+        type: { type: "string" },
+        limit: { type: "number", default: 500 },
+        product_prefix: {
+          type: "string",
+          enum: ["WPA", "WPB", "CLA", "COLUMN", "ALL"],
+        },
+        access_token: { type: "string" },
+        accessToken: { type: "string" },
+        model_urn: { type: "string" },
+        urn: { type: "string" },
+        project_id: { type: "string" },
+        projectId: { type: "string" },
+        hub_id: { type: "string" },
+        hubId: { type: "string" },
+      },
+      required: [],
+    },
+  },
+  {
+    name: inspectPublishedSelection.name,
+    description: inspectPublishedSelection.description,
     inputSchema: {
       type: "object",
       properties: {
@@ -500,6 +528,9 @@ export function buildServer() {
     }
     if (name === "get_elements_by_category") {
       return textResult(await runGetElementsByCategory(args, {}));
+    }
+    if (name === "inspect_published_selection") {
+      return textResult(await runInspectPublishedSelection(args, {}));
     }
     if (name === "get_element_properties") {
       return textResult(await runGetElementProperties(args, {}));

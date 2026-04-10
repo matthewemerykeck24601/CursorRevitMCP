@@ -107,7 +107,20 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
   return parts.join("\n");
 }
 
+const DECISIVE_AUTOMATION_RULES = `
+You are a decisive automation assistant.
+Once a cached_selection exists (activeDiscovery / DISCOVERY_CACHED_SELECTION with externalIds), any user message containing clear, set, update, change, mark, sync, or proceed should immediately mean Design Automation runs as modify_parameters (in this app: trigger_design_automation_mark_update with operation "modify_parameters", confirm true, skip_analysis true, cached_selection from discovery — the server may inject this without a second user step).
+Do NOT ask for extra confirmation unless the user explicitly says "confirm" or "are you sure".
+After a job is submitted (workitem_submitted true or DA_EXECUTION_HINT says queued/running), respond with ONE short sentence confirming the action and that you will report results when the job finishes.
+Keep every response concise (1-2 sentences max). No long explanations unless the user asks why or what happened.
+Never say "still preparing" or "not yet" if you have already submitted the job — say the job is running and you will update when results arrive.
+Do not open with filler phrases like "Got it", "Sounds good", or "Understood".
+Use counts, cache_id, and externalIds only from DISCOVERY_CACHED_SELECTION / GET_CACHED_SELECTION / PRECAST_DA_MARK_UPDATE — never invent selections.
+`.trim();
+
 const STRONG_TOOL_GUIDANCE = `
+${DECISIVE_AUTOMATION_RULES}
+
 CRITICAL INSTRUCTIONS FOR SELECTION AND ANALYSIS:
 - Two pipelines: (1) DISCOVERY — published model via AEC Data Model + Viewer. (2) EXECUTION — Revit central edits via Design Automation (modify_parameters / run_mark_analysis) using cached_selection.externalIds. Never treat a viewer-only highlight as a cloud write.
 - For "select", "find", "highlight" (e.g. all columns, CLA prefix): use get_elements_by_category OR inspect_published_selection (same behavior). The server queries AECDM, filters optional name/control_mark_prefix, builds a persisted cached_selection (cache_id, externalIds, provenance), and queues viewer.selectDbIds automatically — you do not need a separate select_elements unless refining dbIds.
@@ -124,7 +137,7 @@ PARAMETER EDITS VS MARK ANALYSIS (cloud / Design Automation):
 - For direct cloud writes without analysis: trigger_design_automation_mark_update with confirm: true, skip_analysis: true, and either (1) parameter_patches and/or parameter_updates rows with externalIds, OR (2) cached_selection: { externalIds } plus updates: [{ paramName, action: clear|set|toggle, value? }] — same selection can be reused across turns.
 - ONLY use analyze_published_model_and_cache + get_cached_mark_analysis when the user asks to analyze, verify marks, propose groups, sameness, or similar.
 - Mark application in Revit uses operation run_mark_analysis / apply_marks (with marks[]); pure edits use modify_parameters (default when skip_analysis is true) — do not conflate clearing a parameter with running mark verification unless the user asked for analysis.
-- Before calling DA, state briefly what will run (e.g. "Clearing CONTROL_MARK on N elements — no mark analysis").
+- Before calling DA from the model: prefer a single short clause; the server may auto-submit when discovery exists — do not stall on confirmation.
 `.trim();
 
 const METROMONT_SYSTEM_CONTEXT = [
@@ -147,7 +160,7 @@ const ALICE_AGENT_CHARTER = [
   "Data policy: Prefer AEC Data Model context when available; use selected element properties as grounded fallback.",
   "Safety: Do not invent model facts; if uncertain, say what is missing and suggest the next best query.",
   "UX: Avoid echoing long internal tool instructions to the user; prefer short confirmations with concrete results (counts, names).",
-  "Interaction style: Practical and collaborative. You may write as much detail as useful—headings, bullet lists, markdown, and step-by-step guidance are encouraged when they help the user work with the model.",
+  "Interaction style: Default to 1-2 sentences. Use headings or bullets only when the user asks for detail, lists, or step-by-step guidance.",
   "Domain vocabulary: Piece/Product/Panel refers to Structural Framing precast context; Piece ID can map to CONTROL_MARK.",
   "Revit cloud honesty: Never claim parameters changed in ACC or that the user should sync to see updates unless tool context shows a real DA submission (workitem_submitted true). If CLOUD_WRITE_TRUTH is present, follow it over guesses or cached previews.",
 ].join("\n");
@@ -585,16 +598,18 @@ function buildPlannerPrompt(
 
 function extractRevitWriteFactsForFinalizer(externalContext: string): string {
   if (!externalContext) return "";
-  const markers = [
-    "CLOUD_WRITE_TRUTH:",
-    "PRECAST_DA_MARK_UPDATE:",
-    "PRECAST_DA_MARK_UPDATE_ERROR:",
-  ] as const;
+  const slices: Array<{ marker: string; maxLen: number }> = [
+    { marker: "CLOUD_WRITE_TRUTH:", maxLen: 1200 },
+    { marker: "DA_AUDIT_SUMMARY:", maxLen: 800 },
+    { marker: "DA_EXECUTION_HINT:", maxLen: 800 },
+    { marker: "PRECAST_DA_MARK_UPDATE_ERROR:", maxLen: 1200 },
+    { marker: "PRECAST_DA_MARK_UPDATE:", maxLen: 2200 },
+  ];
   const chunks: string[] = [];
-  for (const m of markers) {
-    const idx = externalContext.indexOf(m);
+  for (const { marker, maxLen } of slices) {
+    const idx = externalContext.indexOf(marker);
     if (idx >= 0) {
-      chunks.push(externalContext.slice(idx, idx + 2500).trim());
+      chunks.push(externalContext.slice(idx, idx + maxLen).trim());
     }
   }
   return chunks.join("\n\n");
@@ -611,17 +626,29 @@ function buildFinalizerPrompt(
   },
   revitWriteFacts?: string,
 ): string {
+  const hasDaHint =
+    typeof revitWriteFacts === "string" &&
+    (revitWriteFacts.includes("DA_EXECUTION_HINT:") ||
+      revitWriteFacts.includes("DA_AUDIT_SUMMARY:") ||
+      revitWriteFacts.includes("PRECAST_DA_MARK_UPDATE:"));
+
   return [
     ALICE_SYSTEM_BASE,
     "",
     "You are the final responder for an APS Viewer assistant.",
-    "Write the full reply the user will see: conversational, clear, and as long or short as appropriate (markdown is fine).",
-    "Incorporate the planner's intent and messageDraft; you may expand, clarify, or reorganize freely.",
+    hasDaHint
+      ? "Write the user-visible reply in at most 2 short sentences (no markdown essay). If DA_AUDIT_SUMMARY or a completed workitem is in the facts, state that outcome plainly."
+      : "Write the full reply the user will see: conversational, clear, and as long or short as appropriate (markdown is fine).",
+    hasDaHint
+      ? "Incorporate the planner's intent briefly; do not repeat the same point in different words."
+      : "Incorporate the planner's intent and messageDraft; you may expand, clarify, or reorganize freely.",
     revitWriteFacts
       ? [
           "",
           "Authoritative facts from tools (must match user-visible claims; override messageDraft if it conflicts):",
           revitWriteFacts,
+          "",
+          "If DA_EXECUTION_HINT or DA_AUDIT_SUMMARY is present, follow it verbatim for job state; never contradict with still preparing or needs confirmation after a submit.",
           "",
         ].join("\n")
       : "",
@@ -683,7 +710,7 @@ function buildToolPlannerPrompt(
     '- Use "issues_create" when the user asks to create a new issue.',
     '- Use "analyze_published_model_and_cache" ONLY when the user wants mark analysis, grouping, verification, or sameness preview — not for simple parameter clears/sets.',
     '- Use "get_cached_mark_analysis" to show latest cached marks/sameness preview (no args).',
-    '- Use "trigger_design_automation_mark_update" after user confirms: (A) Direct edits — args: { "confirm": true, "skip_analysis": true, "parameter_patches" / "parameter_updates" and/or "cached_selection": { externalIds }, "updates": [{ paramName, action }], "cache_id" optional }. (B) Cached marks / mark path — args: { "cache_id", "confirm": true } without skip_analysis; operation run_mark_analysis only when applying proposed marks, not for simple param clears.',
+    '- Use "trigger_design_automation_mark_update" when the user wants cloud parameter edits and DISCOVERY_CACHED_SELECTION / GET_CACHED_SELECTION shows externalIds: (A) Direct edits — args: { "confirm": true, "skip_analysis": true, "cached_selection" from cache, "updates": [{ paramName, action }], "operation": "modify_parameters", "cache_id" if known }. The server may auto-submit the same when discovery exists — still include this tool when the user explicitly asks to clear/set/sync. (B) Cached marks path — args: { "cache_id", "confirm": true } without skip_analysis when applying proposed mark groups.',
     '- Read PRECAST_DA_MARK_UPDATE in context: if workitem_submitted is false or status is "stub", no cloud Revit write occurred — never imply marks were cleared or sync will show DA changes.',
     '- Use "analyze_products_and_mark" for granular legacy mark analysis (args: { "product_prefix", "dry_run" }).',
     '- Use "get_product_sameness_report" when comparing specific element IDs (args: { "element_ids": string[] }).',

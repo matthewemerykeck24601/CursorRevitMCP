@@ -39,6 +39,10 @@ import {
   type DiscoveryProvenanceInput,
 } from "@/lib/discovery-cached-selection";
 import type { AecdmElementListRow } from "@/lib/aecdm-get-elements";
+import {
+  inferDaUpdatesFromUserMessage,
+  shouldAutoExecuteDesignAutomation,
+} from "@/lib/chat-da-intent";
 
 type ChatRequest = {
   message?: string;
@@ -531,6 +535,32 @@ export async function POST(request: NextRequest) {
               call.args && typeof call.args === "object" && !Array.isArray(call.args)
                 ? { ...(call.args as Record<string, unknown>) }
                 : {};
+            const hasDiscovery =
+              Boolean(activeDiscovery?.externalIds.length);
+            const autoExec =
+              hasDiscovery &&
+              shouldAutoExecuteDesignAutomation(message, true) &&
+              !/\b(analyze|verify marks|sameness|grouping)\b/i.test(message);
+            if (autoExec) {
+              base.confirm = true;
+              if (!/\b(analyze|verify marks|sameness|grouping)\b/i.test(message)) {
+                base.skip_analysis = true;
+                if (!base.operation || String(base.operation).trim() === "") {
+                  base.operation = "modify_parameters";
+                }
+              }
+              if (
+                !base.updates &&
+                !base.parameter_updates &&
+                !base.parameter_patches
+              ) {
+                const inf = inferDaUpdatesFromUserMessage(message);
+                base.updates =
+                  inf.length > 0
+                    ? inf
+                    : [{ paramName: "CONTROL_MARK", action: "clear" }];
+              }
+            }
             if (
               activeDiscovery &&
               activeDiscovery.externalIds.length > 0 &&
@@ -549,7 +579,17 @@ export async function POST(request: NextRequest) {
             const p = payload as {
               workitem_submitted?: boolean;
               status?: string;
+              execution_assistant_hint?: string;
+              da_audit_summary?: { one_liner?: string };
             };
+            if (p.execution_assistant_hint) {
+              externalContext =
+                `${externalContext}\nDA_EXECUTION_HINT: ${p.execution_assistant_hint}`.trim();
+            }
+            if (p.da_audit_summary?.one_liner) {
+              externalContext =
+                `${externalContext}\nDA_AUDIT_SUMMARY: ${p.da_audit_summary.one_liner}`.trim();
+            }
             const noCloudWrite =
               p.workitem_submitted === false ||
               (p.workitem_submitted === undefined && p.status === "stub");
@@ -790,6 +830,63 @@ export async function POST(request: NextRequest) {
           }
         }
 
+        const ranDa = externalContext.includes("PRECAST_DA_MARK_UPDATE");
+        if (
+          !ranDa &&
+          activeDiscovery &&
+          activeDiscovery.externalIds.length > 0 &&
+          shouldAutoExecuteDesignAutomation(message, true) &&
+          !/\b(analyze|verify marks|sameness|grouping)\b/i.test(message)
+        ) {
+          try {
+            const inf = inferDaUpdatesFromUserMessage(message);
+            const updates =
+              inf.length > 0
+                ? inf
+                : [{ paramName: "CONTROL_MARK", action: "clear" as const }];
+            const autoBase: Record<string, unknown> = {
+              confirm: true,
+              skip_analysis: true,
+              operation: "modify_parameters",
+              updates,
+              cached_selection: toDaCachedSelectionPayload(activeDiscovery),
+              cache_id: activeDiscovery.cache_id,
+            };
+            const autoPayload =
+              await triggerDesignAutomationMarkUpdateContract(autoBase);
+            externalContext =
+              `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(autoPayload)}`.trim();
+            const ap = autoPayload as {
+              workitem_submitted?: boolean;
+              status?: string;
+              execution_assistant_hint?: string;
+              da_audit_summary?: { one_liner?: string };
+            };
+            if (ap.execution_assistant_hint) {
+              externalContext =
+                `${externalContext}\nDA_EXECUTION_HINT: ${ap.execution_assistant_hint}`.trim();
+            }
+            if (ap.da_audit_summary?.one_liner) {
+              externalContext =
+                `${externalContext}\nDA_AUDIT_SUMMARY: ${ap.da_audit_summary.one_liner}`.trim();
+            }
+            const autoNoWrite =
+              ap.workitem_submitted === false ||
+              (ap.workitem_submitted === undefined && ap.status === "stub");
+            if (autoNoWrite) {
+              externalContext =
+                `${externalContext}\nCLOUD_WRITE_TRUTH: The central Revit cloud model was NOT modified. Design Automation did not submit a workitem (disabled/stub or pre-confirm). Do NOT tell the user CONTROL_MARK was cleared in Revit or that syncing will show parameter changes. Quote PRECAST_DA_MARK_UPDATE message/note. Selection-based "clear marks" is not a live cloud write unless DA is enabled and the activity applies that change.`.trim();
+            }
+          } catch (error) {
+            externalContext =
+              `${externalContext}\nPRECAST_DA_MARK_UPDATE_ERROR: ${JSON.stringify({
+                message:
+                  error instanceof Error ? error.message : "Unknown error",
+              })}`.trim();
+            externalContext =
+              `${externalContext}\nCLOUD_WRITE_TRUTH: Design Automation failed; the central Revit model was not updated.`.trim();
+          }
+        }
       }
     } catch (error) {
       log("warn", "local-agent-tool-plan-failed", {

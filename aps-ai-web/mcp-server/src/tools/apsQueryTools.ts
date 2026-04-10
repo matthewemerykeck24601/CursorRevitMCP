@@ -221,6 +221,21 @@ export const getElementsByCategory = {
   },
 };
 
+/**
+ * Web app alias (Tool A — discovery / published AECDM query). Same implementation
+ * and parameters as get_elements_by_category; use either name in CLI agents.
+ */
+export const inspectPublishedSelection = {
+  name: "inspect_published_selection" as const,
+  description:
+    "Same as get_elements_by_category: AEC Data Model REST query on the published design (Structural Framing / Metromont filters). Use this name to match aps-ai-web chat planner (inspect_published_selection). Pass access_token, project_id, model_urn.",
+  parameters: GetElementsByCategoryParamsSchema,
+
+  async handler(params: GetElementsByCategoryParams, context: ApsQueryContext) {
+    return getElementsByCategory.handler(params, context);
+  },
+};
+
 // ======================
 // Tool 2: Get Detailed Properties for Specific Elements
 // ======================
@@ -319,6 +334,14 @@ export async function runGetElementsByCategory(
 ) {
   const parsed = getElementsByCategory.parameters.parse(args);
   return getElementsByCategory.handler(parsed, context);
+}
+
+export async function runInspectPublishedSelection(
+  args: unknown,
+  context: ApsQueryContext = {},
+) {
+  const parsed = inspectPublishedSelection.parameters.parse(args);
+  return inspectPublishedSelection.handler(parsed, context);
 }
 
 export async function runGetElementProperties(

@@ -15,7 +15,12 @@ import {
   parseDaParameterPatchesFromRequest,
   parseDaParameterUpdatesFromRequest,
 } from "@/lib/da-parameter-patch";
-import { submitMarkUpdateWorkitem } from "@/lib/da-workitems";
+import { env } from "@/lib/env";
+import {
+  fetchDaAuditReportSummary,
+  fetchDaWorkitemStatus,
+  submitMarkUpdateWorkitem,
+} from "@/lib/da-workitems";
 
 /** Mirrors MCP `CachedAnalysisResult` (separate in-memory cache in Next.js). */
 export type CachedAnalysisResult = {
@@ -377,6 +382,31 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   }
 
   if (daResult) {
+    let workitemPoll: Awaited<ReturnType<typeof fetchDaWorkitemStatus>> | undefined;
+    let execution_assistant_hint = "";
+    let da_audit_summary: { one_liner: string } | undefined;
+    if (!env.daSkipWorkitemPoll) {
+      workitemPoll = await fetchDaWorkitemStatus(daResult.id);
+    }
+    const polled = workitemPoll?.status;
+    if (polled === "success") {
+      let auditHint = "";
+      if (workitemPoll?.reportUrl) {
+        const sum = await fetchDaAuditReportSummary(workitemPoll.reportUrl);
+        if (sum) {
+          auditHint = sum.assistant_hint;
+          da_audit_summary = { one_liner: sum.one_liner };
+        }
+      }
+      execution_assistant_hint =
+        auditHint ||
+        "DA workitem finished successfully. One short sentence; mention ACC/Viewer refresh after publish if relevant.";
+    } else if (polled && /^failed/i.test(polled)) {
+      execution_assistant_hint = `DA workitem status: ${polled}. One brief factual sentence.`;
+    } else {
+      execution_assistant_hint =
+        "Job submitted to Design Automation. Reply in ONE sentence: it is queued/running and you will report when done. Do not ask for more confirmation or say still preparing.";
+    }
     return {
       success: true as const,
       workitem_submitted: true as const,
@@ -391,6 +421,9 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
           ? "Direct parameter modify workitem (no mark grouping). Revit updates after the activity completes; sync locally; Viewer after publish."
           : "Workitem submitted to Design Automation. Revit central file updates only after the activity completes; then users sync locally. Viewer updates after next publish.",
       da_raw: daResult.raw,
+      workitem_poll: workitemPoll,
+      execution_assistant_hint,
+      ...(da_audit_summary ? { da_audit_summary } : {}),
     };
   }
 
@@ -406,5 +439,7 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
       "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true, DA_ACTIVITY_ID, and APS credentials (scope code:all) to post real workitems.",
     applied_marks: applied_marks_preview,
     note: "No cloud write occurred. Revit parameters are unchanged by this action.",
+    execution_assistant_hint:
+      "No DA job ran (stub/disabled). One sentence; do not imply Revit changed.",
   };
 }

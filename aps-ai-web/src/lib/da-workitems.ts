@@ -115,3 +115,109 @@ export async function submitMarkUpdateWorkitem(params: {
 
   return { id, status, raw };
 }
+
+export type DaWorkitemPollResult = {
+  ok: boolean;
+  status?: string;
+  progress?: string;
+  reportUrl?: string;
+  raw?: unknown;
+};
+
+/**
+ * GET workitem status (Design Automation v3). Use after submit for a quick poll;
+ * often still `pending`/`inprogress` on first call.
+ */
+export async function fetchDaWorkitemStatus(
+  workitemId: string,
+): Promise<DaWorkitemPollResult> {
+  if (env.daEnabled !== "true" || !workitemId || workitemId.startsWith("da-stub")) {
+    return { ok: false };
+  }
+  try {
+    const token = await getDesignAutomationAccessToken();
+    const base = daBaseUrl();
+    const res = await fetch(
+      `${base}/workitems/${encodeURIComponent(workitemId)}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: "no-store",
+      },
+    );
+    const text = await res.text();
+    let raw: unknown;
+    try {
+      raw = JSON.parse(text) as unknown;
+    } catch {
+      raw = { rawText: text };
+    }
+    if (!res.ok) {
+      return { ok: false, raw };
+    }
+    const o = raw as {
+      status?: unknown;
+      progress?: unknown;
+      reportUrl?: unknown;
+    };
+    return {
+      ok: true,
+      status: typeof o.status === "string" ? o.status : undefined,
+      progress: typeof o.progress === "string" ? o.progress : undefined,
+      reportUrl: typeof o.reportUrl === "string" ? o.reportUrl : undefined,
+      raw,
+    };
+  } catch (e) {
+    return {
+      ok: false,
+      raw: { error: e instanceof Error ? e.message : String(e) },
+    };
+  }
+}
+
+type DaAuditJson = {
+  modify?: {
+    parameter_actions_ok?: number;
+    parameter_actions_failed?: number;
+  };
+  summary?: { unique_elements_resolved_modify?: number };
+  post_run?: { summary_line?: string };
+  swc?: { status?: string };
+};
+
+/**
+ * Fetch audit_report.json from DA workitem reportUrl (after status success).
+ * Returns a short user-facing line + hint for the finalizer.
+ */
+export async function fetchDaAuditReportSummary(
+  reportUrl: string,
+): Promise<{ one_liner: string; assistant_hint: string } | null> {
+  if (!reportUrl || !reportUrl.startsWith("http")) return null;
+  try {
+    const res = await fetch(reportUrl, { cache: "no-store" });
+    if (!res.ok) return null;
+    const json = (await res.json()) as DaAuditJson;
+    const ok = json.modify?.parameter_actions_ok ?? 0;
+    const fail = json.modify?.parameter_actions_failed ?? 0;
+    const unique = json.summary?.unique_elements_resolved_modify ?? 0;
+    const swcStatus = json.swc?.status?.trim() ?? "";
+    const postLine =
+      typeof json.post_run?.summary_line === "string"
+        ? json.post_run.summary_line.trim()
+        : "";
+    const syncNote =
+      swcStatus.toLowerCase() === "success"
+        ? " Sync completed."
+        : swcStatus && swcStatus.toLowerCase() !== "skipped"
+          ? ` SWC: ${swcStatus}.`
+          : "";
+    const one_liner =
+      unique > 0
+        ? `Parameter actions: ${ok} succeeded, ${fail} failed, across ${unique} element(s).${syncNote}`.trim()
+        : (postLine ||
+            `Parameter actions: ${ok} succeeded, ${fail} failed.${syncNote}`).trim();
+    const assistant_hint = `Design Automation audit is available. Reply in exactly ONE short sentence for the user using: ${one_liner} Do not ask for confirmation; do not say still preparing.`;
+    return { one_liner, assistant_hint };
+  } catch {
+    return null;
+  }
+}
