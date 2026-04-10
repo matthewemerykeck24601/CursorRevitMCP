@@ -13,6 +13,7 @@ import {
   bimRowsToCsv,
   buildBimTableRows,
 } from "@/lib/bimSelectionTable";
+import type { DiscoveryCachedSelection } from "@/lib/discovery-cached-selection";
 
 type Hub = { id: string; name: string; type: string };
 type Project = { id: string; name: string; type: string };
@@ -203,6 +204,9 @@ export function AppClient() {
   const [aiModel, setAiModel] = useState<string>(AI_MODEL_OPTIONS.xai[0]);
   const [selectedDbIds, setSelectedDbIds] = useState<number[]>([]);
   const [selectedElements, setSelectedElements] = useState<SelectedElementSnapshot[]>([]);
+  /** Server-built discovery session for DA (resend each chat turn). */
+  const [discoveryCachedSelection, setDiscoveryCachedSelection] =
+    useState<DiscoveryCachedSelection | null>(null);
   const [workspaceTab, setWorkspaceTab] = useState<WorkspaceTab>("viewer");
   const [modelDataRows, setModelDataRows] = useState<ModelDataRow[]>([]);
   const [elementDataRows, setElementDataRows] = useState<ModelDataRow[]>([]);
@@ -268,6 +272,11 @@ export function AppClient() {
     const token = name.match(/^\s*([A-Za-z0-9._-]+)/)?.[1] ?? "";
     return token || selectedProject || "UnknownProject";
   }, [selectedProjectData, selectedProject]);
+
+  useEffect(() => {
+    setDiscoveryCachedSelection(null);
+  }, [selectedHub, selectedProject, selectedModel]);
+
   const selectedPieceRefs = useMemo(() => {
     return selectedElements.map((el) => {
       const controlMark =
@@ -789,6 +798,7 @@ export function AppClient() {
         selectedDbIds,
         selectedCount: selectedDbIds.length,
         selectedElements,
+        discoveryCachedSelection: discoveryCachedSelection ?? undefined,
         assistantMode,
         aiProvider,
         aiModel,
@@ -822,7 +832,11 @@ export function AppClient() {
       message: string;
       actions: ViewerAction[];
       queryResult?: { views?: Array<{ guid: string; name: string; role: string }> };
+      discoveryCachedSelection?: DiscoveryCachedSelection | null;
     };
+    if ("discoveryCachedSelection" in json) {
+      setDiscoveryCachedSelection(json.discoveryCachedSelection ?? null);
+    }
     setChatLog((prev) => [...prev, `AI: ${json.message}`]);
     if (json.queryResult?.views?.length) {
       const viewCount = json.queryResult.views.length;

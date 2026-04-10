@@ -45,6 +45,7 @@ export type AgentToolName =
   | "issues_list"
   | "issues_create"
   | "get_elements_by_category"
+  | "inspect_published_selection"
   | "select_elements"
   | "analyze_published_model_and_cache"
   | "get_cached_mark_analysis"
@@ -108,12 +109,15 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
 
 const STRONG_TOOL_GUIDANCE = `
 CRITICAL INSTRUCTIONS FOR SELECTION AND ANALYSIS:
-- Prefer get_elements_by_category (AEC Data Model) then select_elements when hub/project/model context is valid.
-- If AECDM is unavailable or errors (e.g. 404), use viewer action searchAndSelectMetromontPieces — NOT raw viewer.search. Example for columns: { "type": "viewer.searchAndSelectMetromontPieces", "query": "CLA", "pieceKind": "COLUMN", "clearFirst": true, "fitToView": false }. That runs Forge text search, then keeps only Structural Framing elements that match column/WPA/WPB/CLA rules.
+- Two pipelines: (1) DISCOVERY — published model via AEC Data Model + Viewer. (2) EXECUTION — Revit central edits via Design Automation (modify_parameters / run_mark_analysis) using cached_selection.externalIds. Never treat a viewer-only highlight as a cloud write.
+- For "select", "find", "highlight" (e.g. all columns, CLA prefix): use get_elements_by_category OR inspect_published_selection (same behavior). The server queries AECDM, filters optional name/control_mark_prefix, builds a persisted cached_selection (cache_id, externalIds, provenance), and queues viewer.selectDbIds automatically — you do not need a separate select_elements unless refining dbIds.
+- If the user only wants parameter edits, do NOT run analyze_published_model_and_cache unless they asked for mark analysis.
+- If AECDM is unavailable or errors (e.g. 404), use viewer action searchAndSelectMetromontPieces — NOT raw viewer.search. Example for columns: { "type": "viewer.searchAndSelectMetromontPieces", "query": "CLA", "pieceKind": "COLUMN", "clearFirst": true, "fitToView": false }.
 - For wall panels use pieceKind WPA or WPB with a tight query when appropriate.
 - Do not use viewer.search or viewer.isolateByQuery for precast piece selection — they match unrelated elements (any property containing the string).
 - Default: clearFirst true, fitToView false unless the user asks to zoom/fit.
-- In your reply to the user: be brief; do not paste this policy block or repeat long internal rules — report counts and what was selected.
+- In your reply: use counts and rules from DISCOVERY_CACHED_SELECTION / GET_CACHED_SELECTION — never invent categories (e.g. wall panels) the user did not ask for.
+- If DISCOVERY_CACHED_SELECTION shows after_filter_count 0 or success false, say no elements matched — do not claim a selection.
 
 PARAMETER EDITS VS MARK ANALYSIS (cloud / Design Automation):
 - After selection is established, simple clears/sets/toggles on parameters do NOT require analyze_published_model_and_cache or mark grouping.
@@ -131,7 +135,7 @@ const METROMONT_SYSTEM_CONTEXT = [
   "For READ or ANALYZE (counts, verify marks, propose groups, sameness): use analyze_published_model_and_cache when you need published-model mark workflow data.",
   "For WRITE without mark grouping (clear/set/toggle any parameter on current selection): use trigger_design_automation_mark_update with confirm: true, skip_analysis: true, parameter_patches and/or parameter_updates and/or cached_selection+updates from get_cached_selection externalIds — do NOT run analyze_published_model_and_cache first unless the user asked for analysis.",
   "For WRITE that applies proposed CONTROL_MARK groups from cache: run analyze (if needed), preview, then trigger_design_automation_mark_update with confirm: true and cache_id (skip_analysis false or omit).",
-  "Use get_cached_selection to confirm dbIds/externalIds before describing a cloud edit.",
+  "Use get_cached_selection to read the persisted discovery session (cached_selection) for DA; the client resends it each turn as discoveryCachedSelection.",
   "Cloud writes: Revit central changes only when PRECAST_DA_MARK_UPDATE shows workitem_submitted: true. If stub or CLOUD_WRITE_TRUTH — say ACC was not modified.",
 ].join("\n");
 
@@ -489,6 +493,7 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     "issues_list",
     "issues_create",
     "get_elements_by_category",
+    "inspect_published_selection",
     "select_elements",
     "analyze_published_model_and_cache",
     "get_cached_mark_analysis",
@@ -522,7 +527,7 @@ function buildPlannerPrompt(
     ? options.chatHistory.slice(-8)
     : [];
   const selectedElements = Array.isArray(options.selectedElements)
-    ? options.selectedElements.slice(0, 3).map((el) => ({
+    ? options.selectedElements.slice(0, 8).map((el) => ({
         dbId: el.dbId,
         name: el.name,
         externalId: el.externalId,
@@ -531,7 +536,7 @@ function buildPlannerPrompt(
     : [];
   const context = {
     selectedCount: options.selectedCount ?? 0,
-    selectedDbIds: (options.selectedDbIds ?? []).slice(0, 20),
+    selectedDbIds: (options.selectedDbIds ?? []).slice(0, 40),
     selectedElements,
     history,
     externalContext: options.externalContext ?? "",
@@ -665,14 +670,14 @@ function buildToolPlannerPrompt(
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
     "Then end with a single ```json code block containing ONLY:",
-    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "get_cached_selection" | "model_views" | "issues_list" | "issues_create" | "get_elements_by_category" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
+    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "get_cached_selection" | "model_views" | "issues_list" | "issues_create" | "get_elements_by_category" | "inspect_published_selection" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
     "",
     "Tool selection guidance:",
-    '- Use "get_elements_by_category" first when the user wants to select/find/highlight elements by category/family/type; args: category?, family?, type?, limit?, product_prefix? (WPA|WPB|CLA|COLUMN|ALL). Requires hub/project/model context — web injects token and URNs.',
-    '- Use "select_elements" with dbIds from AECDM results; args: { "dbIds": (string|number)[], "clearFirst"?: boolean (default true), "zoomToSelection"?: boolean (default false) }.',
+    '- Use "get_elements_by_category" OR "inspect_published_selection" (Tool A — same implementation) when the user wants to select/find/highlight elements. Args: category?, family?, type?, limit?, product_prefix? (WPA|WPB|CLA|COLUMN|ALL), optional filters name_contains, control_mark_prefix, family_contains; highlight_in_viewer (default true) queues viewer selection; fit_to_view / zoom_to_selection to zoom; isolate_in_viewer to isolate. Requires hub/project/model context.',
+    '- Use "select_elements" only to refine dbIds from a prior tool result in the same turn; args: { "dbIds", "clearFirst"?, "zoomToSelection"?, "fit_to_view"?, "isolate_in_viewer"? }. Prefer inspect_published_selection alone for most "select all X" requests.',
     '- Use "aec_query" for model-wide questions, counts, categories, or when semantic model data is required.',
     '- Use "selected_element_parameters" when the user asks about currently selected elements.',
-    '- Use "get_cached_selection" to list dbIds, externalIds, and names for the current viewer selection before cloud parameter edits (no args).',
+    '- Use "get_cached_selection" to read persisted discovery cached_selection (externalIds, cache_id) for DA payloads before execution (no args).',
     '- Use "model_views" only when asked for model views/metadata/sheets listing.',
     '- Use "issues_list" when the user asks to list/show/open project issues.',
     '- Use "issues_create" when the user asks to create a new issue.',

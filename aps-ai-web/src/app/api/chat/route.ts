@@ -29,6 +29,16 @@ import {
   assignControlMarksContract,
   getProductSamenessReportContract,
 } from "@/lib/precast-mark-contract";
+import {
+  buildDiscoveryCachedSelection,
+  filterAecdmRowsForDiscovery,
+  parseDiscoveryCachedSelectionFromClient,
+  subsetDiscoveryByDbIds,
+  toDaCachedSelectionPayload,
+  type DiscoveryCachedSelection,
+  type DiscoveryProvenanceInput,
+} from "@/lib/discovery-cached-selection";
+import type { AecdmElementListRow } from "@/lib/aecdm-get-elements";
 
 type ChatRequest = {
   message?: string;
@@ -54,6 +64,8 @@ type ChatRequest = {
   aiModel?: string;
   assistantMode?: string;
   workspaceMode?: "model" | "product-analysis";
+  /** Last discovery payload from prior chat turn — resend for DA / follow-ups. */
+  discoveryCachedSelection?: DiscoveryCachedSelection | Record<string, unknown>;
   productAnalysis?: {
     rulesText?: string;
     selectedDesignFile?: Record<string, unknown> | null;
@@ -98,6 +110,32 @@ function parseProductPrefix(
     return raw;
   }
   return undefined;
+}
+
+function buildSelectionRulesLabel(baseArgs: Record<string, unknown>): string {
+  const parts: string[] = [];
+  const cat = typeof baseArgs.category === "string" ? baseArgs.category : "";
+  const fam = typeof baseArgs.family === "string" ? baseArgs.family : "";
+  const typ = typeof baseArgs.type === "string" ? baseArgs.type : "";
+  if (cat) parts.push(`category=${cat}`);
+  if (fam) parts.push(`family=${fam}`);
+  if (typ) parts.push(`type=${typ}`);
+  if (baseArgs.product_prefix != null) {
+    parts.push(`product_prefix=${String(baseArgs.product_prefix)}`);
+  }
+  const nc = String(
+    baseArgs.name_contains ?? baseArgs.nameContains ?? "",
+  ).trim();
+  if (nc) parts.push(`name contains "${nc}"`);
+  const cmp = String(
+    baseArgs.control_mark_prefix ?? baseArgs.controlMarkPrefix ?? "",
+  ).trim();
+  if (cmp) parts.push(`CONTROL_MARK prefix "${cmp}"`);
+  const fc = String(
+    baseArgs.family_contains ?? baseArgs.familyContains ?? "",
+  ).trim();
+  if (fc) parts.push(`family contains "${fc}"`);
+  return parts.join("; ") || "AEC Data Model element query";
 }
 
 function fallbackIntent(message: string): {
@@ -221,9 +259,9 @@ export async function POST(request: NextRequest) {
         ? body.selectedDbIds.length
         : 0;
   const selectedDbIds = Array.isArray(body.selectedDbIds)
-    ? body.selectedDbIds.filter((v) => Number.isFinite(v)).slice(0, 20)
+    ? body.selectedDbIds.filter((v) => Number.isFinite(v)).slice(0, 500)
     : [];
-  const selectedElements = normalizeElements(body.selectedElements).slice(0, 5);
+  const selectedElements = normalizeElements(body.selectedElements).slice(0, 300);
   const selectedHubId = body.selectedHubId;
   const selectedProjectId = body.selectedProjectId;
   const selectedItemId = body.selectedItemId;
@@ -232,12 +270,36 @@ export async function POST(request: NextRequest) {
   const assistantMode = "agent";
   const workspaceMode = body.workspaceMode ?? "model";
   const productAnalysis = body.productAnalysis;
+  const discoveryProvenance = (): DiscoveryProvenanceInput => ({
+    modelUrn: body.selectedModelUrn,
+    hubId: selectedHubId,
+    projectId: selectedProjectId,
+    itemId: selectedItemId,
+    publishedVersionId:
+      (typeof productAnalysis?.selectionContext?.modelVersionId === "string"
+        ? productAnalysis.selectionContext.modelVersionId
+        : undefined) ?? selectedItemId,
+  });
   let actions: ChatToolAction[] = [];
   const toolViewerActions: ChatToolAction[] = [];
   let modelQueryRequested = false;
   let responseText = "";
   const queryResult: Record<string, unknown> = {};
   let externalContext = "";
+
+  let activeDiscovery: DiscoveryCachedSelection | null =
+    parseDiscoveryCachedSelectionFromClient(body.discoveryCachedSelection);
+  let lastAecdmRows: AecdmElementListRow[] = [];
+
+  if (activeDiscovery) {
+    externalContext = `${externalContext}\nLAST_DISCOVERY_CACHED_SELECTION: ${JSON.stringify({
+      cache_id: activeDiscovery.cache_id,
+      count: activeDiscovery.externalIds.length,
+      selection_rules: activeDiscovery.selection_rules,
+      intended_operation: activeDiscovery.intended_operation,
+      provenance: activeDiscovery.provenance,
+    })}`.trim();
+  }
 
   if (shouldLogFull()) {
     log("info", "chat-request", {
@@ -338,12 +400,25 @@ export async function POST(request: NextRequest) {
             externalId: el.externalId ?? "",
             name: el.name ?? "",
           }));
+          const daPayload = activeDiscovery
+            ? toDaCachedSelectionPayload(activeDiscovery)
+            : null;
           const payload = {
             success: true,
-            count: selectedElements.length,
-            dbIds: selectedDbIds.slice(0, 200),
+            source: activeDiscovery ? "discovery_session" : "viewer_selection_only",
+            count: activeDiscovery
+              ? activeDiscovery.externalIds.length
+              : selectedElements.length,
+            cache_id: activeDiscovery?.cache_id,
+            cached_selection: daPayload,
+            dbIds: activeDiscovery
+              ? activeDiscovery.dbIds.slice(0, 300)
+              : selectedDbIds.slice(0, 300),
             elements: snapshot,
-            note: "Use externalId in parameter_patches, parameter_updates, or cached_selection.externalIds + updates[] for skip_analysis DA payloads.",
+            selection_rules: activeDiscovery?.selection_rules,
+            note: activeDiscovery
+              ? "Use GET_CACHED_SELECTION.cached_selection with trigger_design_automation_mark_update (skip_analysis + updates[]). External IDs are stable for Revit DA."
+              : "No discovery session — only current viewer selection. Run get_elements_by_category or inspect_published_selection to build cached_selection with externalIds before cloud edits.",
           };
           externalContext =
             `${externalContext}\nGET_CACHED_SELECTION: ${JSON.stringify(payload)}`.trim();
@@ -452,8 +527,22 @@ export async function POST(request: NextRequest) {
         }
         if (call.tool === "trigger_design_automation_mark_update") {
           try {
+            const base =
+              call.args && typeof call.args === "object" && !Array.isArray(call.args)
+                ? { ...(call.args as Record<string, unknown>) }
+                : {};
+            if (
+              activeDiscovery &&
+              activeDiscovery.externalIds.length > 0 &&
+              base.cached_selection == null
+            ) {
+              base.cached_selection = toDaCachedSelectionPayload(activeDiscovery);
+            }
+            if (activeDiscovery?.cache_id && base.cache_id == null) {
+              base.cache_id = activeDiscovery.cache_id;
+            }
             const payload = await triggerDesignAutomationMarkUpdateContract(
-              call.args ?? { cache_id: "", confirm: false },
+              Object.keys(base).length > 0 ? base : { cache_id: "", confirm: false },
             );
             externalContext =
               `${externalContext}\nPRECAST_DA_MARK_UPDATE: ${JSON.stringify(payload)}`.trim();
@@ -503,12 +592,14 @@ export async function POST(request: NextRequest) {
             `${externalContext}\nPRECAST_ASSIGN_CONTROL_MARKS: ${JSON.stringify(payload)}`.trim();
         }
 
-        if (
-          call.tool === "get_elements_by_category" &&
+        const isPublishedInspect =
+          (call.tool === "get_elements_by_category" ||
+            call.tool === "inspect_published_selection") &&
           selectedHubId &&
           selectedProjectId &&
-          body.selectedModelUrn
-        ) {
+          body.selectedModelUrn;
+
+        if (isPublishedInspect) {
           const baseArgs =
             call.args &&
             typeof call.args === "object" &&
@@ -525,7 +616,7 @@ export async function POST(request: NextRequest) {
               accessToken: auth.session.accessToken,
               hubId: selectedHubId,
               dmProjectId: selectedProjectId,
-              modelUrn: body.selectedModelUrn,
+              modelUrn: body.selectedModelUrn as string,
               category:
                 typeof baseArgs.category === "string"
                   ? baseArgs.category
@@ -539,14 +630,71 @@ export async function POST(request: NextRequest) {
               limit,
               product_prefix: parseProductPrefix(baseArgs.product_prefix),
             });
-            const dbIds = result.elements
-              .map((e) => e.dbId)
-              .filter((id): id is number => id != null);
+            const filtered = filterAecdmRowsForDiscovery(
+              result.elements,
+              baseArgs,
+            );
+            lastAecdmRows = filtered;
+            const rulesLabel = buildSelectionRulesLabel(baseArgs);
+            const intendedOp =
+              typeof baseArgs.intended_operation === "string"
+                ? baseArgs.intended_operation.trim()
+                : "future_edit";
+            activeDiscovery = buildDiscoveryCachedSelection(
+              filtered,
+              discoveryProvenance(),
+              rulesLabel,
+              intendedOp || "future_edit",
+            );
+            const dbIdsForViewer = activeDiscovery.dbIds;
+            const highlight =
+              baseArgs.highlight_in_viewer !== false &&
+              baseArgs.apply_viewer_selection !== false;
+            const fit =
+              baseArgs.fit_to_view === true ||
+              baseArgs.zoom_to_selection === true ||
+              baseArgs.zoomToSelection === true;
+            if (highlight && dbIdsForViewer.length > 0) {
+              toolViewerActions.push({
+                type: "viewer.selectDbIds",
+                dbIds: dbIdsForViewer.slice(0, 500),
+                clearFirst: baseArgs.clearFirst !== false,
+                fitToView: fit,
+              });
+              if (baseArgs.isolate_in_viewer === true) {
+                toolViewerActions.push({
+                  type: "viewer.isolateDbIds",
+                  dbIds: dbIdsForViewer.slice(0, 500),
+                });
+              }
+            }
+            const extCount = activeDiscovery.externalIds.length;
+            const discPayload = {
+              success: extCount > 0 || dbIdsForViewer.length > 0,
+              tool: call.tool,
+              aecdm_row_count: result.count,
+              after_filter_count: filtered.length,
+              viewer_db_ids_queued: highlight ? dbIdsForViewer.length : 0,
+              cached_selection: toDaCachedSelectionPayload(activeDiscovery),
+              discovery_session: activeDiscovery,
+              external_id_count: extCount,
+              warning:
+                extCount === 0 && dbIdsForViewer.length > 0
+                  ? "Some elements have no External ID in AECDM — Design Automation cannot target them until External ID is present."
+                  : filtered.length === 0
+                    ? "No elements matched the query and filters — viewer selection was not changed."
+                    : undefined,
+            };
+            externalContext =
+              `${externalContext}\nDISCOVERY_CACHED_SELECTION: ${JSON.stringify(discPayload)}`.trim();
+            externalContext =
+              `${externalContext}\nDISCOVERY_SELECTION_APPLIED: ${Boolean(highlight && dbIdsForViewer.length > 0)}`.trim();
             externalContext =
               `${externalContext}\nGET_ELEMENTS_BY_CATEGORY: ${JSON.stringify({
                 count: result.count,
-                dbIds: dbIds.slice(0, 300),
-                preview: result.elements.slice(0, 20).map((e) => ({
+                filtered_count: filtered.length,
+                dbIds: dbIdsForViewer.slice(0, 300),
+                preview: filtered.slice(0, 20).map((e) => ({
                   dbId: e.dbId,
                   category: e.category,
                   family: e.family,
@@ -573,12 +721,72 @@ export async function POST(request: NextRequest) {
               : {};
           const dbIds = parseToolDbIds(baseArgs.dbIds);
           if (dbIds.length > 0) {
+            const fit =
+              baseArgs.zoomToSelection === true || baseArgs.fit_to_view === true;
             toolViewerActions.push({
               type: "viewer.selectDbIds",
               dbIds,
               clearFirst: baseArgs.clearFirst !== false,
-              fitToView: baseArgs.zoomToSelection === true,
+              fitToView: fit,
             });
+            if (baseArgs.isolate_in_viewer === true) {
+              toolViewerActions.push({
+                type: "viewer.isolateDbIds",
+                dbIds,
+              });
+            }
+            if (lastAecdmRows.length > 0) {
+              const rows = lastAecdmRows.filter(
+                (r) =>
+                  r.dbId != null &&
+                  dbIds.includes(Math.trunc(r.dbId as number)),
+              );
+              if (rows.length > 0) {
+                const intendedOp =
+                  typeof baseArgs.intended_operation === "string"
+                    ? baseArgs.intended_operation.trim()
+                    : activeDiscovery?.intended_operation ?? "future_edit";
+                activeDiscovery = buildDiscoveryCachedSelection(
+                  rows,
+                  discoveryProvenance(),
+                  `${buildSelectionRulesLabel(baseArgs)} (select_elements)`,
+                  intendedOp || "future_edit",
+                );
+                externalContext =
+                  `${externalContext}\nDISCOVERY_CACHED_SELECTION: ${JSON.stringify({
+                    success: true,
+                    tool: "select_elements",
+                    cached_selection: toDaCachedSelectionPayload(activeDiscovery),
+                    discovery_session: activeDiscovery,
+                  })}`.trim();
+              } else if (activeDiscovery) {
+                activeDiscovery = subsetDiscoveryByDbIds(activeDiscovery, dbIds);
+                externalContext =
+                  `${externalContext}\nDISCOVERY_CACHED_SELECTION: ${JSON.stringify({
+                    success: activeDiscovery.externalIds.length > 0,
+                    tool: "select_elements",
+                    cached_selection: toDaCachedSelectionPayload(activeDiscovery),
+                    discovery_session: activeDiscovery,
+                    note: "Subset of prior discovery session by dbIds.",
+                  })}`.trim();
+              }
+            } else if (activeDiscovery) {
+              activeDiscovery = subsetDiscoveryByDbIds(activeDiscovery, dbIds);
+              externalContext =
+                `${externalContext}\nDISCOVERY_CACHED_SELECTION: ${JSON.stringify({
+                  success: activeDiscovery.externalIds.length > 0,
+                  tool: "select_elements",
+                  cached_selection: toDaCachedSelectionPayload(activeDiscovery),
+                  discovery_session: activeDiscovery,
+                })}`.trim();
+            } else {
+              externalContext =
+                `${externalContext}\nSELECT_ELEMENTS_NO_DISCOVERY_CACHE: ${JSON.stringify({
+                  message:
+                    "Viewer selection updated but no AECDM row cache in this request — run inspect_published_selection / get_elements_by_category first for externalIds.",
+                  dbIds: dbIds.slice(0, 100),
+                })}`.trim();
+            }
           }
         }
 
@@ -635,6 +843,11 @@ export async function POST(request: NextRequest) {
     externalContext = `${externalContext}\nPRODUCT_ANALYSIS_CONTEXT: ${JSON.stringify(
       analysisContext,
     )}`.trim();
+  }
+
+  if (externalContext.includes("DISCOVERY_CACHED_SELECTION")) {
+    externalContext =
+      `${externalContext}\nFINALIZER_HINT_DISCOVERY: When summarizing selection, use after_filter_count / external_id_count / viewer_db_ids_queued from DISCOVERY_CACHED_SELECTION. If filtered_count or after_filter_count is 0, state clearly that nothing matched. Do not claim element types the user did not ask for. If DISCOVERY_SELECTION_APPLIED is true, avoid extra viewer.search actions that would fight selectDbIds.`.trim();
   }
 
   try {
@@ -712,6 +925,7 @@ export async function POST(request: NextRequest) {
     actions,
     queryResult,
     requestId,
+    discoveryCachedSelection: activeDiscovery,
   });
   for (const cookie of auth.response.cookies.getAll()) {
     response.cookies.set(cookie);
