@@ -48,6 +48,7 @@ internal static class RevitAutomationDispatcher
         if (doc == null)
         {
             message = "No active document.";
+            WriteMinimalFailureAudit("No active document — cannot run Design Automation on a closed or missing model.");
             return Result.Failed;
         }
 
@@ -56,6 +57,7 @@ internal static class RevitAutomationDispatcher
         if (!File.Exists(payloadPath))
         {
             message = $"Payload not found: {payloadPath}";
+            WriteMinimalFailureAudit($"Payload file not found: {payloadPath}");
             return Result.Failed;
         }
 
@@ -69,6 +71,7 @@ internal static class RevitAutomationDispatcher
         catch (Exception ex)
         {
             message = $"Invalid payload JSON: {ex.Message}";
+            WriteMinimalFailureAudit($"Invalid payload JSON: {ex.Message}");
             return Result.Failed;
         }
 
@@ -103,6 +106,7 @@ internal static class RevitAutomationDispatcher
             audit["note"] = "No model changes; placeholder for future cache invalidation.";
             Log("info", audit["note"].ToString());
             PostRunVerify(doc, audit, Log, transactionCommitted: false, swcAttempted: false);
+            StampAuditOutcome(audit, success: true, error: null);
             WriteAuditArtifacts(audit);
             return Result.Succeeded;
         }
@@ -135,6 +139,7 @@ internal static class RevitAutomationDispatcher
             audit["warning"] = warn;
             Log("error", warn);
             PostRunVerify(doc, audit, Log, transactionCommitted: false, swcAttempted: false);
+            StampAuditOutcome(audit, success: false, error: warn);
             WriteAuditArtifacts(audit);
             message = warn;
             return Result.Failed;
@@ -164,9 +169,10 @@ internal static class RevitAutomationDispatcher
         {
             tx.RollBack();
             audit["transaction"] = "rolled_back";
-            audit["error"] = ex.Message;
+            audit["error"] = $"Transaction failed and was rolled back: {ex.Message}";
             Log("error", $"Transaction rolled back: {ex.Message}");
             PostRunVerify(doc, audit, Log, transactionCommitted: false, swcAttempted: false);
+            StampAuditOutcome(audit, success: false, error: audit["error"]?.ToString());
             WriteAuditArtifacts(audit);
             message = ex.Message;
             return Result.Failed;
@@ -176,10 +182,87 @@ internal static class RevitAutomationDispatcher
         Log("info", "Transaction committed successfully.");
         var swcAttempted = TrySynchronizeWithCentral(doc, audit, Log);
         PostRunVerify(doc, audit, Log, transactionCommitted: true, swcAttempted);
+        var (bizOk, bizErr) = ComputeBusinessOutcome(audit, runModify, transactionCommitted: true);
+        StampAuditOutcome(audit, bizOk, bizErr);
         WriteAuditArtifacts(audit);
 
         message = SummarizeForHost(audit);
         return Result.Succeeded;
+    }
+
+    /// <summary>Top-level outcome for web / DA consumers; always written to audit_report.json.</summary>
+    private static void StampAuditOutcome(JObject audit, bool success, string error)
+    {
+        audit["success"] = success;
+        audit["error"] = string.IsNullOrWhiteSpace(error) ? null : error;
+    }
+
+    private static void WriteMinimalFailureAudit(string error)
+    {
+        var audit = new JObject
+        {
+            ["schema"] = "revit_automation_audit_v2",
+            ["timestamp_utc"] = DateTime.UtcNow.ToString("o"),
+            ["success"] = false,
+            ["error"] = error,
+            ["log"] = new JArray
+            {
+                new JObject
+                {
+                    ["level"] = "error",
+                    ["text"] = error,
+                    ["time_utc"] = DateTime.UtcNow.ToString("o"),
+                },
+            },
+            ["summary"] = new JObject
+            {
+                ["unique_elements_resolved_modify"] = 0,
+                ["parameter_actions_ok"] = 0,
+                ["parameter_actions_failed"] = 0,
+            },
+            ["modify"] = new JObject
+            {
+                ["parameter_actions_ok"] = 0,
+                ["parameter_actions_failed"] = 0,
+                ["external_id_attempts"] = 0,
+                ["elements_matched"] = 0,
+                ["elements_missed"] = 0,
+            },
+            ["post_run"] = new JObject { ["summary_line"] = error },
+        };
+        WriteAuditArtifacts(audit);
+    }
+
+    /// <summary>False when SWC failed, no elements resolved despite attempts, or all modify actions failed.</summary>
+    private static (bool ok, string err) ComputeBusinessOutcome(
+        JObject audit,
+        bool runModify,
+        bool transactionCommitted)
+    {
+        if (!transactionCommitted)
+            return (false, audit["error"]?.ToString() ?? "Transaction not committed.");
+
+        var swc = audit["swc"] as JObject;
+        var swcSt = swc?["status"]?.ToString()?.ToLowerInvariant() ?? "";
+        if (swcSt == "failed")
+            return (false, "SyncWithCentral failed with errors: " + (swc?["error"]?.ToString() ?? "unknown"));
+
+        if (!runModify)
+            return (true, null);
+
+        var mod = audit["modify"] as JObject;
+        var attempts = mod?["external_id_attempts"]?.Value<int>() ?? 0;
+        var okc = mod?["parameter_actions_ok"]?.Value<int>() ?? 0;
+        var failc = mod?["parameter_actions_failed"]?.Value<int>() ?? 0;
+        var uniq = audit["summary"]?["unique_elements_resolved_modify"]?.Value<int>() ?? 0;
+
+        if (attempts > 0 && uniq == 0 && okc == 0)
+            return (false, "No elements resolved from cached externalIds; no parameter changes applied.");
+
+        if (uniq > 0 && okc == 0 && failc > 0)
+            return (false, "All parameter actions failed (read-only, not found, or exception). See modify.failures in audit_report.json.");
+
+        return (true, null);
     }
 
     private static JObject NewAuditRoot(Document doc, JObject root)

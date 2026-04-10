@@ -48,6 +48,10 @@ import {
   shouldAutoExecuteDesignAutomation,
   shouldAutoPollDaFollowUp,
 } from "@/lib/chat-da-intent";
+import {
+  lookupRecentDaWorkitemByCacheId,
+  registerDaWorkitemForCacheId,
+} from "@/lib/da-recent-workitem-cache";
 
 type ChatRequest = {
   message?: string;
@@ -80,6 +84,7 @@ type ChatRequest = {
     workitem_id: string;
     submitted_at?: string;
     cache_id?: string;
+    operation?: string;
   };
   productAnalysis?: {
     rulesText?: string;
@@ -127,19 +132,105 @@ function parseProductPrefix(
   return undefined;
 }
 
-function normalizeLastDaJob(
-  raw: unknown,
-): { workitem_id: string; submitted_at?: string; cache_id?: string } | undefined {
+type LastDaJobPayload = {
+  workitem_id: string;
+  submitted_at?: string;
+  cache_id?: string;
+  operation?: string;
+};
+
+function normalizeLastDaJob(raw: unknown): LastDaJobPayload | undefined {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
   const o = raw as Record<string, unknown>;
   const id = typeof o.workitem_id === "string" ? o.workitem_id.trim() : "";
   if (!id) return undefined;
+  const operation =
+    typeof o.operation === "string" && o.operation.trim()
+      ? o.operation.trim()
+      : undefined;
   return {
     workitem_id: id,
     submitted_at:
       typeof o.submitted_at === "string" ? o.submitted_at : undefined,
     cache_id: typeof o.cache_id === "string" ? o.cache_id : undefined,
+    ...(operation ? { operation } : {}),
   };
+}
+
+function lastDaJobFromDiscoveryPending(
+  d: DiscoveryCachedSelection | null,
+): LastDaJobPayload | undefined {
+  const pw = d?.pending_workitem;
+  if (!pw?.workitem_id?.trim()) return undefined;
+  return {
+    workitem_id: pw.workitem_id.trim(),
+    submitted_at: pw.submitted_at,
+    cache_id: pw.cache_id ?? d?.cache_id,
+    ...(pw.operation ? { operation: pw.operation } : {}),
+  };
+}
+
+function resolveDaWorkitemIdForPoll(
+  fromToolArgs: string,
+  lastJob: LastDaJobPayload | undefined,
+  discovery: DiscoveryCachedSelection | null,
+): string {
+  const a = fromToolArgs.trim();
+  if (a) return a;
+  if (lastJob?.workitem_id?.trim()) return lastJob.workitem_id.trim();
+  const pend = discovery?.pending_workitem?.workitem_id?.trim();
+  if (pend) return pend;
+  const cid = discovery?.cache_id?.trim();
+  if (cid) {
+    const hit = lookupRecentDaWorkitemByCacheId(cid);
+    if (hit?.workitem_id?.trim()) return hit.workitem_id.trim();
+  }
+  return "";
+}
+
+function recordDaSubmitOnSession(
+  workitemId: string,
+  operation: string | undefined,
+  discovery: DiscoveryCachedSelection | null,
+  assignLast: (row: LastDaJobPayload) => void,
+  requestId?: string,
+): void {
+  if (!workitemId || workitemId.startsWith("da-stub")) return;
+  const submitted_at = new Date().toISOString();
+  assignLast({
+    workitem_id: workitemId,
+    submitted_at,
+    cache_id: discovery?.cache_id,
+    ...(operation ? { operation } : {}),
+  });
+  registerDaWorkitemForCacheId(discovery?.cache_id, workitemId, submitted_at);
+  log("info", "da-workitem-submitted", {
+    requestId,
+    workitem_id: workitemId,
+    cache_id: discovery?.cache_id ?? null,
+    operation: operation ?? null,
+  });
+  if (discovery) {
+    discovery.pending_workitem = {
+      workitem_id: workitemId,
+      submitted_at,
+      operation,
+      cache_id: discovery.cache_id,
+    };
+  }
+}
+
+function clearDiscoveryPendingAfterTerminalPoll(
+  discovery: DiscoveryCachedSelection | null,
+  polledWorkitemId: string,
+  status: string | undefined,
+): void {
+  if (!discovery?.pending_workitem?.workitem_id) return;
+  if (discovery.pending_workitem.workitem_id !== polledWorkitemId) return;
+  const st = (status ?? "").toLowerCase();
+  if (st === "success" || st.startsWith("failed") || st === "cancelled") {
+    delete discovery.pending_workitem;
+  }
 }
 
 function appendDaPollToExternalContext(
@@ -149,6 +240,15 @@ function appendDaPollToExternalContext(
   let next = `${ctx}\nPRECAST_DA_POLL_RESULT: ${JSON.stringify(pollPayload)}`.trim();
   if (pollPayload.da_audit_summary?.one_liner) {
     next = `${next}\nDA_AUDIT_SUMMARY: ${pollPayload.da_audit_summary.one_liner}`.trim();
+  }
+  if (pollPayload.da_audit_detail?.trim()) {
+    next = `${next}\nDA_AUDIT_DETAIL: ${pollPayload.da_audit_detail.trim().slice(0, 2500)}`.trim();
+  }
+  if (pollPayload.forge_status_snippet?.trim()) {
+    next = `${next}\nDA_FORGE_STATUS_SNIPPET: ${pollPayload.forge_status_snippet.trim().slice(0, 1200)}`.trim();
+  }
+  if (pollPayload.message?.trim()) {
+    next = `${next}\nDA_POLL_MESSAGE: ${pollPayload.message.trim()}`.trim();
   }
   if (pollPayload.execution_assistant_hint?.trim()) {
     next = `${next}\nDA_EXECUTION_HINT: ${pollPayload.execution_assistant_hint.trim()}`.trim();
@@ -335,6 +435,10 @@ export async function POST(request: NextRequest) {
     parseDiscoveryCachedSelectionFromClient(body.discoveryCachedSelection);
   let lastAecdmRows: AecdmElementListRow[] = [];
   let lastDaJobForResponse = normalizeLastDaJob(body.lastDaJob);
+  if (!lastDaJobForResponse?.workitem_id) {
+    const fromPending = lastDaJobFromDiscoveryPending(activeDiscovery);
+    if (fromPending) lastDaJobForResponse = fromPending;
+  }
   let daSubmittedThisTurn = false;
 
   if (activeDiscovery) {
@@ -344,6 +448,8 @@ export async function POST(request: NextRequest) {
       selection_rules: activeDiscovery.selection_rules,
       intended_operation: activeDiscovery.intended_operation,
       provenance: activeDiscovery.provenance,
+      pending_workitem_id:
+        activeDiscovery.pending_workitem?.workitem_id ?? null,
     })}`.trim();
   }
 
@@ -647,12 +753,19 @@ export async function POST(request: NextRequest) {
                   p.workitem_id &&
                   !p.workitem_id.startsWith("da-stub")
                 ) {
-                  lastDaJobForResponse = {
-                    workitem_id: p.workitem_id,
-                    submitted_at: new Date().toISOString(),
-                    cache_id:
-                      activeDiscovery?.cache_id ?? lastDaJobForResponse?.cache_id,
-                  };
+                  const op =
+                    typeof base.operation === "string"
+                      ? base.operation.trim()
+                      : undefined;
+                  recordDaSubmitOnSession(
+                    p.workitem_id,
+                    op || "modify_parameters",
+                    activeDiscovery,
+                    (row) => {
+                      lastDaJobForResponse = row;
+                    },
+                    requestId,
+                  );
                 }
               }
             }
@@ -674,18 +787,33 @@ export async function POST(request: NextRequest) {
                 : {};
             const fromArgs =
               typeof base.workitem_id === "string" ? base.workitem_id.trim() : "";
-            const workitemId =
-              fromArgs ||
-              lastDaJobForResponse?.workitem_id ||
-              "";
-            const pollPayload = await pollDesignAutomationStatusContract({
-              ...base,
-              workitem_id: workitemId,
-            });
-            externalContext = appendDaPollToExternalContext(
-              externalContext,
-              pollPayload,
+            const workitemId = resolveDaWorkitemIdForPoll(
+              fromArgs,
+              lastDaJobForResponse,
+              activeDiscovery,
             );
+            if (!workitemId) {
+              externalContext =
+                `${externalContext}\nPRECAST_DA_POLL_SKIPPED: ${JSON.stringify({
+                  message:
+                    "No workitem ID available to poll. Client should resend lastDaJob from the submit response, or discovery.pending_workitem after a DA submit.",
+                })}`.trim();
+            } else {
+              const pollPayload = await pollDesignAutomationStatusContract({
+                ...base,
+                workitem_id: workitemId,
+                cache_id: activeDiscovery?.cache_id,
+              });
+              clearDiscoveryPendingAfterTerminalPoll(
+                activeDiscovery,
+                pollPayload.workitem_id,
+                pollPayload.status,
+              );
+              externalContext = appendDaPollToExternalContext(
+                externalContext,
+                pollPayload,
+              );
+            }
           } catch (error) {
             externalContext =
               `${externalContext}\nPRECAST_DA_POLL_ERROR: ${JSON.stringify({
@@ -974,12 +1102,15 @@ export async function POST(request: NextRequest) {
                   ap.workitem_id &&
                   !ap.workitem_id.startsWith("da-stub")
                 ) {
-                  lastDaJobForResponse = {
-                    workitem_id: ap.workitem_id,
-                    submitted_at: new Date().toISOString(),
-                    cache_id:
-                      activeDiscovery?.cache_id ?? lastDaJobForResponse?.cache_id,
-                  };
+                  recordDaSubmitOnSession(
+                    ap.workitem_id,
+                    "modify_parameters",
+                    activeDiscovery,
+                    (row) => {
+                      lastDaJobForResponse = row;
+                    },
+                    requestId,
+                  );
                 }
               }
               if (autoNoWrite) {
@@ -1006,20 +1137,31 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  const autoPollWorkitemId = resolveDaWorkitemIdForPoll(
+    "",
+    lastDaJobForResponse,
+    activeDiscovery,
+  );
   if (
     env.daEnabled === "true" &&
     shouldAutoPollDaFollowUp(message) &&
-    lastDaJobForResponse?.workitem_id &&
-    !lastDaJobForResponse.workitem_id.startsWith("da-stub") &&
+    autoPollWorkitemId &&
+    !autoPollWorkitemId.startsWith("da-stub") &&
     !externalContext.includes("PRECAST_DA_POLL_RESULT") &&
     !daSubmittedThisTurn
   ) {
     try {
       const pollPayload = await pollDesignAutomationStatusContract({
-        workitem_id: lastDaJobForResponse.workitem_id,
+        workitem_id: autoPollWorkitemId,
+        cache_id: activeDiscovery?.cache_id,
         max_attempts: env.daPollMaxAttempts,
         delay_ms_between_attempts: env.daPollDelayMs,
       });
+      clearDiscoveryPendingAfterTerminalPoll(
+        activeDiscovery,
+        pollPayload.workitem_id,
+        pollPayload.status,
+      );
       externalContext = appendDaPollToExternalContext(
         externalContext,
         pollPayload,

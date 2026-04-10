@@ -2,6 +2,24 @@ import { env } from "@/lib/env";
 
 const APS_BASE = "https://developer.api.autodesk.com";
 
+function asTrimmedString(v: unknown): string {
+  if (typeof v === "string") return v.trim();
+  if (typeof v === "number" && Number.isFinite(v)) return String(Math.trunc(v));
+  return "";
+}
+
+/** Parse Design Automation v3 POST /workitems response for the workitem id. */
+export function extractDaWorkitemIdFromCreateResponse(raw: unknown): string {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return "";
+  const o = raw as Record<string, unknown>;
+  const keys = ["id", "Id", "workitemId", "workItemId"];
+  for (const k of keys) {
+    const s = asTrimmedString(o[k]);
+    if (s) return s;
+  }
+  return "";
+}
+
 export type DaWorkitemSubmitResult = {
   id: string;
   status?: string;
@@ -97,13 +115,12 @@ export async function submitMarkUpdateWorkitem(params: {
     throw new Error(`DA workitem failed (${res.status}): ${text}`);
   }
 
-  const id =
-    typeof raw === "object" &&
-    raw !== null &&
-    "id" in raw &&
-    typeof (raw as { id: unknown }).id === "string"
-      ? (raw as { id: string }).id
-      : `da-${Date.now()}`;
+  const id = extractDaWorkitemIdFromCreateResponse(raw);
+  if (!id) {
+    throw new Error(
+      `DA workitem response missing id. Body (truncated): ${text.slice(0, 500)}`,
+    );
+  }
 
   const status =
     typeof raw === "object" &&
@@ -144,7 +161,7 @@ export async function pollDaWorkitemWithRetries(
   last: DaWorkitemPollResult | null;
   attempts_used: number;
 }> {
-  const maxAttempts = Math.min(4, Math.max(1, options?.maxAttempts ?? 2));
+  const maxAttempts = Math.min(24, Math.max(1, options?.maxAttempts ?? 4));
   const delayBetweenMs = Math.min(
     15_000,
     Math.max(0, options?.delayBetweenMs ?? 2000),
@@ -212,19 +229,32 @@ export async function fetchDaWorkitemStatus(
 }
 
 type DaAuditJson = {
+  success?: boolean;
+  error?: string | null;
   resolved_operation?: string;
   payload_operation?: string;
+  result?: string;
+  validation?: {
+    cached_selection_warnings?: unknown[];
+    edit_target_warnings?: unknown[];
+  };
   modify?: {
+    parameter_update_rows?: number;
     parameter_actions_ok?: number;
     parameter_actions_failed?: number;
+    external_id_attempts?: number;
+    elements_matched?: number;
+    elements_missed?: number;
+    misses?: unknown[];
+    failures?: Array<{ externalId?: string; paramName?: string; reason?: string }>;
   };
   summary?: {
     unique_elements_resolved_modify?: number;
     parameter_actions_ok?: number;
     parameter_actions_failed?: number;
   };
-  post_run?: { summary_line?: string };
-  swc?: { status?: string };
+  post_run?: { summary_line?: string; transaction_committed?: boolean };
+  swc?: { status?: string; error?: string; attempted?: boolean };
   log?: Array<{ text?: string; level?: string }>;
 };
 
@@ -243,33 +273,82 @@ function inferPrimaryParamFromAuditLog(
   return null;
 }
 
+function formatValidationWarnings(j: DaAuditJson): string {
+  const w = j.validation?.cached_selection_warnings;
+  if (!Array.isArray(w) || w.length === 0) return "";
+  const lines = w
+    .filter((x): x is string => typeof x === "string" && x.trim().length > 0)
+    .slice(0, 4);
+  return lines.length ? ` Validation: ${lines.join(" | ")}` : "";
+}
+
+function formatFirstFailures(j: DaAuditJson, max: number): string {
+  const f = j.modify?.failures;
+  if (!Array.isArray(f) || f.length === 0) return "";
+  const parts = f.slice(0, max).map((row) => {
+    const ext = row.externalId ?? "?";
+    const p = row.paramName ?? "?";
+    const r = row.reason ?? "?";
+    return `${ext}/${p}: ${r}`;
+  });
+  return parts.length ? ` Failures: ${parts.join("; ")}` : "";
+}
+
 /**
  * Build chat-oriented lines from parsed audit_report.json (Revit add-in).
+ * Handles success and failure/partial outcomes (top-level success/error from dispatcher).
  */
 export function summarizeDaAuditJson(
   json: unknown,
-): { one_liner: string; assistant_hint: string } | null {
+): { one_liner: string; assistant_hint: string; detail?: string } | null {
   if (!json || typeof json !== "object") return null;
   const j = json as DaAuditJson;
+  const topError =
+    typeof j.error === "string" && j.error.trim() ? j.error.trim() : "";
   const ok = j.modify?.parameter_actions_ok ?? j.summary?.parameter_actions_ok ?? 0;
   const fail =
     j.modify?.parameter_actions_failed ?? j.summary?.parameter_actions_failed ?? 0;
   const unique = j.summary?.unique_elements_resolved_modify ?? 0;
+  const extAttempts = j.modify?.external_id_attempts ?? 0;
+  const matched = j.modify?.elements_matched ?? 0;
+  const missed = j.modify?.elements_missed ?? 0;
+  const auditFailed =
+    j.success === false ||
+    Boolean(topError) ||
+    (extAttempts > 0 && unique === 0 && ok === 0);
   const swcStatus = j.swc?.status?.trim() ?? "";
+  const swcErr =
+    typeof j.swc?.error === "string" && j.swc.error.trim()
+      ? j.swc.error.trim()
+      : "";
   const postLine =
     typeof j.post_run?.summary_line === "string"
       ? j.post_run.summary_line.trim()
       : "";
+  const swcLower = swcStatus.toLowerCase();
   const syncNote =
-    swcStatus.toLowerCase() === "success"
+    swcLower === "success" || swcLower === "ok"
       ? " Sync completed successfully."
-      : swcStatus && swcStatus.toLowerCase() !== "skipped"
-        ? ` SWC: ${swcStatus}.`
-        : "";
+      : swcLower.startsWith("failed")
+        ? ` SyncWithCentral failed: ${swcErr || swcStatus}.`
+        : swcStatus && !swcLower.includes("skipped")
+          ? ` SWC: ${swcStatus}${swcErr ? ` (${swcErr})` : ""}.`
+          : "";
   const op = (j.resolved_operation ?? j.payload_operation ?? "").toLowerCase();
   const fromLog = inferPrimaryParamFromAuditLog(j.log);
+  const valNote = formatValidationWarnings(j);
+  const failNote = formatFirstFailures(j, 6);
+
   let one_liner: string;
-  if (fromLog && unique > 0 && fail === 0) {
+  if (auditFailed) {
+    if (extAttempts > 0 && unique === 0 && ok === 0) {
+      one_liner =
+        `No elements resolved from cached externalIds (${extAttempts} id(s) tried, ${missed} missed, ${matched} matched). No parameter changes applied.${topError ? ` ${topError}` : ""}${valNote}${failNote}${syncNote}`.trim();
+    } else {
+      one_liner =
+        `Job completed but the model may be unchanged or only partially updated.${topError ? ` ${topError}` : ""}${valNote}${failNote}${syncNote}`.trim();
+    }
+  } else if (fromLog && unique > 0 && fail === 0) {
     const verb =
       fromLog.action === "clear"
         ? "Cleared"
@@ -288,8 +367,26 @@ export function summarizeDaAuditJson(
         : (postLine ||
             `Parameter actions: ${ok} succeeded, ${fail} failed.${syncNote}`).trim();
   }
-  const assistant_hint = `Design Automation audit is available. Reply in exactly ONE short sentence using: ${one_liner} Do not ask for confirmation; do not say still preparing.`;
-  return { one_liner, assistant_hint };
+
+  const detail = [
+    topError ? `error: ${topError}` : "",
+    valNote.trim(),
+    failNote.trim(),
+    postLine ? `post_run: ${postLine}` : "",
+    j.result ? `result: ${j.result}` : "",
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
+  const assistant_hint = !auditFailed
+    ? `Design Automation audit is available. Reply in exactly ONE short sentence using: ${one_liner} Do not ask for confirmation; do not say still preparing.`
+    : `Design Automation reported a problem or no effective changes. Reply in ONE or TWO short sentences using: ${one_liner} Quote concrete reasons (read-only, not found, SWC) if present; never claim success if elements resolved was 0 with attempted ids.`;
+
+  return {
+    one_liner,
+    assistant_hint,
+    ...(detail ? { detail } : {}),
+  };
 }
 
 /**
@@ -298,7 +395,7 @@ export function summarizeDaAuditJson(
  */
 export async function fetchDaAuditReportSummary(
   reportUrl: string,
-): Promise<{ one_liner: string; assistant_hint: string } | null> {
+): Promise<{ one_liner: string; assistant_hint: string; detail?: string } | null> {
   if (!reportUrl || !reportUrl.startsWith("http")) return null;
   try {
     const res = await fetch(reportUrl, { cache: "no-store" });
@@ -308,4 +405,36 @@ export async function fetchDaAuditReportSummary(
   } catch {
     return null;
   }
+}
+
+/** Short snippet from APS workitem JSON for failed/cancelled jobs (best-effort). */
+export function extractForgeWorkitemStatusSnippet(raw: unknown): string | undefined {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
+  const o = raw as Record<string, unknown>;
+  const parts: string[] = [];
+  const status = typeof o.status === "string" ? o.status : "";
+  if (status) parts.push(`status=${status}`);
+  const progress = typeof o.progress === "string" ? o.progress.trim() : "";
+  if (progress) parts.push(`progress=${progress.slice(0, 400)}`);
+  const stats = o.stats ?? o.Stats;
+  if (stats && typeof stats === "object" && !Array.isArray(stats)) {
+    try {
+      parts.push(`stats=${JSON.stringify(stats).slice(0, 500)}`);
+    } catch {
+      /* ignore */
+    }
+  }
+  const msgs = o.messages ?? o.Msgs ?? o.warnings ?? o.Errors;
+  if (Array.isArray(msgs) && msgs.length > 0) {
+    const slice = msgs.slice(0, 5).map((m) => {
+      if (typeof m === "string") return m.slice(0, 200);
+      if (m && typeof m === "object") return JSON.stringify(m).slice(0, 200);
+      return String(m);
+    });
+    parts.push(`messages=${slice.join(" | ")}`);
+  }
+  const err = o.error ?? o.Error ?? o.exception;
+  if (typeof err === "string" && err.trim()) parts.push(`error=${err.trim().slice(0, 400)}`);
+  if (parts.length === 0) return undefined;
+  return parts.join("; ");
 }

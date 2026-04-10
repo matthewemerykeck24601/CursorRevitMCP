@@ -212,6 +212,7 @@ export function AppClient() {
     workitem_id: string;
     submitted_at?: string;
     cache_id?: string;
+    operation?: string;
   } | null>(null);
   const [workspaceTab, setWorkspaceTab] = useState<WorkspaceTab>("viewer");
   const [modelDataRows, setModelDataRows] = useState<ModelDataRow[]>([]);
@@ -845,14 +846,17 @@ export function AppClient() {
         workitem_id: string;
         submitted_at?: string;
         cache_id?: string;
+        operation?: string;
       } | null;
     };
-    if ("discoveryCachedSelection" in json) {
-      setDiscoveryCachedSelection(json.discoveryCachedSelection ?? null);
-    }
-    if ("lastDaJob" in json) {
-      setLastDaJob(json.lastDaJob ?? null);
-    }
+    setDiscoveryCachedSelection((prev) =>
+      "discoveryCachedSelection" in json
+        ? (json.discoveryCachedSelection ?? null)
+        : prev,
+    );
+    setLastDaJob((prev) =>
+      "lastDaJob" in json ? (json.lastDaJob ?? null) : prev,
+    );
     setChatLog((prev) => [...prev, `AI: ${json.message}`]);
     if (json.queryResult?.views?.length) {
       const viewCount = json.queryResult.views.length;

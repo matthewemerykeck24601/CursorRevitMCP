@@ -1,6 +1,14 @@
 import { randomUUID } from "node:crypto";
 import type { AecdmElementListRow } from "@/lib/aecdm-get-elements";
 
+/** Last submitted DA job tied to this discovery session (client resends with discovery). */
+export type DiscoveryPendingWorkitem = {
+  workitem_id: string;
+  submitted_at: string;
+  operation?: string;
+  cache_id?: string;
+};
+
 /**
  * Persisted discovery payload (Tool A) for DA `cached_selection` + chat follow-ups.
  * Extra fields `dbIds` / `element_preview` are for Viewer + UI; strip before DA if desired.
@@ -9,6 +17,8 @@ export type DiscoveryCachedSelection = {
   cache_id: string;
   externalIds: string[];
   aecElementIds: string[];
+  /** Set after a real APS workitem submit; cleared on terminal poll or new discovery subset. */
+  pending_workitem?: DiscoveryPendingWorkitem;
   provenance: {
     analyzedAt: string;
     publishedVersionId?: string;
@@ -167,6 +177,22 @@ export function parseDiscoveryCachedSelectionFromClient(
   if (!cache_id || (externalIds.length === 0 && dbIds.length === 0)) {
     return null;
   }
+  let pending_workitem: DiscoveryPendingWorkitem | undefined;
+  const pwRaw = o.pending_workitem ?? o.pendingWorkitem;
+  if (pwRaw && typeof pwRaw === "object" && !Array.isArray(pwRaw)) {
+    const pw = pwRaw as Record<string, unknown>;
+    const wid = str(pw.workitem_id ?? pw.workitemId);
+    const submitted_at =
+      str(pw.submitted_at ?? pw.submittedAt) || new Date().toISOString();
+    if (wid) {
+      pending_workitem = {
+        workitem_id: wid,
+        submitted_at,
+        operation: str(pw.operation) || undefined,
+        cache_id: str(pw.cache_id) || undefined,
+      };
+    }
+  }
   const provenanceRaw = o.provenance;
   const provenance =
     provenanceRaw && typeof provenanceRaw === "object" && !Array.isArray(provenanceRaw)
@@ -178,6 +204,7 @@ export function parseDiscoveryCachedSelectionFromClient(
     aecElementIds: Array.isArray(o.aecElementIds)
       ? o.aecElementIds.filter((x): x is string => typeof x === "string")
       : [],
+    ...(pending_workitem ? { pending_workitem } : {}),
     provenance: {
       analyzedAt: str(provenance.analyzedAt) || new Date().toISOString(),
       publishedVersionId: str(provenance.publishedVersionId),
@@ -221,6 +248,7 @@ export function subsetDiscoveryByDbIds(
         }));
   return {
     ...d,
+    pending_workitem: undefined,
     cache_id: randomUUID(),
     dbIds: dbOut,
     externalIds: extOut,

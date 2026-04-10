@@ -77,8 +77,8 @@ export const env = {
    * Delay is applied between attempts when status is pending/inprogress.
    */
   daPollMaxAttempts: Math.min(
-    4,
-    Math.max(1, Number.parseInt(getEnv("DA_POLL_MAX_ATTEMPTS", "2"), 10) || 2),
+    24,
+    Math.max(1, Number.parseInt(getEnv("DA_POLL_MAX_ATTEMPTS", "8"), 10) || 8),
   ),
   daPollDelayMs: Math.min(
     15_000,

@@ -114,6 +114,8 @@ Once a cached_selection exists (activeDiscovery / DISCOVERY_CACHED_SELECTION wit
 When the user wants to clear, set, or update parameters on the current cached selection, call trigger_design_automation_mark_update with confirm: true, operation: "modify_parameters", skip_analysis: true, the full cached_selection from GET_CACHED_SELECTION / discovery (externalIds, cache_id, provenance), and a non-empty updates array.
 For phrases like "clear the marks", "clear CONTROL_MARK", "remove the marks" use updates: [{ "paramName": "CONTROL_MARK", "action": "clear" }]. Do not send the tool if updates would be empty — ask which parameter instead. Never use analyze_published_model_and_cache or run_mark_analysis as a substitute for simple parameter clears/sets.
 Do NOT ask for extra confirmation unless the user explicitly says "confirm" or "are you sure".
+After submitting a Design Automation job, the server returns and persists workitem_id (lastDaJob and discovery.pending_workitem). On follow-up questions like "has the job finished?", "update?", "did it work?", "status?", or "results?", automatically poll status using that stored workitem_id and state the real DA_AUDIT_SUMMARY / DA_POLL_MESSAGE when available. If still running, say the job is still running and the user can ask again in a few seconds — keep responses short and factual.
+Always report the actual outcome from audit_report / PRECAST_DA_POLL_RESULT, even when the job failed or no model changes occurred. Never say only "still running" without checking poll results in context. If the model was not modified, clearly state why (e.g. no elements found, parameter read-only, transaction rolled back, SyncWithCentral failed). Use DA_AUDIT_DETAIL or DA_FORGE_STATUS_SNIPPET when present for specifics.
 After a job is submitted (workitem_submitted true or DA_EXECUTION_HINT says queued/running), respond with ONE short sentence confirming the action and that you will report results when the job finishes.
 Keep every response concise (1-2 sentences max). No long explanations unless the user asks why or what happened.
 Never say "still preparing" or "not yet" if you have already submitted the job — say the job is running and you will update when results arrive.
@@ -609,8 +611,12 @@ function extractRevitWriteFactsForFinalizer(externalContext: string): string {
   const slices: Array<{ marker: string; maxLen: number }> = [
     { marker: "CLOUD_WRITE_TRUTH:", maxLen: 1200 },
     { marker: "DA_USER_HINT:", maxLen: 400 },
+    { marker: "DA_POLL_MESSAGE:", maxLen: 600 },
     { marker: "DA_AUDIT_SUMMARY:", maxLen: 800 },
+    { marker: "DA_AUDIT_DETAIL:", maxLen: 2500 },
+    { marker: "DA_FORGE_STATUS_SNIPPET:", maxLen: 1200 },
     { marker: "PRECAST_DA_POLL_RESULT:", maxLen: 1400 },
+    { marker: "PRECAST_DA_POLL_SKIPPED:", maxLen: 500 },
     { marker: "DA_EXECUTION_HINT:", maxLen: 800 },
     { marker: "PRECAST_DA_MARK_UPDATE_ERROR:", maxLen: 1200 },
     { marker: "PRECAST_DA_MARK_UPDATE:", maxLen: 2200 },
@@ -641,6 +647,9 @@ function buildFinalizerPrompt(
     typeof revitWriteFacts === "string" &&
     (revitWriteFacts.includes("DA_EXECUTION_HINT:") ||
       revitWriteFacts.includes("DA_AUDIT_SUMMARY:") ||
+      revitWriteFacts.includes("DA_AUDIT_DETAIL:") ||
+      revitWriteFacts.includes("DA_POLL_MESSAGE:") ||
+      revitWriteFacts.includes("DA_FORGE_STATUS_SNIPPET:") ||
       revitWriteFacts.includes("PRECAST_DA_POLL_RESULT:") ||
       revitWriteFacts.includes("PRECAST_DA_MARK_UPDATE:"));
 
@@ -649,7 +658,7 @@ function buildFinalizerPrompt(
     "",
     "You are the final responder for an APS Viewer assistant.",
     hasDaHint
-      ? "Write the user-visible reply in at most 2 short sentences (no markdown essay). If DA_AUDIT_SUMMARY or a completed workitem is in the facts, state that outcome plainly."
+      ? "Write the user-visible reply in at most 2 short sentences (no markdown essay). If DA_AUDIT_SUMMARY, DA_AUDIT_DETAIL, DA_POLL_MESSAGE, DA_FORGE_STATUS_SNIPPET, or a completed workitem is in the facts, state that outcome plainly (including failures and zero-element resolves)."
       : "Write the full reply the user will see: conversational, clear, and as long or short as appropriate (markdown is fine).",
     hasDaHint
       ? "Incorporate the planner's intent briefly; do not repeat the same point in different words."
