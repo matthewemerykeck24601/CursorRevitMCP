@@ -117,8 +117,9 @@ CRITICAL INSTRUCTIONS FOR SELECTION AND ANALYSIS:
 
 PARAMETER EDITS VS MARK ANALYSIS (cloud / Design Automation):
 - After selection is established, simple clears/sets/toggles on parameters do NOT require analyze_published_model_and_cache or mark grouping.
-- For direct cloud writes without analysis: trigger_design_automation_mark_update with confirm: true, skip_analysis: true, and parameter_patches (externalIds + set) and/or parameter_updates (externalIds, paramName, action clear|set|toggle).
+- For direct cloud writes without analysis: trigger_design_automation_mark_update with confirm: true, skip_analysis: true, and either (1) parameter_patches and/or parameter_updates rows with externalIds, OR (2) cached_selection: { externalIds } plus updates: [{ paramName, action: clear|set|toggle, value? }] — same selection can be reused across turns.
 - ONLY use analyze_published_model_and_cache + get_cached_mark_analysis when the user asks to analyze, verify marks, propose groups, sameness, or similar.
+- Mark application in Revit uses operation run_mark_analysis / apply_marks (with marks[]); pure edits use modify_parameters (default when skip_analysis is true) — do not conflate clearing a parameter with running mark verification unless the user asked for analysis.
 - Before calling DA, state briefly what will run (e.g. "Clearing CONTROL_MARK on N elements — no mark analysis").
 `.trim();
 
@@ -128,7 +129,7 @@ const METROMONT_SYSTEM_CONTEXT = [
   "You are Metromont's precast BIM co-pilot.",
   'When the user says "columns", always query Structural Framing category with family filter containing COLUMN or CLA (CONTROL_MARK prefix CLA); never treat precast columns as Revit "Structural Columns" category.',
   "For READ or ANALYZE (counts, verify marks, propose groups, sameness): use analyze_published_model_and_cache when you need published-model mark workflow data.",
-  "For WRITE without mark grouping (clear/set/toggle any parameter on current selection): use trigger_design_automation_mark_update with confirm: true, skip_analysis: true, parameter_patches and/or parameter_updates built from viewer externalIds — do NOT run analyze_published_model_and_cache first unless the user asked for analysis.",
+  "For WRITE without mark grouping (clear/set/toggle any parameter on current selection): use trigger_design_automation_mark_update with confirm: true, skip_analysis: true, parameter_patches and/or parameter_updates and/or cached_selection+updates from get_cached_selection externalIds — do NOT run analyze_published_model_and_cache first unless the user asked for analysis.",
   "For WRITE that applies proposed CONTROL_MARK groups from cache: run analyze (if needed), preview, then trigger_design_automation_mark_update with confirm: true and cache_id (skip_analysis false or omit).",
   "Use get_cached_selection to confirm dbIds/externalIds before describing a cloud edit.",
   "Cloud writes: Revit central changes only when PRECAST_DA_MARK_UPDATE shows workitem_submitted: true. If stub or CLOUD_WRITE_TRUTH — say ACC was not modified.",
@@ -677,7 +678,7 @@ function buildToolPlannerPrompt(
     '- Use "issues_create" when the user asks to create a new issue.',
     '- Use "analyze_published_model_and_cache" ONLY when the user wants mark analysis, grouping, verification, or sameness preview — not for simple parameter clears/sets.',
     '- Use "get_cached_mark_analysis" to show latest cached marks/sameness preview (no args).',
-    '- Use "trigger_design_automation_mark_update" after user confirms: (A) Direct edits — args: { "confirm": true, "skip_analysis": true, "parameter_patches": [{ externalIds, set }] and/or "parameter_updates": [{ externalIds, paramName, action: "clear"|"set"|"toggle", value? }], "cache_id" optional }. (B) Cached marks — args: { "cache_id", "confirm": true } without skip_analysis.',
+    '- Use "trigger_design_automation_mark_update" after user confirms: (A) Direct edits — args: { "confirm": true, "skip_analysis": true, "parameter_patches" / "parameter_updates" and/or "cached_selection": { externalIds }, "updates": [{ paramName, action }], "cache_id" optional }. (B) Cached marks / mark path — args: { "cache_id", "confirm": true } without skip_analysis; operation run_mark_analysis only when applying proposed marks, not for simple param clears.',
     '- Read PRECAST_DA_MARK_UPDATE in context: if workitem_submitted is false or status is "stub", no cloud Revit write occurred — never imply marks were cleared or sync will show DA changes.',
     '- Use "analyze_products_and_mark" for granular legacy mark analysis (args: { "product_prefix", "dry_run" }).',
     '- Use "get_product_sameness_report" when comparing specific element IDs (args: { "element_ids": string[] }).',

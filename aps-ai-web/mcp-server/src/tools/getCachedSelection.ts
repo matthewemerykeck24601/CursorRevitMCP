@@ -26,6 +26,6 @@ export function getCachedSelection(rawInput: unknown) {
     count: input.selectedElements.length,
     dbIds,
     elements,
-    note: "Use externalId in parameter_patches / parameter_updates for skip_analysis DA payloads.",
+    note: "Use externalIds in parameter_patches, parameter_updates, or cached_selection + updates for skip_analysis DA payloads.",
   };
 }

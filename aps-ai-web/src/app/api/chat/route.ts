@@ -343,7 +343,7 @@ export async function POST(request: NextRequest) {
             count: selectedElements.length,
             dbIds: selectedDbIds.slice(0, 200),
             elements: snapshot,
-            note: "Use externalId in parameter_patches.externalIds or parameter_updates for skip_analysis Design Automation payloads.",
+            note: "Use externalId in parameter_patches, parameter_updates, or cached_selection.externalIds + updates[] for skip_analysis DA payloads.",
           };
           externalContext =
             `${externalContext}\nGET_CACHED_SELECTION: ${JSON.stringify(payload)}`.trim();

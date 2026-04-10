@@ -107,3 +107,58 @@ export function parseDaParameterUpdatesFromRequest(raw: unknown): DaParameterUpd
   }
   return out;
 }
+
+/** Viewer/chat-friendly: one selection + many param actions (mirrors Revit add-in `cached_selection` + `updates`). */
+export type DaCachedSelectionPayload = {
+  cache_id?: string;
+  externalIds: string[];
+  aecElementIds?: string[];
+  provenance?: Record<string, unknown>;
+};
+
+export type DaModifyUpdateSpec = {
+  paramName: string;
+  action: "clear" | "set" | "toggle";
+  value?: string | number | boolean | null;
+};
+
+/**
+ * Expands `cached_selection.externalIds` × `updates[]` into `parameter_updates` rows for the DA bundle.
+ * The C# dispatcher performs the same expansion if the payload is sent as-is.
+ */
+export function expandParameterUpdatesFromCachedSelection(
+  cached_selection: unknown,
+  updates: unknown,
+): DaParameterUpdateRow[] {
+  if (!cached_selection || typeof cached_selection !== "object" || Array.isArray(cached_selection)) {
+    return [];
+  }
+  if (!Array.isArray(updates) || updates.length === 0) return [];
+
+  const sel = cached_selection as Record<string, unknown>;
+  const extRaw = sel.externalIds;
+  if (!Array.isArray(extRaw)) return [];
+  const externalIds = extRaw
+    .filter((x): x is string => typeof x === "string")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (externalIds.length === 0) return [];
+
+  const out: DaParameterUpdateRow[] = [];
+  for (const row of updates) {
+    if (!row || typeof row !== "object") continue;
+    const r = row as Record<string, unknown>;
+    const paramName = typeof r.paramName === "string" ? r.paramName.trim() : "";
+    const actionRaw = typeof r.action === "string" ? r.action.trim().toLowerCase() : "";
+    if (!paramName) continue;
+    if (actionRaw !== "clear" && actionRaw !== "set" && actionRaw !== "toggle") continue;
+    const action = actionRaw as DaModifyUpdateSpec["action"];
+    const v = r.value;
+    const value =
+      typeof v === "string" || typeof v === "number" || typeof v === "boolean" || v === null
+        ? v
+        : undefined;
+    out.push({ externalIds, paramName, action, value });
+  }
+  return out;
+}

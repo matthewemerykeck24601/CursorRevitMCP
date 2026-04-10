@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "intent": "direct_parameter_modify",
+  "operation": "modify_parameters",
+  "skip_analysis": true,
+  "cache_id": "direct-or-cache-uuid",
+  "cached_selection": {
+    "cache_id": "00000000-0000-4000-8000-000000000000",
+    "externalIds": ["abc-123", "def-456"],
+    "provenance": {
+      "hubId": "b.xxx",
+      "projectId": "b.yyy",
+      "analyzedAt": "2026-01-01T00:00:00.000Z"
+    }
+  },
+  "updates": [
+    { "paramName": "CONTROL_MARK", "action": "clear" },
+    { "paramName": "UNIFORMAT_CODE", "action": "set", "value": "X" },
+    { "paramName": "MY_FLAG", "action": "toggle" }
+  ],
+  "note": "cached_selection + updates expand to parameter_updates in the add-in; clients may also send parameter_updates rows directly."
+}

@@ -154,18 +154,35 @@ const designAutomationMcpTools = [
         cache_id: {
           type: "string",
           description:
-            "From analyze_published_model_and_cache. Omit when skip_analysis is true with parameter_patches/parameter_updates.",
+            "From analyze_published_model_and_cache. Omit when skip_analysis is true with parameter_patches, parameter_updates, or cached_selection + updates.",
         },
         confirm: { type: "boolean", default: false },
         skip_analysis: {
           type: "boolean",
           description:
-            "If true with parameter_patches and/or parameter_updates, runs direct parameter modify only (no mark analysis).",
+            "If true with edits (patches, parameter_updates, or cached_selection+updates), runs modify_parameters only — no mark analysis path.",
         },
         operation: {
           type: "string",
           description:
-            "Revit workitem operation hint, e.g. modify_parameters, apply_marks, apply_marks_and_modify.",
+            "Revit dispatcher: modify_parameters, apply_marks, run_mark_analysis, apply_marks_and_modify, clear_cache.",
+        },
+        cached_selection: {
+          type: "object",
+          description:
+            "Reusable selection: externalIds[] plus optional cache_id/provenance; pairs with updates[] for generic parameter actions.",
+          properties: {
+            cache_id: { type: "string" },
+            externalIds: { type: "array", items: { type: "string" } },
+            aecElementIds: { type: "array", items: { type: "string" } },
+            provenance: { type: "object", additionalProperties: true },
+          },
+        },
+        updates: {
+          type: "array",
+          description:
+            "With cached_selection: [{ paramName, action: clear|set|toggle, value? }] applied to all externalIds.",
+          items: { type: "object", additionalProperties: true },
         },
         additional_updates: { type: "object", additionalProperties: true },
         parameter_patches: {
@@ -247,7 +264,7 @@ export function buildServer() {
       {
         name: "get_cached_selection",
         description:
-          "Return dbIds, externalIds, and names for the current selection for skip_analysis Design Automation (parameter_patches / parameter_updates).",
+          "Return dbIds, externalIds, and names for the current selection — build cached_selection + updates or parameter_updates for skip_analysis DA.",
         inputSchema: {
           type: "object",
           properties: {

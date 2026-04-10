@@ -7,6 +7,7 @@ import {
 } from "../lib/aecdmMarkGrouping.js";
 import { resolveAecProjectId } from "../lib/apsForAecMarks.js";
 import {
+  expandParameterUpdatesFromCachedSelection,
   mergeParameterPatchesIntoWorkitemArgs,
   parseDaParameterPatchesFromRequest,
   parseDaParameterUpdatesFromRequest,
@@ -246,12 +247,29 @@ export const analyzePublishedModelAndCache = {
 export const triggerDesignAutomationMarkUpdate = {
   name: "trigger_design_automation_mark_update" as const,
   description:
-    "APS Design Automation: mark grouping (cached analysis) OR direct parameter edits. Use skip_analysis: true with parameter_patches and/or parameter_updates (externalIds) to skip analyze/cache. Optional operation: apply_marks | modify_parameters | apply_marks_and_modify.",
+    "APS Design Automation: mark grouping (cached analysis) OR direct parameter edits. Use skip_analysis: true with parameter_patches, parameter_updates, and/or cached_selection.externalIds + updates[] (clear/set/toggle). Operations: modify_parameters | apply_marks | run_mark_analysis | apply_marks_and_modify | clear_cache (DA no-op audit).",
   parameters: z.object({
     cache_id: z.string().optional(),
     confirm: z.boolean().default(false),
     skip_analysis: z.boolean().optional(),
     operation: z.string().optional(),
+    cached_selection: z
+      .object({
+        cache_id: z.string().optional(),
+        externalIds: z.array(z.string()),
+        aecElementIds: z.array(z.string()).optional(),
+        provenance: z.record(z.string(), z.unknown()).optional(),
+      })
+      .optional(),
+    updates: z
+      .array(
+        z.object({
+          paramName: z.string(),
+          action: z.enum(["clear", "set", "toggle"]),
+          value: z.union([z.string(), z.number(), z.boolean(), z.null()]).optional(),
+        }),
+      )
+      .optional(),
     additional_updates: z.record(z.string(), z.unknown()).optional(),
     parameter_patches: z
       .array(
@@ -283,6 +301,17 @@ export const triggerDesignAutomationMarkUpdate = {
       confirm: boolean;
       skip_analysis?: boolean;
       operation?: string;
+      cached_selection?: {
+        cache_id?: string;
+        externalIds: string[];
+        aecElementIds?: string[];
+        provenance?: Record<string, unknown>;
+      };
+      updates?: Array<{
+        paramName: string;
+        action: "clear" | "set" | "toggle";
+        value?: string | number | boolean | null;
+      }>;
       additional_updates?: Record<string, unknown>;
       parameter_patches?: unknown[];
       parameter_updates?: unknown[];
@@ -295,6 +324,8 @@ export const triggerDesignAutomationMarkUpdate = {
       confirm,
       skip_analysis = false,
       operation = "",
+      cached_selection,
+      updates,
       additional_updates,
       parameter_patches,
       parameter_updates,
@@ -313,8 +344,15 @@ export const triggerDesignAutomationMarkUpdate = {
     }
 
     const patches = parseDaParameterPatchesFromRequest(parameter_patches);
-    const updates = parseDaParameterUpdatesFromRequest(parameter_updates);
-    const hasDirectEdits = patches.length > 0 || updates.length > 0;
+    const fromCachedSelection = expandParameterUpdatesFromCachedSelection(
+      cached_selection,
+      updates,
+    );
+    const mergedUpdates = [
+      ...fromCachedSelection,
+      ...parseDaParameterUpdatesFromRequest(parameter_updates),
+    ];
+    const hasDirectEdits = patches.length > 0 || mergedUpdates.length > 0;
 
     if (skip_analysis && !hasDirectEdits) {
       return {
@@ -322,7 +360,7 @@ export const triggerDesignAutomationMarkUpdate = {
         workitem_submitted: false,
         revit_cloud_model_updated: false,
         message:
-          "skip_analysis requires parameter_patches and/or parameter_updates with externalIds.",
+          "skip_analysis requires parameter_patches, parameter_updates, or cached_selection.externalIds + updates.",
       };
     }
 
@@ -341,7 +379,7 @@ export const triggerDesignAutomationMarkUpdate = {
         cache_id: cache_id || "direct",
         product_prefix: "ALL",
       };
-      if (updates.length > 0) workitemArguments.parameter_updates = updates;
+      if (mergedUpdates.length > 0) workitemArguments.parameter_updates = mergedUpdates;
       workitemArguments = mergeParameterPatchesIntoWorkitemArgs(
         workitemArguments,
         patches,
@@ -353,7 +391,7 @@ export const triggerDesignAutomationMarkUpdate = {
           workitem_submitted: false,
           revit_cloud_model_updated: false,
           message:
-            "cache_id is required unless skip_analysis is true with parameter_patches or parameter_updates.",
+            "cache_id is required unless skip_analysis is true with parameter_patches, parameter_updates, or cached_selection + updates.",
         };
       }
       const cached = analysisCache.get(cache_id);
@@ -379,7 +417,7 @@ export const triggerDesignAutomationMarkUpdate = {
       }
 
       workitemArguments = mergeParameterPatchesIntoWorkitemArgs(args, patches);
-      if (updates.length > 0) workitemArguments.parameter_updates = updates;
+      if (mergedUpdates.length > 0) workitemArguments.parameter_updates = mergedUpdates;
 
       if (skip_analysis) {
         workitemArguments = { ...workitemArguments };
@@ -393,6 +431,13 @@ export const triggerDesignAutomationMarkUpdate = {
       } else if (operation.trim()) {
         workitemArguments = { ...workitemArguments, operation: operation.trim() };
       }
+    }
+
+    if (cached_selection && typeof cached_selection === "object") {
+      workitemArguments = { ...workitemArguments, cached_selection };
+    }
+    if (Array.isArray(updates)) {
+      workitemArguments = { ...workitemArguments, updates };
     }
 
     if (

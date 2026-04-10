@@ -6,7 +6,7 @@ Starter bundle for applying **cached CONTROL_MARK proposals** to the **central**
 
 ## Layout
 
-- `Source/MarkWorkitemApp.cs` — entry stub: read JSON payload, locate elements by **External ID** (must match AEC `External ID` / Viewer `externalId`), set `CONTROL_MARK`, optional SWC.
+- `Source/MarkWorkitemApp.cs` — command dispatcher: **`operation`** (`modify_parameters`, `run_mark_analysis` / `apply_marks`, `apply_marks_and_modify`, `clear_cache`) + **`skip_analysis`**; resolves by **External ID**; expands **`cached_selection` + `updates`** into `parameter_updates`; writes audit JSON (`MARK_AUDIT_JSON`); optional SWC when **`MARK_SWC=true`** via `Document.SynchronizeWithCentral`.
 - `RevitMarkWorkitem.csproj` — targets **.NET Framework 4.8** + Revit API (adjust `RevitInstallPath` for your engine, e.g. DA **Revit 2024**).
 
 ## Build & publish AppBundle
@@ -28,6 +28,7 @@ The Next.js and MCP clients POST a workitem whose `arguments.payload.text` is JS
 
 - `version`, `intent`, `idResolution`, `marks[]` with `control_mark`, `externalIds`, `aecElementIds`
 - `cache_id`, `provenance`
+- **Execution-only edits:** `operation`, `skip_analysis`, `parameter_updates[]`, `parameterPatches`, and/or `cached_selection` + `updates[]` (see [`../../docs/da-revit-workitem-payload.md`](../../docs/da-revit-workitem-payload.md) and `sample-payload-modify-parameters.json`)
 
 Your **Activity** must declare an input argument named `payload` (zip / JSON) matching what `da-workitems.ts` sends.
 

@@ -10,6 +10,7 @@ import {
 } from "@/lib/aecdmMarkGrouping";
 import { resolveAecProjectId } from "@/lib/aps";
 import {
+  expandParameterUpdatesFromCachedSelection,
   mergeParameterPatchesIntoWorkitemArgs,
   parseDaParameterPatchesFromRequest,
   parseDaParameterUpdatesFromRequest,
@@ -235,7 +236,14 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
       ? o.operation.trim()
       : "";
   const parameterPatches = parseDaParameterPatchesFromRequest(o.parameter_patches);
-  const parameterUpdates = parseDaParameterUpdatesFromRequest(o.parameter_updates);
+  const fromCachedSelection = expandParameterUpdatesFromCachedSelection(
+    o.cached_selection,
+    o.updates,
+  );
+  const parameterUpdates = [
+    ...fromCachedSelection,
+    ...parseDaParameterUpdatesFromRequest(o.parameter_updates),
+  ];
   const hasDirectEdits = parameterPatches.length > 0 || parameterUpdates.length > 0;
   /** No analyze cache: viewer-driven edits using externalIds only. */
   const directMode = skip_analysis && hasDirectEdits;
@@ -257,7 +265,7 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
       workitem_submitted: false as const,
       revit_cloud_model_updated: false as const,
       message:
-        "skip_analysis requires parameter_patches and/or parameter_updates (externalIds + param changes). No mark-analysis workitem will be sent.",
+        "skip_analysis requires parameter_patches and/or parameter_updates, or cached_selection.externalIds + updates[] (param actions). No mark-analysis workitem will be sent.",
     };
   }
 
@@ -289,14 +297,14 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
         workitem_submitted: false as const,
         revit_cloud_model_updated: false as const,
         message:
-          "cache_id is required unless skip_analysis is true with parameter_patches or parameter_updates.",
+          "cache_id is required unless skip_analysis is true with parameter_patches, parameter_updates, or cached_selection + updates.",
       };
     }
 
     const cached = analysisCache.get(cache_id);
     if (!cached) {
       throw new Error(
-        `Cache ID ${cache_id} not found or expired. Run analyze_published_model_and_cache first, or use skip_analysis with parameter_patches for direct edits.`,
+        `Cache ID ${cache_id} not found or expired. Run analyze_published_model_and_cache first, or use skip_analysis with parameter_patches, parameter_updates, or cached_selection + updates.`,
       );
     }
 
@@ -332,6 +340,13 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
     } else if (operation) {
       workitemArguments = { ...workitemArguments, operation };
     }
+  }
+
+  if (o.cached_selection && typeof o.cached_selection === "object" && !Array.isArray(o.cached_selection)) {
+    workitemArguments = { ...workitemArguments, cached_selection: o.cached_selection };
+  }
+  if (Array.isArray(o.updates)) {
+    workitemArguments = { ...workitemArguments, updates: o.updates };
   }
 
   const spgm = o.shared_parameter_guid_map;
