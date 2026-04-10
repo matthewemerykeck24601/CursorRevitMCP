@@ -7,6 +7,7 @@
   "cached_selection": {
     "cache_id": "00000000-0000-4000-8000-000000000000",
     "externalIds": ["abc-123", "def-456"],
+    "aecElementIds": [],
     "provenance": {
       "hubId": "b.xxx",
       "projectId": "b.yyy",
@@ -18,5 +19,5 @@
     { "paramName": "UNIFORMAT_CODE", "action": "set", "value": "X" },
     { "paramName": "MY_FLAG", "action": "toggle" }
   ],
-  "note": "cached_selection + updates expand to parameter_updates in the add-in; clients may also send parameter_updates rows directly."
+  "note": "After the run, zip DA_ARTIFACTS_DIR (or read DA_AUDIT_REPORT_JSON) for audit_report.json with log[], validation, post_run, and modify/marks summaries."
 }

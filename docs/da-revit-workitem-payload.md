@@ -1,22 +1,22 @@
 # Design Automation Revit workitem payload (execution dispatcher)
 
-The Revit add-in `MarkWorkitemApp` reads JSON from `MARK_PAYLOAD_JSON` (or `%TEMP%\mark-payload.json` locally) and dispatches by **`operation`** and **`skip_analysis`**.
+The Revit add-in entry **`RunRevitAutomationApp`** (MCP Tool **run_revit_automation**; legacy alias **`MarkWorkitemApp`**) reads JSON from **`MARK_PAYLOAD_JSON`** (or `%TEMP%\mark-payload.json` locally) and dispatches by **`operation`** and **`skip_analysis`**.
 
 ## Operations
 
 | `operation` | Behavior |
-|---------------|----------|
-| `modify_parameters` | Applies `parameter_updates`, `parameterPatches` (and/or expanded `cached_selection` + `updates`). No `marks[]` when `skip_analysis` is true. |
-| `run_mark_analysis` | Same mark pass as legacy `apply_marks`: `marks[]` → `CONTROL_MARK` via External ID. |
+|-------------|----------|
+| `modify_parameters` | Applies `parameter_updates`, `parameterPatches`, and/or expanded `cached_selection` + `updates`. Never runs `marks[]` unless combined via legacy `apply_marks_and_modify`. |
+| `run_mark_analysis` | Mark pass: `marks[]` → `CONTROL_MARK` via External ID (same as legacy `apply_marks`). |
 | `apply_marks` | Legacy alias of the mark pass. |
 | `apply_marks_and_modify` | Mark pass then parameter updates/patches. |
-| `clear_cache` | No model transaction; audit-only stub for future hooks. |
+| `clear_cache` | No model transaction; audit-only stub. |
 
 If `operation` is omitted, it is inferred from `skip_analysis` and whether `marks[]` is non-empty. When **`skip_analysis` is true**, the resolved operation is always **`modify_parameters`** (marks are never applied).
 
 ## Generic edits: `cached_selection` + `updates`
 
-The add-in expands these into canonical `parameter_updates` rows (the Next.js/MCP clients also expand for clearer workitem logging):
+The add-in expands these into canonical `parameter_updates` rows:
 
 ```json
 {
@@ -26,7 +26,7 @@ The add-in expands these into canonical `parameter_updates` rows (the Next.js/MC
     "cache_id": "optional-uuid",
     "externalIds": ["id-1", "id-2"],
     "aecElementIds": [],
-    "provenance": {}
+    "provenance": { "analyzedAt": "2026-01-01T00:00:00.000Z" }
   },
   "updates": [
     { "paramName": "CONTROL_MARK", "action": "clear" },
@@ -36,25 +36,35 @@ The add-in expands these into canonical `parameter_updates` rows (the Next.js/MC
 }
 ```
 
-Element resolution uses the Revit parameter **External ID** (Forge/AECDM `externalId`).
+- **Clear** uses `Parameter.ClearValue()` when possible, with type-specific fallback.
+- Element resolution uses the Revit parameter **External ID** (Forge/AECDM `externalId`).
 
 ## Structured rows (alternative)
 
-Same as before: `parameter_updates[]` with `{ "externalIds": [], "paramName", "action", "value?" }`, plus optional `parameterPatches` / `additional_updates.parameterPatches`.
+`parameter_updates[]` with `{ "externalIds": [], "paramName", "action", "value?" }`, plus optional `parameterPatches` / `additional_updates.parameterPatches`.
 
-## Audit output
+## Audit output (workitem artifacts)
 
-After a successful transaction, the add-in writes **`MARK_AUDIT_JSON`** (default `%TEMP%\mark-audit.json`) with:
+The same JSON is written to:
 
-- `marks.*` — groups processed, match/miss counts, optional `misses[]`
-- `modify.*` — parameter update stats, `misses[]`, `failures[]` (read-only, missing param, exceptions)
-- `patches.*` — patch row stats
-- `swc` — optional **Synchronize With Central** attempt when `MARK_SWC=true` (otherwise skipped)
+1. **`audit_report.json`** — canonical path for DA output zipping: `{DA_ARTIFACTS_DIR}/audit_report.json`, or `%TEMP%/audit_report.json` if `DA_ARTIFACTS_DIR` is unset. Override file path with **`DA_AUDIT_REPORT_JSON`**.
+2. **Legacy:** **`MARK_AUDIT_JSON`** if set, else `%TEMP%/mark-audit.json`.
+
+Schema highlights (`revit_automation_audit_v2`):
+
+- **`log[]`** — timestamped `level` + `text` lines suitable for Alice / web summaries.
+- **`validation.cached_selection_warnings`** / **`validation.edit_target_warnings`** — stubs for future **validate_edit_target** (Tool B).
+- **`summary`** — e.g. `unique_elements_resolved_modify`, aggregated modify ok/fail counts.
+- **`modify`**, **`marks`**, **`patches`**, **`swc`**, **`post_run`** — execution details; **`post_run`** is the **post_run_verify** (Tool D) scaffold.
+
+Paths used are echoed under **`artifact_paths`** in the JSON.
 
 ## Environment variables
 
 | Variable | Purpose |
 |----------|---------|
 | `MARK_PAYLOAD_JSON` | Path to input JSON |
-| `MARK_AUDIT_JSON` | Path for audit report |
-| `MARK_SWC` | Set to `true` to call `Document.SynchronizeWithCentral` after commit (many teams leave this off in DA) |
+| `DA_ARTIFACTS_DIR` | Folder for `audit_report.json` (zip as Design Automation output) |
+| `DA_AUDIT_REPORT_JSON` | Full path override for the canonical audit file |
+| `MARK_AUDIT_JSON` | Legacy second copy path |
+| `MARK_SWC` | `true` → `Document.SynchronizeWithCentral` after commit |

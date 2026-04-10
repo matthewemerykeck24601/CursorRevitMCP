@@ -6,7 +6,10 @@ Starter bundle for applying **cached CONTROL_MARK proposals** to the **central**
 
 ## Layout
 
-- `Source/MarkWorkitemApp.cs` — command dispatcher: **`operation`** (`modify_parameters`, `run_mark_analysis` / `apply_marks`, `apply_marks_and_modify`, `clear_cache`) + **`skip_analysis`**; resolves by **External ID**; expands **`cached_selection` + `updates`** into `parameter_updates`; writes audit JSON (`MARK_AUDIT_JSON`); optional SWC when **`MARK_SWC=true`** via `Document.SynchronizeWithCentral`.
+- `Source/RunRevitAutomationApp.cs` — MCP Tool **run_revit_automation**: command dispatcher; **`RunRevitAutomationApp`** is the primary `IExternalCommand` (register this in new activities). **`MarkWorkitemApp`** in the same file delegates to the same logic for legacy bundle registrations.
+- **`operation`**: `modify_parameters` (no mark side-effects), `run_mark_analysis` (and legacy `apply_marks` / `apply_marks_and_modify`), `clear_cache` (no-op audit). **`skip_analysis: true`** forces `modify_parameters` only.
+- Audit: **`audit_report.json`** (under **`DA_ARTIFACTS_DIR`** or `%TEMP%`, or override with **`DA_AUDIT_REPORT_JSON`**), plus legacy **`MARK_AUDIT_JSON`** / `mark-audit.json`. Structured **`log[]`** for chat-oriented messages.
+- Optional SWC: **`MARK_SWC=true`** → `Document.SynchronizeWithCentral`.
 - `RevitMarkWorkitem.csproj` — targets **.NET Framework 4.8** + Revit API (adjust `RevitInstallPath` for your engine, e.g. DA **Revit 2024**).
 
 ## Build & publish AppBundle

@@ -3,7 +3,7 @@
   SchemaVersion="1.0"
   AutodeskProduct="Revit"
   Name="RevitMarkWorkitem"
-  Description="Apply cached CONTROL_MARK and parameterPatches from JSON payload (Design Automation)."
+  Description="run_revit_automation: generic parameter ops + optional mark pass from JSON payload (Design Automation)."
   AppVersion="1.0.0"
   FriendlyVersion="1.0.0"
   ProductType="Application"
