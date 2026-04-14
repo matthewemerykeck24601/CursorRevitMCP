@@ -344,3 +344,133 @@ export async function queryAecDataModel(
   };
 }
 
+function parseOssObjectUrn(
+  storageUrn: string,
+): { bucketKey: string; objectKey: string } | null {
+  const prefix = "urn:adsk.objects:os.object:";
+  if (!storageUrn.startsWith(prefix)) return null;
+  const rest = storageUrn.slice(prefix.length);
+  const slash = rest.indexOf("/");
+  if (slash <= 0 || slash >= rest.length - 1) return null;
+  const bucketKey = rest.slice(0, slash);
+  const objectKey = rest.slice(slash + 1);
+  if (!bucketKey || !objectKey) return null;
+  return { bucketKey, objectKey };
+}
+
+async function getSignedS3DownloadUrl(params: {
+  accessToken: string;
+  bucketKey: string;
+  objectKey: string;
+}): Promise<string> {
+  const path = `/oss/v2/buckets/${encodeURIComponent(params.bucketKey)}/objects/${encodeURIComponent(params.objectKey)}/signeds3download`;
+  const res = await fetch(`${APS_BASE}${path}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${params.accessToken}`,
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(`signeds3download failed (${res.status}): ${t}`);
+  }
+  const json = (await res.json()) as { url?: string; signedUrl?: string };
+  const url = json.url ?? json.signedUrl ?? "";
+  if (!url) throw new Error("signeds3download response missing url.");
+  return url;
+}
+
+export async function buildVersionOssGetArgument(params: {
+  accessToken: string;
+  projectId: string;
+  versionId: string;
+}): Promise<{ url: string; headers: Record<string, string> } | null> {
+  const versionPath = `/data/v1/projects/${encodeURIComponent(params.projectId)}/versions/${encodeURIComponent(params.versionId)}`;
+  const version = await apsGet<{
+    data?: {
+      relationships?: {
+        storage?: {
+          data?: {
+            id?: string;
+          };
+        };
+      };
+    };
+  }>(versionPath, params.accessToken);
+  const storageUrn = version.data?.relationships?.storage?.data?.id ?? "";
+  if (!storageUrn) return null;
+  const parsed = parseOssObjectUrn(storageUrn);
+  if (!parsed) return null;
+  try {
+    const signedUrl = await getSignedS3DownloadUrl({
+      accessToken: params.accessToken,
+      bucketKey: parsed.bucketKey,
+      objectKey: parsed.objectKey,
+    });
+    return {
+      url: signedUrl,
+      headers: {},
+    };
+  } catch {
+    // Fallback: DA download with Authorization header if signeds3download is unavailable.
+  }
+  const url = `${APS_BASE}/oss/v2/buckets/${encodeURIComponent(parsed.bucketKey)}/objects/${encodeURIComponent(parsed.objectKey)}`;
+  return {
+    url,
+    headers: {
+      Authorization: `Bearer ${params.accessToken}`,
+    },
+  };
+}
+
+export type RevitCloudModelInfo = {
+  region: string;
+  projectGuid: string;
+  modelGuid: string;
+};
+
+export async function getRevitCloudModelInfo(params: {
+  accessToken: string;
+  projectId: string;
+  versionId: string;
+}): Promise<RevitCloudModelInfo | null> {
+  const versionPath = `/data/v1/projects/${encodeURIComponent(params.projectId)}/versions/${encodeURIComponent(params.versionId)}`;
+  const version = await apsGet<{
+    data?: {
+      attributes?: {
+        extension?: {
+          type?: string;
+          data?: {
+            projectGuid?: string;
+            modelGuid?: string;
+            region?: string;
+          };
+        };
+      };
+    };
+  }>(versionPath, params.accessToken);
+
+  const extensionType =
+    version.data?.attributes?.extension?.type?.toLowerCase() ?? "";
+  if (!extensionType.includes("c4rmodel")) return null;
+
+  const extData = version.data?.attributes?.extension?.data;
+  const projectGuid = extData?.projectGuid?.trim() ?? "";
+  const modelGuid = extData?.modelGuid?.trim() ?? "";
+  const regionRaw = extData?.region?.trim() ?? "";
+  if (!projectGuid || !modelGuid) return null;
+
+  const inferredRegionRaw = regionRaw || (params.versionId.includes("wipemea") ? "EMEA" : "US");
+  const regionUpper = inferredRegionRaw.toUpperCase();
+  const region =
+    regionUpper === "US" || regionUpper === "EMEA"
+      ? regionUpper
+      : regionUpper.includes("EMEA")
+        ? "EMEA"
+        : "US";
+
+  return { region, projectGuid, modelGuid };
+}
+

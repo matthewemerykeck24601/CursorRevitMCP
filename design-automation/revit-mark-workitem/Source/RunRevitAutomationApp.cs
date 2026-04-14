@@ -1,23 +1,18 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using Autodesk.Revit.Attributes;
+using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
+using DesignAutomationFramework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Metromont.RevitMarkWorkitem;
 
-/// <summary>
-/// MCP Tool C — <c>run_revit_automation</c>: single entry for Design Automation execution on the
-/// opened (central) Revit document. Discovery (published version / Viewer) stays out of this assembly.
-/// Dispatches on JSON <c>operation</c> and <c>skip_analysis</c>; never runs mark application as a
-/// side-effect of <c>modify_parameters</c>.
-/// </summary>
-[Transaction(TransactionMode.Manual)]
-public class RunRevitAutomationApp : IExternalCommand
+/// <summary>Environment names used by the Design Automation execution entrypoint.</summary>
+public static class DaRuntimeEnv
 {
     internal const string EnvPayload = "MARK_PAYLOAD_JSON";
     internal const string EnvAuditLegacy = "MARK_AUDIT_JSON";
@@ -25,57 +20,110 @@ public class RunRevitAutomationApp : IExternalCommand
     internal const string EnvAuditReport = "DA_AUDIT_REPORT_JSON";
     internal const string EnvArtifactsDir = "DA_ARTIFACTS_DIR";
     internal const string EnvSwc = "MARK_SWC";
-
-    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements) =>
-        RevitAutomationDispatcher.Run(commandData, ref message, elements);
 }
 
-/// <summary>Legacy class name — keep for existing AppBundle / activity command registrations.</summary>
-[Transaction(TransactionMode.Manual)]
-public class MarkWorkitemApp : IExternalCommand
+/// <summary>
+/// Design Automation entrypoint. Reuses the same dispatcher as desktop command mode.
+/// </summary>
+public class DesignAutomationEntryPoint : IExternalDBApplication
 {
-    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements) =>
-        RevitAutomationDispatcher.Run(commandData, ref message, elements);
+    public ExternalDBApplicationResult OnStartup(ControlledApplication application)
+    {
+        DesignAutomationBridge.DesignAutomationReadyEvent += OnDesignAutomationReady;
+        return ExternalDBApplicationResult.Succeeded;
+    }
+
+    public ExternalDBApplicationResult OnShutdown(ControlledApplication application)
+    {
+        DesignAutomationBridge.DesignAutomationReadyEvent -= OnDesignAutomationReady;
+        return ExternalDBApplicationResult.Succeeded;
+    }
+
+    private static void OnDesignAutomationReady(object sender, DesignAutomationReadyEventArgs e)
+    {
+        var message = string.Empty;
+        try
+        {
+            Console.WriteLine("[DA] DesignAutomationReady event received.");
+            var result = RevitAutomationDispatcher.Run(e.DesignAutomationData, ref message);
+            e.Succeeded = result;
+            Console.WriteLine($"[DA] Run result={result}; message={message}");
+        }
+        catch (Exception ex)
+        {
+            e.Succeeded = false;
+            Console.WriteLine($"[DA] Unhandled exception: {ex}");
+        }
+    }
 }
 
 /// <summary>Core dispatcher; add new operations here over time.</summary>
 internal static class RevitAutomationDispatcher
 {
-    public static Result Run(ExternalCommandData commandData, ref string message, ElementSet elements)
+    public static bool Run(DesignAutomationData daData, ref string message)
     {
-        var uiApp = commandData.Application;
-        var doc = uiApp.ActiveUIDocument?.Document;
+        if (!TryLoadPayload(out var root, out var payloadErr))
+        {
+            message = payloadErr;
+            WriteMinimalFailureAudit(payloadErr);
+            return false;
+        }
+
+        ExpandCachedSelectionUpdates(root);
+
+        var doc = daData?.RevitDoc;
+        var openedCloudDoc = false;
+        if (TryResolveCloudModelTarget(root, out var cloudRegion, out var projectGuid, out var modelGuid))
+        {
+            if (daData?.RevitApp == null)
+            {
+                message = "RCW target requested, but Revit application context is unavailable.";
+                WriteMinimalFailureAudit(message);
+                return false;
+            }
+
+            try
+            {
+                var cloudPath = ModelPathUtils.ConvertCloudGUIDsToCloudPath(cloudRegion, projectGuid, modelGuid);
+                doc = daData.RevitApp.OpenDocumentFile(cloudPath, new OpenOptions());
+                openedCloudDoc = doc != null;
+            }
+            catch (Exception ex)
+            {
+                message = $"Failed to open Revit cloud model ({cloudRegion}/{projectGuid}/{modelGuid}): {ex.Message}";
+                WriteMinimalFailureAudit(message);
+                return false;
+            }
+        }
+
+        try
+        {
+            return Run(doc, root, ref message);
+        }
+        finally
+        {
+            if (openedCloudDoc && doc != null)
+            {
+                try
+                {
+                    doc.Close(false);
+                }
+                catch
+                {
+                    /* best effort in DA sandbox */
+                }
+            }
+        }
+    }
+
+    private static bool Run(Document doc, JObject root, ref string message)
+    {
         if (doc == null)
         {
             message = "No active document.";
             WriteMinimalFailureAudit("No active document — cannot run Design Automation on a closed or missing model.");
-            return Result.Failed;
+            return false;
         }
-
-        var payloadPath = Environment.GetEnvironmentVariable(RunRevitAutomationApp.EnvPayload)
-                          ?? Path.Combine(Path.GetTempPath(), "mark-payload.json");
-        if (!File.Exists(payloadPath))
-        {
-            message = $"Payload not found: {payloadPath}";
-            WriteMinimalFailureAudit($"Payload file not found: {payloadPath}");
-            return Result.Failed;
-        }
-
-        string json;
-        JObject root;
-        try
-        {
-            json = File.ReadAllText(payloadPath);
-            root = JObject.Parse(json);
-        }
-        catch (Exception ex)
-        {
-            message = $"Invalid payload JSON: {ex.Message}";
-            WriteMinimalFailureAudit($"Invalid payload JSON: {ex.Message}");
-            return Result.Failed;
-        }
-
-        ExpandCachedSelectionUpdates(root);
 
         var audit = NewAuditRoot(doc, root);
         var log = (JArray)audit["log"];
@@ -108,7 +156,7 @@ internal static class RevitAutomationDispatcher
             PostRunVerify(doc, audit, Log, transactionCommitted: false, swcAttempted: false);
             StampAuditOutcome(audit, success: true, error: null);
             WriteAuditArtifacts(audit);
-            return Result.Succeeded;
+            return true;
         }
 
         if (string.IsNullOrEmpty(op))
@@ -142,7 +190,7 @@ internal static class RevitAutomationDispatcher
             StampAuditOutcome(audit, success: false, error: warn);
             WriteAuditArtifacts(audit);
             message = warn;
-            return Result.Failed;
+            return false;
         }
 
         var txLabel = runMarks && runModify
@@ -175,7 +223,7 @@ internal static class RevitAutomationDispatcher
             StampAuditOutcome(audit, success: false, error: audit["error"]?.ToString());
             WriteAuditArtifacts(audit);
             message = ex.Message;
-            return Result.Failed;
+            return false;
         }
 
         audit["transaction"] = "committed";
@@ -187,7 +235,75 @@ internal static class RevitAutomationDispatcher
         WriteAuditArtifacts(audit);
 
         message = SummarizeForHost(audit);
-        return Result.Succeeded;
+        if (!bizOk)
+        {
+            if (!string.IsNullOrWhiteSpace(bizErr))
+                message = $"{message} business_error={bizErr}";
+            return false;
+        }
+        return true;
+    }
+
+    private static string ResolvePayloadPath()
+    {
+        var fromEnv = Environment.GetEnvironmentVariable(DaRuntimeEnv.EnvPayload)?.Trim();
+        if (!string.IsNullOrWhiteSpace(fromEnv) && !fromEnv.Contains("$("))
+            return fromEnv;
+
+        var cwdCandidate = Path.Combine(Environment.CurrentDirectory, "mark-payload.json");
+        if (File.Exists(cwdCandidate))
+            return cwdCandidate;
+
+        return Path.Combine(Path.GetTempPath(), "mark-payload.json");
+    }
+
+    private static bool TryLoadPayload(out JObject root, out string error)
+    {
+        root = null;
+        error = "";
+        var payloadPath = ResolvePayloadPath();
+        if (!File.Exists(payloadPath))
+        {
+            error = $"Payload not found: {payloadPath}";
+            return false;
+        }
+
+        try
+        {
+            var json = File.ReadAllText(payloadPath);
+            root = JObject.Parse(json);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            error = $"Invalid payload JSON: {ex.Message}";
+            return false;
+        }
+    }
+
+    private static bool TryResolveCloudModelTarget(
+        JObject root,
+        out string region,
+        out Guid projectGuid,
+        out Guid modelGuid)
+    {
+        region = "";
+        projectGuid = Guid.Empty;
+        modelGuid = Guid.Empty;
+        var cm = root?["cloud_model"] as JObject;
+        if (cm == null) return false;
+        var regionRaw = cm["region"]?.ToString()?.Trim();
+        var projectRaw = cm["projectGuid"]?.ToString()?.Trim();
+        var modelRaw = cm["modelGuid"]?.ToString()?.Trim();
+        if (string.IsNullOrWhiteSpace(regionRaw) ||
+            string.IsNullOrWhiteSpace(projectRaw) ||
+            string.IsNullOrWhiteSpace(modelRaw))
+            return false;
+        if (!Guid.TryParse(projectRaw, out projectGuid) || !Guid.TryParse(modelRaw, out modelGuid))
+            return false;
+        var upper = regionRaw.ToUpperInvariant();
+        region = upper.Contains("EMEA") ? "EMEA" : "US";
+        return true;
     }
 
     /// <summary>Top-level outcome for web / DA consumers; always written to audit_report.json.</summary>
@@ -331,17 +447,17 @@ internal static class RevitAutomationDispatcher
     /// </summary>
     private static void WriteAuditArtifacts(JObject audit)
     {
-        var dir = Environment.GetEnvironmentVariable(RunRevitAutomationApp.EnvArtifactsDir);
+        var dir = Environment.GetEnvironmentVariable(DaRuntimeEnv.EnvArtifactsDir);
         var defaultReport = string.IsNullOrWhiteSpace(dir)
             ? Path.Combine(Path.GetTempPath(), "audit_report.json")
             : Path.Combine(dir.Trim(), "audit_report.json");
-        var reportPath = Environment.GetEnvironmentVariable(RunRevitAutomationApp.EnvAuditReport);
+        var reportPath = Environment.GetEnvironmentVariable(DaRuntimeEnv.EnvAuditReport);
         if (string.IsNullOrWhiteSpace(reportPath))
             reportPath = defaultReport;
         else
             reportPath = reportPath.Trim();
 
-        var legacyPath = Environment.GetEnvironmentVariable(RunRevitAutomationApp.EnvAuditLegacy);
+        var legacyPath = Environment.GetEnvironmentVariable(DaRuntimeEnv.EnvAuditLegacy);
         if (string.IsNullOrWhiteSpace(legacyPath))
             legacyPath = Path.Combine(Path.GetTempPath(), "mark-audit.json");
 
@@ -495,7 +611,13 @@ internal static class RevitAutomationDispatcher
         var mod = audit["modify"] as JObject;
         var ok = mod?["parameter_actions_ok"]?.Value<int>() ?? 0;
         var fail = mod?["parameter_actions_failed"]?.Value<int>() ?? 0;
-        return $"run_revit_automation complete: operation={op}; modify_ok={ok}; modify_failed={fail}. See audit_report.json.";
+        var swc = audit["swc"] as JObject;
+        var swcStatus = swc?["status"]?.ToString() ?? "unknown";
+        var swcError = swc?["error"]?.ToString() ?? "";
+        var swcPart = string.IsNullOrWhiteSpace(swcError)
+            ? $"swc={swcStatus}"
+            : $"swc={swcStatus}; swc_error={swcError}";
+        return $"run_revit_automation complete: operation={op}; modify_ok={ok}; modify_failed={fail}; {swcPart}. See audit_report.json.";
     }
 
     private static bool IsMarkOperation(string op) =>
@@ -850,11 +972,11 @@ internal static class RevitAutomationDispatcher
     private static bool TrySynchronizeWithCentral(Document doc, JObject audit, Action<string, string> log)
     {
         var swc = (JObject)audit["swc"]!;
-        var flag = Environment.GetEnvironmentVariable(RunRevitAutomationApp.EnvSwc);
+        var flag = Environment.GetEnvironmentVariable(DaRuntimeEnv.EnvSwc);
         if (!string.Equals(flag, "true", StringComparison.OrdinalIgnoreCase))
         {
             swc["status"] = "skipped_not_enabled";
-            swc["hint"] = $"Set {RunRevitAutomationApp.EnvSwc}=true to attempt SynchronizeWithCentral after commit.";
+            swc["hint"] = $"Set {DaRuntimeEnv.EnvSwc}=true to attempt SynchronizeWithCentral after commit.";
             log("info", "SWC skipped (MARK_SWC not true).");
             return false;
         }
@@ -936,10 +1058,32 @@ internal static class RevitAutomationDispatcher
 
     private static Element FindByExternalId(Document doc, string externalId)
     {
+        if (doc == null || string.IsNullOrWhiteSpace(externalId))
+            return null;
+
+        // Primary path: payload externalIds are usually Revit UniqueId values.
+        var directByUniqueId = doc.GetElement(externalId);
+        if (directByUniqueId != null)
+            return directByUniqueId;
+
+        // Secondary path: many UniqueIds end with an 8-hex ElementId segment.
+        var dash = externalId.LastIndexOf('-');
+        if (dash >= 0 && dash < externalId.Length - 1)
+        {
+            var tail = externalId.Substring(dash + 1);
+            if (int.TryParse(tail, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out var idInt))
+            {
+                var byElementId = doc.GetElement(new ElementId((long)idInt));
+                if (byElementId != null)
+                    return byElementId;
+            }
+        }
+
+        // Legacy fallback for models that mirror these values into a custom parameter.
         foreach (var e in new FilteredElementCollector(doc).WhereElementIsNotElementType())
         {
             var p = e.LookupParameter("External ID");
-            if (p != null && string.Equals(p.AsString(), externalId, StringComparison.Ordinal))
+            if (p != null && string.Equals(p.AsString(), externalId, StringComparison.OrdinalIgnoreCase))
                 return e;
         }
 

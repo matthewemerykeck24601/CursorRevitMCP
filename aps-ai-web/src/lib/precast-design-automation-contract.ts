@@ -48,6 +48,43 @@ export type CachedAnalysisResult = {
 
 const analysisCache = new Map<string, CachedAnalysisResult>();
 
+function parseInputFileArgument(
+  raw: unknown,
+): { url: string; headers?: Record<string, string> } | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const o = raw as Record<string, unknown>;
+  const url = typeof o.url === "string" ? o.url.trim() : "";
+  if (!url) return null;
+  const headersRaw = o.headers;
+  if (
+    headersRaw &&
+    typeof headersRaw === "object" &&
+    !Array.isArray(headersRaw)
+  ) {
+    const out: Record<string, string> = {};
+    for (const [k, v] of Object.entries(headersRaw as Record<string, unknown>)) {
+      if (typeof v === "string" && k.trim()) out[k] = v;
+    }
+    return Object.keys(out).length > 0 ? { url, headers: out } : { url };
+  }
+  return { url };
+}
+
+function parseCloudModelArgument(raw: unknown): {
+  region: string;
+  projectGuid: string;
+  modelGuid: string;
+} | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const o = raw as Record<string, unknown>;
+  const region = typeof o.region === "string" ? o.region.trim() : "";
+  const projectGuid =
+    typeof o.projectGuid === "string" ? o.projectGuid.trim() : "";
+  const modelGuid = typeof o.modelGuid === "string" ? o.modelGuid.trim() : "";
+  if (!region || !projectGuid || !modelGuid) return null;
+  return { region, projectGuid, modelGuid };
+}
+
 function parsePrefix(raw: unknown): ProductPrefix {
   const o = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
   const p = String(o.product_prefix ?? "ALL");
@@ -280,6 +317,25 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   let workitemArguments: Record<string, unknown>;
   let da_mode: "direct_parameter_modify" | "cached_analysis" = "cached_analysis";
   let applied_marks_preview: CachedAnalysisResult["proposed_marks"] = [];
+  const inputFileArgument = parseInputFileArgument(o.input_file ?? o.inputFile);
+  const cloudModelArgument = parseCloudModelArgument(
+    o.cloud_model ?? o.cloudModel,
+  );
+  const adsk3LeggedToken =
+    typeof o.adsk3legged_token === "string" && o.adsk3legged_token.trim()
+      ? o.adsk3legged_token.trim()
+      : typeof o.adsk3LeggedToken === "string" && o.adsk3LeggedToken.trim()
+        ? o.adsk3LeggedToken.trim()
+        : "";
+  if (cloudModelArgument && !adsk3LeggedToken) {
+    return {
+      success: false as const,
+      workitem_submitted: false as const,
+      revit_cloud_model_updated: false as const,
+      message:
+        "RCW mode requires adsk3legged_token (scope code:all). Cloud model metadata was provided but no user token was included.",
+    };
+  }
 
   if (directMode) {
     da_mode = "direct_parameter_modify";
@@ -356,6 +412,9 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   if (Array.isArray(o.updates)) {
     workitemArguments = { ...workitemArguments, updates: o.updates };
   }
+  if (cloudModelArgument) {
+    workitemArguments = { ...workitemArguments, cloud_model: cloudModelArgument };
+  }
 
   const spgm = o.shared_parameter_guid_map;
   if (spgm && typeof spgm === "object" && !Array.isArray(spgm)) {
@@ -373,7 +432,11 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
 
   let daResult: Awaited<ReturnType<typeof submitMarkUpdateWorkitem>> = null;
   try {
-    daResult = await submitMarkUpdateWorkitem({ workitemArguments });
+    daResult = await submitMarkUpdateWorkitem({
+      workitemArguments,
+      inputFileArgument: inputFileArgument ?? undefined,
+      adsk3LeggedToken: adsk3LeggedToken || undefined,
+    });
   } catch (e) {
     return {
       success: false as const,

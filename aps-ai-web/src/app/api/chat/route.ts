@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
-import { getModelMetadata, queryAecDataModel } from "@/lib/aps";
+import {
+  buildVersionOssGetArgument,
+  getRevitCloudModelInfo,
+  getModelMetadata,
+  queryAecDataModel,
+} from "@/lib/aps";
 import {
   planLocalAgentTools,
   resolveViewerIntent,
@@ -130,6 +135,62 @@ function parseProductPrefix(
     return raw;
   }
   return undefined;
+}
+
+function decodeViewerUrn(viewerUrn: string): string {
+  const normalized = viewerUrn.replace(/-/g, "+").replace(/_/g, "/");
+  const pad = normalized.length % 4 === 0 ? "" : "=".repeat(4 - (normalized.length % 4));
+  return Buffer.from(normalized + pad, "base64").toString("utf8");
+}
+
+function resolveModelVersionId(body: ChatRequest): string {
+  const fromSelectionContext =
+    typeof body.productAnalysis?.selectionContext?.modelVersionId === "string"
+      ? body.productAnalysis.selectionContext.modelVersionId.trim()
+      : "";
+  if (fromSelectionContext) return fromSelectionContext;
+  const viewerUrn =
+    typeof body.selectedModelUrn === "string" ? body.selectedModelUrn.trim() : "";
+  if (!viewerUrn) return "";
+  try {
+    const decoded = decodeViewerUrn(viewerUrn);
+    return decoded.trim();
+  } catch {
+    return "";
+  }
+}
+
+function buildDiscoveryFromViewerSelection(
+  selectedElements: ChatRequest["selectedElements"] | undefined,
+  provenance: DiscoveryProvenanceInput,
+): DiscoveryCachedSelection | null {
+  if (!Array.isArray(selectedElements) || selectedElements.length === 0) return null;
+  const rows: AecdmElementListRow[] = [];
+  for (const el of selectedElements) {
+    if (!el || typeof el !== "object") continue;
+    const dbIdRaw = typeof el.dbId === "number" ? el.dbId : Number(el.dbId);
+    const dbId = Number.isFinite(dbIdRaw) ? Math.trunc(dbIdRaw) : null;
+    const externalId =
+      typeof el.externalId === "string" && el.externalId.trim()
+        ? el.externalId.trim()
+        : null;
+    if (dbId == null && !externalId) continue;
+    rows.push({
+      dbId,
+      externalId,
+      category: undefined,
+      family: el.name,
+      type: undefined,
+      controlMark: undefined,
+    });
+  }
+  if (rows.length === 0) return null;
+  return buildDiscoveryCachedSelection(
+    rows,
+    provenance,
+    "viewer-selection-fallback",
+    "future_edit",
+  );
 }
 
 type LastDaJobPayload = {
@@ -409,6 +470,7 @@ export async function POST(request: NextRequest) {
   const selectedHubId = body.selectedHubId;
   const selectedProjectId = body.selectedProjectId;
   const selectedItemId = body.selectedItemId;
+  const selectedModelVersionId = resolveModelVersionId(body);
   const aiProvider = body.aiProvider ?? env.aiProvider;
   const aiModel = body.aiModel ?? "";
   const assistantMode = "agent";
@@ -433,6 +495,12 @@ export async function POST(request: NextRequest) {
 
   let activeDiscovery: DiscoveryCachedSelection | null =
     parseDiscoveryCachedSelectionFromClient(body.discoveryCachedSelection);
+  if (!activeDiscovery) {
+    activeDiscovery = buildDiscoveryFromViewerSelection(
+      body.selectedElements,
+      discoveryProvenance(),
+    );
+  }
   let lastAecdmRows: AecdmElementListRow[] = [];
   let lastDaJobForResponse = normalizeLastDaJob(body.lastDaJob);
   if (!lastDaJobForResponse?.workitem_id) {
@@ -440,6 +508,69 @@ export async function POST(request: NextRequest) {
     if (fromPending) lastDaJobForResponse = fromPending;
   }
   let daSubmittedThisTurn = false;
+  let daInputFileResolved = false;
+  let daInputFileArg: { url: string; headers: Record<string, string> } | null = null;
+  let daCloudModelResolved = false;
+  let daCloudModelArg:
+    | { region: string; projectGuid: string; modelGuid: string }
+    | null = null;
+  const resolveDaInputFileArg = async () => {
+    if (daInputFileResolved) return daInputFileArg;
+    daInputFileResolved = true;
+    if (!selectedProjectId || !selectedModelVersionId) return null;
+    try {
+      const arg = await buildVersionOssGetArgument({
+        accessToken: auth.session.accessToken,
+        projectId: selectedProjectId,
+        versionId: selectedModelVersionId,
+      });
+      daInputFileArg = arg;
+      return daInputFileArg;
+    } catch (error) {
+      log("warn", "da-input-file-resolve-failed", {
+        requestId,
+        projectId: selectedProjectId,
+        versionId: selectedModelVersionId,
+        details: error instanceof Error ? error.message : "Unknown error",
+      });
+      return null;
+    }
+  };
+  const resolveDaCloudModelArg = async () => {
+    if (daCloudModelResolved) return daCloudModelArg;
+    daCloudModelResolved = true;
+    if (!selectedProjectId || !selectedModelVersionId) return null;
+    try {
+      const info = await getRevitCloudModelInfo({
+        accessToken: auth.session.accessToken,
+        projectId: selectedProjectId,
+        versionId: selectedModelVersionId,
+      });
+      daCloudModelArg = info;
+      return daCloudModelArg;
+    } catch (error) {
+      log("warn", "da-cloud-model-resolve-failed", {
+        requestId,
+        projectId: selectedProjectId,
+        versionId: selectedModelVersionId,
+        details: error instanceof Error ? error.message : "Unknown error",
+      });
+      return null;
+    }
+  };
+  const attachDaExecutionContext = async (base: Record<string, unknown>) => {
+    const cloudArg = await resolveDaCloudModelArg();
+    if (cloudArg) {
+      base.cloud_model = cloudArg;
+      base.adsk3legged_token = auth.session.accessToken;
+    }
+    if (base.input_file == null && base.inputFile == null) {
+      const inputArg = await resolveDaInputFileArg();
+      if (inputArg?.url) {
+        base.input_file = inputArg;
+      }
+    }
+  };
 
   if (activeDiscovery) {
     externalContext = `${externalContext}\nLAST_DISCOVERY_CACHED_SELECTION: ${JSON.stringify({
@@ -706,6 +837,7 @@ export async function POST(request: NextRequest) {
             if (activeDiscovery?.cache_id && base.cache_id == null) {
               base.cache_id = activeDiscovery.cache_id;
             }
+            await attachDaExecutionContext(base);
             const daSel =
               activeDiscovery && activeDiscovery.externalIds.length > 0
                 ? toDaCachedSelectionPayload(activeDiscovery)
@@ -1060,6 +1192,7 @@ export async function POST(request: NextRequest) {
               operation: "modify_parameters",
               cache_id: activeDiscovery.cache_id,
             };
+            await attachDaExecutionContext(autoBase);
             const autoAug = augmentSkipAnalysisTriggerArgs(
               message,
               autoBase,
@@ -1314,6 +1447,9 @@ export async function POST(request: NextRequest) {
     assistantMode,
     actions: actions.length,
     modelQueryRequested,
+    discoveryCacheId: activeDiscovery?.cache_id ?? null,
+    discoveryExternalIdCount: activeDiscovery?.externalIds.length ?? 0,
+    lastDaWorkitemId: lastDaJobForResponse?.workitem_id ?? null,
     responseText: shouldLogFull() ? responseText : undefined,
     queryResult: shouldLogFull() ? queryResult : undefined,
   });

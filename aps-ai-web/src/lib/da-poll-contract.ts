@@ -106,8 +106,9 @@ export async function pollDesignAutomationStatusContract(
     if (last.reportUrl) {
       const sum = await fetchDaAuditReportSummary(last.reportUrl);
       if (sum) {
+        const noChange = sum.indicates_no_change === true;
         return {
-          success: true,
+          success: !noChange,
           workitem_id,
           status: st,
           attempts_used,
@@ -116,6 +117,12 @@ export async function pollDesignAutomationStatusContract(
           da_audit_summary: { one_liner: sum.one_liner },
           ...(sum.detail ? { da_audit_detail: sum.detail } : {}),
           execution_assistant_hint: sum.assistant_hint,
+          ...(noChange
+            ? {
+                forge_status_snippet:
+                  "DA host status=success but execution summary indicates zero parameter actions.",
+              }
+            : {}),
         };
       }
       return {

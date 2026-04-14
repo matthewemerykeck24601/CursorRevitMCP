@@ -119,7 +119,7 @@ export function inferDaUpdatesFromUserMessage(
     if (/\buniformat\b/.test(m)) {
       return [{ paramName: "UNIFORMAT_CODE", action: "clear" }];
     }
-    return [{ paramName: "CONTROL_MARK", action: "clear" }];
+    return [];
   }
   const setMark = m.match(
     /(?:set|assign|put)\s+(?:control[_\s]?mark\s+)?(?:to\s+)?['"]?([A-Za-z0-9._-]+)['"]?/i,
@@ -141,9 +141,6 @@ export function inferDaUpdatesFromUserMessage(
       },
     ];
   }
-  if (/\bproceed\b/.test(m)) {
-    return [{ paramName: "CONTROL_MARK", action: "clear" }];
-  }
   return [];
 }
 
@@ -153,7 +150,10 @@ export function inferDaUpdatesFromUserMessage(
  */
 export function modifyParametersNeedsClarification(userMessage: string): boolean {
   const m = userMessage.toLowerCase();
-  if (impliesControlMarkClear(userMessage) || /\bclear\b/.test(m)) return false;
+  if (impliesControlMarkClear(userMessage)) return false;
+  if (/\bclear\b/.test(m)) {
+    return inferDaUpdatesFromUserMessage(userMessage).length === 0;
+  }
   if (/\b(set|assign|update|chang\w+)\b/.test(m) && /\bparam|mark|value\b/.test(m)) {
     return inferDaUpdatesFromUserMessage(userMessage).length === 0;
   }

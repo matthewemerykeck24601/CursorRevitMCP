@@ -73,7 +73,7 @@ if (-not $token) { Write-Error "No access_token in response" }
 $headers = @{ Authorization = "Bearer $token" }
 
 if ($InitializeBundle) {
-  Write-Host "POST $daBase/appbundles (initialize — use unique id) ..."
+  Write-Host "POST $daBase/appbundles (initialize - use unique id) ..."
   $engine = $env:DA_ENGINE
   if (-not $engine) { $engine = "Autodesk.Revit+2024" }
   $newId = $env:DA_APPBUNDLE_ID
@@ -81,15 +81,18 @@ if ($InitializeBundle) {
   $createBody = @{
     id          = $newId
     engine      = $engine
-    description = "RevitMarkWorkitem — mark + parameterPatches"
+    description = "RevitMarkWorkitem - mark + parameterPatches"
   } | ConvertTo-Json
   $reg = Invoke-RestMethod -Method Post -Uri "$daBase/appbundles" -Headers $headers `
     -ContentType "application/json" -Body $createBody
 } else {
   Write-Host "POST $daBase/appbundles/$bundleId/versions (new version) ..."
   $verUrl = "$daBase/appbundles/$bundleId/versions"
+  $engine = $env:DA_ENGINE
+  if (-not $engine) { $engine = "Autodesk.Revit+2024" }
+  $versionBody = @{ engine = $engine } | ConvertTo-Json
   $reg = Invoke-RestMethod -Method Post -Uri $verUrl -Headers $headers `
-    -ContentType "application/json" -Body "{}"
+    -ContentType "application/json" -Body $versionBody
 }
 
 $up = $reg.uploadParameters

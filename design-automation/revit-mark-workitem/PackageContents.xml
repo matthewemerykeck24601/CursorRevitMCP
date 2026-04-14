@@ -12,6 +12,6 @@
   <CompanyDetails Name="Metromont" Url="" Email="" />
   <Components Description="Revit 2024">
     <RuntimeRequirements SeriesMax="R2024" SeriesMin="R2024" OS="Win64" Platform="Revit" />
-    <ComponentEntry AppName="RevitMarkWorkitem" Version="1.0.0" ModuleName="./Contents/RevitMarkWorkitem.dll" />
+    <ComponentEntry AppName="RevitMarkWorkitem" Version="1.0.0" ModuleName="./Contents/RevitMarkWorkitem.addin" AppDescription="Revit mark workitem runner" LoadOnCommandInvocation="False" LoadOnRevitStartup="True" />
   </Components>
 </ApplicationPackage>

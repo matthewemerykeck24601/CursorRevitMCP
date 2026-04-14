@@ -56,6 +56,7 @@ export const env = {
       "offline_access",
       "viewables:read",
       "account:read",
+      "code:all",
     ].join(" "),
   aiProvider: getEnv("AI_PROVIDER", "xai").toLowerCase(),
   aiOpenAiKey: getEnv("OPENAI_API_KEY"),

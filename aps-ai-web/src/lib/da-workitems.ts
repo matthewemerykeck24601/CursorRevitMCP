@@ -71,6 +71,11 @@ function daBaseUrl(): string {
  */
 export async function submitMarkUpdateWorkitem(params: {
   workitemArguments: Record<string, unknown>;
+  inputFileArgument?: {
+    url: string;
+    headers?: Record<string, string>;
+  };
+  adsk3LeggedToken?: string;
 }): Promise<DaWorkitemSubmitResult | null> {
   if (env.daEnabled !== "true") {
     return null;
@@ -83,12 +88,31 @@ export async function submitMarkUpdateWorkitem(params: {
   const token = await getDesignAutomationAccessToken();
   const base = daBaseUrl();
 
-  /** Generic payload: align keys with your AppBundle / Activity definition. */
+  const payloadJson = JSON.stringify(params.workitemArguments);
+  const payloadDataUrl = `data:application/json;base64,${Buffer.from(payloadJson, "utf8").toString("base64")}`;
+
+  /** Activity payload is configured as XrefTreeArgument (verb=get). */
   const body = {
     activityId,
     arguments: {
+      ...(params.adsk3LeggedToken
+        ? {
+            adsk3LeggedToken: params.adsk3LeggedToken,
+          }
+        : {}),
+      ...(params.inputFileArgument?.url
+        ? {
+            inputFile: {
+              url: params.inputFileArgument.url,
+              ...(params.inputFileArgument.headers &&
+              Object.keys(params.inputFileArgument.headers).length > 0
+                ? { headers: params.inputFileArgument.headers }
+                : {}),
+            },
+          }
+        : {}),
       payload: {
-        text: JSON.stringify(params.workitemArguments),
+        url: payloadDataUrl,
       },
     },
   };
@@ -393,15 +417,105 @@ export function summarizeDaAuditJson(
  * Fetch audit_report.json from DA workitem reportUrl (after status success).
  * Returns a short user-facing line + hint for the finalizer.
  */
+function summarizeDaTextReport(
+  reportText: string,
+): {
+  one_liner: string;
+  assistant_hint: string;
+  detail?: string;
+  indicates_no_change?: boolean;
+} | null {
+  const runLine =
+    reportText
+      .split(/\r?\n/)
+      .find((line) => line.includes("[DA] Run result=") && line.includes("message=")) ??
+    "";
+  if (!runLine) return null;
+
+  const okMatch = runLine.match(/Run result=(True|False)/i);
+  const messageMatch = runLine.match(/message=(.+)$/i);
+  const runOk = okMatch?.[1]?.toLowerCase() === "true";
+  const msg = (messageMatch?.[1] ?? "").trim();
+  const modifyOk = Number((msg.match(/modify_ok=(\d+)/i)?.[1] ?? "0").trim());
+  const modifyFailed = Number((msg.match(/modify_failed=(\d+)/i)?.[1] ?? "0").trim());
+  const op = (msg.match(/operation=([^;]+)/i)?.[1] ?? "").trim();
+  const swc = (msg.match(/swc=([^;.\s]+)/i)?.[1] ?? "").trim().toLowerCase();
+  const swcErr = (msg.match(/swc_error=([^.]*)/i)?.[1] ?? "").trim();
+
+  const zeroActions = modifyOk === 0 && modifyFailed === 0;
+  if (zeroActions) {
+    const one_liner =
+      `Workitem finished but reported 0 parameter actions (operation=${op || "unknown"}); central model likely unchanged.`.trim();
+    return {
+      one_liner,
+      detail: msg || runLine,
+      indicates_no_change: true,
+      assistant_hint:
+        "DA host status is success but execution reported zero parameter actions. Reply in ONE or TWO short sentences: no effective model changes were confirmed; quote the operation and zero-action result. Do not claim parameters were cleared.",
+    };
+  }
+
+  const one_liner = runOk
+    ? `Design Automation completed: ${msg || "Run succeeded."}`
+    : `Design Automation reported failure: ${msg || "Run failed."}`;
+  if (runOk) {
+    if (swc === "ok" || swc === "success") {
+      return {
+        one_liner:
+          `Design Automation applied changes (${modifyOk} action(s)) and synchronized with central successfully.`,
+        detail: msg || runLine,
+        assistant_hint:
+          "Reply in ONE short sentence confirming both parameter updates and successful central synchronization.",
+      };
+    }
+    if (swc && swc !== "ok" && swc !== "success") {
+      return {
+        one_liner:
+          `Design Automation applied ${modifyOk} action(s) but central sync was not confirmed (swc=${swc}${swcErr ? `: ${swcErr}` : ""}). Local/central model may remain unchanged.`,
+        detail: msg || runLine,
+        indicates_no_change: true,
+        assistant_hint:
+          "Reply in ONE or TWO short sentences: edits happened in DA execution, but central sync was not confirmed. Do not claim the central model was updated.",
+      };
+    }
+  }
+  return {
+    one_liner,
+    detail: msg || runLine,
+    assistant_hint: runOk
+      ? "Reply in exactly ONE short sentence with the DA run result summary."
+      : "Reply in ONE or TWO short sentences with the DA failure reason from the run message.",
+  };
+}
+
 export async function fetchDaAuditReportSummary(
   reportUrl: string,
-): Promise<{ one_liner: string; assistant_hint: string; detail?: string } | null> {
+): Promise<{
+  one_liner: string;
+  assistant_hint: string;
+  detail?: string;
+  indicates_no_change?: boolean;
+} | null> {
   if (!reportUrl || !reportUrl.startsWith("http")) return null;
   try {
     const res = await fetch(reportUrl, { cache: "no-store" });
     if (!res.ok) return null;
-    const json: unknown = await res.json();
-    return summarizeDaAuditJson(json);
+    const text = await res.text();
+
+    // reportUrl is usually plain-text host report, not audit_report.json.
+    // Prefer JSON parsing only when response actually looks like JSON.
+    const maybeJson = text.trim();
+    if (maybeJson.startsWith("{") || maybeJson.startsWith("[")) {
+      try {
+        const json: unknown = JSON.parse(maybeJson) as unknown;
+        const fromAuditJson = summarizeDaAuditJson(json);
+        if (fromAuditJson) return fromAuditJson;
+      } catch {
+        // Fall through to text report parser below.
+      }
+    }
+
+    return summarizeDaTextReport(text);
   } catch {
     return null;
   }

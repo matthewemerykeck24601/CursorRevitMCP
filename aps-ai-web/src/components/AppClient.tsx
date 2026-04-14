@@ -14,6 +14,7 @@ import {
   buildBimTableRows,
 } from "@/lib/bimSelectionTable";
 import type { DiscoveryCachedSelection } from "@/lib/discovery-cached-selection";
+import { aiBrowserDebug } from "@/lib/ai-browser-debug";
 
 type Hub = { id: string; name: string; type: string };
 type Project = { id: string; name: string; type: string };
@@ -792,44 +793,64 @@ export function AppClient() {
     setChatLog((prev) => [...prev, `You: ${msg}`]);
     setError("");
 
+    const chatBody = {
+      message: msg,
+      chatHistory: chatLog.slice(-8),
+      selectedModelName: selectedModelData?.name ?? "no model selected",
+      selectedModelUrn: selectedModelData?.viewerUrn ?? undefined,
+      selectedHubId: selectedHub || undefined,
+      selectedProjectId: selectedProject || undefined,
+      selectedItemId: selectedModelData?.itemId ?? undefined,
+      selectedDbIds,
+      selectedCount: selectedDbIds.length,
+      selectedElements,
+      discoveryCachedSelection: discoveryCachedSelection ?? undefined,
+      lastDaJob: lastDaJob ?? undefined,
+      assistantMode,
+      aiProvider,
+      aiModel,
+      workspaceMode,
+      productAnalysis: {
+        rulesText: "",
+        selectedDesignFile: selectedDesignFileData,
+        selectedProduct: primaryDesignProduct,
+        analysisInputs,
+        selectionContext: {
+          hubId: selectedHub || "",
+          hubName: selectedHubData?.name ?? "",
+          projectId: selectedProject || "",
+          projectNumber: selectedProjectNumber,
+          projectName: selectedProjectData?.name ?? "",
+          modelItemId: selectedModelData?.itemId ?? "",
+          modelVersionId: selectedModelData?.versionId ?? "",
+          modelName: selectedModelData?.name ?? "",
+          modelUrn: selectedModelData?.viewerUrn ?? "",
+        },
+      },
+    };
+    aiBrowserDebug("chat:request", {
+      message: msg,
+      selectedCount: selectedDbIds.length,
+      selectedElementsSample: selectedElements.slice(0, 5).map((e) => ({
+        dbId: e.dbId,
+        externalId: e.externalId,
+        name: e.name,
+        propCount: e.properties?.length ?? 0,
+      })),
+      discovery: discoveryCachedSelection
+        ? {
+            cache_id: discoveryCachedSelection.cache_id,
+            externalIds: discoveryCachedSelection.externalIds.length,
+            selection_rules: discoveryCachedSelection.selection_rules,
+          }
+        : null,
+      lastDaJob: lastDaJob ?? null,
+    });
+
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: msg,
-        chatHistory: chatLog.slice(-8),
-        selectedModelName: selectedModelData?.name ?? "no model selected",
-        selectedModelUrn: selectedModelData?.viewerUrn ?? undefined,
-        selectedHubId: selectedHub || undefined,
-        selectedProjectId: selectedProject || undefined,
-        selectedItemId: selectedModelData?.itemId ?? undefined,
-        selectedDbIds,
-        selectedCount: selectedDbIds.length,
-        selectedElements,
-        discoveryCachedSelection: discoveryCachedSelection ?? undefined,
-        lastDaJob: lastDaJob ?? undefined,
-        assistantMode,
-        aiProvider,
-        aiModel,
-        workspaceMode,
-        productAnalysis: {
-          rulesText: "",
-          selectedDesignFile: selectedDesignFileData,
-          selectedProduct: primaryDesignProduct,
-          analysisInputs,
-          selectionContext: {
-            hubId: selectedHub || "",
-            hubName: selectedHubData?.name ?? "",
-            projectId: selectedProject || "",
-            projectNumber: selectedProjectNumber,
-            projectName: selectedProjectData?.name ?? "",
-            modelItemId: selectedModelData?.itemId ?? "",
-            modelVersionId: selectedModelData?.versionId ?? "",
-            modelName: selectedModelData?.name ?? "",
-            modelUrn: selectedModelData?.viewerUrn ?? "",
-          },
-        },
-      }),
+      body: JSON.stringify(chatBody),
     });
 
     if (!response.ok) {
@@ -840,6 +861,7 @@ export function AppClient() {
     const json = (await response.json()) as {
       message: string;
       actions: ViewerAction[];
+      requestId?: string;
       queryResult?: { views?: Array<{ guid: string; name: string; role: string }> };
       discoveryCachedSelection?: DiscoveryCachedSelection | null;
       lastDaJob?: {
@@ -849,6 +871,19 @@ export function AppClient() {
         operation?: string;
       } | null;
     };
+    aiBrowserDebug("chat:response", {
+      requestId: json.requestId,
+      messagePreview: json.message?.slice(0, 400),
+      actions: json.actions,
+      discoveryOut: json.discoveryCachedSelection
+        ? {
+            cache_id: json.discoveryCachedSelection.cache_id,
+            externalIds: json.discoveryCachedSelection.externalIds.length,
+            selection_rules: json.discoveryCachedSelection.selection_rules,
+          }
+        : null,
+      lastDaJob: json.lastDaJob ?? null,
+    });
     setDiscoveryCachedSelection((prev) =>
       "discoveryCachedSelection" in json
         ? (json.discoveryCachedSelection ?? null)

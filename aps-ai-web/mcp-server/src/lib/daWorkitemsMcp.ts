@@ -47,6 +47,11 @@ function daBaseUrlMcp(): string {
 
 export async function submitMarkUpdateWorkitemMcp(params: {
   workitemArguments: Record<string, unknown>;
+  inputFileArgument?: {
+    url: string;
+    headers?: Record<string, string>;
+  };
+  adsk3LeggedToken?: string;
 }): Promise<{ id: string; status?: string; raw?: unknown } | null> {
   if (env("DA_ENABLED", "").toLowerCase() !== "true") {
     return null;
@@ -57,11 +62,29 @@ export async function submitMarkUpdateWorkitemMcp(params: {
   }
   const token = await getDesignAutomationAccessTokenMcp();
   const base = daBaseUrlMcp();
+  const payloadJson = JSON.stringify(params.workitemArguments);
+  const payloadDataUrl = `data:application/json;base64,${Buffer.from(payloadJson, "utf8").toString("base64")}`;
   const body = {
     activityId,
     arguments: {
+      ...(params.adsk3LeggedToken
+        ? {
+            adsk3LeggedToken: params.adsk3LeggedToken,
+          }
+        : {}),
+      ...(params.inputFileArgument?.url
+        ? {
+            inputFile: {
+              url: params.inputFileArgument.url,
+              ...(params.inputFileArgument.headers &&
+              Object.keys(params.inputFileArgument.headers).length > 0
+                ? { headers: params.inputFileArgument.headers }
+                : {}),
+            },
+          }
+        : {}),
       payload: {
-        text: JSON.stringify(params.workitemArguments),
+        url: payloadDataUrl,
       },
     },
   };
