@@ -1,0 +1,85 @@
+{
+  "source": {
+    "csvPath": "C:/Users/mstri/Downloads/ProductTable.csv",
+    "sheetName": "ProductTable",
+    "importMode": "manual-normalized",
+    "typeHandling": "variable",
+    "typeNotes": [
+      "Type values are treated as non-deterministic guidance only.",
+      "#NAME? values are interpreted as missing/variable type definitions."
+    ]
+  },
+  "summary": {
+    "rowsSeen": 51,
+    "rowsExcludedDoNotUse": 12,
+    "rowsNormalized": 39,
+    "uniqueFamilies": 32
+  },
+  "conflicts": [
+    {
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+      "productCodes": [
+        "FTA",
+        "DTA"
+      ],
+      "resolution": "Use CONSTRUCTION_PRODUCT contains 'FIELD TOPPED' => DTA, otherwise FTA."
+    }
+  ],
+  "duplicates": [
+    {
+      "family": "METROWALL",
+      "count": 2,
+      "note": "Orientation variants collapsed into one family rule."
+    },
+    {
+      "family": "WALL_PANEL",
+      "count": 2,
+      "note": "Vertical/horizontal variants collapsed into one family rule."
+    },
+    {
+      "family": "WALL_PANEL_INSULATED",
+      "count": 2,
+      "note": "Duplicate family rows merged."
+    },
+    {
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+      "count": 2,
+      "note": "Kept both with construction-product disambiguation."
+    }
+  ],
+  "families": [
+    { "family": "COLUMN", "productCode": "CLA", "constructionProductHint": "COLUMN", "typeMode": "variable" },
+    { "family": "DOUBLE_TEE_CHAMFERED_NOMINAL", "productCode": "FTA", "constructionProductHint": "DOUBLE TEE", "typeMode": "variable" },
+    { "family": "DOUBLE_TEE_CHAMFERED_NOMINAL", "productCode": "DTA", "constructionProductHint": "DOUBLE TEE - FIELD TOPPED", "typeMode": "variable" },
+    { "family": "FLAT_SLAB", "productCode": "FSA", "constructionProductHint": "FLAT SLAB", "typeMode": "variable" },
+    { "family": "FLAT_SLAB_WARPING", "productCode": "FSA", "constructionProductHint": "FLAT SLAB", "typeMode": "variable" },
+    { "family": "H_FRAME", "productCode": "SWF", "constructionProductHint": "FRAME", "typeMode": "variable" },
+    { "family": "LGIRDER", "productCode": "LGA", "constructionProductHint": "LGIRDER", "typeMode": "variable" },
+    { "family": "METRODECK", "productCode": "MDK", "constructionProductHint": "METRODECK", "typeMode": "variable" },
+    { "family": "METROWALL", "productCode": "MWV", "constructionProductHint": "METROWALL", "typeMode": "variable" },
+    { "family": "RBEAM", "productCode": "RBA", "constructionProductHint": "RBEAM", "typeMode": "variable" },
+    { "family": "RTP_RADIUSED_NOMINAL", "productCode": "RTP", "constructionProductHint": "ROOFTOP CHILLER PLATFORM", "typeMode": "variable" },
+    { "family": "SHEARWALL", "productCode": "SWA", "constructionProductHint": "SHEARWALL", "typeMode": "variable" },
+    { "family": "SPANDREL_BEARING", "productCode": "SPA", "constructionProductHint": "SPANDREL BEARING", "typeMode": "variable" },
+    { "family": "SPANDREL_BEARING_ADJ_LEDGE", "productCode": "SPA", "constructionProductHint": "SPANDREL BEARING", "typeMode": "variable" },
+    { "family": "SPANDREL_NONBEARING", "productCode": "FCA", "constructionProductHint": "SPANDREL NONBEARING", "typeMode": "variable" },
+    { "family": "STAIR_BASE_UNIT", "productCode": "STA", "constructionProductHint": "STAIR", "typeMode": "variable" },
+    { "family": "STAIR_DROP_IN", "productCode": "STA", "constructionProductHint": "STAIR", "typeMode": "variable" },
+    { "family": "STAIR_DROP_IN_BASE_UNIT", "productCode": "STA", "constructionProductHint": "STAIR", "typeMode": "variable" },
+    { "family": "STAIR_Z", "productCode": "STX", "constructionProductHint": "Z-STAIR", "typeMode": "variable" },
+    { "family": "TGIRDER", "productCode": "TGA", "constructionProductHint": "TGIRDER", "typeMode": "variable" },
+    { "family": "WALL_CAP", "productCode": "WPA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL", "productCode": "WPA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL_ANGLED", "productCode": "ALA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL_CURVED", "productCode": "WPA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL_INSULATED", "productCode": "WPB", "constructionProductHint": "WALL PANEL INSULATED", "typeMode": "variable" },
+    { "family": "WALL_PANEL_INSULATED_LSHAPE", "productCode": "WPB", "constructionProductHint": "WALL PANEL INSULATED", "typeMode": "variable" },
+    { "family": "WALL_PANEL_INSULATED_SHAPED", "productCode": "WPB", "constructionProductHint": "WALL PANEL INSULATED", "typeMode": "variable" },
+    { "family": "WALL_PANEL_INSULATED_USHAPE", "productCode": "WPB", "constructionProductHint": "WALL PANEL INSULATED", "typeMode": "variable" },
+    { "family": "WALL_PANEL_LSHAPE_HORIZONTAL", "productCode": "ALA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL_LSHAPE_VERTICAL", "productCode": "ALA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL_USHAPE_HORIZONTAL", "productCode": "AUA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "WALL_PANEL_USHAPE_VERTICAL", "productCode": "AUA", "constructionProductHint": "WALL PANEL", "typeMode": "variable" },
+    { "family": "Z_SPANDREL_NONBEARING", "productCode": "FCA", "constructionProductHint": "Z-SPANDREL NONBEARING", "typeMode": "variable" }
+  ]
+}

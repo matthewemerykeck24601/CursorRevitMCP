@@ -45,6 +45,56 @@ function daBaseUrlMcp(): string {
   return "https://developer.api.autodesk.com/da/us-east/v3";
 }
 
+function detectRevitVersionMajorFromWorkitemArgs(
+  workitemArguments: Record<string, unknown>,
+): number | undefined {
+  const direct = Number(workitemArguments.revitVersionMajor);
+  if (Number.isFinite(direct)) return Math.trunc(direct);
+  const cloudModel = workitemArguments.cloud_model;
+  if (!cloudModel || typeof cloudModel !== "object" || Array.isArray(cloudModel)) {
+    return undefined;
+  }
+  const fromCloud = Number(
+    (cloudModel as { revitVersionMajor?: unknown }).revitVersionMajor,
+  );
+  if (!Number.isFinite(fromCloud)) return undefined;
+  return Math.trunc(fromCloud);
+}
+
+function resolveDaActivityIdMcp(
+  workitemArguments: Record<string, unknown>,
+): string {
+  const explicit = String(workitemArguments.activityId ?? "").trim();
+  if (explicit) return explicit;
+
+  const revitVersionMajor = detectRevitVersionMajorFromWorkitemArgs(workitemArguments);
+  if (revitVersionMajor) {
+    if (revitVersionMajor >= 2027 && env("DA_ACTIVITY_ID_NET10")) {
+      return env("DA_ACTIVITY_ID_NET10");
+    }
+    if (revitVersionMajor >= 2025 && env("DA_ACTIVITY_ID_NET8")) {
+      return env("DA_ACTIVITY_ID_NET8");
+    }
+    const byYear =
+      revitVersionMajor >= 2027
+        ? env("DA_ACTIVITY_ID_2027")
+        : revitVersionMajor === 2026
+          ? env("DA_ACTIVITY_ID_2026")
+          : revitVersionMajor === 2025
+            ? env("DA_ACTIVITY_ID_2025")
+            : revitVersionMajor === 2024
+              ? env("DA_ACTIVITY_ID_2024")
+              : "";
+    if (byYear) return byYear;
+  }
+
+  const fallback = env("DA_ACTIVITY_ID");
+  if (fallback) return fallback;
+  throw new Error(
+    "No DA activity configured. Set DA_ACTIVITY_ID or DA_ACTIVITY_ID_2024/2025/2026/2027 (optionally NET8/NET10 aliases).",
+  );
+}
+
 export async function submitMarkUpdateWorkitemMcp(params: {
   workitemArguments: Record<string, unknown>;
   inputFileArgument?: {
@@ -56,10 +106,7 @@ export async function submitMarkUpdateWorkitemMcp(params: {
   if (env("DA_ENABLED", "").toLowerCase() !== "true") {
     return null;
   }
-  const activityId = env("DA_ACTIVITY_ID");
-  if (!activityId) {
-    throw new Error("DA_ACTIVITY_ID required when DA_ENABLED=true.");
-  }
+  const activityId = resolveDaActivityIdMcp(params.workitemArguments);
   const token = await getDesignAutomationAccessTokenMcp();
   const base = daBaseUrlMcp();
   const payloadJson = JSON.stringify(params.workitemArguments);

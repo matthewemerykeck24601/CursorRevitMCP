@@ -1,22 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
-import { apsGet } from "@/lib/aps";
+import { listHubProjects, upsertHubReferenceProjects } from "@/lib/aps-admin";
 import { getRequestId } from "@/lib/request";
 import { log } from "@/lib/logger";
-
-type ApsCollection<T> = {
-  data: T[];
-};
-
-type Project = {
-  id: string;
-  attributes: {
-    name?: string;
-    extension?: {
-      type?: string;
-    };
-  };
-};
 
 export const runtime = "nodejs";
 
@@ -38,19 +24,30 @@ export async function GET(
   if (!auth.ok) return auth.response;
 
   const { hubId } = await context.params;
-  const safeHubId = encodeURIComponent(hubId);
 
   try {
-    const projects = await apsGet<ApsCollection<Project>>(
-      `/project/v1/hubs/${safeHubId}/projects`,
+    const projects = await listHubProjects(
       auth.session.accessToken,
+      hubId,
     );
+    try {
+      await upsertHubReferenceProjects({
+        hubId,
+        projects,
+      });
+    } catch (error) {
+      log("warn", "aps-projects-cache-upsert-failed", {
+        requestId,
+        hubId,
+        details: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
 
-    const orderedProjects = projects.data
+    const orderedProjects = projects
       .map((project) => ({
-        id: project.id,
-        name: project.attributes?.name ?? project.id,
-        type: project.attributes?.extension?.type ?? "unknown",
+        id: project.projectId,
+        name: project.projectName || project.projectId,
+        type: "autodesk.bim360:Project",
       }))
       .sort((a, b) => {
         const aNumeric = startsWithDigit(a.name);

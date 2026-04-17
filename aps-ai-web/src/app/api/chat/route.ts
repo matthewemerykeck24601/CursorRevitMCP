@@ -29,6 +29,14 @@ import {
   listProjectIssues,
 } from "@/lib/aps-issues";
 import {
+  addUsersToProjectsByNumber,
+  getHubReferenceCacheStatus,
+  listHubRoleCache,
+  seedHubReferenceCache,
+  seedHubRoleCache,
+} from "@/lib/aps-admin";
+import { createRevitCloudWorksharedModel } from "@/lib/revit-cloud-model-create";
+import {
   analyzePublishedModelAndCacheContract,
   getCachedMarkAnalysisContract,
   triggerDesignAutomationMarkUpdateContract,
@@ -81,7 +89,21 @@ type ChatRequest = {
   aiProvider?: string;
   aiModel?: string;
   assistantMode?: string;
-  workspaceMode?: "model" | "product-analysis";
+  workspaceMode?: "model" | "product-analysis" | "admin";
+  /** Supplemental BIM-selection table context (summary + sample rows). */
+  bimSelectionContext?: {
+    count?: number;
+    withControlMark?: number;
+    withControlNumber?: number;
+    sample?: Array<{
+      elementId?: string;
+      category?: string;
+      family?: string;
+      type?: string;
+      controlMark?: string;
+      controlNumber?: string;
+    }>;
+  };
   /** Last discovery payload from prior chat turn — resend for DA / follow-ups. */
   discoveryCachedSelection?: DiscoveryCachedSelection | Record<string, unknown>;
   /** Last Design Automation workitem from a prior submit (client resends for status polls). */
@@ -90,6 +112,18 @@ type ChatRequest = {
     submitted_at?: string;
     cache_id?: string;
     operation?: string;
+  };
+  /** Model-load DA route hint from /api/aps/da-config-check. */
+  daExecutionContext?: {
+    resolvedActivityId?: string;
+    resolvedActivitySource?: string;
+    revitVersionMajor?: number;
+    cloudModel?: {
+      region?: string;
+      projectGuid?: string;
+      modelGuid?: string;
+      revitVersionMajor?: number;
+    };
   };
   productAnalysis?: {
     rulesText?: string;
@@ -111,6 +145,30 @@ type ChatRequest = {
 };
 
 type ChatToolAction = ViewerIntentAction;
+type NormalizedDaExecutionContext = {
+  resolvedActivityId?: string;
+  resolvedActivitySource?: string;
+  revitVersionMajor?: number;
+  cloud_model?: {
+    region: string;
+    projectGuid: string;
+    modelGuid: string;
+    revitVersionMajor?: number;
+  };
+};
+type NormalizedBimSelectionContext = {
+  count: number;
+  withControlMark: number;
+  withControlNumber: number;
+  sample: Array<{
+    elementId: string;
+    category: string;
+    family: string;
+    type: string;
+    controlMark: string;
+    controlNumber: string;
+  }>;
+};
 
 function parseToolDbIds(raw: unknown): number[] {
   if (!Array.isArray(raw)) return [];
@@ -137,6 +195,50 @@ function parseProductPrefix(
   return undefined;
 }
 
+function parseProductPrefixes(raw: unknown): AecdmProductPrefix[] {
+  if (raw === "WPA" || raw === "WPB" || raw === "CLA" || raw === "COLUMN" || raw === "ALL") {
+    return [raw];
+  }
+  if (typeof raw !== "string") return [];
+  const normalized = raw.trim().toUpperCase();
+  if (!normalized) return [];
+  if (normalized === "METROWALL" || normalized === "METROWALLS") {
+    return ["WPA", "WPB"];
+  }
+  const tokens = normalized
+    .split(/[|,;/]+/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+  const out: AecdmProductPrefix[] = [];
+  for (const token of tokens) {
+    if (token === "ALL") return ["ALL"];
+    const parsed = parseProductPrefix(token);
+    if (parsed && !out.includes(parsed)) out.push(parsed);
+  }
+  return out;
+}
+
+function mergeAecdmRows(rows: AecdmElementListRow[]): AecdmElementListRow[] {
+  const seen = new Set<string>();
+  const out: AecdmElementListRow[] = [];
+  for (const row of rows) {
+    const dbKey =
+      row.dbId != null && Number.isFinite(Number(row.dbId))
+        ? `db:${Math.trunc(Number(row.dbId))}`
+        : "";
+    const extKey =
+      typeof row.externalId === "string" && row.externalId.trim()
+        ? `ext:${row.externalId.trim()}`
+        : "";
+    const key = dbKey || extKey;
+    if (!key) continue;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(row);
+  }
+  return out;
+}
+
 function decodeViewerUrn(viewerUrn: string): string {
   const normalized = viewerUrn.replace(/-/g, "+").replace(/_/g, "/");
   const pad = normalized.length % 4 === 0 ? "" : "=".repeat(4 - (normalized.length % 4));
@@ -158,6 +260,90 @@ function resolveModelVersionId(body: ChatRequest): string {
   } catch {
     return "";
   }
+}
+
+function normalizeDaExecutionContext(
+  raw: unknown,
+): NormalizedDaExecutionContext | undefined {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
+  const obj = raw as Record<string, unknown>;
+  const resolvedActivityId =
+    typeof obj.resolvedActivityId === "string" ? obj.resolvedActivityId.trim() : "";
+  const resolvedActivitySource =
+    typeof obj.resolvedActivitySource === "string"
+      ? obj.resolvedActivitySource.trim()
+      : "";
+  const revitVersionRaw = Number(obj.revitVersionMajor);
+  const cloudRaw =
+    obj.cloudModel && typeof obj.cloudModel === "object" && !Array.isArray(obj.cloudModel)
+      ? (obj.cloudModel as Record<string, unknown>)
+      : null;
+  const cloudModel =
+    cloudRaw &&
+    typeof cloudRaw.region === "string" &&
+    cloudRaw.region.trim() &&
+    typeof cloudRaw.projectGuid === "string" &&
+    cloudRaw.projectGuid.trim() &&
+    typeof cloudRaw.modelGuid === "string" &&
+    cloudRaw.modelGuid.trim()
+      ? {
+          region: cloudRaw.region.trim(),
+          projectGuid: cloudRaw.projectGuid.trim(),
+          modelGuid: cloudRaw.modelGuid.trim(),
+          ...(Number.isFinite(Number(cloudRaw.revitVersionMajor))
+            ? { revitVersionMajor: Math.trunc(Number(cloudRaw.revitVersionMajor)) }
+            : {}),
+        }
+      : undefined;
+  if (!resolvedActivityId && !resolvedActivitySource && !cloudModel && !Number.isFinite(revitVersionRaw)) {
+    return undefined;
+  }
+  return {
+    ...(resolvedActivityId ? { resolvedActivityId } : {}),
+    ...(resolvedActivitySource ? { resolvedActivitySource } : {}),
+    ...(Number.isFinite(revitVersionRaw)
+      ? { revitVersionMajor: Math.trunc(revitVersionRaw) }
+      : {}),
+    ...(cloudModel ? { cloud_model: cloudModel } : {}),
+  };
+}
+
+function normalizeBimSelectionContext(
+  raw: unknown,
+): NormalizedBimSelectionContext | undefined {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return undefined;
+  const obj = raw as Record<string, unknown>;
+  const countRaw = Number(obj.count);
+  const withControlMarkRaw = Number(obj.withControlMark);
+  const withControlNumberRaw = Number(obj.withControlNumber);
+  const sampleRaw = Array.isArray(obj.sample) ? obj.sample : [];
+  const sample = sampleRaw
+    .slice(0, 24)
+    .map((row) => {
+      if (!row || typeof row !== "object" || Array.isArray(row)) return null;
+      const r = row as Record<string, unknown>;
+      return {
+        elementId: typeof r.elementId === "string" ? r.elementId.trim() : "",
+        category: typeof r.category === "string" ? r.category.trim() : "",
+        family: typeof r.family === "string" ? r.family.trim() : "",
+        type: typeof r.type === "string" ? r.type.trim() : "",
+        controlMark: typeof r.controlMark === "string" ? r.controlMark.trim() : "",
+        controlNumber:
+          typeof r.controlNumber === "string" ? r.controlNumber.trim() : "",
+      };
+    })
+    .filter((x): x is NonNullable<typeof x> => x != null);
+  if (sample.length === 0 && !Number.isFinite(countRaw)) return undefined;
+  return {
+    count: Number.isFinite(countRaw) ? Math.max(0, Math.trunc(countRaw)) : sample.length,
+    withControlMark: Number.isFinite(withControlMarkRaw)
+      ? Math.max(0, Math.trunc(withControlMarkRaw))
+      : 0,
+    withControlNumber: Number.isFinite(withControlNumberRaw)
+      ? Math.max(0, Math.trunc(withControlNumberRaw))
+      : 0,
+    sample,
+  };
 }
 
 function buildDiscoveryFromViewerSelection(
@@ -343,6 +529,45 @@ function buildSelectionRulesLabel(baseArgs: Record<string, unknown>): string {
   return parts.join("; ") || "AEC Data Model element query";
 }
 
+function dedupeViewerActions(actions: ChatToolAction[]): ChatToolAction[] {
+  const seen = new Set<string>();
+  const out: ChatToolAction[] = [];
+  for (const action of actions) {
+    let key = action.type;
+    if (action.type === "viewer.searchAndSelectMetromontPieces") {
+      key = [
+        action.type,
+        action.pieceKind,
+        action.query.trim().toLowerCase(),
+        action.clearFirst === false ? "keep" : "clear",
+        action.fitToView === true ? "fit" : "nofit",
+        String(action.maxSearchMatches ?? ""),
+      ].join("|");
+    } else if (action.type === "viewer.selectDbIds") {
+      key = [
+        action.type,
+        action.clearFirst === false ? "keep" : "clear",
+        action.fitToView === true ? "fit" : "nofit",
+        action.dbIds.slice(0, 800).join(","),
+      ].join("|");
+    } else if (action.type === "viewer.isolateDbIds") {
+      key = [action.type, action.dbIds.slice(0, 800).join(",")].join("|");
+    } else if (
+      action.type === "viewer.search" ||
+      action.type === "viewer.isolateByQuery" ||
+      action.type === "viewer.hideByQuery"
+    ) {
+      key = [action.type, action.query.trim().toLowerCase()].join("|");
+    } else if (action.type === "viewer.setGhosting") {
+      key = [action.type, action.enabled ? "1" : "0"].join("|");
+    }
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(action);
+  }
+  return out;
+}
+
 function fallbackIntent(message: string): {
   actions: ChatToolAction[];
   modelQueryRequested: boolean;
@@ -471,6 +696,12 @@ export async function POST(request: NextRequest) {
   const selectedProjectId = body.selectedProjectId;
   const selectedItemId = body.selectedItemId;
   const selectedModelVersionId = resolveModelVersionId(body);
+  const clientDaExecutionContext = normalizeDaExecutionContext(
+    body.daExecutionContext,
+  );
+  const bimSelectionContext = normalizeBimSelectionContext(
+    body.bimSelectionContext,
+  );
   const aiProvider = body.aiProvider ?? env.aiProvider;
   const aiModel = body.aiModel ?? "";
   const assistantMode = "agent";
@@ -502,6 +733,10 @@ export async function POST(request: NextRequest) {
     );
   }
   let lastAecdmRows: AecdmElementListRow[] = [];
+  let discoveryBuiltFromInspectThisTurn = false;
+  let selectionToolRequestedThisTurn = false;
+  let selectionToolAppliedThisTurn = false;
+  let selectionToolErrorThisTurn = "";
   let lastDaJobForResponse = normalizeLastDaJob(body.lastDaJob);
   if (!lastDaJobForResponse?.workitem_id) {
     const fromPending = lastDaJobFromDiscoveryPending(activeDiscovery);
@@ -510,10 +745,10 @@ export async function POST(request: NextRequest) {
   let daSubmittedThisTurn = false;
   let daInputFileResolved = false;
   let daInputFileArg: { url: string; headers: Record<string, string> } | null = null;
-  let daCloudModelResolved = false;
+  let daCloudModelResolved = Boolean(clientDaExecutionContext?.cloud_model);
   let daCloudModelArg:
-    | { region: string; projectGuid: string; modelGuid: string }
-    | null = null;
+    | { region: string; projectGuid: string; modelGuid: string; revitVersionMajor?: number }
+    | null = clientDaExecutionContext?.cloud_model ?? null;
   const resolveDaInputFileArg = async () => {
     if (daInputFileResolved) return daInputFileArg;
     daInputFileResolved = true;
@@ -559,6 +794,17 @@ export async function POST(request: NextRequest) {
     }
   };
   const attachDaExecutionContext = async (base: Record<string, unknown>) => {
+    const shouldRequireCloudModel = Boolean(selectedProjectId && selectedModelVersionId);
+    if (shouldRequireCloudModel) {
+      // Guardrail: for central-model edit flows, do not silently fall back to local OSS input-file mode.
+      base.require_cloud_model = true;
+    }
+    if (
+      (base.activityId == null || String(base.activityId).trim() === "") &&
+      clientDaExecutionContext?.resolvedActivityId
+    ) {
+      base.activityId = clientDaExecutionContext.resolvedActivityId;
+    }
     const cloudArg = await resolveDaCloudModelArg();
     if (cloudArg) {
       base.cloud_model = cloudArg;
@@ -588,6 +834,25 @@ export async function POST(request: NextRequest) {
     externalContext =
       `${externalContext}\nLAST_DA_JOB: ${JSON.stringify(lastDaJobForResponse)}`.trim();
   }
+  if (clientDaExecutionContext?.resolvedActivityId || clientDaExecutionContext?.cloud_model) {
+    externalContext = `${externalContext}\nDA_MODEL_ROUTING: ${JSON.stringify({
+      activityId: clientDaExecutionContext?.resolvedActivityId ?? null,
+      source: clientDaExecutionContext?.resolvedActivitySource ?? null,
+      revitVersionMajor:
+        clientDaExecutionContext?.revitVersionMajor ??
+        clientDaExecutionContext?.cloud_model?.revitVersionMajor ??
+        null,
+      hasCloudModelContext: Boolean(clientDaExecutionContext?.cloud_model),
+    })}`.trim();
+  }
+  if (bimSelectionContext) {
+    externalContext = `${externalContext}\nBIM_SELECTION_CONTEXT: ${JSON.stringify({
+      count: bimSelectionContext.count,
+      withControlMark: bimSelectionContext.withControlMark,
+      withControlNumber: bimSelectionContext.withControlNumber,
+      sample: bimSelectionContext.sample,
+    })}`.trim();
+  }
 
   if (shouldLogFull()) {
     log("info", "chat-request", {
@@ -603,6 +868,24 @@ export async function POST(request: NextRequest) {
         dbId: e.dbId,
         propertyCount: e.properties.length,
       })),
+      daRouting: clientDaExecutionContext
+        ? {
+            activityId: clientDaExecutionContext.resolvedActivityId,
+            source: clientDaExecutionContext.resolvedActivitySource,
+            revitVersionMajor:
+              clientDaExecutionContext.revitVersionMajor ??
+              clientDaExecutionContext.cloud_model?.revitVersionMajor,
+            hasCloudModelContext: Boolean(clientDaExecutionContext.cloud_model),
+          }
+        : null,
+      bimSelectionContext: bimSelectionContext
+        ? {
+            count: bimSelectionContext.count,
+            withControlMark: bimSelectionContext.withControlMark,
+            withControlNumber: bimSelectionContext.withControlNumber,
+            sampleCount: bimSelectionContext.sample.length,
+          }
+        : null,
       workspaceMode,
       prompt: message,
     });
@@ -610,6 +893,9 @@ export async function POST(request: NextRequest) {
 
   if (selectedHubId && selectedProjectId) {
     externalContext = `${externalContext}\nHUB_PROJECT_AVAILABLE`.trim();
+  }
+  if (workspaceMode === "admin") {
+    externalContext = `${externalContext}\nWORKSPACE_MODE: admin`.trim();
   }
 
   let modelViewsFromTool: Array<{ guid: string; name: string; role: string }> = [];
@@ -777,6 +1063,417 @@ export async function POST(request: NextRequest) {
               issuesSummaryText = `Unable to create issue: ${
                 error instanceof Error ? error.message : "unknown error"
               }`;
+            }
+          }
+        }
+        if (call.tool === "admin_add_users_to_projects") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          if (!selectedHubId) {
+            const payload = {
+              success: false,
+              error: "Select a hub first. Admin add-users requires selectedHubId.",
+            };
+            externalContext =
+              `${externalContext}\nADMIN_ADD_USERS_RESULT: ${JSON.stringify(payload)}`.trim();
+          } else {
+            try {
+              const projectNumbersRaw = Array.isArray(args.project_numbers)
+                ? args.project_numbers
+                : Array.isArray(args.projectNumbers)
+                  ? args.projectNumbers
+                  : [];
+              const emailsRaw = Array.isArray(args.emails) ? args.emails : [];
+              const roleIdsRaw = Array.isArray(args.role_ids)
+                ? args.role_ids
+                : Array.isArray(args.roleIds)
+                  ? args.roleIds
+                  : [];
+              const roleNamesRaw = Array.isArray(args.role_names)
+                ? args.role_names
+                : Array.isArray(args.roleNames)
+                  ? args.roleNames
+                  : [];
+              const productsRaw = Array.isArray(args.products) ? args.products : [];
+              const businessUnitIdRaw =
+                typeof args.business_unit_id === "string"
+                  ? args.business_unit_id
+                  : typeof args.businessUnitId === "string"
+                    ? args.businessUnitId
+                    : "";
+              const businessUnitNameRaw =
+                typeof args.business_unit_name === "string"
+                  ? args.business_unit_name
+                  : typeof args.businessUnitName === "string"
+                    ? args.businessUnitName
+                    : "";
+              const cacheOnlyArg =
+                args.cache_only ?? args.cacheOnly ?? undefined;
+              const preferCacheOnly =
+                cacheOnlyArg == null
+                  ? projectNumbersRaw.length >= 5
+                  : Boolean(cacheOnlyArg);
+              const additionalPayload =
+                args.additional_user_payload &&
+                typeof args.additional_user_payload === "object" &&
+                !Array.isArray(args.additional_user_payload)
+                  ? (args.additional_user_payload as Record<string, unknown>)
+                  : args.additionalUserPayload &&
+                      typeof args.additionalUserPayload === "object" &&
+                      !Array.isArray(args.additionalUserPayload)
+                    ? (args.additionalUserPayload as Record<string, unknown>)
+                    : undefined;
+              const result = await addUsersToProjectsByNumber({
+                accessToken: auth.session.accessToken,
+                hubId: selectedHubId,
+                projectNumbers: projectNumbersRaw.map((v) => String(v)),
+                businessUnitId: businessUnitIdRaw || undefined,
+                businessUnitName: businessUnitNameRaw || undefined,
+                emails: emailsRaw.map((v) => String(v)),
+                roleIds: roleIdsRaw.map((v) => String(v)),
+                roleNames: roleNamesRaw.map((v) => String(v)),
+                products: productsRaw
+                  .filter((v) => v && typeof v === "object" && !Array.isArray(v))
+                  .map((v) => v as Record<string, unknown>),
+                region:
+                  String(args.region ?? "US").toUpperCase() === "EMEA"
+                    ? "EMEA"
+                    : "US",
+                dryRun: Boolean(args.dry_run ?? args.dryRun ?? false),
+                cacheOnly: preferCacheOnly,
+                additionalUserPayload: additionalPayload,
+              });
+              queryResult.adminAddUsers = result;
+              externalContext =
+                `${externalContext}\nADMIN_ADD_USERS_RESULT: ${JSON.stringify({
+                  success: result.success,
+                  requested_project_numbers: result.requested_project_numbers,
+                  requested_business_unit: result.requested_business_unit,
+                  requested_emails: result.requested_emails,
+                  matched_projects: result.matched_projects.map((p) => ({
+                    projectId: p.projectId,
+                    projectNumber: p.projectNumber,
+                    projectName: p.projectName,
+                    businessUnitId: p.businessUnitId,
+                    businessUnitName: p.businessUnitName,
+                  })),
+                  missing_project_numbers: result.missing_project_numbers,
+                  attempted_assignments: result.attempted_assignments,
+                  success_count: result.success_count,
+                  failure_count: result.failure_count,
+                  dry_run: result.dry_run,
+                  project_cache_source: result.project_cache_source,
+                  project_cache_updated: result.project_cache_updated,
+                  project_cache_object_key: result.project_cache_object_key,
+                  sample_results: result.results.slice(0, 10),
+                })}`.trim();
+            } catch (error) {
+              const payload = {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              };
+              queryResult.adminAddUsers = payload;
+              externalContext =
+                `${externalContext}\nADMIN_ADD_USERS_RESULT: ${JSON.stringify(payload)}`.trim();
+            }
+          }
+        }
+        if (call.tool === "admin_seed_role_cache") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          if (!selectedHubId) {
+            const payload = {
+              success: false,
+              error: "Select a hub first. Role cache seed requires selectedHubId.",
+            };
+            queryResult.adminSeedRoleCache = payload;
+            externalContext =
+              `${externalContext}\nADMIN_SEED_ROLE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+          } else {
+            try {
+              const result = await seedHubRoleCache({
+                accessToken: auth.session.accessToken,
+                hubId: selectedHubId,
+                region:
+                  String(args.region ?? "US").toUpperCase() === "EMEA"
+                    ? "EMEA"
+                    : "US",
+                maxProjects: Number.isFinite(Number(args.max_projects))
+                  ? Number(args.max_projects)
+                  : Number.isFinite(Number(args.maxProjects))
+                    ? Number(args.maxProjects)
+                    : undefined,
+                createRequestIfMissing: Boolean(
+                  args.create_request_if_missing ??
+                    args.createRequestIfMissing ??
+                    false,
+                ),
+              });
+              queryResult.adminSeedRoleCache = result;
+              externalContext =
+                `${externalContext}\nADMIN_SEED_ROLE_CACHE_RESULT: ${JSON.stringify(result)}`.trim();
+            } catch (error) {
+              const payload = {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              };
+              queryResult.adminSeedRoleCache = payload;
+              externalContext =
+                `${externalContext}\nADMIN_SEED_ROLE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+            }
+          }
+        }
+        if (call.tool === "admin_list_role_cache") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          if (!selectedHubId) {
+            const payload = {
+              success: false,
+              error: "Select a hub first. Role cache list requires selectedHubId.",
+            };
+            queryResult.adminListRoleCache = payload;
+            externalContext =
+              `${externalContext}\nADMIN_LIST_ROLE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+          } else {
+            try {
+              const result = await listHubRoleCache({ hubId: selectedHubId });
+              const limitRaw = Number(args.limit);
+              const limit =
+                Number.isFinite(limitRaw) && limitRaw > 0
+                  ? Math.min(500, Math.trunc(limitRaw))
+                  : 100;
+              const sliced = {
+                ...result,
+                roles: result.roles.slice(0, limit),
+                role_count_total: result.role_count,
+                role_count_returned: Math.min(result.role_count, limit),
+              };
+              queryResult.adminListRoleCache = sliced;
+              externalContext =
+                `${externalContext}\nADMIN_LIST_ROLE_CACHE_RESULT: ${JSON.stringify(sliced)}`.trim();
+            } catch (error) {
+              const payload = {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              };
+              queryResult.adminListRoleCache = payload;
+              externalContext =
+                `${externalContext}\nADMIN_LIST_ROLE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+            }
+          }
+        }
+        if (call.tool === "admin_seed_reference_cache") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          if (!selectedHubId) {
+            const payload = {
+              success: false,
+              error: "Select a hub first. Reference cache seed requires selectedHubId.",
+            };
+            queryResult.adminSeedReferenceCache = payload;
+            externalContext =
+              `${externalContext}\nADMIN_SEED_REFERENCE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+          } else {
+            try {
+              const reference = await seedHubReferenceCache({
+                accessToken: auth.session.accessToken,
+                hubId: selectedHubId,
+              });
+              const includeRoleSeed = Boolean(
+                args.include_role_seed ?? args.includeRoleSeed ?? false,
+              );
+              const roleSeed = includeRoleSeed
+                ? await seedHubRoleCache({
+                    accessToken: auth.session.accessToken,
+                    hubId: selectedHubId,
+                    region:
+                      String(args.region ?? "US").toUpperCase() === "EMEA"
+                        ? "EMEA"
+                        : "US",
+                  })
+                : null;
+              const payload = {
+                reference_cache: reference,
+                ...(roleSeed ? { role_cache: roleSeed } : {}),
+              };
+              queryResult.adminSeedReferenceCache = payload;
+              externalContext =
+                `${externalContext}\nADMIN_SEED_REFERENCE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+            } catch (error) {
+              const payload = {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              };
+              queryResult.adminSeedReferenceCache = payload;
+              externalContext =
+                `${externalContext}\nADMIN_SEED_REFERENCE_CACHE_RESULT: ${JSON.stringify(payload)}`.trim();
+            }
+          }
+        }
+        if (call.tool === "admin_get_reference_cache_status") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          if (!selectedHubId) {
+            const payload = {
+              success: false,
+              error:
+                "Select a hub first. Reference cache status requires selectedHubId.",
+            };
+            queryResult.adminReferenceCacheStatus = payload;
+            externalContext =
+              `${externalContext}\nADMIN_REFERENCE_CACHE_STATUS: ${JSON.stringify(payload)}`.trim();
+          } else {
+            try {
+              const status = await getHubReferenceCacheStatus({
+                hubId: selectedHubId,
+                projectNumber:
+                  typeof args.project_number === "string"
+                    ? args.project_number
+                    : typeof args.projectNumber === "string"
+                      ? args.projectNumber
+                      : undefined,
+                projectId:
+                  typeof args.project_id === "string"
+                    ? args.project_id
+                    : typeof args.projectId === "string"
+                      ? args.projectId
+                      : selectedProjectId,
+                businessUnitId:
+                  typeof args.business_unit_id === "string"
+                    ? args.business_unit_id
+                    : typeof args.businessUnitId === "string"
+                      ? args.businessUnitId
+                      : undefined,
+                businessUnitName:
+                  typeof args.business_unit_name === "string"
+                    ? args.business_unit_name
+                    : typeof args.businessUnitName === "string"
+                      ? args.businessUnitName
+                      : undefined,
+                folderName:
+                  typeof args.folder_name === "string"
+                    ? args.folder_name
+                    : typeof args.folderName === "string"
+                      ? args.folderName
+                      : undefined,
+                limit: Number.isFinite(Number(args.limit))
+                  ? Number(args.limit)
+                  : undefined,
+              });
+              queryResult.adminReferenceCacheStatus = status;
+              externalContext =
+                `${externalContext}\nADMIN_REFERENCE_CACHE_STATUS: ${JSON.stringify(status)}`.trim();
+            } catch (error) {
+              const payload = {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              };
+              queryResult.adminReferenceCacheStatus = payload;
+              externalContext =
+                `${externalContext}\nADMIN_REFERENCE_CACHE_STATUS: ${JSON.stringify(payload)}`.trim();
+            }
+          }
+        }
+        if (call.tool === "create_revit_cloud_workshared_model") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          if (!selectedHubId) {
+            const payload = {
+              success: false,
+              error:
+                "Select a hub first. Revit cloud model creation requires selectedHubId.",
+            };
+            queryResult.createRevitCloudWorksharedModel = payload;
+            externalContext =
+              `${externalContext}\nCREATE_REVIT_CLOUD_WORKSHARED_MODEL_RESULT: ${JSON.stringify(payload)}`.trim();
+          } else {
+            try {
+              const result = await createRevitCloudWorksharedModel({
+                accessToken: auth.session.accessToken,
+                hubId: selectedHubId,
+                projectNumber:
+                  typeof args.project_number === "string"
+                    ? args.project_number
+                    : typeof args.projectNumber === "string"
+                      ? args.projectNumber
+                      : undefined,
+                projectId:
+                  typeof args.project_id === "string"
+                    ? args.project_id
+                    : typeof args.projectId === "string"
+                      ? args.projectId
+                      : selectedProjectId,
+                folderId:
+                  typeof args.folder_id === "string"
+                    ? args.folder_id
+                    : typeof args.folderId === "string"
+                      ? args.folderId
+                      : undefined,
+                modelName:
+                  typeof args.model_name === "string"
+                    ? args.model_name
+                    : typeof args.modelName === "string"
+                      ? args.modelName
+                      : undefined,
+                templateKey:
+                  typeof args.template_key === "string"
+                    ? args.template_key
+                    : typeof args.templateKey === "string"
+                      ? args.templateKey
+                      : typeof args.template === "string"
+                        ? args.template
+                        : undefined,
+                templateModelGuid:
+                  typeof args.template_model_guid === "string"
+                    ? args.template_model_guid
+                    : typeof args.templateModelGuid === "string"
+                      ? args.templateModelGuid
+                      : undefined,
+                templateProjectGuid:
+                  typeof args.template_project_guid === "string"
+                    ? args.template_project_guid
+                    : typeof args.templateProjectGuid === "string"
+                      ? args.templateProjectGuid
+                      : undefined,
+                region:
+                  String(args.region ?? "US").toUpperCase() === "EMEA"
+                    ? "EMEA"
+                    : "US",
+                enableWorksharing:
+                  args.enable_worksharing == null && args.enableWorksharing == null
+                    ? true
+                    : Boolean(args.enable_worksharing ?? args.enableWorksharing),
+                activityId:
+                  typeof args.activity_id === "string"
+                    ? args.activity_id
+                    : typeof args.activityId === "string"
+                      ? args.activityId
+                      : undefined,
+                dryRun: Boolean(args.dry_run ?? args.dryRun ?? false),
+              });
+              queryResult.createRevitCloudWorksharedModel = result;
+              externalContext =
+                `${externalContext}\nCREATE_REVIT_CLOUD_WORKSHARED_MODEL_RESULT: ${JSON.stringify(result)}`.trim();
+            } catch (error) {
+              const payload = {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error",
+              };
+              queryResult.createRevitCloudWorksharedModel = payload;
+              externalContext =
+                `${externalContext}\nCREATE_REVIT_CLOUD_WORKSHARED_MODEL_RESULT: ${JSON.stringify(payload)}`.trim();
             }
           }
         }
@@ -987,6 +1684,10 @@ export async function POST(request: NextRequest) {
           body.selectedModelUrn;
 
         if (isPublishedInspect) {
+          selectionToolRequestedThisTurn = true;
+          if (activeDiscovery?.selection_rules === "viewer-selection-fallback") {
+            activeDiscovery = null;
+          }
           const baseArgs =
             call.args &&
             typeof call.args === "object" &&
@@ -999,24 +1700,37 @@ export async function POST(request: NextRequest) {
               typeof limitRaw === "number" && Number.isFinite(limitRaw)
                 ? Math.min(Math.max(Math.trunc(limitRaw), 1), 2000)
                 : 500;
-            const result = await fetchAecdmElementsByCategory({
-              accessToken: auth.session.accessToken,
-              hubId: selectedHubId,
-              dmProjectId: selectedProjectId,
-              modelUrn: body.selectedModelUrn as string,
-              category:
-                typeof baseArgs.category === "string"
-                  ? baseArgs.category
-                  : undefined,
-              family:
-                typeof baseArgs.family === "string"
-                  ? baseArgs.family
-                  : undefined,
-              type:
-                typeof baseArgs.type === "string" ? baseArgs.type : undefined,
-              limit,
-              product_prefix: parseProductPrefix(baseArgs.product_prefix),
-            });
+            const parsedPrefixes = parseProductPrefixes(baseArgs.product_prefix);
+            const prefixesToQuery =
+              parsedPrefixes.length > 0 ? parsedPrefixes : [undefined];
+            let rawRows: AecdmElementListRow[] = [];
+            for (const prefix of prefixesToQuery) {
+              const partial = await fetchAecdmElementsByCategory({
+                accessToken: auth.session.accessToken,
+                hubId: selectedHubId,
+                dmProjectId: selectedProjectId,
+                modelUrn: body.selectedModelUrn as string,
+                category:
+                  typeof baseArgs.category === "string"
+                    ? baseArgs.category
+                    : undefined,
+                family:
+                  typeof baseArgs.family === "string"
+                    ? baseArgs.family
+                    : undefined,
+                type:
+                  typeof baseArgs.type === "string" ? baseArgs.type : undefined,
+                limit,
+                product_prefix: prefix,
+              });
+              rawRows = rawRows.concat(partial.elements);
+            }
+            const mergedRows = mergeAecdmRows(rawRows);
+            const result = {
+              success: true as const,
+              count: mergedRows.length,
+              elements: mergedRows,
+            };
             const filtered = filterAecdmRowsForDiscovery(
               result.elements,
               baseArgs,
@@ -1033,6 +1747,7 @@ export async function POST(request: NextRequest) {
               rulesLabel,
               intendedOp || "future_edit",
             );
+            discoveryBuiltFromInspectThisTurn = true;
             const dbIdsForViewer = activeDiscovery.dbIds;
             const highlight =
               baseArgs.highlight_in_viewer !== false &&
@@ -1042,6 +1757,7 @@ export async function POST(request: NextRequest) {
               baseArgs.zoom_to_selection === true ||
               baseArgs.zoomToSelection === true;
             if (highlight && dbIdsForViewer.length > 0) {
+              selectionToolAppliedThisTurn = true;
               toolViewerActions.push({
                 type: "viewer.selectDbIds",
                 dbIds: dbIdsForViewer.slice(0, 500),
@@ -1056,6 +1772,12 @@ export async function POST(request: NextRequest) {
               }
             }
             const extCount = activeDiscovery.externalIds.length;
+            if (!selectionToolAppliedThisTurn) {
+              selectionToolErrorThisTurn =
+                filtered.length === 0
+                  ? "No matching wall-panel elements were found in the published model query."
+                  : "Selection query returned rows but none were eligible for viewer selection.";
+            }
             const discPayload = {
               success: extCount > 0 || dbIdsForViewer.length > 0,
               tool: call.tool,
@@ -1091,6 +1813,8 @@ export async function POST(request: NextRequest) {
                 })),
               })}`.trim();
           } catch (error) {
+            selectionToolErrorThisTurn =
+              error instanceof Error ? error.message : "Selection query failed.";
             externalContext =
               `${externalContext}\nGET_ELEMENTS_BY_CATEGORY_ERROR: ${JSON.stringify({
                 message:
@@ -1100,6 +1824,7 @@ export async function POST(request: NextRequest) {
         }
 
         if (call.tool === "select_elements") {
+          selectionToolRequestedThisTurn = true;
           const baseArgs =
             call.args &&
             typeof call.args === "object" &&
@@ -1107,6 +1832,10 @@ export async function POST(request: NextRequest) {
               ? (call.args as Record<string, unknown>)
               : {};
           const dbIds = parseToolDbIds(baseArgs.dbIds);
+          const allowDiscoverySubset =
+            baseArgs.refine_discovery === true ||
+            baseArgs.apply_to_cached_selection === true ||
+            !discoveryBuiltFromInspectThisTurn;
           if (dbIds.length > 0) {
             const fit =
               baseArgs.zoomToSelection === true || baseArgs.fit_to_view === true;
@@ -1116,13 +1845,14 @@ export async function POST(request: NextRequest) {
               clearFirst: baseArgs.clearFirst !== false,
               fitToView: fit,
             });
+            selectionToolAppliedThisTurn = true;
             if (baseArgs.isolate_in_viewer === true) {
               toolViewerActions.push({
                 type: "viewer.isolateDbIds",
                 dbIds,
               });
             }
-            if (lastAecdmRows.length > 0) {
+            if (lastAecdmRows.length > 0 && allowDiscoverySubset) {
               const rows = lastAecdmRows.filter(
                 (r) =>
                   r.dbId != null &&
@@ -1157,7 +1887,7 @@ export async function POST(request: NextRequest) {
                     note: "Subset of prior discovery session by dbIds.",
                   })}`.trim();
               }
-            } else if (activeDiscovery) {
+            } else if (activeDiscovery && allowDiscoverySubset) {
               activeDiscovery = subsetDiscoveryByDbIds(activeDiscovery, dbIds);
               externalContext =
                 `${externalContext}\nDISCOVERY_CACHED_SELECTION: ${JSON.stringify({
@@ -1165,6 +1895,14 @@ export async function POST(request: NextRequest) {
                   tool: "select_elements",
                   cached_selection: toDaCachedSelectionPayload(activeDiscovery),
                   discovery_session: activeDiscovery,
+                })}`.trim();
+            } else if (!allowDiscoverySubset && activeDiscovery) {
+              externalContext =
+                `${externalContext}\nSELECT_ELEMENTS_DISCOVERY_NOT_RESCOPED: ${JSON.stringify({
+                  reason:
+                    "Skipped auto-rescoping cached_selection because discovery was built from inspect_published_selection in this same turn.",
+                  dbIds_count: dbIds.length,
+                  cached_external_ids: activeDiscovery.externalIds.length,
                 })}`.trim();
             } else {
               externalContext =
@@ -1174,6 +1912,9 @@ export async function POST(request: NextRequest) {
                   dbIds: dbIds.slice(0, 100),
                 })}`.trim();
             }
+          } else {
+            selectionToolErrorThisTurn =
+              "Selection tool was called without valid dbIds, so nothing was selected.";
           }
         }
 
@@ -1371,13 +2112,13 @@ export async function POST(request: NextRequest) {
         chatHistory: body.chatHistory,
         externalContext: externalContext.trim(),
       });
-      actions = [...toolViewerActions, ...aiIntent.actions];
+      actions = dedupeViewerActions([...toolViewerActions, ...aiIntent.actions]);
       modelQueryRequested =
         aiIntent.requestModelViews || modelViewsFromTool.length > 0;
       responseText = aiIntent.message;
     } else {
       const fallback = fallbackIntent(message);
-      actions = [...toolViewerActions, ...fallback.actions];
+      actions = dedupeViewerActions([...toolViewerActions, ...fallback.actions]);
       modelQueryRequested = fallback.modelQueryRequested;
       responseText = fallback.message;
     }
@@ -1387,9 +2128,24 @@ export async function POST(request: NextRequest) {
       details: error instanceof Error ? error.message : "Unknown error",
     });
     const fallback = fallbackIntent(message);
-    actions = [...toolViewerActions, ...fallback.actions];
+    actions = dedupeViewerActions([...toolViewerActions, ...fallback.actions]);
     modelQueryRequested = fallback.modelQueryRequested;
     responseText = fallback.message;
+  }
+
+  const hasFallbackSelectionAction = actions.some((a) => {
+    if (a.type === "viewer.searchAndSelectMetromontPieces") return true;
+    if (a.type === "viewer.selectDbIds") return a.dbIds.length > 0;
+    return false;
+  });
+  if (
+    selectionToolRequestedThisTurn &&
+    !selectionToolAppliedThisTurn &&
+    !hasFallbackSelectionAction
+  ) {
+    responseText = selectionToolErrorThisTurn
+      ? `I couldn't apply the requested selection. ${selectionToolErrorThisTurn}`
+      : "I couldn't apply the requested selection in the viewer.";
   }
 
   if (modelViewsFromTool.length > 0) {

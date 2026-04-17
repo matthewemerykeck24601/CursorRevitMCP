@@ -1,11 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <RevitYear Condition="'$(RevitYear)' == ''">2024</RevitYear>
+    <DaTargetFramework Condition="'$(DaTargetFramework)' == '' and '$(RevitYear)' == '2024'">net48</DaTargetFramework>
+    <DaTargetFramework Condition="'$(DaTargetFramework)' == '' and '$(RevitYear)' != '2024' and '$(RevitYear)' != '2027'">net8.0-windows</DaTargetFramework>
+    <DaTargetFramework Condition="'$(DaTargetFramework)' == '' and '$(RevitYear)' == '2027'">net10.0-windows</DaTargetFramework>
+    <DaForgePackageVersion Condition="'$(DaForgePackageVersion)' == '' and '$(RevitYear)' == '2024'">2024.0.2</DaForgePackageVersion>
+    <DaForgePackageVersion Condition="'$(DaForgePackageVersion)' == '' and '$(RevitYear)' == '2025'">2025.0.1</DaForgePackageVersion>
+    <DaForgePackageVersion Condition="'$(DaForgePackageVersion)' == '' and '$(RevitYear)' != '2024' and '$(RevitYear)' != '2025'">$(RevitYear).0.0</DaForgePackageVersion>
+    <TargetFramework>$(DaTargetFramework)</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>Metromont.RevitMarkWorkitem</RootNamespace>
     <AssemblyName>RevitMarkWorkitem</AssemblyName>
-    <RevitInstallPath Condition="'$(RevitInstallPath)' == ''">C:\Program Files\Autodesk\Revit 2024</RevitInstallPath>
+    <RevitInstallPath Condition="'$(RevitInstallPath)' == ''">C:\Program Files\Autodesk\Revit $(RevitYear)</RevitInstallPath>
     <!-- Copy Newtonsoft.Json.dll next to output for AppBundle zip -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
@@ -16,7 +23,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2024.0.2" />
+    <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="$(DaForgePackageVersion)" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

@@ -492,7 +492,7 @@ export const triggerDesignAutomationMarkUpdate = {
       status: "stub",
       da_mode,
       message:
-        "DA_ENABLED is not true — no cloud workitem was posted. Set DA_ENABLED=true and DA_ACTIVITY_ID in MCP server environment.",
+        "DA_ENABLED is not true — no cloud workitem was posted. Set DA_ENABLED=true and configure DA_ACTIVITY_ID (or DA_ACTIVITY_ID_2024/2025/2026/2027, optionally DA_ACTIVITY_ID_NET8/NET10) in MCP server environment.",
       applied_marks,
       note: "No cloud write occurred.",
     };

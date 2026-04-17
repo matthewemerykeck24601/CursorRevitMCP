@@ -10,18 +10,50 @@ Starter bundle for applying **cached CONTROL_MARK proposals** to the **central**
 - **`operation`**: `modify_parameters` (no mark side-effects), `run_mark_analysis` (and legacy `apply_marks` / `apply_marks_and_modify`), `clear_cache` (no-op audit). **`skip_analysis: true`** forces `modify_parameters` only.
 - Audit: **`audit_report.json`** (under **`DA_ARTIFACTS_DIR`** or `%TEMP%`, or override with **`DA_AUDIT_REPORT_JSON`**), plus legacy **`MARK_AUDIT_JSON`** / `mark-audit.json`. Structured **`log[]`** for chat-oriented messages.
 - Optional SWC: **`MARK_SWC=true`** → `Document.SynchronizeWithCentral`.
-- `RevitMarkWorkitem.csproj` — targets **.NET Framework 4.8** + Revit API (adjust `RevitInstallPath` for your engine, e.g. DA **Revit 2024**).
+- `RevitMarkWorkitem.csproj` — year-aware build (2024 defaults to **net48**, 2025-2026 defaults to **net8.0-windows**, 2027+ defaults to **net10.0-windows**). Override with MSBuild properties when needed.
 
 ## Build & publish AppBundle
 
-1. Install **Revit 2024** (or set `REVIT_INSTALL_PATH` / `-RevitInstallPath` to the folder that contains `RevitAPI.dll`).
+1. Install the matching Revit year locally (or set `REVIT_INSTALL_PATH` / `-RevitInstallPath` to the folder that contains `RevitAPI.dll`).
 2. From this folder, run:
-   - `.\build-appbundle.ps1` — `dotnet build` + `RevitMarkWorkitem-AppBundle.zip` (`PackageContents.xml` + `Contents/*.dll`).
+   - `.\build-appbundle.ps1` — default Revit 2024 (`net48`) output `RevitMarkWorkitem-AppBundle-2024.zip`.
+   - `.\build-appbundle.ps1 -RevitYear 2025` — default `net8.0-windows`, output `RevitMarkWorkitem-AppBundle-2025.zip`.
+   - `.\build-appbundle.ps1 -RevitYear 2027` — default `net10.0-windows`, output `RevitMarkWorkitem-AppBundle-2027.zip`.
+   - `.\build-appbundle-matrix.ps1` — builds 2024/2025/2026/2027 zips in one run.
+   - Scripts auto-load env vars from `aps-ai-web/.env.local` by default (override with `-EnvFile`).
 3. Upload a **new version** to Design Automation (two-legged `code:all`):
-   - Set `APS_CLIENT_ID`, `APS_CLIENT_SECRET`, `DA_APPBUNDLE_ID` (your registered bundle id).
-   - `.\publish-appbundle.ps1` — POST new version + multipart upload to signed URL (see [Revit publish tutorial](https://aps.autodesk.com/en/docs/design-automation/v3/tutorials/revit/step4-publish-appbundle/)).
-4. First-time bundle only: `.\publish-appbundle.ps1 -InitializeBundle` with `DA_APPBUNDLE_ID` set to the **new** id and `DA_ENGINE` if not `Autodesk.Revit+2024`.
-5. Bump your **Activity** alias (or `DA_ACTIVITY_ID`) to the new AppBundle version after upload.
+   - Set `APS_CLIENT_ID`, `APS_CLIENT_SECRET`, and either:
+     - `DA_APPBUNDLE_ID` (single bundle id), or
+     - `DA_APPBUNDLE_ID_<YEAR>` (for year-specific bundle ids; e.g. `DA_APPBUNDLE_ID_2025`).
+   - `.\publish-appbundle.ps1 -RevitYear 2025` — POST new version + multipart upload (defaults engine to `Autodesk.Revit+2025`).
+4. (Recommended) publish activity version + alias in the same command:
+   - Set `DA_ACTIVITY_ID` or `DA_ACTIVITY_ID_<YEAR>` (either can include `+alias`).
+   - Optional alias override: `DA_ACTIVITY_ALIAS` (default `prod`).
+   - Optional profile: `-ActivityProfile mark` (default) or `-ActivityProfile create_model`.
+   - Script behavior:
+     - Upload appbundle version
+     - POST `/activities/{id}/versions` with new appbundle version
+     - Create alias (or PATCH existing alias) to the new activity version
+5. First-time bundle only: `.\publish-appbundle.ps1 -InitializeBundle -RevitYear 2025 -BundleId <new-id>` (or set `DA_APPBUNDLE_ID` / `DA_APPBUNDLE_ID_<YEAR>`).
+6. First-time activity only: add `-InitializeActivity` with `-ActivityId <nickname.activityId>` (or env `DA_ACTIVITY_ID*`), then rerun normally for subsequent versions.
+
+Use `-SkipActivityPublish` if you intentionally want upload-only behavior.
+
+## Runtime routing in app
+
+`aps-ai-web` now supports activity routing by Revit major version (`2024`, `2025+`, `2027+`) using:
+
+- `DA_ACTIVITY_ID` (fallback)
+- `DA_ACTIVITY_ID_2024`
+- `DA_ACTIVITY_ID_2025`
+- `DA_ACTIVITY_ID_2026`
+- `DA_ACTIVITY_ID_2027`
+- `DA_ACTIVITY_ID_NET8`
+- `DA_ACTIVITY_ID_NET10`
+
+Use API check endpoint to verify routing for a selected model version:
+
+- `GET /api/aps/da-config-check?projectId=<dmProjectId>&versionId=<versionUrn>`
 
 Manual reference: [DA Revit developer guide](https://aps.autodesk.com/en/docs/design-automation/v3/developers_guide/revit/).
 

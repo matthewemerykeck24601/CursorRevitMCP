@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { resolveDaActivityIdFromWorkitemArgs } from "@/lib/da-activity-routing";
 
 const APS_BASE = "https://developer.api.autodesk.com";
 
@@ -80,10 +81,8 @@ export async function submitMarkUpdateWorkitem(params: {
   if (env.daEnabled !== "true") {
     return null;
   }
-  const activityId = env.daActivityId;
-  if (!activityId) {
-    throw new Error("DA_ACTIVITY_ID is required when DA_ENABLED=true.");
-  }
+  const picked = resolveDaActivityIdFromWorkitemArgs(params.workitemArguments);
+  const activityId = picked.activityId;
 
   const token = await getDesignAutomationAccessToken();
   const base = daBaseUrl();

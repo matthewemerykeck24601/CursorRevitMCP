@@ -1,6 +1,17 @@
 import { assertApsCredentials, env } from "@/lib/env";
 
 const APS_BASE = "https://developer.api.autodesk.com";
+const BLOCKED_3LEGGED_SCOPES = new Set(["code:all"]);
+
+function getUserOAuthScope(): string {
+  // APS rejects code:all in 3-legged authorize flows.
+  const scopes = env.apsScope
+    .split(/\s+/)
+    .map((scope) => scope.trim())
+    .filter(Boolean)
+    .filter((scope) => !BLOCKED_3LEGGED_SCOPES.has(scope));
+  return scopes.join(" ");
+}
 
 export type ApsTokenResponse = {
   access_token: string;
@@ -46,7 +57,7 @@ export async function refreshApsToken(
     client_secret: env.apsClientSecret,
     grant_type: "refresh_token",
     refresh_token: refreshToken,
-    scope: env.apsScope,
+    scope: getUserOAuthScope(),
   });
 
   const response = await fetch(`${APS_BASE}/authentication/v2/token`, {
@@ -70,7 +81,7 @@ export function buildAuthorizeUrl(state: string): string {
   url.searchParams.set("response_type", "code");
   url.searchParams.set("client_id", env.apsClientId);
   url.searchParams.set("redirect_uri", env.apsCallbackUrl);
-  url.searchParams.set("scope", env.apsScope);
+  url.searchParams.set("scope", getUserOAuthScope());
   url.searchParams.set("state", state);
   return url.toString();
 }
@@ -414,22 +425,48 @@ export async function buildVersionOssGetArgument(params: {
       headers: {},
     };
   } catch {
-    // Fallback: DA download with Authorization header if signeds3download is unavailable.
+    // Legacy OSS object GET endpoint is deprecated for some buckets.
+    // Return null so callers can surface a deterministic "input file unavailable"
+    // message instead of submitting a doomed workitem.
+    return null;
   }
-  const url = `${APS_BASE}/oss/v2/buckets/${encodeURIComponent(parsed.bucketKey)}/objects/${encodeURIComponent(parsed.objectKey)}`;
-  return {
-    url,
-    headers: {
-      Authorization: `Bearer ${params.accessToken}`,
-    },
-  };
 }
 
 export type RevitCloudModelInfo = {
   region: string;
   projectGuid: string;
   modelGuid: string;
+  revitVersionMajor?: number;
 };
+
+function inferRevitVersionMajor(
+  extensionType: string,
+  extensionData: unknown,
+): number | undefined {
+  const candidates: string[] = [extensionType];
+  const visit = (value: unknown) => {
+    if (value == null) return;
+    if (typeof value === "string" || typeof value === "number") {
+      candidates.push(String(value));
+      return;
+    }
+    if (Array.isArray(value)) {
+      for (const item of value) visit(item);
+      return;
+    }
+    if (typeof value === "object") {
+      for (const v of Object.values(value as Record<string, unknown>)) visit(v);
+    }
+  };
+  visit(extensionData);
+  for (const raw of candidates) {
+    const match = raw.match(/\b(20(?:1[8-9]|2[0-9]|3[0-5]))\b/);
+    if (!match) continue;
+    const year = Number.parseInt(match[1], 10);
+    if (Number.isFinite(year)) return year;
+  }
+  return undefined;
+}
 
 export async function getRevitCloudModelInfo(params: {
   accessToken: string;
@@ -471,6 +508,12 @@ export async function getRevitCloudModelInfo(params: {
         ? "EMEA"
         : "US";
 
-  return { region, projectGuid, modelGuid };
+  const revitVersionMajor = inferRevitVersionMajor(extensionType, extData);
+  return {
+    region,
+    projectGuid,
+    modelGuid,
+    ...(revitVersionMajor ? { revitVersionMajor } : {}),
+  };
 }
 

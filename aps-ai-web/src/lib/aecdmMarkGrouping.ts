@@ -1,3 +1,5 @@
+import { resolveAecdmDesignId } from "@/lib/aecdm-design-id";
+
 /**
  * AECDM REST row → sameness groups + DA workitem payload.
  * Keep in sync with aps-ai-web/mcp-server/src/lib/aecdmMarkGrouping.ts.
@@ -223,9 +225,12 @@ export async function queryAecdmElementsForMarks(params: {
   family?: string;
   limit?: number;
 }): Promise<AecdmElementRow[]> {
-  const designId = params.modelUrn.includes(":")
-    ? (params.modelUrn.split(":").pop() ?? params.modelUrn)
-    : params.modelUrn;
+  const designId = resolveAecdmDesignId(params.modelUrn);
+  if (!designId) {
+    throw new Error(
+      "AECDM REST failed: could not resolve design id from modelUrn/model identifier.",
+    );
+  }
   const base = `https://developer.api.autodesk.com/aecdm/v1/projects/${encodeURIComponent(params.aecProjectId)}/designs/${encodeURIComponent(designId)}/elements`;
   const url = new URL(base);
   url.searchParams.set("limit", String(params.limit ?? 500));

@@ -1,4 +1,5 @@
 import { resolveAecProjectId } from "@/lib/aps";
+import { resolveAecdmDesignId } from "@/lib/aecdm-design-id";
 
 export type AecdmProductPrefix = "WPA" | "WPB" | "CLA" | "COLUMN" | "ALL";
 
@@ -56,14 +57,19 @@ export async function fetchAecdmElementsByCategory(params: {
   limit?: number;
   product_prefix?: AecdmProductPrefix;
 }): Promise<{ success: true; count: number; elements: AecdmElementListRow[] }> {
-  const aecProjectId = await resolveAecProjectId(
+  // Keep GraphQL AEC project resolution as a readiness probe, but AECDM REST
+  // /aecdm/v1/projects/{id}/designs/{id}/elements expects the DM project id.
+  await resolveAecProjectId(
     params.accessToken,
     params.hubId,
     params.dmProjectId,
   );
-  const designId = params.modelUrn.includes(":")
-    ? (params.modelUrn.split(":").pop() ?? params.modelUrn)
-    : params.modelUrn;
+  const designId = resolveAecdmDesignId(params.modelUrn);
+  if (!designId) {
+    throw new Error(
+      "AECDM elements query failed: could not resolve design id from selected model identifier.",
+    );
+  }
 
   const { filterCategory, filterFamily } = metromontAecdmQueryFilters(
     params.category,
@@ -72,7 +78,7 @@ export async function fetchAecdmElementsByCategory(params: {
   );
 
   const url = new URL(
-    `https://developer.api.autodesk.com/aecdm/v1/projects/${encodeURIComponent(aecProjectId)}/designs/${encodeURIComponent(designId)}/elements`,
+    `https://developer.api.autodesk.com/aecdm/v1/projects/${encodeURIComponent(params.dmProjectId)}/designs/${encodeURIComponent(designId)}/elements`,
   );
   url.searchParams.set("limit", String(params.limit ?? 500));
   if (filterCategory) url.searchParams.set("filter[category]", filterCategory);

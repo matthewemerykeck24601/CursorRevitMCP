@@ -1,0 +1,33 @@
+{
+  "templates": [
+    {
+      "key": "METROMONT_WORKING",
+      "label": "Metromont Working",
+      "template_model_guid": "xYBJTKUzQqSdrvxjkwMjVA",
+      "template_project_guid": "4f6abd09-e9d6-4675-9140-6e7519aaa1f9",
+      "template_source_project_id": "b.4f6abd09-e9d6-4675-9140-6e7519aaa1f9",
+      "template_source_folder_id": "co.I3K6Q-B0SGepiCXpHEi5Xg",
+      "template_source_folder_urn": "urn:adsk.wipprod:fs.folder:co.I3K6Q-B0SGepiCXpHEi5Xg",
+      "template_name_contains": ["2025", "working"],
+      "resolve_template_guid_on_call": true,
+      "default_target_folder_id": "",
+      "region": "US"
+    },
+    {
+      "key": "CEG",
+      "label": "CEG",
+      "template_model_guid": "",
+      "template_project_guid": "",
+      "default_target_folder_id": "",
+      "region": "US"
+    },
+    {
+      "key": "DEVITA",
+      "label": "Devita",
+      "template_model_guid": "",
+      "template_project_guid": "",
+      "default_target_folder_id": "",
+      "region": "US"
+    }
+  ]
+}

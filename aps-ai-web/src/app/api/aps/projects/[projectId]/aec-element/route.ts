@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
 import { apsPost, queryAecDataModel, resolveAecProjectId } from "@/lib/aps";
+import {
+  extractFromForgeObjectName,
+  isUsableRevitElementId,
+} from "@/lib/forge-revit-object-name";
 
 export const runtime = "nodejs";
 
@@ -82,11 +86,33 @@ type GraphElement = {
   };
 };
 
+type GraphProperty = {
+  name?: string;
+  value?: unknown;
+  definition?: { units?: { name?: string } };
+};
+
 type AecElementScanResponse = {
   data?: {
     elementsByProject?: {
       pagination?: { cursor?: string | null };
       results?: GraphElement[];
+    };
+  };
+};
+
+type ElementGroupResult = {
+  id?: string;
+  alternativeIdentifiers?: {
+    fileVersionUrn?: string;
+    fileUrn?: string;
+  };
+};
+
+type ElementGroupsByProjectResponse = {
+  data?: {
+    elementGroupsByProject?: {
+      results?: ElementGroupResult[];
     };
   };
 };
@@ -111,6 +137,83 @@ const ELEMENT_SCAN_PROPERTY_NAMES = [
 
 function normElementName(s: string): string {
   return s.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function normalizeKey(s: string): string {
+  return s.trim().toLowerCase().replace(/[\s_-]+/g, "");
+}
+
+function getPropertyValue(
+  props: GraphProperty[],
+  candidateNames: string[],
+): string {
+  const byName = new Map<string, GraphProperty>();
+  for (const prop of props) {
+    const key = normalizeKey(String(prop.name ?? ""));
+    if (!key || byName.has(key)) continue;
+    byName.set(key, prop);
+  }
+  for (const candidate of candidateNames) {
+    const match = byName.get(normalizeKey(candidate));
+    if (!match) continue;
+    const value = String(match.value ?? "").trim();
+    if (!value) continue;
+    return value;
+  }
+  return "";
+}
+
+function buildElementSchemaRows(params: {
+  element: GraphElement;
+  requestDbId: string;
+  requestElementName: string;
+}): DataRow[] {
+  const props = (params.element.properties?.results ?? []) as GraphProperty[];
+  const internalFromProps = getPropertyValue(props, [
+    "Element Id",
+    "Element ID",
+    "Revit Element Id",
+  ]);
+  const parsedFromName = extractFromForgeObjectName(
+    params.requestElementName || params.element.name || "",
+  ).elementId;
+  const internalElementId = isUsableRevitElementId(internalFromProps)
+    ? internalFromProps
+    : isUsableRevitElementId(parsedFromName)
+      ? String(parsedFromName)
+      : isUsableRevitElementId(params.requestDbId)
+        ? params.requestDbId
+        : "(unknown)";
+  const elementCategory =
+    getPropertyValue(props, ["Category", "Category Name"]) || "(unknown)";
+  const elementName =
+    getPropertyValue(props, ["Family Name", "Family"]) ||
+    params.requestElementName ||
+    params.element.name ||
+    "(unknown)";
+  const elementType =
+    getPropertyValue(props, ["Type Name", "Type"]) || "(unknown)";
+
+  const rows: DataRow[] = [
+    { key: "internalElementID", value: internalElementId, source: "aecdatamodel" },
+    { key: "elementCategory", value: elementCategory, source: "aecdatamodel" },
+    { key: "elementName", value: elementName, source: "aecdatamodel" },
+    { key: "elementType", value: elementType, source: "aecdatamodel" },
+  ];
+
+  for (const prop of props) {
+    const name = String(prop.name ?? "").trim();
+    if (!name) continue;
+    const value = String(prop.value ?? "").trim();
+    const units = String(prop.definition?.units?.name ?? "").trim();
+    rows.push({
+      key: `parameter.${name}`,
+      value: units && value ? `${value} ${units}` : value || "(empty)",
+      source: "aecdatamodel",
+    });
+  }
+
+  return rows;
 }
 
 /**
@@ -217,6 +320,173 @@ async function fetchElementPaged(
   return { element: null, pagesScanned };
 }
 
+function normalizeUrn(value: string): string {
+  return decodeURIComponent(value ?? "").trim().toLowerCase();
+}
+
+async function resolveElementGroupIdForVersion(params: {
+  accessToken: string;
+  projectId: string;
+  versionId: string;
+}): Promise<string | null> {
+  const query = `
+    query ElementGroupsByProjectForVersion($projectId: ID!) {
+      elementGroupsByProject(projectId: $projectId) {
+        results {
+          id
+          alternativeIdentifiers {
+            fileVersionUrn
+            fileUrn
+          }
+        }
+      }
+    }
+  `;
+  const response = (await apsPost("/aec/graphql", params.accessToken, {
+    query,
+    variables: { projectId: params.projectId },
+  })) as ElementGroupsByProjectResponse;
+  const target = normalizeUrn(params.versionId);
+  const groups = response.data?.elementGroupsByProject?.results ?? [];
+  const match = groups.find((group) => {
+    const fileVersionUrn = normalizeUrn(group.alternativeIdentifiers?.fileVersionUrn ?? "");
+    return fileVersionUrn === target || fileVersionUrn.includes(target) || target.includes(fileVersionUrn);
+  });
+  return match?.id ? String(match.id) : null;
+}
+
+async function fetchElementByElementGroupPaged(params: {
+  accessToken: string;
+  elementGroupId: string;
+  externalId: string;
+  elementName: string;
+}): Promise<{
+  element: GraphElement | null;
+  pagesScanned: number;
+  matchedBy?: "externalId" | "elementName";
+}> {
+  const query = `
+    query ElementScanByElementGroup($elementGroupId: ID!, $cursor: String) {
+      elementsByElementGroup(
+        elementGroupId: $elementGroupId
+        pagination: { limit: 200, cursor: $cursor }
+      ) {
+        pagination { cursor }
+        results {
+          id
+          name
+          properties(filter: { names: ${JSON.stringify([...ELEMENT_SCAN_PROPERTY_NAMES])} }) {
+            results {
+              name
+              value
+              definition {
+                units { name }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const targetExt = params.externalId.trim().toLowerCase();
+  const targetName = normElementName(params.elementName);
+  let pagesScanned = 0;
+  let cursor: string | null = null;
+  for (let p = 0; p < 80; p += 1) {
+    pagesScanned += 1;
+    const response = (await apsPost("/aec/graphql", params.accessToken, {
+      query,
+      variables: { elementGroupId: params.elementGroupId, cursor },
+    })) as {
+      data?: {
+        elementsByElementGroup?: {
+          pagination?: { cursor?: string | null };
+          results?: GraphElement[];
+        };
+      };
+    };
+    const page = response.data?.elementsByElementGroup?.results ?? [];
+    for (const element of page) {
+      if (targetExt) {
+        const props = element.properties?.results ?? [];
+        const extValue = props.find(
+          (prop) => String(prop.name ?? "").toLowerCase() === "external id",
+        )?.value;
+        if (String(extValue ?? "").trim().toLowerCase() === targetExt) {
+          return { element, pagesScanned, matchedBy: "externalId" };
+        }
+      }
+      if (targetName.length >= 4) {
+        const en = normElementName(element.name ?? "");
+        if (en === targetName || en.includes(targetName) || targetName.includes(en)) {
+          return { element, pagesScanned, matchedBy: "elementName" };
+        }
+      }
+    }
+    const next = response.data?.elementsByElementGroup?.pagination?.cursor ?? null;
+    if (!next || next === cursor) break;
+    cursor = next;
+  }
+  return { element: null, pagesScanned };
+}
+
+async function fetchElementWithAllProperties(
+  accessToken: string,
+  aecProjectId: string,
+  elementId: string,
+): Promise<{
+  element: GraphElement | null;
+  pagesScanned: number;
+}> {
+  const query = `
+    query ElementFullPropsScan($projectId: ID!, $cursor: String) {
+      elementsByProject(
+        projectId: $projectId
+        pagination: { limit: 200, cursor: $cursor }
+      ) {
+        pagination { cursor }
+        results {
+          id
+          name
+          properties {
+            results {
+              name
+              value
+              definition {
+                units { name }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  let pagesScanned = 0;
+  let cursor: string | null = null;
+  for (let p = 0; p < 60; p += 1) {
+    pagesScanned += 1;
+    const scanResponse: AecElementScanResponse = (await apsPost(
+      "/aec/graphql",
+      accessToken,
+      {
+        query,
+        variables: { projectId: aecProjectId, cursor },
+      },
+    )) as AecElementScanResponse;
+    const page = scanResponse.data?.elementsByProject?.results ?? [];
+    const hit = page.find((element) => String(element.id ?? "") === elementId);
+    if (hit) {
+      return { element: hit, pagesScanned };
+    }
+    const next = scanResponse.data?.elementsByProject?.pagination?.cursor ?? null;
+    if (!next || next === cursor) break;
+    cursor = next;
+  }
+  return { element: null, pagesScanned };
+}
+
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ projectId: string }> },
@@ -227,6 +497,7 @@ export async function GET(
   const { projectId } = await context.params;
   const hubId = request.nextUrl.searchParams.get("hubId");
   const itemId = request.nextUrl.searchParams.get("itemId") ?? undefined;
+  const versionId = request.nextUrl.searchParams.get("versionId") ?? "";
   const externalId = request.nextUrl.searchParams.get("externalId") ?? "";
   const dbId = request.nextUrl.searchParams.get("dbId") ?? "";
   const elementName = request.nextUrl.searchParams.get("elementName") ?? "";
@@ -251,12 +522,42 @@ export async function GET(
   );
 
   const rows: DataRow[] = [];
-  const graphScan = await fetchElementPaged(
-    auth.session.accessToken,
-    aecProjectId,
-    externalId,
-    elementName,
-  );
+  let graphScan = { element: null as GraphElement | null, pagesScanned: 0, matchedBy: undefined as
+    | "externalId"
+    | "elementName"
+    | undefined };
+  let strategy = "project-scan";
+  if (versionId) {
+    const elementGroupId = await resolveElementGroupIdForVersion({
+      accessToken: auth.session.accessToken,
+      projectId: aecProjectId,
+      versionId,
+    });
+    rows.push({
+      key: "diagnostics.elementGroupId",
+      value: elementGroupId ?? "(not found)",
+      source: "aecdatamodel",
+    });
+    if (elementGroupId) {
+      const byGroup = await fetchElementByElementGroupPaged({
+        accessToken: auth.session.accessToken,
+        elementGroupId,
+        externalId,
+        elementName,
+      });
+      graphScan = byGroup;
+      strategy = "element-group-scan";
+    }
+  }
+  if (!graphScan.element) {
+    graphScan = await fetchElementPaged(
+      auth.session.accessToken,
+      aecProjectId,
+      externalId,
+      elementName,
+    );
+    strategy = "project-scan";
+  }
   rows.push({
     key: "diagnostics.externalId",
     value: externalId || "(empty)",
@@ -273,6 +574,11 @@ export async function GET(
     source: "aecdatamodel",
   });
   rows.push({
+    key: "diagnostics.scanStrategy",
+    value: strategy,
+    source: "aecdatamodel",
+  });
+  rows.push({
     key: "diagnostics.pagesScanned",
     value: String(graphScan?.pagesScanned ?? 0),
     source: "aecdatamodel",
@@ -283,12 +589,29 @@ export async function GET(
     source: "aecdatamodel",
   });
   if (graphScan?.element) {
+    const matchedElementId = String(graphScan.element.id ?? "");
+    let elementForRows = graphScan.element;
+    if (matchedElementId) {
+      const fullProps = await fetchElementWithAllProperties(
+        auth.session.accessToken,
+        aecProjectId,
+        matchedElementId,
+      );
+      rows.push({
+        key: "diagnostics.fullPropertyPagesScanned",
+        value: String(fullProps.pagesScanned),
+        source: "aecdatamodel",
+      });
+      if (fullProps.element) {
+        elementForRows = fullProps.element;
+      }
+    }
     rows.push(
-      ...flatten(
-        graphScan.element,
-        "aecdatamodel:/aec/graphql#elementByExternalId",
-        240,
-      ),
+      ...buildElementSchemaRows({
+        element: elementForRows,
+        requestDbId: dbId,
+        requestElementName: elementName,
+      }),
     );
   }
 

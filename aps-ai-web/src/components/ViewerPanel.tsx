@@ -130,6 +130,8 @@ export type SelectedElementSnapshot = {
 type ViewerPanelProps = {
   viewerUrn: string | null;
   isActive?: boolean;
+  mode?: "full" | "minimal";
+  title?: string;
   actions: ViewerAction[];
   onActionComplete: () => void;
   onViewerFeedback?: (message: string) => void;
@@ -142,6 +144,8 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
     {
       viewerUrn,
       isActive = true,
+      mode = "full",
+      title = "Model Viewer",
       actions,
       onActionComplete,
       onViewerFeedback,
@@ -222,7 +226,9 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
       return;
     }
 
-    const idsToLoad = ids.slice(0, 150);
+    // Keep this comfortably above common piece-set sizes so DA cache
+    // captures the full viewer selection rather than a truncated subset.
+    const idsToLoad = ids.slice(0, 500);
     type PropRow = {
       displayName: string;
       displayValue: string;
@@ -343,15 +349,29 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
   }, [onSelectionChange, onSelectionDetails]);
 
   const loadViewerAssets = useCallback(async () => {
-    if (!document.querySelector(`script[src="${VIEWER_SCRIPT_URL}"]`)) {
+    const ensureViewerScript = async () => {
+      const existing = document.querySelector(
+        `script[src="${VIEWER_SCRIPT_URL}"]`,
+      ) as HTMLScriptElement | null;
+      if (existing && window.Autodesk?.Viewing) return;
+
+      if (existing && !window.Autodesk?.Viewing) {
+        existing.remove();
+      }
+
       await new Promise<void>((resolve, reject) => {
         const script = document.createElement("script");
         script.src = VIEWER_SCRIPT_URL;
-        script.onload = () => resolve();
+        script.onload = () => {
+          if (window.Autodesk?.Viewing) resolve();
+          else reject(new Error("APS viewer script loaded but Autodesk API was unavailable"));
+        };
         script.onerror = () => reject(new Error("Failed to load APS viewer script"));
         document.head.appendChild(script);
       });
-    }
+    };
+
+    await ensureViewerScript();
 
     if (!document.querySelector(`link[href="${VIEWER_STYLE_URL}"]`)) {
       const link = document.createElement("link");
@@ -782,8 +802,27 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
             Math.max(action.maxSearchMatches ?? 3500, 1),
             8000,
           );
-          const searchHits = await searchIds(action.query);
-          const candidates = searchHits.slice(0, maxScan);
+          const queryVariants = [action.query.trim()];
+          if (
+            action.pieceKind === "WPA" ||
+            action.pieceKind === "WPB"
+          ) {
+            queryVariants.push("WALL_PANEL", "WALL PANEL");
+          }
+          const seen = new Set<number>();
+          const mergedHits: number[] = [];
+          for (const q of queryVariants) {
+            if (!q) continue;
+            const ids = await searchIds(q);
+            for (const id of ids) {
+              if (seen.has(id)) continue;
+              seen.add(id);
+              mergedHits.push(id);
+              if (mergedHits.length >= maxScan) break;
+            }
+            if (mergedHits.length >= maxScan) break;
+          }
+          const candidates = mergedHits.slice(0, maxScan);
           const viewerNow = viewerRef.current;
           if (!viewerNow) break;
           if (candidates.length === 0) {
@@ -992,54 +1031,61 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
 
   return (
     <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
-      <div className="mb-2 flex items-center justify-between text-sm">
-        <h2 className="font-semibold">Model Viewer</h2>
-        <div className="flex items-center gap-2">
-          {viewOptions.length > 0 ? (
-            <select
-              aria-label="Model view selector"
-              value={activeViewKey}
-              onChange={(e) => void onChangeView(e.target.value)}
-              className="rounded border px-2 py-1 text-xs text-black bg-white"
+      {mode === "full" ? (
+        <div className="mb-2 flex items-center justify-between text-sm">
+          <h2 className="font-semibold">{title}</h2>
+          <div className="flex items-center gap-2">
+            {viewOptions.length > 0 ? (
+              <select
+                aria-label="Model view selector"
+                value={activeViewKey}
+                onChange={(e) => void onChangeView(e.target.value)}
+                className="rounded border px-2 py-1 text-xs text-black bg-white"
+              >
+                {viewOptions.map((v) => (
+                  <option key={v.key} value={v.key}>
+                    {v.name}
+                  </option>
+                ))}
+              </select>
+            ) : null}
+            <button
+              type="button"
+              onClick={() => void toggleMarkups()}
+              className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
             >
-              {viewOptions.map((v) => (
-                <option key={v.key} value={v.key}>
-                  {v.name}
-                </option>
-              ))}
-            </select>
-          ) : null}
-          <button
-            type="button"
-            onClick={() => void toggleMarkups()}
-            className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
-          >
-            {markupsEnabled ? "Disable Markup" : "Enable Markup"}
-          </button>
-          <button
-            type="button"
-            onClick={() => saveMarkupSnapshot()}
-            className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
-          >
-            Save Markup
-          </button>
-          <button
-            type="button"
-            onClick={() => loadMarkupSnapshot()}
-            className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
-          >
-            Load Markup
-          </button>
-          <button
-            type="button"
-            onClick={() => clearMarkups()}
-            className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
-          >
-            Clear Markup
-          </button>
-          <span className="text-xs text-black">{status}</span>
+              {markupsEnabled ? "Disable Markup" : "Enable Markup"}
+            </button>
+            <button
+              type="button"
+              onClick={() => saveMarkupSnapshot()}
+              className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
+            >
+              Save Markup
+            </button>
+            <button
+              type="button"
+              onClick={() => loadMarkupSnapshot()}
+              className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
+            >
+              Load Markup
+            </button>
+            <button
+              type="button"
+              onClick={() => clearMarkups()}
+              className="rounded border px-2 py-1 text-xs hover:bg-gray-100"
+            >
+              Clear Markup
+            </button>
+            <span className="text-xs text-black">{status}</span>
+          </div>
         </div>
-      </div>
+      ) : null}
+      {mode === "minimal" ? (
+        <div className="mb-2 rounded border border-black/10 bg-gray-50 px-2 py-1 text-[11px] text-gray-700">
+          {status}
+        </div>
+      ) : null}
       <div
         ref={containerRef}
         className="relative min-h-0 flex-1 overflow-hidden rounded border border-black/10 bg-gray-50"

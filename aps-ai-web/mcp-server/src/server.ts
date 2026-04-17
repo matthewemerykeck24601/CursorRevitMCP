@@ -40,6 +40,14 @@ import {
   runSharedParametersCatalogStats,
   runSharedParametersLookup,
 } from "./tools/sharedParametersTools.js";
+import {
+  adminAddUsersToProjects,
+  runAdminAddUsersToProjects,
+} from "./tools/adminProjectTools.js";
+import {
+  createRevitCloudWorksharedModelTool,
+  runCreateRevitCloudWorksharedModel,
+} from "./tools/revitCloudModelTools.js";
 
 /** MCP listTools entries — names/descriptions stay in sync with apsQueryTools.ts */
 const apsQueryMcpTools = [
@@ -475,6 +483,62 @@ export function buildServer() {
           required: ["mark_groups"],
         },
       },
+      {
+        name: adminAddUsersToProjects.name,
+        description: adminAddUsersToProjects.description,
+        inputSchema: {
+          type: "object",
+          properties: {
+            access_token: { type: "string" },
+            accessToken: { type: "string" },
+            hub_id: { type: "string" },
+            hubId: { type: "string" },
+            project_numbers: { type: "array", items: { type: "string" } },
+            emails: { type: "array", items: { type: "string" } },
+            role_ids: { type: "array", items: { type: "string" } },
+            products: { type: "array", items: { type: "object" } },
+            region: { type: "string", enum: ["US", "EMEA"], default: "US" },
+            dry_run: { type: "boolean", default: false },
+            additional_user_payload: { type: "object", additionalProperties: true },
+          },
+          required: ["project_numbers", "emails"],
+        },
+      },
+      {
+        name: createRevitCloudWorksharedModelTool.name,
+        description: createRevitCloudWorksharedModelTool.description,
+        inputSchema: {
+          type: "object",
+          properties: {
+            access_token: { type: "string" },
+            accessToken: { type: "string" },
+            hub_id: { type: "string" },
+            hubId: { type: "string" },
+            project_number: { type: "string" },
+            projectNumber: { type: "string" },
+            project_id: { type: "string" },
+            projectId: { type: "string" },
+            folder_id: { type: "string" },
+            folderId: { type: "string" },
+            model_name: { type: "string" },
+            modelName: { type: "string" },
+            template_key: { type: "string" },
+            templateKey: { type: "string" },
+            template_model_guid: { type: "string" },
+            templateModelGuid: { type: "string" },
+            template_project_guid: { type: "string" },
+            templateProjectGuid: { type: "string" },
+            region: { type: "string", enum: ["US", "EMEA"], default: "US" },
+            enable_worksharing: { type: "boolean", default: true },
+            enableWorksharing: { type: "boolean" },
+            activity_id: { type: "string" },
+            activityId: { type: "string" },
+            dry_run: { type: "boolean", default: false },
+            dryRun: { type: "boolean" },
+          },
+          required: [],
+        },
+      },
       ...apsQueryMcpTools,
       ...designAutomationMcpTools,
     ],
@@ -525,6 +589,12 @@ export function buildServer() {
     }
     if (name === "assign_control_marks") {
       return textResult(assignControlMarks(args));
+    }
+    if (name === "admin_add_users_to_projects") {
+      return textResult(await runAdminAddUsersToProjects(args, {}));
+    }
+    if (name === "create_revit_cloud_workshared_model") {
+      return textResult(await runCreateRevitCloudWorksharedModel(args, {}));
     }
     if (name === "get_elements_by_category") {
       return textResult(await runGetElementsByCategory(args, {}));

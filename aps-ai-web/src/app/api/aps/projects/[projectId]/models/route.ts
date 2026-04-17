@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
 import { apsGet, toViewerUrn } from "@/lib/aps";
+import { upsertHubReferenceFolders } from "@/lib/aps-admin";
 import { getRequestId } from "@/lib/request";
 import { log } from "@/lib/logger";
 
@@ -37,6 +38,11 @@ type Item = {
 };
 
 export const runtime = "nodejs";
+
+function isQuotaLimitError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error ?? "");
+  return message.includes("(429)") || message.toLowerCase().includes("quota limit exceeded");
+}
 
 function isFolder(entry: Folder | Item): entry is Folder {
   return entry.type === "folders";
@@ -97,10 +103,27 @@ export async function GET(
   const safeProjectId = encodeURIComponent(projectId);
 
   try {
-    const topFolders = await apsGet<ApsCollection<Folder>>(
-      `/project/v1/hubs/${safeHubId}/projects/${safeProjectId}/topFolders`,
-      auth.session.accessToken,
-    );
+    let topFolders: ApsCollection<Folder>;
+    try {
+      topFolders = await apsGet<ApsCollection<Folder>>(
+        `/project/v1/hubs/${safeHubId}/projects/${safeProjectId}/topFolders`,
+        auth.session.accessToken,
+      );
+    } catch (error) {
+      if (isQuotaLimitError(error)) {
+        const response = NextResponse.json({
+          requestId,
+          models: [],
+          partial: true,
+          warning: "APS quota limit exceeded while loading model folders. Showing partial data.",
+        });
+        for (const cookie of auth.response.cookies.getAll()) {
+          response.cookies.set(cookie);
+        }
+        return response;
+      }
+      throw error;
+    }
 
     const models: Array<{
       itemId: string;
@@ -115,7 +138,12 @@ export async function GET(
       id: f.id,
       name: f.attributes?.name ?? f.id,
     }));
+    const discoveredFolders = new Map<string, string>(
+      folderQueue.map((f) => [f.id, f.name]),
+    );
     const visitedFolders = new Set<string>();
+    let partial = false;
+    let warning = "";
 
     while (folderQueue.length > 0) {
       const current = folderQueue.shift()!;
@@ -127,18 +155,30 @@ export async function GET(
         | null = `/data/v1/projects/${safeProjectId}/folders/${encodeURIComponent(current.id)}/contents`;
 
       while (nextPath) {
-        const contents: ApsCollection<Folder | Item> =
-          await apsGet<ApsCollection<Folder | Item>>(
-          encodePathForAps(nextPath),
-          auth.session.accessToken,
-        );
+        let contents: ApsCollection<Folder | Item>;
+        try {
+          contents = await apsGet<ApsCollection<Folder | Item>>(
+            encodePathForAps(nextPath),
+            auth.session.accessToken,
+          );
+        } catch (error) {
+          if (isQuotaLimitError(error)) {
+            partial = true;
+            warning = "APS quota limit exceeded while traversing project files. Showing partial data.";
+            folderQueue.length = 0;
+            break;
+          }
+          throw error;
+        }
 
         for (const entry of contents.data) {
           if (isFolder(entry)) {
             if (!visitedFolders.has(entry.id)) {
+              const folderName = entry.attributes?.name ?? entry.id;
+              discoveredFolders.set(entry.id, folderName);
               folderQueue.push({
                 id: entry.id,
-                name: entry.attributes?.name ?? entry.id,
+                name: folderName,
               });
             }
             continue;
@@ -163,9 +203,32 @@ export async function GET(
       }
     }
 
+    try {
+      await upsertHubReferenceFolders({
+        hubId,
+        projectId,
+        folders: Array.from(discoveredFolders.entries()).map(([folderId, folderName]) => ({
+          folderId,
+          folderName,
+        })),
+      });
+    } catch (error) {
+      log("warn", "aps-models-folder-cache-upsert-failed", {
+        requestId,
+        hubId,
+        projectId,
+        details: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
+
     models.sort((a, b) => a.name.localeCompare(b.name));
 
-    const response = NextResponse.json({ requestId, models });
+    const response = NextResponse.json({
+      requestId,
+      models,
+      partial,
+      ...(warning ? { warning } : {}),
+    });
     for (const cookie of auth.response.cookies.getAll()) {
       response.cookies.set(cookie);
     }

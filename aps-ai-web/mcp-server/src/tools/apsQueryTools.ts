@@ -63,6 +63,39 @@ function contextFromArgs(
   };
 }
 
+function tryBase64Decode(input: string): string {
+  try {
+    const normalized = input.replace(/-/g, "+").replace(/_/g, "/");
+    const padLen = normalized.length % 4 === 0 ? 0 : 4 - (normalized.length % 4);
+    const padded = normalized + "=".repeat(padLen);
+    return Buffer.from(padded, "base64").toString("utf8").trim();
+  } catch {
+    return "";
+  }
+}
+
+function resolveAecdmDesignId(modelIdentifier: string): string {
+  const raw = modelIdentifier.trim();
+  if (!raw) return "";
+
+  const extractFromUrn = (urn: string): string => {
+    const lineageMatch = urn.match(/:dm\.lineage:([^?]+)$/i);
+    if (lineageMatch?.[1]) return lineageMatch[1];
+    const vfMatch = urn.match(/:fs\.file:vf\.([^?]+)(?:\?|$)/i);
+    if (vfMatch?.[1]) return vfMatch[1];
+    return urn.split(":").pop()?.trim() ?? "";
+  };
+
+  if (raw.startsWith("urn:")) {
+    return extractFromUrn(raw);
+  }
+  const decoded = tryBase64Decode(raw);
+  if (decoded.startsWith("urn:")) {
+    return extractFromUrn(decoded);
+  }
+  return raw;
+}
+
 const tokenAndProjectFields = {
   access_token: z.string().optional(),
   accessToken: z.string().optional(),
@@ -159,9 +192,12 @@ export const getElementsByCategory = {
 
     const token = await getApsToken(ctx);
 
-    const designId = modelUrn.includes(":")
-      ? modelUrn.split(":").pop() ?? modelUrn
-      : modelUrn;
+    const designId = resolveAecdmDesignId(modelUrn);
+    if (!designId) {
+      throw new Error(
+        "Could not resolve AECDM design id from model_urn/urn.",
+      );
+    }
     const url = `https://developer.api.autodesk.com/aecdm/v1/projects/${encodeURIComponent(projectId)}/designs/${encodeURIComponent(designId)}/elements`;
 
     const queryParams: Record<string, string | number> = { limit };

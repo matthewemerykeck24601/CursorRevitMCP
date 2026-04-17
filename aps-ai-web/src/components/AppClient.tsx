@@ -1,6 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import {
   ViewerPanel,
   type SelectedElementSnapshot,
@@ -12,7 +20,12 @@ import {
   BIM_TABLE_HEADERS,
   bimRowsToCsv,
   buildBimTableRows,
+  type BimTableRow,
 } from "@/lib/bimSelectionTable";
+import {
+  extractFromForgeObjectName,
+  isUsableRevitElementId,
+} from "@/lib/forge-revit-object-name";
 import type { DiscoveryCachedSelection } from "@/lib/discovery-cached-selection";
 import { aiBrowserDebug } from "@/lib/ai-browser-debug";
 
@@ -26,15 +39,51 @@ type Model = {
   sourceFolder: string;
   extensionType: string;
 };
+type DaExecutionContext = {
+  resolvedActivityId?: string;
+  resolvedActivitySource?: string;
+  revitVersionMajor?: number;
+  cloudModel?: {
+    region: string;
+    projectGuid: string;
+    modelGuid: string;
+    revitVersionMajor?: number;
+  };
+};
+type ProjectBrowserNode = {
+  id: string;
+  name: string;
+  kind: "folder" | "file";
+  parentId: string | null;
+  itemId?: string;
+  extensionType?: string;
+  versionId?: string;
+  viewerUrn?: string;
+  children: ProjectBrowserNode[];
+  childrenLoaded?: boolean;
+};
 
 type SessionResponse = {
   authenticated: boolean;
   expiresAt: number;
   scope: string;
 };
-type WorkspaceTab = "viewer" | "model-data" | "element-data" | "issues";
-type WorkspaceMode = "model" | "product-analysis";
+type WorkspaceTab = "folders" | "viewer" | "model-data" | "element-data" | "issues";
+type WorkspaceMode = "model" | "product-analysis" | "admin";
 type ModelDataRow = { key: string; value: string; source: string };
+type ChatBimSelectionContext = {
+  count: number;
+  withControlMark: number;
+  withControlNumber: number;
+  sample: Array<{
+    elementId: string;
+    category: string;
+    family: string;
+    type: string;
+    controlMark: string;
+    controlNumber: string;
+  }>;
+};
 type SemanticDataRow = {
   entity: string;
   parameter: string;
@@ -120,6 +169,9 @@ const AI_MODEL_OPTIONS: Record<AiProvider, string[]> = {
 };
 
 export function AppClient() {
+  const CHAT_INPUT_MIN_HEIGHT_PX = 40;
+  const CHAT_INPUT_MAX_HEIGHT_PX = 220;
+
   const [auth, setAuth] = useState<SessionResponse | null>(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
   const [loadingHubs, setLoadingHubs] = useState(false);
@@ -133,6 +185,11 @@ export function AppClient() {
   const [selectedModel, setSelectedModel] = useState<string>("");
   const [chatInput, setChatInput] = useState("");
   const [chatLog, setChatLog] = useState<string[]>([]);
+  const [chatPending, setChatPending] = useState(false);
+  const modelChatInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const adminChatInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const chatAbortControllerRef = useRef<AbortController | null>(null);
+  const activeChatRequestIdRef = useRef(0);
   const [bimExportNotice, setBimExportNotice] = useState("");
   const viewerFeedbackQueueRef = useRef<string[]>([]);
   const viewerFeedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
@@ -156,6 +213,7 @@ export function AppClient() {
       if (viewerFeedbackTimerRef.current) {
         clearTimeout(viewerFeedbackTimerRef.current);
       }
+      chatAbortControllerRef.current?.abort();
     };
   }, []);
 
@@ -244,6 +302,20 @@ export function AppClient() {
   const [designFilesPrefix, setDesignFilesPrefix] = useState("");
   const [designFilesDiagnostics, setDesignFilesDiagnostics] = useState<string[]>([]);
   const [savingDesignFile, setSavingDesignFile] = useState(false);
+  const [projectBrowserRoots, setProjectBrowserRoots] = useState<ProjectBrowserNode[]>([]);
+  const [loadingProjectBrowser, setLoadingProjectBrowser] = useState(false);
+  const [projectBrowserError, setProjectBrowserError] = useState("");
+  const [projectBrowserWarning, setProjectBrowserWarning] = useState("");
+  const [loadingProjectFolderIds, setLoadingProjectFolderIds] = useState<Set<string>>(
+    () => new Set(),
+  );
+  const [expandedProjectFolders, setExpandedProjectFolders] = useState<Set<string>>(
+    () => new Set(),
+  );
+  const [selectedProjectBrowserNodeId, setSelectedProjectBrowserNodeId] = useState("");
+  const [selectedProjectBrowserViewerUrn, setSelectedProjectBrowserViewerUrn] = useState<
+    string | null
+  >(null);
   const [showDesignFileModal, setShowDesignFileModal] = useState(false);
   const [designFileNameInput, setDesignFileNameInput] = useState("");
   const [designFileModalError, setDesignFileModalError] = useState("");
@@ -261,12 +333,219 @@ export function AppClient() {
   });
   const [analysisResults, setAnalysisResults] = useState<AnalysisResults | null>(null);
   const [runningAnalysis, setRunningAnalysis] = useState(false);
+  const [selectedModelDaContext, setSelectedModelDaContext] =
+    useState<DaExecutionContext | null>(null);
+  const [loadingSelectedModelDaContext, setLoadingSelectedModelDaContext] =
+    useState(false);
 
   const selectedModelData = useMemo(
     () => models.find((m) => m.itemId === selectedModel) ?? null,
     [models, selectedModel],
   );
+  const selectedProjectBrowserNode = useMemo(() => {
+    if (!selectedProjectBrowserNodeId) return null;
+    const stack = [...projectBrowserRoots];
+    while (stack.length > 0) {
+      const node = stack.pop()!;
+      if (node.id === selectedProjectBrowserNodeId) return node;
+      if (node.children.length > 0) stack.push(...node.children);
+    }
+    return null;
+  }, [projectBrowserRoots, selectedProjectBrowserNodeId]);
+  const updateProjectBrowserNodeById = useCallback(
+    (
+      nodes: ProjectBrowserNode[],
+      targetId: string,
+      updater: (node: ProjectBrowserNode) => ProjectBrowserNode,
+    ): ProjectBrowserNode[] =>
+      nodes.map((node) => {
+        if (node.id === targetId) return updater(node);
+        if (node.children.length === 0) return node;
+        return {
+          ...node,
+          children: updateProjectBrowserNodeById(node.children, targetId, updater),
+        };
+      }),
+    [],
+  );
+  const toggleProjectFolder = useCallback((folderId: string) => {
+    setExpandedProjectFolders((prev) => {
+      const next = new Set(prev);
+      if (next.has(folderId)) next.delete(folderId);
+      else next.add(folderId);
+      return next;
+    });
+  }, []);
+  const loadProjectFolderChildren = useCallback(
+    async (hubId: string, projectId: string, folderId: string) => {
+      setLoadingProjectFolderIds((prev) => {
+        const next = new Set(prev);
+        next.add(folderId);
+        return next;
+      });
+      try {
+        const response = await fetch(
+          `/api/aps/projects/${encodeURIComponent(projectId)}/folders?hubId=${encodeURIComponent(
+            hubId,
+          )}&folderId=${encodeURIComponent(folderId)}`,
+        );
+        const json = (await response.json()) as {
+          nodes?: ProjectBrowserNode[];
+          error?: string;
+          details?: string;
+          warning?: string;
+        };
+        if (!response.ok) {
+          throw new Error(json.error ?? json.details ?? "Failed to load folder contents");
+        }
+        const children = Array.isArray(json.nodes) ? json.nodes : [];
+        setProjectBrowserRoots((prev) =>
+          updateProjectBrowserNodeById(prev, folderId, (node) => ({
+            ...node,
+            children,
+            childrenLoaded: true,
+          })),
+        );
+        if (json.warning) setProjectBrowserWarning(json.warning);
+      } catch (err) {
+        setProjectBrowserError(
+          err instanceof Error ? err.message : "Failed to load folder contents",
+        );
+      } finally {
+        setLoadingProjectFolderIds((prev) => {
+          const next = new Set(prev);
+          next.delete(folderId);
+          return next;
+        });
+      }
+    },
+    [updateProjectBrowserNodeById],
+  );
+  const onSelectProjectBrowserNode = useCallback((node: ProjectBrowserNode) => {
+    setSelectedProjectBrowserNodeId(node.id);
+    if (node.kind !== "file") return;
+    if (node.viewerUrn) {
+      setSelectedProjectBrowserViewerUrn(node.viewerUrn);
+    } else {
+      setSelectedProjectBrowserViewerUrn(null);
+    }
+  }, []);
+  const renderProjectBrowserNodes = useCallback(
+    (nodes: ProjectBrowserNode[], depth = 0): ReactNode =>
+      nodes.map((node) => {
+        const isFolder = node.kind === "folder";
+        const expanded = isFolder ? expandedProjectFolders.has(node.id) : false;
+        const selected = selectedProjectBrowserNodeId === node.id;
+        const folderLoading = isFolder ? loadingProjectFolderIds.has(node.id) : false;
+        const indentClass =
+          depth <= 0
+            ? "pl-2"
+            : depth === 1
+              ? "pl-5"
+              : depth === 2
+                ? "pl-8"
+                : depth === 3
+                  ? "pl-11"
+                  : depth === 4
+                    ? "pl-14"
+                    : depth === 5
+                      ? "pl-[68px]"
+                      : "pl-[80px]";
+        return (
+          <div key={node.id}>
+            <button
+              type="button"
+              onClick={() => {
+                if (isFolder) {
+                  const willExpand = !expanded;
+                  toggleProjectFolder(node.id);
+                  if (
+                    willExpand &&
+                    !node.childrenLoaded &&
+                    selectedHub &&
+                    selectedProject &&
+                    !loadingProjectFolderIds.has(node.id)
+                  ) {
+                    void loadProjectFolderChildren(selectedHub, selectedProject, node.id);
+                  }
+                  return;
+                }
+                onSelectProjectBrowserNode(node);
+              }}
+              className={`mb-1 flex w-full items-center gap-2 rounded border px-2 py-1 text-left text-xs ${
+                selected
+                  ? "border-black bg-black text-white"
+                  : "border-black/10 bg-white hover:bg-gray-100"
+              } ${indentClass}`}
+            >
+              <span className="inline-flex w-4 justify-center text-[11px]">
+                {isFolder ? (expanded ? "▾" : "▸") : "•"}
+              </span>
+              <span className="truncate">{node.name}</span>
+              {folderLoading ? (
+                <span className="ml-auto text-[10px] text-gray-500">loading...</span>
+              ) : null}
+            </button>
+            {isFolder && expanded && node.children.length > 0
+              ? renderProjectBrowserNodes(node.children, depth + 1)
+              : null}
+          </div>
+        );
+      }),
+    [
+      expandedProjectFolders,
+      loadProjectFolderChildren,
+      loadingProjectFolderIds,
+      onSelectProjectBrowserNode,
+      selectedHub,
+      selectedProject,
+      selectedProjectBrowserNodeId,
+      toggleProjectFolder,
+    ],
+  );
   const aiModelOptions = AI_MODEL_OPTIONS[aiProvider];
+  const selectedProjectBrowserFileExtension = useMemo(() => {
+    if (selectedProjectBrowserNode?.kind !== "file") return "";
+    const segments = selectedProjectBrowserNode.name.split(".");
+    if (segments.length < 2) return "";
+    const ext = segments[segments.length - 1].trim().toLowerCase();
+    if (!ext || ext.length > 10) return "";
+    return `.${ext}`;
+  }, [selectedProjectBrowserNode]);
+  const elementIdentityRows = useMemo(() => {
+    const identityKeyOrder = [
+      "internalElementID",
+      "elementCategory",
+      "elementName",
+      "elementType",
+    ];
+    const identityByKey = new Map(
+      elementDataRows
+        .filter((row) => identityKeyOrder.includes(row.key))
+        .map((row) => [row.key, row]),
+    );
+    return identityKeyOrder
+      .map((key) => identityByKey.get(key))
+      .filter((row): row is ModelDataRow => Boolean(row));
+  }, [elementDataRows]);
+  const elementParameterRows = useMemo(
+    () =>
+      elementDataRows
+        .filter((row) => row.key.startsWith("parameter."))
+        .slice()
+        .sort((a, b) => a.key.localeCompare(b.key, undefined, { sensitivity: "base" })),
+    [elementDataRows],
+  );
+  const elementDiagnosticRows = useMemo(
+    () =>
+      elementDataRows.filter(
+        (row) =>
+          !["internalElementID", "elementCategory", "elementName", "elementType"].includes(
+            row.key,
+          ) && !row.key.startsWith("parameter."),
+      ),
+    [elementDataRows],
+  );
   const selectedHubData = useMemo(
     () => hubs.find((h) => h.id === selectedHub) ?? null,
     [hubs, selectedHub],
@@ -285,6 +564,16 @@ export function AppClient() {
     setDiscoveryCachedSelection(null);
     setLastDaJob(null);
   }, [selectedHub, selectedProject, selectedModel]);
+
+  useEffect(() => {
+    setProjectBrowserRoots([]);
+    setProjectBrowserError("");
+    setProjectBrowserWarning("");
+    setExpandedProjectFolders(new Set());
+    setLoadingProjectFolderIds(new Set());
+    setSelectedProjectBrowserNodeId("");
+    setSelectedProjectBrowserViewerUrn(null);
+  }, [selectedHub, selectedProject]);
 
   const selectedPieceRefs = useMemo(() => {
     return selectedElements.map((el) => {
@@ -306,6 +595,32 @@ export function AppClient() {
       }),
     [selectedElements, aecRowsByDbId],
   );
+  const chatBimSelectionContext = useMemo<ChatBimSelectionContext | undefined>(() => {
+    if (bimTableRows.length === 0) return undefined;
+    const norm = (s: string) => s.trim();
+    const withControlMark = bimTableRows.reduce(
+      (n, row) => n + (norm(row.controlMark) ? 1 : 0),
+      0,
+    );
+    const withControlNumber = bimTableRows.reduce(
+      (n, row) => n + (norm(row.controlNumber) ? 1 : 0),
+      0,
+    );
+    const sampleRows: BimTableRow[] = bimTableRows.slice(0, 24);
+    return {
+      count: bimTableRows.length,
+      withControlMark,
+      withControlNumber,
+      sample: sampleRows.map((row) => ({
+        elementId: row.elementId,
+        category: row.category,
+        family: row.family,
+        type: row.type,
+        controlMark: row.controlMark,
+        controlNumber: row.controlNumber,
+      })),
+    };
+  }, [bimTableRows]);
 
   useEffect(() => {
     setBimExportNotice("");
@@ -447,6 +762,36 @@ export function AppClient() {
     setLoadingModels(false);
   }, []);
 
+  const loadProjectBrowser = useCallback(async (hubId: string, projectId: string) => {
+    setLoadingProjectBrowser(true);
+    setProjectBrowserError("");
+    setProjectBrowserWarning("");
+    try {
+      const response = await fetch(
+        `/api/aps/projects/${encodeURIComponent(projectId)}/folders?hubId=${encodeURIComponent(hubId)}`,
+      );
+      const json = (await response.json()) as {
+        nodes?: ProjectBrowserNode[];
+        error?: string;
+        details?: string;
+        warning?: string;
+      };
+      if (!response.ok) {
+        throw new Error(json.error ?? json.details ?? "Failed to load project browser");
+      }
+      const roots = Array.isArray(json.nodes) ? json.nodes : [];
+      setProjectBrowserRoots(roots);
+      setProjectBrowserWarning(json.warning ?? "");
+      setExpandedProjectFolders(new Set());
+    } catch (err) {
+      setProjectBrowserError(
+        err instanceof Error ? err.message : "Failed to load project browser",
+      );
+      setProjectBrowserRoots([]);
+    } finally {
+      setLoadingProjectBrowser(false);
+    }
+  }, []);
   const loadModelData = useCallback(async () => {
     if (!selectedHub || !selectedProject || !selectedModelData) {
       setModelDataRows([]);
@@ -488,12 +833,96 @@ export function AppClient() {
     const projectPath = encodeURIComponent(selectedProject);
     const hubQ = encodeURIComponent(selectedHub);
     const itemQ = encodeURIComponent(selectedModelData.itemId);
+    const versionQ = encodeURIComponent(selectedModelData.versionId);
+    const buildViewerFallbackRows = (el: SelectedElementSnapshot): ModelDataRow[] => {
+      const props = el.properties ?? [];
+      const norm = (name: string) => name.trim().toLowerCase().replace(/[\s_-]+/g, "");
+      const getProp = (...candidates: string[]) => {
+        for (const prop of props) {
+          const key = norm(prop.displayName ?? "");
+          if (!key) continue;
+          for (const candidate of candidates) {
+            if (key === norm(candidate)) return String(prop.displayValue ?? "").trim();
+          }
+        }
+        return "";
+      };
+
+      const rows: ModelDataRow[] = [];
+      const internalElementId = getProp("Element Id", "Element ID", "Revit Element Id");
+      const parsedFromName = extractFromForgeObjectName(el.name).elementId ?? "";
+      const elementCategory = getProp("Category", "Category Name");
+      const elementName = getProp("Family Name", "Family") || el.name || "";
+      const elementType = getProp("Type Name", "Type");
+
+      rows.push({
+        key: "internalElementID",
+        value: isUsableRevitElementId(internalElementId)
+          ? internalElementId
+          : isUsableRevitElementId(parsedFromName)
+            ? parsedFromName
+            : String(el.dbId),
+        source: "viewer-fallback",
+      });
+      rows.push({
+        key: "elementCategory",
+        value: elementCategory || "(unknown)",
+        source: "viewer-fallback",
+      });
+      rows.push({
+        key: "elementName",
+        value: elementName || "(unknown)",
+        source: "viewer-fallback",
+      });
+      rows.push({
+        key: "elementType",
+        value: elementType || "(unknown)",
+        source: "viewer-fallback",
+      });
+
+      for (const prop of props) {
+        const name = String(prop.displayName ?? "").trim();
+        if (!name) continue;
+        const value = String(prop.displayValue ?? "").trim();
+        const units = String(prop.units ?? "").trim();
+        rows.push({
+          key: `parameter.${name}`,
+          value: units && value ? `${value} ${units}` : value || "(empty)",
+          source: "viewer-fallback",
+        });
+      }
+      return rows;
+    };
     const fetchOne = async (el: SelectedElementSnapshot) => {
       const url = `/api/aps/projects/${projectPath}/aec-element?hubId=${hubQ}&itemId=${itemQ}&externalId=${encodeURIComponent(el.externalId ?? "")}&dbId=${encodeURIComponent(String(el.dbId))}&elementName=${encodeURIComponent(el.name ?? "")}`;
-      const response = await fetch(url);
-      if (!response.ok) return { dbId: el.dbId, rows: [] as ModelDataRow[] };
+      const urlWithVersion = `${url}&versionId=${versionQ}`;
+      const response = await fetch(urlWithVersion);
+      if (!response.ok) return { dbId: el.dbId, rows: buildViewerFallbackRows(el) };
       const json = (await response.json()) as { rows?: ModelDataRow[] };
-      return { dbId: el.dbId, rows: json.rows ?? [] };
+      const rows = json.rows ?? [];
+      const hasIdentity = rows.some((r) =>
+        ["internalElementID", "elementCategory", "elementName", "elementType"].includes(
+          r.key,
+        ),
+      );
+      const hasParams = rows.some((r) => r.key.startsWith("parameter."));
+      if (!hasIdentity || !hasParams) {
+        const fallback = buildViewerFallbackRows(el);
+        const fallbackByKey = new Map(fallback.map((r) => [r.key, r]));
+        const merged = rows.map((row) => {
+          if (row.key !== "internalElementID") return row;
+          if (isUsableRevitElementId(row.value)) return row;
+          const fallbackRow = fallbackByKey.get("internalElementID");
+          return fallbackRow ?? row;
+        });
+        for (const [key, row] of fallbackByKey.entries()) {
+          if (!merged.some((existing) => existing.key === key)) {
+            merged.push(row);
+          }
+        }
+        return { dbId: el.dbId, rows: merged };
+      }
+      return { dbId: el.dbId, rows };
     };
     try {
       const slice = selectedElements.slice(0, 80);
@@ -678,11 +1107,96 @@ export function AppClient() {
       setSelectedModel("");
       return;
     }
+    if (workspaceMode === "model" && workspaceTab === "folders") {
+      return;
+    }
     void loadModels(selectedHub, selectedProject).catch((err) => {
       setLoadingModels(false);
       setError(err instanceof Error ? err.message : "Failed loading models");
     });
-  }, [selectedHub, selectedProject, loadModels]);
+  }, [selectedHub, selectedProject, workspaceMode, workspaceTab, loadModels]);
+
+  useEffect(() => {
+    if (!selectedProject || !selectedModelData?.versionId) {
+      setSelectedModelDaContext(null);
+      setLoadingSelectedModelDaContext(false);
+      return;
+    }
+    let cancelled = false;
+    const fetchDaContext = async () => {
+      setLoadingSelectedModelDaContext(true);
+      try {
+        const response = await fetch(
+          `/api/aps/da-config-check?projectId=${encodeURIComponent(selectedProject)}&versionId=${encodeURIComponent(selectedModelData.versionId)}`,
+        );
+        const json = (await response.json()) as {
+          cloud_model?: {
+            region?: string;
+            projectGuid?: string;
+            modelGuid?: string;
+            revitVersionMajor?: number;
+          } | null;
+          resolved_activity?: {
+            activityId?: string;
+            source?: string;
+            revitVersionMajor?: number;
+          } | null;
+        };
+        if (cancelled) return;
+        const cloudModel =
+          json.cloud_model &&
+          typeof json.cloud_model.region === "string" &&
+          typeof json.cloud_model.projectGuid === "string" &&
+          typeof json.cloud_model.modelGuid === "string"
+            ? {
+                region: json.cloud_model.region,
+                projectGuid: json.cloud_model.projectGuid,
+                modelGuid: json.cloud_model.modelGuid,
+                ...(Number.isFinite(Number(json.cloud_model.revitVersionMajor))
+                  ? { revitVersionMajor: Number(json.cloud_model.revitVersionMajor) }
+                  : {}),
+              }
+            : undefined;
+        const resolvedActivityId =
+          typeof json.resolved_activity?.activityId === "string"
+            ? json.resolved_activity.activityId.trim()
+            : "";
+        const resolvedActivitySource =
+          typeof json.resolved_activity?.source === "string"
+            ? json.resolved_activity.source.trim()
+            : "";
+        const revitVersionMajor = Number(json.resolved_activity?.revitVersionMajor);
+        setSelectedModelDaContext({
+          ...(resolvedActivityId ? { resolvedActivityId } : {}),
+          ...(resolvedActivitySource ? { resolvedActivitySource } : {}),
+          ...(Number.isFinite(revitVersionMajor) ? { revitVersionMajor } : {}),
+          ...(cloudModel ? { cloudModel } : {}),
+        });
+      } catch {
+        if (cancelled) return;
+        setSelectedModelDaContext(null);
+      } finally {
+        if (!cancelled) {
+          setLoadingSelectedModelDaContext(false);
+        }
+      }
+    };
+    void fetchDaContext();
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedProject, selectedModelData]);
+
+  useEffect(() => {
+    if (!selectedHub || !selectedProject) {
+      setProjectBrowserRoots([]);
+      setProjectBrowserError("");
+      setProjectBrowserWarning("");
+      return;
+    }
+    if (workspaceMode !== "model" || workspaceTab !== "folders") return;
+    void loadProjectBrowser(selectedHub, selectedProject);
+  }, [selectedHub, selectedProject, workspaceMode, workspaceTab, loadProjectBrowser]);
 
   useEffect(() => {
     void loadModelData();
@@ -787,125 +1301,211 @@ export function AppClient() {
   }
 
   async function onSendChat() {
+    if (chatPending) return;
     const msg = chatInput.trim();
     if (!msg) return;
+    const requestId = activeChatRequestIdRef.current + 1;
+    activeChatRequestIdRef.current = requestId;
+    const controller = new AbortController();
+    chatAbortControllerRef.current = controller;
     setChatInput("");
     setChatLog((prev) => [...prev, `You: ${msg}`]);
     setError("");
+    setChatPending(true);
 
-    const chatBody = {
-      message: msg,
-      chatHistory: chatLog.slice(-8),
-      selectedModelName: selectedModelData?.name ?? "no model selected",
-      selectedModelUrn: selectedModelData?.viewerUrn ?? undefined,
-      selectedHubId: selectedHub || undefined,
-      selectedProjectId: selectedProject || undefined,
-      selectedItemId: selectedModelData?.itemId ?? undefined,
-      selectedDbIds,
-      selectedCount: selectedDbIds.length,
-      selectedElements,
-      discoveryCachedSelection: discoveryCachedSelection ?? undefined,
-      lastDaJob: lastDaJob ?? undefined,
-      assistantMode,
-      aiProvider,
-      aiModel,
-      workspaceMode,
-      productAnalysis: {
-        rulesText: "",
-        selectedDesignFile: selectedDesignFileData,
-        selectedProduct: primaryDesignProduct,
-        analysisInputs,
-        selectionContext: {
-          hubId: selectedHub || "",
-          hubName: selectedHubData?.name ?? "",
-          projectId: selectedProject || "",
-          projectNumber: selectedProjectNumber,
-          projectName: selectedProjectData?.name ?? "",
-          modelItemId: selectedModelData?.itemId ?? "",
-          modelVersionId: selectedModelData?.versionId ?? "",
-          modelName: selectedModelData?.name ?? "",
-          modelUrn: selectedModelData?.viewerUrn ?? "",
+    try {
+      const chatBody = {
+        message: msg,
+        chatHistory: chatLog.slice(-8),
+        selectedModelName: selectedModelData?.name ?? "no model selected",
+        selectedModelUrn: selectedModelData?.viewerUrn ?? undefined,
+        selectedHubId: selectedHub || undefined,
+        selectedProjectId: selectedProject || undefined,
+        selectedItemId: selectedModelData?.itemId ?? undefined,
+        selectedDbIds,
+        selectedCount: selectedDbIds.length,
+        selectedElements,
+        bimSelectionContext: chatBimSelectionContext,
+        discoveryCachedSelection: discoveryCachedSelection ?? undefined,
+        lastDaJob: lastDaJob ?? undefined,
+        daExecutionContext: selectedModelDaContext ?? undefined,
+        assistantMode,
+        aiProvider,
+        aiModel,
+        workspaceMode,
+        productAnalysis: {
+          rulesText: "",
+          selectedDesignFile: selectedDesignFileData,
+          selectedProduct: primaryDesignProduct,
+          analysisInputs,
+          selectionContext: {
+            hubId: selectedHub || "",
+            hubName: selectedHubData?.name ?? "",
+            projectId: selectedProject || "",
+            projectNumber: selectedProjectNumber,
+            projectName: selectedProjectData?.name ?? "",
+            modelItemId: selectedModelData?.itemId ?? "",
+            modelVersionId: selectedModelData?.versionId ?? "",
+            modelName: selectedModelData?.name ?? "",
+            modelUrn: selectedModelData?.viewerUrn ?? "",
+          },
         },
-      },
     };
-    aiBrowserDebug("chat:request", {
-      message: msg,
-      selectedCount: selectedDbIds.length,
-      selectedElementsSample: selectedElements.slice(0, 5).map((e) => ({
-        dbId: e.dbId,
-        externalId: e.externalId,
-        name: e.name,
-        propCount: e.properties?.length ?? 0,
-      })),
-      discovery: discoveryCachedSelection
-        ? {
-            cache_id: discoveryCachedSelection.cache_id,
-            externalIds: discoveryCachedSelection.externalIds.length,
-            selection_rules: discoveryCachedSelection.selection_rules,
-          }
-        : null,
-      lastDaJob: lastDaJob ?? null,
-    });
+      aiBrowserDebug("chat:request", {
+        message: msg,
+        selectedCount: selectedDbIds.length,
+        selectedElementsSample: selectedElements.slice(0, 5).map((e) => ({
+          dbId: e.dbId,
+          externalId: e.externalId,
+          name: e.name,
+          propCount: e.properties?.length ?? 0,
+        })),
+        bimSelectionContext: chatBimSelectionContext
+          ? {
+              count: chatBimSelectionContext.count,
+              withControlMark: chatBimSelectionContext.withControlMark,
+              withControlNumber: chatBimSelectionContext.withControlNumber,
+              sampleCount: chatBimSelectionContext.sample.length,
+            }
+          : null,
+        discovery: discoveryCachedSelection
+          ? {
+              cache_id: discoveryCachedSelection.cache_id,
+              externalIds: discoveryCachedSelection.externalIds.length,
+              selection_rules: discoveryCachedSelection.selection_rules,
+            }
+          : null,
+        lastDaJob: lastDaJob ?? null,
+        daExecutionContext: selectedModelDaContext
+          ? {
+              source: selectedModelDaContext.resolvedActivitySource ?? "",
+              activityId: selectedModelDaContext.resolvedActivityId ?? "",
+              revitVersionMajor: selectedModelDaContext.revitVersionMajor ?? null,
+              cloudModelReady: Boolean(selectedModelDaContext.cloudModel),
+              loading: loadingSelectedModelDaContext,
+            }
+          : null,
+      });
 
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(chatBody),
-    });
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(chatBody),
+        signal: controller.signal,
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
+        setError("Chat request failed");
+        return;
+      }
+
+      const json = (await response.json()) as {
+        message: string;
+        actions: ViewerAction[];
+        requestId?: string;
+        queryResult?: { views?: Array<{ guid: string; name: string; role: string }> };
+        discoveryCachedSelection?: DiscoveryCachedSelection | null;
+        lastDaJob?: {
+          workitem_id: string;
+          submitted_at?: string;
+          cache_id?: string;
+          operation?: string;
+        } | null;
+      };
+      aiBrowserDebug("chat:response", {
+        requestId: json.requestId,
+        messagePreview: json.message?.slice(0, 400),
+        actions: json.actions,
+        discoveryOut: json.discoveryCachedSelection
+          ? {
+              cache_id: json.discoveryCachedSelection.cache_id,
+              externalIds: json.discoveryCachedSelection.externalIds.length,
+              selection_rules: json.discoveryCachedSelection.selection_rules,
+            }
+          : null,
+        lastDaJob: json.lastDaJob ?? null,
+      });
+      setDiscoveryCachedSelection((prev) =>
+        "discoveryCachedSelection" in json
+          ? (json.discoveryCachedSelection ?? null)
+          : prev,
+      );
+      setLastDaJob((prev) =>
+        "lastDaJob" in json ? (json.lastDaJob ?? null) : prev,
+      );
+      setChatLog((prev) => [...prev, `AI: ${json.message}`]);
+      if (json.queryResult?.views?.length) {
+        const viewCount = json.queryResult.views.length;
+        const preview = json.queryResult.views
+          .slice(0, 5)
+          .map((v) => `${v.name} (${v.role})`)
+          .join(", ");
+        setChatLog((prev) => [
+          ...prev,
+          `AI Views: ${preview}${viewCount > 5 ? " ..." : ""}`,
+        ]);
+      }
+      setViewerActions(json.actions ?? []);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        return;
+      }
       setError("Chat request failed");
+    } finally {
+      if (activeChatRequestIdRef.current === requestId) {
+        chatAbortControllerRef.current = null;
+        setChatPending(false);
+      }
+    }
+  }
+
+  function onStopChat() {
+    if (!chatPending) return;
+    activeChatRequestIdRef.current += 1;
+    chatAbortControllerRef.current?.abort();
+    chatAbortControllerRef.current = null;
+    setChatPending(false);
+    setChatLog((prev) => [...prev, "AI: Request interrupted by user."]);
+  }
+
+  const resizeChatTextarea = useCallback((el: HTMLTextAreaElement | null) => {
+    if (!el) return;
+    el.style.height = `${CHAT_INPUT_MIN_HEIGHT_PX}px`;
+    const nextHeight = Math.min(
+      Math.max(el.scrollHeight, CHAT_INPUT_MIN_HEIGHT_PX),
+      CHAT_INPUT_MAX_HEIGHT_PX,
+    );
+    el.style.height = `${nextHeight}px`;
+    el.style.overflowY =
+      el.scrollHeight > CHAT_INPUT_MAX_HEIGHT_PX ? "auto" : "hidden";
+  }, []);
+
+  const handleChatInputChange = useCallback(
+    (value: string, source: "model" | "admin") => {
+      setChatInput(value);
+      if (source === "model") {
+        resizeChatTextarea(modelChatInputRef.current);
+      } else {
+        resizeChatTextarea(adminChatInputRef.current);
+      }
+    },
+    [resizeChatTextarea],
+  );
+
+  function handleChatInputKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      void onSendChat();
+    }
+  }
+
+  useEffect(() => {
+    if (workspaceMode === "admin") {
+      resizeChatTextarea(adminChatInputRef.current);
       return;
     }
-
-    const json = (await response.json()) as {
-      message: string;
-      actions: ViewerAction[];
-      requestId?: string;
-      queryResult?: { views?: Array<{ guid: string; name: string; role: string }> };
-      discoveryCachedSelection?: DiscoveryCachedSelection | null;
-      lastDaJob?: {
-        workitem_id: string;
-        submitted_at?: string;
-        cache_id?: string;
-        operation?: string;
-      } | null;
-    };
-    aiBrowserDebug("chat:response", {
-      requestId: json.requestId,
-      messagePreview: json.message?.slice(0, 400),
-      actions: json.actions,
-      discoveryOut: json.discoveryCachedSelection
-        ? {
-            cache_id: json.discoveryCachedSelection.cache_id,
-            externalIds: json.discoveryCachedSelection.externalIds.length,
-            selection_rules: json.discoveryCachedSelection.selection_rules,
-          }
-        : null,
-      lastDaJob: json.lastDaJob ?? null,
-    });
-    setDiscoveryCachedSelection((prev) =>
-      "discoveryCachedSelection" in json
-        ? (json.discoveryCachedSelection ?? null)
-        : prev,
-    );
-    setLastDaJob((prev) =>
-      "lastDaJob" in json ? (json.lastDaJob ?? null) : prev,
-    );
-    setChatLog((prev) => [...prev, `AI: ${json.message}`]);
-    if (json.queryResult?.views?.length) {
-      const viewCount = json.queryResult.views.length;
-      const preview = json.queryResult.views
-        .slice(0, 5)
-        .map((v) => `${v.name} (${v.role})`)
-        .join(", ");
-      setChatLog((prev) => [
-        ...prev,
-        `AI Views: ${preview}${viewCount > 5 ? " ..." : ""}`,
-      ]);
-    }
-    setViewerActions(json.actions ?? []);
-  }
+    resizeChatTextarea(modelChatInputRef.current);
+  }, [chatInput, resizeChatTextarea, workspaceMode]);
 
   async function onCreateIssue() {
     const title = newIssueTitle.trim();
@@ -1260,7 +1860,7 @@ export function AppClient() {
           <select
             value={selectedProject}
             onChange={(e) => setSelectedProject(e.target.value)}
-            disabled={!selectedHub || loadingProjects}
+            disabled={!selectedHub || loadingProjects || workspaceMode === "admin"}
             className="rounded border px-2 py-2 text-black disabled:text-gray-500 bg-white"
           >
             <option value="">
@@ -1279,7 +1879,9 @@ export function AppClient() {
           <select
             value={selectedModel}
             onChange={(e) => setSelectedModel(e.target.value)}
-            disabled={!selectedProject || loadingModels}
+            disabled={
+              !selectedProject || loadingModels || workspaceMode === "admin"
+            }
             className="rounded border px-2 py-2 text-black disabled:text-gray-500 bg-white"
           >
             <option value="">
@@ -1309,7 +1911,7 @@ export function AppClient() {
                 workspaceMode === "model" ? "bg-black text-white" : "bg-white"
               }`}
             >
-              Model
+              Project
             </button>
             <button
               onClick={() => setWorkspaceMode("product-analysis")}
@@ -1320,6 +1922,14 @@ export function AppClient() {
               }`}
             >
               Product Analysis
+            </button>
+            <button
+              onClick={() => setWorkspaceMode("admin")}
+              className={`rounded border px-2 py-1 text-xs ${
+                workspaceMode === "admin" ? "bg-black text-white" : "bg-white"
+              }`}
+            >
+              Admin
             </button>
           </div>
           <button
@@ -1393,35 +2003,57 @@ export function AppClient() {
                   </p>
                 ))
               )}
+              {chatPending ? (
+                <p className="mt-2 text-xs text-gray-600">AI: Alice is thinking...</p>
+              ) : null}
             </div>
             <div className="flex gap-2">
-              <input
+              <textarea
+                ref={modelChatInputRef}
                 value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") void onSendChat();
-                }}
-                className="flex-1 rounded border px-3 py-2 text-sm text-black placeholder:text-gray-600"
+                rows={1}
+                onChange={(e) => handleChatInputChange(e.target.value, "model")}
+                disabled={chatPending}
+                onKeyDown={handleChatInputKeyDown}
+                className="min-h-[40px] flex-1 resize-none rounded border px-3 py-2 text-sm text-black placeholder:text-gray-600"
                 placeholder="Ask the model..."
               />
               <button
-                onClick={() => void onSendChat()}
-                className="rounded bg-black px-3 py-2 text-sm text-white hover:bg-gray-800"
+                onClick={() => {
+                  if (chatPending) onStopChat();
+                  else void onSendChat();
+                }}
+                className={`rounded px-3 py-2 text-sm text-white ${
+                  chatPending
+                    ? "bg-red-700 hover:bg-red-800"
+                    : "bg-black hover:bg-gray-800"
+                }`}
               >
-                Send
+                {chatPending ? "Stop" : "Send"}
               </button>
             </div>
             </section>
 
             <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
             <div className="mb-2 flex items-center gap-2">
+              <span className="mr-auto text-xs font-medium text-gray-600">
+                Project Tabs
+              </span>
+              <button
+                onClick={() => setWorkspaceTab("folders")}
+                className={`rounded border px-2 py-1 text-xs ${
+                  workspaceTab === "folders" ? "bg-black text-white" : "bg-white"
+                }`}
+              >
+                Folders
+              </button>
               <button
                 onClick={() => setWorkspaceTab("viewer")}
                 className={`rounded border px-2 py-1 text-xs ${
                   workspaceTab === "viewer" ? "bg-black text-white" : "bg-white"
                 }`}
               >
-                Viewer
+                Model
               </button>
               <button
                 onClick={() => setWorkspaceTab("model-data")}
@@ -1460,12 +2092,82 @@ export function AppClient() {
               </button>
             </div>
 
+            {workspaceTab === "folders" ? (
+              <div className="min-h-0 flex-1 overflow-hidden rounded border border-black/10 bg-gray-50 p-2">
+                <div className="grid h-full min-h-0 grid-cols-[minmax(250px,1fr)_minmax(0,2fr)] gap-2">
+                  <div className="min-h-0 overflow-auto rounded border border-black/10 bg-white p-2 text-xs">
+                    {!selectedProject ? (
+                      <p>Select a project to load folders and files.</p>
+                    ) : loadingProjectBrowser ? (
+                      <p>Loading folders and files...</p>
+                    ) : projectBrowserError ? (
+                      <p className="text-red-700">{projectBrowserError}</p>
+                    ) : projectBrowserRoots.length === 0 ? (
+                      <p>No folders were returned for this project.</p>
+                    ) : (
+                      <div className="space-y-1">
+                        {projectBrowserWarning ? (
+                          <p className="mb-2 rounded border border-amber-300 bg-amber-50 px-2 py-1 text-[11px] text-amber-900">
+                            {projectBrowserWarning}
+                          </p>
+                        ) : null}
+                        {renderProjectBrowserNodes(projectBrowserRoots)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-h-0 overflow-hidden rounded border border-black/10 bg-white p-2">
+                    {selectedProjectBrowserNode?.kind === "file" ? (
+                      <div className="mb-2 rounded border border-black/10 bg-gray-50 px-2 py-1 text-xs">
+                        <div className="font-semibold">{selectedProjectBrowserNode.name}</div>
+                        {selectedProjectBrowserFileExtension ? (
+                          <div className="text-[11px] text-gray-700">
+                            {selectedProjectBrowserFileExtension}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : (
+                      <div className="mb-2 rounded border border-black/10 bg-gray-50 px-2 py-1 text-xs text-gray-700">
+                        Select a file in the project browser to preview it.
+                      </div>
+                    )}
+                    {selectedProjectBrowserViewerUrn ? (
+                      <div className="h-[calc(100%-40px)] min-h-0">
+                        <ViewerPanel
+                          ref={viewerPanelRef}
+                          mode="minimal"
+                          viewerUrn={selectedProjectBrowserViewerUrn}
+                          isActive={workspaceMode === "model" && workspaceTab === "folders"}
+                          actions={
+                            workspaceMode === "model" && workspaceTab === "folders"
+                              ? viewerActions
+                              : []
+                          }
+                          onActionComplete={() => setViewerActions([])}
+                          onViewerFeedback={debouncedSetChatLog}
+                          onSelectionChange={setSelectedDbIds}
+                          onSelectionDetails={setSelectedElements}
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-[calc(100%-40px)] min-h-0 items-center justify-center rounded border border-dashed border-black/20 text-xs text-gray-600">
+                        Select a viewable model file to open preview.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
             <div className={workspaceTab === "viewer" ? "min-h-0 flex-1" : "hidden min-h-0 flex-1"}>
               <ViewerPanel
                 ref={viewerPanelRef}
                 viewerUrn={selectedModelData?.viewerUrn ?? null}
                 isActive={workspaceMode === "model" && workspaceTab === "viewer"}
-                actions={viewerActions}
+                actions={
+                  workspaceMode === "model" && workspaceTab === "viewer"
+                    ? viewerActions
+                    : []
+                }
                 onActionComplete={() => setViewerActions([])}
                 onViewerFeedback={debouncedSetChatLog}
                 onSelectionChange={setSelectedDbIds}
@@ -1527,36 +2229,107 @@ export function AppClient() {
                 ) : loadingElementData ? (
                   <p>Loading AEC element data...</p>
                 ) : elementDataRows.length > 0 ? (
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr>
-                        <th className="border border-black/10 px-2 py-1 text-left">
-                          Key
-                        </th>
-                        <th className="border border-black/10 px-2 py-1 text-left">
-                          Value
-                        </th>
-                        <th className="border border-black/10 px-2 py-1 text-left">
-                          Source
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {elementDataRows.map((r, idx) => (
-                        <tr key={`${r.key}-${idx}`}>
-                          <td className="border border-black/10 px-2 py-1 align-top">
-                            {r.key}
-                          </td>
-                          <td className="border border-black/10 px-2 py-1 align-top">
-                            {r.value}
-                          </td>
-                          <td className="border border-black/10 px-2 py-1 align-top">
-                            {r.source}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                  <div className="space-y-3">
+                    <section className="rounded border border-black/10 bg-white p-2">
+                      <h4 className="mb-2 text-sm font-semibold">Identity</h4>
+                      {elementIdentityRows.length > 0 ? (
+                        <table className="w-full border-collapse">
+                          <thead>
+                            <tr>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Field
+                              </th>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Value
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {elementIdentityRows.map((r, idx) => (
+                              <tr key={`${r.key}-${idx}`}>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.key}
+                                </td>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.value}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      ) : (
+                        <p className="text-xs text-gray-600">No identity rows returned.</p>
+                      )}
+                    </section>
+
+                    <section className="rounded border border-black/10 bg-white p-2">
+                      <h4 className="mb-2 text-sm font-semibold">Parameters</h4>
+                      {elementParameterRows.length > 0 ? (
+                        <table className="w-full border-collapse">
+                          <thead>
+                            <tr>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Parameter
+                              </th>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Value
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {elementParameterRows.map((r, idx) => (
+                              <tr key={`${r.key}-${idx}`}>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.key.replace(/^parameter\./, "")}
+                                </td>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.value}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      ) : (
+                        <p className="text-xs text-gray-600">No parameter rows returned.</p>
+                      )}
+                    </section>
+
+                    {elementDiagnosticRows.length > 0 ? (
+                      <section className="rounded border border-black/10 bg-white p-2">
+                        <h4 className="mb-2 text-sm font-semibold">Diagnostics</h4>
+                        <table className="w-full border-collapse">
+                          <thead>
+                            <tr>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Key
+                              </th>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Value
+                              </th>
+                              <th className="border border-black/10 px-2 py-1 text-left">
+                                Source
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {elementDiagnosticRows.map((r, idx) => (
+                              <tr key={`${r.key}-${idx}`}>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.key}
+                                </td>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.value}
+                                </td>
+                                <td className="border border-black/10 px-2 py-1 align-top">
+                                  {r.source}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </section>
+                    ) : null}
+                  </div>
                 ) : (
                   selectedElements.map((el) => (
                     <div
@@ -1704,7 +2477,7 @@ export function AppClient() {
             <div className="min-h-0 flex-1 overflow-auto p-2">
               {bimTableRows.length === 0 ? (
                 <p className="py-4 text-center text-sm text-gray-600">
-                  Select elements in the Viewer tab to populate this table.
+                  Select elements in the Model tab to populate this table.
                 </p>
               ) : (
                 <table className="w-full min-w-[720px] border-collapse text-sm text-black">
@@ -2092,6 +2865,106 @@ export function AppClient() {
                 )}
               </div>
             </section>
+          </div>
+
+          <div
+            className={`${
+              workspaceMode === "admin" ? "grid" : "hidden"
+            } min-h-0 grid-rows-1 ${
+              workspaceExpanded ? "h-[calc(100%-2.25rem)]" : "h-[72vh] min-h-[780px]"
+            }`}
+          >
+            <div className="grid h-full min-h-0 grid-cols-[minmax(280px,1fr)_minmax(0,3fr)] gap-3 overflow-hidden">
+              <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
+                <h3 className="mb-2 text-sm font-semibold">AI Chat</h3>
+                <div className="mb-2 grid grid-cols-3 gap-2">
+                  <div className="flex flex-col gap-1 text-xs">
+                    <span className="font-medium">Assistant</span>
+                    <div className="rounded border px-2 py-1.5 text-black bg-white">
+                      Alice
+                    </div>
+                  </div>
+                  <label className="flex flex-col gap-1 text-xs">
+                    <span className="font-medium">Service</span>
+                    <select
+                      value={aiProvider}
+                      onChange={(e) => {
+                        const nextProvider = e.target.value as AiProvider;
+                        setAiProvider(nextProvider);
+                        setAiModel(AI_MODEL_OPTIONS[nextProvider][0]);
+                      }}
+                      className="rounded border px-2 py-1.5 text-black bg-white"
+                    >
+                      <option value="xai">xAI (Grok)</option>
+                      <option value="openai">OpenAI</option>
+                      <option value="cursor">Cursor Beta</option>
+                    </select>
+                  </label>
+                  <label className="flex flex-col gap-1 text-xs">
+                    <span className="font-medium">Model</span>
+                    <select
+                      value={aiModel}
+                      onChange={(e) => setAiModel(e.target.value)}
+                      className="rounded border px-2 py-1.5 text-black bg-white"
+                    >
+                      {aiModelOptions.map((modelName) => (
+                        <option key={modelName} value={modelName}>
+                          {modelName}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className="mb-2 min-h-0 flex-1 overflow-y-auto rounded border border-black/10 bg-gray-50 p-2 text-sm text-black">
+                  {chatLog.length === 0 ? (
+                    <p className="text-black">
+                      Ask things like: &quot;list projects in this hub&quot;,
+                      &quot;add user@company.com to Project A&quot;, or
+                      &quot;show project admin summary&quot;.
+                    </p>
+                  ) : (
+                    chatLog.map((line, idx) => (
+                      <p key={`${line}-${idx}`} className="mb-1">
+                        {line}
+                      </p>
+                    ))
+                  )}
+                  {chatPending ? (
+                    <p className="mt-2 text-xs text-gray-600">AI: Alice is thinking...</p>
+                  ) : null}
+                </div>
+                <div className="flex gap-2">
+                  <textarea
+                    ref={adminChatInputRef}
+                    value={chatInput}
+                    rows={1}
+                    onChange={(e) => handleChatInputChange(e.target.value, "admin")}
+                    disabled={chatPending}
+                    onKeyDown={handleChatInputKeyDown}
+                    className="min-h-[40px] flex-1 resize-none rounded border px-3 py-2 text-sm text-black placeholder:text-gray-600"
+                    placeholder="Ask admin tasks..."
+                  />
+                  <button
+                    onClick={() => {
+                      if (chatPending) onStopChat();
+                      else void onSendChat();
+                    }}
+                    className={`rounded px-3 py-2 text-sm text-white ${
+                      chatPending
+                        ? "bg-red-700 hover:bg-red-800"
+                        : "bg-black hover:bg-gray-800"
+                    }`}
+                  >
+                    {chatPending ? "Stop" : "Send"}
+                  </button>
+                </div>
+              </section>
+
+              <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
+                <h3 className="mb-2 text-sm font-semibold">Admin Workspace</h3>
+                <div className="min-h-0 flex-1 rounded border border-dashed border-black/20 bg-gray-50" />
+              </section>
+            </div>
           </div>
       </div>
       {showDesignFileModal ? (

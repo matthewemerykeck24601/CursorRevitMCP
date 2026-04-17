@@ -11,6 +11,26 @@ export type InferredDaUpdate = {
   value?: string;
 };
 
+function normalizeDaParamName(raw: string): string {
+  const t = raw.trim();
+  if (!t) return "";
+  const upper = t.toUpperCase();
+  if (
+    upper === "MARK" ||
+    upper === "MARKS" ||
+    upper === "PIECE_MARK" ||
+    upper === "PIECE_MARKS" ||
+    upper === "CONTROL MARK" ||
+    upper === "CONTROL_MARKS"
+  ) {
+    return "CONTROL_MARK";
+  }
+  if (upper === "CONTROL NUMBER" || upper === "CONTROL_NUMBERS") {
+    return "CONTROL_NUMBER";
+  }
+  return upper.replace(/\s+/g, "_");
+}
+
 /** When discovery exists, treat common edit verbs as immediate execution (no second confirm). */
 export function shouldAutoExecuteDesignAutomation(
   userMessage: string,
@@ -62,7 +82,8 @@ export function sanitizeDaUpdatesArray(raw: unknown): InferredDaUpdate[] {
             : "";
     const actionRaw =
       typeof r.action === "string" ? r.action.trim().toLowerCase() : "";
-    if (!paramNameRaw) continue;
+    const paramName = normalizeDaParamName(paramNameRaw);
+    if (!paramName) continue;
     if (actionRaw !== "clear" && actionRaw !== "set" && actionRaw !== "toggle") {
       continue;
     }
@@ -72,7 +93,7 @@ export function sanitizeDaUpdatesArray(raw: unknown): InferredDaUpdate[] {
       typeof v === "string" || typeof v === "number" || typeof v === "boolean"
         ? String(v)
         : undefined;
-    const u: InferredDaUpdate = { paramName: paramNameRaw, action };
+    const u: InferredDaUpdate = { paramName, action };
     if (action === "set" && value !== undefined) u.value = value;
     out.push(u);
   }
@@ -110,7 +131,10 @@ export function inferDaUpdatesFromUserMessage(
     /\bclear\b\s+(?:the\s+)?(?:param(?:eter)?\s+)?([A-Z0-9_]{2,})\b/i,
   );
   if (namedClear?.[1] && !/^(THE|ALL|ANY)\b/i.test(namedClear[1])) {
-    return [{ paramName: namedClear[1].trim(), action: "clear" }];
+    const normalized = normalizeDaParamName(namedClear[1]);
+    if (normalized) {
+      return [{ paramName: normalized, action: "clear" }];
+    }
   }
   if (impliesControlMarkClear(userMessage)) {
     return [{ paramName: "CONTROL_MARK", action: "clear" }];
@@ -133,9 +157,11 @@ export function inferDaUpdatesFromUserMessage(
     /\bset\b\s+([A-Z0-9_]+)\s+to\s+['"]?([^'"\n]+?)['"]?(?:\s|$)/i,
   );
   if (setParam?.[1] && setParam[2]) {
+    const normalized = normalizeDaParamName(setParam[1]);
+    if (!normalized) return [];
     return [
       {
-        paramName: setParam[1].trim(),
+        paramName: normalized,
         action: "set",
         value: setParam[2].trim(),
       },

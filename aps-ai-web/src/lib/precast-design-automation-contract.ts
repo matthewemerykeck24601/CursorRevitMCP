@@ -74,6 +74,7 @@ function parseCloudModelArgument(raw: unknown): {
   region: string;
   projectGuid: string;
   modelGuid: string;
+  revitVersionMajor?: number;
 } | null {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
   const o = raw as Record<string, unknown>;
@@ -82,7 +83,16 @@ function parseCloudModelArgument(raw: unknown): {
     typeof o.projectGuid === "string" ? o.projectGuid.trim() : "";
   const modelGuid = typeof o.modelGuid === "string" ? o.modelGuid.trim() : "";
   if (!region || !projectGuid || !modelGuid) return null;
-  return { region, projectGuid, modelGuid };
+  const revitVersionRaw = Number(o.revitVersionMajor);
+  const revitVersionMajor = Number.isFinite(revitVersionRaw)
+    ? Math.trunc(revitVersionRaw)
+    : undefined;
+  return {
+    region,
+    projectGuid,
+    modelGuid,
+    ...(revitVersionMajor ? { revitVersionMajor } : {}),
+  };
 }
 
 function parsePrefix(raw: unknown): ProductPrefix {
@@ -321,12 +331,23 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
   const cloudModelArgument = parseCloudModelArgument(
     o.cloud_model ?? o.cloudModel,
   );
+  const requireCloudModel =
+    o.require_cloud_model === true || o.requireCloudModel === true;
   const adsk3LeggedToken =
     typeof o.adsk3legged_token === "string" && o.adsk3legged_token.trim()
       ? o.adsk3legged_token.trim()
       : typeof o.adsk3LeggedToken === "string" && o.adsk3LeggedToken.trim()
         ? o.adsk3LeggedToken.trim()
         : "";
+  if (requireCloudModel && !cloudModelArgument) {
+    return {
+      success: false as const,
+      workitem_submitted: false as const,
+      revit_cloud_model_updated: false as const,
+      message:
+        "RCW guard: cloud_model metadata is required for this operation, but it was unavailable. No local-file fallback was used.",
+    };
+  }
   if (cloudModelArgument && !adsk3LeggedToken) {
     return {
       success: false as const,
@@ -334,6 +355,15 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
       revit_cloud_model_updated: false as const,
       message:
         "RCW mode requires adsk3legged_token (scope code:all). Cloud model metadata was provided but no user token was included.",
+    };
+  }
+  if (!inputFileArgument?.url) {
+    return {
+      success: false as const,
+      workitem_submitted: false as const,
+      revit_cloud_model_updated: false as const,
+      message:
+        "Design Automation inputFile is unavailable for this model/version. Resolve OSS download URL before submit.",
     };
   }
 
@@ -506,7 +536,7 @@ export async function triggerDesignAutomationMarkUpdateContract(raw: unknown) {
     status: "stub" as const,
     da_mode,
     message:
-      "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true, DA_ACTIVITY_ID, and APS credentials (scope code:all) to post real workitems.",
+      "DA_ENABLED is not true — no cloud workitem was posted. The ACC/Revit central model file was NOT modified. Set DA_ENABLED=true and configure DA_ACTIVITY_ID (or DA_ACTIVITY_ID_2024/2025/2026/2027, optionally DA_ACTIVITY_ID_NET8/NET10) with APS credentials (scope code:all).",
     applied_marks: applied_marks_preview,
     note: "No cloud write occurred. Revit parameters are unchanged by this action.",
     execution_assistant_hint:

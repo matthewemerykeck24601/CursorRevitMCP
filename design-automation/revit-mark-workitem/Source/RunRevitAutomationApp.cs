@@ -511,7 +511,7 @@ internal static class RevitAutomationDispatcher
         foreach (var u in updates)
         {
             if (u is not JObject row) continue;
-            var paramName = row["paramName"]?.ToString()?.Trim();
+            var paramName = NormalizeIncomingParamName(row["paramName"]?.ToString());
             var action = row["action"]?.ToString()?.Trim()?.ToLowerInvariant();
             if (string.IsNullOrEmpty(paramName) || string.IsNullOrEmpty(action)) continue;
             if (action != "clear" && action != "set" && action != "toggle") continue;
@@ -798,6 +798,18 @@ internal static class RevitAutomationDispatcher
         ((JObject)audit["summary"]!)["unique_elements_resolved_modify"] = uniqueResolved.Count;
     }
 
+    private static string NormalizeIncomingParamName(string raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+            return "";
+        var up = raw.Trim().ToUpperInvariant().Replace(" ", "_");
+        if (up == "MARK" || up == "MARKS" || up == "PIECE_MARK" || up == "PIECE_MARKS" || up == "CONTROL_MARKS")
+            return "CONTROL_MARK";
+        if (up == "CONTROL_NUMBERS")
+            return "CONTROL_NUMBER";
+        return up;
+    }
+
     /// <summary>Prefer API <see cref="Parameter.ClearValue"/>; fall back to type-specific clears.</summary>
     private static void ApplyClearParameter(Parameter p, Action<string, string> log, Element target, string paramName)
     {
@@ -992,6 +1004,9 @@ internal static class RevitAutomationDispatcher
         try
         {
             swc["attempted"] = true;
+            // In DA cloud-opened docs, STC can fail with "Without Save" if Revit expects
+            // an explicit save point before synchronization.
+            TrySaveBeforeSwc(doc, swc, log, phase: "before_sync");
             var twc = new TransactWithCentralOptions();
             var opts = new SynchronizeWithCentralOptions
             {
@@ -1006,10 +1021,56 @@ internal static class RevitAutomationDispatcher
         }
         catch (Exception ex)
         {
+            // Recover common cloud-worksharing failure once by adding an explicit save.
+            if ((ex.Message ?? "").IndexOf("Without Save", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                log("warning", $"SynchronizeWithCentral first attempt failed ({ex.Message}); trying save+retry.");
+                TrySaveBeforeSwc(doc, swc, log, phase: "retry_after_without_save");
+                try
+                {
+                    var twcRetry = new TransactWithCentralOptions();
+                    var optsRetry = new SynchronizeWithCentralOptions
+                    {
+                        Comment = "Design Automation — run_revit_automation (retry)",
+                        SaveLocalBefore = true,
+                        SaveLocalAfter = true,
+                    };
+                    doc.SynchronizeWithCentral(twcRetry, optsRetry);
+                    swc["status"] = "ok_after_retry";
+                    swc["retry_reason"] = "STC Without Save";
+                    log("info", "SynchronizeWithCentral completed on retry after explicit save.");
+                    return true;
+                }
+                catch (Exception retryEx)
+                {
+                    swc["status"] = "failed";
+                    swc["error"] = retryEx.Message;
+                    swc["retry_reason"] = "STC Without Save";
+                    log("warning", $"SynchronizeWithCentral retry failed: {retryEx.Message}");
+                    return true;
+                }
+            }
+
             swc["status"] = "failed";
             swc["error"] = ex.Message;
             log("warning", $"SynchronizeWithCentral failed: {ex.Message}");
             return true;
+        }
+    }
+
+    private static void TrySaveBeforeSwc(Document doc, JObject swc, Action<string, string> log, string phase)
+    {
+        try
+        {
+            doc.Save();
+            swc[$"save_{phase}"] = "ok";
+            log("info", $"Document save succeeded ({phase}).");
+        }
+        catch (Exception saveEx)
+        {
+            swc[$"save_{phase}"] = "failed";
+            swc[$"save_{phase}_error"] = saveEx.Message;
+            log("warning", $"Document save failed ({phase}): {saveEx.Message}");
         }
     }
 
@@ -1020,7 +1081,24 @@ internal static class RevitAutomationDispatcher
             return matches[0];
         if (matches.Count > 1)
             return PickParameterWhenDuplicateName(matches, sharedGuidMap, parameterName);
-        return target.LookupParameter(parameterName);
+        var direct = target.LookupParameter(parameterName);
+        if (direct != null)
+            return direct;
+
+        // Fallback: many Revit schemas store editable shared params on the element TYPE.
+        var typeId = target.GetTypeId();
+        if (typeId == ElementId.InvalidElementId)
+            return null;
+        var typeEl = target.Document.GetElement(typeId);
+        if (typeEl == null)
+            return null;
+
+        var typeMatches = FindParametersWithDefinitionName(typeEl, parameterName);
+        if (typeMatches.Count == 1)
+            return typeMatches[0];
+        if (typeMatches.Count > 1)
+            return PickParameterWhenDuplicateName(typeMatches, sharedGuidMap, parameterName);
+        return typeEl.LookupParameter(parameterName);
     }
 
     private static List<Parameter> FindParametersWithDefinitionName(Element target, string parameterName)
@@ -1043,17 +1121,27 @@ internal static class RevitAutomationDispatcher
         JObject sharedGuidMap,
         string parameterName)
     {
-        if (sharedGuidMap == null) return null;
-        var gtok = sharedGuidMap[parameterName];
-        var gs = gtok?.ToString();
-        if (string.IsNullOrWhiteSpace(gs) || !Guid.TryParse(gs, out var sg)) return null;
+        if (sharedGuidMap != null)
+        {
+            var gtok = sharedGuidMap[parameterName];
+            var gs = gtok?.ToString();
+            if (!string.IsNullOrWhiteSpace(gs) && Guid.TryParse(gs, out var sg))
+            {
+                foreach (var p in matches)
+                {
+                    if (p.Definition is ExternalDefinition ed && ed.GUID == sg)
+                        return p;
+                }
+            }
+        }
+
         foreach (var p in matches)
         {
-            if (p.Definition is ExternalDefinition ed && ed.GUID == sg)
+            if (!p.IsReadOnly)
                 return p;
         }
 
-        return null;
+        return matches.Count > 0 ? matches[0] : null;
     }
 
     private static Element FindByExternalId(Document doc, string externalId)

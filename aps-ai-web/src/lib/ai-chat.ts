@@ -44,6 +44,12 @@ export type AgentToolName =
   | "model_views"
   | "issues_list"
   | "issues_create"
+  | "admin_add_users_to_projects"
+  | "admin_seed_role_cache"
+  | "admin_list_role_cache"
+  | "admin_seed_reference_cache"
+  | "admin_get_reference_cache_status"
+  | "create_revit_cloud_workshared_model"
   | "get_elements_by_category"
   | "inspect_published_selection"
   | "select_elements"
@@ -514,6 +520,12 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     "model_views",
     "issues_list",
     "issues_create",
+    "admin_add_users_to_projects",
+    "admin_seed_role_cache",
+    "admin_list_role_cache",
+    "admin_seed_reference_cache",
+    "admin_get_reference_cache_status",
+    "create_revit_cloud_workshared_model",
     "get_elements_by_category",
     "inspect_published_selection",
     "select_elements",
@@ -718,7 +730,7 @@ function buildToolPlannerPrompt(
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
     "Then end with a single ```json code block containing ONLY:",
-    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "get_cached_selection" | "model_views" | "issues_list" | "issues_create" | "get_elements_by_category" | "inspect_published_selection" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "poll_design_automation_status" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
+    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "get_cached_selection" | "model_views" | "issues_list" | "issues_create" | "admin_add_users_to_projects" | "admin_seed_role_cache" | "admin_list_role_cache" | "admin_seed_reference_cache" | "admin_get_reference_cache_status" | "create_revit_cloud_workshared_model" | "get_elements_by_category" | "inspect_published_selection" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "poll_design_automation_status" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
     "",
     "Tool selection guidance:",
     '- Use "get_elements_by_category" OR "inspect_published_selection" (Tool A — same implementation) when the user wants to select/find/highlight elements. Args: category?, family?, type?, limit?, product_prefix? (WPA|WPB|CLA|COLUMN|ALL), optional filters name_contains, control_mark_prefix, family_contains; highlight_in_viewer (default true) queues viewer selection; fit_to_view / zoom_to_selection to zoom; isolate_in_viewer to isolate. Requires hub/project/model context.',
@@ -729,6 +741,12 @@ function buildToolPlannerPrompt(
     '- Use "model_views" only when asked for model views/metadata/sheets listing.',
     '- Use "issues_list" when the user asks to list/show/open project issues.',
     '- Use "issues_create" when the user asks to create a new issue.',
+    '- Use "admin_add_users_to_projects" for ACC admin membership actions by project number or business unit. Args: { "project_numbers"?: string[], "business_unit_id"?: string, "business_unit_name"?: string, "emails": string[], "role_names"?: string[], "role_ids"?: string[], "products"?: Array<object>, "region"?: "US"|"EMEA", "dry_run"?: boolean, "cache_only"?: boolean, "additional_user_payload"?: object }. Prefer role_names from user language; backend resolves from hub role cache and project-user discovery.',
+    '- Use "admin_seed_role_cache" when user asks to seed/refresh role GUID library for the selected hub. Args: { "region"?: "US"|"EMEA", "create_request_if_missing"?: boolean }. Default is fail-closed (no extraction trigger when no existing request/job); set create_request_if_missing=true only when the user explicitly asks to start extraction.',
+    '- Use "admin_list_role_cache" when user asks to inspect/show/export the cached hub role GUID library. Args optional: { "limit"?: number }.',
+    '- Use "admin_seed_reference_cache" when user asks to preload/refresh project ID cache for selected hub before bulk admin operations. Args optional: { "include_role_seed"?: boolean, "region"?: "US"|"EMEA" }.',
+    '- Use "admin_get_reference_cache_status" when user asks about cached project/folder/business-unit IDs or needs cache lookup diagnostics. Args optional: { "project_number"?: string, "project_id"?: string, "business_unit_id"?: string, "business_unit_name"?: string, "folder_name"?: string, "limit"?: number }.',
+    '- Use "create_revit_cloud_workshared_model" to create a new workshared Revit cloud model via DA SaveAsCloudModel workflow. Requires selected hub and either project_number or project_id, plus template_key ("METROMONT_WORKING"|"CEG"|"DEVITA"). folder_id is optional: backend auto-resolves Project Files > 001 - Models > 01 - Model (with legacy fallback to 01 - Models > 001 - Model); pass folder_id only when overriding. If template is missing, call tool anyway so backend returns template options to ask user.',
     '- Use "analyze_published_model_and_cache" ONLY when the user wants mark analysis, grouping, verification, or sameness preview — not for simple parameter clears/sets.',
     '- Use "get_cached_mark_analysis" to show latest cached marks/sameness preview (no args).',
     '- Use "trigger_design_automation_mark_update" when the user wants cloud parameter edits and DISCOVERY_CACHED_SELECTION / GET_CACHED_SELECTION shows externalIds: (A) Direct edits — args: { "confirm": true, "skip_analysis": true, "cached_selection" from cache, "updates": [{ paramName, action }], "operation": "modify_parameters", "cache_id" if known }. The server may auto-submit the same when discovery exists — still include this tool when the user explicitly asks to clear/set/sync. (B) Cached marks path — args: { "cache_id", "confirm": true } without skip_analysis when applying proposed mark groups.',

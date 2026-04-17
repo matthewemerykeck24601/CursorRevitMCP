@@ -24,15 +24,15 @@ function readDotEnv(filePath: string): EnvMap {
 }
 
 const projectLocalEnv = readDotEnv(path.join(process.cwd(), ".env.local"));
-const projectEnv = readDotEnv(path.join(process.cwd(), ".env"));
-const parentEnv = readDotEnv(path.join(process.cwd(), "..", ".env"));
 
 function getEnv(name: string, fallback = ""): string {
+  const isProduction = process.env.NODE_ENV === "production";
+  if (!isProduction && projectLocalEnv[name] != null) {
+    return projectLocalEnv[name];
+  }
   return (
-    projectLocalEnv[name] ??
     process.env[name] ??
-    projectEnv[name] ??
-    parentEnv[name] ??
+    projectLocalEnv[name] ??
     fallback
   );
 }
@@ -71,6 +71,15 @@ export const env = {
   daEnabled: getEnv("DA_ENABLED", "").toLowerCase(),
   daRegion: getEnv("DA_REGION", "us-east"),
   daActivityId: getEnv("DA_ACTIVITY_ID"),
+  /** Optional DA activity overrides by Revit major version/runtime track. */
+  daActivityId2024: getEnv("DA_ACTIVITY_ID_2024"),
+  daActivityId2025: getEnv("DA_ACTIVITY_ID_2025"),
+  daActivityId2026: getEnv("DA_ACTIVITY_ID_2026"),
+  daActivityId2027: getEnv("DA_ACTIVITY_ID_2027"),
+  daActivityIdNet8: getEnv("DA_ACTIVITY_ID_NET8"),
+  daActivityIdNet10: getEnv("DA_ACTIVITY_ID_NET10"),
+  /** Dedicated activity for SaveAsCloudModel creation flow. */
+  daActivityIdCreateModel: getEnv("DA_ACTIVITY_ID_CREATE_MODEL"),
   /** When true, skip GET /workitems/:id after submit (saves one round-trip). */
   daSkipWorkitemPoll: getEnv("DA_SKIP_WORKITEM_POLL", "").toLowerCase() === "true",
   /**

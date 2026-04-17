@@ -1,0 +1,76 @@
+{
+  "hubId": "b.f61b9f7b-5481-4d25-a552-365ba99077b8",
+  "updatedAt": "2026-04-17T14:29:29.319Z",
+  "projectsByNumber": {},
+  "foldersByProjectId": {
+    "b.8d49f727-6500-4b8b-9af7-b95618d83edb": {
+      "project files": "urn:adsk.wipprod:fs.folder:co.0L9eaYC5SsG6OklvtLK1eA",
+      "001 - metro model": "urn:adsk.wipprod:fs.folder:co.A4-DIV1TRgCOnWWFds412Q",
+      "002 - linked models": "urn:adsk.wipprod:fs.folder:co.6pSZCtkERaS0XYUwQVtVBQ",
+      "003 - project info": "urn:adsk.wipprod:fs.folder:co.fdbUSpP_RbKcCNhl8Mkbpg",
+      "004 - emails": "urn:adsk.wipprod:fs.folder:co.6HL095GwTyS21WRk6nArEw",
+      "005 - rfi's": "urn:adsk.wipprod:fs.folder:co.6auwUiQ4RKKmcSpXK3IjbQ",
+      "006 - subittals": "urn:adsk.wipprod:fs.folder:co.5rpCxim7QEaaTL6GNYR-GA",
+      "007 change orders": "urn:adsk.wipprod:fs.folder:co.Z_XbxSTBTsKl9CHH-CeZug",
+      "008 - accounting": "urn:adsk.wipprod:fs.folder:co.Q1x1yHY4QGueBwtZ75G09g",
+      "009 - coordination": "urn:adsk.wipprod:fs.folder:co.524JB1ZxQyeDJpUI7bfATA",
+      "010 - tickets and submittal doc's for review": "urn:adsk.wipprod:fs.folder:co.Gjw8FlMoQTWZOmYlBCiGxQ",
+      "011 - tickets approved for issue": "urn:adsk.wipprod:fs.folder:co.C_wxZNAPTjWH_XDzxl5C6A",
+      "012 - approved erection drawings": "urn:adsk.wipprod:fs.folder:co.TXIRR7hXRQOz67WFyOm8mw",
+      "design": "urn:adsk.wipprod:fs.folder:co.zlFr5mI5SKq4BfAXjsox6w",
+      "drawings": "urn:adsk.wipprod:fs.folder:co.mAA3vMOEQ-aHUqExN72Ndg",
+      "schedule tool files": "urn:adsk.wipprod:fs.folder:co.YzyoWZTZRq2AXclDxgRDtw",
+      "shared": "urn:adsk.wipprod:fs.folder:co.3vRsT-b2Tb-MXmnEa9TpKw",
+      "consumed": "urn:adsk.wipprod:fs.folder:co.ia9kI7Q-TUehgRRBw1FBrg"
+    },
+    "b.6d28e6a7-7500-46a8-bffc-9db8da694bac": {
+      "project files": "urn:adsk.wipprod:fs.folder:co.1M4cUgqsSfa4ZE4v0zxafA"
+    },
+    "b.b004921b-bd67-45b5-8688-be394fff83a4": {
+      "project files": "urn:adsk.wipprod:fs.folder:co.U0Wmlb-cSfaa8wsbaVxKoQ",
+      "sub folder 1 check": "urn:adsk.wipprod:fs.folder:co.krkDqEjLRCSIXixbRtPdag",
+      "sub folder 2 check": "urn:adsk.wipprod:fs.folder:co.gTyISQaWQOqfbgXr1VQuTw"
+    },
+    "b.f6b781df-a455-4a6d-adc7-a358bca27cfe": {
+      "21152": "urn:adsk.wipprod:fs.folder:co.CAHFa1IMQbWn-lY5ZbML2w",
+      "project files": "urn:adsk.wipprod:fs.folder:co.C_QytWz0Q62ntKrZJb4jSw",
+      "001 - metro model": "urn:adsk.wipprod:fs.folder:co.xHI8it8LQ0STJbeMijyDOA",
+      "002 - linked models": "urn:adsk.wipprod:fs.folder:co.TmMALCvKRsO1swjfLdP5Ow",
+      "003 - project info": "urn:adsk.wipprod:fs.folder:co.TDWuV2DbQpyy-M55FvRMwA",
+      "004 - emails": "urn:adsk.wipprod:fs.folder:co.fIjomRe2TjCZ0o3_4isyDw",
+      "005 - rfi's": "urn:adsk.wipprod:fs.folder:co.4n5_S7BCSDCY_N-aXUOwsw",
+      "006 - subittals": "urn:adsk.wipprod:fs.folder:co.O01Ee1XwRZuSaLGtkuDtIQ",
+      "007 change orders": "urn:adsk.wipprod:fs.folder:co.CPwnN4DeTxikm3PUZc_o_w",
+      "008 - accounting": "urn:adsk.wipprod:fs.folder:co.4DgbbDfhSXiUnndRg_lEYg",
+      "009 - coordination": "urn:adsk.wipprod:fs.folder:co.0CEkhxnIQ9WXipkSTjN8dA",
+      "010 - tickets and submittal doc's for review": "urn:adsk.wipprod:fs.folder:co.Lb7iqO9oTGCf6a_ntZihQA",
+      "011 - tickets approved for issue": "urn:adsk.wipprod:fs.folder:co.sHIqjr53SL2DmhYVpPa-HA",
+      "012 - approved erection drawings": "urn:adsk.wipprod:fs.folder:co.XXNj7d08TX27DEw3gO5CIQ",
+      "design": "urn:adsk.wipprod:fs.folder:co.5vJPNRSDRRqafrKE-T6jvQ",
+      "drawings": "urn:adsk.wipprod:fs.folder:co.M-WvejtPTm-KRxpWKAC_Ig",
+      "schedule tool files": "urn:adsk.wipprod:fs.folder:co.qBxENY0gSlGHCDtZUqFidQ",
+      "02025": "urn:adsk.wipprod:fs.folder:co.C2_HDtvwTiKXLHQPmnA1jA"
+    },
+    "b.240141f7-a572-4fa0-880b-178c2352db95": {
+      "project files": "urn:adsk.wipprod:fs.folder:co.8romRHbQQ8i4u-d5YhewAQ",
+      "001 - metro model": "urn:adsk.wipprod:fs.folder:co.m_gL29axRgemmTSFwXbBIw",
+      "002 - linked models": "urn:adsk.wipprod:fs.folder:co.ZBooCD42TnWkvSrep4mOjQ",
+      "003 - project info": "urn:adsk.wipprod:fs.folder:co.BmVspyZbQ9Gq5BaCATl3mQ",
+      "004 - emails": "urn:adsk.wipprod:fs.folder:co.WZ1WvL89TPOddVO28ydd7w",
+      "005 - rfi's": "urn:adsk.wipprod:fs.folder:co.YzDAz5UZQIuhy6bbpZCvVA",
+      "006 - subittals": "urn:adsk.wipprod:fs.folder:co._cMTjD5VQvWMkRGLtFzYMQ",
+      "007 change orders": "urn:adsk.wipprod:fs.folder:co.GZPKTxRCTtW5TSenvHoViA",
+      "008 - accounting": "urn:adsk.wipprod:fs.folder:co.jOz3JbnpROKO1THKygQhLw",
+      "009 - coordination": "urn:adsk.wipprod:fs.folder:co.-YsRkOlAQv2Szs3R1QI5Ag",
+      "010 - tickets and submittal doc's for review": "urn:adsk.wipprod:fs.folder:co.X7DgcdEKS7qKoxPXhuqLQA",
+      "011 - tickets approved for issue": "urn:adsk.wipprod:fs.folder:co.WGak4tCoSaqqjSq-B5iq6A",
+      "012 - approved erection drawings": "urn:adsk.wipprod:fs.folder:co.3KU5WhfFTPGrTiY0WCUiHA",
+      "design": "urn:adsk.wipprod:fs.folder:co.XdAfiiuzRjeQ3I-ejwhG2g",
+      "drawings": "urn:adsk.wipprod:fs.folder:co.vD2YgmB8TYmj1MnwOFjuLQ",
+      "schedule tool files": "urn:adsk.wipprod:fs.folder:co.8JBpsB-YSnSElDa3TnQ8hA"
+    },
+    "b.6230da05-1817-482d-88f8-19dad3ebb714": {
+      "project files": "urn:adsk.wipprod:fs.folder:co.zSnw4HhCQ-iFhz7m1jF7mA"
+    }
+  }
+}

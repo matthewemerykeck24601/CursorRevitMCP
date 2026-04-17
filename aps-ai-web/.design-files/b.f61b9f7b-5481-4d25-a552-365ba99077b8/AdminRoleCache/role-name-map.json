@@ -1,0 +1,16 @@
+{
+  "hubId": "b.f61b9f7b-5481-4d25-a552-365ba99077b8",
+  "updatedAt": "2026-04-14T19:17:45.397Z",
+  "rolesByName": {
+    "bim manager": "c270b7c2-be29-46b2-b9b6-175bb0c3c35d",
+    "construction manager": "555cd726-0b00-4e5a-8ca7-9829eea55eb3",
+    "document manager": "93c49c02-313f-43c7-866b-65a55452a298",
+    "engineer": "641736eb-b162-44f2-8406-a5503209313f",
+    "it": "e6f844ec-162b-46af-8327-072a0ff7a350",
+    "project engineer": "d33d99da-80b6-4957-8180-6558fad37b88",
+    "project manager": "21ad40f1-f60a-4e05-a6c7-5fd4478d6cd0",
+    "sub designer": "5989fe65-f5f7-4169-8698-e5b4ae747b2b",
+    "superintendent": "3c92c675-20f1-49d3-8fa6-c44888ece976",
+    "vdc manager": "a95ea428-bddc-4ec7-98b6-ed241b40cfe9"
+  }
+}
