@@ -39,3 +39,7 @@ Thumbs.db
 # C# / Revit DA local builds
 design-automation/**/bin/
 design-automation/**/obj/
+
+# Xcode (generated / user-specific)
+ios/**/xcuserdata/
+ios/**/*.xcuserstate
