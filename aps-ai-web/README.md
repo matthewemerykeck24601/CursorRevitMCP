@@ -70,6 +70,12 @@ Open `http://localhost:3000`.
 - `GET /api/aps/projects/:projectId/models?hubId=...`
 - `GET /api/aps/viewer-token`
 
+### Admin (ACC — session required)
+
+- `POST /api/admin/add-users-to-projects`
+  - JSON body: `{ "hubId": string, "projectNumbers": string[], "emails": string[], "roleNames"?: string[], "region"?: "US"|"EMEA", "dryRun"?: boolean }`
+  - Same backend as chat tool `admin_add_users_to_projects` (`addUsersToProjectsByNumber` in `src/lib/aps-admin.ts`). Used by Monty iOS and other structured clients without MCP.
+
 ### Chat + Actions
 
 - `POST /api/chat`

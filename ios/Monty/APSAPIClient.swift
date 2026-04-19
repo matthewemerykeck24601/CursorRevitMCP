@@ -112,4 +112,55 @@ final class APSAPIClient {
             throw APSClientError.decoding(error)
         }
     }
+
+    /// Calls `POST /api/admin/add-users-to-projects` (same server logic as chat tool `admin_add_users_to_projects`).
+    func addUsersToProjects(
+        baseURL: URL,
+        hubId: String,
+        projectNumbers: [String],
+        emails: [String],
+        roleNames: [String],
+        region: String,
+        dryRun: Bool,
+    ) async throws -> String {
+        guard let url = URL(string: "api/admin/add-users-to-projects", relativeTo: baseURL)?.absoluteURL else {
+            throw APSClientError.invalidURL
+        }
+        var body: [String: Any] = [
+            "hubId": hubId,
+            "projectNumbers": projectNumbers,
+            "emails": emails,
+            "dryRun": dryRun,
+            "region": region,
+        ]
+        if !roleNames.isEmpty {
+            body["roleNames"] = roleNames
+        }
+        let data = try JSONSerialization.data(withJSONObject: body)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
+
+        let (respData, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw APSClientError.http(-1, "No response")
+        }
+        let text = String(data: respData, encoding: .utf8) ?? ""
+
+        if http.statusCode == 401 {
+            throw APSClientError.notAuthenticated
+        }
+        if http.statusCode == 200 {
+            if let obj = try? JSONSerialization.jsonObject(with: respData),
+               JSONSerialization.isValidJSONObject(obj),
+               let pretty = try? JSONSerialization.data(withJSONObject: obj, options: [.prettyPrinted, .sortedKeys]),
+               let s = String(data: pretty, encoding: .utf8) {
+                return s
+            }
+            return text.isEmpty ? "{}" : text
+        }
+        throw APSClientError.http(http.statusCode, text)
+    }
 }

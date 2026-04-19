@@ -5,6 +5,7 @@ struct ContentView: View {
     @EnvironmentObject private var coordinator: AppCoordinator
     @StateObject private var chat = ChatViewModel()
     @State private var showSettings = false
+    @State private var showAddUsersTool = false
 
     var body: some View {
         NavigationStack {
@@ -60,6 +61,14 @@ struct ContentView: View {
             }
             .navigationTitle("Monty")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showAddUsersTool = true
+                    } label: {
+                        Image(systemName: "person.badge.plus")
+                    }
+                    .accessibilityLabel("Add users to projects")
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showSettings = true
@@ -67,6 +76,10 @@ struct ContentView: View {
                         Image(systemName: "gearshape")
                     }
                 }
+            }
+            .sheet(isPresented: $showAddUsersTool) {
+                AddUsersToProjectsView()
+                    .environmentObject(settings)
             }
             .sheet(isPresented: $showSettings) {
                 NavigationStack {
