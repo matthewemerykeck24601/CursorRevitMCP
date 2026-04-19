@@ -36,11 +36,12 @@ struct LoginWebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             guard let url = webView.url else { return }
             let path = url.path
-            // After OAuth callback or landing on app home, session cookies should exist.
-            if path.hasPrefix("/auth/callback") || path == "/" || path.isEmpty {
-                SessionCookieSync.syncFromWebView(webView) {
-                    self.parent.onCookiesSynced()
-                }
+            // Avoid firing during initial `/auth/login` load; run after callback or app home.
+            let shouldSync =
+                path.hasPrefix("/auth/callback") || path == "/" || path.isEmpty
+            guard shouldSync else { return }
+            SessionCookieSync.syncFromWebView(webView) {
+                self.parent.onCookiesSynced()
             }
         }
     }

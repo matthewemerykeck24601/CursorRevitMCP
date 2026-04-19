@@ -41,16 +41,20 @@ final class ChatAPIService {
         baseURL: URL,
         userMessage: String,
         chatHistory: [String],
+        selectedHubId: String?,
     ) async throws -> ChatAPIParsed {
         guard let url = URL(string: "api/chat", relativeTo: baseURL)?.absoluteURL else {
             throw ChatAPIError.invalidBaseURL
         }
 
-        let body: [String: Any] = [
+        var body: [String: Any] = [
             "message": userMessage,
             "workspaceMode": "admin",
             "chatHistory": chatHistory,
         ]
+        if let hub = selectedHubId, !hub.isEmpty {
+            body["selectedHubId"] = hub
+        }
         let data = try JSONSerialization.data(withJSONObject: body)
 
         var request = URLRequest(url: url)

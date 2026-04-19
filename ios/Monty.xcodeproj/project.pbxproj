@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2072678F26C24C24B2C89B0C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */; };
 		2ADAFB46771A249B590C4212 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70454B506A962C388DC635EA /* AppSettings.swift */; };
+		2E230E752F2DE481B2466C3D /* OnboardingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89803C176D5E9B792CA132E7 /* OnboardingViews.swift */; };
 		2FF5482FA2CD99ABBC682D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335ABADA31C73F1D932CA2CF /* Assets.xcassets */; };
+		33F468714A7141526636B367 /* APSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797952DEAB88C06C4837D531 /* APSAPIClient.swift */; };
 		44B10D8C498C3C0F353BE4B2 /* MontyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A754DB1534B75F1171CB6D3 /* MontyApp.swift */; };
+		4D918DC630CE49697EE1895D /* MontyNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */; };
 		676B408987BE545E6B310A79 /* ChatAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D64E16269793FA570815AD2 /* ChatAPIService.swift */; };
 		698E8289D5DD248BC369B085 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */; };
+		72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */; };
 		A37B9F7D50C7730950753753 /* LoginWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8596B6E73966C009ACC4F54 /* LoginWebView.swift */; };
 		C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76646BECB280274B682E22 /* SessionCookieSync.swift */; };
 		E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D059CC6AB6132A666AD62E /* ChatViewModel.swift */; };
@@ -24,17 +29,24 @@
 		3D64E16269793FA570815AD2 /* ChatAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIService.swift; sourceTree = "<group>"; };
 		42D059CC6AB6132A666AD62E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		70454B506A962C388DC635EA /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		797952DEAB88C06C4837D531 /* APSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSAPIClient.swift; sourceTree = "<group>"; };
 		7A754DB1534B75F1171CB6D3 /* MontyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyApp.swift; sourceTree = "<group>"; };
+		7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		89803C176D5E9B792CA132E7 /* OnboardingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViews.swift; sourceTree = "<group>"; };
 		90BA92D243A28760A0D41577 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyNotifications.swift; sourceTree = "<group>"; };
 		F8596B6E73966C009ACC4F54 /* LoginWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebView.swift; sourceTree = "<group>"; };
+		FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		0934A0EE55E3C9995716B9CE /* Monty */ = {
 			isa = PBXGroup;
 			children = (
+				FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */,
 				70454B506A962C388DC635EA /* AppSettings.swift */,
+				797952DEAB88C06C4837D531 /* APSAPIClient.swift */,
 				335ABADA31C73F1D932CA2CF /* Assets.xcassets */,
 				3D64E16269793FA570815AD2 /* ChatAPIService.swift */,
 				42D059CC6AB6132A666AD62E /* ChatViewModel.swift */,
@@ -42,6 +54,9 @@
 				90BA92D243A28760A0D41577 /* Info.plist */,
 				F8596B6E73966C009ACC4F54 /* LoginWebView.swift */,
 				7A754DB1534B75F1171CB6D3 /* MontyApp.swift */,
+				F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */,
+				89803C176D5E9B792CA132E7 /* OnboardingViews.swift */,
+				7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */,
 				1D76646BECB280274B682E22 /* SessionCookieSync.swift */,
 			);
 			path = Monty;
@@ -129,12 +144,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F468714A7141526636B367 /* APSAPIClient.swift in Sources */,
+				2072678F26C24C24B2C89B0C /* AppCoordinator.swift in Sources */,
 				2ADAFB46771A249B590C4212 /* AppSettings.swift in Sources */,
 				676B408987BE545E6B310A79 /* ChatAPIService.swift in Sources */,
 				E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */,
 				698E8289D5DD248BC369B085 /* ContentView.swift in Sources */,
 				A37B9F7D50C7730950753753 /* LoginWebView.swift in Sources */,
 				44B10D8C498C3C0F353BE4B2 /* MontyApp.swift in Sources */,
+				4D918DC630CE49697EE1895D /* MontyNotifications.swift in Sources */,
+				2E230E752F2DE481B2466C3D /* OnboardingViews.swift in Sources */,
+				72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */,
 				C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

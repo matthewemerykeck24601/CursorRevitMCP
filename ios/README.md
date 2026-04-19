@@ -1,6 +1,6 @@
 # Monty (iOS)
 
-Task-focused chat client for **APS / ACC admin workflows** backed by the same `POST /api/chat` endpoint as `aps-ai-web`, with `workspaceMode: "admin"` (for example: add users to projects via natural-language tasks).
+Task-focused chat for **APS / ACC admin** workflows via `POST /api/chat` with `workspaceMode: "admin"` and **`selectedHubId`** from your chosen hub.
 
 ## Open in Xcode
 
@@ -15,13 +15,16 @@ Regenerate the project after editing `project.yml`:
 cd ios && xcodegen generate
 ```
 
-## Run against local `aps-ai-web`
+## First launch flow
 
-1. Start the web app (from `aps-ai-web/`): `npm run dev`. For a **physical iPhone**, listen on all interfaces, e.g. `npx next dev -H 0.0.0.0 -p 3000`, and add the same callback URL with your Mac’s LAN IP in your APS app (for example `http://192.168.x.x:3000/auth/callback`).
-2. **Simulator:** Settings → Base URL `http://127.0.0.1:3000`.
-3. **Physical iPhone:** Base URL `http://<your-mac-lan-ip>:3000` (not `localhost`).
-4. Tap **Sign in** → complete Autodesk OAuth in the embedded web view. Session cookies sync into the app for API calls.
-5. Send admin tasks in the chat composer.
+1. **Server URL** — Point Monty at your running `aps-ai-web` (e.g. `http://127.0.0.1:3000` in Simulator, or your Mac’s LAN IP on a device with `npx next dev -H 0.0.0.0 -p 3000`).
+2. **Autodesk sign-in** — Embedded browser OAuth (same cookies as the web app). Monty calls `GET /api/auth/session` to verify the session.
+3. **Hub** — `GET /api/aps/hubs` lists hubs; pick one and tap **Use this hub**. Hub id + name are stored in **UserDefaults** (`monty.selectedHubId` / `monty.selectedHubName`).
+4. **Chat** — Messages include `selectedHubId` for admin context.
+
+Later launches: if the session is still valid, you go straight to chat with the same hub. If the session expires (`401` from chat or hubs), Monty returns to sign-in; **hub selection is kept** so you only sign in again.
+
+**Settings** (gear): change base URL, **Change hub…**, or **Sign out** (clears cookies; hub choice remains).
 
 ## Branch
 

@@ -20,4 +20,12 @@ enum SessionCookieSync {
             DispatchQueue.main.async { completion() }
         }
     }
+
+    /// Removes APS session cookies from shared storage (e.g. after 401 or sign out).
+    static func clearSessionCookiesFromSharedStorage() {
+        guard let cookies = HTTPCookieStorage.shared.cookies else { return }
+        for cookie in cookies where sessionNames.contains(cookie.name) {
+            HTTPCookieStorage.shared.deleteCookie(cookie)
+        }
+    }
 }

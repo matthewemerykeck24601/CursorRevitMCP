@@ -2,9 +2,9 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var settings: AppSettings
+    @EnvironmentObject private var coordinator: AppCoordinator
     @StateObject private var chat = ChatViewModel()
     @State private var showSettings = false
-    @State private var showLogin = false
 
     var body: some View {
         NavigationStack {
@@ -44,7 +44,12 @@ struct ContentView: View {
                         .lineLimit(1...6)
 
                     Button {
-                        Task { await chat.send(baseURL: settings.baseURL) }
+                        Task {
+                            await chat.send(
+                                baseURL: settings.baseURL,
+                                selectedHubId: settings.selectedHubId,
+                            )
+                        }
                     } label: {
                         Image(systemName: "arrow.up.circle.fill")
                             .font(.title2)
@@ -55,11 +60,6 @@ struct ContentView: View {
             }
             .navigationTitle("Monty")
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Sign in") {
-                        showLogin = true
-                    }
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showSettings = true
@@ -82,8 +82,31 @@ struct ContentView: View {
                             Text("aps-ai-web")
                         } footer: {
                             Text(
-                                "Use http://127.0.0.1:3000 in Simulator. On a physical device, use your Mac’s LAN IP (for example http://192.168.1.10:3000) with `npm run dev` bound to 0.0.0.0.",
+                                "Simulator: http://127.0.0.1:3000. Device: your Mac’s LAN IP with `next dev -H 0.0.0.0`.",
                             )
+                        }
+
+                        Section {
+                            LabeledContent("Hub") {
+                                Text(settings.selectedHubName ?? settings.selectedHubId ?? "—")
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.trailing)
+                            }
+                            Button("Change hub…") {
+                                showSettings = false
+                                coordinator.openHubPicker()
+                            }
+                        } header: {
+                            Text("Autodesk")
+                        }
+
+                        Section {
+                            Button("Sign out", role: .destructive) {
+                                showSettings = false
+                                coordinator.sessionExpired()
+                            }
+                        } footer: {
+                            Text("Clears the local session. Your saved hub stays selected for next sign-in.")
                         }
                     }
                     .navigationTitle("Settings")
@@ -92,26 +115,6 @@ struct ContentView: View {
                             Button("Done") { showSettings = false }
                         }
                     }
-                }
-            }
-            .sheet(isPresented: $showLogin) {
-                if let start = settings.baseURL.flatMap({ URL(string: "/auth/login", relativeTo: $0)?.absoluteURL }) {
-                    NavigationStack {
-                        LoginWebView(startURL: start) {
-                            showLogin = false
-                        }
-                        .ignoresSafeArea()
-                        .navigationTitle("Sign in")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Close") { showLogin = false }
-                            }
-                        }
-                    }
-                } else {
-                    Text("Set a valid Base URL in Settings first.")
-                        .padding()
                 }
             }
         }
@@ -148,4 +151,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(AppSettings())
+        .environmentObject(AppCoordinator())
 }

@@ -26,12 +26,12 @@ final class ChatViewModel: ObservableObject {
             ChatMessage(
                 role: .system,
                 text:
-                    "Monty — admin task mode. Sign in with your Autodesk account, then describe what to do (for example: add user@company.com to project JOB12345). Uses the same /api/chat admin workspace as aps-ai-web.",
+                    "Monty — admin task mode. Describe what to do (for example: add user@company.com to project JOB12345). Hub context is sent with each message.",
             ),
         )
     }
 
-    func send(baseURL: URL?) async {
+    func send(baseURL: URL?, selectedHubId: String?) async {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
         guard let baseURL else {
@@ -53,6 +53,7 @@ final class ChatViewModel: ObservableObject {
                 baseURL: baseURL,
                 userMessage: trimmed,
                 chatHistory: history,
+                selectedHubId: selectedHubId,
             )
             var reply = parsed.message
             if reply.isEmpty {
@@ -65,6 +66,17 @@ final class ChatViewModel: ObservableObject {
                 reply += "\n\nrequestId: \(rid)"
             }
             messages.append(ChatMessage(role: .assistant, text: reply))
+        } catch let error as ChatAPIError {
+            if case .notAuthenticated = error {
+                NotificationCenter.default.post(name: .montySessionExpired, object: nil)
+            }
+            lastError = error.localizedDescription
+            messages.append(
+                ChatMessage(
+                    role: .assistant,
+                    text: "Error: \(error.localizedDescription)",
+                ),
+            )
         } catch {
             lastError = error.localizedDescription
             messages.append(
