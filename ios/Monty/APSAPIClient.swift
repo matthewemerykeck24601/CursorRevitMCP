@@ -22,6 +22,15 @@ private struct SessionAPIResponse: Decodable {
     let expiresAt: Int64?
 }
 
+/// Response from `GET /api/auth/native-config` (Monty native OAuth).
+struct NativeAuthConfig: Decodable {
+    let clientId: String
+    let scope: String
+    let redirectUri: String
+    let authorizeEndpoint: String
+    let requestId: String?
+}
+
 enum APSClientError: LocalizedError {
     case invalidURL
     case notAuthenticated
@@ -160,6 +169,65 @@ final class APSAPIClient {
                 return s
             }
             return text.isEmpty ? "{}" : text
+        }
+        throw APSClientError.http(http.statusCode, text)
+    }
+
+    func fetchNativeAuthConfiguration(baseURL: URL) async throws -> NativeAuthConfig {
+        guard let url = URL(string: "api/auth/native-config", relativeTo: baseURL)?.absoluteURL else {
+            throw APSClientError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw APSClientError.http(-1, "No response")
+        }
+        let text = String(data: data, encoding: .utf8) ?? ""
+        guard http.statusCode == 200 else {
+            throw APSClientError.http(http.statusCode, text)
+        }
+        do {
+            return try JSONDecoder().decode(NativeAuthConfig.self, from: data)
+        } catch {
+            throw APSClientError.decoding(error)
+        }
+    }
+
+    /// Finishes PKCE flow; response sets APS session cookies for subsequent API calls.
+    func postNativeExchange(
+        baseURL: URL,
+        code: String,
+        codeVerifier: String,
+        redirectUri: String,
+    ) async throws {
+        guard let url = URL(string: "api/auth/native-exchange", relativeTo: baseURL)?.absoluteURL else {
+            throw APSClientError.invalidURL
+        }
+        let body: [String: Any] = [
+            "code": code,
+            "codeVerifier": codeVerifier,
+            "redirectUri": redirectUri,
+        ]
+        let data = try JSONSerialization.data(withJSONObject: body)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
+
+        let (respData, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw APSClientError.http(-1, "No response")
+        }
+        let text = String(data: respData, encoding: .utf8) ?? ""
+
+        if http.statusCode == 401 {
+            throw APSClientError.notAuthenticated
+        }
+        if http.statusCode == 200 {
+            return
         }
         throw APSClientError.http(http.statusCode, text)
     }

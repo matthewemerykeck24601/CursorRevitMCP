@@ -34,7 +34,8 @@ struct BaseURLSetupView: View {
 struct SignInGateView: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var coordinator: AppCoordinator
-    @State private var showWebLogin = false
+    @State private var nativeAuthCoordinator = AutodeskNativeAuthCoordinator()
+    @State private var isSigningIn = false
 
     var body: some View {
         NavigationStack {
@@ -55,16 +56,22 @@ struct SignInGateView: View {
                 }
 
                 Button {
-                    showWebLogin = true
+                    Task { await runNativeSignIn() }
                 } label: {
-                    Text("Sign in with browser")
-                        .frame(maxWidth: .infinity)
+                    if isSigningIn {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text("Sign in with Autodesk")
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .buttonStyle(.borderedProminent)
+                .disabled(isSigningIn)
                 .padding(.horizontal)
 
                 Text(
-                    "Uses the same OAuth flow as the web app. After signing in, you’ll pick a hub once; later launches skip this when your session is still valid.",
+                    "Uses native OAuth (PKCE) and your APS app’s `monty://autodesk-oauth` callback. The server exchanges the code and stores the same session cookies as the web app.",
                 )
                 .font(.footnote)
                 .foregroundStyle(.secondary)
@@ -75,28 +82,27 @@ struct SignInGateView: View {
             }
             .padding(.top, 48)
             .navigationTitle("Monty")
-            .sheet(isPresented: $showWebLogin) {
-                if let start = settings.baseURL.flatMap({ URL(string: "/auth/login", relativeTo: $0)?.absoluteURL }) {
-                    NavigationStack {
-                        LoginWebView(startURL: start) {
-                            Task { @MainActor in
-                                await coordinator.afterSignInAttempt(settings: settings)
-                                if coordinator.phase != .needsSignIn {
-                                    showWebLogin = false
-                                }
-                            }
-                        }
-                        .ignoresSafeArea()
-                        .navigationTitle("Autodesk")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Close") { showWebLogin = false }
-                            }
-                        }
-                    }
-                }
-            }
+        }
+    }
+
+    @MainActor
+    private func runNativeSignIn() async {
+        guard let base = settings.baseURL else {
+            coordinator.bootstrapMessage = "Set a valid server URL first."
+            return
+        }
+        isSigningIn = true
+        coordinator.bootstrapMessage = nil
+        defer { isSigningIn = false }
+
+        let api = APSAPIClient()
+        do {
+            try await nativeAuthCoordinator.signIn(baseURL: base, api: api)
+            await coordinator.afterSignInAttempt(settings: settings)
+        } catch is CancellationError {
+            // User closed the browser sheet
+        } catch {
+            coordinator.bootstrapMessage = error.localizedDescription
         }
     }
 }

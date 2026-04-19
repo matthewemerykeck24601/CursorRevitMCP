@@ -21,17 +21,24 @@ export type ApsTokenResponse = {
   scope?: string;
 };
 
-export async function exchangeCodeForToken(
-  code: string,
-): Promise<ApsTokenResponse> {
+export async function exchangeAuthorizationCode(params: {
+  code: string;
+  redirectUri: string;
+  /** Required for native (PKCE) flows; omit for classic web redirect. */
+  codeVerifier?: string;
+}): Promise<ApsTokenResponse> {
   assertApsCredentials();
   const body = new URLSearchParams({
     client_id: env.apsClientId,
     client_secret: env.apsClientSecret,
     grant_type: "authorization_code",
-    code,
-    redirect_uri: env.apsCallbackUrl,
+    code: params.code,
+    redirect_uri: params.redirectUri,
   });
+  const verifier = params.codeVerifier?.trim() ?? "";
+  if (verifier.length > 0) {
+    body.set("code_verifier", verifier);
+  }
 
   const response = await fetch(`${APS_BASE}/authentication/v2/token`, {
     method: "POST",
@@ -46,6 +53,15 @@ export async function exchangeCodeForToken(
   }
 
   return (await response.json()) as ApsTokenResponse;
+}
+
+export async function exchangeCodeForToken(
+  code: string,
+): Promise<ApsTokenResponse> {
+  return exchangeAuthorizationCode({
+    code,
+    redirectUri: env.apsCallbackUrl,
+  });
 }
 
 export async function refreshApsToken(
@@ -84,6 +100,38 @@ export function buildAuthorizeUrl(state: string): string {
   url.searchParams.set("scope", getUserOAuthScope());
   url.searchParams.set("state", state);
   return url.toString();
+}
+
+/** PKCE authorize URL for Monty iOS (`monty://` redirect). */
+export function buildNativeAuthorizeUrl(
+  state: string,
+  codeChallenge: string,
+): string {
+  assertApsCredentials();
+  const url = new URL(`${APS_BASE}/authentication/v2/authorize`);
+  url.searchParams.set("response_type", "code");
+  url.searchParams.set("client_id", env.apsClientId);
+  url.searchParams.set("redirect_uri", env.apsNativeRedirectUri);
+  url.searchParams.set("scope", getUserOAuthScope());
+  url.searchParams.set("state", state);
+  url.searchParams.set("code_challenge", codeChallenge);
+  url.searchParams.set("code_challenge_method", "S256");
+  return url.toString();
+}
+
+export function getNativeAuthPublicConfig(): {
+  clientId: string;
+  scope: string;
+  redirectUri: string;
+  authorizeEndpoint: string;
+} {
+  assertApsCredentials();
+  return {
+    clientId: env.apsClientId,
+    scope: getUserOAuthScope(),
+    redirectUri: env.apsNativeRedirectUri,
+    authorizeEndpoint: `${APS_BASE}/authentication/v2/authorize`,
+  };
 }
 
 export function toViewerUrn(versionId: string): string {

@@ -17,14 +17,16 @@
 		676B408987BE545E6B310A79 /* ChatAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D64E16269793FA570815AD2 /* ChatAPIService.swift */; };
 		698E8289D5DD248BC369B085 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */; };
 		72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */; };
+		8208C39D991A06ECBE7D5B10 /* PKCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */; };
 		86EDABC87F184FAD95D653FE /* AddUsersToProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */; };
-		A37B9F7D50C7730950753753 /* LoginWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8596B6E73966C009ACC4F54 /* LoginWebView.swift */; };
 		C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76646BECB280274B682E22 /* SessionCookieSync.swift */; };
+		D8A35CCE04AB0E81CA986A71 /* AutodeskNativeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */; };
 		E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D059CC6AB6132A666AD62E /* ChatViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D76646BECB280274B682E22 /* SessionCookieSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCookieSync.swift; sourceTree = "<group>"; };
+		32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCE.swift; sourceTree = "<group>"; };
 		335ABADA31C73F1D932CA2CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37516C3537DF5E9FEAFB6490 /* Monty.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Monty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D64E16269793FA570815AD2 /* ChatAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIService.swift; sourceTree = "<group>"; };
@@ -33,12 +35,12 @@
 		797952DEAB88C06C4837D531 /* APSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSAPIClient.swift; sourceTree = "<group>"; };
 		7A754DB1534B75F1171CB6D3 /* MontyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyApp.swift; sourceTree = "<group>"; };
 		7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskNativeAuth.swift; sourceTree = "<group>"; };
 		89803C176D5E9B792CA132E7 /* OnboardingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViews.swift; sourceTree = "<group>"; };
 		90BA92D243A28760A0D41577 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsersToProjectsView.swift; sourceTree = "<group>"; };
 		BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyNotifications.swift; sourceTree = "<group>"; };
-		F8596B6E73966C009ACC4F54 /* LoginWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebView.swift; sourceTree = "<group>"; };
 		FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,14 +53,15 @@
 				70454B506A962C388DC635EA /* AppSettings.swift */,
 				797952DEAB88C06C4837D531 /* APSAPIClient.swift */,
 				335ABADA31C73F1D932CA2CF /* Assets.xcassets */,
+				8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */,
 				3D64E16269793FA570815AD2 /* ChatAPIService.swift */,
 				42D059CC6AB6132A666AD62E /* ChatViewModel.swift */,
 				BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */,
 				90BA92D243A28760A0D41577 /* Info.plist */,
-				F8596B6E73966C009ACC4F54 /* LoginWebView.swift */,
 				7A754DB1534B75F1171CB6D3 /* MontyApp.swift */,
 				F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */,
 				89803C176D5E9B792CA132E7 /* OnboardingViews.swift */,
+				32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */,
 				7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */,
 				1D76646BECB280274B682E22 /* SessionCookieSync.swift */,
 			);
@@ -151,13 +154,14 @@
 				86EDABC87F184FAD95D653FE /* AddUsersToProjectsView.swift in Sources */,
 				2072678F26C24C24B2C89B0C /* AppCoordinator.swift in Sources */,
 				2ADAFB46771A249B590C4212 /* AppSettings.swift in Sources */,
+				D8A35CCE04AB0E81CA986A71 /* AutodeskNativeAuth.swift in Sources */,
 				676B408987BE545E6B310A79 /* ChatAPIService.swift in Sources */,
 				E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */,
 				698E8289D5DD248BC369B085 /* ContentView.swift in Sources */,
-				A37B9F7D50C7730950753753 /* LoginWebView.swift in Sources */,
 				44B10D8C498C3C0F353BE4B2 /* MontyApp.swift in Sources */,
 				4D918DC630CE49697EE1895D /* MontyNotifications.swift in Sources */,
 				2E230E752F2DE481B2466C3D /* OnboardingViews.swift in Sources */,
+				8208C39D991A06ECBE7D5B10 /* PKCE.swift in Sources */,
 				72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */,
 				C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */,
 			);

@@ -18,7 +18,7 @@ cd ios && xcodegen generate
 ## First launch flow
 
 1. **Server URL** — Point Monty at your running `aps-ai-web` (e.g. `http://127.0.0.1:3000` in Simulator, or your Mac’s LAN IP on a device with `npx next dev -H 0.0.0.0 -p 3000`).
-2. **Autodesk sign-in** — Embedded browser OAuth (same cookies as the web app). Monty calls `GET /api/auth/session` to verify the session.
+2. **Autodesk sign-in** — **Native** `ASWebAuthenticationSession` + PKCE; redirect `monty://autodesk-oauth` must be registered on your APS app (same client ID as web). Server exchanges the code via `POST /api/auth/native-exchange` and sets session cookies like the web flow.
 3. **Hub** — `GET /api/aps/hubs` lists hubs; pick one and tap **Use this hub**. Hub id + name are stored in **UserDefaults** (`monty.selectedHubId` / `monty.selectedHubName`).
 4. **Chat** — Messages include `selectedHubId` for admin context.
 
