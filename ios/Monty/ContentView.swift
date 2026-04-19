@@ -53,7 +53,7 @@ struct ContentView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Admin Chat")
+            .navigationTitle("Monty")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Sign in") {

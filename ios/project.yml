@@ -1,4 +1,4 @@
-name: AdminChat
+name: Monty
 options:
   bundleIdPrefix: com.cursorrevitmcp
   deploymentTarget:
@@ -11,16 +11,16 @@ settings:
   SWIFT_VERSION: "5.0"
 
 targets:
-  AdminChat:
+  Monty:
     type: application
     platform: iOS
     sources:
-      - path: AdminChat
+      - path: Monty
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.cursorrevitmcp.adminchat
-      PRODUCT_NAME: AdminChat
+      PRODUCT_BUNDLE_IDENTIFIER: com.cursorrevitmcp.monty
+      PRODUCT_NAME: Monty
       TARGETED_DEVICE_FAMILY: "1"
-      INFOPLIST_FILE: AdminChat/Info.plist
+      INFOPLIST_FILE: Monty/Info.plist
       ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
       ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
       CURRENT_PROJECT_VERSION: "1"
@@ -28,7 +28,7 @@ targets:
       ENABLE_USER_SCRIPT_SANDBOXING: NO
 
 schemes:
-  AdminChat:
+  Monty:
     build:
       targets:
-        AdminChat: all
+        Monty: all

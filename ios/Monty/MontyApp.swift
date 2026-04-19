@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct AdminChatApp: App {
+struct MontyApp: App {
     @StateObject private var settings = AppSettings()
 
     var body: some Scene {

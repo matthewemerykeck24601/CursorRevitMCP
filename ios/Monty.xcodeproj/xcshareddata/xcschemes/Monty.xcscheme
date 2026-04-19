@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "463B0F8B98A338B56D30363F"
-               BuildableName = "AdminChat.app"
-               BlueprintName = "AdminChat"
-               ReferencedContainer = "container:AdminChat.xcodeproj">
+               BlueprintIdentifier = "CACC99AC286FBC2DB4AD94BE"
+               BuildableName = "Monty.app"
+               BlueprintName = "Monty"
+               ReferencedContainer = "container:Monty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "463B0F8B98A338B56D30363F"
-            BuildableName = "AdminChat.app"
-            BlueprintName = "AdminChat"
-            ReferencedContainer = "container:AdminChat.xcodeproj">
+            BlueprintIdentifier = "CACC99AC286FBC2DB4AD94BE"
+            BuildableName = "Monty.app"
+            BlueprintName = "Monty"
+            ReferencedContainer = "container:Monty.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "463B0F8B98A338B56D30363F"
-            BuildableName = "AdminChat.app"
-            BlueprintName = "AdminChat"
-            ReferencedContainer = "container:AdminChat.xcodeproj">
+            BlueprintIdentifier = "CACC99AC286FBC2DB4AD94BE"
+            BuildableName = "Monty.app"
+            BlueprintName = "Monty"
+            ReferencedContainer = "container:Monty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,10 +72,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "463B0F8B98A338B56D30363F"
-            BuildableName = "AdminChat.app"
-            BlueprintName = "AdminChat"
-            ReferencedContainer = "container:AdminChat.xcodeproj">
+            BlueprintIdentifier = "CACC99AC286FBC2DB4AD94BE"
+            BuildableName = "Monty.app"
+            BlueprintName = "Monty"
+            ReferencedContainer = "container:Monty.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

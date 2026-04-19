@@ -26,7 +26,7 @@ final class ChatViewModel: ObservableObject {
             ChatMessage(
                 role: .system,
                 text:
-                    "Admin task mode. Sign in with your Autodesk account, then describe what to do (for example: add user@company.com to project JOB12345). Uses the same /api/chat admin workspace as aps-ai-web.",
+                    "Monty — admin task mode. Sign in with your Autodesk account, then describe what to do (for example: add user@company.com to project JOB12345). Uses the same /api/chat admin workspace as aps-ai-web.",
             ),
         )
     }

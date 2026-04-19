@@ -3,7 +3,7 @@ import Foundation
 /// Persisted base URL for `aps-ai-web` (e.g. http://127.0.0.1:3000 or your LAN IP for a device).
 final class AppSettings: ObservableObject {
     private let defaults = UserDefaults.standard
-    private let baseURLKey = "adminChat.baseURL"
+    private let baseURLKey = "monty.baseURL"
 
     @Published var baseURLString: String {
         didSet {

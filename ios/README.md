@@ -1,4 +1,4 @@
-# AdminChat (iOS)
+# Monty (iOS)
 
 Task-focused chat client for **APS / ACC admin workflows** backed by the same `POST /api/chat` endpoint as `aps-ai-web`, with `workspaceMode: "admin"` (for example: add users to projects via natural-language tasks).
 
@@ -6,7 +6,7 @@ Task-focused chat client for **APS / ACC admin workflows** backed by the same `P
 
 ```bash
 cd ios
-open AdminChat.xcodeproj
+open Monty.xcodeproj
 ```
 
 Regenerate the project after editing `project.yml`:
