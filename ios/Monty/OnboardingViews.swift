@@ -1,36 +1,5 @@
 import SwiftUI
 
-struct BaseURLSetupView: View {
-    @EnvironmentObject private var settings: AppSettings
-    @EnvironmentObject private var coordinator: AppCoordinator
-
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section {
-                    TextField("Server URL", text: $settings.baseURLString)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .keyboardType(.URL)
-                } header: {
-                    Text("aps-ai-web")
-                } footer: {
-                    Text(
-                        "Monty talks to your running Next app (e.g. http://127.0.0.1:3000). On a device, use your Mac’s LAN IP and run `npx next dev -H 0.0.0.0 -p 3000`.",
-                    )
-                }
-
-                Section {
-                    Button("Continue") {
-                        coordinator.continueFromBaseURL(settings: settings)
-                    }
-                }
-            }
-            .navigationTitle("Welcome")
-        }
-    }
-}
-
 struct SignInGateView: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var coordinator: AppCoordinator
@@ -71,7 +40,7 @@ struct SignInGateView: View {
                 .padding(.horizontal)
 
                 Text(
-                    "Uses native OAuth (PKCE) and your APS app’s `monty://autodesk-oauth` callback. The server exchanges the code and stores the same session cookies as the web app.",
+                    "Uses AUTODESK_CLIENT_ID from Info.plist and redirect monty://autodesk-oauth (PKCE). Tokens stay on device; no dev server required to log in.",
                 )
                 .font(.footnote)
                 .foregroundStyle(.secondary)
@@ -87,20 +56,19 @@ struct SignInGateView: View {
 
     @MainActor
     private func runNativeSignIn() async {
-        guard let base = settings.baseURL else {
-            coordinator.bootstrapMessage = "Set a valid server URL first."
+        guard AutodeskOAuthConfig.clientId != nil else {
+            coordinator.bootstrapMessage = "Add AUTODESK_CLIENT_ID to Info.plist."
             return
         }
         isSigningIn = true
         coordinator.bootstrapMessage = nil
         defer { isSigningIn = false }
 
-        let api = APSAPIClient()
         do {
-            try await nativeAuthCoordinator.signIn(baseURL: base, api: api)
+            try await nativeAuthCoordinator.signIn()
             await coordinator.afterSignInAttempt(settings: settings)
         } catch is CancellationError {
-            // User closed the browser sheet
+            // dismissed browser
         } catch {
             coordinator.bootstrapMessage = error.localizedDescription
         }
@@ -115,8 +83,6 @@ struct HubSelectionView: View {
     @State private var isLoading = true
     @State private var loadError: String?
     @State private var selectedId: String?
-
-    private let api = APSAPIClient()
 
     var body: some View {
         NavigationStack {
@@ -145,7 +111,7 @@ struct HubSelectionView: View {
                                 }
                             }
                         } footer: {
-                            Text("Admin tasks use this hub as context (e.g. adding users to projects). You can change it later in Settings.")
+                            Text("Admin chat / tools use this hub as context. You can change it later in Settings.")
                         }
 
                         Section {
@@ -178,13 +144,17 @@ struct HubSelectionView: View {
         loadError = nil
         defer { isLoading = false }
 
-        guard let base = settings.baseURL else {
-            loadError = "Missing server URL."
+        guard await AutodeskTokenStore.shared.ensureValidAccessToken() else {
+            coordinator.sessionExpired()
+            return
+        }
+        guard let token = AutodeskTokenStore.shared.accessToken else {
+            loadError = "Not signed in."
             return
         }
 
         do {
-            let list = try await api.fetchHubs(baseURL: base)
+            let list = try await AutodeskDirectAPI.fetchHubs(accessToken: token)
             hubs = list
             if let existing = settings.selectedHubId, list.contains(where: { $0.id == existing }) {
                 selectedId = existing

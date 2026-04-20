@@ -1,12 +1,11 @@
 import Foundation
 import SwiftUI
 
-/// Drives first-run onboarding (server URL → Autodesk sign-in → hub) and re-auth on 401.
+/// First-run: Autodesk sign-in (Keychain) → hub. Optional **Backend URL** only for chat / admin API proxy.
 @MainActor
 final class AppCoordinator: ObservableObject {
     enum Phase: Equatable {
         case bootstrapping
-        case needsBaseURL
         case needsSignIn
         case needsHub
         case main
@@ -15,62 +14,38 @@ final class AppCoordinator: ObservableObject {
     @Published var phase: Phase = .bootstrapping
     @Published var bootstrapMessage: String?
 
-    private let api = APSAPIClient()
-
     func bootstrap(settings: AppSettings) async {
         phase = .bootstrapping
         bootstrapMessage = nil
 
-        guard let base = settings.baseURL else {
-            phase = .needsBaseURL
+        guard AutodeskOAuthConfig.clientId != nil else {
+            bootstrapMessage = "Add AUTODESK_CLIENT_ID to Info.plist (your APS app Client ID)."
+            phase = .needsSignIn
             return
         }
 
-        do {
-            let status = try await api.fetchSessionStatus(baseURL: base)
-            applySessionStatus(status, settings: settings)
-        } catch {
-            bootstrapMessage = error.localizedDescription
+        let store = AutodeskTokenStore.shared
+        if await store.ensureValidAccessToken() {
+            applyPostAuth(settings: settings)
+        } else {
+            if store.accessToken != nil {
+                store.clear()
+            }
             phase = .needsSignIn
         }
     }
 
     func afterSignInAttempt(settings: AppSettings) async {
         bootstrapMessage = nil
-        guard let base = settings.baseURL else {
-            phase = .needsBaseURL
-            return
-        }
-
-        do {
-            let status = try await api.fetchSessionStatus(baseURL: base)
-            applySessionStatus(status, settings: settings)
-        } catch {
-            bootstrapMessage = error.localizedDescription
-            phase = .needsSignIn
-        }
+        applyPostAuth(settings: settings)
     }
 
-    private func applySessionStatus(_ status: SessionStatus, settings: AppSettings) {
-        switch status {
-        case .unauthenticated:
-            phase = .needsSignIn
-        case .authenticated:
-            if settings.selectedHubId != nil {
-                phase = .main
-            } else {
-                phase = .needsHub
-            }
+    private func applyPostAuth(settings: AppSettings) {
+        if settings.selectedHubId != nil {
+            phase = .main
+        } else {
+            phase = .needsHub
         }
-    }
-
-    func continueFromBaseURL(settings: AppSettings) {
-        bootstrapMessage = nil
-        guard settings.baseURL != nil else {
-            phase = .needsBaseURL
-            return
-        }
-        Task { await bootstrap(settings: settings) }
     }
 
     func hubSelectionComplete(settings: AppSettings) {
@@ -78,8 +53,8 @@ final class AppCoordinator: ObservableObject {
         phase = .main
     }
 
-    /// Token expired or invalid — send user back to sign-in; hub preference stays in `AppSettings`.
     func sessionExpired() {
+        AutodeskTokenStore.shared.clear()
         SessionCookieSync.clearSessionCookiesFromSharedStorage()
         phase = .needsSignIn
         bootstrapMessage = "Your Autodesk session expired. Please sign in again."

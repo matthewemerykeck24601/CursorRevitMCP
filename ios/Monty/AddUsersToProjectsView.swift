@@ -112,7 +112,7 @@ struct AddUsersToProjectsView: View {
         errorText = nil
         resultText = nil
         guard let base = settings.baseURL else {
-            errorText = "Missing server URL."
+            errorText = "Set Backend URL in Settings (your aps-ai-web base URL)."
             return
         }
         guard let hubId = settings.selectedHubId, !hubId.isEmpty else {

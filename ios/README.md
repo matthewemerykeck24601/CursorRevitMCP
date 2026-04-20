@@ -1,6 +1,22 @@
 # Monty (iOS)
 
-Task-focused chat for **APS / ACC admin** workflows via `POST /api/chat` with `workspaceMode: "admin"` and **`selectedHubId`** from your chosen hub.
+Standalone **Autodesk OAuth** (PKCE + on-device token exchange) and **direct** hub list from `developer.api.autodesk.com`. **No local Node server** is required to sign in or pick a hub.
+
+## Configure APS (once)
+
+1. In your APS app, add callback **`monty://autodesk-oauth`** (same Client ID you use elsewhere).
+2. In Xcode, set **`AUTODESK_CLIENT_ID`** in `Monty/Info.plist` (replace `YOUR_APS_CLIENT_ID`).
+
+Optional: **`AUTODESK_SCOPE`** in Info.plist to override scopes (defaults match `aps-ai-web` minus `code:all`).
+
+## Optional backend (chat / add-users via server)
+
+Enter **Backend URL** in Settings only if you use **`aps-ai-web`** for:
+
+- `POST /api/chat` (admin LLM)
+- `POST /api/admin/add-users-to-projects`
+
+Requests send **`Authorization: Bearer`** with the access token from Keychain. The server must allow Bearer auth (see `requireSession` in `aps-ai-web`).
 
 ## Open in Xcode
 
@@ -9,25 +25,12 @@ cd ios
 open Monty.xcodeproj
 ```
 
-Regenerate the project after editing `project.yml`:
+Regenerate after `project.yml` changes:
 
 ```bash
 cd ios && xcodegen generate
 ```
 
-## First launch flow
-
-1. **Server URL** — Point Monty at your running `aps-ai-web` (e.g. `http://127.0.0.1:3000` in Simulator, or your Mac’s LAN IP on a device with `npx next dev -H 0.0.0.0 -p 3000`).
-2. **Autodesk sign-in** — **Native** `ASWebAuthenticationSession` + PKCE; redirect `monty://autodesk-oauth` must be registered on your APS app (same client ID as web). Server exchanges the code via `POST /api/auth/native-exchange` and sets session cookies like the web flow.
-3. **Hub** — `GET /api/aps/hubs` lists hubs; pick one and tap **Use this hub**. Hub id + name are stored in **UserDefaults** (`monty.selectedHubId` / `monty.selectedHubName`).
-4. **Chat** — Messages include `selectedHubId` for admin context.
-
-5. **Add users to projects** — Toolbar **person.badge.plus** opens a form that calls `POST /api/admin/add-users-to-projects` on `aps-ai-web`. That uses the same server code as the web/chat tool `admin_add_users_to_projects` (`addUsersToProjectsByNumber`); **no MCP runs on the device**.
-
-Later launches: if the session is still valid, you go straight to chat with the same hub. If the session expires (`401` from chat or hubs), Monty returns to sign-in; **hub selection is kept** so you only sign in again.
-
-**Settings** (gear): change base URL, **Change hub…**, or **Sign out** (clears cookies; hub choice remains).
-
 ## Branch
 
-Work for this app lives on `feature/ios-admin-chat`.
+`feature/ios-admin-chat`

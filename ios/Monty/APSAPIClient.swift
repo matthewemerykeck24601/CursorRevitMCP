@@ -12,25 +12,6 @@ struct HubInfo: Identifiable, Decodable, Equatable {
     }
 }
 
-private struct HubsAPIResponse: Decodable {
-    let hubs: [HubInfo]
-}
-
-private struct SessionAPIResponse: Decodable {
-    let authenticated: Bool?
-    /// Milliseconds since epoch (APS session expiry).
-    let expiresAt: Int64?
-}
-
-/// Response from `GET /api/auth/native-config` (Monty native OAuth).
-struct NativeAuthConfig: Decodable {
-    let clientId: String
-    let scope: String
-    let redirectUri: String
-    let authorizeEndpoint: String
-    let requestId: String?
-}
-
 enum APSClientError: LocalizedError {
     case invalidURL
     case notAuthenticated
@@ -56,7 +37,7 @@ enum SessionStatus: Equatable {
     case unauthenticated
 }
 
-/// Calls `aps-ai-web` JSON routes with shared cookie session.
+/// Calls `aps-ai-web` when you set a **Backend URL**; sends `Authorization: Bearer` from Keychain (standalone auth).
 final class APSAPIClient {
     private let session: URLSession
 
@@ -67,12 +48,20 @@ final class APSAPIClient {
         session = URLSession(configuration: config)
     }
 
+    private func applyBearer(_ request: inout URLRequest) {
+        if let t = KeychainHelper.load(account: MontyTokenAccounts.access), !t.isEmpty {
+            request.setValue("Bearer \(t)", forHTTPHeaderField: "Authorization")
+        }
+    }
+
+    /// Optional: verify backend + bearer against `GET /api/auth/session` when a server URL is configured.
     func fetchSessionStatus(baseURL: URL) async throws -> SessionStatus {
         guard let url = URL(string: "api/auth/session", relativeTo: baseURL)?.absoluteURL else {
             throw APSClientError.invalidURL
         }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        applyBearer(&request)
 
         let (data, response) = try await session.data(for: request)
         guard let http = response as? HTTPURLResponse else {
@@ -87,6 +76,9 @@ final class APSAPIClient {
             throw APSClientError.http(http.statusCode, text)
         }
 
+        struct SessionAPIResponse: Decodable {
+            let expiresAt: Int64?
+        }
         if let decoded = try? JSONDecoder().decode(SessionAPIResponse.self, from: data) {
             let exp: Date? = decoded.expiresAt.map { Date(timeIntervalSince1970: Double($0) / 1000.0) }
             return .authenticated(expiresAt: exp)
@@ -94,35 +86,6 @@ final class APSAPIClient {
         return .authenticated(expiresAt: nil)
     }
 
-    func fetchHubs(baseURL: URL) async throws -> [HubInfo] {
-        guard let url = URL(string: "api/aps/hubs", relativeTo: baseURL)?.absoluteURL else {
-            throw APSClientError.invalidURL
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let (data, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse else {
-            throw APSClientError.http(-1, "No response")
-        }
-        let text = String(data: data, encoding: .utf8) ?? ""
-
-        if http.statusCode == 401 {
-            throw APSClientError.notAuthenticated
-        }
-        guard http.statusCode == 200 else {
-            throw APSClientError.http(http.statusCode, text)
-        }
-
-        do {
-            let decoded = try JSONDecoder().decode(HubsAPIResponse.self, from: data)
-            return decoded.hubs
-        } catch {
-            throw APSClientError.decoding(error)
-        }
-    }
-
-    /// Calls `POST /api/admin/add-users-to-projects` (same server logic as chat tool `admin_add_users_to_projects`).
     func addUsersToProjects(
         baseURL: URL,
         hubId: String,
@@ -151,6 +114,7 @@ final class APSAPIClient {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = data
+        applyBearer(&request)
 
         let (respData, response) = try await session.data(for: request)
         guard let http = response as? HTTPURLResponse else {
@@ -169,65 +133,6 @@ final class APSAPIClient {
                 return s
             }
             return text.isEmpty ? "{}" : text
-        }
-        throw APSClientError.http(http.statusCode, text)
-    }
-
-    func fetchNativeAuthConfiguration(baseURL: URL) async throws -> NativeAuthConfig {
-        guard let url = URL(string: "api/auth/native-config", relativeTo: baseURL)?.absoluteURL else {
-            throw APSClientError.invalidURL
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let (data, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse else {
-            throw APSClientError.http(-1, "No response")
-        }
-        let text = String(data: data, encoding: .utf8) ?? ""
-        guard http.statusCode == 200 else {
-            throw APSClientError.http(http.statusCode, text)
-        }
-        do {
-            return try JSONDecoder().decode(NativeAuthConfig.self, from: data)
-        } catch {
-            throw APSClientError.decoding(error)
-        }
-    }
-
-    /// Finishes PKCE flow; response sets APS session cookies for subsequent API calls.
-    func postNativeExchange(
-        baseURL: URL,
-        code: String,
-        codeVerifier: String,
-        redirectUri: String,
-    ) async throws {
-        guard let url = URL(string: "api/auth/native-exchange", relativeTo: baseURL)?.absoluteURL else {
-            throw APSClientError.invalidURL
-        }
-        let body: [String: Any] = [
-            "code": code,
-            "codeVerifier": codeVerifier,
-            "redirectUri": redirectUri,
-        ]
-        let data = try JSONSerialization.data(withJSONObject: body)
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = data
-
-        let (respData, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse else {
-            throw APSClientError.http(-1, "No response")
-        }
-        let text = String(data: respData, encoding: .utf8) ?? ""
-
-        if http.statusCode == 401 {
-            throw APSClientError.notAuthenticated
-        }
-        if http.statusCode == 200 {
-            return
         }
         throw APSClientError.http(http.statusCode, text)
     }

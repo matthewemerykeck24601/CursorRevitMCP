@@ -18,7 +18,7 @@ enum ChatAPIError: LocalizedError {
         case .invalidBaseURL:
             return "Set a valid server URL in Settings."
         case .notAuthenticated:
-            return "Sign in first (APS session cookies missing)."
+            return "Sign in again, or set Backend URL if using a remote server."
         case .httpStatus(let code, let body):
             return "Server error \(code): \(body)"
         case .invalidJSON:
@@ -61,6 +61,9 @@ final class ChatAPIService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = data
+        if let t = KeychainHelper.load(account: MontyTokenAccounts.access), !t.isEmpty {
+            request.setValue("Bearer \(t)", forHTTPHeaderField: "Authorization")
+        }
 
         let (respData, response) = try await session.data(for: request)
         guard let http = response as? HTTPURLResponse else {

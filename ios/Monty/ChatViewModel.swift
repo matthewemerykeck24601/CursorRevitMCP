@@ -26,7 +26,7 @@ final class ChatViewModel: ObservableObject {
             ChatMessage(
                 role: .system,
                 text:
-                    "Monty — admin task mode. Describe what to do (for example: add user@company.com to project JOB12345). Hub context is sent with each message.",
+                    "Monty — admin task mode. Set an optional Backend URL in Settings to use chat against aps-ai-web. Hub context is sent with each message.",
             ),
         )
     }
@@ -35,7 +35,7 @@ final class ChatViewModel: ObservableObject {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
         guard let baseURL else {
-            lastError = "Set the server URL in Settings."
+            lastError = "Set Backend URL in Settings (aps-ai-web) to use chat."
             return
         }
 

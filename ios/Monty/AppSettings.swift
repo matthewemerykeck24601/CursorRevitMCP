@@ -1,12 +1,13 @@
 import Foundation
 
-/// Persisted server URL, selected ACC/BIM hub, and session-related preferences for Monty.
+/// Optional **Backend URL** for `aps-ai-web` (chat, add-users API). Auth + hubs use Autodesk directly.
 final class AppSettings: ObservableObject {
     private let defaults = UserDefaults.standard
-    private let baseURLKey = "monty.baseURL"
+    private let baseURLKey = "monty.backendBaseURL"
     private let hubIdKey = "monty.selectedHubId"
     private let hubNameKey = "monty.selectedHubName"
 
+    /// e.g. `https://your-app.vercel.app` or `http://127.0.0.1:3000` — **leave empty** if you only use sign-in + hubs.
     @Published var baseURLString: String {
         didSet {
             let trimmed = baseURLString.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -18,7 +19,6 @@ final class AppSettings: ObservableObject {
         }
     }
 
-    /// Data Management hub id (e.g. `b.xxx`); required for admin chat context.
     @Published var selectedHubId: String? {
         didSet {
             if let id = selectedHubId, !id.isEmpty {
@@ -40,8 +40,7 @@ final class AppSettings: ObservableObject {
     }
 
     init() {
-        let initial = defaults.string(forKey: baseURLKey) ?? "http://127.0.0.1:3000"
-        _baseURLString = Published(initialValue: initial)
+        _baseURLString = Published(initialValue: defaults.string(forKey: baseURLKey) ?? "")
         _selectedHubId = Published(initialValue: defaults.string(forKey: hubIdKey))
         _selectedHubName = Published(initialValue: defaults.string(forKey: hubNameKey))
     }

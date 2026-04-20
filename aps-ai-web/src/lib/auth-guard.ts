@@ -14,7 +14,33 @@ type AuthResult =
   | { ok: true; session: UserSession; response: NextResponse }
   | { ok: false; response: NextResponse };
 
+function bearerAccessToken(request: NextRequest): string | null {
+  const raw = request.headers.get("authorization");
+  if (!raw) return null;
+  const m = /^Bearer\s+(.+)$/i.exec(raw.trim());
+  return m?.[1]?.trim() || null;
+}
+
+/**
+ * Session from HttpOnly cookies, or `Authorization: Bearer` (Monty iOS standalone —
+ * client holds tokens; no cookie refresh on server).
+ */
 export async function requireSession(request: NextRequest): Promise<AuthResult> {
+  const bearer = bearerAccessToken(request);
+  if (bearer) {
+    const response = NextResponse.next();
+    return {
+      ok: true,
+      session: {
+        accessToken: bearer,
+        refreshToken: undefined,
+        expiresAt: Number.MAX_SAFE_INTEGER,
+        scope: "",
+      },
+      response,
+    };
+  }
+
   const session = readSessionCookies(request);
   if (!session) {
     return {
@@ -62,4 +88,3 @@ export async function requireSession(request: NextRequest): Promise<AuthResult> 
     return { ok: false, response: unauthorized };
   }
 }
-

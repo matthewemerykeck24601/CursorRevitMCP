@@ -18,6 +18,10 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>AUTODESK_CLIENT_ID</key>
+	<string>YOUR_APS_CLIENT_ID</string>
+	<key>AUTODESK_REDIRECT_URI</key>
+	<string>monty://autodesk-oauth</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

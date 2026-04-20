@@ -85,7 +85,7 @@ struct ContentView: View {
                 NavigationStack {
                     Form {
                         Section {
-                            TextField("Base URL", text: $settings.baseURLString)
+                            TextField("Backend URL (optional)", text: $settings.baseURLString)
                                 .textInputAutocapitalization(.never)
                                 .autocorrectionDisabled()
                                 #if os(iOS)
@@ -95,7 +95,7 @@ struct ContentView: View {
                             Text("aps-ai-web")
                         } footer: {
                             Text(
-                                "Simulator: http://127.0.0.1:3000. Device: your Mac’s LAN IP with `next dev -H 0.0.0.0`.",
+                                "Only needed for chat and “add users” API proxy. Leave empty for sign-in + hub pick only. Example: http://127.0.0.1:3000 or your deployed URL.",
                             )
                         }
 
@@ -119,7 +119,7 @@ struct ContentView: View {
                                 coordinator.sessionExpired()
                             }
                         } footer: {
-                            Text("Clears the local session. Your saved hub stays selected for next sign-in.")
+                            Text("Clears Autodesk tokens from this device. Your saved hub stays selected for next sign-in.")
                         }
                     }
                     .navigationTitle("Settings")

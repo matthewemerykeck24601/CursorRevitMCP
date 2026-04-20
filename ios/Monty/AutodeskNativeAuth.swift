@@ -4,35 +4,32 @@ import SwiftUI
 import UIKit
 
 enum NativeAuthError: LocalizedError {
-    case invalidBaseURL
-    case configFailed(String)
+    case missingClientId
     case buildAuthURLFailed
     case missingCodeOrState
     case oauthError(String)
-    case exchangeFailed(Int, String)
     case sessionStartFailed
+    case tokenExchange(Error)
 
     var errorDescription: String? {
         switch self {
-        case .invalidBaseURL:
-            return "Invalid server URL."
-        case .configFailed(let s):
-            return s
+        case .missingClientId:
+            return "Set AUTODESK_CLIENT_ID in Info.plist (APS app Client ID)."
         case .buildAuthURLFailed:
             return "Could not build Autodesk authorize URL."
         case .missingCodeOrState:
             return "OAuth callback missing code."
         case .oauthError(let s):
             return s
-        case .exchangeFailed(let code, let body):
-            return "Token exchange failed (\(code)): \(body)"
         case .sessionStartFailed:
             return "Could not start sign-in session."
+        case .tokenExchange(let e):
+            return e.localizedDescription
         }
     }
 }
 
-/// Native Autodesk OAuth (PKCE) + server-side code exchange → session cookies for `aps-ai-web`.
+/// Native Autodesk OAuth (PKCE) + **on-device** token exchange → Keychain. No local Node server.
 @MainActor
 final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresentationContextProviding {
     private var authSession: ASWebAuthenticationSession?
@@ -46,20 +43,23 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
         return window
     }
 
-    func signIn(baseURL: URL, api: APSAPIClient) async throws {
-        let config = try await api.fetchNativeAuthConfiguration(baseURL: baseURL)
+    func signIn() async throws {
+        guard let clientId = AutodeskOAuthConfig.clientId else {
+            throw NativeAuthError.missingClientId
+        }
+        let redirectUri = AutodeskOAuthConfig.redirectUri
         let verifier = PKCE.generateCodeVerifier()
         let challenge = PKCE.codeChallengeS256(verifier: verifier)
         let state = UUID().uuidString
 
-        guard var components = URLComponents(string: config.authorizeEndpoint) else {
+        guard var components = URLComponents(string: AutodeskOAuthConfig.authorizeEndpoint) else {
             throw NativeAuthError.buildAuthURLFailed
         }
         components.queryItems = [
             URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "client_id", value: config.clientId),
-            URLQueryItem(name: "redirect_uri", value: config.redirectUri),
-            URLQueryItem(name: "scope", value: config.scope),
+            URLQueryItem(name: "client_id", value: clientId),
+            URLQueryItem(name: "redirect_uri", value: redirectUri),
+            URLQueryItem(name: "scope", value: AutodeskOAuthConfig.scope),
             URLQueryItem(name: "state", value: state),
             URLQueryItem(name: "code_challenge", value: challenge),
             URLQueryItem(name: "code_challenge_method", value: "S256"),
@@ -68,9 +68,7 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
             throw NativeAuthError.buildAuthURLFailed
         }
 
-        let scheme =
-            URL(string: config.redirectUri)?.scheme
-                ?? "monty"
+        let scheme = URL(string: redirectUri)?.scheme ?? "monty"
 
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             let session = ASWebAuthenticationSession(
@@ -101,9 +99,8 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
                             callbackURL: callbackURL,
                             expectedState: state,
                             codeVerifier: verifier,
-                            redirectUri: config.redirectUri,
-                            baseURL: baseURL,
-                            api: api,
+                            redirectUri: redirectUri,
+                            clientId: clientId,
                         )
                         continuation.resume()
                     } catch {
@@ -125,8 +122,7 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
         expectedState: String,
         codeVerifier: String,
         redirectUri: String,
-        baseURL: URL,
-        api: APSAPIClient,
+        clientId: String,
     ) async throws {
         let items = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false)?.queryItems ?? []
         let qp = Dictionary(uniqueKeysWithValues: items.map { ($0.name, $0.value ?? "") })
@@ -143,11 +139,16 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
             throw NativeAuthError.oauthError("Invalid OAuth state")
         }
 
-        try await api.postNativeExchange(
-            baseURL: baseURL,
-            code: code,
-            codeVerifier: codeVerifier,
-            redirectUri: redirectUri,
-        )
+        do {
+            let tokens = try await AutodeskDirectOAuth.exchangeCodeForTokens(
+                code: code,
+                codeVerifier: codeVerifier,
+                redirectUri: redirectUri,
+                clientId: clientId,
+            )
+            AutodeskTokenStore.shared.save(tokens: tokens)
+        } catch {
+            throw NativeAuthError.tokenExchange(error)
+        }
     }
 }

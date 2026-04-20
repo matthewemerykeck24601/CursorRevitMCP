@@ -10,8 +10,6 @@ struct RootView: View {
             case .bootstrapping:
                 ProgressView("Starting…")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-            case .needsBaseURL:
-                BaseURLSetupView()
             case .needsSignIn:
                 SignInGateView()
             case .needsHub:
