@@ -3,9 +3,11 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var coordinator: AppCoordinator
+    @EnvironmentObject private var xaiKeys: XaiKeyStore
     @StateObject private var chat = ChatViewModel()
     @State private var showSettings = false
     @State private var showAddUsersTool = false
+    @State private var xaiKeyDraft = ""
 
     var body: some View {
         NavigationStack {
@@ -85,6 +87,34 @@ struct ContentView: View {
                 NavigationStack {
                     Form {
                         Section {
+                            if xaiKeys.hasKey {
+                                Text("xAI API key saved on this device (Keychain).")
+                                    .foregroundStyle(.secondary)
+                                    .font(.footnote)
+                                Button("Remove xAI key", role: .destructive) {
+                                    xaiKeys.saveKey("")
+                                }
+                            }
+                            SecureField("Paste xAI API key (console.x.ai)", text: $xaiKeyDraft)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                            Button("Save xAI key") {
+                                xaiKeys.saveKey(xaiKeyDraft)
+                                xaiKeyDraft = ""
+                            }
+                            .disabled(xaiKeyDraft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                            TextField("xAI model id", text: $settings.xaiModel)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                        } header: {
+                            Text("On-device Grok (recommended)")
+                        } footer: {
+                            Text(
+                                "APS Client ID belongs in Info.plist (public OAuth id — that is normal). The xAI key stays in Keychain, not in the plist. Leave Backend URL empty to use Grok from your phone anywhere.",
+                            )
+                        }
+
+                        Section {
                             TextField("Backend URL (optional)", text: $settings.baseURLString)
                                 .textInputAutocapitalization(.never)
                                 .autocorrectionDisabled()
@@ -92,10 +122,10 @@ struct ContentView: View {
                                     .keyboardType(.URL)
                                 #endif
                         } header: {
-                            Text("aps-ai-web")
+                            Text("Remote server")
                         } footer: {
                             Text(
-                                "Chat: monty-ai-server (Grok), e.g. http://127.0.0.1:8787. Add-users still uses aps-ai-web if you need that. Leave empty for sign-in + hub only.",
+                                "Optional: monty-ai-server or deployed aps-ai-web if you prefer server-side chat or web parity. On-device xAI takes priority when a key is saved.",
                             )
                         }
 
@@ -165,4 +195,5 @@ struct ContentView: View {
     ContentView()
         .environmentObject(AppSettings())
         .environmentObject(AppCoordinator())
+        .environmentObject(XaiKeyStore.shared)
 }

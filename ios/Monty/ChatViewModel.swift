@@ -21,12 +21,16 @@ final class ChatViewModel: ObservableObject {
 
     private let api = ChatAPIService()
 
+    private var xaiModel: String {
+        UserDefaults.standard.string(forKey: "monty.xaiModel") ?? "grok-3-latest"
+    }
+
     init() {
         messages.append(
             ChatMessage(
                 role: .system,
                 text:
-                    "Monty — chat uses your optional Backend URL (e.g. monty-ai-server for Grok). Hub context is sent with each message.",
+                    "Monty — chat: paste your xAI API key in Settings for on-device Grok, or set Backend URL. Hub context is sent when you pick a hub.",
             ),
         )
     }
@@ -34,10 +38,6 @@ final class ChatViewModel: ObservableObject {
     func send(baseURL: URL?, selectedHubId: String?) async {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
-        guard let baseURL else {
-            lastError = "Set Backend URL in Settings (e.g. http://127.0.0.1:8787 for monty-ai-server) to use chat."
-            return
-        }
 
         lastError = nil
         let priorHistory = buildChatHistory()
@@ -47,6 +47,37 @@ final class ChatViewModel: ObservableObject {
         defer { isSending = false }
 
         let history = priorHistory
+
+        if let key = XaiKeyStore.shared.apiKey, !key.isEmpty {
+            do {
+                let reply = try await XaiChatClient.send(
+                    apiKey: key,
+                    model: xaiModel.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                        ? "grok-3-latest" : xaiModel,
+                    userMessage: trimmed,
+                    chatHistory: history,
+                    selectedHubId: selectedHubId,
+                )
+                messages.append(ChatMessage(role: .assistant, text: reply))
+            } catch let e as XaiChatClientError {
+                lastError = e.localizedDescription
+                messages.append(
+                    ChatMessage(role: .assistant, text: "Error: \(e.localizedDescription)"),
+                )
+            } catch {
+                lastError = error.localizedDescription
+                messages.append(
+                    ChatMessage(role: .assistant, text: "Error: \(error.localizedDescription)"),
+                )
+            }
+            return
+        }
+
+        guard let baseURL else {
+            lastError =
+                "Add your xAI API key in Settings (on-device Grok), or set Backend URL for a remote chat server."
+            return
+        }
 
         do {
             let parsed = try await api.sendAdminTask(

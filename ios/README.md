@@ -1,45 +1,45 @@
 # Monty (iOS)
 
-Standalone **Autodesk OAuth** (PKCE + on-device token exchange) and **direct** hub list from `developer.api.autodesk.com`. **No local Node server** is required to sign in or pick a hub.
+Native **Autodesk OAuth** (PKCE) and **direct** hub list from Autodesk. You can run everything **from your phone** without a Mac or Node server.
 
-## Configure APS (once)
+## 1. APS Client ID (OAuth) — Info.plist is correct
 
-1. In your APS app, add callback **`monty://autodesk-oauth`** (same Client ID you use elsewhere).
-2. In Xcode, set **`AUTODESK_CLIENT_ID`** in `Monty/Info.plist` (replace `YOUR_APS_CLIENT_ID`).
+For a **public native app**, the APS **Client ID is not a secret** the way a `client_secret` is. Putting **`AUTODESK_CLIENT_ID`** in **`Monty/Info.plist`** (or in Xcode target → Info) is the normal approach — same idea as CastCam-style apps.
 
-Optional: **`AUTODESK_SCOPE`** in Info.plist to override scopes (defaults match `aps-ai-web` minus `code:all`).
+1. In the APS Developer Portal, register redirect **`monty://autodesk-oauth`** for that app.
+2. Set **`AUTODESK_CLIENT_ID`** in `Monty/Info.plist` to your app’s Client ID.
 
-## Optional backend
+Optional: **`AUTODESK_SCOPE`** to override scopes.
 
-### Chat (Grok) — **`monty-ai-server`**
+## 2. xAI (Grok) — Keychain, not plist
 
-Recommended for **`POST /api/chat`**: run the standalone server in `../monty-ai-server` (xAI Grok, same API shape Monty expects). Example:
+**Do not** put your **xAI API key** in Info.plist (it would ship in the IPA and is easy to extract).
 
-```bash
-cd ../monty-ai-server && cp .env.example .env
-# Set XAI_API_KEY in .env
-npm install && npm run dev
-```
+Instead, in the app: **Settings → On-device Grok → paste API key → Save**. It is stored in the **Keychain** on device.
 
-In Monty **Settings**, set **Backend URL** to `http://127.0.0.1:8787` (or your machine’s LAN IP for a physical device).
+Optional: adjust **xAI model id** (default `grok-3-latest`).
 
-### ACC admin — **`aps-ai-web`**
+Chat uses **on-device xAI** when a key is saved; it **does not** require Backend URL.
 
-`POST /api/admin/add-users-to-projects` is still implemented in **`aps-ai-web`**. Point **Backend URL** at that deployment if you use add-users from the app.
+## 3. Add users to ACC projects — on-device
 
-All of these requests send **`Authorization: Bearer`** with the Autodesk access token from Keychain.
+With **Backend URL empty**, **Add users to projects** calls Autodesk **Construction Admin** APIs directly using your **APS access token** (same endpoints as `aps-ai-web`).
+
+- **Project numbers** use the same heuristic as the web app (first token of the Data Management project name).
+- **Role IDs**: paste comma-separated **UUIDs** (ACC exposes these in admin). On-device, **role names** are not resolved (the web app uses server-side caches for name → id). If you only enter names, the app adds users **without** role assignment and explains in the JSON `note`.
+
+If you set **Backend URL**, that flow still uses **`POST /api/admin/add-users-to-projects`** on your server (full name resolution like the web app).
+
+## 4. Optional backend
+
+- **monty-ai-server** or **aps-ai-web**: set **Backend URL** only if you want **server-side** chat or web parity. When an xAI key is saved, **on-device Grok takes priority** for chat.
 
 ## Open in Xcode
 
 ```bash
 cd ios
+xcodegen generate
 open Monty.xcodeproj
-```
-
-Regenerate after `project.yml` changes:
-
-```bash
-cd ios && xcodegen generate
 ```
 
 ## Branch

@@ -22,13 +22,17 @@
 		8208C39D991A06ECBE7D5B10 /* PKCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */; };
 		857166AFC732F7C892394F22 /* AutodeskDirectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4943023AB9365544CB93535 /* AutodeskDirectAPI.swift */; };
 		86EDABC87F184FAD95D653FE /* AddUsersToProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */; };
+		BBA69158584E1A85B96EDE91 /* XaiChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5AE781A11294DDD43C76 /* XaiChatClient.swift */; };
 		C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76646BECB280274B682E22 /* SessionCookieSync.swift */; };
+		C7D38DD6B5304DD082AA3B22 /* AccConstructionAdminClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A2CDBC97C29D903F530CED /* AccConstructionAdminClient.swift */; };
 		D8A35CCE04AB0E81CA986A71 /* AutodeskNativeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */; };
 		DDD8DC0CF558D632B69BD49C /* AutodeskDirectOAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A888D452FA19BB2BFA5A734 /* AutodeskDirectOAuth.swift */; };
+		DF50149AD20492D298B4CAC8 /* XaiKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A669EFEB0DD11D2544DF /* XaiKeyStore.swift */; };
 		E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D059CC6AB6132A666AD62E /* ChatViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16A2CDBC97C29D903F530CED /* AccConstructionAdminClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccConstructionAdminClient.swift; sourceTree = "<group>"; };
 		1D76646BECB280274B682E22 /* SessionCookieSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCookieSync.swift; sourceTree = "<group>"; };
 		2A888D452FA19BB2BFA5A734 /* AutodeskDirectOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskDirectOAuth.swift; sourceTree = "<group>"; };
 		32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCE.swift; sourceTree = "<group>"; };
@@ -47,15 +51,18 @@
 		9DDE71A58A69E32A32D50009 /* AutodeskTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskTokenStore.swift; sourceTree = "<group>"; };
 		AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsersToProjectsView.swift; sourceTree = "<group>"; };
 		BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C7D9A669EFEB0DD11D2544DF /* XaiKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XaiKeyStore.swift; sourceTree = "<group>"; };
 		F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyNotifications.swift; sourceTree = "<group>"; };
 		F4943023AB9365544CB93535 /* AutodeskDirectAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskDirectAPI.swift; sourceTree = "<group>"; };
 		FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		FFBC5AE781A11294DDD43C76 /* XaiChatClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XaiChatClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		0934A0EE55E3C9995716B9CE /* Monty */ = {
 			isa = PBXGroup;
 			children = (
+				16A2CDBC97C29D903F530CED /* AccConstructionAdminClient.swift */,
 				AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */,
 				FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */,
 				70454B506A962C388DC635EA /* AppSettings.swift */,
@@ -76,6 +83,8 @@
 				32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */,
 				7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */,
 				1D76646BECB280274B682E22 /* SessionCookieSync.swift */,
+				FFBC5AE781A11294DDD43C76 /* XaiChatClient.swift */,
+				C7D9A669EFEB0DD11D2544DF /* XaiKeyStore.swift */,
 			);
 			path = Monty;
 			sourceTree = "<group>";
@@ -163,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F468714A7141526636B367 /* APSAPIClient.swift in Sources */,
+				C7D38DD6B5304DD082AA3B22 /* AccConstructionAdminClient.swift in Sources */,
 				86EDABC87F184FAD95D653FE /* AddUsersToProjectsView.swift in Sources */,
 				2072678F26C24C24B2C89B0C /* AppCoordinator.swift in Sources */,
 				2ADAFB46771A249B590C4212 /* AppSettings.swift in Sources */,
@@ -180,6 +190,8 @@
 				8208C39D991A06ECBE7D5B10 /* PKCE.swift in Sources */,
 				72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */,
 				C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */,
+				BBA69158584E1A85B96EDE91 /* XaiChatClient.swift in Sources */,
+				DF50149AD20492D298B4CAC8 /* XaiKeyStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,11 +1,12 @@
 import Foundation
 
-/// Optional **Backend URL** for `aps-ai-web` (chat, add-users API). Auth + hubs use Autodesk directly.
+/// **Backend URL** is optional if you use on-device xAI + ACC admin. Auth + hubs use Autodesk directly.
 final class AppSettings: ObservableObject {
     private let defaults = UserDefaults.standard
     private let baseURLKey = "monty.backendBaseURL"
     private let hubIdKey = "monty.selectedHubId"
     private let hubNameKey = "monty.selectedHubName"
+    private let xaiModelKey = "monty.xaiModel"
 
     /// e.g. `https://your-app.vercel.app` or `http://127.0.0.1:3000` — **leave empty** if you only use sign-in + hubs.
     @Published var baseURLString: String {
@@ -39,10 +40,23 @@ final class AppSettings: ObservableObject {
         }
     }
 
+    /// xAI model id for on-device Grok chat (see console.x.ai).
+    @Published var xaiModel: String {
+        didSet {
+            let t = xaiModel.trimmingCharacters(in: .whitespacesAndNewlines)
+            if t != xaiModel {
+                xaiModel = t
+                return
+            }
+            defaults.set(xaiModel, forKey: xaiModelKey)
+        }
+    }
+
     init() {
         _baseURLString = Published(initialValue: defaults.string(forKey: baseURLKey) ?? "")
         _selectedHubId = Published(initialValue: defaults.string(forKey: hubIdKey))
         _selectedHubName = Published(initialValue: defaults.string(forKey: hubNameKey))
+        _xaiModel = Published(initialValue: defaults.string(forKey: xaiModelKey) ?? "grok-3-latest")
     }
 
     var baseURL: URL? {

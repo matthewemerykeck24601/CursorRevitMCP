@@ -10,6 +10,7 @@ struct MontyApp: App {
             RootView()
                 .environmentObject(settings)
                 .environmentObject(coordinator)
+                .environmentObject(XaiKeyStore.shared)
         }
     }
 }

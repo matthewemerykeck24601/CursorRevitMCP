@@ -5,6 +5,8 @@ enum MontyTokenAccounts {
     static let access = "monty.aps.accessToken"
     static let refresh = "monty.aps.refreshToken"
     static let expiry = "monty.aps.expiresAtMs"
+    /// xAI API key for on-device Grok chat (Keychain — do not put in Info.plist).
+    static let xaiApiKey = "monty.xai.apiKey"
 }
 
 /// Stores APS access/refresh tokens in the Keychain (standalone auth — no local Node server).
