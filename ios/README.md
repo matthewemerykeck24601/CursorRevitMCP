@@ -9,14 +9,25 @@ Standalone **Autodesk OAuth** (PKCE + on-device token exchange) and **direct** h
 
 Optional: **`AUTODESK_SCOPE`** in Info.plist to override scopes (defaults match `aps-ai-web` minus `code:all`).
 
-## Optional backend (chat / add-users via server)
+## Optional backend
 
-Enter **Backend URL** in Settings only if you use **`aps-ai-web`** for:
+### Chat (Grok) — **`monty-ai-server`**
 
-- `POST /api/chat` (admin LLM)
-- `POST /api/admin/add-users-to-projects`
+Recommended for **`POST /api/chat`**: run the standalone server in `../monty-ai-server` (xAI Grok, same API shape Monty expects). Example:
 
-Requests send **`Authorization: Bearer`** with the access token from Keychain. The server must allow Bearer auth (see `requireSession` in `aps-ai-web`).
+```bash
+cd ../monty-ai-server && cp .env.example .env
+# Set XAI_API_KEY in .env
+npm install && npm run dev
+```
+
+In Monty **Settings**, set **Backend URL** to `http://127.0.0.1:8787` (or your machine’s LAN IP for a physical device).
+
+### ACC admin — **`aps-ai-web`**
+
+`POST /api/admin/add-users-to-projects` is still implemented in **`aps-ai-web`**. Point **Backend URL** at that deployment if you use add-users from the app.
+
+All of these requests send **`Authorization: Bearer`** with the Autodesk access token from Keychain.
 
 ## Open in Xcode
 

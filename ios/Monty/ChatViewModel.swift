@@ -26,7 +26,7 @@ final class ChatViewModel: ObservableObject {
             ChatMessage(
                 role: .system,
                 text:
-                    "Monty — admin task mode. Set an optional Backend URL in Settings to use chat against aps-ai-web. Hub context is sent with each message.",
+                    "Monty — chat uses your optional Backend URL (e.g. monty-ai-server for Grok). Hub context is sent with each message.",
             ),
         )
     }
@@ -35,7 +35,7 @@ final class ChatViewModel: ObservableObject {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
         guard let baseURL else {
-            lastError = "Set Backend URL in Settings (aps-ai-web) to use chat."
+            lastError = "Set Backend URL in Settings (e.g. http://127.0.0.1:8787 for monty-ai-server) to use chat."
             return
         }
 

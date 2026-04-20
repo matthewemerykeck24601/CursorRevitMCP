@@ -95,7 +95,7 @@ struct ContentView: View {
                             Text("aps-ai-web")
                         } footer: {
                             Text(
-                                "Only needed for chat and “add users” API proxy. Leave empty for sign-in + hub pick only. Example: http://127.0.0.1:3000 or your deployed URL.",
+                                "Chat: monty-ai-server (Grok), e.g. http://127.0.0.1:8787. Add-users still uses aps-ai-web if you need that. Leave empty for sign-in + hub only.",
                             )
                         }
 
