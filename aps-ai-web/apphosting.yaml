@@ -35,6 +35,18 @@ env:
       - BUILD
       - RUNTIME
 
+  - variable: AI_GATEWAY_MODE
+    value: "firebase_functions"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: AI_GATEWAY_FUNCTION_URL
+    value: "https://us-central1-monty-33c09.cloudfunctions.net/aiGateway"
+    availability:
+      - BUILD
+      - RUNTIME
+
   - variable: XAI_MODEL
     value: "grok-4.20-multi-agent-0309"
     availability:
@@ -60,4 +72,5 @@ env:
   - variable: APS_CLIENT_SECRET
     secret: APS_CLIENT_SECRET
 
-  # AI provider keys are configured later once chat is finalized.
+  - variable: AI_GATEWAY_SHARED_SECRET
+    secret: AI_GATEWAY_SHARED_SECRET

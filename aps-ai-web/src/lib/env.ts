@@ -64,6 +64,9 @@ export const env = {
       "code:all",
     ].join(" "),
   aiProvider: getEnv("AI_PROVIDER", "xai").toLowerCase(),
+  aiGatewayMode: getEnv("AI_GATEWAY_MODE", "direct").toLowerCase(),
+  aiGatewayFunctionUrl: getEnv("AI_GATEWAY_FUNCTION_URL"),
+  aiGatewaySharedSecret: getEnv("AI_GATEWAY_SHARED_SECRET"),
   aiOpenAiKey: getEnv("OPENAI_API_KEY"),
   aiOpenAiModel: getEnv("OPENAI_MODEL", "gpt-4.1-mini"),
   aiXaiKey: getEnv("XAI_API_KEY"),
@@ -128,6 +131,12 @@ export function assertApsCredentials(): void {
 }
 
 export function hasAnyAiProviderKey(): boolean {
+  if (
+    env.aiGatewayMode === "firebase_functions" &&
+    Boolean(env.aiGatewayFunctionUrl.trim())
+  ) {
+    return true;
+  }
   return Boolean(env.aiOpenAiKey || env.aiXaiKey);
 }
 

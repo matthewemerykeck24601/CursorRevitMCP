@@ -804,6 +804,51 @@ async function callXaiResponsesRaw(
   return extractXaiResponseText(json);
 }
 
+async function callFirebaseFunctionsAiGateway(
+  backend: "xai" | "openai",
+  prompt: string,
+  modelOverride?: string,
+): Promise<string> {
+  const endpoint = env.aiGatewayFunctionUrl.trim();
+  if (!endpoint) {
+    throw new Error(
+      "AI gateway mode is firebase_functions but AI_GATEWAY_FUNCTION_URL is not configured.",
+    );
+  }
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(env.aiGatewaySharedSecret
+        ? { "x-ai-gateway-secret": env.aiGatewaySharedSecret }
+        : {}),
+    },
+    body: JSON.stringify({
+      provider: backend,
+      prompt,
+      model: modelOverride?.trim(),
+      xaiDefaultModel: env.aiXaiModel,
+      openAiDefaultModel: env.aiOpenAiModel,
+    }),
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`AI gateway request failed (${response.status}): ${text}`);
+  }
+  const json = (await response.json()) as {
+    text?: unknown;
+    error?: unknown;
+  };
+  const text = typeof json.text === "string" ? json.text : "";
+  if (!text) {
+    throw new Error(
+      `AI gateway returned empty response${json.error ? `: ${String(json.error)}` : "."}`,
+    );
+  }
+  return text;
+}
+
 async function callOpenAiRaw(
   prompt: string,
   modelOverride?: string,
@@ -855,6 +900,9 @@ async function callLlmRaw(
   prompt: string,
   modelOverride?: string,
 ): Promise<string> {
+  if (env.aiGatewayMode === "firebase_functions") {
+    return callFirebaseFunctionsAiGateway(backend, prompt, modelOverride);
+  }
   if (backend === "xai") {
     return callXaiResponsesRaw(prompt, modelOverride);
   }
