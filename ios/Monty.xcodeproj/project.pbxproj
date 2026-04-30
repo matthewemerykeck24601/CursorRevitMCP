@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2072678F26C24C24B2C89B0C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */; };
+		2ADAFB46771A249B590C4212 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70454B506A962C388DC635EA /* AppSettings.swift */; };
+		2E230E752F2DE481B2466C3D /* OnboardingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89803C176D5E9B792CA132E7 /* OnboardingViews.swift */; };
+		2FD43222C89884A0367B425A /* AutodeskTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE71A58A69E32A32D50009 /* AutodeskTokenStore.swift */; };
+		2FF5482FA2CD99ABBC682D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335ABADA31C73F1D932CA2CF /* Assets.xcassets */; };
+		3204F23D4029C7EA2099BF79 /* AutodeskOAuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DDB2AE4B44233BC64EF071 /* AutodeskOAuthConfig.swift */; };
+		33F468714A7141526636B367 /* APSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797952DEAB88C06C4837D531 /* APSAPIClient.swift */; };
+		44B10D8C498C3C0F353BE4B2 /* MontyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A754DB1534B75F1171CB6D3 /* MontyApp.swift */; };
+		4D918DC630CE49697EE1895D /* MontyNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */; };
+		676B408987BE545E6B310A79 /* ChatAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D64E16269793FA570815AD2 /* ChatAPIService.swift */; };
+		698E8289D5DD248BC369B085 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */; };
+		72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */; };
+		8208C39D991A06ECBE7D5B10 /* PKCE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */; };
+		857166AFC732F7C892394F22 /* AutodeskDirectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4943023AB9365544CB93535 /* AutodeskDirectAPI.swift */; };
+		86EDABC87F184FAD95D653FE /* AddUsersToProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */; };
+		BBA69158584E1A85B96EDE91 /* XaiChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5AE781A11294DDD43C76 /* XaiChatClient.swift */; };
+		C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D76646BECB280274B682E22 /* SessionCookieSync.swift */; };
+		C7D38DD6B5304DD082AA3B22 /* AccConstructionAdminClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A2CDBC97C29D903F530CED /* AccConstructionAdminClient.swift */; };
+		D8A35CCE04AB0E81CA986A71 /* AutodeskNativeAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */; };
+		DDD8DC0CF558D632B69BD49C /* AutodeskDirectOAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A888D452FA19BB2BFA5A734 /* AutodeskDirectOAuth.swift */; };
+		DF50149AD20492D298B4CAC8 /* XaiKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A669EFEB0DD11D2544DF /* XaiKeyStore.swift */; };
+		E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D059CC6AB6132A666AD62E /* ChatViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		16A2CDBC97C29D903F530CED /* AccConstructionAdminClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccConstructionAdminClient.swift; sourceTree = "<group>"; };
+		1D76646BECB280274B682E22 /* SessionCookieSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCookieSync.swift; sourceTree = "<group>"; };
+		2A888D452FA19BB2BFA5A734 /* AutodeskDirectOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskDirectOAuth.swift; sourceTree = "<group>"; };
+		32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCE.swift; sourceTree = "<group>"; };
+		335ABADA31C73F1D932CA2CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		37516C3537DF5E9FEAFB6490 /* Monty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D64E16269793FA570815AD2 /* ChatAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIService.swift; sourceTree = "<group>"; };
+		41DDB2AE4B44233BC64EF071 /* AutodeskOAuthConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskOAuthConfig.swift; sourceTree = "<group>"; };
+		42D059CC6AB6132A666AD62E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		70454B506A962C388DC635EA /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		797952DEAB88C06C4837D531 /* APSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSAPIClient.swift; sourceTree = "<group>"; };
+		7A754DB1534B75F1171CB6D3 /* MontyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyApp.swift; sourceTree = "<group>"; };
+		7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskNativeAuth.swift; sourceTree = "<group>"; };
+		89803C176D5E9B792CA132E7 /* OnboardingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViews.swift; sourceTree = "<group>"; };
+		90BA92D243A28760A0D41577 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9DDE71A58A69E32A32D50009 /* AutodeskTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskTokenStore.swift; sourceTree = "<group>"; };
+		AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsersToProjectsView.swift; sourceTree = "<group>"; };
+		BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C7D9A669EFEB0DD11D2544DF /* XaiKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XaiKeyStore.swift; sourceTree = "<group>"; };
+		F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyNotifications.swift; sourceTree = "<group>"; };
+		F4943023AB9365544CB93535 /* AutodeskDirectAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskDirectAPI.swift; sourceTree = "<group>"; };
+		FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		FFBC5AE781A11294DDD43C76 /* XaiChatClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XaiChatClient.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0934A0EE55E3C9995716B9CE /* Monty */ = {
+			isa = PBXGroup;
+			children = (
+				16A2CDBC97C29D903F530CED /* AccConstructionAdminClient.swift */,
+				AEEF9C701EC7740E994DFD69 /* AddUsersToProjectsView.swift */,
+				FC1CFEA360CCDEDFF04E5CF6 /* AppCoordinator.swift */,
+				70454B506A962C388DC635EA /* AppSettings.swift */,
+				797952DEAB88C06C4837D531 /* APSAPIClient.swift */,
+				335ABADA31C73F1D932CA2CF /* Assets.xcassets */,
+				F4943023AB9365544CB93535 /* AutodeskDirectAPI.swift */,
+				2A888D452FA19BB2BFA5A734 /* AutodeskDirectOAuth.swift */,
+				8319378D656C2FC531CAED14 /* AutodeskNativeAuth.swift */,
+				41DDB2AE4B44233BC64EF071 /* AutodeskOAuthConfig.swift */,
+				9DDE71A58A69E32A32D50009 /* AutodeskTokenStore.swift */,
+				3D64E16269793FA570815AD2 /* ChatAPIService.swift */,
+				42D059CC6AB6132A666AD62E /* ChatViewModel.swift */,
+				BDE0D1DDEFC6347D3DA25C45 /* ContentView.swift */,
+				90BA92D243A28760A0D41577 /* Info.plist */,
+				7A754DB1534B75F1171CB6D3 /* MontyApp.swift */,
+				F1DB47A6A3F18E4E1019FF76 /* MontyNotifications.swift */,
+				89803C176D5E9B792CA132E7 /* OnboardingViews.swift */,
+				32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */,
+				7C4DD13E6EBAB3EFCB2A51C5 /* RootView.swift */,
+				1D76646BECB280274B682E22 /* SessionCookieSync.swift */,
+				FFBC5AE781A11294DDD43C76 /* XaiChatClient.swift */,
+				C7D9A669EFEB0DD11D2544DF /* XaiKeyStore.swift */,
+			);
+			path = Monty;
+			sourceTree = "<group>";
+		};
+		5870447A9B54E349D84DA53E = {
+			isa = PBXGroup;
+			children = (
+				0934A0EE55E3C9995716B9CE /* Monty */,
+				FFC65EEB481C85DD007D006C /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
+		FFC65EEB481C85DD007D006C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37516C3537DF5E9FEAFB6490 /* Monty.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CACC99AC286FBC2DB4AD94BE /* Monty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08AC4BA0789DE0C3A147BF0A /* Build configuration list for PBXNativeTarget "Monty" */;
+			buildPhases = (
+				A96FBB3968EF8EBE00779FEA /* Sources */,
+				9170049227A4D83636966267 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Monty;
+			packageProductDependencies = (
+			);
+			productName = Monty;
+			productReference = 37516C3537DF5E9FEAFB6490 /* Monty.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		641AA47F4C7363634B45DA77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = CF1A2D49962997332FB94719 /* Build configuration list for PBXProject "Monty" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 5870447A9B54E349D84DA53E;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CACC99AC286FBC2DB4AD94BE /* Monty */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9170049227A4D83636966267 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FF5482FA2CD99ABBC682D76 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A96FBB3968EF8EBE00779FEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F468714A7141526636B367 /* APSAPIClient.swift in Sources */,
+				C7D38DD6B5304DD082AA3B22 /* AccConstructionAdminClient.swift in Sources */,
+				86EDABC87F184FAD95D653FE /* AddUsersToProjectsView.swift in Sources */,
+				2072678F26C24C24B2C89B0C /* AppCoordinator.swift in Sources */,
+				2ADAFB46771A249B590C4212 /* AppSettings.swift in Sources */,
+				857166AFC732F7C892394F22 /* AutodeskDirectAPI.swift in Sources */,
+				DDD8DC0CF558D632B69BD49C /* AutodeskDirectOAuth.swift in Sources */,
+				D8A35CCE04AB0E81CA986A71 /* AutodeskNativeAuth.swift in Sources */,
+				3204F23D4029C7EA2099BF79 /* AutodeskOAuthConfig.swift in Sources */,
+				2FD43222C89884A0367B425A /* AutodeskTokenStore.swift in Sources */,
+				676B408987BE545E6B310A79 /* ChatAPIService.swift in Sources */,
+				E8CE6DF6B43D48DABFF47A20 /* ChatViewModel.swift in Sources */,
+				698E8289D5DD248BC369B085 /* ContentView.swift in Sources */,
+				44B10D8C498C3C0F353BE4B2 /* MontyApp.swift in Sources */,
+				4D918DC630CE49697EE1895D /* MontyNotifications.swift in Sources */,
+				2E230E752F2DE481B2466C3D /* OnboardingViews.swift in Sources */,
+				8208C39D991A06ECBE7D5B10 /* PKCE.swift in Sources */,
+				72AEFEB90FE42CD5961E9532 /* RootView.swift in Sources */,
+				C268B1A5C104FF2C092AEE35 /* SessionCookieSync.swift in Sources */,
+				BBA69158584E1A85B96EDE91 /* XaiChatClient.swift in Sources */,
+				DF50149AD20492D298B4CAC8 /* XaiKeyStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1303CE4F8A64DE8E38985E0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3000B6DA4E78DBE1F6EA2947 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K457GA952L;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = Monty/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cursorrevitmcp.monty;
+				PRODUCT_NAME = Monty;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E1AB0F0B40E7630398911CCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K457GA952L;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = Monty/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cursorrevitmcp.monty;
+				PRODUCT_NAME = Monty;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F0735C41543F8040415820D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		08AC4BA0789DE0C3A147BF0A /* Build configuration list for PBXNativeTarget "Monty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1AB0F0B40E7630398911CCD /* Debug */,
+				3000B6DA4E78DBE1F6EA2947 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CF1A2D49962997332FB94719 /* Build configuration list for PBXProject "Monty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1303CE4F8A64DE8E38985E0C /* Debug */,
+				F0735C41543F8040415820D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 641AA47F4C7363634B45DA77 /* Project object */;
+}

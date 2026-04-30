@@ -44,6 +44,11 @@ export const env = {
     "APS_CALLBACK_URL",
     "http://localhost:3000/auth/callback",
   ),
+  /** Monty iOS native OAuth redirect (must match APS app callback + Info.plist URL scheme). */
+  apsNativeRedirectUri: getEnv(
+    "APS_NATIVE_REDIRECT_URI",
+    "monty://autodesk-oauth",
+  ),
   appBaseUrl: getEnv("APP_BASE_URL", "http://localhost:3000"),
   apsScope:
     getEnv("APS_SCOPE") ||

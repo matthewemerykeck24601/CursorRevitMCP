@@ -5,6 +5,7 @@ Workspace for APS / Autodesk Viewer integration, Alice (AI assistant), and Revit
 ## Contents
 
 - **`aps-ai-web/`** — Next.js app (OAuth, viewer, chat). See [`aps-ai-web/README.md`](aps-ai-web/README.md).
+- **`ios/`** — **Monty**: admin task chat iOS app (Xcode + xcodegen). See [`ios/README.md`](ios/README.md).
 - **`.cursor/rules/`** — Cursor agent conventions for Revit MCP.
 - **`docs/`** — Notes and playbooks.
 

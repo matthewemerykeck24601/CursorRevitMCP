@@ -533,7 +533,7 @@ function dedupeViewerActions(actions: ChatToolAction[]): ChatToolAction[] {
   const seen = new Set<string>();
   const out: ChatToolAction[] = [];
   for (const action of actions) {
-    let key = action.type;
+    let key: string = action.type;
     if (action.type === "viewer.searchAndSelectMetromontPieces") {
       key = [
         action.type,

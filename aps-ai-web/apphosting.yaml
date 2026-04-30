@@ -1,0 +1,63 @@
+# Firebase App Hosting runtime configuration for aps-ai-web.
+runConfig:
+  minInstances: 0
+  maxInstances: 5
+
+env:
+  # Public base URLs for production auth flow.
+  - variable: APP_BASE_URL
+    value: "https://monty-web--monty-33c09.us-central1.hosted.app"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: APS_CALLBACK_URL
+    value: "https://monty-web--monty-33c09.us-central1.hosted.app/auth/callback"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: APS_NATIVE_REDIRECT_URI
+    value: "monty://autodesk-oauth"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: APS_SCOPE
+    value: "data:read data:write data:create data:search user:read offline_access viewables:read account:read code:all"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: AI_PROVIDER
+    value: "xai"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: XAI_MODEL
+    value: "grok-4.20-multi-agent-0309"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: OPENAI_MODEL
+    value: "gpt-4.1-mini"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: CHAT_LOG_LEVEL
+    value: "full"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  # Secrets must exist in Secret Manager under this Firebase project.
+  - variable: APS_CLIENT_ID
+    secret: APS_CLIENT_ID
+
+  - variable: APS_CLIENT_SECRET
+    secret: APS_CLIENT_SECRET
+
+  # AI provider keys are configured later once chat is finalized.

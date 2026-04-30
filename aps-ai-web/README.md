@@ -31,6 +31,7 @@ cp .env.example .env.local
 
 - `http://localhost:3000/auth/callback` (primary)
 - `http://127.0.0.1:3000/auth/callback` (fallback)
+- **Monty iOS (native PKCE):** `monty://autodesk-oauth` (or `APS_NATIVE_REDIRECT_URI` in `.env.local`; must match Info.plist URL scheme `monty`)
 
 Optional fallback dev host:
 
@@ -62,6 +63,8 @@ Open `http://localhost:3000`.
 - `GET /auth/callback`
 - `GET /api/auth/session`
 - `POST /api/auth/logout`
+- `GET /api/auth/native-config` — public JSON for Monty iOS (`clientId`, `scope`, `redirectUri`, `authorizeEndpoint`)
+- `POST /api/auth/native-exchange` — body `{ code, codeVerifier, redirectUri }` (PKCE); sets same session cookies as web callback
 
 ### APS
 
@@ -69,6 +72,12 @@ Open `http://localhost:3000`.
 - `GET /api/aps/hubs/:hubId/projects`
 - `GET /api/aps/projects/:projectId/models?hubId=...`
 - `GET /api/aps/viewer-token`
+
+### Admin (ACC — session required)
+
+- `POST /api/admin/add-users-to-projects`
+  - JSON body: `{ "hubId": string, "projectNumbers": string[], "emails": string[], "roleNames"?: string[], "region"?: "US"|"EMEA", "dryRun"?: boolean }`
+  - Same backend as chat tool `admin_add_users_to_projects` (`addUsersToProjectsByNumber` in `src/lib/aps-admin.ts`). Used by Monty iOS and other structured clients without MCP.
 
 ### Chat + Actions
 
