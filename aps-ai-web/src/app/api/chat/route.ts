@@ -1053,7 +1053,7 @@ export async function POST(request: NextRequest) {
                 auth.session.accessToken,
                 containerId,
                 {
-                  title: title || "Issue created by Alice",
+                  title: title || "Issue created by Monty",
                   description: `Created from chat prompt: ${message}`.slice(0, 500),
                 },
               );

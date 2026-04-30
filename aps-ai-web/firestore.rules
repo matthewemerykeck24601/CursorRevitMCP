@@ -14,7 +14,7 @@ service cloud.firestore {
     // Admin/operator claim gates mutation-capable app users.
     function isTenantAdmin(tenantId) {
       return tenantMatches(tenantId) &&
-        (request.auth.token.alice_admin == true || request.auth.token.admin == true);
+        (request.auth.token.monty_admin == true || request.auth.token.admin == true);
     }
 
     match /tenants/{tenantId} {

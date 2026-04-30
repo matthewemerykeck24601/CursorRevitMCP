@@ -167,8 +167,8 @@ const METROMONT_SYSTEM_CONTEXT = [
   "Cloud writes: Revit central changes only when PRECAST_DA_MARK_UPDATE shows workitem_submitted: true. If stub or CLOUD_WRITE_TRUTH — say ACC was not modified.",
 ].join("\n");
 
-const ALICE_AGENT_CHARTER = [
-  "Identity: You are Alice.",
+const MONTY_AGENT_CHARTER = [
+  "Identity: You are Monty.",
   "Response style: Use normal conversational responses; do not self-identify by name unless explicitly asked.",
   "Role: Autodesk data model and design engineering assistant for APS Viewer + Revit cloud models.",
   "Primary objective: Help users understand model content and execute safe viewer operations.",
@@ -180,7 +180,7 @@ const ALICE_AGENT_CHARTER = [
   "Revit cloud honesty: Never claim parameters changed in ACC or that the user should sync to see updates unless tool context shows a real DA submission (workitem_submitted true). If CLOUD_WRITE_TRUTH is present, follow it over guesses or cached previews.",
 ].join("\n");
 
-const ALICE_SYSTEM_BASE = [METROMONT_SYSTEM_CONTEXT, "", ALICE_AGENT_CHARTER].join("\n");
+const MONTY_SYSTEM_BASE = [METROMONT_SYSTEM_CONTEXT, "", MONTY_AGENT_CHARTER].join("\n");
 
 function sanitizeActions(actions: unknown): ViewerIntentAction[] {
   if (!Array.isArray(actions)) return [];
@@ -578,10 +578,10 @@ function buildPlannerPrompt(
   };
 
   return [
-    ALICE_SYSTEM_BASE,
+    MONTY_SYSTEM_BASE,
     "",
     "You are an agentic planner for an APS Viewer assistant.",
-    "Think in natural language: outline your approach, note BIM/viewer considerations, and draft how Alice should answer the user.",
+    "Think in natural language: outline your approach, note BIM/viewer considerations, and draft how Monty should answer the user.",
     "When your reasoning is complete, end with a single ```json code block containing ONLY:",
     '{ "plan": string[], "actions": Array<ViewerAction>, "requestModelViews": boolean, "messageDraft": string }',
     "The messageDraft is an optional short note; the final user-facing reply will be written in a later step.",
@@ -666,7 +666,7 @@ function buildFinalizerPrompt(
       revitWriteFacts.includes("PRECAST_DA_MARK_UPDATE:"));
 
   return [
-    ALICE_SYSTEM_BASE,
+    MONTY_SYSTEM_BASE,
     "",
     "You are the final responder for an APS Viewer assistant.",
     hasDaHint
@@ -725,7 +725,7 @@ function buildToolPlannerPrompt(
     options.externalContext.includes("HUB_PROJECT_AVAILABLE");
 
   return [
-    ALICE_SYSTEM_BASE,
+    MONTY_SYSTEM_BASE,
     "",
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
@@ -788,7 +788,7 @@ async function callXaiResponsesRaw(
       instructions: [
         METROMONT_SYSTEM_CONTEXT,
         "",
-        "You are Alice, assisting with Autodesk APS Viewer and BIM models. Follow the user prompt: reply helpfully and conversationally when asked, and include structured JSON in a fenced ```json block only when the prompt specifies it.",
+        "You are Monty, assisting with Autodesk APS Viewer and BIM models. Follow the user prompt: reply helpfully and conversationally when asked, and include structured JSON in a fenced ```json block only when the prompt specifies it.",
       ].join("\n"),
       input: prompt,
     }),
@@ -825,7 +825,7 @@ async function callOpenAiRaw(
           content: [
             METROMONT_SYSTEM_CONTEXT,
             "",
-            "You are Alice's reasoning layer for APS Viewer / BIM. Be conversational when the user prompt asks for it; output fenced ```json blocks when the prompt requires structured data.",
+            "You are Monty's reasoning layer for APS Viewer / BIM. Be conversational when the user prompt asks for it; output fenced ```json blocks when the prompt requires structured data.",
           ].join("\n"),
         },
         { role: "user", content: prompt },

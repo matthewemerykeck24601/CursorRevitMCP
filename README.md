@@ -1,6 +1,6 @@
 # CursorRevitMCP
 
-Workspace for APS / Autodesk Viewer integration, Alice (AI assistant), and Revit MCP workflows.
+Workspace for APS / Autodesk Viewer integration, Monty (AI assistant), and Revit MCP workflows.
 
 ## Contents
 

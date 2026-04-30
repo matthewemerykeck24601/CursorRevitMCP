@@ -1,5 +1,5 @@
 /**
- * Canonical Firestore lookup schema for Alice admin workflows.
+ * Canonical Firestore lookup schema for Monty admin workflows.
  * Phase B foundation: define stable document contracts and path helpers.
  */
 

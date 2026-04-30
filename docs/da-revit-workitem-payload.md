@@ -52,7 +52,7 @@ The same JSON is written to:
 
 Schema highlights (`revit_automation_audit_v2`):
 
-- **`log[]`** — timestamped `level` + `text` lines suitable for Alice / web summaries.
+- **`log[]`** — timestamped `level` + `text` lines suitable for Monty / web summaries.
 - **`validation.cached_selection_warnings`** / **`validation.edit_target_warnings`** — stubs for future **validate_edit_target** (Tool B).
 - **`summary`** — e.g. `unique_elements_resolved_modify`, aggregated modify ok/fail counts.
 - **`modify`**, **`marks`**, **`patches`**, **`swc`**, **`post_run`** — execution details; **`post_run`** is the **post_run_verify** (Tool D) scaffold.

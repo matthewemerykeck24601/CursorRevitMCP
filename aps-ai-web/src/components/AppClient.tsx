@@ -1956,7 +1956,7 @@ export function AppClient() {
               <div className="flex flex-col gap-1 text-xs">
                 <span className="font-medium">Assistant</span>
                 <div className="rounded border px-2 py-1.5 text-black bg-white">
-                  Alice
+                  Monty
                 </div>
               </div>
               <label className="flex flex-col gap-1 text-xs">
@@ -2004,7 +2004,7 @@ export function AppClient() {
                 ))
               )}
               {chatPending ? (
-                <p className="mt-2 text-xs text-gray-600">AI: Alice is thinking...</p>
+                <p className="mt-2 text-xs text-gray-600">AI: Monty is thinking...</p>
               ) : null}
             </div>
             <div className="flex gap-2">
@@ -2881,7 +2881,7 @@ export function AppClient() {
                   <div className="flex flex-col gap-1 text-xs">
                     <span className="font-medium">Assistant</span>
                     <div className="rounded border px-2 py-1.5 text-black bg-white">
-                      Alice
+                      Monty
                     </div>
                   </div>
                   <label className="flex flex-col gap-1 text-xs">
@@ -2930,7 +2930,7 @@ export function AppClient() {
                     ))
                   )}
                   {chatPending ? (
-                    <p className="mt-2 text-xs text-gray-600">AI: Alice is thinking...</p>
+                    <p className="mt-2 text-xs text-gray-600">AI: Monty is thinking...</p>
                   ) : null}
                 </div>
                 <div className="flex gap-2">

@@ -82,7 +82,7 @@ export const env = {
     "false",
   /**
    * Emergency override for environments that still need to create Data Connector
-   * extraction requests from Alice/admin tooling. Keep false in production.
+   * extraction requests from Monty/admin tooling. Keep false in production.
    */
   adminAllowDataConnectorRequestCreation:
     getEnv("ADMIN_ALLOW_DATA_CONNECTOR_REQUEST_CREATION", "false").toLowerCase() ===

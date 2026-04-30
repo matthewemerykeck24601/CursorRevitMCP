@@ -688,7 +688,7 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
       setStatus("No saved markup snapshot found");
       return;
     }
-    core?.loadMarkups?.(snapshot, "alice-layer");
+    core?.loadMarkups?.(snapshot, "monty-layer");
     setStatus("Markup snapshot loaded");
   }, [markupSnapshot, viewerUrn]);
 
@@ -700,7 +700,7 @@ export const ViewerPanel = forwardRef<ViewerPanelHandle, ViewerPanelProps>(
     if (core?.clear) {
       core.clear();
     } else {
-      core?.loadMarkups?.('<svg xmlns="http://www.w3.org/2000/svg"></svg>', "alice-layer");
+      core?.loadMarkups?.('<svg xmlns="http://www.w3.org/2000/svg"></svg>', "monty-layer");
     }
     setStatus("Markup canvas cleared");
   }, []);
