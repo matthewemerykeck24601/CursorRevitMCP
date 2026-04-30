@@ -188,6 +188,7 @@ export function AppClient() {
   const [chatPending, setChatPending] = useState(false);
   const modelChatInputRef = useRef<HTMLTextAreaElement | null>(null);
   const adminChatInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const productLayoutRef = useRef<HTMLDivElement | null>(null);
   const chatAbortControllerRef = useRef<AbortController | null>(null);
   const activeChatRequestIdRef = useRef(0);
   const [bimExportNotice, setBimExportNotice] = useState("");
@@ -1286,6 +1287,19 @@ export function AppClient() {
   const productLayoutHeight = workspaceExpanded
     ? `max(calc(100vh - 12rem), ${productLayoutFixedHeight}px)`
     : `${productLayoutFixedHeight}px`;
+
+  useEffect(() => {
+    if (!productLayoutRef.current) return;
+    productLayoutRef.current.style.height = productLayoutHeight;
+    productLayoutRef.current.style.minHeight = "780px";
+    productLayoutRef.current.style.gridTemplateRows = `${productTopPaneHeight}px ${productLayoutHandleHeight}px ${productAnalysisPaneHeight}px ${productLayoutHandleHeight}px ${productDataPaneHeight}px`;
+  }, [
+    productAnalysisPaneHeight,
+    productDataPaneHeight,
+    productLayoutHandleHeight,
+    productLayoutHeight,
+    productTopPaneHeight,
+  ]);
 
   async function onLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -2532,14 +2546,10 @@ export function AppClient() {
         </div>
 
           <div
+            ref={productLayoutRef}
             className={`${
               workspaceMode === "product-analysis" ? "grid" : "hidden"
             } min-h-0 grid-cols-1`}
-            style={{
-              height: productLayoutHeight,
-              minHeight: "780px",
-              gridTemplateRows: `${productTopPaneHeight}px ${productLayoutHandleHeight}px ${productAnalysisPaneHeight}px ${productLayoutHandleHeight}px ${productDataPaneHeight}px`,
-            }}
           >
             <div className="grid min-h-0 grid-cols-1 gap-3 md:grid-cols-3">
               <section className="flex min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
