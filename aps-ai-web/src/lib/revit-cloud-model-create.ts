@@ -215,7 +215,7 @@ function loadTemplateConfig(): RevitCloudTemplate[] {
     const parsed = JSON.parse(raw) as TemplateConfigFile;
     const rows = Array.isArray(parsed.templates) ? parsed.templates : [];
     return rows
-      .map((entry) => {
+      .map((entry): RevitCloudTemplate | null => {
         if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
           return null;
         }
@@ -225,7 +225,7 @@ function loadTemplateConfig(): RevitCloudTemplate[] {
         if (!key) return null;
         const regionRaw = normalizeKey(asTrimmed(rec.region));
         const region = regionRaw === "EMEA" ? "EMEA" : "US";
-        return {
+        const normalized: RevitCloudTemplate = {
           key,
           label,
           template_model_guid: asTrimmed(rec.template_model_guid),
@@ -242,7 +242,8 @@ function loadTemplateConfig(): RevitCloudTemplate[] {
             rec.resolve_template_guid_on_call === true,
           default_target_folder_id: asTrimmed(rec.default_target_folder_id),
           region,
-        } satisfies RevitCloudTemplate;
+        };
+        return normalized;
       })
       .filter((v): v is RevitCloudTemplate => Boolean(v));
   } catch {

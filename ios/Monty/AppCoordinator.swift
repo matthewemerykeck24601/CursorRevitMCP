@@ -18,8 +18,10 @@ final class AppCoordinator: ObservableObject {
         phase = .bootstrapping
         bootstrapMessage = nil
 
-        guard AutodeskOAuthConfig.clientId != nil else {
-            bootstrapMessage = "Add AUTODESK_CLIENT_ID to Info.plist (your APS app Client ID)."
+        let hasInfoPlistClientId = AutodeskOAuthConfig.clientId != nil
+        let hasBackendUrl = settings.baseURL != nil
+        guard hasInfoPlistClientId || hasBackendUrl else {
+            bootstrapMessage = "Set AUTODESK_CLIENT_ID in Info.plist or set Backend URL to use hosted auth config."
             phase = .needsSignIn
             return
         }

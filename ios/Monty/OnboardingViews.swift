@@ -40,7 +40,7 @@ struct SignInGateView: View {
                 .padding(.horizontal)
 
                 Text(
-                    "Uses AUTODESK_CLIENT_ID from Info.plist and redirect monty://autodesk-oauth (PKCE). Tokens stay on device; no dev server required to log in.",
+                    "Uses AUTODESK_CLIENT_ID from Info.plist, or fetches native auth config from Backend URL. Redirect is monty://autodesk-oauth (PKCE).",
                 )
                 .font(.footnote)
                 .foregroundStyle(.secondary)
@@ -56,8 +56,8 @@ struct SignInGateView: View {
 
     @MainActor
     private func runNativeSignIn() async {
-        guard AutodeskOAuthConfig.clientId != nil else {
-            coordinator.bootstrapMessage = "Add AUTODESK_CLIENT_ID to Info.plist."
+        if AutodeskOAuthConfig.clientId == nil && settings.baseURL == nil {
+            coordinator.bootstrapMessage = "Set AUTODESK_CLIENT_ID in Info.plist or set Backend URL."
             return
         }
         isSigningIn = true
@@ -65,7 +65,7 @@ struct SignInGateView: View {
         defer { isSigningIn = false }
 
         do {
-            try await nativeAuthCoordinator.signIn()
+            try await nativeAuthCoordinator.signIn(baseURL: settings.baseURL)
             await coordinator.afterSignInAttempt(settings: settings)
         } catch is CancellationError {
             // dismissed browser

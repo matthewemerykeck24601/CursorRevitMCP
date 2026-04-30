@@ -3,6 +3,28 @@ import Foundation
 import SwiftUI
 import UIKit
 
+private struct NativeAuthRuntimeConfig: Decodable {
+    let clientId: String
+    let redirectUri: String
+    let scope: String
+    let authorizeEndpoint: String
+}
+
+private struct NativeAuthPublicConfigResponse: Decodable {
+    let clientId: String?
+    let redirectUri: String?
+    let scope: String?
+    let authorizeEndpoint: String?
+}
+
+private struct NativeBackendExchangeResponse: Decodable {
+    let accessToken: String?
+    let refreshToken: String?
+    let expiresIn: Int?
+    let scope: String?
+    let error: String?
+}
+
 enum NativeAuthError: LocalizedError {
     case missingClientId
     case buildAuthURLFailed
@@ -14,7 +36,7 @@ enum NativeAuthError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .missingClientId:
-            return "Set AUTODESK_CLIENT_ID in Info.plist (APS app Client ID)."
+            return "Set AUTODESK_CLIENT_ID in Info.plist or set Backend URL so Monty can fetch native auth config."
         case .buildAuthURLFailed:
             return "Could not build Autodesk authorize URL."
         case .missingCodeOrState:
@@ -43,23 +65,22 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
         return window
     }
 
-    func signIn() async throws {
-        guard let clientId = AutodeskOAuthConfig.clientId else {
-            throw NativeAuthError.missingClientId
-        }
-        let redirectUri = AutodeskOAuthConfig.redirectUri
+    func signIn(baseURL: URL?) async throws {
+        let runtime = try await resolveRuntimeConfig(baseURL: baseURL)
+        let clientId = runtime.clientId
+        let redirectUri = runtime.redirectUri
         let verifier = PKCE.generateCodeVerifier()
         let challenge = PKCE.codeChallengeS256(verifier: verifier)
         let state = UUID().uuidString
 
-        guard var components = URLComponents(string: AutodeskOAuthConfig.authorizeEndpoint) else {
+        guard var components = URLComponents(string: runtime.authorizeEndpoint) else {
             throw NativeAuthError.buildAuthURLFailed
         }
         components.queryItems = [
             URLQueryItem(name: "response_type", value: "code"),
             URLQueryItem(name: "client_id", value: clientId),
             URLQueryItem(name: "redirect_uri", value: redirectUri),
-            URLQueryItem(name: "scope", value: AutodeskOAuthConfig.scope),
+            URLQueryItem(name: "scope", value: runtime.scope),
             URLQueryItem(name: "state", value: state),
             URLQueryItem(name: "code_challenge", value: challenge),
             URLQueryItem(name: "code_challenge_method", value: "S256"),
@@ -101,6 +122,7 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
                             codeVerifier: verifier,
                             redirectUri: redirectUri,
                             clientId: clientId,
+                            baseURL: baseURL,
                         )
                         continuation.resume()
                     } catch {
@@ -117,12 +139,50 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
         }
     }
 
+    private func resolveRuntimeConfig(baseURL: URL?) async throws -> NativeAuthRuntimeConfig {
+        if let clientId = AutodeskOAuthConfig.clientId {
+            return NativeAuthRuntimeConfig(
+                clientId: clientId,
+                redirectUri: AutodeskOAuthConfig.redirectUri,
+                scope: AutodeskOAuthConfig.scope,
+                authorizeEndpoint: AutodeskOAuthConfig.authorizeEndpoint,
+            )
+        }
+        guard let baseURL else {
+            throw NativeAuthError.missingClientId
+        }
+        guard let url = URL(string: "api/auth/native-config", relativeTo: baseURL)?.absoluteURL else {
+            throw NativeAuthError.missingClientId
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
+            throw NativeAuthError.missingClientId
+        }
+        let decoded = try JSONDecoder().decode(NativeAuthPublicConfigResponse.self, from: data)
+        let clientId = (decoded.clientId ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let redirectUri = (decoded.redirectUri ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let scope = (decoded.scope ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let authorizeEndpoint = (decoded.authorizeEndpoint ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard !clientId.isEmpty, !redirectUri.isEmpty, !scope.isEmpty, !authorizeEndpoint.isEmpty else {
+            throw NativeAuthError.missingClientId
+        }
+        return NativeAuthRuntimeConfig(
+            clientId: clientId,
+            redirectUri: redirectUri,
+            scope: scope,
+            authorizeEndpoint: authorizeEndpoint,
+        )
+    }
+
     private func handleCallback(
         callbackURL: URL,
         expectedState: String,
         codeVerifier: String,
         redirectUri: String,
         clientId: String,
+        baseURL: URL?,
     ) async throws {
         let items = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false)?.queryItems ?? []
         let qp = Dictionary(uniqueKeysWithValues: items.map { ($0.name, $0.value ?? "") })
@@ -148,7 +208,60 @@ final class AutodeskNativeAuthCoordinator: NSObject, ASWebAuthenticationPresenta
             )
             AutodeskTokenStore.shared.save(tokens: tokens)
         } catch {
+            if let baseURL {
+                do {
+                    let tokens = try await exchangeViaBackend(
+                        baseURL: baseURL,
+                        code: code,
+                        codeVerifier: codeVerifier,
+                        redirectUri: redirectUri,
+                    )
+                    AutodeskTokenStore.shared.save(tokens: tokens)
+                    return
+                } catch {
+                    throw NativeAuthError.tokenExchange(error)
+                }
+            }
             throw NativeAuthError.tokenExchange(error)
         }
+    }
+
+    private func exchangeViaBackend(
+        baseURL: URL,
+        code: String,
+        codeVerifier: String,
+        redirectUri: String,
+    ) async throws -> AutodeskTokenResponse {
+        guard let url = URL(string: "api/auth/native-exchange", relativeTo: baseURL)?.absoluteURL else {
+            throw NativeAuthError.sessionStartFailed
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: [
+            "code": code,
+            "codeVerifier": codeVerifier,
+            "redirectUri": redirectUri,
+        ])
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw NativeAuthError.sessionStartFailed
+        }
+        let payload = try JSONDecoder().decode(NativeBackendExchangeResponse.self, from: data)
+        if http.statusCode != 200 {
+            throw NativeAuthError.oauthError(payload.error ?? "Backend token exchange failed.")
+        }
+        let access = (payload.accessToken ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !access.isEmpty else {
+            throw NativeAuthError.oauthError("Backend token exchange returned no access token.")
+        }
+        return AutodeskTokenResponse(
+            access_token: access,
+            token_type: "Bearer",
+            expires_in: payload.expiresIn ?? 3600,
+            refresh_token: payload.refreshToken,
+            scope: payload.scope,
+        )
     }
 }

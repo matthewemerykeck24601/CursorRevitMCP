@@ -522,10 +522,11 @@ export async function GET(
   );
 
   const rows: DataRow[] = [];
-  let graphScan = { element: null as GraphElement | null, pagesScanned: 0, matchedBy: undefined as
-    | "externalId"
-    | "elementName"
-    | undefined };
+  let graphScan: {
+    element: GraphElement | null;
+    pagesScanned: number;
+    matchedBy?: "externalId" | "elementName";
+  } = { element: null, pagesScanned: 0 };
   let strategy = "project-scan";
   if (versionId) {
     const elementGroupId = await resolveElementGroupIdForVersion({

@@ -60,7 +60,10 @@ export async function POST(request: NextRequest) {
       requestId,
       ok: true,
       expiresAt: Date.now() + token.expires_in * 1000,
+      expiresIn: token.expires_in,
       scope: token.scope ?? "",
+      accessToken: token.access_token,
+      refreshToken: token.refresh_token ?? "",
     });
 
     writeSessionCookies(response, {

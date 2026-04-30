@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,7 +37,7 @@
 		2A888D452FA19BB2BFA5A734 /* AutodeskDirectOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskDirectOAuth.swift; sourceTree = "<group>"; };
 		32261B5AF40A36E8EBA1D5E2 /* PKCE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCE.swift; sourceTree = "<group>"; };
 		335ABADA31C73F1D932CA2CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		37516C3537DF5E9FEAFB6490 /* Monty.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Monty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37516C3537DF5E9FEAFB6490 /* Monty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D64E16269793FA570815AD2 /* ChatAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAPIService.swift; sourceTree = "<group>"; };
 		41DDB2AE4B44233BC64EF071 /* AutodeskOAuthConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutodeskOAuthConfig.swift; sourceTree = "<group>"; };
 		42D059CC6AB6132A666AD62E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 			);
 			mainGroup = 5870447A9B54E349D84DA53E;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -268,6 +267,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K457GA952L;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Monty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -289,6 +289,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K457GA952L;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Monty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
