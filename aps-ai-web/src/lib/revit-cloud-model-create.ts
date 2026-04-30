@@ -893,16 +893,24 @@ export async function createRevitCloudWorksharedModel(
       folderId: templateSourceFolderId,
     });
   }
-  if (projectId && resolvedFolderId) {
-    bootstrapSourceCandidates.push({
-      projectId,
-      folderId: resolvedFolderId,
-    });
-  }
   const bootstrapInput = await resolveBootstrapInputFile({
     accessToken: params.accessToken,
     candidateSources: bootstrapSourceCandidates,
   });
+  if (!bootstrapInput?.url) {
+    return {
+      success: false,
+      requires_template_input_file: true,
+      message:
+        "Unable to resolve a configured template RVT for the create-model bootstrap input. Configure template_source_project_id plus template_source_folder_id/urn with a readable template file before submitting.",
+      resolved: {
+        template: { key: template.key, label: template.label },
+        project_id: projectId,
+        folder_id: resolvedFolderId,
+        ...(resolvedFolderPath ? { resolved_folder_path: resolvedFolderPath } : {}),
+      },
+    };
+  }
   if (bootstrapInput?.url) {
     inputFileArgument = {
       url: bootstrapInput.url,
