@@ -5,6 +5,7 @@ import {
   getDesignFilesBucketKey,
   uploadProjectJsonObject,
 } from "@/lib/aps-oss";
+import { env } from "@/lib/env";
 
 const APS_BASE = "https://developer.api.autodesk.com";
 
@@ -109,6 +110,13 @@ export type AdminReferenceCacheStatusResult = {
     business_unit_name?: string;
     folder_id?: string;
   };
+};
+
+export type HubReferenceCacheSnapshot = {
+  hubId: string;
+  updated_at: string;
+  projects: AdminProjectMatch[];
+  folders_by_project: Record<string, Record<string, string>>;
 };
 
 type RoleCacheFile = {
@@ -932,6 +940,23 @@ export async function getHubReferenceCacheStatus(params: {
           },
         }
       : {}),
+  };
+}
+
+export async function getHubReferenceCacheSnapshot(params: {
+  hubId: string;
+}): Promise<HubReferenceCacheSnapshot> {
+  const cache = await loadHubReferenceCache(params.hubId);
+  const buBackfill = await backfillBusinessUnitsFromLocalCsv(cache.projectsByNumber);
+  const projectsByNumber = buBackfill.projectsByNumber;
+  if (buBackfill.updated) {
+    await saveHubReferenceCache(params.hubId, projectsByNumber, cache.foldersByProjectId);
+  }
+  return {
+    hubId: params.hubId,
+    updated_at: cache.updatedAt,
+    projects: projectsFromNumberMap(projectsByNumber),
+    folders_by_project: cache.foldersByProjectId,
   };
 }
 
@@ -1970,6 +1995,8 @@ export async function seedHubRoleCache(params: {
 }): Promise<AdminRoleCacheSeedResult> {
   const region = params.region === "EMEA" ? "EMEA" : "US";
   const createRequestIfMissing = Boolean(params.createRequestIfMissing);
+  const policyReadOnlyLatestExtraction = env.adminDataConnectorReadOnlyLatestExtraction;
+  const allowRequestCreateOverride = env.adminAllowDataConnectorRequestCreation;
   const roleCache = await loadRoleCache(params.hubId);
   const cachedRoleMap = mapFromRoleCache(roleCache);
   const before = cachedRoleMap.size;
@@ -1995,13 +2022,23 @@ export async function seedHubRoleCache(params: {
   if (adminRequests.length > 0 && typeof adminRequests[0].id === "string") {
     requestId = adminRequests[0].id;
   } else {
-    if (createRequestIfMissing) {
+    const shouldCreateRequest =
+      createRequestIfMissing &&
+      (!policyReadOnlyLatestExtraction || allowRequestCreateOverride);
+    if (shouldCreateRequest) {
       requestId = await createAdminDataConnectorRequest({
         accessToken: params.accessToken,
         accountId,
         region,
       });
     } else {
+      const policyReason = policyReadOnlyLatestExtraction
+        ? "Policy blocks extraction triggers (read-only latest extraction)."
+        : "No existing Data Connector admin request/job found for this hub account.";
+      const policyHint =
+        policyReadOnlyLatestExtraction && createRequestIfMissing
+          ? " Set ADMIN_ALLOW_DATA_CONNECTOR_REQUEST_CREATION=true only for controlled backfill windows."
+          : "";
       return {
         success: false,
         hubId: params.hubId,
@@ -2023,7 +2060,7 @@ export async function seedHubRoleCache(params: {
           status: "pending",
         },
         message:
-          "No existing Data Connector admin request/job found for this hub account. Extraction was not triggered (createRequestIfMissing=false).",
+          `${policyReason} Extraction was not triggered.${policyHint}`,
       };
     }
   }

@@ -1,0 +1,40 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Tenant claim is expected in custom auth token for client-side access.
+    function tenantMatches(tenantId) {
+      return isSignedIn() && request.auth.token.tenant_id == tenantId;
+    }
+
+    // Admin/operator claim gates mutation-capable app users.
+    function isTenantAdmin(tenantId) {
+      return tenantMatches(tenantId) &&
+        (request.auth.token.alice_admin == true || request.auth.token.admin == true);
+    }
+
+    match /tenants/{tenantId} {
+      allow read: if tenantMatches(tenantId);
+      allow write: if false;
+
+      match /hubs/{hubId} {
+        allow read: if tenantMatches(tenantId);
+        allow write: if false;
+
+        match /{document=**} {
+          allow read: if tenantMatches(tenantId);
+          allow write: if isTenantAdmin(tenantId);
+        }
+      }
+    }
+
+    // Default deny for everything else.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

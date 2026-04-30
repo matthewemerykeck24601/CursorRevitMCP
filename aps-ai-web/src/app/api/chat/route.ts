@@ -1207,11 +1207,6 @@ export async function POST(request: NextRequest) {
                   : Number.isFinite(Number(args.maxProjects))
                     ? Number(args.maxProjects)
                     : undefined,
-                createRequestIfMissing: Boolean(
-                  args.create_request_if_missing ??
-                    args.createRequestIfMissing ??
-                    false,
-                ),
               });
               queryResult.adminSeedRoleCache = result;
               externalContext =
