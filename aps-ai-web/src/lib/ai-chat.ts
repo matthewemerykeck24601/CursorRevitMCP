@@ -815,7 +815,8 @@ async function callFirebaseFunctionsAiGateway(
       "AI gateway mode is firebase_functions but AI_GATEWAY_FUNCTION_URL is not configured.",
     );
   }
-  if (!env.aiGatewaySharedSecret) {
+  const gatewaySecret = env.aiGatewaySharedSecret.trim();
+  if (!gatewaySecret) {
     throw new Error(
       "AI gateway mode is firebase_functions but AI_GATEWAY_SHARED_SECRET is not configured.",
     );
@@ -824,7 +825,7 @@ async function callFirebaseFunctionsAiGateway(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-ai-gateway-secret": env.aiGatewaySharedSecret,
+      "x-ai-gateway-secret": gatewaySecret,
     },
     body: JSON.stringify({
       provider: backend,
