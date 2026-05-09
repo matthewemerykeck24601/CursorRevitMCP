@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { refreshApsToken } from "@/lib/aps";
+import { refreshApsToken, validateApsAccessToken } from "@/lib/aps";
 import {
   clearSessionCookies,
   readSessionCookies,
@@ -28,6 +28,18 @@ function bearerAccessToken(request: NextRequest): string | null {
 export async function requireSession(request: NextRequest): Promise<AuthResult> {
   const bearer = bearerAccessToken(request);
   if (bearer) {
+    try {
+      await validateApsAccessToken(bearer);
+    } catch {
+      return {
+        ok: false,
+        response: NextResponse.json(
+          { error: "Invalid or expired bearer token" },
+          { status: 401 },
+        ),
+      };
+    }
+
     const response = NextResponse.next();
     return {
       ok: true,
