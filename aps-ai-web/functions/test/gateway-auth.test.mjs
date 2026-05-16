@@ -1,10 +1,9 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
+import assert from "node:assert/strict";
+import test from "node:test";
 
-const {
-  getRequiredGatewaySecret,
-  isGatewaySecretMatch,
-} = require("../lib/gateway-auth.js");
+import gatewayAuth from "../lib/gateway-auth.js";
+
+const { getRequiredGatewaySecret, isGatewaySecretMatch } = gatewayAuth;
 
 test("gateway auth rejects missing configured secrets", () => {
   assert.equal(getRequiredGatewaySecret(undefined), null);
