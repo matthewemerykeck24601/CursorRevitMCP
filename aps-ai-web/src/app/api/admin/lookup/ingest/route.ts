@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
 import { syncLookupTablesFromHubCaches } from "@/lib/admin-lookup-sync";
+import { env } from "@/lib/env";
+
+export const runtime = "nodejs";
 
 type IngestRequest = {
   tenantId?: string;
@@ -13,7 +16,31 @@ function normalizeRegion(v: unknown): "US" | "EMEA" {
   return String(v ?? "US").toUpperCase() === "EMEA" ? "EMEA" : "US";
 }
 
+function validateIngestSecret(request: NextRequest): NextResponse | null {
+  const expectedSecret = env.adminLookupIngestSecret.trim();
+  if (!expectedSecret) {
+    return NextResponse.json(
+      { success: false, error: "Admin lookup ingest is not configured." },
+      { status: 500 },
+    );
+  }
+
+  const receivedSecret =
+    request.headers.get("x-admin-lookup-ingest-secret")?.trim() ?? "";
+  if (!receivedSecret || receivedSecret !== expectedSecret) {
+    return NextResponse.json(
+      { success: false, error: "Unauthorized admin lookup ingest request." },
+      { status: 403 },
+    );
+  }
+
+  return null;
+}
+
 export async function POST(request: NextRequest) {
+  const secretError = validateIngestSecret(request);
+  if (secretError) return secretError;
+
   const auth = await requireSession(request);
   if (!auth.ok) return auth.response;
 
