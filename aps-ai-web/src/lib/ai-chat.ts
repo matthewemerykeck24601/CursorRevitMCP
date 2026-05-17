@@ -810,18 +810,22 @@ async function callFirebaseFunctionsAiGateway(
   modelOverride?: string,
 ): Promise<string> {
   const endpoint = env.aiGatewayFunctionUrl.trim();
+  const sharedSecret = env.aiGatewaySharedSecret.trim();
   if (!endpoint) {
     throw new Error(
       "AI gateway mode is firebase_functions but AI_GATEWAY_FUNCTION_URL is not configured.",
+    );
+  }
+  if (!sharedSecret) {
+    throw new Error(
+      "AI gateway mode is firebase_functions but AI_GATEWAY_SHARED_SECRET is not configured.",
     );
   }
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(env.aiGatewaySharedSecret
-        ? { "x-ai-gateway-secret": env.aiGatewaySharedSecret }
-        : {}),
+      "x-ai-gateway-secret": sharedSecret,
     },
     body: JSON.stringify({
       provider: backend,

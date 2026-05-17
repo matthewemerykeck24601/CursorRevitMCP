@@ -92,6 +92,8 @@ export const env = {
     "true",
   /** Canonical backing store for admin lookup tables (phase-in target: firestore). */
   adminLookupStoreBackend: getEnv("ADMIN_LOOKUP_STORE_BACKEND", "oss_local").toLowerCase(),
+  /** Server-side guard for the Firestore lookup ingest endpoint. */
+  adminLookupIngestSecret: getEnv("ADMIN_LOOKUP_INGEST_SECRET"),
   /** Design Automation: set DA_ENABLED=true to POST workitems from trigger_design_automation_mark_update */
   daEnabled: getEnv("DA_ENABLED", "").toLowerCase(),
   daRegion: getEnv("DA_REGION", "us-east"),
@@ -133,7 +135,8 @@ export function assertApsCredentials(): void {
 export function hasAnyAiProviderKey(): boolean {
   if (
     env.aiGatewayMode === "firebase_functions" &&
-    Boolean(env.aiGatewayFunctionUrl.trim())
+    Boolean(env.aiGatewayFunctionUrl.trim()) &&
+    Boolean(env.aiGatewaySharedSecret.trim())
   ) {
     return true;
   }
