@@ -1,7 +1,9 @@
-const assert = require("node:assert/strict");
-const { describe, it } = require("node:test");
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
 
-const { validateGatewaySecret } = require("../lib/gateway-auth.js");
+import gatewayAuth from "../lib/gateway-auth.js";
+
+const { validateGatewaySecret } = gatewayAuth;
 
 describe("validateGatewaySecret", () => {
   it("fails closed when the configured shared secret is missing", () => {
