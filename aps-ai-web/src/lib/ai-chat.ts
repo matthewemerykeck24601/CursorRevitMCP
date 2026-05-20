@@ -815,12 +815,13 @@ async function callFirebaseFunctionsAiGateway(
       "AI gateway mode is firebase_functions but AI_GATEWAY_FUNCTION_URL is not configured.",
     );
   }
+  const gatewaySecret = env.aiGatewaySharedSecret.trim();
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(env.aiGatewaySharedSecret
-        ? { "x-ai-gateway-secret": env.aiGatewaySharedSecret }
+      ...(gatewaySecret
+        ? { "x-ai-gateway-secret": gatewaySecret }
         : {}),
     },
     body: JSON.stringify({
