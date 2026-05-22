@@ -1,6 +1,7 @@
 import { assertApsCredentials, env } from "@/lib/env";
 
 const APS_BASE = "https://developer.api.autodesk.com";
+const APS_PROFILE_BASE = "https://api.userprofile.autodesk.com";
 const BLOCKED_3LEGGED_SCOPES = new Set(["code:all"]);
 
 function getUserOAuthScope(): string {
@@ -89,6 +90,20 @@ export async function refreshApsToken(
   }
 
   return (await response.json()) as ApsTokenResponse;
+}
+
+export async function validateApsAccessToken(accessToken: string): Promise<void> {
+  const response = await fetch(`${APS_PROFILE_BASE}/userinfo`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`APS access token validation failed (${response.status}).`);
+  }
 }
 
 export function buildAuthorizeUrl(state: string): string {
