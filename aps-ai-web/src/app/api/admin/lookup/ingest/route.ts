@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
 import { syncLookupTablesFromHubCaches } from "@/lib/admin-lookup-sync";
+import { canonicalTenantIdForHubId } from "@/lib/admin-lookup-schema";
 
 type IngestRequest = {
   tenantId?: string;
@@ -30,6 +31,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { success: false, error: "tenantId and hubId are required." },
       { status: 400 },
+    );
+  }
+  const canonicalTenantId = canonicalTenantIdForHubId(hubId);
+  if (tenantId !== canonicalTenantId) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "tenantId must match the hub account ID.",
+        expectedTenantId: canonicalTenantId,
+      },
+      { status: 403 },
     );
   }
 
