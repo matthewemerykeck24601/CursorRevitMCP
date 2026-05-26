@@ -1,7 +1,9 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
+import assert from "node:assert/strict";
+import test from "node:test";
 
-const { validateGatewaySharedSecret } = require("../lib/auth");
+import authModule from "../lib/auth.js";
+
+const { validateGatewaySharedSecret } = authModule;
 
 test("validateGatewaySharedSecret fails closed when expected secret is missing", () => {
   assert.deepEqual(validateGatewaySharedSecret("", "sent-secret"), {
