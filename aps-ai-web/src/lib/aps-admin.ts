@@ -972,6 +972,32 @@ function mapFromRoleCache(cache: RoleCacheFile): Map<string, string> {
   return out;
 }
 
+function sortedRoleRecord(map: Map<string, string>): Record<string, string> {
+  return Object.fromEntries(
+    Array.from(map.entries()).sort((a, b) =>
+      a[0].localeCompare(b[0], undefined, { sensitivity: "base" }),
+    ),
+  );
+}
+
+function roleCacheChanged(
+  current: Map<string, string>,
+  next: Map<string, string>,
+): boolean {
+  if (current.size !== next.size) return true;
+  for (const [name, id] of next.entries()) {
+    if (current.get(name) !== id) return true;
+  }
+  return false;
+}
+
+function countNewRoleNames(
+  current: Map<string, string>,
+  next: Map<string, string>,
+): number {
+  return Array.from(next.keys()).filter((name) => !current.has(name)).length;
+}
+
 type DataConnectorRequest = {
   id?: string;
   serviceGroups?: string[];
@@ -2171,27 +2197,8 @@ export async function seedHubRoleCache(params: {
     }
   }
 
-  const rolesByName = Object.fromEntries(
-    Array.from(discoveredRoleMap.entries()).sort((a, b) =>
-      a[0].localeCompare(b[0], undefined, { sensitivity: "base" }),
-    ),
-  );
-  const after = discoveredRoleMap.size;
-  const added = Math.max(
-    0,
-    Array.from(discoveredRoleMap.keys()).filter((k) => !cachedRoleMap.has(k)).length,
-  );
-  const removed = Math.max(
-    0,
-    Array.from(cachedRoleMap.keys()).filter((k) => !discoveredRoleMap.has(k)).length,
-  );
-  const updated = added > 0 || removed > 0;
-  if (updated) {
-    await saveRoleCache(params.hubId, rolesByName);
-  }
-
   const allIngestFailed =
-    after === 0 &&
+    discoveredRoleMap.size === 0 &&
     roleCsvFiles.length > 0 &&
     errors.length >= roleCsvFiles.length;
   if (allIngestFailed) {
@@ -2199,16 +2206,14 @@ export async function seedHubRoleCache(params: {
     if (localCsv) {
       const localRows = extractRolesFromCsv(localCsv);
       if (localRows.size > 0) {
-        const merged = new Map(discoveredRoleMap);
+        const merged = new Map(cachedRoleMap);
         for (const [name, id] of localRows.entries()) {
           merged.set(name, id);
         }
-        const localRolesByName = Object.fromEntries(
-          Array.from(merged.entries()).sort((a, b) =>
-            a[0].localeCompare(b[0], undefined, { sensitivity: "base" }),
-          ),
-        );
-        await saveRoleCache(params.hubId, localRolesByName);
+        const updated = roleCacheChanged(cachedRoleMap, merged);
+        if (updated) {
+          await saveRoleCache(params.hubId, sortedRoleRecord(merged));
+        }
         return {
           success: true,
           hubId: params.hubId,
@@ -2216,13 +2221,10 @@ export async function seedHubRoleCache(params: {
           role_cache_object_key: roleCacheObjectKey(params.hubId),
           role_count_before: before,
           role_count_after: merged.size,
-          roles_added: Math.max(
-            0,
-            Array.from(merged.keys()).filter((k) => !cachedRoleMap.has(k)).length,
-          ),
+          roles_added: countNewRoleNames(cachedRoleMap, merged),
           projects_scanned: 0,
           projects_with_errors: 0,
-          role_cache_updated: true,
+          role_cache_updated: updated,
           tables_updated: 1,
           sample_roles: Array.from(merged.entries())
             .slice(0, 25)
@@ -2248,13 +2250,15 @@ export async function seedHubRoleCache(params: {
       region,
       role_cache_object_key: roleCacheObjectKey(params.hubId),
       role_count_before: before,
-      role_count_after: 0,
+      role_count_after: before,
       roles_added: 0,
       projects_scanned: 0,
       projects_with_errors: 0,
       role_cache_updated: false,
       tables_updated: 0,
-      sample_roles: [],
+      sample_roles: Array.from(cachedRoleMap.entries())
+        .slice(0, 25)
+        .map(([role_name, role_id]) => ({ role_name, role_id })),
       errors,
       data_connector: {
         account_id: accountId,
@@ -2265,6 +2269,50 @@ export async function seedHubRoleCache(params: {
       message:
         "Existing Data Connector job artifacts were not accessible (CSV fetch failed). Extraction was not re-triggered automatically.",
     };
+  }
+
+  if (errors.length > 0) {
+    const merged = new Map(cachedRoleMap);
+    for (const [name, id] of discoveredRoleMap.entries()) {
+      merged.set(name, id);
+    }
+    const updated = roleCacheChanged(cachedRoleMap, merged);
+    if (updated) {
+      await saveRoleCache(params.hubId, sortedRoleRecord(merged));
+    }
+    return {
+      success: false,
+      hubId: params.hubId,
+      region,
+      role_cache_object_key: roleCacheObjectKey(params.hubId),
+      role_count_before: before,
+      role_count_after: merged.size,
+      roles_added: countNewRoleNames(cachedRoleMap, merged),
+      projects_scanned: 0,
+      projects_with_errors: 0,
+      role_cache_updated: updated,
+      tables_updated: tablesUpdated,
+      sample_roles: Array.from(merged.entries())
+        .slice(0, 25)
+        .map(([role_name, role_id]) => ({ role_name, role_id })),
+      errors,
+      data_connector: {
+        account_id: accountId,
+        request_id: requestId,
+        job_id: jobId,
+        status: "failed",
+      },
+      message:
+        "Data Connector role CSV ingest was incomplete. Existing cached roles were preserved; re-run after all role CSV artifacts are accessible.",
+    };
+  }
+
+  const rolesByName = sortedRoleRecord(discoveredRoleMap);
+  const after = discoveredRoleMap.size;
+  const added = countNewRoleNames(cachedRoleMap, discoveredRoleMap);
+  const updated = roleCacheChanged(cachedRoleMap, discoveredRoleMap);
+  if (updated) {
+    await saveRoleCache(params.hubId, rolesByName);
   }
 
   const seedStatus: "seeded" | "failed" = after > 0 ? "seeded" : "failed";
