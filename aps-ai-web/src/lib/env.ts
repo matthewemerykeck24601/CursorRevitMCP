@@ -71,7 +71,7 @@ export const env = {
   aiOpenAiModel: getEnv("OPENAI_MODEL", "gpt-4.1-mini"),
   aiXaiKey: getEnv("XAI_API_KEY"),
   aiXaiModel: getEnv("XAI_MODEL", "grok-4.20-multi-agent-0309"),
-  chatLogLevel: getEnv("CHAT_LOG_LEVEL", "full").toLowerCase(),
+  chatLogLevel: getEnv("CHAT_LOG_LEVEL", "warn").toLowerCase(),
   apsIssuesContainerId: getEnv("APS_ISSUES_CONTAINER_ID"),
   apsIssuesDefaultTypeId: getEnv("APS_ISSUES_DEFAULT_TYPE_ID"),
   apsDesignFilesBucket: getEnv("APS_DESIGN_FILES_BUCKET", ""),
@@ -133,7 +133,8 @@ export function assertApsCredentials(): void {
 export function hasAnyAiProviderKey(): boolean {
   if (
     env.aiGatewayMode === "firebase_functions" &&
-    Boolean(env.aiGatewayFunctionUrl.trim())
+    Boolean(env.aiGatewayFunctionUrl.trim()) &&
+    Boolean(env.aiGatewaySharedSecret.trim())
   ) {
     return true;
   }
