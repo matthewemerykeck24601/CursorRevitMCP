@@ -1,7 +1,9 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
+import assert from "node:assert/strict";
+import test from "node:test";
 
-const { getGatewayAuthError } = require("../lib/index.js");
+import indexModule from "../lib/index.js";
+
+const { getGatewayAuthError } = indexModule;
 
 test("gateway auth fails closed when shared secret is not configured", () => {
   const expectedError = "AI_GATEWAY_SHARED_SECRET secret is not configured.";
