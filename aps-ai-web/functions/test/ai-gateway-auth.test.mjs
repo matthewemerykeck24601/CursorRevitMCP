@@ -1,7 +1,9 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
+import assert from "node:assert/strict";
+import test from "node:test";
 
-const { validateAiGatewaySecret } = require("../lib/ai-gateway-auth.js");
+import authModule from "../lib/ai-gateway-auth.js";
+
+const { validateAiGatewaySecret } = authModule;
 
 test("validateAiGatewaySecret rejects missing server shared secret", () => {
   assert.deepEqual(validateAiGatewaySecret("", "client-secret"), {
