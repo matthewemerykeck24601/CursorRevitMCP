@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireSession } from "@/lib/auth-guard";
 import { syncLookupTablesFromHubCaches } from "@/lib/admin-lookup-sync";
+import { env } from "@/lib/env";
 
 type IngestRequest = {
   tenantId?: string;
@@ -11,6 +12,10 @@ type IngestRequest = {
 
 function normalizeRegion(v: unknown): "US" | "EMEA" {
   return String(v ?? "US").toUpperCase() === "EMEA" ? "EMEA" : "US";
+}
+
+function isFirestorePathSegment(value: string): boolean {
+  return value.length > 0 && !value.includes("/");
 }
 
 export async function POST(request: NextRequest) {
@@ -30,6 +35,22 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { success: false, error: "tenantId and hubId are required." },
       { status: 400 },
+    );
+  }
+  if (!isFirestorePathSegment(tenantId) || !isFirestorePathSegment(hubId)) {
+    return NextResponse.json(
+      { success: false, error: "tenantId and hubId must be Firestore path segments." },
+      { status: 400 },
+    );
+  }
+  if (env.adminLookupStoreBackend !== "firestore") {
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          "Admin lookup ingest requires ADMIN_LOOKUP_STORE_BACKEND=firestore.",
+      },
+      { status: 409 },
     );
   }
 
