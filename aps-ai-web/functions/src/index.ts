@@ -12,6 +12,34 @@ type XaiResponsesPayload = {
   }>;
 };
 
+type GatewaySecretValidation =
+  | { ok: true }
+  | { ok: false; status: 401 | 500; error: string };
+
+export function validateAiGatewaySecret(
+  expectedSecret: string | undefined,
+  receivedSecret: string | undefined,
+): GatewaySecretValidation {
+  const expected = (expectedSecret ?? "").trim();
+  if (!expected) {
+    return {
+      ok: false,
+      status: 500,
+      error: "AI_GATEWAY_SHARED_SECRET secret is not configured.",
+    };
+  }
+
+  if ((receivedSecret ?? "").trim() !== expected) {
+    return {
+      ok: false,
+      status: 401,
+      error: "Unauthorized AI gateway request.",
+    };
+  }
+
+  return { ok: true };
+}
+
 function extractXaiResponseText(json: XaiResponsesPayload): string {
   const parts: string[] = [];
   for (const item of json.output ?? []) {
@@ -36,13 +64,13 @@ export const aiGateway = onRequest(
       return;
     }
 
-    const expectedSecret = AI_GATEWAY_SHARED_SECRET.value();
-    if (expectedSecret) {
-      const receivedSecret = req.header("x-ai-gateway-secret") ?? "";
-      if (!receivedSecret || receivedSecret !== expectedSecret) {
-        res.status(401).json({ error: "Unauthorized AI gateway request." });
-        return;
-      }
+    const secretValidation = validateAiGatewaySecret(
+      AI_GATEWAY_SHARED_SECRET.value(),
+      req.header("x-ai-gateway-secret"),
+    );
+    if (!secretValidation.ok) {
+      res.status(secretValidation.status).json({ error: secretValidation.error });
+      return;
     }
 
     const body =
