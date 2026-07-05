@@ -91,6 +91,26 @@ export async function refreshApsToken(
   return (await response.json()) as ApsTokenResponse;
 }
 
+export async function validateApsUserAccessToken(accessToken: string): Promise<void> {
+  const token = accessToken.trim();
+  if (!token) {
+    throw new Error("Missing APS access token");
+  }
+
+  const response = await fetch(`${APS_BASE}/userprofile/v1/users/@me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Invalid APS access token (${response.status})`);
+  }
+}
+
 export function buildAuthorizeUrl(state: string): string {
   assertApsCredentials();
   const url = new URL(`${APS_BASE}/authentication/v2/authorize`);
