@@ -133,7 +133,8 @@ export function assertApsCredentials(): void {
 export function hasAnyAiProviderKey(): boolean {
   if (
     env.aiGatewayMode === "firebase_functions" &&
-    Boolean(env.aiGatewayFunctionUrl.trim())
+    Boolean(env.aiGatewayFunctionUrl.trim()) &&
+    Boolean(env.aiGatewaySharedSecret.trim())
   ) {
     return true;
   }
