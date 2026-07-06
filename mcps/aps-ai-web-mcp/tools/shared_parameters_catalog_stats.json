@@ -1,0 +1,13 @@
+{
+  "name": "shared_parameters_catalog_stats",
+  "description": "Report shared-parameter catalog size and source path; set reload=true to clear cache.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "reload": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}

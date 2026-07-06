@@ -1,0 +1,29 @@
+{
+  "name": "inventor_push_parameters_to_excel",
+  "description": "Push parameter set into Excel source.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameterSetId": {
+        "type": "string"
+      },
+      "documentName": {
+        "type": "string"
+      },
+      "assemblyName": {
+        "type": "string"
+      },
+      "parameters": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    },
+    "required": [
+      "parameterSetId",
+      "parameters"
+    ],
+    "additionalProperties": false
+  }
+}

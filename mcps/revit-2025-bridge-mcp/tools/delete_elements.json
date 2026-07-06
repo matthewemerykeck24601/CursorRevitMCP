@@ -1,0 +1,19 @@
+{
+  "name": "delete_elements",
+  "description": "Project: delete one or more elements by id. Returns all ids Revit removed, including cascade-deleted dependents.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "required": [
+      "elementIds"
+    ],
+    "additionalProperties": false
+  }
+}

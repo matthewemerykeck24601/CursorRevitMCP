@@ -1,0 +1,165 @@
+{
+  "name": "ai_element_filter",
+  "description": "An intelligent Revit element querying tool designed specifically for AI assistants to retrieve detailed element information from Revit projects. This tool allows the AI to request elements matching specific criteria (such as category, type, visibility, or spatial location) and then perform further analysis on the returned data to answer complex user queries about Revit model elements. Example: When a user asks 'Find all walls taller than 5m in the project', the AI would: 1) Call this tool with parameters: {\"filterCategory\": \"OST_Walls\", \"includeInstances\": true}, 2) Receive detailed information about all wall instances in the project, 3) Process the returned data to filter walls with height > 5000mm, 4) Present the filtered results to the user with relevant details.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "properties": {
+          "filterCategory": {
+            "type": "string",
+            "description": "Enumeration of built-in element categories in Revit used for filtering and identifying specific element types (e.g., OST_Walls, OST_Floors, OST_GenericModel). Note that furniture elements may be classified as either OST_Furniture or OST_GenericModel categories, requiring flexible selection approaches"
+          },
+          "filterElementType": {
+            "type": "string",
+            "description": "The Revit element type name used for filtering specific elements by their class or type (e.g., 'Wall', 'Floor', 'Autodesk.Revit.DB.Wall'). Gets or sets the name of the Revit element type to be filtered."
+          },
+          "filterFamilySymbolId": {
+            "type": "number",
+            "description": "The ElementId of a specific FamilySymbol (type) in Revit used for filtering elements by their type (e.g., '123456', '789012'). Gets or sets the ElementId of the FamilySymbol to be used as a filter criterion. Use '-1' if no specific FamilySymbol filtering is needed."
+          },
+          "includeTypes": {
+            "type": "boolean",
+            "default": false,
+            "description": "Determines whether to include element types (such as wall types, door types, etc.) in the selection results. When set to true, element types will be included; when false, they will be excluded."
+          },
+          "includeInstances": {
+            "type": "boolean",
+            "default": true,
+            "description": "Determines whether to include element instances (such as placed walls, doors, etc.) in the selection results. When set to true, element instances will be included; when false, they will be excluded."
+          },
+          "filterVisibleInCurrentView": {
+            "type": "boolean",
+            "description": "Determines whether to only return elements that are visible in the current view. When set to true, only elements visible in the current view will be returned. Note: This filter only applies to element instances, not type elements."
+          },
+          "boundingBoxMin": {
+            "type": "object",
+            "properties": {
+              "p0": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "X coordinate of start point"
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "Y coordinate of start point"
+                  },
+                  "z": {
+                    "type": "number",
+                    "description": "Z coordinate of start point"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "additionalProperties": false
+              },
+              "p1": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "X coordinate of end point"
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "Y coordinate of end point"
+                  },
+                  "z": {
+                    "type": "number",
+                    "description": "Z coordinate of end point"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "p0",
+              "p1"
+            ],
+            "additionalProperties": false,
+            "description": "The minimum point coordinates (in mm) for spatial bounding box filtering. When set along with boundingBoxMax, only elements that intersect with this bounding box will be returned. Set to null to disable this filter."
+          },
+          "boundingBoxMax": {
+            "type": "object",
+            "properties": {
+              "p0": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "X coordinate of start point"
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "Y coordinate of start point"
+                  },
+                  "z": {
+                    "type": "number",
+                    "description": "Z coordinate of start point"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "additionalProperties": false
+              },
+              "p1": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "X coordinate of end point"
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "Y coordinate of end point"
+                  },
+                  "z": {
+                    "type": "number",
+                    "description": "Z coordinate of end point"
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "p0",
+              "p1"
+            ],
+            "additionalProperties": false,
+            "description": "The maximum point coordinates (in mm) for spatial bounding box filtering. When set along with boundingBoxMin, only elements that intersect with this bounding box will be returned. Set to null to disable this filter."
+          },
+          "maxElements": {
+            "type": "number",
+            "description": "The maximum number of elements to find in a single tool invocation. Default is 50. Values exceeding 50 are not recommended for performance reasons."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Configuration parameters for the Revit element filter tool. These settings determine which elements will be selected from the Revit project based on various filtering criteria. Multiple filters can be combined to achieve precise element selection. All spatial coordinates should be provided in millimeters."
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

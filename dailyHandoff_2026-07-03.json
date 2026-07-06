@@ -1,0 +1,36 @@
+{
+  "date": "2026-07-03",
+  "session": "Revit 2024 rebuild — Part A: build v20 import_instances (COMPLETE)",
+  "engineer": "mkeck@metromont.com",
+  "summary": "Built, compiled, and deployed the v20 import_instances tool on the Revit 2024 bridge. TypeScript typecheck 0 errors; C# net48 (RevitYear=2024) build 0 errors. Deployed under versioned filename RevitPublicMCPBridge.v20.dll with manifest repoint (Revit 2024 was running and locked the in-place DLL; versioned name is lock-free, matching the 2025 convention). Hash-verified (match). STOPPED per plan — awaiting Revit 2024 restart to load v20 before Part B agentic execution.",
+  "filesChanged": [
+    "RevitPublicMCPBridge/Services/GatewayModels.cs — added ImportInstancesRequest + ImportSummaryResult",
+    "RevitPublicMCPBridge/Services/RevitApiGatewayService.cs — added /api/project/import_instances route (600s dispatcher) + full ImportInstances handler region and helpers",
+    "revit-2024-community-bridge-mcp/src/bridgeClient.ts — postJson optional timeout param; importInstances() with 620s client ceiling",
+    "revit-2024-community-bridge-mcp/src/server.ts — import_instances tool schema + handler + client import",
+    "project_scope.json — added revit2024Rebuild section (design decisions, deploy, open questions); lastUpdated 2026-07-03"
+  ],
+  "deploy": {
+    "activeDll2024": "RevitPublicMCPBridge.v20.dll",
+    "path": "%APPDATA%\\Autodesk\\Revit\\Addins\\2024\\RevitPublicMCPBridge\\RevitPublicMCPBridge.v20.dll",
+    "sha256": "633FDE25A5EE92D30940F11D7922CE4B6CB20714A600A6C8A377A47D62742C87",
+    "manifestRepointed": true,
+    "hashVerified": true
+  },
+  "buildStatus": { "typescript": "0 errors (tsc --noEmit)", "csharp": "0 errors (net48, RevitYear=2024)" },
+  "keyDecisions": "See project_scope.json revit2024Rebuild.v20Tool.designDecisions. Highlights: C# reads instances.json + siblings from disk (no element data over MCP); pass1=level-hosted points, pass2=instance-hosted via remap+workPlaneName cross-check; GUID-keyed param writes (F1); raw authoritative for Length/Angle; chunked 500-per-tx progressive commit with 540s soft deadline + resumeFromIndex/nextIndex; orientation residual verified only for maxElements<=64 pilots.",
+  "datasetFacts": {
+    "instances": "5831 (SF 3247 + GM 2583 + Floors 1); ALL SF+GM are WorkPlaneBased points, NO curve records",
+    "floor": "elementId 10080471, skipped by this tool (Part B.6)",
+    "levels": 6,
+    "grids": 81,
+    "familyTypes": 260,
+    "sharedParamInventory": "442 shared params, 236 bindings; duplicate names confirmed (DAP x3, PRODUCT TYPE x2, RELEASE_STRENGTH x2, FINAL_STRENGTH x2)"
+  },
+  "nextSession": "PART B (fresh CC session after Revit 2024 restart). Phase -1 env check (say_hello, get_active_document_context — expect estimating-template blank project with families preloaded). Phase 0 CRITICAL GATE: port export_parameter_bindings to 2024 bridge, verify shared-param GUIDs match shared_project_parameters.json for CONTROL_MARK/MANUFACTURE_COMPONENT/IDENTITY_DESCRIPTION/CONSTRUCTION_PRODUCT_HOST/BOM_PRODUCT_HOST/HOST_GUID/PROD_CONTROL_MARK — any mismatch STOP. Then typemap authoring (check get_available_family_types FIRST — estimating template should preload families, expect far fewer than ~30 overrides), datums, dryrun pass1, orientation pilot checkpoint, full run, floor, views, validate.",
+  "reminders": [
+    "NEVER open instances.json (34MB) or family_types.json (662KB) with a general file reader — use read_export_record or ask first.",
+    "Run /context after each phase and report percentage.",
+    "Update revit_2024_rebuild/rebuild_progress.json after every phase; read it FIRST on any resume."
+  ]
+}

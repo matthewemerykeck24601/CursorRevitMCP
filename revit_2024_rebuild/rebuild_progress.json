@@ -1,0 +1,306 @@
+{
+  "dtSlope_DONE_v20_15_2026-07-05": "DT SLOPE COMPLETE + VERIFIED. Pilot proved v20.15 tilts DTs (flat baseline Z-span 947mm vs sloped 1144/1407mm = depth+slope-rise). Full re-place: deleted 12 DT 37 symbol (7324237) -> cascaded 2111 (all 679 DTs+nested helpers+4 pilot). Re-ran instances_dt.json (typemap.json createTypeIfMissing re-made 12 DT 37): 678 placed sloped-refplane + 1 (10038485) skipped (element-id-reuse false positive on stale remap 7343939) -> placed separately (7347328). All 679 on 2 SHARED reference planes (DT_SLOPE_*): 404@0.96deg (N of ridge) + 275@1.15deg (S), reused planes (0 new created in bulk run). Verified full-run DT 7343974 Z-span 1144mm (tilted). NOTE: remap_pass1[10038485] stale (7343939); actual DT 7347328 in remap_dt_one.json. USER: SAVE + visual check. REBUILD now fully complete: SF+grids+DT dims+DT SLOPE+flat-slab/landing+GM(corbels/voids/doors/reveals-cut).",
+  "dtSlope_v20_15_2026-07-05": "v20.14 FAILED (rotate doesn't tilt point-based structural framing; DT locks to work plane; residual resultFacing=(0,1,0) flat). Data: entire DT roof = just 2 sloped planes (normal(0,-0.017,-1) off-9290 x404 N-of-ridge; normal(0,0.020,-1) off-11310 x275 S-of-ridge) = clean gable, ridge Y~-55000. v20.15 (sha b1ff2acd...): PlaceOnSlopedPlane — tilted DT placed on a SHARED named reference plane keyed by normal+offset (coplanar DTs reuse one plane -> ~2 planes total); EnsureSlopedPlane creates via NewReferencePlane2(pt,pt+hand,pt+facing,3Dview), reuses by cache/name (resume-safe). NewFamilyInstance(refPlaneRef, pt, hand, symbol) tilts the DT. Manifest -> v20_15. PILOT: restart -> delete 4 flat v20.14 DTs (7343939,7343946,7343949,7343952) -> re-place instances_dt_pilot.json -> verify placedAs=sloped-refplane + geometry tilts (ends differ in Z). If good -> delete all 679 + re-run instances_dt.json.",
+  "dtSlope_v20_14_2026-07-05": "v20.14 BUILT+DEPLOYED (sha 45abe71a...). FIX: PlaceRecord point branch — for pass1 tilted families (facing.Z>1e-3, e.g. DTs), place NON-level-hosted (NewFamilyInstance(pt,symbol,NonStructural), no level) so slope rotation is legal, then OrientTilted (measure live facing/hand, rotate facing onto target incl Z-tilt, then hand about facing). Non-tilted keep level+ApplyPointOrientation (unchanged). Manifest -> v20_14. PILOT plan: restart -> delete 4 flat DTs (7324478,7324481,7324244,7324251) -> re-place instances_dt_pilot.json (typemap.json, remapOutPath=remap_pass1.json, hostPass=1) -> verify slopeDeg~1 + geometry (ends tilt toward ridge, one end higher). If good -> delete all 679 DTs + re-run instances_dt.json. RISK: non-level-hosted DT may lose Schedule Level param (check in pilot) + NewFamilyInstance w/o level may fail for WorkPlaneBased (fallback if so).",
+  "dtSlopeFinding_2026-07-05": "USER: DTs should SLOPE (sloped ref plane girder-to-girder, shallow ridge) but placed FLAT. CONFIRMED: all 679 source DTs have facingOrientation.z != 0 = ~1.03 deg tilt about hand(X) axis (slope along Y). Pattern = RIDGE: facing.y sign flips at Y~-52000 (center), insertion avgZ steps 9250->10206(center)->9181 (rises to ridge, down both sides). Our placement: ApplyPointOrientation uses theta=atan2(-facing.X,facing.Y) ONLY (Z-rotation), DROPS facing.z -> DTs placed FLAT. Insertion Z correct (stepped) but no ~1 deg tilt -> far end ~170mm(6-7in) high over 31'6 DT. FIX v20.14 (proposed): reproduce tilt. DTs are level-hosted points -> can't rotate about horizontal (Revit forbids, same as doors). Need to place DT on a SLOPED work plane (SketchPlane/ReferencePlane normal = hand x facing) matching source orientation, OR structural-framing slope mechanism. Then re-place 679 DTs. AWAITING user decision (they're verifying reveals).",
+  "phase_reveals_nohost_2026-07-05": "USER caught 3 panels (7326766/67/68) missing reveals + vertical layout off. FOUND: the 28 'no-host' reveals (skipped earlier) DO belong on panels — they're horizontal 4\"(z3150)+3\"(z8166) bands (6 on these 3 panels) with hostElementId null in export. Resolved each no-host reveal's host by SPATIAL lookup (host of nearest hosted reveal, same y, <3m) -> all 28 resolved to placed panels. Placed via pass2: 28/28 cut (face-reference, penetrationFix None). Each of the 3 panels now 9 reveals (7 hosted + 2 no-host). TOTAL REVEAL now 2333/2333 (2305 hosted + 28 no-host). instances_reveals_nohost.json. The missing z3150/z8166 horizontal bands likely also explain the 'vertical position/run' perception -> re-verify with user.",
+  "phase_reveals_DONE_v20_13": "REVEALS COMPLETE + CUTTING VERIFIED 2026-07-05. Root of 'not cutting': v20.11 used RAW hand as face refDir -> ~half the voids extruded OUTWARD (outside panel) -> cut relationship existed but removed nothing. FIX chain: v20.12 project refDir onto face plane (makes extrusion inward), v20.13 EnsurePenetratesHost backup (flip if still outward). Cleared ALL old reveals by deleting REVEAL family symbol (cascade -1933) + family element, re-loaded REVEAL.rfa (fresh familyId 7338169), re-ran full 2305: placed 2305/2305, 0 failed, method=face-reference, penetrationFix=None (refDir projection alone sufficient), voidCut=applied. VERIFIED GEOMETRICALLY: panel 7320761 (previously uncut box) now 24 faces w/ groove recesses, volume 10.20e9->10.08e9 mm3 (material removed). GM PHASE TRULY COMPLETE: corbels 223, voids 18 cut, doors 7 cut, reveals 2305 cut. 28 no-host reveals skipped. Active DLL v20_13. USER: SAVE.",
+  "phase_reveals_v20_13_CUTBUG": "USER CAUGHT: many/most reveals NOT cutting despite voidCut=applied. ROOT CAUSE: face-hosted void depth extrudes INTO or OUT of panel depending on source hand sign (flips computed normal+refDir). ~half extrude OUTWARD -> void sits outside panel solid -> AddInstanceVoidCut relationship exists but removes nothing. Confirmed: 7320761 reveal at Y6281-6294 (outside panel Y<6281, clean box, NO cut) vs 7320760 reveal Y6268-6281 (inside, cut). FIX v20.13 (sha 52a18937...): EnsurePenetratesHost after face-host — if void bbox center on +faceNormal (outward) side of insertion, flip to interior (flipFacing, else reflect via MoveElement -2*offset*normal) so depth penetrates. Manifest -> v20_13. PLAN: restart -> delete 18 pilot reveals on panels 7320760+7320761 (ids in penpilot) -> run instances_reveals_penpilot.json (18) -> VERIFY BOTH panels now cut (extra faces) -> if good, DELETE ALL 2305 reveals + re-run full instances_reveals.json fresh with v20.13. reveals NOT actually complete until this is fixed+verified.",
+  "phase_GM_COMPLETE_2026-07-05": "GM PHASE COMPLETE. Reveals 2305/2305 placed+cut (v20.12 refDir fix: the 30 re-ran -> all face-reference + voidCut applied, 0 failed; 2275 skipped as already-placed). 28 no-host reveals intentionally SKIPPED (no host to cut). GM TOTALS: corbels 223 (approximate placeholder family), voids 18 cut, doors 7 cut, reveals 2305 cut. Bridge = v20_12 (final GM DLL). USER: SAVE model. Full 2024 rebuild now: SF (3247) + grids/levels + DTs sized + flat-slab/landing fixed + GM (corbels/voids/doors/reveals) DONE. Remaining known-approx: corbels use placeholder CORBEL 8D X 12W X 1.33T (revisit for true 12x24x36 + double). Reveals use REVEAL family (from VOID_RECTANGULAR save-as).",
+  "phase_reveals_v20_12": "v20.12 BUILT+DEPLOYED 2026-07-05 (sha c4214e17...). Fixes the 30 refDir-parallel failures: PlaceOnHostFace now projects refDir onto the face plane (perp to pf.FaceNormal) — hand-projected, else facing-projected, else any-perp — instead of passing raw hand. Added ProjectOntoPlane + PerpendicularTo helpers. No regression (in-plane hand projects to itself). Manifest -> v20_12. USER DECISIONS: fix the 30; SKIP the 28 no-host reveals. AWAITING restart -> re-run full instances_reveals.json hostPass=2 from 0 (skip-already-placed covers 2275, re-attempts the 30) -> expect 30 placed -> reveals 2305/2305 -> GM COMPLETE (28 no-host intentionally skipped).",
+  "phase_reveals_RESULT_2026-07-05": "Full reveal run (v20.11): attempted 2305, PLACED 2275 (+cut), skipped 500 (already-placed, user saved), FAILED 30. Per-element isolation WORKED (no chunk abort). Panel 10032517 = 9/9 placed (confirmed complete). 30 failures ALL identical: facing=(0,0,1) hand=(0,1,0) on INSULATED_WALL_PANEL VERT -> faceRefError 'Reference direction is parallel to face normal' -> host-auto fallback -> regen/cut fail. FIX v20.12 (pending): in PlaceOnHostFace project refDir onto face plane (perp to pf.FaceNormal) instead of raw hand; fallback facing-projected / any-perp. Re-run the 30 (skip-already-placed covers the 2275). 28 no-host reveals: NOT placed (no host to cut -> would be invisible free voids); skip/document.",
+  "phase_reveals_v20_11": "v20.11 BUILT+DEPLOYED 2026-07-05 (sha 83541cfb...). Full reveal run (2305) hit RegenerationFailedException mid-chunk-2 (bad cut geometry on 1 reveal; hard exception NOT swallowed by IFailuresPreprocessor -> rolled back chunk). 500 reveals committed in chunk 1 (in remap_gm.json). Data scan: NO degenerate dims (all Length 660-9613mm) -> it's a geometry edge case. FIX v20.11: (1) per-element SubTransaction + explicit doc.Regenerate() for cutting families -> isolates a bad cut to that element (rollback + report failed + continue) instead of aborting chunk; (2) skip-already-placed (srcId in remap w/ live element) -> idempotent re-run from index 0. Manifest -> v20_11. AWAITING restart -> re-run full instances_reveals.json hostPass=2 from 0 (skips the 500, isolates bad ones) looping to done -> then 28 pass1 no-host reveals -> spot-check panel 10032517 (expect 9) -> GM DONE. USER: SAVE before restart to keep the 500 (else they re-place, still correct).",
+  "phase_reveals_v20_10": "v20.10 BUILT+DEPLOYED 2026-07-05 (sha c5fb09bb...). REVEAL family (renamed from VOID_RECTANGULAR) has no 'VOID'/'DOOR' in name -> IsVoidCutFamily returned false -> reveals point-placed uncut. FIX: IsVoidCutFamily now also matches 'REVEAL' (source reveal family IS named REVEAL). Manifest -> v20_10. Deleted 2 flat pilots. AWAITING restart -> pilot 2 reveals (REVEAL family) -> VERIFY face-hosted + cut + POSITION/DIRECTION (rectangle centered on insertion? fits panel, not hanging off?) + dims (Length=run, Width=6\", Depth=1/2\") -> full 2305.",
+  "phase_reveals_v20_9b": "USER FEEDBACK 2026-07-05: pilot VOID_REVEAL_WIDE reveal (7332273) ran vertically from panel MIDPOINT extruding DOWN ~1/3 beyond panel bottom (position/direction off) AND VOID_REVEAL_WIDE has a chamfered profile — the source REVEAL is a TRUE RECTANGLE. User: VOID_RECTANGULAR matches source REVEAL shape; save-as VOID_RECTANGULAR -> VOIDS\\REVEAL.rfa, compare params. DONE: saved REVEAL.rfa (from VOID_RECTANGULAR; params Length=run, Width=groove width, Depth=cut depth; + shared DIM_LENGTH/WIDTH/DEPTH reporting formulas). Deleted 2 WIDE pilots. instances_reveals.json already sets Length(=src DIM_LENGTH)/Width(type)/Depth(12.7) -> maps to REVEAL Length/Width/Depth. typemap_reveals.json -> family REVEAL (tgtType 'REVEAL' TBD-verify, VOID_RECTANGULAR type was blank ' '). NEXT: restart (project active) -> load REVEAL.rfa -> confirm type name + fix typemap -> pilot 2 -> VERIFY position/direction (does box center on insertion? fits panel?) + dims + cut -> full 2305. WIDE_RECTANGLE(7329925)+WIDE(7331312) loaded-unused, dropped on restart-no-save.",
+  "phase_v20_9": "v20.9 BUILT+DEPLOYED 2026-07-05. Trigger fix: face-host ALL pass2 cutting families (host+orientation), any facing (catches 1048 facing.Z==0 reveals). REVEAL SOLUTION FOUND: family = VOID_REVEAL_WIDE (linear groove; params Length=run, Width=groove width, Depth — all INSTANCE, so driven per-instance via dataset — NO type authoring / NO family edit / NO length-map code). instances_reveals.json has per-reveal Length(=DIM_LENGTH raw), Width(6/1/3/4/42=152.4/25.4/76.2/101.6/1066.8mm by type), Depth(12.7). typemap_reveals.json 5 types -> VOID_REVEAL_WIDE. AWAITING restart (load v20_9) -> load VOID_REVEAL_WIDE into project -> place pilot(2: facingZ 1 + 0) -> verify orientation+groove+length+cut -> full 2305. NOTE: VOID_REVEAL_WIDE_RECTANGLE (loaded earlier, familyId 7329925) is WRONG for linear reveals (it's a closed rectangle) - unused, delete later.",
+  "phase": "SESSION END 2026-07-05 (part 2): ALL 7 DOORS DONE (v20.8 face-ref fix). GM now: corbels 223, voids 18 cut, doors 7 cut — ALL DONE except REVEALS. Bridge = v20_8 (face-hosting hardened: try-all-faces + host-auto fallback + diagnostics + IFailuresPreprocessor). REMAINING = reveals 2333 ONLY: needs v20.9 trigger fix (face-host all cutting families, 1048 reveals have facing.Z==0) + family/profile choice (narrow vs wide) + run-length mapping (DIM_LENGTH->Width). Mechanism proven. SAVE model. See dailyHandoff_2026-07-05.json reveals_findings_2026-07-05.",
+  "gmPhase_2026-07-04": {
+    "scope": "GM = 5 families / 2583 instances, ~99% pass2 instance-hosted. REVEAL 2333 (host INSULATED_WALL_PANEL VERT, all placed), CORBEL single 54 (host COLUMN) + double 169 (host COLUMN), VOID_RECTANGULAR 20 (host SHEARWALL_HORIZONTAL), Personal Doors 7 (host SOLID_WALL_PANEL). All export as point+rotationDeg, faceNormal/facePoint NULL (faceResolved false) => point placement, no auto-cut.",
+    "targetFamilyAvailability": "LOADED exact: Personal Doors, VOID_RECTANGULAR (DOES NOT EXPORT). LOADED corbel base CORBEL 8D X 12W X 1.33T (+2.0T,0.75T) but NOT size 12D X 24W X 36T and no double family. REVEAL: NO target loaded (prior VOID_RECTANGULAR_RECESS-MC absent).",
+    "USER_DECISIONS_2026-07-04": {
+      "cutting": "IMPLEMENT host-cutting (v20.5) via InstanceVoidCutUtils.AddInstanceVoidCut so VOID_RECTANGULAR (20) + Personal Doors (7) physically cut their hosts.",
+      "reveals": "DEFER all 2333 REVEALs (separate sub-phase; needs target family sourced + cutting).",
+      "doubleCorbel": "BUILD a true double-corbel family (open single CORBEL 8D X 12W X 1.33T, mirror, save-as double), load, map 169 doubles to it."
+    },
+    "plan": [
+      "GM-1 Corbels (223, SOLID, no cut): investigate loaded CORBEL family params; build double-corbel family; createType 12D X 24W X 36T size on single+double; author GM typemap (corbel single->single, double->new double). Place via point (pilot->full).",
+      "GM-2 v20.5 build: pass2 host-cutting (InstanceVoidCutUtils) for void/door families. Deploy + restart.",
+      "GM-3 Voids(20)+Doors(7): map to loaded exact families; place pass2 WITH cutting; verify openings cut hosts.",
+      "GM-4 (deferred) Reveals 2333: source target family, place with cutting."
+    ],
+    "note_corbelPlacement": "Corbels solid => can place point-on-level (absolute coords, host-nulled) like DTs, OR pass2 host-resolved. Position is what matters for rebuild. Decide at execution.",
+    "status": "GM-2/3 IN PROGRESS 2026-07-05. Voids DONE (18/18 cut via existing v20.4 InstanceVoidCutUtils). v20.5 built+deployed (IsVoidCutFamily extended to match DOOR). AWAITING user SAVE + Revit restart (load v20_5) -> place 7 doors WITH cutting.",
+    "gm2_gm3_2026-07-05": {
+      "discovery": "Void-cutting was ALREADY implemented (v20.2, PlaceRecord line ~7756: if host!=null && IsVoidCutFamily(symbol) -> InstanceVoidCutUtils.AddInstanceVoidCut). IsVoidCutFamily matched name contains 'VOID'. So VOID_RECTANGULAR already qualified. Prior 'deferred' note was stale.",
+      "voids_DONE": "18 pass2 voids placed on SHEARWALL_HORIZONTAL hosts, ALL voidCut=applied. Geometrically verified: host shearwall 7321315 now 9 faces (was 6) with ~237x149mm notch cut at top y-1068 = void location. instances_voids.json (keep host, pass2), typemap_voids.json (exact), remapOutPath=remap_gm.json (copy of remap_pass1 + appended voids). 2 pass1 voids (host none/not-in-export) NOT placed (no host to cut) - minor, noted.",
+      "doors_finding": "Personal Doors family = PURE VOID (0 solids), door-opening cutter ~1016x2184mm. IsVoidCutFamily did NOT match 'Personal Doors' (no 'VOID' in name) so pilot door placed WITHOUT cut. Deleted pilot door 7329896.",
+      "v20_5_change": "Extended IsVoidCutFamily (RevitApiGatewayService.cs ~7854) to also match family name containing 'DOOR'. Build 0 errors (net48). Deployed RevitPublicMCPBridge.v20_5.dll (sha256 6fc04237...c011aaf6, hash-verified). Manifest repointed v20_4 -> v20_5. NO TS change => no MCP client reconnect needed, just Revit restart.",
+      "CRITICAL_beforeRestart": "USER MUST SAVE FIRST. Unsaved this session: 223 corbels + 18 voids (+ their remap_gm.json entries). Restart without save loses them AND invalidates remap host newIds.",
+      "afterRestart_plan": "1. say_hello + context. 2. Place 7 doors: import_instances instances_doors.json, typemap_doors.json, remapOutPath=remap_gm.json, hostPass=2 (pilot 1 -> verify voidCut=applied + panel opening cut -> full 7). 3. GM DONE except deferred reveals.",
+      "doorOrientationBug_2026-07-05": {
+        "finding": "v20.5 door cut WORKS (voidCut=applied, panel 7322731 -> 10 faces, opening cut). BUT orientation WRONG: opening 1016mm wide (correct 3'4\") x only 305mm tall (should be ~2184mm/7'2\"). Door void laid on its side.",
+        "cause": "Door source facing=(0,0,1) [vertical/up], hand=horizontal. ApplyPointOrientation computes ONLY Z-rotation theta=atan2(-facing.X,facing.Y) -> for facing(0,0,1) => atan2(0,0)=0 => NO rotation => family placed at default (flat). Door voids are face-hosted on VERTICAL panel faces; standing them up needs rotation about a HORIZONTAL axis, which Z-only logic can't do. Same issue will affect deferred REVEALs (also vertical-face-hosted).",
+        "deletedPilot": "7329898 (mis-oriented) deleted.",
+        "fixOptions": "A) v20.6: full 3D orientation reconstruction in ApplyPointOrientation (build target basis from facing+hand, up=hand x facing; rotate family default basis->target). Correct + fixes reveals. Needs build+restart, must preserve horizontal-facing SF/DT/void behavior. B) post-placement rotate_elements +90 about hand axis per door (7 doors, no restart, fiddly). C) defer doors with reveals.",
+        "chosen": "A (user). v20.6 IMPLEMENTED: ApplyPointOrientation now branches — if facing.Z significant (vertical-face-hosted), calls OrientByMeasuredBasis (regen; read live FacingOrientation/HandOrientation; rotate facing onto target about their cross product, then hand onto target about facing axis; rotations about lines thru insertion pt = position preserved). Horizontal-facing path UNCHANGED (SF/DT/voids safe). Build 0 errors. Deployed v20_6.dll (sha256 dbe28c24...5a1a7e42, verified). Manifest v20_5 -> v20_6.",
+        "v20_6_afterRestart": "Restart Revit (load v20_6). No save strictly needed (net model = last save: corbels+voids; pilot doors were placed+deleted). No MCP reconnect (no TS change). Then place 7 doors hostPass=2 (pilot 1 -> verify opening now ~1016w x ~2184tall vertical -> full 7). remap_gm.json has 2 stale deleted-door entries (harmless). GM DONE except deferred reveals (which v20.6 orientation now also enables).",
+        "v20_6_FAILED_2026-07-05": {
+          "symptom": "Door pilot popped BLOCKING modal dialog 'Can't rotate element into this position'. User clicked Cancel -> transaction rolled back, no door placed.",
+          "rootCause": "OrientByMeasuredBasis rotates about a HORIZONTAL axis to stand the door upright, but the door void is placed level-hosted (NewFamilyInstance(point,symbol,level)). Revit ONLY permits level-hosted point instances to rotate about the VERTICAL (Z) axis; a horizontal-axis rotation moves it off its level work plane -> forbidden -> modal error dialog (which also BLOCKS the gateway, since no IFailuresPreprocessor).",
+          "correctFix_v20_7": "TRUE work-plane / face hosting for vertical-face-hosted families (doors, reveals): place the WorkPlaneBased instance on a VERTICAL work plane (create ReferencePlane/SketchPlane with normal = facing x hand, or face-host on the resolved host panel face via NewFamilyInstance(Reference face, XYZ, refDir, symbol)), NOT level-point+rotation. PLUS add IFailuresPreprocessor to the import transaction so warnings/errors never pop a blocking modal (swallow/rollback gracefully).",
+          "impact": "Affects 7 doors NOW + 2333 reveals (deferred) — both are vertical-face-hosted voids. v20.6 vertical-facing branch is a LANDMINE (pops dialog) — do NOT place vertical-facing (doors/reveals) until v20.7. Horizontal-facing path (SF/DT/voids/corbels) UNAFFECTED and safe.",
+          "gmStatusNow": "CORBELS (223) done. VOIDS (18) done+cut-verified. DOORS (7) + REVEALS (2333) BLOCKED on v20.7 face-hosting. Recommend: defer doors to join reveals in a dedicated v20.7 face-hosting sub-phase."
+        },
+        "v20_7_BUILT_2026-07-05": {
+          "changes": [
+            "Reverted v20.6 rotation branch + removed OrientByMeasuredBasis/PerpendicularTo (level-hosted rotation is illegal).",
+            "PlaceRecord: for pass2 + host resolved + vertical facing (facing.Z!=0), TRUE face-host via PlaceOnHostFace (find host planar face with normal=facing x hand containing insertion pt; NewFamilyInstance(faceRef, pt, hand, symbol)); fallback to free point (flat, flagged) if no face. Horizontal-facing path UNCHANGED.",
+            "PlaceOnHostFace: get_Geometry(ComputeReferences=true), CollectSolids, pick nearest parallel PlanarFace within 1ft, place on its Reference.",
+            "CutAndReturn: applies InstanceVoidCutUtils.AddInstanceVoidCut; re-checks GetCuttingVoidInstances if throw (face-host may auto-cut).",
+            "ReadOrientationVectors helper.",
+            "ImportFailureSwallower : IFailuresPreprocessor set on the execute transaction (SetFailuresPreprocessor + SetClearAfterRollback) -> warnings deleted, errors rollback SILENTLY (no blocking modal dialog ever)."
+          ],
+          "build": "0 errors (net48). Deployed v20_7.dll (sha256 81f259b1...f2fabcbb, verified, differs from v20_6). Manifest v20_6 -> v20_7.",
+          "afterRestart": "Restart Revit (load v20_7). No save needed (net model = last save: corbels+voids; door pilots rolled back/deleted). No MCP reconnect (C# only). Then: door pilot 1 (hostPass=2) -> verify placedAs=face-hosted, voidCut=applied, opening now FULL HEIGHT vertical (~1016w x ~2184tall) -> full 7. Then reveals still need target family sourced before their run.",
+          "v20_7_RESULT_2026-07-05": {
+            "success": "5 of 7 doors FACE-HOSTED correctly + cut. Pilot 7329901 verified: opening 1016mm wide x 2184mm TALL vertical (correct, was 305mm flat before). No blocking dialog (IFailuresPreprocessor works). Face-hosting mechanism PROVEN.",
+            "partialFail": "2 doors (src 10095238,10095476, both host 10094139->panel 7326926 WPAH at far-east x439173) -> PlaceOnHostFace returned null ('no matching host face') -> fell back to flat point placement -> cut WRONG short openings (~1476x305mm). Panel 7326926 big faces are +/-X (thin-in-X panel); door wp normal=(1,0,0) should match face at x439173 (dist~0) -> so failure is a Reference-resolution edge case (GetInstanceGeometry face Reference null, OR NewFamilyInstance(faceRef,...) threw) on that panel, NOT normal/distance. Deleted the 2 flat doors (7329911,7329912) -> panel restored.",
+            "remaining": "2 doors (10095238,10095476) + 2333 reveals. NEXT (v20.8): add failure-reason diagnostics to PlaceOnHostFace (report faceCount / bestDist / refNull / exception) to pinpoint the 7326926 cause, + a reference fallback (e.g. GetSymbolGeometry-with-transform, or try both parallel faces). Then re-place the 2 doors. Reveals ALSO need target family sourced first.",
+            "modelState": "5 doors placed+cut (face-hosted). corbels 223, voids 18, DTs, SF all present. SAVE-worthy."
+          },
+          "v20_8_BUILT_2026-07-05": {
+            "changes": "PlaceOnHostFace hardened: (1) diagnostics into elementReport.faceHost (solids, parallelFacesInTol, nullRefFaces, method, faceRefError/hostAutoError). (2) try ALL parallel in-tol faces nearest-first (was: nearest only) — handles null-ref faces from nested geometry. (3) tolerance 1.0->1.5ft. (4) Attempt 2 fallback = NewFamilyInstance(pt,symbol,host,NonStructural) host-auto-face + AlignHandInPlane (rotate about face normal = LEGAL in-plane rotation) to align hand. Only returns null (flat fallback) if both attempts fail.",
+            "build": "0 errors. Deployed v20_8.dll (sha256 2cd368c1...58fc8197, verified, differs from v20_7). Manifest v20_7 -> v20_8.",
+            "afterRestart": "Restart Revit (load v20_8). No save needed (nothing placed since last save). No MCP reconnect. Then place instances_doors_2.json (2 records: 10095238,10095476 on panel 7326926) hostPass=2, typemap_doors.json, remapOutPath=remap_gm.json. Verify placedAs + faceHost.method + opening full-height (1016x2184) on panel 7326926. Read faceHost diagnostics to confirm cause/fix. THEN reveals (VOID_REVEAL_WIDE_RECTANGLE chosen).",
+            "reveals_findings_2026-07-05": {
+              "pilot": "Placed 3 reveals on panel 10032517 (v20.8), then DELETED. Learned 3 blockers before reveals can run properly:",
+              "blocker1_trigger": "Face-host trigger is facing.Z!=0 (tuned for doors). Reveals have MIXED facing: 1285 facing.Z!=0 (caught, face-hosted) but 1048 facing.Z==0 with hand=(0,0,1) (groove runs vertically) -> MISSED -> point-placed flat/wrong. FIX v20.9: trigger face-hosting for pass2 + host resolved + IsVoidCutFamily (ALL cutting families, any facing), fall back to point. (Existing 18 shearwall voids already placed, no regression.)",
+              "blocker2_family": "VOID_REVEAL_WIDE_RECTANGLE = WIDE-RECESS profile (default geom 4'x5'x1/2 pocket). Fits '1/2 x 3'6 RECESS' (262) but NOT the narrow reveals '1/2 x 6/4/3/1' (~2071, need a narrow 1-6\" groove profile). Need per-type family/profile: narrow reveals likely a different VOID_REVEAL_* (e.g. VOID_REVEAL_WIDE with small width, or a dedicated narrow reveal family) vs wide recess for 3'6.",
+              "blocker3_length": "Reveal run length is per-instance source DIM_LENGTH (12'-31'6\"). Target family run-length param = 'Width' (default 4'0\") — source DIM_LENGTH did NOT auto-map (placed reveal stayed 4'). Need DIM_LENGTH -> target run-length param (name mismatch: source DIM_LENGTH vs target Width). Verify target has a DIM_LENGTH that drives Width via formula, else map explicitly.",
+              "targetParams": "VOID_REVEAL_WIDE_RECTANGLE: Width=run length(4'0 default), Reveal_Width=groove x-section width(3.5\"), Reveal_Depth=depth(0.5\"). 5 source x-sections need authored types (Reveal_Width 6/1/3/4/42\").",
+              "recommendation": "Reveals = focused sub-project: (a) v20.9 trigger fix, (b) choose family/profile per reveal type (narrow vs wide), (c) author 5 types w/ Reveal_Width, (d) map run length DIM_LENGTH->Width. Then place 2305 pass2 face-hosted+cut. Mechanism (face-hosting+cut) PROVEN; this is family/param modeling.",
+              "datasets_ready": "instances_reveals.json (2333), instances_reveals_pilot.json (3), typemap_reveals.json (5 types->WIDE_RECTANGLE, needs revisit). VOID_REVEAL_WIDE_RECTANGLE loaded (familyId 7329925)."
+            },
+            "v20_8_RESULT_2026-07-05": "DOORS COMPLETE 7/7. Placed 2 remaining (7329920,7329923) FACE-HOSTED via method='face-reference' (faceHost diag: solids 1, parallelFacesInTol 2, nullRefFaces 0). CAUSE of v20.7 failure: nearest face's NewFamilyInstance threw; v20.7 only tried nearest -> null. v20.8 'try all parallel faces' -> 2nd face (+X) succeeded. Panel 7326926 opening now VERTICAL (1016 wide x ~1476 tall, clipped by panel/door overlap) — correct orientation (was flat 305mm). voidCut applied. Face-hosting now robust for reveals."
+          }
+        }
+      }
+    },
+    "gm1_corbels_done_2026-07-04": {
+    "gm1_corbels_done_2026-07-04": {
+      "decisionRevision": "Exact source corbel families (CORBEL Light Loaded 12D X 24W X 36T + Double) NOT in library (project-embedded in 2025). User chose SIMPLEST: map both single(54)+double(169) -> loaded CORBEL 8D X 12W X 1.33T as-is (approximate geom, no double). Did NOT build double family / did NOT open family editor. Loaded CORBEL_ADJUSTABLE (familyId 7327743) while investigating — UNUSED, can delete later.",
+      "placement": "Isolated 223 corbels to instances_corbels.json (host nulled, levelName assigned = ROOF nearest by z, all 223 near z8534). typemap_corbels.json maps both -> CORBEL 8D X 12W X 1.33T. hostPass=1 point-on-level. dryrun 223/223 resolved. execute 223/223 placed 0 failed. remap_corbels.json (223).",
+      "accuracy": "X exact; Y ~197mm + Z ~95mm offset (placeholder family geom-origin differs from source 12x24x36, AND smaller size). Acceptable per user 'approximate, revisit later'. REVISIT: source true corbel family + size + double variant.",
+      "reports": ["import_report_corbels_dryrun.json","import_report_corbels_pilot.json","import_report_corbels_full.json"]
+    },
+  "flatSlabLandingOffsetFix_2026-07-04": {
+    "trigger": "User selected 7 off elements (3 FLAT_SLAB 7322738/7322832/7322833 + 4 STAIR_LANDING 7322784/7322786/7322787/7322831); asked to fix + check unselected like elements.",
+    "rootCause": "FLAT_SLAB + STAIR_LANDING families: geometry CENTERED on insertion point across WIDTH (hand) axis, but should EXTEND from insertion along hand (length/facing axis already correct). 2024 loaded family origin = mid-back-edge; 2025 family origin = back CORNER => W/2 offset along hand. Only these 2 families affected (wall panels + DTs have center origin, verified correct). Length was already flush (north edge on north wall) — only width off.",
+    "proof": "Roof slabs 7322832 (+1282.7 X) -> west edge flush west wall x-742; 7322833 (+1460.5 X) -> east edge flush east wall x4947. Two independent slabs both snap wall-flush under +W/2-along-hand => confirmed.",
+    "fix": "move_elements +W/2 along hand unit vector for ALL 5 flat slabs + 9 stair landings (14 total, project-wide incl far-east 7324221/7324156/7324203). Deltas: FSA W2565.4->+1282.7, W2921->+1460.5; landings per-element +W/2 along hand (see move log). Reversible (move back if wrong).",
+    "elementsMoved": "FLAT_SLAB: 7322737,7322738,7322832,7322833,7324221. STAIR_LANDING: 7322565,7322566,7322568,7322784,7322786,7322787,7322831,7324156,7324203.",
+    "importLogicNote": "Model fixed via move. The import_instances placement code STILL has this bug for FLAT_SLAB/STAIR_LANDING (edge-origin family not compensated) — if re-run, offset returns. Future v20.5: detect family-origin-vs-locationpoint offset OR add per-family placement offset. Not urgent (model corrected).",
+    "status": "USER CONFIRMED CORRECT 2026-07-04. Fix good. Proceeding to GM phase."
+  },
+  "towerAudit_2026-07-04": {
+    "trigger": "User: wall panels around stair/elevator tower look off; check sizes+positions vs 2025.",
+    "towerLocation": "XY box x[-3000,8000] y[3000,16000], rises to z~20472mm (T.O. ELEV TOWER, level id present). Protrudes above DT roof (~z9740).",
+    "wallSlabResult": "34 wall/flat-slab in source tower (22 WPAH + 8 WPAV + 4 FLAT_SLAB) => 34 placed. ZERO missing. Sizes verified exact (DIM_LENGTH/DIM_WIDTH match source) on 5 samples; geometry bbox verified exact on 4 orientation types (east wall facing -x, mirrored west wall facing +x, north wall facing -y, vertical parapet facing +y) — all correct span axis, thickness (8\"=203mm), height-stacking, and facing. Mirror fix (v20.3) confirmed holding on west wall.",
+    "actualGap": "Tower looks 'off' because GM-category items that belong to it are NOT yet placed (all OST_GenericModel, instance-hosted, Pass-2/GM phase): 4 Personal Doors (hosted on panels 10061860->7322731, 10064061->7322778, 10060829->7322712 x2), 2 CORBEL Light Loaded 12Dx24Wx36T (1 hosted 10070942, 1 free), 1 VOID_RECTANGULAR DOES-NOT-EXPORT (hosted 10027565). => walls render solid with no door/void openings cut. These are the pending GM-phase decisions (CORBEL target already decided prior; doors + void are new GM/Pass-2 work).",
+    "verdict": "SF wall panels + flat slabs in tower are CORRECT and COMPLETE. No SF fix needed. The missing openings/doors/corbels are GM-phase (Pass-2) items — resolves when GM phase runs."
+  },
+  "v20_4_reapplyComplete_2026-07-04": {
+    "run": "import_instances mode=reapply hostPass=1 resumeFromIndex=0 over instances.json: attempted 1489 / reapplied 1489 / skipped 0 / failed 0 / done true. Pilot maxElements=10 clean first.",
+    "reportParamFailures": "ONLY expected elementId-not-remapped material/rebar refs: Rebar Cover faces x1489, Structural Material x1182, Grout_Material x588 (values come from cloned-type defaults). ZERO unexpected/case failures.",
+    "dtVerified": "4 DTs spot-checked vs source NOMINAL_LENGTH — ALL match: 7324251 20'->39'-10 (the stuck baseline), 7324598 81'-1, 7325545 81'-1, 7326712 21'-2 1/2. Nominal_Length==DIM_LENGTH==lenth_report on each; mixed-case siblings (DIM_WIDTH, Flange_Edge_Offset) also landed.",
+    "integrityPrecheck": "Save persisted: 7324244 retained manual proof-fix (39'-10) across restart; 7324251 baseline still 20' pre-reapply. remap_pass1.json 1489 ids all resolved.",
+    "reports": ["import_report_reapply_pilot.json", "import_report_reapply_full.json"]
+  },
+  "dtDimensionFinding_2026-07-04": {
+    "cause": "All 679 DTs stuck at default 20' length. Length driver in 2024 family = 'Nominal_Length' (mixed case); source param = 'NOMINAL_LENGTH' (upper). Revit LookupParameter is case-sensitive -> write missed -> DIM_LENGTH (reporting param driven by Nominal_Length) stayed at type default 20'. Confirmed fix on DT 7324244: set Nominal_Length=12141.2mm -> DIM_LENGTH 20'->39'-10', DT grew +Y spanning grid E->F (correct direction; DTs not mirrored so growth follows matched facing).",
+    "systemic": "Case mismatch likely affects other families' params too -> v20.4 case-insensitive LookupParameterCI covers all.",
+    "fix": "v20.4 reapply mode (case-insensitive) rewrites params on all 1489 placed products via remap. DT direction verified correct (grows per orientation)."
+  },
+  "v20_4_postRebootPlan": {
+    "reconnect": "SAVE Revit file (user, manual - no project-save tool) -> restart Revit 2024 (load v20_4.dll) -> RECONNECT MCP client (TS mode enum changed).",
+    "state_to_preserve": "SF complete (175 mirror re-placed this session at new ids), DTs placed, remap_pass1.json=1489 entries matches model. MUST SAVE so remap newIds stay valid for reapply.",
+    "steps": [
+      "1. reload import_instances schema, say_hello, context.",
+      "2. reapply pilot: import_instances mode=reapply, instancesPath=instances.json, remapOutPath=remap_pass1.json, maxElements=10 -> confirm reapplied, no errors.",
+      "3. Full reapply (resumeFromIndex) over all 1489 placed -> rewrites params case-insensitively (fixes DT Nominal_Length + siblings).",
+      "4. Spot-check several DT lengths (DIM_LENGTH == source), re-verify column/panel params intact.",
+      "5. Then GM phase (voids/reveals/corbels)."
+    ]
+  },
+  "v20_3_VERIFIED_2026-07-04": "v20.3 mirror snap-back CONFIRMED on POSITION: re-place pilot positionResidualMm ~0, mirror=ok. Rollback note: Revit rebooted no-save -> reverted to post-sanitize save (175 displaced mirrored back at original ids; v20.2 pilot gone). Deleted 175 originals, re-placed all 175 with v20.3 (0 failed). Grid-B panel now at (29655,-103777) [was (59310,-127)]. SF rebuild complete: 3247 products correctly positioned+oriented.",
+  "v20_2_FAILED": "v20.2 mirror fix did NOT work: re-place pilot showed positionResidualMm still ~104000-129000. Cause: snap-back read LocationPoint without doc.Regenerate() (stale) so it never fired. v20.3 adds the regen + snaps to source pt. Math-proven correct.",
+  "v20_3_postRestartPlan": {
+    "reconnect": "Revit restart ONLY (load v20_3.dll). NO MCP reconnect.",
+    "state": "175 original mirrored SF already deleted. 5 displaced pilot re-placements (v20.2) to delete: 7326740,7326742,7326743,7326744,7326745. remap pruned to 1314. instances_mirrored_sf.json (175 recs) ready.",
+    "steps": [
+      "1. say_hello + context.",
+      "2. Delete 5 displaced pilot: 7326740,7326742,7326743,7326744,7326745.",
+      "3. Re-place instances_mirrored_sf.json (175) pass1: pilot maxElements=5 -> VERIFY positionResidualMm ~0 (must be near 0 now) -> then full 175 (resumeFromIndex 5).",
+      "4. Spot-check grid-B wall bbox center == source point.",
+      "5. SF COMPLETE."
+    ]
+  },
+  "nextTask_userRequested": "After wall panels fixed: examine dimensions of EACH double-T in 2025 model, check 2024 dims, attain size parity, then BACK-CHECK bounds — lengthening a DT may project it the WRONG direction depending which end is the MARK vs OPP end. (DTs have Warp_Mark_End/Warp_Opp_End params; NOMINAL_LENGTH etc.)",
+  "priorPhaseNote": "v20.2 BUILT (superseded by v20.3)",
+  "v20_2_postRestartPlan": {
+    "reconnect": "Revit restart ONLY (load v20_2.dll). NO MCP reconnect (no new TS tools).",
+    "steps": [
+      "1. say_hello + get_active_document_context (MODEL_R24).",
+      "2. Delete 175 displaced mirrored-SF elements (ids in _mirrored_sf_delete_ids.txt).",
+      "3. Re-place from instances_mirrored_sf.json (175 recs) pass1: pilot maxElements=5 FIRST -> verify positionResidualMm ~0 (v20.2 now checks POSITION, not just facing) -> then full 175 (resumeFromIndex).",
+      "4. Spot-check 2-3 placed positions (bbox center == source point) esp. the opposite/grid-B wall.",
+      "5. SF TRULY COMPLETE -> GM phase (voids/reveals/corbels) with void face-hosting + pass2 fallback."
+    ],
+    "staged": "remap_pass1.json pruned to 1314 (175 mirrored removed, re-added on re-placement). instances_mirrored_sf.json ready. _mirrored_sf_delete_ids.txt ready.",
+    "affected": "175 placed mirrored SF displaced (116 INSULATED_WALL_PANEL VERT, 30 SHEARWALL_H, 20 COLUMN, 9 SOLID panels). 1117 GM mirrored not yet placed (fixed before placement)."
+  },
+  "status": "All 3247 SF explicit placements done: 2568 pass1 (level-hosted products) + 679 DOUBLE_TEE_CHAMFERED_NOMINAL (via instances_dt.json host-nulled -> pass1 point-on-level). 0 failed. remap_pass1.json = 3247 entries. Grid parity done (81). Mirror + warp orientation reproduced (0 residuals). Auto-nested FLAT/WARPED helper reps present (expected, user filters). Model raw SF instance count higher than 3247 due to nested helpers.",
+  "timestamp": "2026-07-03",
+  "sfComplete_2026-07-03": {
+    "explicitPlaced": "3247 = 2568 (pass1 products: COLUMN/T-R-L girders/INSULATED+SOLID+SHEARWALL+METROWALL panels/FLAT_SLAB/STAIRS + the DO NOT USE helper records) + 679 DT_NOMINAL.",
+    "matchesSourceSFCount": "3247 == source OST_StructuralFraming count (brief target). CONFIRMED.",
+    "dtApproach": "instances_dt.json = 679 DT_NOMINAL with hostElementId nulled -> pass1 point-on-level (phantom work-plane hosts 10028234/10027999 not exported). 0 residual, correct warp orientation.",
+    "remap": "remap_pass1.json now 3247 entries (union pass1 products + DTs).",
+    "note": "Raw SF instance count in model > 3247 due to auto-nested FLAT/WARPED (girders + DTs). Per user: keep, control via visibility filters."
+  },
+  "gridsCreated": "81 grids created via create_datums (0 errors); levels all 6 present.",
+  "gridParity_2026-07-03": {
+    "result": "81 grids, EXACT coordinate parity with 2025 source (matched ~7 decimals on 100/106/G/B/H.5/101.1 etc.).",
+    "removed": "2 Metromont-2024 template grids: 'A' (id431898, horiz y~21597, not in source) + '1' (id3732764, vert x~-30390.36 nearly coincident with source grid 100 -> the 'super close' doubling).",
+    "projectBasePoint": "Export grid coords are Revit INTERNAL coords (Grid.Curve endpoints, NOT PBP-relative). Grids placed at identical internal coords => same internal position as 2025. LEVEL 1 id=30 in BOTH models => shared internal-origin/id lineage => frames coincide, grids overlay exactly. No PBP read/set tool in bridge; any residual offset = manual Revit step or future tool.",
+    "pendingUserConfirm": "User to confirm 2024 grids now overlay 2025 exactly."
+  },
+  "CRITICAL_mirrorDisplacementBug_2026-07-03": {
+    "finding": "v20.1 mirror reproduction (ApplyPointOrientation -> MirrorInPlaceFlipHand) reproduces FACING correctly but DISPLACES the element (~100m). Confirmed via wall panels: opposite/grid-B wall = 116/116 mirrored=true => ALL displaced (bbox center ~2x srcX, Y~0 instead of insertion); grid-J wall = 118/118 mirrored=false => ALL correct. Params identical (36'-0.5 x 12', 360CF) so NOT oversized -> displaced. This is the user's 'panels extend straight on the opposite/north side'.",
+    "scope": "1292 instances in source have mirrored=true (SF placed so far + GM not yet). ALL placed mirrored elements are displaced.",
+    "mycheck_gap": "Pilot 'mirror fix confirmed' only verified facingAngle residual + mirrored flag, NOT POSITION. Bug slipped through.",
+    "rootCauseHypothesis": "flipHand()/MirrorElements(plane) not preserving insertion position for these WorkPlaneBased-on-level families; mirror plane likely not through insertion as intended.",
+    "fix_plan_v20_2": "Reproduce mirror WITHOUT displacement (position-preserving). Verify POSITION (bbox center vs source point) on pilot, not just facing. Then delete + re-place the placed mirrored elements. Bundle with pass2 point-on-level fallback + void face-hosting.",
+    "replacement_needed": "All already-placed mirrored SF elements must be deleted + re-placed after fix. Identify via source mirrored=true joined to remap."
+  },
+  "dtHostingFinding_2026-07-03": {
+    "finding": "679 DOUBLE_TEE_CHAMFERED_NOMINAL are WorkPlaneBased hosted on 2 phantom ids (10028234 x404, 10027999 x275) NOT in export (0/679 hosts present) = work planes/reference planes at roof elev. Pass-2 correctly skips (host unresolvable). DTs have full point (z~10206) + orientation, so placeable as level-hosted points on ROOF HIGH POINT.",
+    "dtIsOnlyPass2SF": "DOUBLE_TEE_CHAMFERED_NOMINAL (679) is the ONLY pass2 SF family; all other SF placed in pass1. Placing DTs completes SF.",
+    "chosenApproach": "TBD (A: instances_dt.json with host nulled -> pass1 point-on-level, no restart; B: v20.2 pass2 point-on-level fallback). Recommend A now, fold pass2 fallback into v20.2 for GM void phase.",
+    "v20_2_futureScope": "pass2 host-unresolvable -> point-on-level fallback; void face-hosting + InstanceVoidCutUtils (GM voids/reveals cut behavior); (optional excludeFamilies)."
+  },
+  "fullPass1_SF_2026-07-03": {
+    "run": "2568 attempted / 2568 placed / 0 failed / 0 unresolved. remap_pass1.json = 2568 entries. Column 10028269 -> 7320578 grid-aligned dead-on 106/G (verified).",
+    "CRITICAL_nestedDuplication": {
+      "finding": "Model shows 2968 SF (+400 vs 2568 placed). (DO NOT USE) FLAT/WARPED families are NESTED geometry variants inside parent products (T_GIRDER/R_BEAM/L_GIRDER/DOUBLE_TEE_CHAMFERED_NOMINAL). Placing a parent AUTO-creates nested FLAT+WARPED as schedulable instances; I also placed them explicitly => duplicates. Girder helpers doubled (TGIRDER 186->372 etc.); DT helpers not yet (parent DT_NOMINAL is pass2). Confirmed by pilot cascade-delete (deleting 1 T_GIRDER removed 2 nested children).",
+      "explicitDoNotUsePlaced": "1758 (TGIRDER_FLAT/WARPED 186 each, RBEAM 7 each, LGIRDER 7 each, DT_CHAMFERED_FLAT/WARPED 679 each) — all in remap_pass1.json.",
+      "fix_proposed": "1) delete the 1758 explicit (DO NOT USE) instances (newIds from remap) -> T/R/L helpers revert to auto-only counts, DT helpers cleared (regenerated when DT_NOMINAL placed in pass2). 2) add excludeFamilies input to import_instances (v20.2, bundle w/ pending void face-hosting) so nested-helper families are never placed independently. AWAITING user domain confirmation.",
+      "SANITIZED_2026-07-03": "User reversed: sanitize the detached duplicates. Deleted 1758 explicit (DO NOT USE) standalone instances (600+600+558, 0 failed) via remap newIds. Model now clean: nominal products only, each with correct nested FLAT/WARPED (visibility-driven). remap_pass1.json cleaned to 1489 nominal entries (backup remap_pass1.presanitize.json). _dnu_ids.txt has the deleted id list.",
+      "USER_DECISION_prior": "NO DELETING. FLAT/WARPED/NOMINAL are visibility-controlled reps (as-erected reality vs flat manufacturable), toggled by parent warp/AW params (which import writes). Preloaded families used => visibility matched via parent params. Going forward: place NOMINAL/parent only, ignore nested behavior; duplicate helper instances managed later with family/visibility FILTERS. (DO NOT USE) families are all pass1-done so pass2/GM won't re-place them; no code change needed now. DT_NOMINAL (pass2) will auto-nest -> DT helpers ~2x, expected & filterable."
+    }
+  },
+  "v20_1_postRestartSequence": [
+    "1. Restart Revit 2024 (load v20_1.dll) + reconnect MCP client (new create_datums tool).",
+    "2. say_hello + get_active_document_context (confirm MODEL_R24).",
+    "3. create_datums { levelsGridsPath: D:\\CursorRevitMCP\\revit_2024_rebuild\\levels_grids.json } -> creates 5 levels(skip existing) + 81 grids.",
+    "4. Re-run pilot pass1 (instances_pilot.json, maxElements 10) -> VERIFY mirrored panel orientationResidual ~0 + mirror reproduced; then pass2 void -> VERIFY cross-check passes WITHOUT workPlaneName patch (void wp restored to source 'SHEARWALL_HORIZONTAL (SWAH) : 8\"').",
+    "5. User visual check of pilot + grid alignment.",
+    "6. Delete pilot elements (ids will differ on re-run; delete current set + any re-run set) then FULL Pass-1 SF run (no maxElements, resumeFromIndex loop).",
+    "NOTE: void auto-cut still expected FALSE (face-hosting/InstanceVoidCutUtils deferred to Pass-2 phase)."
+  ],
+  "pilotResult_2026-07-03": {
+    "placed": "4 pass1 (COLUMN 30x30 id7320453, T_GIRDER 36IT48 id7320459, INSULATED_WALL_PANEL VERT 10\" id7320467 [MIRRORED], SHEARWALL_HORIZONTAL 8\" id7320471) + 1 pass2 void (VOID_RECTANGULAR on shearwall).",
+    "validated_OK": [
+      "createTypeIfMissing: all 4 sizes cloned + family_types params applied.",
+      "GUID-keyed shared param writes (F1) confirmed via read-back of col 7320453: CONTROL_MARK 'CLA -01', DIM_LENGTH 32'-6 1/4\", CLA_TOP_ELEVATION, WEIGHT_PER_UNIT 150, column_void_* all correct; Length mm->ft correct.",
+      "placement x,y exact; Level + Offset from Host correct.",
+      "non-mirrored orientation (column/girder/shearwall): 0 residual.",
+      "pass2 host resolution via remap + cross-check (with correct workPlaneName)."
+    ],
+    "ISSUES_for_v20.1": {
+      "mirrorReproduction": "INSULATED_WALL_PANEL VERT (mirrored=true, rotDeg 180): result facing 180deg off + mirror NOT reproduced (result mirror=false). rotationDeg+flips insufficient for mirrored elements. FIX: after place, if source.mirrored != result.mirrored, mirror in place about plane thru origin; re-verify facing.",
+      "pass2CrossCheck": "Cross-check compares workPlaneName vs TARGET host family:type; fails for typemap-RENAMED host families (e.g. 'SHEARWALL_HORIZONTAL (SWAH) : 8\"' vs target 'SHEARWALL_HORIZONTAL : 8\"'). FIX: compare vs SOURCE host family:type from remap entry (already stored). Pilot used a workPlaneName data-patch to bypass.",
+      "voidAutoCut": "Void placed as FREE point instance (pass2 point fallback; export had null faceNormal/facePoint). Almost certainly does NOT cut host. FIX (v20.1): true face-hosting + InstanceVoidCutUtils.AddInstanceVoidCut(host, void). USER visually verifying cut behavior.",
+      "elementIdParams": "Rebar Cover-*, Grout_Material, Structural Material skipped (elementId not remapped) — documented; values often correct via cloned-type defaults. Optional future: material-by-name remap."
+    },
+    "checkpoint": "STOP for user visual verification (Part B.4): confirm the 5 elements, esp. mirrored-panel orientation + whether void cut the shearwall. Then decide v20.1 scope before full run."
+  },
+  "coordinateVerification_2026-07-03": {
+    "finding": "Pilot positions are CORRECT and grid-aligned (not random). COLUMN 10028269 lands dead-on grid 106 x=27826.4 (0mm) INTERSECT grid G y=-18941.2 (0mm). T_GIRDER on grid E (0mm). Panel near grid B (330mm wall-thickness offset). SHEARWALL near 113/H.5. VOID sits on its host shearwall (~100mm). No project-base-point offset corrupting placement; source internal coords are self-consistent with the grid system.",
+    "userConcern": "Elements looked random because NO grids placed yet + pieces are from widely-separated building areas + mirror/void errors. Resolution: place grids (reference frame) + fix mirror.",
+    "pilotNewIds_toDelete_beforeFullRun": [7320453, 7320459, 7320467, 7320471, 7320473]
+  },
+  "v20_1_plan": {
+    "scope": ["create_datums route (read levels_grids.json C-side; create levels+81 grids; skip existing by name)", "mirror-reproduction fix in PlaceRecord (mirror in place if source.mirrored != result; re-verify facing)", "pass2 cross-check: compare workPlaneName vs SOURCE host family:type from remap entry (not target)"],
+    "deferred_to_pass2": "void face-hosting + InstanceVoidCutUtils (do when corbels/voids/reveals are tackled, per user: SF framing first)",
+    "sequence": "build v20.1 -> deploy versioned DLL -> RESTART Revit 2024 -> create_datums -> delete 5 pilot elements -> full Pass-1 SF run -> verify grid alignment"
+  },
+  "datums": { "levelsCreated": "ROOF, ROOF HIGH POINT, T.O. PARPET, DUNNAGE, T.O. ELEV TOWER (LEVEL 1 pre-existed id 30). Template extras T.O. FDTN + LEVEL 2 left as-is.", "gridsPending": "81 grids from levels_grids.json not yet created (reference-only, blocks nothing; batch after pilot)." },
+  "pass1DryrunResult": { "attempted":2568, "resolved":1863, "typemapPending_createType":705, "failed":0, "unmappedTypes":0, "hostCrossCheckFailures":0, "typeStatus":"1758 exact / 105 typemap / 705 pending-create", "report":"import_report_pass1_dryrun.json", "note":"pending-create list = COLUMN 30x30(176), T_GIRDER 36IT48(186), INSUL_WP VERT 10\"(232)+9\"(30), SHEARWALL_H 8\"(57), STAIR_LANDING 08\"(9), L/R girder sizes. All will resolve on execute." },
+  "phase0Reconcile": {
+    "sharedParamFile": "C:\\EDGEforRevit\\Shared_Params_2015_v01.txt (UTF-16, 463 PARAM defs, 12 groups; GUIDs match source)",
+    "boundNow": "12 SF/GM instance params bound (all inserted, verified source-matching GUIDs): [SF] ERECTION_SEQUENCE_NUMBER, ERECTION_SEQUENCE_ZONE_NUMBER, ERECTION_SEQUENCE_ZONE_NAME, ON_HOLD, ELECTRICAL_CONTAINED; [SF+GM] TICKET_IS_CREATED; [GM] DO_NOT_SCHEDULE, HARDWARE_DETAIL, HW_COMPONENT_WEIGHT, INSULATION_HOST_GUID, INSULATION_LOCK, INSULATION_MARK.",
+    "notBoundOutOfScope": "12 matched params intentionally NOT bound (not SF/GM instance data): 9 Project Information (BIF/SIF/TIF/BULK_UPDATER_SAVE_FOLDER_PATH/DEFAULT_INSULATION/INSULATION_GEOMETRY_TOLERANCE/INSULATION_VOLUME_TOLERANCE/INSULATION_VOLUME_TOLERANCE_PERCENTAGE/MODEL_LOCKING_ENABLED), 2 Sheets (TKT_HW_WEIGHT/TKT_SHEET_COUNT), 1 Walls (IS_FINISH).",
+    "notInFile": "8 source params absent from shared param file, ALL out-of-scope/computed => no action: ARCH_VOLUME_CAST_1..4/TOTAL + STRUCTURAL_MEMBER_VOLUME_CAST (computed/formula, importer skips read-only), AUTO_PANELIZATION_DEFAULT_FAMILY (Project Info), PRODUCT TYPE (Walls-only, out of SF+GM+Floors scope).",
+    "verdict": "F1 GUID-keyed write strategy fully validated for all in-scope instance params. bindings 203->215, inventory 400->412.",
+    "artifacts": ["bindings_2024_r24.json (pre)", "bindings_2024_r24_postbind.json (post)"]
+  },
+  "lastCompletedStep": "say_hello ok (revitConnected true); active doc = '26-0349 A101 (2026 07-01) - MODEL_R24'; loaded types SF=126, GM=29.",
+  "phaseMinus1": {
+    "bridgeConnected": true,
+    "activeDocTitle": "26-0349 A101 (2026 07-01) - MODEL_R24",
+    "loadedTypes": { "OST_StructuralFraming": 126, "OST_GenericModel": 29 },
+    "criticalFinding": "Loaded 2024 template family NAMES diverge systematically from source family_types.json: source has product-code suffixes (COLUMN (CLA), T_GIRDER (TGA), R_BEAM (RBA), L_GIRDER (LGA), INSULATED_WALL_PANEL (HORIZ) (WPBH), SOLID_WALL_PANEL (HORIZ) (WPAH), METRODECK (FMD & SMD)) that 2024 targets drop/rename (COLUMN, T_GIRDER, R_BEAM, L_GIRDER, 'INSULATED WALL_PANEL (HORIZONTAL)', SOLID_WALL_PANEL (HORIZONTAL), METRODECK_FACTORY_TOPPED/_FIELD_TOPPED). => exact-match will fail broadly; a wide name-mapping typeMap is required (NOT the predicted sharp drop). Most 2024 targets ARE loaded (map to loaded symbols, no file load), but some sizes missing (e.g. COLUMN 30\"X30\" absent; loaded COLUMN = 18/24/24x33/33) may need createTypeIfMissing. GM CORBEL names/types also differ."
+  },
+  "buildStatus": { "typescript": "0 errors", "csharp": "0 errors (net48)", "activeDll2024": "RevitPublicMCPBridge.v20.dll (sha256 633FDE25...742C87)" },
+  "phase0Result": {
+    "gate": "STOPPED for user decision (mismatch present).",
+    "coreSixMatch": "CONTROL_MARK, MANUFACTURE_COMPONENT, IDENTITY_DESCRIPTION, CONSTRUCTION_PRODUCT_HOST, BOM_PRODUCT_HOST, HOST_GUID all MATCH by GUID -> F1 GUID-keyed strategy validated for identity/BOM params.",
+    "prodControlMark": "NON-ISSUE: not a project binding in source either (inventory-only / family-carried); sample value 'CLA -01' raw:null => formula-driven => importer skips read-only params anyway.",
+    "broaderGap": "32 of 235 source bound-shared params absent by GUID from target project inventory (target 400 vs source 442 shared params). Buckets: ~13 irrelevant (Project Information config + Sheets), ~6 computed/formula (STRUCTURAL_MEMBER_VOLUME_CAST, ARCH_VOLUME_CAST_1..4/TOTAL; read-only=skipped), ~13 potentially-real instance fields (ERECTION_SEQUENCE_NUMBER/_ZONE_NUMBER/_ZONE_NAME, ON_HOLD, ELECTRICAL_CONTAINED, IS_FINISH, DO_NOT_SCHEDULE, TICKET_IS_CREATED, HW_COMPONENT_WEIGHT, HARDWARE_DETAIL, INSULATION_HOST_GUID/_MARK/_LOCK, PRODUCT TYPE).",
+    "nuance": "Missing from PROJECT bindings != unwritable. If loaded families carry these as shared params with matching GUID, get_Parameter(guid) writes still land on instances. Definitive test = place one instance and probe by GUID (a write; beyond pre-write gate).",
+    "artifact": "bindings_2024_r24.json (203 bindings, 400 shared params, 0 err)"
+  },
+  "phase0Prep": {
+    "exportParameterBindingsTool": "ADDED to 2024 TS server (bridgeClient.exportParameterBindings + server.ts tool/handler). TS typecheck 0 errors. C# route already live in v20 gateway. REQUIRES MCP client reconnect (restart Claude Code / reconnect revit-2024-bridge-mcp) before the tool is callable. No Revit restart needed.",
+    "plannedCall": "export_parameter_bindings { outputPath: 'D:\\\\CursorRevitMCP\\\\revit_2024_rebuild\\\\bindings_2024_r24.json' } then GUID-compare vs shared_project_parameters.json for CONTROL_MARK, MANUFACTURE_COMPONENT, IDENTITY_DESCRIPTION, CONSTRUCTION_PRODUCT_HOST, BOM_PRODUCT_HOST, HOST_GUID, PROD_CONTROL_MARK. Any mismatch => STOP."
+  },
+  "phase1TypemapFinal": {
+    "status": "Pass-1 (SF) typemap COMPLETE in typemap.json (60 entries / 12 families). Pass-2 (GM secondaries) blocked on REVEAL + CORBEL decisions.",
+    "instanceHistogram": "Only 26 of 146 families have instances. Category totals: SF 3247, GM 2583, Floor 1. Pass split: pass1(level-hosted)=2608, pass2(instance-hosted)=3223.",
+    "pass1_SF_resolved": "ALL SF families with instances resolve with zero decisions: exact (FLAT_SLAB, all *_FLAT/_WARPED (DO NOT USE), STAIR_DROP_IN) + typemap 60 entries (COLUMN(CLA)->COLUMN, T_GIRDER(TGA)->T_GIRDER, L_GIRDER, R_BEAM, DOUBLE_TEE_CHAMFERED_NOMINAL, INSULATED/SOLID wall panels, SHEARWALL_HORIZONTAL, STAIR_LANDING) with 31 createTypeIfMissing for absent sizes.",
+    "note_DT_pass2": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT) 679 instances are pass2 (instance-hosted) — SF product hosted on another instance (likely girder or its FLAT/WARPED helper). Validate host-chain depth in dryrun; if its host is itself pass2, ordering matters.",
+    "pass2_GM_deferred_decisions": {
+      "REVEAL": "2333 instances (largest family). NO single target 'REVEAL' family. Library has family-per-profile VOID_REVEAL_* set (_PARTS\\VOIDS): ARCHITECTURAL-MC, CHAMFER-MC, CURVED, VEE(+ARC/L/PROFILE/RECTANGLE), WIDE(+ARC/PROFILE/RECTANGLE/RECTANGLE_SLOPE/U/RADIUS/FIXED). Source REVEAL has 8 rectangular types: 3/8x3, 1/2x2, 1/2x1, 1/2x3, 3/8x2, 1/2x6, 1/2x3'6 RECESS, 1/2x4. Likely -> VOID_REVEAL_WIDE_RECTANGLE with dims as type params. NEEDS USER MAPPING.",
+      "CORBEL": "223 instances: 'CORBEL Light Loaded 12D X 24W X 36T' (54) + '...(Double)...' (169). Target has 3 thickness-named corbels (no match). Library candidates: CORBEL_ADJUSTABLE, CONNX_CORBEL, Rectangular Corbel, Sloped Corbel, M_Rectangular Corbel. NEEDS USER MAPPING.",
+      "riskFlag": "Both are Pass-2 face-based void/secondary elements. v20 Pass-2 falls back to POINT placement (export had null faceNormal/facePoint). Void auto-cut UNVERIFIED -> orientation pilot void test (Part B.4) decides whether v20.1 InstanceVoidCutUtils + true face-hosting is needed BEFORE the reveal/void population."
+    },
+    "USER_DECISIONS_2026-07-03": {
+      "sequencing": "Proceed Pass 1 (SF hosts) now.",
+      "REVEAL_target": "VOID_RECTANGULAR_RECESS-MC (D:\\...\\002 - Families\\2024\\_PARTS\\VOIDS). NOTE discrepancy: menu pick said VOID_REVEAL_WIDE_RECTANGLE; free-text VOID_RECTANGULAR_RECESS-MC is authoritative -> RECONFIRM at Pass 2.",
+      "CORBEL_target": "Map single + double 'CORBEL Light Loaded 12D X 24W X 36T' -> loaded 'CORBEL 8D X 12W X 1.33T' (same geometry); createTypeIfMissing to add 12D X 24W X 36T size. Doubles -> single family for now. Option: open family editor on CORBEL 8D X 12W X 1.33T + mirror to build a true double family (2024 bridge has family-editor tools).",
+      "note": "Both REVEAL + CORBEL are Pass-2; deferred until after Pass-1 host track + pilot void test."
+    },
+    "artifacts": ["typemap.json (pass-1 SF, 60)","family_instance_histogram.json","proposed_typemap.json","typemap_review.json"]
+  },
+  "phase1TypemapDraft_superseded": {
+    "status": "DRAFT analysis complete; blocked on instance-histogram approval + user decisions.",
+    "artifacts": ["typemap_source_types.json (260)", "loaded_types_2024.json (155 target, verified)", "proposed_typemap.json (95)", "typemap_review.json"],
+    "tiers_of_260_source_types": { "exactMatch_noEntry": 28, "proposedAutoMap": 95, "ambiguous": 2, "familyMatched_typeMissing": 47, "unmatched": 88 },
+    "typeMissing_pattern": "Mostly genuine new sizes => createTypeIfMissing (COLUMN 30x30 etc., DT sizes, L/R/T-girder sizes, wall-panel thicknesses, SPANDREL 8x166). A few are NAME-format diffs needing explicit tgtType: METRODECK_FIELD 'MDK 9.5\" FIELD'->'9.5\"'; STAIR_LANDING '06\"'->'6\"','08\"'->'8\"'.",
+    "unmatched_categories": {
+      "nameSplitMapping": "METRODECK (FMD & SMD) [12 types] splits by prefix: 'FMD..'->METRODECK_FACTORY_TOPPED, 'SMD.. FIELD'->METRODECK_FIELD_TOPPED (per-type mapping).",
+      "wallPanelDecisions": "PRECAST_WALL_PANEL (AFx/ALx/AMx/AUx) [~16] -> likely SOLID_WALL_PANEL* (single-wythe); PILASTER SINGLE/DOUBLE -> WALL_COLUMN_SINGLE/DOUBLE?; RADIAL / LSHAPE-H-LEDGE variants -> base family + createType? ALL need user confirm (brief said flag ambiguous wall panels).",
+      "genuineGaps_noTarget": "REVEAL (GM, 8 types — NO target reveal family; pass-2 host-cut elements!), STEEL_HSS_BEAM +DBL/SGL BRG ASSY (9), STADIA (3), ROOFTOP PLATFORM (DT) (3), SHEAR_FRAME (SWF), SPANDREL_BEARING_NO_LEDGE_SLOPED, SHEARWALL_HORIZONTAL_VTOP_SLOPED_TOP, CORBEL variants (GM, 12 families — target only has 3 thickness-named corbels), CABLE RAIL/FENCE/FENCING/FUTURE OPENING/STRONGBACK. Need library load (tgtFamilyFile) or user decision.",
+      "ambiguous2": "VOID_TAPER_SLOPED / _GRADE match both non-EXPORT and '(DOES NOT EXPORT)' targets — likely 0 instances."
+    },
+    "criticalNextStep": "Need per-family/type instance histogram from instances.json to know WHICH unmatched/type-missing families actually have instances. Many (STEEL_HSS, STADIA, most CORBEL/void variants) likely have 0 instances => no typemap entry needed. Requires bounded full scan of instances.json (34MB) -> awaiting user approval per resume lesson."
+  },
+  "nextPhase": "Approve instances.json histogram scan -> finalize typemap for families-with-instances only -> resolve wall-panel + REVEAL + corbel decisions with user -> dryrun pass1.",
+  "openRisks": [
+    "Broad family-name divergence -> large typeMap (name mapping) required across most groups",
+    "Some source sizes absent in loaded targets (e.g. COLUMN 30x30) -> createTypeIfMissing",
+    "pass2 free-placement void auto-cut UNVERIFIED (Part B.4 pilot)",
+    "estimating-template shared-param GUID parity UNVERIFIED (Phase 0 gate)"
+  ]
+}

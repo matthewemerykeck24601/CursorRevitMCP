@@ -6,7 +6,13 @@ alwaysApply: true
 # Revit MCP Core Defaults
 
 - Use `user-revit-2026-community-mcp` as the default execution server for model edits.
+- Version-aware server routing:
+  - Revit 2025: use `revit-2025-bridge-mcp` (local gateway + provenance tools).
+  - Revit 2026: use `user-revit-2026-community-mcp` for model edits.
+  - Revit 2027+: prefer `user-revit-public-mcp` for read/query operations.
+  - Revit 2027+: do not assume community write tools are available unless a 2027-compatible community bridge is confirmed connected.
 - Before any model-edit action, verify the active document context (`project` vs `family`) with a lightweight query.
+- Before any model-edit action on Revit 2027+, explicitly verify write capability and fail fast with a clear blocker message if only public MCP read tools are available.
 - Prefer `send_code_to_revit` for controlled Revit API operations and include clear success/error payloads.
 - Keep operations deterministic:
   - stable element filtering

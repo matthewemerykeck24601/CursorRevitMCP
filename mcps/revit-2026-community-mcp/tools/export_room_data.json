@@ -1,0 +1,21 @@
+{
+  "name": "export_room_data",
+  "description": "Export all room data from the current Revit project. Returns detailed information about each room including name, number, level, area, volume, perimeter, department, and more. Useful for generating room schedules, space analysis, and facility management data.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "includeUnplacedRooms": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to include unplaced rooms (rooms not yet placed in the model). Defaults to false."
+      },
+      "includeNotEnclosedRooms": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to include rooms that are not fully enclosed. Defaults to false."
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

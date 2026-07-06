@@ -1,0 +1,22 @@
+{
+  "name": "send_code_to_revit",
+  "description": "Send C# code to Revit for execution. The code will be inserted into a template with access to the Revit Document and parameters. Your code should be written to work within the Execute method of the template.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "The C# code to execute in Revit. This code will be inserted into the Execute method of a template with access to Document and parameters."
+      },
+      "parameters": {
+        "type": "array",
+        "description": "Optional execution parameters that will be passed to your code"
+      }
+    },
+    "required": [
+      "code"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

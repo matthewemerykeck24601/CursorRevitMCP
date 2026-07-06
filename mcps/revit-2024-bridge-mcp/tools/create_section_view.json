@@ -1,0 +1,33 @@
+{
+  "name": "create_section_view",
+  "description": "Project: create a section view through a 3D bounding box (looking horizontally along +Y; view right = X, up = Z). boundingBoxMin/Max are [x,y,z] in millimetres. Optional name.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "boundingBoxMin": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "boundingBoxMax": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "boundingBoxMin",
+      "boundingBoxMax"
+    ],
+    "additionalProperties": false
+  }
+}

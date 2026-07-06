@@ -1,0 +1,19 @@
+{
+  "name": "inventor_replicate_from_revit_payload",
+  "description": "Map Revit family parameters to Inventor parameter schema and apply to active document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "revitPayload": {
+        "type": "object"
+      },
+      "runRuleAfterSet": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "revitPayload"
+    ],
+    "additionalProperties": false
+  }
+}

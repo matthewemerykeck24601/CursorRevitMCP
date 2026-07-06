@@ -1,0 +1,28 @@
+{
+  "name": "get_element_metadata",
+  "description": "Element provenance for selection or explicit ids: worksharing owner/creator/last-changed-by, checkout status, central sync state, version guid, optional parameters.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "useSelection": {
+        "type": "boolean"
+      },
+      "includeParameters": {
+        "type": "boolean"
+      },
+      "parameterNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

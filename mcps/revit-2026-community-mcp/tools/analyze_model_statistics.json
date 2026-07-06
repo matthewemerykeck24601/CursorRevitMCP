@@ -1,0 +1,16 @@
+{
+  "name": "analyze_model_statistics",
+  "description": "Analyze model complexity with element counts. Returns detailed statistics about the Revit model including total element counts, total types, total families, views, sheets, counts by category (with type/family breakdown), and level-by-level element distribution. Useful for model auditing, performance analysis, and understanding model composition.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "includeDetailedTypes": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to include detailed breakdown by family and type within each category. Defaults to true."
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

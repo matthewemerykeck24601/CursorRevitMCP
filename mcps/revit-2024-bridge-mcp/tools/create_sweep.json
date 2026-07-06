@@ -1,0 +1,63 @@
+{
+  "name": "create_sweep",
+  "description": "Family Editor: create a solid or void sweep of a 2D profile along a (planar) 3D path. Lengths in mm.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "z": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "profile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "isSolid": {
+        "type": "boolean"
+      },
+      "workPlaneName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "path",
+      "profile",
+      "isSolid"
+    ],
+    "additionalProperties": false
+  }
+}

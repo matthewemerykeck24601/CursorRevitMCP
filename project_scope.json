@@ -1,0 +1,540 @@
+{
+  "project": "Revit 2025 MCP Bridge Toolbox Expansion",
+  "sourcePath": "D:\\CursorRevitMCP",
+  "currentVersion": "v19",
+  "revitYear": 2025,
+  "lastUpdated": "2026-07-03",
+  "deployPath": "%LOCALAPPDATA%\\Revit2025Mcp\\bridge-mcp\\",
+  "addInPath": "%APPDATA%\\Autodesk\\Revit\\Addins\\2025\\RevitPublicMCPBridge-v2\\",
+  "activeDll": "RevitPublicMCPBridge.net8.v19.dll",
+  "status": "v19 VALIDATED — EXTRACTION PHASE COMPLETE. group12 MODEL SNAPSHOT EXPORT all 6 tools built, deployed (hash-verified), and live-validated. export_instances: 5831 elements, 0 errors, 34.4MB. v19 exports: 236 bindings / 260 types / 146 materials / 150 views, 0 errors. read_export_record: elementId single-fetch + parameter match both confirmed against the 34.4MB file (CONTROL_MARK matched 44, returned 10, truncated flag correct). CONSTRUCTION_PRODUCT_HOST / BOM_PRODUCT_HOST / MANUFACTURE_COMPONENT / IDENTITY_DESCRIPTION confirmed as project bindings with GUIDs. Next session: Revit 2024 rebuild spec (placement routing by placementType, GUID-keyed parameter writes, Metromont 2024 template as starting doc). Two items pinned (D1, F1) — see patchQueue and rebuildSpec; no rebuild until P-fix decision.",
+
+  "ccReorientationPrompt": "We are continuing an ongoing project to expand the Revit 2025 MCP bridge toolbox. This is a fresh terminal — you have no memory of previous sessions. Read the codebase before doing anything else. Codebase: server.ts at D:\\CursorRevitMCP\\revit-2025-community-bridge-mcp\\src\\server.ts, bridgeClient.ts at D:\\CursorRevitMCP\\revit-2025-community-bridge-mcp\\src\\bridgeClient.ts, RevitApiGatewayService.cs at D:\\CursorRevitMCP\\RevitPublicMCPBridge\\Services\\RevitApiGatewayService.cs, GatewayModels.cs at D:\\CursorRevitMCP\\RevitPublicMCPBridge\\Services\\GatewayModels.cs. Read all four files completely and confirm what you see before writing any code. Then stand by for instructions.",
+
+  "architecture": {
+    "mcpServer": "TypeScript stdio, runs via tsx src/index.ts",
+    "gateway": "C# Revit add-in, HTTP listener",
+    "unitConvention": "mm at MCP boundary, C# converts to Revit internal feet via mm/304.8",
+    "routePrefix": {
+      "familyEditor": "/api/family/",
+      "project": "/api/project/"
+    },
+    "patterns": {
+      "bridgeClient": "one typed async function per route, POSTing JSON",
+      "serverTs": "hand-written JSON Schema, if (name === ...) handler chain, no zod",
+      "transactions": "wrap all element creation and modification",
+      "familyGuard": "every family handler checks doc.IsFamilyDocument upfront",
+      "timeouts": {
+        "geometry": "30s",
+        "parameterAndLabel": "10s",
+        "saveLoadFamily": "120s"
+      },
+      "errorSurfacing": "v16: C# exception messages now flow verbatim through gateway JSON → bridgeClient throw → MCP tool content"
+    }
+  },
+
+  "domainContext": {
+    "organization": "Metromont — precast concrete manufacturer",
+    "summary": "This is not a standard architectural Revit workflow. Families are repurposed Revit categories used to model precast concrete products, connections, and consumable materials. Understanding this mapping is essential for correct tool usage and future tool design.",
+    "liveObservedAssemblyExample": {
+      "assembly": "CLA017 (OST_Assemblies, Structural Framing Assembly type)",
+      "namingCategory": "OST_StructuralFraming (-2001320)",
+      "members": {
+        "product": "COLUMN 28x36 (OST_StructuralFraming, elementId: 6529589)",
+        "connection": "CONNX_28X36_COLUMN (OST_StructConnections, face-hosted on column base)"
+      },
+      "connectionContents": {
+        "embedPlates": "EP518 × 6 (OST_SpecialityEquipment) — cast into column, CONTROL_MARK=EP518",
+        "plateAssemblies": "P410R × ? (OST_SpecialityEquipment) — MANUFACTURE_COMPONENT='EMBED STANDARD', CONTROL_MARK formula-driven by finish, COMPONENT_WEIGHT=50.25 lbs",
+        "voids": "VOID_COLUMN × 4 (OST_GenericModel) — 5.25\"×5.25\"×6\" bolt pocket cuts in column base",
+        "grout": "SAND_CEMENT_GROUT × 4 (OST_GenericModel) — grout pads"
+      },
+      "plateAssemblyContents": {
+        "mainPlate": "STEEL_PLATE_BASE_CAP 1×6×Length (OST_SpecialityEquipment) — parametric, CONTROL_MARK='FLAT-PL', 13.6 lbs",
+        "backupPlates": "STEEL_PLATE 3/8×6×Length × 2 (OST_SpecialityEquipment) — 3.19 lbs each",
+        "rebar": "S08 × 2 (OST_SpecialityEquipment) — #8 × 5'-8\" straight, 11.58 lbs each"
+      },
+      "note": "Shared nested families surface as individual schedulable elements at all levels. OST_StructConnections correct query token is OST_StructConnections. OST_SpecialityEquipment correct query token is OST_SpecialityEquipment (note Speciality spelling)."
+    },
+    "assemblyMembershipTracking": {
+      "method1_revitAPI": "AssemblyInstance.GetMemberIds() — returns direct assembly members only (column + connection instance), NOT nested SE within connection",
+      "method2_assemblyNameParam": "Assembly Name parameter on each member element matches assembly mark — e.g. column has Assembly Name = 'CLA017'",
+      "method3_productHostParams": "CONSTRUCTION_PRODUCT_HOST and BOM_PRODUCT_HOST on placed instances — project-level shared parameters from template, NOT family parameters. Set to host product CONTROL_MARK (e.g. 'CLA017'). Used by custom tools for BOM traversal.",
+      "traversalDepth": "Full BOM requires 3-level traversal: Assembly → Connection members → Nested SE within connection (plate assemblies) → Raw materials within plate assemblies"
+    },
+    "keyProductParameters": {
+      "CONTROL_MARK": "Piece mark — instance, shared, formula-driven on P*** and rebar families (changes with finish or bar end type)",
+      "CONTROL_NUMBER": "Unique production number — separate from piece mark",
+      "ASSEMBLY_MARK_NUMBER": "Assembly-level piece mark on the Assembly element itself",
+      "IDENTITY_DESCRIPTION": "Full fabrication spec string — what the shop reads. Formula-driven on most families. Multi-line on complex assemblies.",
+      "IDENTITY_DESCRIPTION_SHORT": "Abbreviated callout mark. Formula-driven. Used in schedule filters and tags.",
+      "MANUFACTURE_COMPONENT": "Primary BOM classification key. Formula-driven on rebar and some SE. Determines BOM level and schedule filter membership.",
+      "ASSEMBLY_COMPONENT": "Boolean flag (Yes/No). When 1, element is a scheduled assembly component nested in a plate assembly. Default 0 on standalone elements.",
+      "COMPONENT_WEIGHT": "Piece weight. Formula-driven on rebar: (DIM_LENGTH / 1ft) × Component_Weight_Unit. Fixed value on plate assemblies.",
+      "SORTING_ORDER": "BOM line item sequence. Formula-driven on rebar based on BAR_TYPE and ASSEMBLY_COMPONENT flags.",
+      "CONSTRUCTION_PRODUCT_HOST": "Project parameter (not family). Links BOM element back to host product CONTROL_MARK.",
+      "BOM_PRODUCT_HOST": "Project parameter (not family). Same linking function as CONSTRUCTION_PRODUCT_HOST for BOM tools.",
+      "COMMENTS": "Used in schedule filters for ad-hoc classification — treat as structured data, not throwaway annotation."
+    },
+    "manufactureComponentTaxonomy": {
+      "CONNECTION": "Structural Connection container level",
+      "EMBED STANDARD": "P*** plate assembly level — BOM at plate level stops here",
+      "PLATE ASSEMBLY COMPONENT RAW CONSUMABLE": "Individual plate raw material",
+      "REBAR CUSTOM REINFORCING": "Standard product reinforcing rebar (standalone)",
+      "REBAR CUSTOM EMBED": "Embed plate anchor rebar",
+      "REBAR CUSTOM CIP": "Cast-in-place rebar",
+      "REBAR CUSTOM ERECTION": "Erection rebar",
+      "REBAR CUSTOM STRIPPING": "Stripping/form rebar",
+      "REBAR CUSTOM END REINFORCING": "End zone reinforcing rebar",
+      "REBAR CUSTOM ASSEMBLY COMPONENT RAW CONSUMABLE": "Rebar nested in plate assembly (ASSEMBLY_COMPONENT=1)",
+      "REBAR CUSTOM ASSEMBLY COMPONENT CIP RAW CONSUMABLE": "CIP rebar nested in plate assembly",
+      "REBAR CUSTOM ASSEMBLY COMPONENT ERECTION RAW CONSUMABLE": "Erection rebar nested in plate assembly",
+      "BOLT-CUT-THRD ASSEMBLY COMPONENT RAW CONSUMABLE": "Cut thread bolt hardware",
+      "NUT ASSEMBLY COMPONENT RAW CONSUMABLE": "Hex nut hardware",
+      "WASHER ASSEMBLY COMPONENT RAW CONSUMABLE": "Plate washer hardware",
+      "note": "RAW CONSUMABLE suffix marks purchasable/consumed materials. Same rebar family (e.g. S08) resolves to different MANUFACTURE_COMPONENT values based on BAR_TYPE_* instance flags — do NOT filter on family name alone."
+    },
+    "sortingOrderValues": {
+      "100": "Embed plate assembly (P***)",
+      "201": "Erection rebar (standalone)",
+      "301": "CIP rebar (standalone)",
+      "403": "Standard reinforcing rebar (standalone)",
+      "504": "Flat plate raw material",
+      "520": "Rebar nested in assembly component",
+      "590": "Bolts",
+      "592": "Nuts",
+      "593": "Washers"
+    },
+    "rebarFamilyArchitecture": {
+      "description": "A single rebar family (e.g. S08 = #8 bar) handles all use contexts via boolean instance flags. MANUFACTURE_COMPONENT, SORTING_ORDER, CONTROL_MARK, IDENTITY_DESCRIPTION, and IDENTITY_DESCRIPTION_SHORT all resolve from these flags.",
+      "barTypeFlags": ["BAR_TYPE_CIP", "BAR_TYPE_EMBED", "BAR_TYPE_ERECTION", "BAR_TYPE_ENDREINFORCING", "BAR_TYPE_STRIPPING"],
+      "assemblyFlag": "ASSEMBLY_COMPONENT — when 1, bar is nested in a plate assembly. Overrides BAR_TYPE in SORTING_ORDER and MANUFACTURE_COMPONENT.",
+      "taperFlags": "TAPER_END1, TAPER_END2 — Lenton tapered thread ends. Shift IDENTITY_DESCRIPTION to call out coupler spec. CONTROL_MARK becomes 'Mark# Req'd' requiring unique piece mark assignment.",
+      "weightFormula": "(DIM_LENGTH / 1ft) × Component_Weight_Unit — live calculated, self-weighing at any length",
+      "BAR_SHAPE": "Type parameter — 'STRAIGHT' for S08. Bent bars have different family names with shape codes.",
+      "namingConvention": "S## = Straight bar, bar size number. e.g. S08 = #8 straight. Bent bars use shape prefix codes."
+    },
+    "bomLevelStrategy": {
+      "plateLevel": "Filter MANUFACTURE_COMPONENT = 'EMBED STANDARD' — returns P*** assemblies as units. Plant knows BOM of each P***.",
+      "materialsLevel": "Filter MANUFACTURE_COMPONENT CONTAINS 'RAW CONSUMABLE' — returns individual plates, rebar, bolts etc.",
+      "critical": "NEVER query both levels simultaneously for the same product — shared nested families surface at all levels, causing double-counts.",
+      "scheduleTemplates": "Will be covered later. Use compound parameter filters: MANUFACTURE_COMPONENT + ASSEMBLY_COMPONENT + BAR_TYPE_* + COMMENTS as needed."
+    },
+    "finishSystem": {
+      "flags": ["FINISH_BLACK (default)", "FINISH_GALVANIZED", "FINISH_PAINTED", "FINISH_PRIMED", "FINISH_OTHER", "FINISH_STAINLESS"],
+      "formula": "finish_check integer resolves to 0-5 via if-chain, drives CONTROL_MARK, IDENTITY_DESCRIPTION, MANUFACTURER_PLANT_ID, MANUFACTURER_PLANT_DESCRIPTION",
+      "markPrefixes": {"black": "P###", "galvanized": "GP###", "primed": "BP###", "painted/zinc": "ZP###", "stainless": "SP###"},
+      "note": "CONTROL_MARK on P*** families is not static — always read the resolved value, never assume it equals the family name."
+    },
+    "familyCategoryMapping": {
+      "OST_StructuralFraming": {
+        "role": "Primary precast product families — ALL major concrete elements",
+        "examples": ["Column", "Wall Panel", "T-Girder", "Metrodeck (proprietary modified core slab)", "Inverted T-Beam", "Spandrel"],
+        "placementTool": "create_beam (uses Revit Structural Framing placement API)",
+        "notes": "Despite the category name, these are not limited to steel beams. Every major precast product is modeled as Structural Framing. create_beam is the primary product placement tool."
+      },
+      "OST_StructConnections": {
+        "role": "Hosting families for nested Specialty Equipment — connection containers",
+        "correctQueryToken": "OST_StructConnections (NOT OST_StructuralConnections)",
+        "examples": ["CONNX_28X36_COLUMN", "CONNX_D0109_STND_28X28_COLUMN"],
+        "placementType": "FaceBased + WorkPlaneBased — placed on a face of the host product element",
+        "notes": "Container family. Carries nested SE families (plate assemblies, hardware), void families (bolt pockets), and grout families. MANUFACTURE_COMPONENT = 'CONNECTION'."
+      },
+      "OST_SpecialtyEquipment": {
+        "role": "Consumable material and part families",
+        "examples": ["Rebar", "Angle iron", "Steel plates", "Embeds", "Hardware"],
+        "notes": "Can host other Specialty Equipment to build up a part. Often loaded into Structural Connection families. Specialty Equipment nested in Specialty Equipment is a valid and common pattern."
+      },
+      "OST_GenericModel": {
+        "role": "Void families and miscellaneous addon elements",
+        "examples": ["Blockout voids", "Chamfer cuts", "Addon geometry not fitting other categories"],
+        "notes": "Primarily used for geometry subtraction and specialty add-ons."
+      },
+      "OST_Walls": {
+        "role": "Finish and veneer tracking skins for precast panels",
+        "examples": ["Formliner finish skins", "Veneer skins"],
+        "notes": "Custom wall families applied as skins over Structural Framing elements. Used to capture finish square footages and callout veneer/formliner patterns for specifications and schedules."
+      }
+    },
+    "assemblyWorkflow": {
+      "description": "Assemblies are NOT created at the individual part level. Parts are built up by nesting Specialty Equipment into Structural Connections. Assemblies are only created at the project level to associate all elements that intersect face normals or lie interior to a Structural Framing element.",
+      "implication": "Assembly creation tools are a future group but are project-level operations, not family-level."
+    },
+    "sheetTypes": {
+      "cdSheets": "Regular Revit sheets — used for Contract Documents and plate drawings",
+      "shopTickets": "Assembly Sheets — used for shop drawing/fabrication tickets. Distinct from regular sheets in Revit and may require separate create_sheet handling."
+    },
+    "annotationUsage": "Standard Revit annotation families, dimension families, and tags are used normally alongside the custom product families.",
+    "toolPriorityImplication": "Tool development should prioritize: OST_StructuralFraming placement and management (create_beam, get_family_placement_info), OST_SpecialtyEquipment hosted placement, OST_StructuralConnections as host containers, and query tools that filter by these categories. Generic architectural categories (doors, windows, furniture) are low priority."
+  },
+
+  "libraryConfig": {
+    "primaryRoot": "D:\\Autodesk\\AutodeskCache\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2025",
+    "fallbackRoots": [
+      "C:\\ProgramData\\Autodesk\\RVT 2026\\Libraries",
+      "C:\\ProgramData\\Autodesk\\RVT 2027\\Libraries"
+    ],
+    "notes": "Primary root is the local AutodeskCache copy of the Metromont 2025 family library. Previously misconfigured to C: network path — corrected 2026-06-09. Path is persisted in gateway config; survives Revit restarts when correctly set."
+  },
+
+  "toolGroups": {
+    "group1": {
+      "name": "Solid Geometry",
+      "status": "live and tested",
+      "version": "v9",
+      "tools": ["create_extrusion", "create_reference_plane"]
+    },
+    "group2": {
+      "name": "More Solids",
+      "status": "live and tested",
+      "version": "v9",
+      "tools": ["create_blend", "create_revolve", "create_sweep", "create_swept_blend", "set_geometry_solid_void"]
+    },
+    "group3": {
+      "name": "Dimensions and Constraints",
+      "status": "live and tested",
+      "version": "v10",
+      "tools": ["create_dimension", "set_dimension_label", "lock_constraint"],
+      "notes": "set_dimension_label hang fixed in v9. lock_constraint idempotent-success on labeled dimensions confirmed working."
+    },
+    "group4": {
+      "name": "Parameters and Types",
+      "status": "live and tested",
+      "version": "v9",
+      "tools": [
+        "add_family_parameter",
+        "set_family_parameter_value",
+        "add_family_type",
+        "rename_family_type",
+        "delete_family_type",
+        "set_formula",
+        "save_family",
+        "save_family_as",
+        "load_family_into_project",
+        "get_family_document_info"
+      ],
+      "knownIssues": [
+        "add_family_type: fails when cloneFromType value contains double-quote characters (e.g. '16\" X 16\"') — P4 patch pending"
+      ]
+    },
+    "group5": {
+      "name": "Geometry Read and In-Place Extraction",
+      "status": "live and tested",
+      "version": "v12",
+      "tools": ["get_active_document_context", "get_element_geometry", "get_inplace_elements", "reconstruct_profile_for_extrusion"],
+      "notes": "reconstruct_profile_for_extrusion: solid extrusions work correctly. Void extrusions return clear error 'Element has no solid geometry to reconstruct' — expected behavior, documented. Inner-loop voids must be created separately as isSolid:false."
+    },
+    "group6": {
+      "name": "Model Element Creation",
+      "status": "live and tested",
+      "version": "v13",
+      "tools": ["create_wall", "create_floor", "create_room", "create_structural_column", "create_beam", "place_point_based_element", "create_opening_by_boundary"],
+      "knownIssues": [
+        "create_beam: NullReferenceException when passed a non-StructuralFraming family type. Needs category guard in C# handler (P3 patch pending). Workaround: use get_element_types with category=OST_StructuralFraming to find valid type IDs before calling."
+      ]
+    },
+    "group7": {
+      "name": "Modify and Edit",
+      "status": "live and tested",
+      "version": "v14",
+      "tools": ["move_elements", "rotate_elements", "mirror_elements", "copy_elements_to_level", "set_element_parameters", "delete_elements"],
+      "knownIssues": [
+        "delete_elements: fails silently on views and sheets — requires separate deletion path in C# (P2 patch pending)",
+        "mirror_elements: createCopy=true does not return new element IDs — Revit API limitation, documented"
+      ]
+    },
+    "group8": {
+      "name": "Views, Sheets and Sheet Audit",
+      "status": "live and tested",
+      "version": "v15",
+      "tools": [
+        "create_floor_plan_view", "create_reflected_ceiling_plan", "create_section_view",
+        "create_3d_view", "create_sheet", "place_view_on_sheet", "set_view_crop_region",
+        "get_sheets", "get_sheet_contents", "open_sheet", "get_view_contents", "compare_sheet_to_template"
+      ],
+      "knownIssues": [
+        "create_section_view: orientation hardcoded to look along +Y — no parameter to specify direction (P7 patch pending)"
+      ]
+    },
+    "group9": {
+      "name": "Grids and Levels",
+      "status": "not yet built",
+      "tools": ["create_level", "set_level_elevation", "create_grid", "create_grid_arc"]
+    },
+    "group10": {
+      "name": "Annotation",
+      "status": "not yet built",
+      "tools": ["create_project_dimension", "tag_element", "add_text_note", "create_spot_elevation"]
+    },
+    "group11": {
+      "name": "Query and Utility",
+      "status": "live and tested (partial — see missing tools)",
+      "version": "v12",
+      "tools": ["get_levels", "get_grids", "get_element_types", "query_elements", "get_element_by_id"],
+      "missingFromSpec": ["get_rooms", "get_views", "undo_last_action"]
+    },
+    "group12": {
+      "name": "Model Snapshot Export",
+      "status": "COMPLETE & VALIDATED (v18-v19). All 6 tools live-tested: export_instances 5831/0err/34.4MB; 236 bindings / 260 types / 146 materials / 150 views (0 err); read_export_record both modes confirmed (CONTROL_MARK matched 44, returned 10, truncated correct). Extraction phase done — void_hosts superseded by inline host data.",
+      "version": "v19",
+      "purpose": "Bulk-extract a full structured snapshot of the active project to JSON files ON DISK, written directly by the C# gateway. Only a small summary (outputPath, elementCount, byteSize, errorCount) crosses the MCP boundary — no element data flows through the LLM context. Drives the Revit 2024 API rebuild of model 26-0349 A101 (~5831 elements). read_export_record then fetches individual records back from those large files without reloading them.",
+      "tools": ["export_instances", "export_type_parameters", "export_parameter_bindings", "export_materials", "export_views", "read_export_record"],
+      "conventions": {
+        "units": "all spatial values in exported JSON are millimetres; angles degrees; orientation vectors unitless",
+        "outputPath": "caller-supplied absolute file path; C# writes there directly (Filesystem MCP allowlist does not apply to gateway-side writes)",
+        "timeout": "120s per export route (full-model iteration)",
+        "errorHandling": "per-element try/catch; failures go to an errors[] array in the output file ({elementId, message}); iteration never aborts"
+      },
+      "hostRelinkingDecision": "DESIGN DECISION (baked in per v18 validation): host relinking uses hostGuidDecodedId as the PRIMARY key; workPlaneName is a cross-check ONLY. If the two disagree on an element, flag for manual review. Do NOT strengthen face resolution — faceResolved:false with hostElementId populated is the documented, expected fallback for work-plane-hosted-on-reference-plane instances (e.g. REVEAL 10033762).",
+      "tools_detail": {
+        "export_instances": {
+          "route": "/api/project/export_instances",
+          "input": "{ categories: string[] (OST tokens), outputPath: string }",
+          "validated": "v18 — Test1 OST_Floors=1, Test2 [SF,GM,Floors]=5831, errorCount 0, 34.4MB; COLUMN/wall-panel/REVEAL spot-checks clean; HOST_GUID 00991585->10032517 exact.",
+          "perElement": "elementId, uniqueId, category, familyName, typeName, typeId, levelName/levelId, placementType (FamilyPlacementType), placement (curve start/end [+center/radius/note for arcs] or point+rotationDeg), orientation {facingOrientation, handOrientation} unit vectors, facingFlipped/handFlipped/mirrored, phaseCreated/phaseDemolished, hostElementId, hostFace {hostElementId, faceNormal, facePoint(mm), workPlaneName, faceResolved}, hostGuidParam + hostGuidDecodedId, parameters {value, raw}"
+        },
+        "export_type_parameters": {
+          "route": "/api/project/export_type_parameters",
+          "input": "{ categories: string[], outputPath: string }",
+          "perType": "typeId, familyName, typeName, category, parameters {value, raw} over all TYPE parameters"
+        },
+        "export_parameter_bindings": {
+          "route": "/api/project/export_parameter_bindings",
+          "input": "{ outputPath: string }",
+          "output": "bindings[] {name, isInstance, group, dataType (spec id), boundCategories[], guid, isShared} + allSharedParameterElements[] {name, guid} (full inventory, even unbound). Highest-value file (CONTROL_MARK / MANUFACTURE_COMPONENT / CONSTRUCTION_PRODUCT_HOST / BOM_PRODUCT_HOST)."
+        },
+        "export_materials": {
+          "route": "/api/project/export_materials",
+          "input": "{ outputPath: string }",
+          "perMaterial": "id, name, materialClass, color {r,g,b}, transparency, shininess, smoothness, structuralAssetName, appearanceAssetName"
+        },
+        "export_views": {
+          "route": "/api/project/export_views",
+          "input": "{ outputPath: string }",
+          "perView": "viewId, name, viewType, scale (null-safe), viewTemplateName, isOnSheet, sheetId, sheetNumber; plus viewportMap (viewportId->viewId) to join sheets_views.json"
+        },
+        "read_export_record": {
+          "layer": "TypeScript server-side (no Revit/gateway; pure file I/O — works with Revit closed)",
+          "route": "n/a (server-side tool)",
+          "input": "{ filePath: string, elementId?: number, matchKey?: string, matchValue?: string }",
+          "behavior": "scans the primary record array (instances/types/materials/views/bindings), returns ONLY matches capped at 10 with truncated flag. elementId matches elementId/id/typeId/viewId; matchKey/matchValue matches a top-level field OR parameters[matchKey].value/.raw, case-insensitive. VALIDATED against the 34.4MB instances file: elementId single-fetch + CONTROL_MARK match (44 matched, 10 returned, truncated correct).",
+          "rationale": "exports are 34MB+; Filesystem MCP has no content search or offset reads; fetch-record-for-element-X is a one-call primitive needed by every validation and the entire 2024 rebuild phase.",
+          "knownLimitation": "D1 (low): only queries the PRIMARY array. Secondary arrays (e.g. allSharedParameterElements in the bindings file) are unreachable. Fix = optional arrayKey input. See patchQueue D1."
+        }
+      },
+      "rebuildTargetNote": "The 2024 model is created from the Metromont 2024 project template, so export_parameter_bindings / export_materials / view template names are VERIFICATION data, not creation drivers. No parameter-creation or material-creation logic is built into this group."
+    },
+    "diagnosticsAndMetadata": {
+      "name": "Diagnostics, Metadata, and Library Tools",
+      "status": "live and tested",
+      "tools": [
+        "say_hello", "get_active_document_context", "get_document_metadata",
+        "get_element_metadata", "get_family_parameters", "get_current_view_elements",
+        "get_available_family_types", "search_family_library", "open_family_from_library",
+        "load_family_from_library", "upgrade_family_library_version",
+        "extract_family_library_parameters", "add_shared_params_to_family_library",
+        "extract_family_desc_variants", "ensure_shared_parameters", "bind_shared_parameters",
+        "open_selected_family_editor", "open_family_editor_by_element_id"
+      ],
+      "knownIssues": [
+        "get_available_family_types: times out when family editor is active document — needs context guard to target project document regardless of active doc (P5 patch pending)",
+        "load_family_from_library: correctly refuses when family editor is active (expected). Previously failed due to misconfigured library root path — resolved 2026-06-09.",
+        "open_selected_family_editor: untested — requires an element selected in Revit UI before calling",
+        "open_family_editor_by_element_id: untested — requires a project-placed family instance ID"
+      ]
+    }
+  },
+
+  "totalToolCount": 78,
+
+  "rebuildSpec": {
+    "phase": "Revit 2024 rebuild of model 26-0349 A101 from the extracted v18/v19 snapshot",
+    "startingDocument": "Metromont 2024 project template (bindings/materials/view templates already present — export_parameter_bindings / export_materials / view data are VERIFICATION, not creation drivers)",
+    "designRules": {
+      "F1_guidKeyedParameters": {
+        "priority": "critical",
+        "rule": "ALL 2024 write-side parameter matching MUST key on shared-parameter GUID, NEVER on name. The extracted shared-parameter inventory contains duplicate names with distinct GUIDs.",
+        "evidence": "duplicate names observed: DAP x3, PRODUCT TYPE x2, RELEASE_STRENGTH x2, FINAL_STRENGTH x2",
+        "implication": "set_element_parameters / bind_shared_parameters and any rebuild parameter write must resolve the target parameter by GUID from export_parameter_bindings.allSharedParameterElements, not by LookupParameter(name)."
+      },
+      "placementRouting": "Route each element to its placement API by placementType (from export_instances): OneLevelBased/TwoLevelsBased/WorkPlaneBased/FaceBased/CurveBased/CurveDrivenStructural. hostGuidDecodedId is the PRIMARY host key; workPlaneName cross-check only (see group12.hostRelinkingDecision).",
+      "hostData": "Inline host data (hostElementId, hostFace, hostGuidDecodedId) supersedes the old void_hosts approach."
+    },
+    "nextSession": "Author the 2024 rebuild spec: placement routing by placementType, GUID-keyed parameter writes (F1), Metromont 2024 template as starting document. No bridge rebuild until the P-fix decision (D1 + existing patchQueue) is made."
+  },
+
+  "revit2024Rebuild": {
+    "phase": "Part A COMPLETE — v20 import_instances tool built, compiled clean (TS 0 / C# 0 err), deployed & hash-verified. Awaiting Revit 2024 restart to load v20, then Part B agentic execution.",
+    "bridge": {
+      "mcpServerTs": "D:\\CursorRevitMCP\\revit-2024-community-bridge-mcp\\src (server.ts, bridgeClient.ts, index.ts)",
+      "csharpGateway": "SHARED source D:\\CursorRevitMCP\\RevitPublicMCPBridge (RevitApiGatewayService.cs, GatewayModels.cs); built per-year via -p:RevitYear=2024 -> net48. 2024 build is net48 (System.Text.Json 8.0.5 + PolySharp).",
+      "mcpConfig": ".mcp.json -> revit-2024-bridge-mcp, REVIT_2024_BRIDGE_URL=http://127.0.0.1:8764",
+      "deploy": {
+        "convention2024": "Versioned filename + manifest repoint (matches 2025 lock-free redeploy). v20 DLL = RevitPublicMCPBridge.v20.dll in %APPDATA%\\Autodesk\\Revit\\Addins\\2024\\RevitPublicMCPBridge\\; .addin <Assembly> repointed to it.",
+        "activeDll2024": "RevitPublicMCPBridge.v20_4.dll",
+        "sha256": "A9089EF26734215BD8EEAF199A2363E6DF226246AEF44C9F09D7BB0F3FDEB0AE",
+        "deployedUtc": "2026-07-04",
+        "note": "v20.4 deployed (versioned, manifest repointed). REQUIRES Revit restart (DLL) AND MCP reconnect (TS mode enum gained 'reapply'). v20.4: (1) case-INSENSITIVE non-shared param matching (LookupParameterCI) - fixes source NOMINAL_LENGTH -> family Nominal_Length case mismatch that left all 679 DTs at default 20' length, and any sibling case-mismatches model-wide; (2) new mode 'reapply' - rewrites params onto ALREADY-PLACED elements via remap srcId->newId (no re-placement), chunked/resumable. Carries all v20.3 fixes (mirror snap-back, pass2 point-on-level fallback, void face-hosting, position-residual check).",
+        "priorDll": "v20 (633FDE25), v20.1 (B77773E0), v20.2 (BF858B11), v20.3 (D331F40A) superseded"
+      }
+    },
+    "v20Tool": {
+      "name": "import_instances",
+      "route": "/api/project/import_instances",
+      "dispatcherTimeoutMs": 600000,
+      "clientTimeoutMs": 620000,
+      "input": "{ instancesPath, typeMapPath?, levelsGridsPath?, familyTypesPath?, sharedParamsPath?, remapOutPath, reportPath?, mode: dryrun|execute, categories?[], hostPass: 1|2, resumeFromIndex?, maxElements? }",
+      "summaryOut": "{ mode, hostPass, attempted, placed, skipped, failed, unresolvedTypeCount, hostCrossCheckFailures, remapOutPath, reportPath, lastCommittedIndex, nextIndex, done }",
+      "designDecisions": {
+        "dataFlow": "C# reads instances.json (+ sibling datasets) from disk; only summary crosses MCP; per-element report + remap JSON written to disk.",
+        "passClassification": "ClassifyPass: placement==null -> 0 (floors, skip). curve -> pass1. point: level-hosted (hostElementId in levels_grids OR workPlaneName startswith 'Level :' OR no host) -> pass1; else instance-hosted -> pass2.",
+        "datasetFinding": "ALL 3247 SF + ALL 2583 GM records are WorkPlaneBased points; NO curve records in this model. Floor = 1 element (elementId 10080471), skipped by this tool (Part B.6).",
+        "levelResolution": "target level by name: levelName ?? param 'Level' ?? param 'Schedule Level' ?? levels_grids[hostElementId] ?? ResolveClosestLevel(point.z). Names match template (LEVEL 1, ROOF, etc.).",
+        "placement": "pass1 point: NewFamilyInstance(absolutePoint mm->ft, symbol, level, NonStructural); rotate rotationDeg about Z; flipFacing/flipHand per flags (guarded by CanFlip*). Placing at absolute z reproduces Offset-from-Host implicitly (offset param NOT written).",
+        "pass2": "resolve host via hostGuidDecodedId ?? hostElementId through remap; cross-check hostFace.workPlaneName vs resolved host 'Family : Type' (mismatch => flag, DO NOT place). Face refs don't cross docs & facePoint/Normal are null here (work-plane hosted) => point fallback + hostVoidCutFlag (void auto-cut UNCONFIRMED -> Part B.4 pilot; may need InstanceVoidCutUtils v20.1).",
+        "orientation": "rotationDeg + flips applied; residual (facing angle) + mirror mismatch recorded ONLY when maxElements<=64 (pilot; per-element regen). Bulk runs skip live verify for speed. mirrored NOT reproduced geometrically in v20 (flags only) — pilot will confirm sufficiency.",
+        "paramWrites_F1": "GUID-keyed. shared params: for each source param name -> inventory GUIDs -> target.get_Parameter(guid); non-shared: LookupParameter(name). IsReadOnly skips formula/computed/builtins. raw authoritative: Length mm->ft, Angle deg->rad, other doubles as-is (internal). ElementId params skipped+reported. NOTE export BuildParameterMap dedups by NAME so only ONE value survives per duplicate name (DAP x3 etc.) — all GUID slots of a name get that single exported value (best available).",
+        "typeResolution": "1) exact (family+type) vs loaded symbols; 2) typemap entry -> loaded target OR (execute) load tgtFamilyFile + clone type from sibling, apply family_types[srcTypeId] params then typeParamOverrides; 3) unresolved (dryrun lists w/ counts, execute skips+logs).",
+        "chunking": "one Transaction per 500 placements, progressively committed (lose at most one chunk on fatal). Soft deadline 540s -> return resumable partial. resumeFromIndex + nextIndex/done drive resume. Remap file rewritten (union) after each chunk commit."
+      },
+      "openQuestions": [
+        "Void auto-cut on pass2 free placement UNVERIFIED — Part B.4 pilot must confirm; else v20.1 InstanceVoidCutUtils.",
+        "mirrored reproduction via flips only — pilot to confirm visually.",
+        "Template parity (Phase 0): estimating-template shared-param GUIDs must match production; export_parameter_bindings not yet ported to 2024 bridge (Phase 0 step 1)."
+      ]
+    }
+  },
+
+  "patchQueue": [
+    {
+      "id": "D1",
+      "priority": "low",
+      "title": "read_export_record: add optional arrayKey to query secondary arrays",
+      "description": "read_export_record only scans the primary record array (first known key: instances/types/materials/views/bindings). Secondary arrays are unreachable — notably allSharedParameterElements in the export_parameter_bindings file. Add an optional arrayKey input to select which top-level array to scan; default to current auto-detect behavior. TypeScript-only change (server.ts readExportRecord), no C# or DLL rebuild.",
+      "affectedTools": ["read_export_record"],
+      "layer": "TypeScript",
+      "discovered": "v19 validation 2026-07-02"
+    },
+    {
+      "id": "P2",
+      "priority": "high",
+      "title": "delete_elements fails on views and sheets",
+      "description": "Document.Delete() silently fails or errors on views and sheets. Needs separate deletion handling: check element category before deletion, route view/sheet elements through a view-aware deletion path, and return a structured error listing which IDs failed and why.",
+      "affectedTools": ["delete_elements"],
+      "confirmedError": "Tool execution failed (pre-P1); behavior: silent failure on views/sheets even when model element deletion in same call succeeds"
+    },
+    {
+      "id": "P3",
+      "priority": "high",
+      "title": "create_beam NullReferenceException on wrong category type",
+      "description": "Passing a non-OST_StructuralFraming familyTypeId causes NullReferenceException. Add upfront category guard in C# handler: resolve the FamilySymbol, check its Category.Id against OST_StructuralFraming, return clear error if mismatch — e.g. 'familyTypeId 101942 is category OST_StructuralColumns; create_beam requires OST_StructuralFraming. Use get_element_types with category=OST_StructuralFraming to find valid type IDs.' IMPORTANT: the guard must only validate category — it must NOT restrict which Structural Framing families are allowed. Columns, wall panels, T-girders, and all precast product families are legitimately placed via create_beam.",
+      "affectedTools": ["create_beam"],
+      "confirmedError": "NullReferenceException: Object reference not set to an instance of an object"
+    },
+    {
+      "id": "P4",
+      "priority": "medium",
+      "title": "add_family_type fails when cloneFromType contains double-quote characters",
+      "description": "Type names like '16\" X 16\"' cause failure in cloneFromType lookup. Fix string matching in C# handler to handle escaped/unescaped quote characters in type name comparison.",
+      "affectedTools": ["add_family_type"],
+      "confirmedError": "Tool execution failed (pre-P1) — retest after P1 to get actual error message"
+    },
+    {
+      "id": "P5",
+      "priority": "medium",
+      "title": "get_available_family_types times out when family editor is active",
+      "description": "Tool enumerates types against the active document, which is the family document when family editor is open. Needs a context guard: if active document is a family, target the first open project document instead. Pattern already established in other tools.",
+      "affectedTools": ["get_available_family_types"],
+      "confirmedError": "4-minute timeout with no error returned"
+    },
+    {
+      "id": "P6",
+      "priority": "low",
+      "title": "reconstruct_profile_for_extrusion on void — document behavior",
+      "description": "Tool returns clear 'Element has no solid geometry to reconstruct' error for void extrusions. Error message is good. Action: add explicit note to tool description in server.ts schema that void extrusions are not supported and will return this error. No C# change needed.",
+      "affectedTools": ["reconstruct_profile_for_extrusion"],
+      "confirmedError": "InvalidOperationException: Element 4318225 has no solid geometry to reconstruct"
+    },
+    {
+      "id": "P7",
+      "priority": "medium",
+      "title": "create_section_view orientation hardcoded to +Y",
+      "description": "Section views can only be created looking along +Y. Add an optional viewDirection parameter (e.g. enum: +X, -X, +Y, -Y) that rotates the section bounding box accordingly. Default to +Y to preserve existing behavior.",
+      "affectedTools": ["create_section_view"],
+      "confirmedError": "Functional limitation — tool works but only produces one orientation"
+    },
+    {
+      "id": "P8",
+      "priority": "high",
+      "title": "New tool: get_family_placement_info",
+      "description": "A pre-flight tool that takes a familyTypeId and returns: category name, FamilyPlacementType (OneLevelBased, WorkPlaneBased, FaceBased, TwoLevelBased, etc.), required host category if face-based, and valid view types for placement. Critical for the Metromont workflow where OST_StructuralFraming, OST_SpecialtyEquipment, OST_StructuralConnections, and OST_GenericModel each have different placement rules and hosting requirements. Enables AI to validate prerequisites and select the correct placement tool before any element creation call.",
+      "affectedTools": [],
+      "newTool": true,
+      "priority_rationale": "Elevated to high — the Metromont family category hierarchy (StructuralFraming → StructuralConnection → SpecialtyEquipment → SpecialtyEquipment) makes pre-flight placement info essential for correct tool selection"
+    },
+    {
+      "id": "P9",
+      "priority": "medium",
+      "title": "New tool: place_hosted_element",
+      "description": "A tool for placing Specialty Equipment families hosted inside Structural Connection families, and for placing nested Specialty Equipment inside other Specialty Equipment. Standard place_point_based_element does not handle face-based or host-dependent placement. This tool needs to accept a hostElementId, resolve the host face or work plane, and place the nested family accordingly. Essential for the Metromont consumables workflow (rebar, embeds, hardware nested into connection families).",
+      "affectedTools": [],
+      "newTool": true
+    },
+    {
+      "id": "P10",
+      "priority": "medium",
+      "title": "create_sheet assembly sheet support",
+      "description": "Metromont uses two distinct sheet types: regular sheets for CDs and plate drawings, and Assembly Sheets for shop tickets/fabrication drawings. Current create_sheet creates regular sheets only. Needs an optional isAssemblySheet or sheetType parameter. Assembly sheets in Revit are associated with an Assembly element and have different title block and view placement behavior.",
+      "affectedTools": ["create_sheet"],
+      "newTool": false
+    },
+    {
+      "id": "P11",
+      "priority": "high",
+      "title": "query_elements: add parameter-value filtering",
+      "description": "Current query_elements only filters by category — levelId, bounding box, and familyName filters do not work in practice. Need to add parameterFilters: [{name, value, operator}] support so callers can filter on MANUFACTURE_COMPONENT, ASSEMBLY_COMPONENT, CONSTRUCTION_PRODUCT_HOST, CONTROL_MARK, Assembly Name, BAR_TYPE_* flags etc. This is the foundation of all BOM generation and product-member traversal. Without it, the only way to find assembly members or filter material types is to retrieve thousands of elements and post-filter client-side.",
+      "affectedTools": ["query_elements"],
+      "newTool": false,
+      "priority_rationale": "High — parameter filtering is a prerequisite for BOM tools, assembly traversal, and schedule template work planned for a future session"
+    },
+    {
+      "id": "P12",
+      "priority": "high",
+      "title": "New tool: get_assembly_members",
+      "description": "Call AssemblyInstance.GetMemberIds() and return member elements with their category, familyName, typeName, and key parameters (CONTROL_MARK, MANUFACTURE_COMPONENT, ASSEMBLY_COMPONENT). Two modes: shallow (direct assembly members only — typically product + connection instance) and deep (recursive — for each connection member enumerate its nested shared SE elements, returning the full 3-level tree: Assembly → Connection → Plate assemblies → Raw materials). Deep mode is required for complete BOM traversal. Without this tool, finding assembly members in a 4858-element project is not feasible.",
+      "affectedTools": [],
+      "newTool": true
+    }
+  ],
+
+  "openItems": [
+    "P2-P10 patches pending — see patchQueue above",
+    "Groups 9 and 10 not yet built",
+    "get_rooms, get_views, undo_last_action missing from Group 11",
+    "open_selected_family_editor and open_family_editor_by_element_id untested — require Revit UI interaction",
+    "add_family_type cloneFromType with quoted type names — retest with P1 active to get actual error message before P4 patch",
+    "create_beam retest needed with valid OST_StructuralFraming type ID once a precast product family is loaded in project",
+    "Hosted element placement (P9) — Specialty Equipment into Structural Connection, and SE into SE — no tool exists yet",
+    "Assembly creation/management tools — future group, project-level only, not started",
+    "Assembly Sheet support in create_sheet (P10) — shop ticket workflow not yet supported",
+    "Installer INSTALL.bat not yet built"
+  ],
+
+  "keyOperatingPrinciples": [
+    "Always call get_active_document_context before any operation to confirm project vs family editor context",
+    "say_hello is the correct liveness check — does not require a Revit transaction",
+    "Transaction-dependent tools will timeout if Revit has a modal dialog, pending warning, or another Revit year is running a resource-intensive process concurrently",
+    "Family library root is persisted in gateway config — survives restarts when correctly configured. Primary root: D:\\Autodesk\\AutodeskCache\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2025",
+    "All spatial units at MCP boundary are millimetres — C# converts to Revit internal feet",
+    "After any Revit restart or DLL redeployment, restart Claude Desktop fully from system tray and start a new conversation",
+    "create_beam requires OST_StructuralFraming type — use get_element_types with category=OST_StructuralFraming before calling",
+    "delete_elements works on model elements but not views or sheets — P2 patch pending",
+    "reconstruct_profile_for_extrusion only works on solid extrusions — void extrusions return clear error"
+  ],
+
+  "sessionFiles": [
+    "dailyHandoff_2026-06-03.json",
+    "dailyHandoff_2026-06-04.json",
+    "dailyHandoff_2026-06-05.json"
+  ]
+}

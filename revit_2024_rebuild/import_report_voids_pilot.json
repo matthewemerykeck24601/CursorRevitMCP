@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_voids.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_gm.json",
+    "attempted": 2,
+    "placed": 2,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 1,
+    "nextIndex": 2,
+    "done": false,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10044730,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7321315,
+      "placedAs": "point (host fallback)",
+      "hostVoidCutFlag": "placed free (not face-hosted); verify void cut manually",
+      "orientationResidual": {
+        "facingAngleDeg": 89.040000000000006,
+        "sourceFacing": [
+          2.9611438212951867E-17,
+          0.016681028728076121,
+          0.99986086196058954
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "voidCut": "applied",
+      "newId": 7329874,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045287,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7326776,
+      "placedAs": "point (host fallback)",
+      "hostVoidCutFlag": "placed free (not face-hosted); verify void cut manually",
+      "orientationResidual": {
+        "facingAngleDeg": 89.040000000000006,
+        "sourceFacing": [
+          5.2395627994114229E-17,
+          0.016681028728076121,
+          0.99986086196058954
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "mirrorMismatch": {
+        "source": true,
+        "result": false
+      },
+      "voidCut": "applied",
+      "newId": 7329875,
+      "status": "placed"
+    }
+  ]
+}

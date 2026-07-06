@@ -1,0 +1,16 @@
+{
+  "name": "revit_extract_family_parameters",
+  "description": "Normalize a Revit family parameter payload for downstream Inventor parameter replication.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "revitPayload": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "revitPayload"
+    ],
+    "additionalProperties": false
+  }
+}

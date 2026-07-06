@@ -1,0 +1,25 @@
+{
+  "name": "inventor_sync_parameters",
+  "description": "Pull parameters from source and apply to active Inventor document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameterSetId": {
+        "type": "string"
+      },
+      "documentName": {
+        "type": "string"
+      },
+      "assemblyName": {
+        "type": "string"
+      },
+      "runRuleAfterSet": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parameterSetId"
+    ],
+    "additionalProperties": false
+  }
+}

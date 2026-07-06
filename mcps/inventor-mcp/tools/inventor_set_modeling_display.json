@@ -1,0 +1,19 @@
+{
+  "name": "inventor_set_modeling_display",
+  "description": "Set modeling display mode and visibility options.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "displayMode": {
+        "type": "string"
+      },
+      "showSketches": {
+        "type": "boolean"
+      },
+      "showWorkFeatures": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

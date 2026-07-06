@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_pass1.json",
+    "attempted": 5,
+    "placed": 0,
+    "skipped": 5,
+    "failed": 0,
+    "lastCommittedIndex": 508,
+    "nextIndex": 509,
+    "done": false,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10036637,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 2,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "created",
+      "reason": "host 10028234 not in remap (place pass 1 first)",
+      "status": "flagged"
+    },
+    {
+      "srcId": 10036711,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 2,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "reason": "host 10028234 not in remap (place pass 1 first)",
+      "status": "flagged"
+    },
+    {
+      "srcId": 10036721,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 2,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "reason": "host 10028234 not in remap (place pass 1 first)",
+      "status": "flagged"
+    },
+    {
+      "srcId": 10036787,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 2,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "reason": "host 10028234 not in remap (place pass 1 first)",
+      "status": "flagged"
+    },
+    {
+      "srcId": 10036790,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 2,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "reason": "host 10028234 not in remap (place pass 1 first)",
+      "status": "flagged"
+    }
+  ]
+}

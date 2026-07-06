@@ -1,0 +1,92 @@
+{
+  "name": "create_revit_cloud_workshared_model",
+  "description": "Creates a new workshared Revit cloud model in ACC using a configured template and the DA SaveAsCloudModel workflow. Requires selected hub context.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      },
+      "project_number": {
+        "type": "string"
+      },
+      "projectNumber": {
+        "type": "string"
+      },
+      "project_id": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "folder_id": {
+        "type": "string"
+      },
+      "folderId": {
+        "type": "string"
+      },
+      "model_name": {
+        "type": "string"
+      },
+      "modelName": {
+        "type": "string"
+      },
+      "template_key": {
+        "type": "string"
+      },
+      "templateKey": {
+        "type": "string"
+      },
+      "template_model_guid": {
+        "type": "string"
+      },
+      "templateModelGuid": {
+        "type": "string"
+      },
+      "template_project_guid": {
+        "type": "string"
+      },
+      "templateProjectGuid": {
+        "type": "string"
+      },
+      "region": {
+        "type": "string",
+        "enum": [
+          "US",
+          "EMEA"
+        ],
+        "default": "US"
+      },
+      "enable_worksharing": {
+        "type": "boolean",
+        "default": true
+      },
+      "enableWorksharing": {
+        "type": "boolean"
+      },
+      "activity_id": {
+        "type": "string"
+      },
+      "activityId": {
+        "type": "string"
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": false
+      },
+      "dryRun": {
+        "type": "boolean"
+      }
+    },
+    "required": []
+  }
+}

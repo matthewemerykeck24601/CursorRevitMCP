@@ -1,0 +1,16 @@
+[
+  {
+    "srcFamily": "CORBEL Light Loaded 12D X 24W X 36T",
+    "srcType": "CORBEL Light Loaded 12D X 24W X 36T",
+    "tgtFamily": "CORBEL 8D X 12W X 1.33T",
+    "tgtType": "CORBEL 8D X 12W X 1.33T",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+    "srcType": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+    "tgtFamily": "CORBEL 8D X 12W X 1.33T",
+    "tgtType": "CORBEL 8D X 12W X 1.33T",
+    "createTypeIfMissing": false
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "load_family_from_library",
+  "description": "Load a family into the active Revit project from explicit path or library query.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "familyPath": {
+        "type": "string"
+      },
+      "libraryRoots": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "query": {
+        "type": "string"
+      },
+      "overwriteParameterValues": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

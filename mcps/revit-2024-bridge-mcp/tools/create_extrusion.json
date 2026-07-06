@@ -1,0 +1,43 @@
+{
+  "name": "create_extrusion",
+  "description": "Family Editor: create an extruded solid or void from a closed 2D profile loop in the active family document. All coordinates and lengths are millimetres.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "depth": {
+        "type": "number"
+      },
+      "isSolid": {
+        "type": "boolean"
+      },
+      "workPlaneName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "profile",
+      "depth",
+      "isSolid"
+    ],
+    "additionalProperties": false
+  }
+}

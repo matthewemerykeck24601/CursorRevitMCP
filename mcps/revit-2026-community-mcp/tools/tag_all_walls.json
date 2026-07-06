@@ -1,0 +1,20 @@
+{
+  "name": "tag_all_walls",
+  "description": "Create tags for all walls in the current active view. Tags will be placed at the middle point of each wall.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "useLeader": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to use a leader line when creating the tags"
+      },
+      "tagTypeId": {
+        "type": "string",
+        "description": "The ID of the specific wall tag family type to use. If not provided, the default wall tag type will be used"
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

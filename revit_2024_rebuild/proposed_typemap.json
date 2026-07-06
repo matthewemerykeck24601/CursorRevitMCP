@@ -1,0 +1,672 @@
+[
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "12 DT 36 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "12 DT 36 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 28 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 28 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 29 (3\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 29 (3\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 30 (4\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 30 (4\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "14 DT 40 (2\" FLANGE / 7FT STEM SPACING)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "14 DT 40 (2\" FLANGE / 7FT STEM SPACING)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL_TAPERED_FLANGE_SKEWED_END (DT)",
+    "srcType": "13.33 DT 28 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL_TAPERED_FLANGE_SKEWED_END",
+    "tgtType": "13.33 DT 28 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "FLAT_SLAB (FSA)",
+    "srcType": "06\"",
+    "tgtFamily": "FLAT_SLAB",
+    "tgtType": "06\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "FLAT_SLAB (FSA)",
+    "srcType": "08\"",
+    "tgtFamily": "FLAT_SLAB",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "FLAT_SLAB (FSA)",
+    "srcType": "12\"",
+    "tgtFamily": "FLAT_SLAB",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "18LB36",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "18LB36",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_HORIZONTAL (MWH)",
+    "srcType": "08\"",
+    "tgtFamily": "METROWALL_HORIZONTAL",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_HORIZONTAL (MWH)",
+    "srcType": "10\"",
+    "tgtFamily": "METROWALL_HORIZONTAL",
+    "tgtType": "10\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_HORIZONTAL_SLOPED_TOP (MWH)",
+    "srcType": "08\"",
+    "tgtFamily": "METROWALL_HORIZONTAL_SLOPED_TOP",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_HORIZONTAL_SLOPED_TOP (MWH)",
+    "srcType": "10\"",
+    "tgtFamily": "METROWALL_HORIZONTAL_SLOPED_TOP",
+    "tgtType": "10\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_VERTICAL (MWV)",
+    "srcType": "08\"",
+    "tgtFamily": "METROWALL_VERTICAL",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_VERTICAL (MWV)",
+    "srcType": "10\"",
+    "tgtFamily": "METROWALL_VERTICAL",
+    "tgtType": "10\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_VERTICAL_SLOPED_TOP (MWV)",
+    "srcType": "08\"",
+    "tgtFamily": "METROWALL_VERTICAL_SLOPED_TOP",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "METROWALL_VERTICAL_SLOPED_TOP (MWV)",
+    "srcType": "10\"",
+    "tgtFamily": "METROWALL_VERTICAL_SLOPED_TOP",
+    "tgtType": "10\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SHEARWALL_HORIZONTAL (SWAH)",
+    "srcType": "12\"",
+    "tgtFamily": "SHEARWALL_HORIZONTAL",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SHEARWALL_HORIZONTAL_SLOPED_TOP (SWAH)",
+    "srcType": "12\"",
+    "tgtFamily": "SHEARWALL_HORIZONTAL_SLOPED_TOP",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SHEARWALL_VERTICAL (SWAV)",
+    "srcType": "12\"",
+    "tgtFamily": "SHEARWALL_VERTICAL",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SHEARWALL_VERTICAL_SLOPED_TOP (SWAV)",
+    "srcType": "12\"",
+    "tgtFamily": "SHEARWALL_VERTICAL_SLOPED_TOP",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_BEARING (SPA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_BEARING",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_BEARING_ADJ_LEDGE (SPA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_BEARING_ADJ_LEDGE",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_BEARING_ADJ_LEDGE (SPA)",
+    "srcType": "8\" X 106\"",
+    "tgtFamily": "SPANDREL_BEARING_ADJ_LEDGE",
+    "tgtType": "8\" X 106\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_BEARING_NO_LEDGE (SPA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_BEARING_NO_LEDGE",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_BEARING_SLOPED (SPA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_BEARING_SLOPED",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_GRADE (FCA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_GRADE",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_NONBEARING (FCA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_NONBEARING",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_NONBEARING (FCA)",
+    "srcType": "8\" X 106\"",
+    "tgtFamily": "SPANDREL_NONBEARING",
+    "tgtType": "8\" X 106\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_NONBEARING_SLOPED (FCA)",
+    "srcType": "8\" X 84\"",
+    "tgtFamily": "SPANDREL_NONBEARING_SLOPED",
+    "tgtType": "8\" X 84\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SPANDREL_Z_NONBEARING (FCA)",
+    "srcType": "8\" X 74\"",
+    "tgtFamily": "SPANDREL_Z_NONBEARING",
+    "tgtType": "8\" X 74\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "STAIR_BASE_UNIT (STZ)",
+    "srcType": "STAIR BASE UNIT",
+    "tgtFamily": "STAIR_BASE_UNIT",
+    "tgtType": "STAIR BASE UNIT",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "STAIR_BOTTOM_LANDING (STZ)",
+    "srcType": "STAIR BOTTOM LANDING",
+    "tgtFamily": "STAIR_BOTTOM_LANDING",
+    "tgtType": "STAIR BOTTOM LANDING",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "STAIR_DROP_IN (STA)",
+    "srcType": "DROP-IN STAIR",
+    "tgtFamily": "STAIR_DROP_IN",
+    "tgtType": "DROP-IN STAIR",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "STAIR_DROP_IN_BASE_UNIT (STA)",
+    "srcType": "STAIR DROP IN BASE UNIT",
+    "tgtFamily": "STAIR_DROP_IN_BASE_UNIT",
+    "tgtType": "STAIR DROP IN BASE UNIT",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "STAIR_TOP_LANDING (STZ)",
+    "srcType": "STAIR TOP LANDING",
+    "tgtFamily": "STAIR_TOP_LANDING",
+    "tgtType": "STAIR TOP LANDING",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "STAIR_Z (STZ)",
+    "srcType": "Z-STAIR",
+    "tgtFamily": "STAIR_Z",
+    "tgtType": "Z-STAIR",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "30IT36",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "30IT36",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "32IT32",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "32IT32",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "34IT32",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "34IT32",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT36",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT36",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT54",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT54",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "40IT42",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "40IT42",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "44IT64 (MOAB)",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "44IT64 (MOAB)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_LSHAPE (HORIZ) (WPBH)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_LSHAPE (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_LSHAPE (VERT) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_LSHAPE (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_LSHAPE_ANGLED (HORIZ) (WPBH)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_LSHAPE_ANGLED (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_LSHAPE_ANGLED (VERT) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_LSHAPE_ANGLED (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_SLOPED_TOP (HORIZ) (WPBH)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_SLOPED_TOP (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_SLOPED_TOP (VERT) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_SLOPED_TOP (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_USHAPE (HORIZ) (WPBH)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_USHAPE (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_USHAPE (HORIZ-ADJ) (WPBH)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_USHAPE (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_USHAPE (VERT) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_USHAPE (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL_USHAPE (VERT-ADJ) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL_USHAPE (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_LSHAPE (HORIZ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_LSHAPE (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_LSHAPE (VERT) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_LSHAPE (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_LSHAPE_ANGLED (HORIZ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_LSHAPE_ANGLED (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_LSHAPE_ANGLED (VERT) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_LSHAPE_ANGLED (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_SLOPED_TOP (HORIZ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_SLOPED_TOP (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_SLOPED_TOP (VERT) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_SLOPED_TOP (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_USHAPE (HORIZ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_USHAPE (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_USHAPE (HORIZ-ADJ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_USHAPE (HORIZ)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_USHAPE (VERT) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_USHAPE (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL_USHAPE (VERT-ADJ) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL_USHAPE (VERT)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "18\" X 18\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "18\" X 18\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "24\" X 24\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "24\" X 24\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "24\" X 33\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "24\" X 33\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "33\" X 33\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "33\" X 33\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "srcType": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING)",
+    "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+    "tgtType": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "srcType": "10 DT 32 (2\" FLANGE / 5FT STEM SPACING)",
+    "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+    "tgtType": "10 DT 32 (2\" FLANGE / 5FT STEM SPACING)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "srcType": "12 AT 48 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+    "tgtType": "12 AT 48 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "srcType": "12 XT 28 (2\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+    "tgtType": "12 XT 28 (2\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "srcType": "12 XT 30 (4\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+    "tgtType": "12 XT 30 (4\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "srcType": "12 XT 32 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+    "tgtType": "12 XT 32 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "srcType": "12\"",
+    "tgtFamily": "SOLID_WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false,
+    "note": "single-type family; source type '12\"' -> '08\"'"
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (HORIZ) (WPAH)_MITERED",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (HORIZ) (WPAH)_MITERED",
+    "srcType": "12\"",
+    "tgtFamily": "SOLID_WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false,
+    "note": "single-type family; source type '12\"' -> '08\"'"
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "srcType": "12\"",
+    "tgtFamily": "SOLID_WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false,
+    "note": "single-type family; source type '12\"' -> '08\"'"
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (VERT) (WPAV)_MITERED",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (VERT) (WPAV)_MITERED",
+    "srcType": "12\"",
+    "tgtFamily": "SOLID_WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false,
+    "note": "single-type family; source type '12\"' -> '08\"'"
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (HORIZ) (WPBH)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (HORIZ) (WPBH)",
+    "srcType": "11\"",
+    "tgtFamily": "INSULATED WALL_PANEL (HORIZONTAL)",
+    "tgtType": "11\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (HORIZ) (WPBH)_MITERED",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (HORIZ) (WPBH)_MITERED",
+    "srcType": "11\"",
+    "tgtFamily": "INSULATED WALL_PANEL (HORIZONTAL)",
+    "tgtType": "11\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "srcType": "11\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "11\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)_MITERED",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)_MITERED",
+    "srcType": "11\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "11\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SHEARWALL_HORIZONTAL (SWAH)",
+    "srcType": "8\"",
+    "tgtFamily": "SHEARWALL_HORIZONTAL",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false,
+    "note": "single-type family; source type '8\"' -> '12\"'"
+  }
+]

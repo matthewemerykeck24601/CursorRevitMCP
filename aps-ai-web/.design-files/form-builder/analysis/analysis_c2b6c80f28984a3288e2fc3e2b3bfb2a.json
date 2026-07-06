@@ -1,0 +1,6161 @@
+{
+  "analysisId": "analysis_c2b6c80f28984a3288e2fc3e2b3bfb2a",
+  "accountId": "probe-account",
+  "templateName": "Extra Work Order - WIN 2",
+  "templateType": "custom",
+  "source": {
+    "kind": "upload_token",
+    "uploadToken": "pdf_52f1c6c18a9f4715ae3bf2bead726837"
+  },
+  "extractedTextSnippet": "",
+  "extractedFieldCount": 228,
+  "confidenceScore": 0.95,
+  "status": "ready",
+  "fields": [
+    {
+      "id": "DATE_1",
+      "sourceName": "DATE",
+      "label": "DATE",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 368.67,
+        "y": 697.99,
+        "width": 221.28,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "JOB NO_2",
+      "sourceName": "JOB NO",
+      "label": "JOB NO",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 66.54,
+        "y": 686,
+        "width": 140.81,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "PROJECT_3",
+      "sourceName": "PROJECT",
+      "label": "PROJECT",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 66.54,
+        "y": 674.01,
+        "width": 248.75,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "WO AUTHORIZED BY_4",
+      "sourceName": "WO AUTHORIZED BY",
+      "label": "WO AUTHORIZED BY",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 439.46,
+        "y": 674.01,
+        "width": 150.49,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text5_5",
+      "sourceName": "Text5",
+      "label": "Text5",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 66.54,
+        "y": 662.02,
+        "width": 248.75,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SIGNED_6",
+      "sourceName": "SIGNED",
+      "label": "SIGNED",
+      "type": "signature",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 395.75,
+        "y": 662.02,
+        "width": 194.2,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "DESCRIPTION AND LOCATION OF WORK_7",
+      "sourceName": "DESCRIPTION AND LOCATION OF WORK",
+      "label": "DESCRIPTION AND LOCATION OF WORK",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 627.59,
+        "width": 563.26,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "DESCRIPTION AND LOCATION OF WORK (1)_8",
+      "sourceName": "DESCRIPTION AND LOCATION OF WORK (1)",
+      "label": "DESCRIPTION AND LOCATION OF WORK (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 615.6,
+        "width": 563.26,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text8_9",
+      "sourceName": "Text8",
+      "label": "Text8",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 603.6,
+        "width": 563.26,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "MON_10",
+      "sourceName": "MON",
+      "label": "MON",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 0
+    },
+    {
+      "id": "TUE_11",
+      "sourceName": "TUE",
+      "label": "TUE",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 0
+    },
+    {
+      "id": "WED_12",
+      "sourceName": "WED",
+      "label": "WED",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 0
+    },
+    {
+      "id": "THU_13",
+      "sourceName": "THU",
+      "label": "THU",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "FRI_14",
+      "sourceName": "FRI",
+      "label": "FRI",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "SAT_15",
+      "sourceName": "SAT",
+      "label": "SAT",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 564.53,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "SUN_16",
+      "sourceName": "SUN",
+      "label": "SUN",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "RATE_17",
+      "sourceName": "RATE",
+      "label": "RATE",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 564.53,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "Regular_18",
+      "sourceName": "Regular",
+      "label": "Regular",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 564.53,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "Overtime_19",
+      "sourceName": "Overtime",
+      "label": "Overtime",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 564.53,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 0
+    },
+    {
+      "id": "TOTALS_20",
+      "sourceName": "TOTALS",
+      "label": "TOTALS",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 564.53,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text20_21",
+      "sourceName": "Text20",
+      "label": "Text20",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 564.53,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "MON (1)_22",
+      "sourceName": "MON (1)",
+      "label": "MON (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 1
+    },
+    {
+      "id": "TUE (1)_23",
+      "sourceName": "TUE (1)",
+      "label": "TUE (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 1
+    },
+    {
+      "id": "WED (1)_24",
+      "sourceName": "WED (1)",
+      "label": "WED (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 1
+    },
+    {
+      "id": "THU (1)_25",
+      "sourceName": "THU (1)",
+      "label": "THU (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "FRI (1)_26",
+      "sourceName": "FRI (1)",
+      "label": "FRI (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "SAT (1)_27",
+      "sourceName": "SAT (1)",
+      "label": "SAT (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 552.54,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "SUN (1)_28",
+      "sourceName": "SUN (1)",
+      "label": "SUN (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "RATE (1)_29",
+      "sourceName": "RATE (1)",
+      "label": "RATE (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 552.54,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "Regular (1)_30",
+      "sourceName": "Regular (1)",
+      "label": "Regular (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 552.54,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "Overtime (1)_31",
+      "sourceName": "Overtime (1)",
+      "label": "Overtime (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 552.54,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text31_32",
+      "sourceName": "Text31",
+      "label": "Text31",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 552.54,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text32_33",
+      "sourceName": "Text32",
+      "label": "Text32",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 552.54,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text33_34",
+      "sourceName": "Text33",
+      "label": "Text33",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text34_35",
+      "sourceName": "Text34",
+      "label": "Text34",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text35_36",
+      "sourceName": "Text35",
+      "label": "Text35",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text36_37",
+      "sourceName": "Text36",
+      "label": "Text36",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text37_38",
+      "sourceName": "Text37",
+      "label": "Text37",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text38_39",
+      "sourceName": "Text38",
+      "label": "Text38",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 540.55,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text39_40",
+      "sourceName": "Text39",
+      "label": "Text39",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text40_41",
+      "sourceName": "Text40",
+      "label": "Text40",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 540.55,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text41_42",
+      "sourceName": "Text41",
+      "label": "Text41",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 540.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text42_43",
+      "sourceName": "Text42",
+      "label": "Text42",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 540.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text43_44",
+      "sourceName": "Text43",
+      "label": "Text43",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 540.55,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text44_45",
+      "sourceName": "Text44",
+      "label": "Text44",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 540.55,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text45_46",
+      "sourceName": "Text45",
+      "label": "Text45",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text46_47",
+      "sourceName": "Text46",
+      "label": "Text46",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text47_48",
+      "sourceName": "Text47",
+      "label": "Text47",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text48_49",
+      "sourceName": "Text48",
+      "label": "Text48",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text49_50",
+      "sourceName": "Text49",
+      "label": "Text49",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text50_51",
+      "sourceName": "Text50",
+      "label": "Text50",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 528.55,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text51_52",
+      "sourceName": "Text51",
+      "label": "Text51",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text52_53",
+      "sourceName": "Text52",
+      "label": "Text52",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 528.55,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text53_54",
+      "sourceName": "Text53",
+      "label": "Text53",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 528.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text54_55",
+      "sourceName": "Text54",
+      "label": "Text54",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 528.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text55_56",
+      "sourceName": "Text55",
+      "label": "Text55",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 528.55,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text56_57",
+      "sourceName": "Text56",
+      "label": "Text56",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 528.55,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text57_58",
+      "sourceName": "Text57",
+      "label": "Text57",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text58_59",
+      "sourceName": "Text58",
+      "label": "Text58",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text59_60",
+      "sourceName": "Text59",
+      "label": "Text59",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text60_61",
+      "sourceName": "Text60",
+      "label": "Text60",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text61_62",
+      "sourceName": "Text61",
+      "label": "Text61",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text62_63",
+      "sourceName": "Text62",
+      "label": "Text62",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 516.56,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text63_64",
+      "sourceName": "Text63",
+      "label": "Text63",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text64_65",
+      "sourceName": "Text64",
+      "label": "Text64",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 516.56,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text65_66",
+      "sourceName": "Text65",
+      "label": "Text65",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 516.56,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text66_67",
+      "sourceName": "Text66",
+      "label": "Text66",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 516.56,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text67_68",
+      "sourceName": "Text67",
+      "label": "Text67",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 516.56,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text68_69",
+      "sourceName": "Text68",
+      "label": "Text68",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 516.56,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text69_70",
+      "sourceName": "Text69",
+      "label": "Text69",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text70_71",
+      "sourceName": "Text70",
+      "label": "Text70",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text71_72",
+      "sourceName": "Text71",
+      "label": "Text71",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text72_73",
+      "sourceName": "Text72",
+      "label": "Text72",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text73_74",
+      "sourceName": "Text73",
+      "label": "Text73",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text74_75",
+      "sourceName": "Text74",
+      "label": "Text74",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 504.18,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text75_76",
+      "sourceName": "Text75",
+      "label": "Text75",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text76_77",
+      "sourceName": "Text76",
+      "label": "Text76",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 504.18,
+        "width": 23.21,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text77_78",
+      "sourceName": "Text77",
+      "label": "Text77",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 504.18,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text78_79",
+      "sourceName": "Text78",
+      "label": "Text78",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 504.18,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text79_80",
+      "sourceName": "Text79",
+      "label": "Text79",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 504.18,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text80_81",
+      "sourceName": "Text80",
+      "label": "Text80",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 504.18,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text81_82",
+      "sourceName": "Text81",
+      "label": "Text81",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text82_83",
+      "sourceName": "Text82",
+      "label": "Text82",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text83_84",
+      "sourceName": "Text83",
+      "label": "Text83",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text84_85",
+      "sourceName": "Text84",
+      "label": "Text84",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text85_86",
+      "sourceName": "Text85",
+      "label": "Text85",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text86_87",
+      "sourceName": "Text86",
+      "label": "Text86",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 492.19,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text87_88",
+      "sourceName": "Text87",
+      "label": "Text87",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text88_89",
+      "sourceName": "Text88",
+      "label": "Text88",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 492.19,
+        "width": 23.21,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text89_90",
+      "sourceName": "Text89",
+      "label": "Text89",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 492.19,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text90_91",
+      "sourceName": "Text90",
+      "label": "Text90",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 492.19,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text91_92",
+      "sourceName": "Text91",
+      "label": "Text91",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 492.19,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text92_93",
+      "sourceName": "Text92",
+      "label": "Text92",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 492.19,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text93_94",
+      "sourceName": "Text93",
+      "label": "Text93",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"MON\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "MON",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text94_95",
+      "sourceName": "Text94",
+      "label": "Text94",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TUE\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TUE",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text95_96",
+      "sourceName": "Text95",
+      "label": "Text95",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text96_97",
+      "sourceName": "Text96",
+      "label": "Text96",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text97_98",
+      "sourceName": "Text97",
+      "label": "Text97",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text98_99",
+      "sourceName": "Text98",
+      "label": "Text98",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 480.58,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text99_100",
+      "sourceName": "Text99",
+      "label": "Text99",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text100_101",
+      "sourceName": "Text100",
+      "label": "Text100",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 480.58,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text101_102",
+      "sourceName": "Text101",
+      "label": "Text101",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 480.58,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text102_103",
+      "sourceName": "Text102",
+      "label": "Text102",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"HOURS Overtime\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 480.58,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "HOURS Overtime",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text103_104",
+      "sourceName": "Text103",
+      "label": "Text103",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 480.2,
+        "width": 34.04,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text104_105",
+      "sourceName": "Text104",
+      "label": "Text104",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 480.2,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUB TOTAL_106",
+      "sourceName": "SUB TOTAL",
+      "label": "SUB TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 468.2,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 8
+    },
+    {
+      "id": "Text106_107",
+      "sourceName": "Text106",
+      "label": "Text106",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 468.2,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUB TOTAL (1)_108",
+      "sourceName": "SUB TOTAL (1)",
+      "label": "SUB TOTAL (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"WED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 456.6,
+        "width": 500.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "WED",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text108_109",
+      "sourceName": "Text108",
+      "label": "Text108",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 456.6,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text109_110",
+      "sourceName": "Text109",
+      "label": "Text109",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 456.6,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "LABOR TOTAL_111",
+      "sourceName": "LABOR TOTAL",
+      "label": "LABOR TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 444.61,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text111_112",
+      "sourceName": "Text111",
+      "label": "Text111",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 444.61,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Quantity_113",
+      "sourceName": "Quantity",
+      "label": "Quantity",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Quantity\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 417.53,
+        "width": 40.23,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Quantity",
+      "rowIndex": 0
+    },
+    {
+      "id": "Unit_114",
+      "sourceName": "Unit",
+      "label": "Unit",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 417.53,
+        "width": 23.98,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 0
+    },
+    {
+      "id": "TOTALS (1)_115",
+      "sourceName": "TOTALS (1)",
+      "label": "TOTALS (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 417.53,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text115_116",
+      "sourceName": "Text115",
+      "label": "Text115",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 417.53,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Quantity (1)_117",
+      "sourceName": "Quantity (1)",
+      "label": "Quantity (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Quantity\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 405.15,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Quantity",
+      "rowIndex": 1
+    },
+    {
+      "id": "Unit (1)_118",
+      "sourceName": "Unit (1)",
+      "label": "Unit (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 405.15,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 1
+    },
+    {
+      "id": "TOTALS (2)_119",
+      "sourceName": "TOTALS (2)",
+      "label": "TOTALS (2)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 405.15,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text119_120",
+      "sourceName": "Text119",
+      "label": "Text119",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 405.15,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text120_121",
+      "sourceName": "Text120",
+      "label": "Text120",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Quantity\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 393.16,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Quantity",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text121_122",
+      "sourceName": "Text121",
+      "label": "Text121",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 393.16,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text122_123",
+      "sourceName": "Text122",
+      "label": "Text122",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 393.16,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text123_124",
+      "sourceName": "Text123",
+      "label": "Text123",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 393.16,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text124_125",
+      "sourceName": "Text124",
+      "label": "Text124",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Quantity\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 381.16,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Quantity",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text125_126",
+      "sourceName": "Text125",
+      "label": "Text125",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 381.16,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text126_127",
+      "sourceName": "Text126",
+      "label": "Text126",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 381.16,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text127_128",
+      "sourceName": "Text127",
+      "label": "Text127",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 381.16,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text128_129",
+      "sourceName": "Text128",
+      "label": "Text128",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Quantity\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 369.17,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Quantity",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text129_130",
+      "sourceName": "Text129",
+      "label": "Text129",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 369.17,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text130_131",
+      "sourceName": "Text130",
+      "label": "Text130",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 369.17,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text131_132",
+      "sourceName": "Text131",
+      "label": "Text131",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 369.17,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text132_133",
+      "sourceName": "Text132",
+      "label": "Text132",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Quantity\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 357.57,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Quantity",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text133_134",
+      "sourceName": "Text133",
+      "label": "Text133",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 357.57,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text134_135",
+      "sourceName": "Text134",
+      "label": "Text134",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 357.18,
+        "width": 34.04,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text135_136",
+      "sourceName": "Text135",
+      "label": "Text135",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 357.18,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "SUB TOTAL (2)_137",
+      "sourceName": "SUB TOTAL (2)",
+      "label": "SUB TOTAL (2)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 345.19,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text137_138",
+      "sourceName": "Text137",
+      "label": "Text137",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 345.19,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "SALES TAX %_139",
+      "sourceName": "SALES TAX %",
+      "label": "SALES TAX %",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 333.58,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text139_140",
+      "sourceName": "Text139",
+      "label": "Text139",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 333.58,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "MATERIAL TOTAL_141",
+      "sourceName": "MATERIAL TOTAL",
+      "label": "MATERIAL TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 321.59,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 8
+    },
+    {
+      "id": "Text141_142",
+      "sourceName": "Text141",
+      "label": "Text141",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 321.59,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "TOTALS",
+      "rowIndex": 8
+    },
+    {
+      "id": "Hours_143",
+      "sourceName": "Hours",
+      "label": "Hours",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"MATERIAL Hours\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 294.12,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "MATERIAL Hours",
+      "rowIndex": 0
+    },
+    {
+      "id": "Rate_144",
+      "sourceName": "Rate",
+      "label": "Rate",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 294.12,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 0
+    },
+    {
+      "id": "TOTALS (3)_145",
+      "sourceName": "TOTALS (3)",
+      "label": "TOTALS (3)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 294.12,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text145_146",
+      "sourceName": "Text145",
+      "label": "Text145",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 294.12,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Hours (1)_147",
+      "sourceName": "Hours (1)",
+      "label": "Hours (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"MATERIAL Hours\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 282.13,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "MATERIAL Hours",
+      "rowIndex": 1
+    },
+    {
+      "id": "Rate (1)_148",
+      "sourceName": "Rate (1)",
+      "label": "Rate (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 282.13,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 1
+    },
+    {
+      "id": "TOTALS (4)_149",
+      "sourceName": "TOTALS (4)",
+      "label": "TOTALS (4)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 282.13,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text149_150",
+      "sourceName": "Text149",
+      "label": "Text149",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 282.13,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text150_151",
+      "sourceName": "Text150",
+      "label": "Text150",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"MATERIAL Hours\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 270.14,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "MATERIAL Hours",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text151_152",
+      "sourceName": "Text151",
+      "label": "Text151",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 270.14,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text152_153",
+      "sourceName": "Text152",
+      "label": "Text152",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 270.14,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text153_154",
+      "sourceName": "Text153",
+      "label": "Text153",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 270.14,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text154_155",
+      "sourceName": "Text154",
+      "label": "Text154",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"MATERIAL Hours\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 258.14,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "MATERIAL Hours",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text155_156",
+      "sourceName": "Text155",
+      "label": "Text155",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 258.14,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text156_157",
+      "sourceName": "Text156",
+      "label": "Text156",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 258.14,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text157_158",
+      "sourceName": "Text157",
+      "label": "Text157",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 258.14,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text158_159",
+      "sourceName": "Text158",
+      "label": "Text158",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"MATERIAL Hours\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 246.54,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "MATERIAL Hours",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text159_160",
+      "sourceName": "Text159",
+      "label": "Text159",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 246.54,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text160_161",
+      "sourceName": "Text160",
+      "label": "Text160",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 246.15,
+        "width": 34.04,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text161_162",
+      "sourceName": "Text161",
+      "label": "Text161",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 246.15,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "SUB TOTAL (3)_163",
+      "sourceName": "SUB TOTAL (3)",
+      "label": "SUB TOTAL (3)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 234.16,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text163_164",
+      "sourceName": "Text163",
+      "label": "Text163",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 234.16,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "SALES TAX % (1)_165",
+      "sourceName": "SALES TAX % (1)",
+      "label": "SALES TAX % (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 222.55,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text165_166",
+      "sourceName": "Text165",
+      "label": "Text165",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 222.55,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "EQUIPMENT TOTAL_167",
+      "sourceName": "EQUIPMENT TOTAL",
+      "label": "EQUIPMENT TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 210.56,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text167_168",
+      "sourceName": "Text167",
+      "label": "Text167",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 210.56,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "TOTALS (5)_169",
+      "sourceName": "TOTALS (5)",
+      "label": "TOTALS (5)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 183.09,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text169_170",
+      "sourceName": "Text169",
+      "label": "Text169",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 183.09,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 0
+    },
+    {
+      "id": "TOTALS (6)_171",
+      "sourceName": "TOTALS (6)",
+      "label": "TOTALS (6)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 171.1,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text171_172",
+      "sourceName": "Text171",
+      "label": "Text171",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 171.1,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text172_173",
+      "sourceName": "Text172",
+      "label": "Text172",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 159.5,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text173_174",
+      "sourceName": "Text173",
+      "label": "Text173",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 159.5,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 2
+    },
+    {
+      "id": "TOTAL SUBCONTRACTOR COST_175",
+      "sourceName": "TOTAL SUBCONTRACTOR COST",
+      "label": "TOTAL SUBCONTRACTOR COST",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 146.34,
+        "width": 34.43,
+        "height": 9.28
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text175_176",
+      "sourceName": "Text175",
+      "label": "Text175",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 146.34,
+        "width": 21.28,
+        "height": 9.28
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text176_177",
+      "sourceName": "Text176",
+      "label": "Text176",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 564.53,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text177_178",
+      "sourceName": "Text177",
+      "label": "Text177",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 552.54,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text178_179",
+      "sourceName": "Text178",
+      "label": "Text178",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 540.55,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text179_180",
+      "sourceName": "Text179",
+      "label": "Text179",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 528.55,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text180_181",
+      "sourceName": "Text180",
+      "label": "Text180",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 516.56,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text181_182",
+      "sourceName": "Text181",
+      "label": "Text181",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 504.18,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text182_183",
+      "sourceName": "Text182",
+      "label": "Text182",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 492.19,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text183_184",
+      "sourceName": "Text183",
+      "label": "Text183",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL THU FRI SAT SUN RATE Regular\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 480.58,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "TOTAL THU FRI SAT SUN RATE Regular",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text184_185",
+      "sourceName": "Text184",
+      "label": "Text184",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 417.53,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text185_186",
+      "sourceName": "Text185",
+      "label": "Text185",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 405.15,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text186_187",
+      "sourceName": "Text186",
+      "label": "Text186",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 393.16,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text187_188",
+      "sourceName": "Text187",
+      "label": "Text187",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 381.16,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text188_189",
+      "sourceName": "Text188",
+      "label": "Text188",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 369.17,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text189_190",
+      "sourceName": "Text189",
+      "label": "Text189",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"Unit\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 357.57,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "Unit",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text190_191",
+      "sourceName": "Text190",
+      "label": "Text190",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 294.12,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text191_192",
+      "sourceName": "Text191",
+      "label": "Text191",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 282.13,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text192_193",
+      "sourceName": "Text192",
+      "label": "Text192",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 270.14,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text193_194",
+      "sourceName": "Text193",
+      "label": "Text193",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 258.14,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text194_195",
+      "sourceName": "Text194",
+      "label": "Text194",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"TOTAL Rate\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 246.54,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "TOTAL Rate",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text195_196",
+      "sourceName": "Text195",
+      "label": "Text195",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 129.97,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text196_197",
+      "sourceName": "Text196",
+      "label": "Text196",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 113.72,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text197_198",
+      "sourceName": "Text197",
+      "label": "Text197",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 97.52,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text198_199",
+      "sourceName": "Text198",
+      "label": "Text198",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 81.26,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text199_200",
+      "sourceName": "Text199",
+      "label": "Text199",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 57.45,
+        "width": 34.43,
+        "height": 15.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text200_201",
+      "sourceName": "Text200",
+      "label": "Text200",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 129.97,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text201_202",
+      "sourceName": "Text201",
+      "label": "Text201",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 113.72,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text202_203",
+      "sourceName": "Text202",
+      "label": "Text202",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 97.52,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text203_204",
+      "sourceName": "Text203",
+      "label": "Text203",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT TOTAL SUBCONTRACTORS USED / TOTALS\" (column \"TOTALS\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 81.34,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "TOTALS",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text204_205",
+      "sourceName": "Text204",
+      "label": "Text204",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 57.45,
+        "width": 21.28,
+        "height": 15.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text205_206",
+      "sourceName": "Text205",
+      "label": "Text205",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"MATERIALS USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 416.68,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "MATERIALS USED",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text206_207",
+      "sourceName": "Text206",
+      "label": "Text206",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"MATERIALS USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 404.69,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "MATERIALS USED",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text207_208",
+      "sourceName": "Text207",
+      "label": "Text207",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"MATERIALS USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 392.89,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "MATERIALS USED",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text208_209",
+      "sourceName": "Text208",
+      "label": "Text208",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"MATERIALS USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 380.7,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "MATERIALS USED",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text209_210",
+      "sourceName": "Text209",
+      "label": "Text209",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"MATERIALS USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 368.75,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "MATERIALS USED",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text210_211",
+      "sourceName": "Text210",
+      "label": "Text210",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"MATERIALS USED / Quantity / Unit\" (column \"MATERIALS USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 357.18,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_1",
+      "columnKey": "MATERIALS USED",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text211_212",
+      "sourceName": "Text211",
+      "label": "Text211",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 564.7,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text212_213",
+      "sourceName": "Text212",
+      "label": "Text212",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 552.54,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text213_214",
+      "sourceName": "Text213",
+      "label": "Text213",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 540.55,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text214_215",
+      "sourceName": "Text214",
+      "label": "Text214",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 528.55,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text215_216",
+      "sourceName": "Text215",
+      "label": "Text215",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 516.56,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text216_217",
+      "sourceName": "Text216",
+      "label": "Text216",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 504.18,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 5
+    },
+    {
+      "id": "Text217_218",
+      "sourceName": "Text217",
+      "label": "Text217",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 492.68,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 6
+    },
+    {
+      "id": "Text218_219",
+      "sourceName": "Text218",
+      "label": "Text218",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"LABOR USED: NAME and LABOR CLASSIFICATION / MON / TUE\" (column \"LABOR USED: NAME and LABOR CLASSIFICATION\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 480.58,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_0",
+      "columnKey": "LABOR USED: NAME and LABOR CLASSIFICATION",
+      "rowIndex": 7
+    },
+    {
+      "id": "Text219_220",
+      "sourceName": "Text219",
+      "label": "Text219",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"EQUIPMENT RENTAL USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 293.64,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "EQUIPMENT RENTAL USED",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text220_221",
+      "sourceName": "Text220",
+      "label": "Text220",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"EQUIPMENT RENTAL USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 281.66,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "EQUIPMENT RENTAL USED",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text221_222",
+      "sourceName": "Text221",
+      "label": "Text221",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"EQUIPMENT RENTAL USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 269.86,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "EQUIPMENT RENTAL USED",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text222_223",
+      "sourceName": "Text222",
+      "label": "Text222",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"EQUIPMENT RENTAL USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 257.67,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "EQUIPMENT RENTAL USED",
+      "rowIndex": 3
+    },
+    {
+      "id": "Text223_224",
+      "sourceName": "Text223",
+      "label": "Text223",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to Document AI table \"EQUIPMENT RENTAL USED / MATERIAL Hours / TOTAL Rate\" (column \"EQUIPMENT RENTAL USED\")."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 245.72,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "docai_table_p0_2",
+      "columnKey": "EQUIPMENT RENTAL USED",
+      "rowIndex": 4
+    },
+    {
+      "id": "Text224_225",
+      "sourceName": "Text224",
+      "label": "Text224",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"EQUIPMENT TOTAL SUBCONTRACTORS USED\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 182.68,
+        "width": 492.1,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "EQUIPMENT TOTAL SUBCONTRACTORS USED",
+      "rowIndex": 0
+    },
+    {
+      "id": "Text225_226",
+      "sourceName": "Text225",
+      "label": "Text225",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"EQUIPMENT TOTAL SUBCONTRACTORS USED\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 170.7,
+        "width": 492.1,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "EQUIPMENT TOTAL SUBCONTRACTORS USED",
+      "rowIndex": 1
+    },
+    {
+      "id": "Text226_227",
+      "sourceName": "Text226",
+      "label": "Text226",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [
+        "Mapped to calculated column \"EQUIPMENT TOTAL SUBCONTRACTORS USED\" via Document AI table layout."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 158.9,
+        "width": 492.1,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": true,
+      "groupKey": "docai_table_p0_3",
+      "columnKey": "EQUIPMENT TOTAL SUBCONTRACTORS USED",
+      "rowIndex": 2
+    },
+    {
+      "id": "Text227_228",
+      "sourceName": "Text227",
+      "label": "Text227",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 123.29,
+        "y": 700.08,
+        "width": 84.06,
+        "height": 7.88
+      },
+      "readOnly": false,
+      "calculated": false
+    }
+  ],
+  "formaSchema": {
+    "elements": [
+      {
+        "kind": "field",
+        "fieldId": "DATE_1",
+        "label": "DATE",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "JOB NO_2",
+        "label": "JOB NO",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "PROJECT_3",
+        "label": "PROJECT",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "WO AUTHORIZED BY_4",
+        "label": "WO AUTHORIZED BY",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text5_5",
+        "label": "Text5",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SIGNED_6",
+        "label": "SIGNED",
+        "type": "signature",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "DESCRIPTION AND LOCATION OF WORK_7",
+        "label": "DESCRIPTION AND LOCATION OF WORK",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "DESCRIPTION AND LOCATION OF WORK (1)_8",
+        "label": "DESCRIPTION AND LOCATION OF WORK (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text8_9",
+        "label": "Text8",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "table",
+        "tableId": "table_docai_table_p0_0",
+        "title": "Docai Table P0 0",
+        "columns": [
+          {
+            "key": "MON",
+            "label": "MON",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "TUE",
+            "label": "TUE",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "WED",
+            "label": "WED",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "TOTAL THU FRI SAT SUN RATE Regular",
+            "label": "THU",
+            "type": "text",
+            "calculated": true
+          },
+          {
+            "key": "HOURS Overtime",
+            "label": "Overtime",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "TOTALS",
+            "label": "TOTALS",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "LABOR USED: NAME and LABOR CLASSIFICATION",
+            "label": "Text211",
+            "type": "text",
+            "calculated": false
+          }
+        ],
+        "fieldIds": [
+          "MON_10",
+          "TUE_11",
+          "WED_12",
+          "THU_13",
+          "FRI_14",
+          "SAT_15",
+          "SUN_16",
+          "RATE_17",
+          "Regular_18",
+          "Overtime_19",
+          "TOTALS_20",
+          "MON (1)_22",
+          "TUE (1)_23",
+          "WED (1)_24",
+          "THU (1)_25",
+          "FRI (1)_26",
+          "SAT (1)_27",
+          "SUN (1)_28",
+          "RATE (1)_29",
+          "Regular (1)_30",
+          "Overtime (1)_31",
+          "Text31_32",
+          "Text33_34",
+          "Text34_35",
+          "Text35_36",
+          "Text36_37",
+          "Text37_38",
+          "Text38_39",
+          "Text39_40",
+          "Text40_41",
+          "Text41_42",
+          "Text42_43",
+          "Text43_44",
+          "Text45_46",
+          "Text46_47",
+          "Text47_48",
+          "Text48_49",
+          "Text49_50",
+          "Text50_51",
+          "Text51_52",
+          "Text52_53",
+          "Text53_54",
+          "Text54_55",
+          "Text55_56",
+          "Text57_58",
+          "Text58_59",
+          "Text59_60",
+          "Text60_61",
+          "Text61_62",
+          "Text62_63",
+          "Text63_64",
+          "Text64_65",
+          "Text65_66",
+          "Text66_67",
+          "Text67_68",
+          "Text69_70",
+          "Text70_71",
+          "Text71_72",
+          "Text72_73",
+          "Text73_74",
+          "Text74_75",
+          "Text75_76",
+          "Text76_77",
+          "Text77_78",
+          "Text78_79",
+          "Text79_80",
+          "Text81_82",
+          "Text82_83",
+          "Text83_84",
+          "Text84_85",
+          "Text85_86",
+          "Text86_87",
+          "Text87_88",
+          "Text88_89",
+          "Text89_90",
+          "Text90_91",
+          "Text91_92",
+          "Text93_94",
+          "Text94_95",
+          "Text95_96",
+          "Text96_97",
+          "Text97_98",
+          "Text98_99",
+          "Text99_100",
+          "Text100_101",
+          "Text101_102",
+          "Text102_103",
+          "Text103_104",
+          "SUB TOTAL_106",
+          "SUB TOTAL (1)_108",
+          "Text108_109",
+          "Text176_177",
+          "Text177_178",
+          "Text178_179",
+          "Text179_180",
+          "Text180_181",
+          "Text181_182",
+          "Text182_183",
+          "Text183_184",
+          "Text211_212",
+          "Text212_213",
+          "Text213_214",
+          "Text214_215",
+          "Text215_216",
+          "Text216_217",
+          "Text217_218",
+          "Text218_219"
+        ],
+        "hasCalculatedColumns": true,
+        "rationale": "Repeated row indices in field names indicate a tabular block."
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text20_21",
+        "label": "Text20",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text32_33",
+        "label": "Text32",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text44_45",
+        "label": "Text44",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text56_57",
+        "label": "Text56",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text68_69",
+        "label": "Text68",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text80_81",
+        "label": "Text80",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text92_93",
+        "label": "Text92",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text104_105",
+        "label": "Text104",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text106_107",
+        "label": "Text106",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text109_110",
+        "label": "Text109",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "LABOR TOTAL_111",
+        "label": "LABOR TOTAL",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text111_112",
+        "label": "Text111",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "table",
+        "tableId": "table_docai_table_p0_1",
+        "title": "Docai Table P0 1",
+        "columns": [
+          {
+            "key": "Quantity",
+            "label": "Quantity",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "Unit",
+            "label": "Unit",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "TOTALS",
+            "label": "TOTALS (1)",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "MATERIALS USED",
+            "label": "Text205",
+            "type": "text",
+            "calculated": false
+          }
+        ],
+        "fieldIds": [
+          "Quantity_113",
+          "Unit_114",
+          "TOTALS (1)_115",
+          "Text115_116",
+          "Quantity (1)_117",
+          "Unit (1)_118",
+          "TOTALS (2)_119",
+          "Text119_120",
+          "Text120_121",
+          "Text121_122",
+          "Text122_123",
+          "Text123_124",
+          "Text124_125",
+          "Text125_126",
+          "Text126_127",
+          "Text127_128",
+          "Text128_129",
+          "Text129_130",
+          "Text130_131",
+          "Text131_132",
+          "Text132_133",
+          "Text133_134",
+          "Text134_135",
+          "Text135_136",
+          "SUB TOTAL (2)_137",
+          "Text137_138",
+          "SALES TAX %_139",
+          "Text139_140",
+          "MATERIAL TOTAL_141",
+          "Text141_142",
+          "Text184_185",
+          "Text185_186",
+          "Text186_187",
+          "Text187_188",
+          "Text188_189",
+          "Text189_190",
+          "Text205_206",
+          "Text206_207",
+          "Text207_208",
+          "Text208_209",
+          "Text209_210",
+          "Text210_211"
+        ],
+        "hasCalculatedColumns": false,
+        "rationale": "Repeated row indices in field names indicate a tabular block."
+      },
+      {
+        "kind": "table",
+        "tableId": "table_docai_table_p0_2",
+        "title": "Docai Table P0 2",
+        "columns": [
+          {
+            "key": "MATERIAL Hours",
+            "label": "Hours",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "TOTAL Rate",
+            "label": "Rate",
+            "type": "text",
+            "calculated": true
+          },
+          {
+            "key": "TOTALS",
+            "label": "TOTALS (3)",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "EQUIPMENT RENTAL USED",
+            "label": "Text219",
+            "type": "text",
+            "calculated": false
+          }
+        ],
+        "fieldIds": [
+          "Hours_143",
+          "Rate_144",
+          "TOTALS (3)_145",
+          "Text145_146",
+          "Hours (1)_147",
+          "Rate (1)_148",
+          "TOTALS (4)_149",
+          "Text149_150",
+          "Text150_151",
+          "Text151_152",
+          "Text152_153",
+          "Text153_154",
+          "Text154_155",
+          "Text155_156",
+          "Text156_157",
+          "Text157_158",
+          "Text158_159",
+          "Text159_160",
+          "Text160_161",
+          "Text161_162",
+          "SUB TOTAL (3)_163",
+          "Text163_164",
+          "SALES TAX % (1)_165",
+          "Text165_166",
+          "EQUIPMENT TOTAL_167",
+          "Text167_168",
+          "Text190_191",
+          "Text191_192",
+          "Text192_193",
+          "Text193_194",
+          "Text194_195",
+          "Text219_220",
+          "Text220_221",
+          "Text221_222",
+          "Text222_223",
+          "Text223_224"
+        ],
+        "hasCalculatedColumns": true,
+        "rationale": "Repeated row indices in field names indicate a tabular block."
+      },
+      {
+        "kind": "table",
+        "tableId": "table_docai_table_p0_3",
+        "title": "Docai Table P0 3",
+        "columns": [
+          {
+            "key": "TOTALS",
+            "label": "TOTALS (5)",
+            "type": "text",
+            "calculated": false
+          },
+          {
+            "key": "EQUIPMENT TOTAL SUBCONTRACTORS USED",
+            "label": "Text224",
+            "type": "text",
+            "calculated": true
+          }
+        ],
+        "fieldIds": [
+          "TOTALS (5)_169",
+          "Text169_170",
+          "TOTALS (6)_171",
+          "Text171_172",
+          "Text172_173",
+          "Text173_174",
+          "TOTAL SUBCONTRACTOR COST_175",
+          "Text175_176",
+          "Text195_196",
+          "Text196_197",
+          "Text197_198",
+          "Text198_199",
+          "Text200_201",
+          "Text201_202",
+          "Text202_203",
+          "Text203_204",
+          "Text224_225",
+          "Text225_226",
+          "Text226_227"
+        ],
+        "hasCalculatedColumns": true,
+        "rationale": "Repeated row indices in field names indicate a tabular block."
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text199_200",
+        "label": "Text199",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text204_205",
+        "label": "Text204",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text227_228",
+        "label": "Text227",
+        "type": "text",
+        "required": false,
+        "options": []
+      }
+    ],
+    "sectionCount": 0,
+    "tableCount": 4,
+    "calculatedColumnCount": 3,
+    "notes": [
+      "Group \"docai_table_p0_0\" mapped to a table with calculated columns.",
+      "Group \"docai_table_p0_1\" mapped to a table.",
+      "Group \"docai_table_p0_2\" mapped to a table with calculated columns.",
+      "Group \"docai_table_p0_3\" mapped to a table with calculated columns."
+    ]
+  },
+  "reviewNotes": [
+    "Document AI detected 4 table region(s) across 1 page(s).",
+    "Mapped 204 field(s) into Document AI table regions by containment.",
+    "Detected 4 table block(s) with 3 calculated column(s).",
+    "Parsed with AcroForm inputs grouped by Google Document AI table layout."
+  ],
+  "createdAt": "2026-05-29T14:45:41.594Z",
+  "pdfFilePath": "D:\\CursorRevitMCP\\aps-ai-web\\.design-files\\form-builder\\analysis\\analysis_c2b6c80f28984a3288e2fc3e2b3bfb2a.pdf",
+  "sourceFileName": "Extra Work Order - WIN 2.pdf",
+  "sourceMimeType": "application/pdf"
+}

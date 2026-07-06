@@ -1,0 +1,24 @@
+{
+  "sourceModel": "26-0349 A101 (2026 07-01) - MODEL",
+  "sourceRevitVersion": "2025",
+  "extractedUtc": "2026-07-02",
+  "note": "Sheet inventory from get_sheets. Per-view details (view type, scale, view template name) NOT included - no get_views tool in v17 bridge; viewport IDs are viewport elements, not view IDs. View detail extraction is part of the export-tool spec for the next CC session.",
+  "titleBlocksUsed": ["TB_ERECTION_MC_30-42"],
+  "sheets": [
+    {"id": 580088, "sheetNumber": "0000", "sheetName": "Metromont Startup", "titleBlock": "", "viewportIds": [580101, 580102, 581790, 8923892]},
+    {"id": 565470, "sheetNumber": "E0.01", "sheetName": "COVER", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948775, 10079028]},
+    {"id": 663530, "sheetNumber": "E2.01A", "sheetName": "LEVEL 1 - PARTIAL", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948810, 10075553]},
+    {"id": 10077160, "sheetNumber": "E2.01B", "sheetName": "LEVEL 1 - PARTIAL", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [10077174]},
+    {"id": 663543, "sheetNumber": "E2.02A", "sheetName": "ROOF - PARTIAL", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948811, 10077867]},
+    {"id": 9428534, "sheetNumber": "E2.02B", "sheetName": "ROOF - PARTIAL", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [9428540, 10077868]},
+    {"id": 663556, "sheetNumber": "E3.01", "sheetName": "ELEVATIONS", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948812, 10078110, 10078133, 10078157, 10078384]},
+    {"id": 663569, "sheetNumber": "E3.02", "sheetName": "ELEVATIONS", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948813, 10078244, 10078245, 10078246]},
+    {"id": 663582, "sheetNumber": "E3.03", "sheetName": "ELEVATIONS", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948814, 10078382, 10078383, 10078385]},
+    {"id": 10078247, "sheetNumber": "E3.04", "sheetName": "ELEVATIONS", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [10078515, 10078516, 10078517]},
+    {"id": 10096035, "sheetNumber": "E3.05", "sheetName": "ELEVATIONS", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [10096049]},
+    {"id": 7282190, "sheetNumber": "E4.01", "sheetName": "SECTIONS", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948815, 10079024, 10079025, 10079026, 10079027]},
+    {"id": 7282212, "sheetNumber": "E5.01", "sheetName": "3D PERSPECTIVES", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": [8948816, 10083347, 10083348]},
+    {"id": 529860, "sheetNumber": "zzzz", "sheetName": "erection_drawing_schedule_holder", "titleBlock": "TB_ERECTION_MC_30-42", "viewportIds": []}
+  ],
+  "counts": {"sheets": 14}
+}

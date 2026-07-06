@@ -1,0 +1,8 @@
+{
+  "name": "get_cached_mark_analysis",
+  "description": "Returns the latest cached mark verification results for user preview before triggering Design Automation.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}

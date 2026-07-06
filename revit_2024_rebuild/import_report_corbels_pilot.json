@@ -1,0 +1,227 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_corbels.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_corbels.json",
+    "attempted": 8,
+    "placed": 8,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 7,
+    "nextIndex": 8,
+    "done": false,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10029072,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329650,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031147,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329651,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031228,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329652,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031307,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329653,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031450,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329654,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031453,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329655,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031456,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329656,
+      "status": "placed"
+    },
+    {
+      "srcId": 10031459,
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "orientationResidual": {
+        "facingAngleDeg": 90,
+        "sourceFacing": [
+          0,
+          0,
+          1
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7329657,
+      "status": "placed"
+    }
+  ]
+}

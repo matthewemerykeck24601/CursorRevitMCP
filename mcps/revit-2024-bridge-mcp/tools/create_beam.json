@@ -1,0 +1,44 @@
+{
+  "name": "create_beam",
+  "description": "Project: place a structural framing beam (FamilySymbol id) between two 3D points on a level. Coordinates in millimetres. Use get_element_types (e.g. OST_StructuralFraming) to find familyTypeId.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "familyTypeId": {
+        "type": "number"
+      },
+      "startX": {
+        "type": "number"
+      },
+      "startY": {
+        "type": "number"
+      },
+      "startZ": {
+        "type": "number"
+      },
+      "endX": {
+        "type": "number"
+      },
+      "endY": {
+        "type": "number"
+      },
+      "endZ": {
+        "type": "number"
+      },
+      "levelId": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "familyTypeId",
+      "startX",
+      "startY",
+      "startZ",
+      "endX",
+      "endY",
+      "endZ",
+      "levelId"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "inventor_run_ilogic_rule",
+  "description": "Run a named iLogic rule in the active Inventor document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ruleName": {
+        "type": "string"
+      },
+      "runMode": {
+        "type": "string",
+        "enum": [
+          "activeDocument",
+          "allReferenced"
+        ]
+      }
+    },
+    "required": [
+      "ruleName"
+    ],
+    "additionalProperties": false
+  }
+}

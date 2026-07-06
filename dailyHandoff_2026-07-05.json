@@ -1,0 +1,55 @@
+{
+  "date": "2026-07-05",
+  "session": "Revit 2024 rebuild — DT dim fix + flat-slab/landing fix + GM phase (corbels, voids, 5/7 doors); bridge v20.4->v20.7",
+  "engineer": "mkeck@metromont.com",
+  "summary": "Big session. (1) Reapplied case-insensitive params to all 1489 placed products -> 679 DT sizes fixed. (2) Fixed 14 flat-slab/stair-landing elements (width-centered vs extend-along-hand; 2024 family origin mid-back-edge vs 2025 back-corner) by moving +W/2 along hand; roof slabs flush wall-to-wall (user confirmed). (3) GM phase: corbels 223 placed (approximate placeholder family), voids 18 placed WITH verified host cuts, 5/7 doors placed face-hosted+cut (openings full-height vertical). Built bridge v20.5 (door=void-cut name match), v20.6 (rotation orient - FAILED, reverted), v20.7 (true face-hosting + IFailuresPreprocessor - WORKS). 2 doors + 2333 reveals remain.",
+  "completedThisSession": [
+    "v20.4 reapply: 1489/1489 params rewritten case-insensitively, 0 failed. DT DIM_LENGTH matches source.",
+    "Flat-slab/landing fix: moved 14 elements +W/2 along hand vector. Roof flush to walls. User confirmed.",
+    "GM corbels: 223 placed (approximate CORBEL 8D X 12W X 1.33T; X exact, ~200mm Y/Z offset; placeholder, revisit).",
+    "GM voids: 18 pass2 voids placed on SHEARWALL_HORIZONTAL, ALL cut (verified notch geometry).",
+    "GM doors: 5 of 7 placed FACE-HOSTED + cut (pilot opening verified 1016w x 2184tall vertical). 2 failed (face-ref edge case), deleted."
+  ],
+  "bridgeBuilds": {
+    "v20_5": "IsVoidCutFamily extended to match 'DOOR' (Personal Doors = pure-void opening cutter). Worked (cut applied) but door orientation flat.",
+    "v20_6": "OrientByMeasuredBasis rotation branch for vertical facing. FAILED (Revit forbids rotating level-hosted instance about horizontal axis -> 'Can't rotate element into this position' modal). REVERTED in v20.7.",
+    "v20_7": "TRUE FACE-HOSTING (ACTIVE). PlaceRecord: pass2 + host resolved + facing.Z!=0 -> PlaceOnHostFace (find host planar face, normal=facing x hand, within 1ft of insertion pt; NewFamilyInstance(faceRef, pt, hand, symbol)) -> orients correctly + cuts. Fallback to flat point if no face. + CutAndReturn helper + ReadOrientationVectors + ImportFailureSwallower (IFailuresPreprocessor on execute txn: delete warnings, rollback errors SILENTLY - no blocking modal). Horizontal-facing path UNCHANGED. Build 0 err. Deployed v20_7.dll (sha256 81f259b1...f2fabcbb). Manifest -> v20_7.",
+    "activeDll": "RevitPublicMCPBridge.v20_7.dll. Horizontal-facing (SF/DT/voids/corbels) AND vertical-face-hosting (doors/reveals) both handled. No landmines."
+  },
+  "doors_DONE_v20_8": "ALL 7 doors face-hosted + cut. v20.8 hardened PlaceOnHostFace: diagnostics (faceHost obj) + try ALL parallel in-tol faces nearest-first + host-auto fallback w/ AlignHandInPlane + tol 1.0->1.5ft. The 2 stuck doors (7329920,7329923 on panel 7326926): v20.7 failed because nearest face's NewFamilyInstance threw & v20.7 only tried nearest; v20.8 tried the 2nd parallel face -> success. Active DLL now v20_8 (sha256 2cd368c1...58fc8197).",
+  "GM_COMPLETE_2026-07-05": {
+    "status": "GM PHASE DONE + CUTS VERIFIED. corbels 223 (approx placeholder), voids 18 cut, doors 7 cut, reveals 2305 CUT (geometrically verified panel 7320761 volume dropped, 24 faces w/ groove recesses). 28 no-host reveals intentionally skipped.",
+    "reveal_cut_fix": "v20.11 raw-hand refDir made ~half of voids extrude OUTWARD (no cut despite voidCut=applied). v20.12 projects refDir onto face plane (extrusion inward); v20.13 EnsurePenetratesHost flips any still-outward void. Cleared all reveals via deleting REVEAL family symbol (cascade) + element, reloaded REVEAL.rfa, re-ran 2305 -> all cut (penetrationFix=None, projection alone sufficient). Active DLL v20_13.",
+    "reveals": "Family = REVEAL (save-as of VOID_RECTANGULAR = true rectangle, matches source; user-directed for parity). Params driven per-instance from dataset: Length=src DIM_LENGTH, Width=type width(6/1/3/4/42in), Depth=1/2. instances_reveals.json (2333) + typemap_reveals.json. Placed 2305/2305 pass2 face-hosted+cut over v20.9->v20.12 iterations.",
+    "bridge_v20_9_to_12": "v20.9 trigger=face-host ALL pass2 cutting families (any facing; caught 1048 facing.Z==0 reveals). v20.10 IsVoidCutFamily also matches 'REVEAL'. v20.11 per-element SubTransaction+regen isolation (bad-cut element rolls back solo, not the chunk) + skip-already-placed (idempotent re-runs). v20.12 PlaceOnHostFace projects refDir onto face plane (fixed 30 'refDir parallel to face normal' failures). ACTIVE DLL = v20_12.",
+    "revisit_later": "Corbels use placeholder CORBEL 8D X 12W X 1.33T (approx; source was CORBEL Light Loaded 12D X 24W X 36T single+double, not in library). CORBEL_ADJUSTABLE (loaded, unused) + VOID_REVEAL_WIDE_RECTANGLE/WIDE (loaded, unused) can be purged.",
+    "reveals_old_note": "ONLY remaining GM item. Family chosen = VOID_REVEAL_WIDE_RECTANGLE (loaded, familyId 7329925). Pilot of 3 revealed 3 BLOCKERS (mechanism/face-hosting PROVEN, but family/param modeling remains):",
+    "blocker1_v20_9_trigger": "Face-host trigger = facing.Z!=0 (doors). Reveals MIXED: 1285 facing.Z!=0 (ok) + 1048 facing.Z==0 hand=(0,0,1) groove-runs-vertical (MISSED -> point-placed flat). FIX v20.9: trigger face-hosting for pass2 + host!=null + IsVoidCutFamily (any facing). PlaceRecord else-branch: change 'isVerticalFace' condition to IsVoidCutFamily(symbol). Falls back to point if no face. No regression (existing voids already placed).",
+    "blocker2_family_profile": "VOID_REVEAL_WIDE_RECTANGLE = WIDE recess (default 4'x5'x1/2 pocket). Fits '1/2 x 3'6 RECESS' (262) NOT narrow '1/2 x 6/4/3/1' (~2071). Need narrow-reveal profile family for the 1-6\" grooves (search VOID_REVEAL_* e.g. VOID_REVEAL_WIDE with small Reveal_Width, or a narrow family). Possibly split typemap: narrow->familyA, 3'6 RECESS->WIDE_RECTANGLE.",
+    "blocker3_run_length": "Reveal run length = per-instance source DIM_LENGTH (12'-31'6\"). Target run param = 'Width' (default 4'0). Source DIM_LENGTH did NOT auto-map (name mismatch DIM_LENGTH vs Width). Fix: confirm target DIM_LENGTH->Width formula, else write source DIM_LENGTH to target 'Width' (add mapping).",
+    "targetParams": "VOID_REVEAL_WIDE_RECTANGLE: Width=run length, Reveal_Width=x-section width(3.5 def), Reveal_Depth=0.5. 5 x-sections need authored types (Reveal_Width 6/1/3/4/42\").",
+    "datasets": "instances_reveals.json (2333), instances_reveals_pilot.json (3), typemap_reveals.json (5->WIDE_RECTANGLE, revisit per blocker2). Hosts=INSULATED_WALL_PANEL VERT (all placed, resolvable)."
+  },
+  "artifacts": [
+    "instances_doors.json (7), typemap_doors.json",
+    "instances_voids.json (20), typemap_voids.json",
+    "instances_corbels.json (223), typemap_corbels.json, remap_corbels.json",
+    "remap_gm.json = remap_pass1 copy + 18 voids + 5 doors (+ stale deleted-door entries, harmless)",
+    "import_report_doors_pilot4.json + import_report_doors_full.json (5 placed; 2 flat deleted)"
+  ],
+  "deltaPass_2026-07-05_takeoffCompare": {
+    "compareReport": "revit_2024_rebuild/compare_report.md — 4071/4073 real products placed (99.95%). Reveal takeoff 2333 pc / 48,800 lf by 5 types; DT 679 pc / 47,189 lf sloped.",
+    "void_10074904_RESOLVED": "Was mis-flagged as no-host. Its 'host' 10027565 is actually LEVEL 'ROOF HIGH POINT' (level-hosted pass1, never cut). Re-hosted onto tower panel 7322731 (src 10061860) as instance-hosted pass2. Fixed orientation facing=(0,0,1)/hand=(1,0,0) so face-normal=+Y (panel is vertical; original facing=(0,1,0) made facing x hand=(0,0,-1) -> wrong horizontal face -> regen fail). Then swapped Length<->Depth params (family profile=Width x Length, extrude=Depth): Length=2134(vertical), Width=3327(horiz), Depth=282(through 203 panel). Placed void 7347341 = 10'11 x 7'0 opening, cut verified face-reference. Datasets: instances_void_orphan1.json, added to remap_gm.json.",
+    "void_10079126_ORPHAN": "14.8m x 485 x 203mm slot, facing +Z, NO host in source. Spans multiple elements; phantom/artifact. NOT placed (invisible, cuts nothing). Voids now 19/20.",
+    "floor_10080471_BLOCKED": "CONCRETE SLAB - 6 in, LEVEL 1. Export captured NO boundary/sketch (empty placement). Cannot recreate without re-exporting sketch from source (same gap as views/dims).",
+    "corbels_PLACEHOLDER": "223 count-1:1 but on placeholder CORBEL 8D X 12W X 1.33T. Real 12D X 24W X 36T single+double not in library. Plan-only, deferred.",
+    "SAVE_REQUIRED": "New void 7347341 placed this pass — SAVE model before any restart."
+  },
+  "reminders": [
+    "SAVE the model NOW — new void 7347341 (tower opening) placed in the 2026-07-05 delta pass, plus prior doors/corbels/voids/reveals/DT-slope.",
+    "CORBEL_ADJUSTABLE (familyId 7327743) loaded but UNUSED — can delete.",
+    "remap_gm.json has stale entries for deleted doors 7329896/7329898/7329901?NO(7329901 is a KEPT door)/7329911/7329912 — the 5 KEPT doors are the last full run (pilot4 7329901 + full run 6, minus the 2 deleted 7329911/7329912 = 5). Harmless stale entries for deleted ids.",
+    "Read revit_2024_rebuild/rebuild_progress.json FIRST on resume (gmPhase_2026-07-04, gm2_gm3_2026-07-05, v20_7_RESULT_2026-07-05).",
+    "GM remaining = 2 doors (v20.8 ref-fix) + 2333 reveals (needs target family). Everything else in GM done."
+  ]
+}

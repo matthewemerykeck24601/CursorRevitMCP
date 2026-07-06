@@ -1,0 +1,23 @@
+{
+  "name": "get_material_quantities",
+  "description": "Calculate material quantities and takeoffs from the current Revit project. Returns detailed information about each material including name, class, area, volume, and element counts. Useful for cost estimation, material ordering, and sustainability analysis.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "categoryFilters": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Optional list of Revit category names to filter by (e.g., ['OST_Walls', 'OST_Floors', 'OST_Roofs']). If not specified, all categories are included."
+      },
+      "selectedElementsOnly": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to only analyze currently selected elements. Defaults to false (analyze entire project)."
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

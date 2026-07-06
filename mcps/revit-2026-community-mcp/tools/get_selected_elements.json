@@ -1,0 +1,15 @@
+{
+  "name": "get_selected_elements",
+  "description": "Get elements currently selected in Revit. You can limit the number of returned elements.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "limit": {
+        "type": "number",
+        "description": "Maximum number of elements to return"
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

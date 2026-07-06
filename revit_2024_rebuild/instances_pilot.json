@@ -1,0 +1,1139 @@
+{
+  "instances": [
+    {
+      "elementId": 10028269,
+      "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009904ed",
+      "category": "OST_StructuralFraming",
+      "familyName": "COLUMN (CLA)",
+      "typeName": "30\" X 30\"",
+      "typeId": 9448213,
+      "levelName": null,
+      "levelId": null,
+      "placementType": "WorkPlaneBased",
+      "placement": {
+        "kind": "point",
+        "point": {
+          "x": 27826.437087210128,
+          "y": -18941.2416906705,
+          "z": -304.80000000009494
+        },
+        "rotationDeg": 0
+      },
+      "orientation": {
+        "facingOrientation": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        "handOrientation": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "facingFlipped": false,
+      "handFlipped": false,
+      "mirrored": false,
+      "phaseCreated": "New Construction",
+      "phaseDemolished": "",
+      "hostElementId": 30,
+      "hostFace": {
+        "hostElementId": 30,
+        "faceResolved": false
+      },
+      "hostGuidParam": null,
+      "hostGuidDecodedId": null,
+      "parameters": {
+        "Category": {
+          "value": "",
+          "raw": -2001320
+        },
+        "Export to IFC": {
+          "value": "By Type",
+          "raw": 0
+        },
+        "IfcGUID": {
+          "value": "3dD5I8dUjAce4Ms6Xwysk7",
+          "raw": null
+        },
+        "Rebar Cover - Bottom Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Top Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Other Faces": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Design Option": {
+          "value": "",
+          "raw": null
+        },
+        "Volume": {
+          "value": "203.26 CF",
+          "raw": 203.2552083333374
+        },
+        "Phase Demolished": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Created": {
+          "value": "New Construction",
+          "raw": 118390
+        },
+        "Host Id": {
+          "value": "",
+          "raw": null
+        },
+        "Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Family and Type": {
+          "value": "30\" X 30\"",
+          "raw": 9448213
+        },
+        "Family": {
+          "value": "30\" X 30\"",
+          "raw": 9448213
+        },
+        "Type": {
+          "value": "30\" X 30\"",
+          "raw": 9448213
+        },
+        "Type Id": {
+          "value": "30\" X 30\"",
+          "raw": 9448213
+        },
+        "Work Plane": {
+          "value": "Level : LEVEL 1",
+          "raw": null
+        },
+        "Schedule Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Offset from Host": {
+          "value": "-1' - 0\"",
+          "raw": -304.8
+        },
+        "IDENTITY_DESCRIPTION_SHORT": {
+          "value": "CLA",
+          "raw": null
+        },
+        "IDENTITY_COMMENT": {
+          "value": "CLA",
+          "raw": null
+        },
+        "CONTROL_MARK": {
+          "value": "CLA                -01",
+          "raw": null
+        },
+        "CONTROL_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "CLA_TOP_ELEVATION": {
+          "value": "32' - 6 1/4\"",
+          "raw": 9912.35
+        },
+        "CLA_TOP_BEARING": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "DIM_LENGTH": {
+          "value": "32' - 6 1/4\"",
+          "raw": 9912.35
+        },
+        "SCHEDULE_ORDER_CODE": {
+          "value": "NA",
+          "raw": null
+        },
+        "WEIGHT_PER_UNIT": {
+          "value": "150",
+          "raw": 150
+        },
+        "DESIGN_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "ARCH_SF_1": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_2": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_3": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_4": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "MEMBER_VOLUME_CAST": {
+          "value": "203.26 CF",
+          "raw": 203.26
+        },
+        "MEMBER_WEIGHT_CAST": {
+          "value": "30488.28 lbf",
+          "raw": 444942.99904236995
+        },
+        "UP FACE HAUNCH": {
+          "value": "2",
+          "raw": 2
+        },
+        "Base Joint": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "Grout_Material": {
+          "value": "NON-METALLIC NON-SHRINK GROUT",
+          "raw": 308825
+        },
+        "Grout Visibility": {
+          "value": "No",
+          "raw": 0
+        },
+        "Column_Void_Buffer": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "column_void_depth": {
+          "value": "2' - 6\"",
+          "raw": 762
+        },
+        "column_void_length": {
+          "value": "32' - 6 1/4\"",
+          "raw": 9912.35
+        },
+        "column_void_width": {
+          "value": "2' - 6\"",
+          "raw": 762
+        },
+        "buffer_void_visible": {
+          "value": "No",
+          "raw": 0
+        },
+        "____________": {
+          "value": "",
+          "raw": null
+        },
+        "PROD_CONTROL_MARK": {
+          "value": "CLA                -01",
+          "raw": null
+        },
+        "STRUCTURAL_MEMBER_VOLUME_CAST": {
+          "value": "203.26 CF",
+          "raw": 203.2552083333374
+        },
+        "ARCH_VOLUME_CAST_1": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_2": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_3": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_4": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_TOTAL": {
+          "value": "0.00 CF",
+          "raw": 0
+        }
+      }
+    },
+    {
+      "elementId": 10031577,
+      "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009911d9",
+      "category": "OST_StructuralFraming",
+      "familyName": "T_GIRDER (TGA)",
+      "typeName": "36IT48",
+      "typeId": 10031567,
+      "levelName": null,
+      "levelId": null,
+      "placementType": "WorkPlaneBased",
+      "placement": {
+        "kind": "point",
+        "point": {
+          "x": 28207.43708721011,
+          "y": -55136.24169067064,
+          "z": 10210.800000000003
+        },
+        "rotationDeg": 89.9999999999999
+      },
+      "orientation": {
+        "facingOrientation": {
+          "x": -1,
+          "y": 1.7763568394002505E-15,
+          "z": 0
+        },
+        "handOrientation": {
+          "x": 1.7763568394002505E-15,
+          "y": 1,
+          "z": 0
+        }
+      },
+      "facingFlipped": false,
+      "handFlipped": false,
+      "mirrored": false,
+      "phaseCreated": "New Construction",
+      "phaseDemolished": "",
+      "hostElementId": 10027565,
+      "hostFace": {
+        "hostElementId": 10027565,
+        "faceResolved": false
+      },
+      "hostGuidParam": null,
+      "hostGuidDecodedId": null,
+      "parameters": {
+        "Category": {
+          "value": "",
+          "raw": -2001320
+        },
+        "Export to IFC": {
+          "value": "By Type",
+          "raw": 0
+        },
+        "IfcGUID": {
+          "value": "3dD5I8dUjAce4Ms6Xwytwp",
+          "raw": null
+        },
+        "Rebar Cover - Bottom Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Top Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Other Faces": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Design Option": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Demolished": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Created": {
+          "value": "New Construction",
+          "raw": 118390
+        },
+        "Structural Material": {
+          "value": "PRECAST CONCRETE",
+          "raw": 308818
+        },
+        "Host Id": {
+          "value": "",
+          "raw": null
+        },
+        "Level": {
+          "value": "ROOF HIGH POINT",
+          "raw": 10027565
+        },
+        "Family and Type": {
+          "value": "36IT48",
+          "raw": 10031567
+        },
+        "Family": {
+          "value": "36IT48",
+          "raw": 10031567
+        },
+        "Type": {
+          "value": "36IT48",
+          "raw": 10031567
+        },
+        "Type Id": {
+          "value": "36IT48",
+          "raw": 10031567
+        },
+        "Work Plane": {
+          "value": "Level : ROOF HIGH POINT",
+          "raw": null
+        },
+        "Schedule Level": {
+          "value": "ROOF HIGH POINT",
+          "raw": 10027565
+        },
+        "Offset from Host": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "IDENTITY_DESCRIPTION_SHORT": {
+          "value": "TGA",
+          "raw": null
+        },
+        "IDENTITY_COMMENT": {
+          "value": "TGA",
+          "raw": null
+        },
+        "CONTROL_MARK": {
+          "value": "TGA                -01",
+          "raw": null
+        },
+        "CONTROL_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "DIM_LENGTH": {
+          "value": "33' - 6\"",
+          "raw": 10210.799999999917
+        },
+        "WEIGHT_PER_UNIT": {
+          "value": "150",
+          "raw": 150
+        },
+        "DESIGN_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "LOC_ID": {
+          "value": "",
+          "raw": null
+        },
+        "PRODUCT_CODE": {
+          "value": "",
+          "raw": null
+        },
+        "HANDLING_CODE": {
+          "value": "",
+          "raw": null
+        },
+        "AW_1": {
+          "value": "No",
+          "raw": 0
+        },
+        "AW_2": {
+          "value": "No",
+          "raw": 0
+        },
+        "AW_3": {
+          "value": "No",
+          "raw": 0
+        },
+        "AW_4": {
+          "value": "No",
+          "raw": 0
+        },
+        "AW_5": {
+          "value": "No",
+          "raw": 0
+        },
+        "AW_6": {
+          "value": "No",
+          "raw": 0
+        },
+        "RELEASE_STRENGTH": {
+          "value": "",
+          "raw": null
+        },
+        "FINAL_STRENGTH": {
+          "value": "",
+          "raw": null
+        },
+        "ARCH_SF_1": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_2": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_3": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_4": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "MEMBER_VOLUME_CAST": {
+          "value": "266.14 CF",
+          "raw": 266.14
+        },
+        "MEMBER_WEIGHT_CAST": {
+          "value": "39920.83 lbf",
+          "raw": 582600.7181927159
+        },
+        "Mark_Opp_Indicators": {
+          "value": "No",
+          "raw": 0
+        },
+        "Vertical_Offset_MarkEnd": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "Vertical_Offset_OppEnd": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "Batter_Ends": {
+          "value": "No",
+          "raw": 0
+        },
+        "NOMINAL_LENGTH": {
+          "value": "33' - 6\"",
+          "raw": 10210.799999999917
+        },
+        "____________": {
+          "value": "",
+          "raw": null
+        },
+        "STRUCTURAL_MEMBER_VOLUME_CAST": {
+          "value": "266.14 CF",
+          "raw": 266.13888888888374
+        },
+        "ARCH_VOLUME_CAST_1": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_2": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_3": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_4": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_TOTAL": {
+          "value": "0.00 CF",
+          "raw": 0
+        }
+      }
+    },
+    {
+      "elementId": 10038108,
+      "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00992b5c",
+      "category": "OST_StructuralFraming",
+      "familyName": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "typeName": "10\"",
+      "typeId": 10032513,
+      "levelName": null,
+      "levelId": null,
+      "placementType": "WorkPlaneBased",
+      "placement": {
+        "kind": "point",
+        "point": {
+          "x": 29655.23708721001,
+          "y": -103650.2416906704,
+          "z": -304.80000000006567
+        },
+        "rotationDeg": 179.99999999999983
+      },
+      "orientation": {
+        "facingOrientation": {
+          "x": 3.0867203490324563E-15,
+          "y": 1,
+          "z": 0
+        },
+        "handOrientation": {
+          "x": -1,
+          "y": 3.0867203490324563E-15,
+          "z": 0
+        }
+      },
+      "facingFlipped": true,
+      "handFlipped": false,
+      "mirrored": true,
+      "phaseCreated": "New Construction",
+      "phaseDemolished": "",
+      "hostElementId": 30,
+      "hostFace": {
+        "hostElementId": 30,
+        "faceResolved": false
+      },
+      "hostGuidParam": null,
+      "hostGuidDecodedId": null,
+      "parameters": {
+        "Category": {
+          "value": "",
+          "raw": -2001320
+        },
+        "Export to IFC": {
+          "value": "By Type",
+          "raw": 0
+        },
+        "IfcGUID": {
+          "value": "3dD5I8dUjAce4Ms6XwyqGs",
+          "raw": null
+        },
+        "Rebar Cover - Bottom Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Top Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Other Faces": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Design Option": {
+          "value": "",
+          "raw": null
+        },
+        "Volume": {
+          "value": "356.03 CF",
+          "raw": 356.0295138889566
+        },
+        "Phase Demolished": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Created": {
+          "value": "New Construction",
+          "raw": 118390
+        },
+        "Structural Material": {
+          "value": "PRECAST CONCRETE",
+          "raw": 308818
+        },
+        "Host Id": {
+          "value": "",
+          "raw": null
+        },
+        "Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Family and Type": {
+          "value": "10\"",
+          "raw": 10032513
+        },
+        "Family": {
+          "value": "10\"",
+          "raw": 10032513
+        },
+        "Type": {
+          "value": "10\"",
+          "raw": 10032513
+        },
+        "Type Id": {
+          "value": "10\"",
+          "raw": 10032513
+        },
+        "Work Plane": {
+          "value": "Level : LEVEL 1",
+          "raw": null
+        },
+        "Schedule Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Offset from Host": {
+          "value": "-1' - 0\"",
+          "raw": -304.8000000000328
+        },
+        "IDENTITY_DESCRIPTION_SHORT": {
+          "value": "WPB-V",
+          "raw": null
+        },
+        "IDENTITY_COMMENT": {
+          "value": "WPB",
+          "raw": null
+        },
+        "CONTROL_MARK": {
+          "value": "WPB-V              -01",
+          "raw": null
+        },
+        "CONTROL_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "DIM_LENGTH": {
+          "value": "36' - 0 1/2\"",
+          "raw": 10985.500000000065
+        },
+        "DIM_WIDTH": {
+          "value": "12' - 0\"",
+          "raw": 3657.6000000000004
+        },
+        "WEIGHT_PER_UNIT": {
+          "value": "150",
+          "raw": 150
+        },
+        "DESIGN_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "ARCH_SF_1": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_2": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_3": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_4": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "MEMBER_VOLUME_CAST": {
+          "value": "356.03 CF",
+          "raw": 356.03000000000003
+        },
+        "MEMBER_WEIGHT_CAST": {
+          "value": "53404.43 lbf",
+          "raw": 779379.0678368316
+        },
+        "UP FACE HAUNCH": {
+          "value": "2",
+          "raw": 2
+        },
+        "Base_Grout_Joint_Thickness": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "Grout_Material": {
+          "value": "NON-METALLIC NON-SHRINK GROUT",
+          "raw": 308825
+        },
+        "Grout_Included": {
+          "value": "No",
+          "raw": 0
+        },
+        "Left_Jt_Included": {
+          "value": "No",
+          "raw": 0
+        },
+        "Right_Jt_Included": {
+          "value": "No",
+          "raw": 0
+        },
+        "panel_width_left": {
+          "value": "6' - 0\"",
+          "raw": 1828.8000000000002
+        },
+        "panel_width_right": {
+          "value": "6' - 0\"",
+          "raw": 1828.8000000000002
+        },
+        "NOMINAL_PANEL_WIDTH": {
+          "value": "12' - 0\"",
+          "raw": 3657.6000000000004
+        },
+        "Joint": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "____________": {
+          "value": "",
+          "raw": null
+        },
+        "STRUCTURAL_MEMBER_VOLUME_CAST": {
+          "value": "356.03 CF",
+          "raw": 356.0295138889566
+        },
+        "ARCH_VOLUME_CAST_1": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_2": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_3": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_4": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_TOTAL": {
+          "value": "0.00 CF",
+          "raw": 0
+        }
+      }
+    },
+    {
+      "elementId": 10044662,
+      "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009944f6",
+      "category": "OST_StructuralFraming",
+      "familyName": "SHEARWALL_HORIZONTAL (SWAH)",
+      "typeName": "8\"",
+      "typeId": 10044214,
+      "levelName": null,
+      "levelId": null,
+      "placementType": "WorkPlaneBased",
+      "placement": {
+        "kind": "point",
+        "point": {
+          "x": 101715.03708721048,
+          "y": -1021.5416906702034,
+          "z": 6400.800000000019
+        },
+        "rotationDeg": 89.9999999999999
+      },
+      "orientation": {
+        "facingOrientation": {
+          "x": -1,
+          "y": 1.7763568394002505E-15,
+          "z": 0
+        },
+        "handOrientation": {
+          "x": 1.7763568394002505E-15,
+          "y": 1,
+          "z": 0
+        }
+      },
+      "facingFlipped": false,
+      "handFlipped": false,
+      "mirrored": false,
+      "phaseCreated": "New Construction",
+      "phaseDemolished": "",
+      "hostElementId": null,
+      "hostFace": null,
+      "hostGuidParam": null,
+      "hostGuidDecodedId": null,
+      "parameters": {
+        "Category": {
+          "value": "",
+          "raw": -2001320
+        },
+        "Export to IFC": {
+          "value": "By Type",
+          "raw": 0
+        },
+        "IfcGUID": {
+          "value": "3dD5I8dUjAce4Ms6XwyokS",
+          "raw": null
+        },
+        "Rebar Cover - Bottom Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Top Face": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Rebar Cover - Other Faces": {
+          "value": "Rebar Cover 1",
+          "raw": 131689
+        },
+        "Design Option": {
+          "value": "",
+          "raw": null
+        },
+        "Volume": {
+          "value": "285.78 CF",
+          "raw": 285.7801352380459
+        },
+        "Phase Demolished": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Created": {
+          "value": "New Construction",
+          "raw": 118390
+        },
+        "Host Id": {
+          "value": "",
+          "raw": null
+        },
+        "Level": {
+          "value": "",
+          "raw": null
+        },
+        "Family and Type": {
+          "value": "8\"",
+          "raw": 10044214
+        },
+        "Family": {
+          "value": "8\"",
+          "raw": 10044214
+        },
+        "Type": {
+          "value": "8\"",
+          "raw": 10044214
+        },
+        "Type Id": {
+          "value": "8\"",
+          "raw": 10044214
+        },
+        "Work Plane": {
+          "value": "<not associated>",
+          "raw": null
+        },
+        "Schedule Level": {
+          "value": "",
+          "raw": null
+        },
+        "Offset from Host": {
+          "value": "-1' - 0\"",
+          "raw": -304.80000000001087
+        },
+        "IDENTITY_DESCRIPTION_SHORT": {
+          "value": "SWA-H",
+          "raw": null
+        },
+        "IDENTITY_COMMENT": {
+          "value": "SWA",
+          "raw": null
+        },
+        "CONTROL_MARK": {
+          "value": "SWA-H              -02",
+          "raw": null
+        },
+        "CONTROL_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "DIM_LENGTH": {
+          "value": "46' - 3\"",
+          "raw": 14097
+        },
+        "DIM_WIDTH": {
+          "value": "9' - 6\"",
+          "raw": 2895.6
+        },
+        "WEIGHT_PER_UNIT": {
+          "value": "150",
+          "raw": 150
+        },
+        "DESIGN_NUMBER": {
+          "value": "",
+          "raw": null
+        },
+        "ARCH_SF_1": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_2": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_3": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "ARCH_SF_4": {
+          "value": "0 SF",
+          "raw": 0
+        },
+        "MEMBER_VOLUME_CAST": {
+          "value": "285.78 CF",
+          "raw": 285.78000000000003
+        },
+        "MEMBER_WEIGHT_CAST": {
+          "value": "42867.02 lbf",
+          "raw": 625597.129087284
+        },
+        "Base_Grout_Joint_Thickness": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "Grout_Material": {
+          "value": "NON-METALLIC NON-SHRINK GROUT",
+          "raw": 308825
+        },
+        "Shearwall_Void_Buffer": {
+          "value": "0' - 0\"",
+          "raw": 0
+        },
+        "buffer_void_visible": {
+          "value": "No",
+          "raw": 0
+        },
+        "shearwall_void_depth": {
+          "value": "9' - 6\"",
+          "raw": 2895.6
+        },
+        "shearwall_void_length": {
+          "value": "46' - 3\"",
+          "raw": 14097
+        },
+        "shearwall_void_width": {
+          "value": "0' - 8\"",
+          "raw": 203.2
+        },
+        "Grout_Included": {
+          "value": "No",
+          "raw": 0
+        },
+        "____________": {
+          "value": "",
+          "raw": null
+        },
+        "STRUCTURAL_MEMBER_VOLUME_CAST": {
+          "value": "285.78 CF",
+          "raw": 285.7801352380459
+        },
+        "ARCH_VOLUME_CAST_1": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_2": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_3": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_4": {
+          "value": "0.00 CF",
+          "raw": 0
+        },
+        "ARCH_VOLUME_CAST_TOTAL": {
+          "value": "0.00 CF",
+          "raw": 0
+        }
+      }
+    },
+    {
+      "elementId": 10044730,
+      "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099453a",
+      "category": "OST_GenericModel",
+      "familyName": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "typeName": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "typeId": 7288952,
+      "levelName": null,
+      "levelId": null,
+      "placementType": "WorkPlaneBased",
+      "placement": {
+        "kind": "point",
+        "point": {
+          "x": 101613.43708721052,
+          "y": -1068.4428014980986,
+          "z": 9350.930436616429
+        },
+        "rotationDeg": 240.55028677521514
+      },
+      "orientation": {
+        "facingOrientation": {
+          "x": 2.9611438212951867E-17,
+          "y": 0.01668102872807612,
+          "z": 0.9998608619605895
+        },
+        "handOrientation": {
+          "x": -1.7749096064838146E-15,
+          "y": -0.9998608619605895,
+          "z": 0.01668102872807612
+        }
+      },
+      "facingFlipped": false,
+      "handFlipped": false,
+      "mirrored": false,
+      "phaseCreated": "New Construction",
+      "phaseDemolished": "",
+      "hostElementId": 10044662,
+      "hostFace": {
+        "hostElementId": 10044662,
+        "faceNormal": null,
+        "facePoint": null,
+        "workPlaneName": "SHEARWALL_HORIZONTAL (SWAH) : 8\"",
+        "faceResolved": false
+      },
+      "hostGuidParam": null,
+      "hostGuidDecodedId": null,
+      "parameters": {
+        "Category": {
+          "value": "",
+          "raw": -2000151
+        },
+        "Export to IFC": {
+          "value": "By Type",
+          "raw": 0
+        },
+        "IfcGUID": {
+          "value": "3dD5I8dUjAce4Ms6XwyofG",
+          "raw": null
+        },
+        "Design Option": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Demolished": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Created": {
+          "value": "New Construction",
+          "raw": 118390
+        },
+        "Host Id": {
+          "value": "",
+          "raw": null
+        },
+        "Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Family and Type": {
+          "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+          "raw": 7288952
+        },
+        "Family": {
+          "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+          "raw": 7288952
+        },
+        "Type": {
+          "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+          "raw": 7288952
+        },
+        "Type Id": {
+          "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+          "raw": 7288952
+        },
+        "Work Plane": {
+          "value": "SHEARWALL_HORIZONTAL (SWAH) : 8\"",
+          "raw": null
+        },
+        "Schedule Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Offset from Host": {
+          "value": "0' - 0\"",
+          "raw": -7.120014956407466E-11
+        },
+        "Elevation from Level": {
+          "value": "30' - 8 1/8\"",
+          "raw": 9350.930436616429
+        },
+        "COUNT_MULTIPLIER": {
+          "value": "1",
+          "raw": 1
+        },
+        "Width": {
+          "value": "46' - 6 9/16\"",
+          "raw": 14187.163901111726
+        },
+        "Depth": {
+          "value": "0' - 8\"",
+          "raw": 203.19999999986717
+        },
+        "Length": {
+          "value": "0' - 9 5/16\"",
+          "raw": 236.71316743062803
+        }
+      }
+    }
+  ],
+  "model": "PILOT subset"
+}

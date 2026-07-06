@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>RevitPublicMCPBridge</Name>
+    <Assembly>@@ASSEMBLY_PATH@@</Assembly>
+    <AddInId>4C880AAC-7E16-4AE7-BD4D-27E641620A71</AddInId>
+    <FullClassName>RevitPublicMCPBridge.RevitPublicMCPBridge</FullClassName>
+    <VendorId>MSTRI</VendorId>
+    <VendorDescription>Bridge UI for Autodesk Revit Public MCP Server.</VendorDescription>
+  </AddIn>
+</RevitAddIns>

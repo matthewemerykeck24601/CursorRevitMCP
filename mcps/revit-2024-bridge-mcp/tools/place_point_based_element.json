@@ -1,0 +1,34 @@
+{
+  "name": "place_point_based_element",
+  "description": "Project: place any point-based family instance (furniture, equipment, fixtures, etc.) by FamilySymbol id at a 3D point. Coordinates in millimetres; rotationDeg rotates around Z. levelId omitted = nearest level by elevation. (Routed to /api/project/create_point_based_element; named distinctly from the legacy batch create_point_based_element tool.)",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "familyTypeId": {
+        "type": "number"
+      },
+      "locationX": {
+        "type": "number"
+      },
+      "locationY": {
+        "type": "number"
+      },
+      "locationZ": {
+        "type": "number"
+      },
+      "levelId": {
+        "type": "number"
+      },
+      "rotationDeg": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "familyTypeId",
+      "locationX",
+      "locationY",
+      "locationZ"
+    ],
+    "additionalProperties": false
+  }
+}

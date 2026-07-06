@@ -1,0 +1,26 @@
+{
+  "name": "get_available_family_types",
+  "description": "Get available family types in the current Revit project. You can filter by category and family name, and limit the number of returned types.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "categoryList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of Revit category names to filter by (e.g., 'OST_Walls', 'OST_Doors', 'OST_Furniture')"
+      },
+      "familyNameFilter": {
+        "type": "string",
+        "description": "Filter family types by family name (partial match)"
+      },
+      "limit": {
+        "type": "number",
+        "description": "Maximum number of family types to return"
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

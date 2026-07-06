@@ -1,0 +1,17 @@
+D:\CursorRevitMCP\InventorMCPBridge\bin\Release\net8.0-windows\InventorMCPBridge.deps.json
+D:\CursorRevitMCP\InventorMCPBridge\bin\Release\net8.0-windows\InventorMCPBridge.dll
+D:\CursorRevitMCP\InventorMCPBridge\bin\Release\net8.0-windows\InventorMCPBridge.pdb
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.csproj.AssemblyReference.cache
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\UI\SettingsWindow.baml
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\UI\SettingsWindow.g.cs
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge_MarkupCompile.cache
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.g.resources
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.GeneratedMSBuildEditorConfig.editorconfig
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.AssemblyInfoInputs.cache
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.AssemblyInfo.cs
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.csproj.CoreCompileInputs.cache
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.sourcelink.json
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.dll
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\refint\InventorMCPBridge.dll
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\InventorMCPBridge.pdb
+D:\CursorRevitMCP\InventorMCPBridge\obj\Release\net8.0-windows\ref\InventorMCPBridge.dll

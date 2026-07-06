@@ -1,0 +1,16 @@
+{
+  "name": "inventor_set_angle_units",
+  "description": "Set the angle units for the active document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "units": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "units"
+    ],
+    "additionalProperties": false
+  }
+}

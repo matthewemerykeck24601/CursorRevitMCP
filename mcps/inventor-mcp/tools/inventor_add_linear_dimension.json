@@ -1,0 +1,43 @@
+{
+  "name": "inventor_add_linear_dimension",
+  "description": "Add a linear dimension between two points on a drawing sheet.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "viewIndex": {
+        "type": "number"
+      },
+      "viewName": {
+        "type": "string"
+      },
+      "fromX": {
+        "type": "number"
+      },
+      "fromY": {
+        "type": "number"
+      },
+      "toX": {
+        "type": "number"
+      },
+      "toY": {
+        "type": "number"
+      },
+      "dimensionType": {
+        "type": "string"
+      },
+      "fromCircleIndex": {
+        "type": "number"
+      },
+      "toCircleIndex": {
+        "type": "number"
+      },
+      "textOffsetX": {
+        "type": "number"
+      },
+      "textOffsetY": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

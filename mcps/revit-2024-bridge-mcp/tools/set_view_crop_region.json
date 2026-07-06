@@ -1,0 +1,32 @@
+{
+  "name": "set_view_crop_region",
+  "description": "Project: set a view's crop box extents (millimetres, in the view plane) and activate cropping.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "viewId": {
+        "type": "number"
+      },
+      "minX": {
+        "type": "number"
+      },
+      "minY": {
+        "type": "number"
+      },
+      "maxX": {
+        "type": "number"
+      },
+      "maxY": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "viewId",
+      "minX",
+      "minY",
+      "maxX",
+      "maxY"
+    ],
+    "additionalProperties": false
+  }
+}

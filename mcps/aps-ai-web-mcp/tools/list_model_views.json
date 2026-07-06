@@ -1,0 +1,13 @@
+{
+  "name": "list_model_views",
+  "description": "List already-available model views from caller context.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "views": {
+        "type": "array"
+      }
+    },
+    "required": []
+  }
+}

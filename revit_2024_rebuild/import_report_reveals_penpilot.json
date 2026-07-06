@@ -1,0 +1,343 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_reveals_penpilot.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_gm.json",
+    "attempted": 18,
+    "placed": 18,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 17,
+    "nextIndex": 18,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10033762,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 2,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338133,
+      "status": "placed"
+    },
+    {
+      "srcId": 10033919,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338135,
+      "status": "placed"
+    },
+    {
+      "srcId": 10034258,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 3\u00276\u0022 RECESS",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338137,
+      "status": "placed"
+    },
+    {
+      "srcId": 10034538,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338139,
+      "status": "placed"
+    },
+    {
+      "srcId": 10034587,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338141,
+      "status": "placed"
+    },
+    {
+      "srcId": 10034645,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 1\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338143,
+      "status": "placed"
+    },
+    {
+      "srcId": 10034875,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 1\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338145,
+      "status": "placed"
+    },
+    {
+      "srcId": 10034932,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 4\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338147,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035130,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 3\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338149,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035455,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 2,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338151,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035456,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338154,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035457,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 3\u00276\u0022 RECESS",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338156,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035458,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338158,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035459,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338160,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035460,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 1\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338162,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035461,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 1\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338164,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035462,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 4\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338166,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035463,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 3\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320761,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 3,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7338168,
+      "status": "placed"
+    }
+  ]
+}

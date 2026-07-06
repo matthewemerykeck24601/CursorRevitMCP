@@ -1,0 +1,9 @@
+{
+  "name": "inventor_list_drawing_views",
+  "description": "List drawing views on active Inventor sheet.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

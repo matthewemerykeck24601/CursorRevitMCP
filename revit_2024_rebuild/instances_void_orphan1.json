@@ -1,0 +1,131 @@
+{
+ "instances": [
+  {
+   "elementId": 10074904,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099bb18",
+   "category": "OST_GenericModel",
+   "familyName": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+   "typeName": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+   "typeId": 7288952,
+   "levelName": null,
+   "levelId": null,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 3486.8870872102693,
+     "y": 5298.169270280636,
+     "z": 10210.800000000001
+    },
+    "rotationDeg": 0
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 1,
+     "y": 0,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": 10061860,
+   "hostFace": {
+    "hostElementId": 10061860,
+    "faceResolved": false,
+    "workPlaneName": "SOLID_WALL_PANEL (VERT) (WPAV) : 08\""
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHCaX",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "ROOF HIGH POINT",
+     "raw": 10027565
+    },
+    "Family and Type": {
+     "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+     "raw": 7288952
+    },
+    "Family": {
+     "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+     "raw": 7288952
+    },
+    "Type": {
+     "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+     "raw": 7288952
+    },
+    "Type Id": {
+     "value": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+     "raw": 7288952
+    },
+    "Work Plane": {
+     "value": "Level : ROOF HIGH POINT",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "ROOF HIGH POINT",
+     "raw": 10027565
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Width": {
+     "value": "10' - 11\"",
+     "raw": 3327.4000000000256
+    },
+    "Depth": {
+     "value": "0' - 11 1/8\"",
+     "raw": 282.3219219021621
+    },
+    "Length": {
+     "value": "7' - 0\"",
+     "raw": 2133.6
+    }
+   }
+  }
+ ]
+}

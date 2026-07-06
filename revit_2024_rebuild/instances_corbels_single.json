@@ -1,0 +1,7564 @@
+{
+ "instances": [
+  {
+   "elementId": 10032222,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099145e",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 101054.63708721004,
+     "y": -18941.241690670726,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10031974,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwytiq",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 8.831169055506921e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10032224,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00991460",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 101054.63708721,
+     "y": -42487.04169067072,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10032061,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwytiA",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0772885176730102e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10032226,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00991462",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 101054.63708720998,
+     "y": -55136.24169067072,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10032062,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyti8",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.088523264139481e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10032228,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00991464",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 101054.63708720994,
+     "y": -78682.04169067073,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10032063,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwytiE",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.1094361355740561e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035960,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009922f8",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 185941.43708721007,
+     "y": -18941.241690671002,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035956,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyqsI",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0563756462384353e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035961,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009922f9",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 185941.43708721004,
+     "y": -42487.041690670994,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035957,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyqsJ",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.307710362975247e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035962,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009922fa",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 185941.43708720998,
+     "y": -55136.241690671,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035958,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyqsG",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0885232641394813e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035963,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009922fb",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 185941.43708720998,
+     "y": -78682.041690671,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035959,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyqsH",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.629186541985708e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035979,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099230b",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 102654.83708721015,
+     "y": -18941.241690670726,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035975,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyqnX",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 8.831169055506921e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035980,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099230c",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 102654.8370872102,
+     "y": -42487.04169067072,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035976,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyqnc",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0772885176730102e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035981,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099230d",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 102654.83708721022,
+     "y": -55136.24169067072,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035977,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyqnd",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.088523264139481e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10035982,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099230e",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 102654.83708721025,
+     "y": -78682.04169067073,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10035978,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyqna",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.1094361355740561e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046644,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cb4",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 187541.6370872102,
+     "y": -18941.241690671002,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046640,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoFU",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.098581648629495e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046645,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cb5",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 187541.63708721029,
+     "y": -42487.041690670994,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046641,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoFV",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0772885176730104e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046646,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cb6",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 187541.63708721029,
+     "y": -55136.241690671,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046642,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoFS",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0885232641394813e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046647,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cb7",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 187541.6370872103,
+     "y": -78682.041690671,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046643,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoFT",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.629186541985708e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046695,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994ce7",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 270828.23708721006,
+     "y": -18941.24169067128,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046691,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoED",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0563756462384355e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046696,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994ce8",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 270828.23708721006,
+     "y": -42487.04169067127,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046692,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoE2",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.30771036297525e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046697,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994ce9",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 270828.23708721,
+     "y": -55136.241690671275,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046693,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoE3",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0885232641394814e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046698,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cea",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 270828.23708721,
+     "y": -78682.04169067128,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046694,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoE0",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.629186541985709e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046707,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cf3",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 272428.4370872102,
+     "y": -18941.24169067128,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046703,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoEP",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.098581648629499e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046708,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cf4",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 272428.4370872103,
+     "y": -42487.04169067127,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046704,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoEU",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0772885176730107e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046709,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cf5",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 272428.4370872103,
+     "y": -55136.241690671275,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046705,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoEV",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 1.0885232641394814e-10
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046710,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994cf6",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 272428.4370872103,
+     "y": -78682.04169067128,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046706,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6XwyoES",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.629186541985709e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046728,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d08",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 357645.4370872101,
+     "y": -18941.241690671555,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046724,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9Y",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.0985816486295e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046729,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d09",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 357645.43708721007,
+     "y": -42487.04169067155,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046725,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9Z",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 3.773607354655389e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046730,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d0a",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 357645.43708720995,
+     "y": -55136.24169067155,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046726,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9W",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.420057827639961e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046731,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d0b",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 357645.43708720995,
+     "y": -78682.04169067155,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046727,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9X",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.629186541985712e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046740,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d14",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 359245.63708721026,
+     "y": -18941.241690671555,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046736,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9_",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.0985816486295e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046741,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d15",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 359245.63708721026,
+     "y": -42487.04169067155,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046737,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9$",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.307710362975251e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046742,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d16",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 359245.63708721026,
+     "y": -55136.24169067155,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046738,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9y",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.420057827639961e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10046743,
+   "uniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00994d17",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 359245.6370872103,
+     "y": -78682.04169067155,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10046739,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3dD5I8dUjAce4Ms6Xwyo9z",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 6.988369144759984e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10055080,
+   "uniqueId": "14350e85-c4f5-4007-aff3-2a47bed764cd-00996da8",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 444208.6370872103,
+     "y": -18941.24169067183,
+     "z": 8362.949999999908
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10055076,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0KDGw5nFL01w$pAaU_JWbb",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.098581648629503e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10055081,
+   "uniqueId": "14350e85-c4f5-4007-aff3-2a47bed764cd-00996da9",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 444208.63708721026,
+     "y": -42487.04169067183,
+     "z": 8756.64999999983
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10055077,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0KDGw5nFL01w$pAaU_JWba",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 3.773607354655414e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10055082,
+   "uniqueId": "14350e85-c4f5-4007-aff3-2a47bed764cd-00996daa",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 444208.6370872102,
+     "y": -55136.24169067183,
+     "z": 8966.19999999979
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10055078,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0KDGw5nFL01w$pAaU_JWbd",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.420057827639962e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10055083,
+   "uniqueId": "14350e85-c4f5-4007-aff3-2a47bed764cd-00996dab",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 444208.6370872102,
+     "y": -78682.04169067183,
+     "z": 8508.999999999714
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 8.881784197001228e-17,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10055079,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 30\" X 30\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0KDGw5nFL01w$pAaU_JWbc",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 30\" X 30\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 7.629186541985716e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10066714,
+   "uniqueId": "f559fdb4-8808-43d4-8537-25f7723b2437-00999b1a",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 14415.237087210018,
+     "y": -103320.04169067043,
+     "z": 8000.999999999713
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10066713,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3rMVsqY0X3r8Kt9VToehyj",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 9.312657311966177e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10067528,
+   "uniqueId": "f559fdb4-8808-43d4-8537-25f7723b2437-00999e48",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -30085.56291279002,
+     "y": -103320.04169067033,
+     "z": 8000.999999999633
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.2219726861916226e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3rMVsqY0X3r8Kt9VToehf$",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "-0' - 3\"",
+     "raw": -76.20000000036013
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10067766,
+   "uniqueId": "f559fdb4-8808-43d4-8537-25f7723b2437-00999f36",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -26123.162912789903,
+     "y": -118610.84169067028,
+     "z": 7696.199999999636
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10067764,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3rMVsqY0X3r8Kt9VToehi1",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 4.331468517193571e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10069278,
+   "uniqueId": "f559fdb4-8808-43d4-8537-25f7723b2437-0099a51e",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 12891.23708721011,
+     "y": -118610.84169067041,
+     "z": 7696.199999999636
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10069276,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "3rMVsqY0X3r8Kt9VToee4f",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 6.497202775790357e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10069882,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a77a",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -30085.562912790047,
+     "y": -118610.84169067032,
+     "z": 8000.999999999633
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.2219726861916226e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDL3",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "-0' - 3\"",
+     "raw": -76.20000000035851
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070324,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a934",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -5701.562912789922,
+     "y": -117391.64169067035,
+     "z": 6756.399999999635
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10070322,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDiD",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 6.497202775790357e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070411,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a98b",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -5091.9629127898415,
+     "y": -118610.84169067035,
+     "z": 7696.199999999636
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.1036122899989433e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDko",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 4.278710554023605e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070459,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a9bb",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -26123.162912789678,
+     "y": 20987.558309329692,
+     "z": 7696.199999999636
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10070457,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDk2",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 4.331468517193571e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070466,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a9c2",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 12891.237087210335,
+     "y": 20987.558309329568,
+     "z": 7696.199999999636
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10070464,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDlx",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 6.497202775790357e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070475,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a9cb",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -30085.56291278985,
+     "y": 20987.558309329655,
+     "z": 8000.999999999633
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.2219726861916226e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDlo",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "-0' - 3\"",
+     "raw": -76.20000000036217
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070480,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099a9d0",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -5091.962912789617,
+     "y": 20987.558309329623,
+     "z": 7696.199999999636
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.1036122899989433e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDlf",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 4.166252369192282e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070670,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099aa8e",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -25513.562912789475,
+     "y": 19768.35830932964,
+     "z": 6756.399999999631
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.2219726861916226e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDYt",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "-0' - 3\"",
+     "raw": -76.20000000037122
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070673,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099aa91",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -5701.562912789701,
+     "y": 19768.358309329586,
+     "z": 6756.399999999635
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10070671,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDYe",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 6.497202775790357e-12
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070716,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099aabc",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 14415.237087210187,
+     "y": 5696.758309329509,
+     "z": 8000.999999999713
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10070715,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDY5",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 9.312657311966177e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070734,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099aace",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -30085.56291278984,
+     "y": 5696.758309329613,
+     "z": 8000.999999999633
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.2219726861916226e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDZt",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "-0' - 3\"",
+     "raw": -76.20000000035621
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070819,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099ab23",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 5757.012087210373,
+     "y": 5696.758309329525,
+     "z": 8000.999999999633
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.0919291225871154e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDaQ",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 7 1/8\"",
+     "raw": 180.97499999983512
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10070943,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099ab9f",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": 1213.58708721008,
+     "y": 5696.758309329551,
+     "z": 8000.999999999713
+    },
+    "rotationDeg": 239.99999999999963
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": 0,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": false,
+   "handFlipped": false,
+   "mirrored": false,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": {
+    "hostElementId": 10070942,
+    "faceNormal": null,
+    "facePoint": null,
+    "workPlaneName": "COLUMN (CLA) : 24\" X 24\"",
+    "faceResolved": true
+   },
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDcc",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "COLUMN (CLA) : 24\" X 24\"",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "0' - 0\"",
+     "raw": 9.272049794617487e-11
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  },
+  {
+   "elementId": 10071634,
+   "uniqueId": "388c7d6d-54e5-4d64-8a1c-5c89dadd7239-0099ae52",
+   "category": "OST_GenericModel",
+   "familyName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeName": "CORBEL Light Loaded 12D X 24W X 36T",
+   "typeId": 9508006,
+   "levelName": "ROOF",
+   "levelId": 7320446,
+   "placementType": "WorkPlaneBased",
+   "placement": {
+    "kind": "point",
+    "point": {
+     "x": -25513.562912789916,
+     "y": -117391.6416906703,
+     "z": 6756.399999999782
+    },
+    "rotationDeg": 239.99999999999952
+   },
+   "orientation": {
+    "facingOrientation": {
+     "x": 0,
+     "y": 0,
+     "z": 1
+    },
+    "handOrientation": {
+     "x": -3.2219726861916226e-15,
+     "y": -1,
+     "z": 0
+    }
+   },
+   "facingFlipped": true,
+   "handFlipped": false,
+   "mirrored": true,
+   "phaseCreated": "New Construction",
+   "phaseDemolished": "",
+   "hostElementId": null,
+   "hostFace": null,
+   "hostGuidParam": null,
+   "hostGuidDecodedId": null,
+   "parameters": {
+    "Category": {
+     "value": "",
+     "raw": -2000151
+    },
+    "Export to IFC": {
+     "value": "By Type",
+     "raw": 0
+    },
+    "IfcGUID": {
+     "value": "0uZ7rjLELDP8eSN8dQHDnh",
+     "raw": null
+    },
+    "Design Option": {
+     "value": "",
+     "raw": null
+    },
+    "Volume": {
+     "value": "5.00 CF",
+     "raw": 4.999999999999697
+    },
+    "Area": {
+     "value": "10 SF",
+     "raw": 9.914213562372803
+    },
+    "Phase Demolished": {
+     "value": "",
+     "raw": null
+    },
+    "Phase Created": {
+     "value": "New Construction",
+     "raw": 118390
+    },
+    "Host Id": {
+     "value": "",
+     "raw": null
+    },
+    "Level": {
+     "value": "",
+     "raw": null
+    },
+    "Family and Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Family": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Type Id": {
+     "value": "CORBEL Light Loaded 12D X 24W X 36T",
+     "raw": 9508006
+    },
+    "Work Plane": {
+     "value": "<not associated>",
+     "raw": null
+    },
+    "Schedule Level": {
+     "value": "",
+     "raw": null
+    },
+    "Offset from Host": {
+     "value": "-0' - 3\"",
+     "raw": -76.20000000037112
+    },
+    "Elevation from Level": {
+     "value": "0' - 0\"",
+     "raw": 0
+    },
+    "CONSTRUCTION_PRODUCT": {
+     "value": "",
+     "raw": null
+    },
+    "COUNT_MULTIPLIER": {
+     "value": "1",
+     "raw": 1
+    },
+    "Material": {
+     "value": "PRECAST CONCRETE",
+     "raw": 308818
+    },
+    "Connector_Component_Length": {
+     "value": "0' - 0 1/8\"",
+     "raw": 3.175
+    },
+    "PRODUCT TYPE": {
+     "value": "",
+     "raw": null
+    }
+   }
+  }
+ ]
+}

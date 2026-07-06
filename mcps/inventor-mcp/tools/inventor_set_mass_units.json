@@ -1,0 +1,16 @@
+{
+  "name": "inventor_set_mass_units",
+  "description": "Set the mass units for the active document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "units": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "units"
+    ],
+    "additionalProperties": false
+  }
+}

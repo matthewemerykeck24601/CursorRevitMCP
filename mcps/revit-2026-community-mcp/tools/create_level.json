@@ -1,0 +1,76 @@
+{
+  "name": "create_level",
+  "description": "Create one or more levels in Revit at specified elevations. Levels define horizontal planes in the building and are used to host floor plans, ceilings, and other level-based elements. All elevation units are in millimeters (mm).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the level (e.g., 'Level 2', 'Roof', 'Basement')"
+            },
+            "elevation": {
+              "type": "number",
+              "description": "Elevation of the level in millimeters (mm) from project origin"
+            },
+            "description": {
+              "type": "string",
+              "description": "Optional description of the level"
+            },
+            "isMainLevel": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether this is a main level (default: true)"
+            },
+            "isBuildingStory": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether this level represents a building story (default: true)"
+            },
+            "computationHeight": {
+              "type": "number",
+              "description": "Optional computation height in mm"
+            },
+            "viewPlanOffset": {
+              "type": "number",
+              "description": "Optional view plan offset in mm"
+            },
+            "viewSectionOffset": {
+              "type": "number",
+              "description": "Optional view section offset in mm"
+            },
+            "viewElevationOffset": {
+              "type": "number",
+              "description": "Optional view elevation offset in mm"
+            },
+            "createFloorPlan": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to create a floor plan view for this level (default: true)"
+            },
+            "createCeilingPlan": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to create a ceiling plan view for this level (default: true)"
+            }
+          },
+          "required": [
+            "name",
+            "elevation"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Array of levels to create"
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

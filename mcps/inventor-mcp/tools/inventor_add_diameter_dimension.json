@@ -1,0 +1,25 @@
+{
+  "name": "inventor_add_diameter_dimension",
+  "description": "Add a diameter dimension to a specific circle in a drawing view.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "viewIndex": {
+        "type": "number"
+      },
+      "viewName": {
+        "type": "string"
+      },
+      "circleIndex": {
+        "type": "number"
+      },
+      "textOffsetX": {
+        "type": "number"
+      },
+      "textOffsetY": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

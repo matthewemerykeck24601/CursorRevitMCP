@@ -1,0 +1,16 @@
+{
+  "name": "open_sheet",
+  "description": "Project: set the active Revit view to a sheet, by sheetId or sheetNumber (one required).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sheetNumber": {
+        "type": "string"
+      },
+      "sheetId": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

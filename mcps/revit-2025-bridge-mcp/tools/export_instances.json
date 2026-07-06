@@ -1,0 +1,23 @@
+{
+  "name": "export_instances",
+  "description": "Project: bulk-export a full structured snapshot of instance elements in the given categories to a JSON file ON DISK, written directly by the C# gateway. Only a summary returns through MCP (outputPath, elementCount, byteSize, errorCount) — NO element data crosses the MCP boundary (this is how 5,800+ elements are moved without flooding the LLM context). Per element: ids, family/type, level, placement (curve/point), placementType, orientation vectors, host + face-host block (portable normal+point), HOST_GUID decode, phases, and every readable instance parameter as {value, raw}. categories are OST_* tokens; outputPath is a caller-supplied absolute file path the gateway writes to (Filesystem-MCP allowlist does not apply to gateway-side writes). All spatial values in the file are millimetres; angles degrees; orientation vectors unitless.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "outputPath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "categories",
+      "outputPath"
+    ],
+    "additionalProperties": false
+  }
+}

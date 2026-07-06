@@ -1,0 +1,9 @@
+{
+  "name": "get_grids",
+  "description": "Project: list all grids with id, name, and the two endpoints of the grid line (mm). Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

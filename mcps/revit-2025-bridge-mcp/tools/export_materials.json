@@ -1,0 +1,16 @@
+{
+  "name": "export_materials",
+  "description": "Project: export all materials to a JSON file ON DISK. Per material: id, name, materialClass, color {r,g,b}, transparency, shininess, smoothness, structuralAssetName, appearanceAssetName. Only a summary returns through MCP. outputPath is a caller-supplied absolute path.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "outputPath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "outputPath"
+    ],
+    "additionalProperties": false
+  }
+}

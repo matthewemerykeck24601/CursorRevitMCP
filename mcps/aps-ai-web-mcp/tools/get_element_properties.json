@@ -1,0 +1,49 @@
+{
+  "name": "get_element_properties",
+  "description": "Gets full parameter values and metadata for a list of element dbIds (viewer or AEC ids). Placeholder until Model Derivative / AEC batch property fetch is wired.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dbIds": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "model_urn": {
+        "type": "string"
+      },
+      "urn": {
+        "type": "string"
+      },
+      "project_id": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "dbIds"
+    ]
+  }
+}

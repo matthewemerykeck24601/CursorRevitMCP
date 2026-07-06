@@ -1,0 +1,14 @@
+{
+  "EnableLocalApiGateway": true,
+  "LocalApiGatewayPort": 8767,
+  "EnableProcessControl": false,
+  "AutoStartOnLaunch": false,
+  "StopOnRevitShutdown": true,
+  "AllowStopAnyInstance": false,
+  "Port": 8765,
+  "ServerExecutablePath": "",
+  "ServerArguments": "",
+  "DefaultFamilyLibraryPath": "",
+  "DefaultFamilyUpgradeOutputPath": "",
+  "HelpUrl": "https://help.autodesk.com/view/RVT/2025/ENU/"
+}

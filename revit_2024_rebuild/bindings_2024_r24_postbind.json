@@ -1,0 +1,4105 @@
+{
+  "model": "26-0349 A101 (2026 07-01) - MODEL_R24",
+  "exportedAt": "2026-07-03T07:37:14.5139813-04:00",
+  "bindingCount": 215,
+  "sharedParameterCount": 412,
+  "errorCount": 0,
+  "bindings": [
+    {
+      "name": "IDENTITY_DESCRIPTION",
+      "isInstance": true,
+      "group": "Text",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Entourage",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Generic Models",
+        "Walls"
+      ],
+      "guid": "d319e34b-47f6-478f-932d-784147d50895",
+      "isShared": true
+    },
+    {
+      "name": "CONSTRUCTION_PRODUCT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "b8658425-88fc-4652-80e7-062cba6db577",
+      "isShared": true
+    },
+    {
+      "name": "MANUFACTURE_COMPONENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Entourage",
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "7e6c5b05-f145-4446-b6da-59545b2fef67",
+      "isShared": true
+    },
+    {
+      "name": "WEIGHT_PER_UNIT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:number-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Assemblies",
+        "Generic Models"
+      ],
+      "guid": "f085671e-9f65-4efa-8c95-c96c1537d9be",
+      "isShared": true
+    },
+    {
+      "name": "PROD_ERECT_SEQUENCE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "01f2cf5e-6256-40ba-8019-9dc7525cdc42",
+      "isShared": true
+    },
+    {
+      "name": "ASSEMBLY_CONTROL_NO",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "6ec4647c-d9f6-45a5-b01d-41056e9707ce",
+      "isShared": true
+    },
+    {
+      "name": "ASSEMBLY_MARK_NUMBER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "f81e433d-5bc8-41ad-afd5-9b0cee390594",
+      "isShared": true
+    },
+    {
+      "name": "CONSTRUCTION_PRODUCT_HOST",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "37275c41-4d0c-48c6-b81a-5917cdbae577",
+      "isShared": true
+    },
+    {
+      "name": "PROJECT_CLIENT_ARCH_ENG",
+      "isInstance": true,
+      "group": "Text",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "1ef1386c-4ae5-482b-98cc-935b4fff0c22",
+      "isShared": true
+    },
+    {
+      "name": "PROJECT_CLIENT_CONTRCACTOR",
+      "isInstance": true,
+      "group": "Text",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "ad5b0df0-7e41-4bb6-94be-13ef28db74c8",
+      "isShared": true
+    },
+    {
+      "name": "SHT_DATE_CHECKED",
+      "isInstance": true,
+      "group": "Identity Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "cc57be66-0642-4f91-b466-c841d2b3c4e9",
+      "isShared": true
+    },
+    {
+      "name": "DESIGNER_JOB_NUMBER",
+      "isInstance": true,
+      "group": "Text",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "1e08a6e8-48b4-4f43-bf0b-8300969192dc",
+      "isShared": true
+    },
+    {
+      "name": "VISIBILE",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Air Terminals"
+      ],
+      "guid": null,
+      "isShared": false
+    },
+    {
+      "name": "TKT_CONTROL_01",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "bb1ebd7e-15a7-4861-8d12-5b4df2a7e16b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_02",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "9533b315-f72e-467c-b837-d7219e1ed344",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_03",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "906e1c3a-7aa3-49c1-a487-6f639f9b3441",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_04",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "4deafdff-0cd8-40ee-b1bf-93a83dc2f836",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_05",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "58b9da13-d35b-4585-b70d-afbd60319a53",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_06",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "02304dbb-f018-4a99-a827-a8dcc048241c",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_07",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "77c5055c-02d8-4773-9b3a-98cd2ec94214",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_08",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "66fc198f-3718-4c17-8415-428105f5a7c7",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_09",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "d20f3672-8fa9-4a66-8879-bc299270a6c2",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_10",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "5cfa5ffb-304f-4f8c-b9b8-b78abfa777dc",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_11",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c5d798bb-e871-414c-ba3e-a40f10203063",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_12",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "3ccb5437-e293-4a18-a663-b12da1ccadbe",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_13",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "7f3c62ee-96db-4e4c-8e8b-63bd1742480b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_14",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "a45f60ef-026f-48b5-a77a-f65414da1f0b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_15",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c5b7c560-9bbc-4416-999e-286839d1542a",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_16",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "08ffd767-fa2b-4a25-8682-71a28c0a1eb5",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_17",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "8a126342-5afd-42a9-9db7-1449e7c7d077",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_18",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "9767e63d-5309-46d8-a073-967518301ac5",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_19",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "e815ca92-4fa6-46b4-aafe-a34a29ae6e76",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_20",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "0bd2d0a2-5cf0-44a0-982f-c02594decff5",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_21",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "44bcc3ab-bff7-42f9-885c-6f812177f05a",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_22",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "12f8e8fc-d165-4d90-8fee-915d075dd1c2",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_23",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "a71e7acf-7afa-4a37-90f4-40bcf87fcc24",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_24",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "1fdb68a2-66e6-4ec9-beae-b51f9eba4553",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_25",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "057625de-a277-4dad-a9a7-88f788a94325",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_26",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c1eaea77-f6be-4480-9225-280f92028512",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_28",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "a652738c-1dc2-4cd2-9104-22dc997410b4",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_27",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "8e145d7c-49d4-4d9f-b6e9-9c77682cf325",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_29",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "eede9c0a-5a67-4523-8441-6dac8dd4efbe",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_30",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "910b6f54-2738-45be-a999-35f981af0647",
+      "isShared": true
+    },
+    {
+      "name": "TKT_LENGTH",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "f7a563c0-b09b-4ca7-abdb-eefd44e596d8",
+      "isShared": true
+    },
+    {
+      "name": "TKT_WIDTH",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "44725785-665d-4e4a-95d8-a94ce84ef563",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ADDONS",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "abfb0fbe-6e9f-45d9-935c-af730631ffa0",
+      "isShared": true
+    },
+    {
+      "name": "TKT_WASH_BLAST",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "b06ed4c9-e266-4f34-9a09-3de6ab425425",
+      "isShared": true
+    },
+    {
+      "name": "TKT_OTHER",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "cc774cca-6752-411c-8d06-428bfb0cff72",
+      "isShared": true
+    },
+    {
+      "name": "TKT_TOTAL_REQUIRED",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "997dc1ee-c551-4b9a-9851-f9b1ee5224ad",
+      "isShared": true
+    },
+    {
+      "name": "TKT_WEIGHT",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "d172bd03-e511-40f0-a511-43a5754f1a91",
+      "isShared": true
+    },
+    {
+      "name": "TKT_FINISH_FACE",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "adacd713-aa63-45c4-8711-7407dc765705",
+      "isShared": true
+    },
+    {
+      "name": "TKT_FINISH_BACK",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "0c0ae993-7c9f-4677-9ab7-9c9168456a41",
+      "isShared": true
+    },
+    {
+      "name": "TKT_FINISH_SF",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "b45d2f93-8644-44e4-bb1e-35cb23f64bc9",
+      "isShared": true
+    },
+    {
+      "name": "PROJECT_CLIENT_CONCRETE_PLANTCODE",
+      "isInstance": true,
+      "group": "Construction",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "500c7945-1787-4103-a843-5752ce94a91a",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04_DATE",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "6e03a21c-77de-4fad-8d74-f1719c2e4645",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04_DESCRIPTION",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "4e64830d-feb4-4dc5-8d6e-9596289f4fac",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04_BY",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "b721bc26-816b-493e-a842-4cc137903649",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "bdcc91de-d1bd-4c00-843f-4e01395a5925",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03_DATE",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "8844b427-9837-4399-bada-3b8847302631",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03_BY",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "9d080e9c-df3a-4f78-9cc7-424f0ac21767",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "60d15d26-6264-408c-a3e8-fe5b696c96b2",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03_DESCRIPTION",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "de8d0bdf-a0dc-4e68-ac99-42bd366375ac",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02_DATE",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "efb0d409-dc96-47c4-aad9-c4602fb17a26",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02_BY",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "5bec24a5-3761-41b2-9c34-6828b2e44850",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "b17190c9-e73d-4623-a9d9-cc9f1e29f9a7",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02_DESCRIPTION",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "b7b9210d-32ce-4344-99dc-eb969b1fa8f0",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01_DATE",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "f36b8298-be79-423d-a81e-858190782086",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01_BY",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "54d6cffb-4df6-49c7-a151-6bbfe9e2d0eb",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c694cea4-02c1-4ffc-80c8-7a07f7fd5791",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01_DESCRIPTION",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "78da5d96-2fba-4bb8-94ed-05a105239e18",
+      "isShared": true
+    },
+    {
+      "name": "SHT_DRAWING_COVERS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "4e194a60-28c3-4da8-a152-0d2765ef58bb",
+      "isShared": true
+    },
+    {
+      "name": "STRIPPING_STRENGTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c1e35f05-c4b6-448d-8505-befa5202c802",
+      "isShared": true
+    },
+    {
+      "name": "CODE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "a2ca775b-70a3-4f3d-bcb7-bdc65ae475d5",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_DESCRIPTION",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "49739a12-ba9c-44eb-a24e-5b3537acbd4b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_DATE_REVISED",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "6242443f-fcda-48a9-bc98-98485c4f8fd1",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_DATE",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "64dab6b6-82ba-4279-abce-7962dd2428ff",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "2a8695cb-33ea-4d22-94a5-6a0fe935ee12",
+      "isShared": true
+    },
+    {
+      "name": "28_DAY_STRENGTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "83085fd2-1142-4245-9129-e32898d22d0d",
+      "isShared": true
+    },
+    {
+      "name": "CONCRETE_TYPE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "48d18f32-646a-4763-a4f6-878712b9de15",
+      "isShared": true
+    },
+    {
+      "name": "MILL_DATE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "0550d9f3-9458-42f9-aa60-2f49f242c5a3",
+      "isShared": true
+    },
+    {
+      "name": "PRODUCT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "3c0d8ae0-01bb-4fb2-b4f3-a8c2571509f1",
+      "isShared": true
+    },
+    {
+      "name": "REBAR_GRADE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "53cf9b52-36da-4a3b-aa12-a49197565532",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CONTROL_REQD_TOTAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "761679e4-27d5-4006-9c1d-b8a334017b17",
+      "isShared": true
+    },
+    {
+      "name": "TKT_FINISH_LF",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "7c3512d8-dabf-4ba7-a279-592d8f192186",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ISSUE_BY",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "3cb2c746-6566-4740-8db1-2875784f9c7b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_REVISED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "8161cffd-5d3b-458d-8bf4-630f4f68acf1",
+      "isShared": true
+    },
+    {
+      "name": "WWF_FY",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "4192598f-6d49-4a4d-9392-beebe225b414",
+      "isShared": true
+    },
+    {
+      "name": "BOM_PRODUCT_HOST",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "b5cd61cf-b98a-462c-877e-c77de8780a9f",
+      "isShared": true
+    },
+    {
+      "name": "PROJECT_CLIENT_PRECAST_MANUFACTURER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "4032866f-41d7-4089-9e81-053faf3240d6",
+      "isShared": true
+    },
+    {
+      "name": "MODEL_EDITOR_ALLOW_LIST",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "bac5837d-2058-4ced-95f4-a6ecf2087747",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_DETAILED_DATE_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "3e8f9385-8190-4371-b3cb-ca33efaac425",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_DETAILED_DATE_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "baaf8f16-1a2c-44ea-809a-38cef3f5a0d8",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_DETAILED_USER_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "f9baf6ef-c0b9-41e2-9a39-6e1b7aaf7776",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_DETAILED_USER_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "e22663fb-40a3-4792-9066-7e5460f53acd",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_REINFORCED_DATE_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "b66f4553-19e4-4ad7-8cad-b85aee25d182",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_REINFORCED_DATE_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "e80994a0-68a3-4fa3-9459-091269964586",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_REINFORCED_USER_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "982ac00c-16fe-4483-94e6-90ceb91f0ec9",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_REINFORCED_USER_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "3d224d7e-be12-4a0e-ab03-28190638c402",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_CREATED_DATE_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "bce1661a-c7da-49af-a6b7-1651cec6103f",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_CREATED_DATE_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "15a62313-9d28-48d6-bcc1-d13735bd93d3",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_CREATED_USER_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "9ac35e18-302b-466e-845f-a860349709c9",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_CREATED_USER_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "b162dccb-99cf-47a3-8391-617615a84fda",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_RELEASED_DATE_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "c05bad80-daba-46e0-aa9e-847f1c02d93a",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_RELEASED_DATE_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "03b9525f-ccba-4d8a-810f-f1e68be7206d",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_RELEASED_USER_CURRENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "01c2682b-2be2-4e13-90e4-6647f21e18e1",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_RELEASED_USER_INITIAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "1c540ec6-4f1f-4ab0-ad41-89c1c778a1bd",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_EDIT_COMMENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "957af9fa-29a5-4666-82bd-d515a2e44267",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_DESCRIPTION",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "2b160eb3-e80c-4be0-a3cf-dc8822dba422",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_FLAGGED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "f219cbd0-6352-40cc-bd3c-568a6a00f8b2",
+      "isShared": true
+    },
+    {
+      "name": "REBAR_UPDATER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "8a20ec95-1d85-4f73-8a0a-c2a7625e2cb5",
+      "isShared": true
+    },
+    {
+      "name": "DESIGN_NUMBER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "5a8caba4-de71-4ccc-ba82-98a7a45c9370",
+      "isShared": true
+    },
+    {
+      "name": "LOC_ID",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "bb4b68a9-35ad-4fdf-8c76-d504dd608a2c",
+      "isShared": true
+    },
+    {
+      "name": "PRODUCT_CODE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "bc8d2b77-068c-4b65-be7a-77f89053cf64",
+      "isShared": true
+    },
+    {
+      "name": "HANDLING_CODE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "f35df7cf-7da4-47f5-998e-0fd454fd2f02",
+      "isShared": true
+    },
+    {
+      "name": "AW_1",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "5e965085-ca8a-47df-838a-13856ca65371",
+      "isShared": true
+    },
+    {
+      "name": "AW_2",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "93778d30-e399-417f-b810-a100583a0f4f",
+      "isShared": true
+    },
+    {
+      "name": "AW_3",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "f498f841-e190-4d3a-af8f-ddd536e9eed2",
+      "isShared": true
+    },
+    {
+      "name": "AW_4",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "5b5556e1-9349-4c22-b549-8a837a74a2e6",
+      "isShared": true
+    },
+    {
+      "name": "AW_5",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "31fd61f9-67fc-4df3-973a-fd55fedc4d44",
+      "isShared": true
+    },
+    {
+      "name": "AW_6",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "8afddc2d-914a-4634-8ceb-5d8892c52638",
+      "isShared": true
+    },
+    {
+      "name": "TYPICAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "acb83577-1f1d-4385-80b0-1e99aabc6f7b",
+      "isShared": true
+    },
+    {
+      "name": "LOCATION_IN_FORM",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "8f21b56e-1f48-4c2c-b0fa-e3983a7f3c35",
+      "isShared": true
+    },
+    {
+      "name": "TKT_CUYDS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "7a19d113-2782-4a32-87fe-bec62ed3f97d",
+      "isShared": true
+    },
+    {
+      "name": "TKT_WT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec.structural:weight-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "bee0f8bb-08ef-41e9-83fc-d5b54289a8a4",
+      "isShared": true
+    },
+    {
+      "name": "TKT_DEPTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "33ca0b1c-740f-43ef-9085-68dc6441b465",
+      "isShared": true
+    },
+    {
+      "name": "TKT_PROD_CODE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "9c3abf34-c725-4a06-95f3-37ad27ac112c",
+      "isShared": true
+    },
+    {
+      "name": "TKT_EREC_SEQ",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "3becbc42-faf6-44fd-a21e-dcbcf7068339",
+      "isShared": true
+    },
+    {
+      "name": "TKT_STRUCT_MIX",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "73733f82-2ac2-4408-ae50-6780810acaa8",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_MIX_1",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "fc8aaf95-be1b-4e6f-aea6-1a9114d6967b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_MIX_2",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "954d489b-d97b-403e-bd53-a0cfe7f0ddbc",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_MIX_3",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "4e1a84e7-6b92-41ad-be7d-b609558441f7",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_MIX_4",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "15c18ac4-2704-4d15-8c08-37589e6e6407",
+      "isShared": true
+    },
+    {
+      "name": "TKT_TOP_FINISH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c88a5315-d866-40a6-ac0c-f6a7e66a1636",
+      "isShared": true
+    },
+    {
+      "name": "TKT_TOTAL_RELEASED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "a279a52a-e362-4d8d-8c56-a2055153f352",
+      "isShared": true
+    },
+    {
+      "name": "TKT_TOTAL_CREATED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "687c8fd7-bc6a-4c41-8d60-f023c4b8112c",
+      "isShared": true
+    },
+    {
+      "name": "TKT_TOTAL_DETAILED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "85c96171-738c-4a4e-85b9-accd864dedb3",
+      "isShared": true
+    },
+    {
+      "name": "TKT_VIEWSHEET_COUNT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "5ab95759-0bfc-4e8c-ba55-07b39c3c73a5",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_IS_REINFORCED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Assemblies",
+        "Generic Models"
+      ],
+      "guid": "f480efdf-b127-4f59-b0f4-d8c9b2f82702",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_IS_DETAILED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Assemblies",
+        "Generic Models"
+      ],
+      "guid": "50259bca-48a4-4087-a1d4-653855b5459f",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_IS_RELEASED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Assemblies",
+        "Generic Models"
+      ],
+      "guid": "c51509e0-a51b-4b3f-a6a4-c059ed3d6e44",
+      "isShared": true
+    },
+    {
+      "name": "HOST_GUID",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Entourage",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Generic Models",
+        "Walls"
+      ],
+      "guid": "01e6172c-8e57-4f63-aba1-54ac8e0502ff",
+      "isShared": true
+    },
+    {
+      "name": "MAT_ID",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "45858813-88d7-427a-bc19-6ef4dd11714a",
+      "isShared": true
+    },
+    {
+      "name": "MAT_CAT_ID",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "14d25f33-7f16-497b-b621-133532fdcc29",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_SF_1",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "e5e9f33f-cbf2-4a52-9d7d-b387808bbc47",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_SF_2",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "fa8a5fb1-ebc3-4987-af25-f610de1364d2",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_SF_3",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "5cb61b37-9d89-4c33-9328-e35d7158bc8f",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_SF_4",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "e24ff714-7048-4ac1-8f1b-d041444027e9",
+      "isShared": true
+    },
+    {
+      "name": "MEMBER_VOLUME_CAST",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "88cce672-50e3-4529-981d-5bf0857ed3e5",
+      "isShared": true
+    },
+    {
+      "name": "MEMBER_WEIGHT_CAST",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec.structural:weight-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "86cb7035-ef7a-4aba-99e1-3bd28d8e6bab",
+      "isShared": true
+    },
+    {
+      "name": "ORDER_BY",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "e70cf378-914a-46ed-abc9-916610ebc69e",
+      "isShared": true
+    },
+    {
+      "name": "COUNT_MULTIPLIER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "46e819d7-1b74-4a6c-8054-eb5bbb996111",
+      "isShared": true
+    },
+    {
+      "name": "MULTIPLY_FOR_MARKS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "3fbc2717-f20c-4ca0-8c4f-8115cb96ce87",
+      "isShared": true
+    },
+    {
+      "name": "REBAR_MULTIPLY_FOR_MARKS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "baefc1a7-abb0-4d44-a8f9-6ee9c6114188",
+      "isShared": true
+    },
+    {
+      "name": "MESH_MULTIPLY_FOR_MARKS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "320a2269-553d-4dca-844b-37c8e7c657cc",
+      "isShared": true
+    },
+    {
+      "name": "LIFTING_MULTIPLY_FOR_MARKS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "3d06e320-3b54-4bfa-bc70-7c8cd075a343",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_SF_1",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "2753ce59-baa1-4e70-8ea0-2d6f152c9136",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_SF_2",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c19b5b9d-252e-44a9-a913-11e91c29fde4",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_SF_3",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "5ae5bcd0-dc00-4b1a-869b-269045ae4336",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_SF_4",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:area-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "0bdb640f-dcc1-44fa-b1ff-fd3c297498e0",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_VOL_1",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "bc7f1d7e-6b3b-4928-bae4-1de6fe21f0c4",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_VOL_2",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "e35082a8-4e5c-4fc9-8db6-b0175db02964",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_VOL_3",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "7602a6a7-840f-4b96-b200-b78fe3c66899",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_VOL_4",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "2aa024cc-1e65-4b8f-ba95-a25a69193a0a",
+      "isShared": true
+    },
+    {
+      "name": "TKT_ARCH_VOL_TOT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "92809786-2834-47d9-91b6-86b9990403ab",
+      "isShared": true
+    },
+    {
+      "name": "TKT_STRUCT_CUYDS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:volume-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "c619c015-9feb-488d-bee1-2c51a361d055",
+      "isShared": true
+    },
+    {
+      "name": "PROJ_PRODUCING_PLANT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "5c24eca2-666f-40a7-adff-533c7d7bcc2e",
+      "isShared": true
+    },
+    {
+      "name": "PIECE_PLANT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "5cb801b3-fe0f-4d84-ac34-b08073fbf42a",
+      "isShared": true
+    },
+    {
+      "name": "INSULATION_SCHEDULE_SHEETS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "a56ce2ad-c656-4521-8ed6-25327eea6dc6",
+      "isShared": true
+    },
+    {
+      "name": "MESH_SCHEDULE_SHEETS",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "f595b5b1-efb4-407d-b5c1-f3af501c5a7b",
+      "isShared": true
+    },
+    {
+      "name": "DIM_DIAGONAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:length-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "38fafc92-5934-459d-ab29-373e5d6d647b",
+      "isShared": true
+    },
+    {
+      "name": "TKT_DIM_DIAGONAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "0753ea54-a033-41fc-a76b-1bb4edebbc38",
+      "isShared": true
+    },
+    {
+      "name": "DIM_SQFT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "fe5d0027-3555-4ceb-8ba8-12986efd7e81",
+      "isShared": true
+    },
+    {
+      "name": "FABRICATOR_NOTES",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "b611f82e-f5b0-405d-af09-771b7aa201ea",
+      "isShared": true
+    },
+    {
+      "name": "ElementIdForCloud",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Structural Connections",
+        "Specialty Equipment",
+        "Structural Framing",
+        "Generic Models",
+        "Walls"
+      ],
+      "guid": "cf37f7b4-0d6d-4edf-9dc3-08d9f86044df",
+      "isShared": true
+    },
+    {
+      "name": "TKT_SQFT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "300d3e0c-69e7-4e92-b89d-07c7c8c41a5c",
+      "isShared": true
+    },
+    {
+      "name": "TKT_DESIGN_NUMBER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "da90fcc9-2f7e-4289-b708-2a22bb74e993",
+      "isShared": true
+    },
+    {
+      "name": "TKT_RELEASE_STRENGTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "af65428c-8ab7-4a60-b0a6-c679301076c2",
+      "isShared": true
+    },
+    {
+      "name": "TKT_FINAL_STRENGTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "47ec1d12-3a55-478e-a65e-2f5d08819009",
+      "isShared": true
+    },
+    {
+      "name": "RELEASE_STRENGTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:number-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "51b0bec6-e0e8-46f4-94b1-9c7c7d612d3f",
+      "isShared": true
+    },
+    {
+      "name": "FINAL_STRENGTH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:number-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "a41221ef-35cf-4a09-9731-663043f5a82d",
+      "isShared": true
+    },
+    {
+      "name": "ERECTION_SEQUENCE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "638bdfa4-5cf4-4de6-bcad-616cdab52201",
+      "isShared": true
+    },
+    {
+      "name": "STRUCT_MIX_NUM",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "f806a8f2-9258-43a8-a8b0-db639827f240",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_MIX_NUM_1",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "91b51eb1-b73d-4cf1-b501-408bb58592a7",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_MIX_NUM_2",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "eb7a73ca-a683-4ac4-9f5c-aac7189bd257",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_MIX_NUM_3",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "792f2cb9-6d6c-47e5-b1b4-fc00e0a8ef0c",
+      "isShared": true
+    },
+    {
+      "name": "ARCH_MIX_NUM_4",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "6cc4c46d-e122-4da2-8698-b177e062412b",
+      "isShared": true
+    },
+    {
+      "name": "TOP_FINISH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "28bff587-05c6-4c3e-9bc4-ca98c82dcd2a",
+      "isShared": true
+    },
+    {
+      "name": "CROSS_SECTION",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "e8af785c-dd6b-46d3-9018-add8968cc0c7",
+      "isShared": true
+    },
+    {
+      "name": "IS_CLOUD_VIEW",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Views"
+      ],
+      "guid": "1987c3d5-73ab-48e9-89ab-75655186e6da",
+      "isShared": true
+    },
+    {
+      "name": "IS_CLOUD_SHEET",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Sheets"
+      ],
+      "guid": "89912e46-df92-4e17-b017-0bb8a69cecda",
+      "isShared": true
+    },
+    {
+      "name": "FORM FACE HAUNCH",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "2ea4d2f7-28d3-4578-98fc-20c1ebf0b3f4",
+      "isShared": true
+    },
+    {
+      "name": "UP FACE HAUNCH",
+      "isInstance": true,
+      "group": "",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "65641408-d5b0-4f2a-9461-6ae45bcb97ff",
+      "isShared": true
+    },
+    {
+      "name": "AUTO_WARP_DISPLACEMENT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:length-2.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "8f5bd044-6943-4ae8-bad1-4d53ab3cb940",
+      "isShared": true
+    },
+    {
+      "name": "IS_WARPABLE_SHAPE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "241f9efe-cdcf-44b5-af52-b57c7b7573f2",
+      "isShared": true
+    },
+    {
+      "name": "WARPABLE_FILTER_FLAG",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Specialty Equipment",
+        "Generic Models"
+      ],
+      "guid": "c9adf933-f794-48af-976c-51b9849f9878",
+      "isShared": true
+    },
+    {
+      "name": "ERP_SAVE_FOLDER_PATH",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "befabb4c-f96b-4c59-8822-b1f00ed8f046",
+      "isShared": true
+    },
+    {
+      "name": "DIM_LENGTH_ACTUAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:length-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "efcf59c3-9c71-4947-8170-fb41e7587830",
+      "isShared": true
+    },
+    {
+      "name": "DIM_WIDTH_ACTUAL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec:length-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "1e1139ee-2e0e-4dc1-a4fb-14790462b792",
+      "isShared": true
+    },
+    {
+      "name": "DESIGN_SHEET",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "e308c454-5fca-4835-8c7a-9eae2ec6c3fc",
+      "isShared": true
+    },
+    {
+      "name": "DESIGN_TYPE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "b50b184a-641a-440b-9803-628c32d6fcc1",
+      "isShared": true
+    },
+    {
+      "name": "AUTO_WARPING_CREATE_DIRECT_SHAPES",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Project Information"
+      ],
+      "guid": "9c5b8079-0925-4cde-8f9e-c7b5e616c245",
+      "isShared": true
+    },
+    {
+      "name": "CAM_PRODNO",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "5bcf1103-a67a-4489-b59a-aafbd49cfcbf",
+      "isShared": true
+    },
+    {
+      "name": "CAM_ORDERNO",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Assemblies"
+      ],
+      "guid": "8d0ced80-0186-4e37-92e7-c247e7efdd72",
+      "isShared": true
+    },
+    {
+      "name": "ERECTION_SEQUENCE_NUMBER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "e6d62255-6d7e-4a5b-9f52-2724ca8f1414",
+      "isShared": true
+    },
+    {
+      "name": "ERECTION_SEQUENCE_ZONE_NUMBER",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.int64-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "a427c07f-8a56-4421-8d5b-f4f3017e7b96",
+      "isShared": true
+    },
+    {
+      "name": "ERECTION_SEQUENCE_ZONE_NAME",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "3a7d6659-57ea-4b8e-aa36-aac9a5baab51",
+      "isShared": true
+    },
+    {
+      "name": "ON_HOLD",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "6dccdca0-bf92-4405-8d60-e4c6d5ff9346",
+      "isShared": true
+    },
+    {
+      "name": "DO_NOT_SCHEDULE",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Generic Models"
+      ],
+      "guid": "3a046b68-1d68-4092-aeac-b3fd411be1fc",
+      "isShared": true
+    },
+    {
+      "name": "HARDWARE_DETAIL",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Generic Models"
+      ],
+      "guid": "5d991976-4431-4321-a9a5-874ff2350348",
+      "isShared": true
+    },
+    {
+      "name": "ELECTRICAL_CONTAINED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing"
+      ],
+      "guid": "e9155261-5df4-4ece-824e-c3565772e779",
+      "isShared": true
+    },
+    {
+      "name": "HW_COMPONENT_WEIGHT",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec.aec.structural:weight-2.0.0",
+      "boundCategories": [
+        "Generic Models"
+      ],
+      "guid": "05c3501e-ea0c-4c00-b887-56cf9be93a53",
+      "isShared": true
+    },
+    {
+      "name": "TICKET_IS_CREATED",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Structural Framing",
+        "Generic Models"
+      ],
+      "guid": "f1c7ce6e-d19e-4f64-a20a-28cff151f877",
+      "isShared": true
+    },
+    {
+      "name": "INSULATION_HOST_GUID",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Generic Models"
+      ],
+      "guid": "c79f4937-98c1-48b8-8dad-2e891d1db726",
+      "isShared": true
+    },
+    {
+      "name": "INSULATION_LOCK",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.bool-1.0.0",
+      "boundCategories": [
+        "Generic Models"
+      ],
+      "guid": "76c532df-57e6-4575-a663-7be14348eb6c",
+      "isShared": true
+    },
+    {
+      "name": "INSULATION_MARK",
+      "isInstance": true,
+      "group": "Data",
+      "dataType": "autodesk.spec:spec.string-2.0.0",
+      "boundCategories": [
+        "Generic Models"
+      ],
+      "guid": "ca7ab761-bcaa-48b7-b770-e63c8fc0082a",
+      "isShared": true
+    }
+  ],
+  "allSharedParameterElements": [
+    {
+      "name": "A",
+      "guid": "74b1142d-1fae-4be5-b45f-43329c8998c4"
+    },
+    {
+      "name": "W",
+      "guid": "0a80a6d4-9571-4df6-9677-03211e72047a"
+    },
+    {
+      "name": "Construction.Product",
+      "guid": "1ca283bf-9809-4aa7-8bb9-1bc570e2397d"
+    },
+    {
+      "name": "IDENTITY_DESCRIPTION_SHORT",
+      "guid": "3f236571-d3f9-4051-bcf3-adbddaca6ed5"
+    },
+    {
+      "name": "IDENTITY_DESCRIPTION",
+      "guid": "d319e34b-47f6-478f-932d-784147d50895"
+    },
+    {
+      "name": "IDENTITY_COMMENT",
+      "guid": "997fc9ea-2050-4773-b77f-4fa679c0902a"
+    },
+    {
+      "name": "CONTROL_MARK",
+      "guid": "90131024-8bb4-46d9-8ac7-84228edf023f"
+    },
+    {
+      "name": "CONTROL_NUMBER",
+      "guid": "34b52a40-ecdf-46e3-9cc5-2df5f3bd3865"
+    },
+    {
+      "name": "CLA_TOP_ELEVATION",
+      "guid": "227e76c1-cffa-4713-8424-30a9c5aea065"
+    },
+    {
+      "name": "DIM_WIDTH_INCHES",
+      "guid": "2fc13573-f2ee-4f2e-b3df-660c1d80dcfb"
+    },
+    {
+      "name": "DIM_DEPTH_INCHES",
+      "guid": "922ea8e7-82f5-4d54-a04e-a0b0b749c272"
+    },
+    {
+      "name": "CLA_TOP_BEARING",
+      "guid": "c5637c93-a3a4-4dcb-a433-5045e4958b23"
+    },
+    {
+      "name": "CLA_BASE_DETAIL",
+      "guid": "9ea04e81-b2f9-4672-bc4a-68c7a4416c4e"
+    },
+    {
+      "name": "DIM_LENGTH",
+      "guid": "79c99bb6-7fab-464b-96d9-b370908fe6b9"
+    },
+    {
+      "name": "DIM_WIDTH",
+      "guid": "67bb42cb-f901-4181-8ccf-242ffd29d733"
+    },
+    {
+      "name": "DIM_DEPTH",
+      "guid": "723b9bd2-7528-49c6-ba50-e91befa380b4"
+    },
+    {
+      "name": "CONSTRUCTION_PRODUCT",
+      "guid": "b8658425-88fc-4652-80e7-062cba6db577"
+    },
+    {
+      "name": "MANUFACTURE_COMPONENT",
+      "guid": "7e6c5b05-f145-4446-b6da-59545b2fef67"
+    },
+    {
+      "name": "SORTING_ORDER",
+      "guid": "f1b575dc-7c4c-4718-8c46-dd4b09985fd5"
+    },
+    {
+      "name": "SCHEDULE_ORDER_CODE",
+      "guid": "4e5c55c4-cbb1-4a4a-9079-043535267abc"
+    },
+    {
+      "name": "MANUFACTURER_PLANT_ID",
+      "guid": "8f263650-c082-48a1-bc61-ba2bb3aa3229"
+    },
+    {
+      "name": "MANUFACTURER_PLANT_DESCRIPTION",
+      "guid": "c21fa35f-2ce4-42bb-88bb-707c1fa1133a"
+    },
+    {
+      "name": "WEIGHT_PER_UNIT",
+      "guid": "f085671e-9f65-4efa-8c95-c96c1537d9be"
+    },
+    {
+      "name": "Control.Mark",
+      "guid": "21ff37db-0bfc-4e57-ab9c-048f88d08035"
+    },
+    {
+      "name": "Control.Number",
+      "guid": "00f1a260-3473-4908-972c-4d3feb2dde73"
+    },
+    {
+      "name": "Identity.Description",
+      "guid": "57c5a50b-caa1-4632-aee3-c07fda8fd38f"
+    },
+    {
+      "name": "Identity.Description.Short",
+      "guid": "b5a8646d-9e0b-4dae-92b9-eb696846d767"
+    },
+    {
+      "name": "Identity.Comment",
+      "guid": "77454605-e646-4d4f-bd1d-2e226ceb2bdd"
+    },
+    {
+      "name": "Warped.Product",
+      "guid": "1887d2b9-6d93-4422-bd17-242a33d074db"
+    },
+    {
+      "name": "WARPED_PRODUCT",
+      "guid": "d0c51256-38b0-459c-bf62-40802527f0aa"
+    },
+    {
+      "name": "Schedule.Filter",
+      "guid": "01270b60-a151-4a99-b417-e4f9b85a1081"
+    },
+    {
+      "name": "SCHEDULE_FILTER",
+      "guid": "bd5b4200-e335-4943-a54d-5a7c66df0e2e"
+    },
+    {
+      "name": "Dimension.Depth",
+      "guid": "9d9cc4fa-544a-451c-81c5-e1a6fd36e860"
+    },
+    {
+      "name": "Dimension.Width",
+      "guid": "24e91c25-095a-4f23-bae0-53ec5438b1cf"
+    },
+    {
+      "name": "Dimension.Length",
+      "guid": "8de02cc0-3216-40ae-a9bf-72d0ba6c951b"
+    },
+    {
+      "name": "Dimension.Thickness",
+      "guid": "cac1e737-4bb0-45b0-951f-8d6b1e139bc9"
+    },
+    {
+      "name": "DIM_THICKNESS",
+      "guid": "3106946d-f449-49be-bba9-b2f7e41131eb"
+    },
+    {
+      "name": "DIM_SHEETS",
+      "guid": "bf5f0c95-81c9-4d4e-8534-986e66b96191"
+    },
+    {
+      "name": "DIM_VOLUME_PER_SHEET",
+      "guid": "04e4198e-37f1-4e5c-968f-60b21a7149af"
+    },
+    {
+      "name": "SCHEDULE_AREA",
+      "guid": "b931f1de-bb4f-4431-991c-8203e7926d8b"
+    },
+    {
+      "name": "SCHEDULE_VOLUME",
+      "guid": "d25a65c7-170e-4865-b84a-dccc021b35bf"
+    },
+    {
+      "name": "DIM_HEIGHT",
+      "guid": "40dcc074-d1ec-4a8b-a35a-275f652c65f0"
+    },
+    {
+      "name": "Dimension.Height",
+      "guid": "3a6096bd-fd9d-4db6-add9-c455e80aee23"
+    },
+    {
+      "name": "Construction.Location",
+      "guid": "ef8a5b4c-c1a0-4653-8ad1-a9d688cb7075"
+    },
+    {
+      "name": "Construction.Location.BaseLevel",
+      "guid": "0038882d-bd62-42cd-b92c-83298277dd10"
+    },
+    {
+      "name": "Construction.Shipped.Loose",
+      "guid": "0552ff4e-95dc-4429-acb5-d395ee679cc3"
+    },
+    {
+      "name": "Dimension.Panel.XX",
+      "guid": "39d81c7b-b240-467a-b357-2ec8668f97e3"
+    },
+    {
+      "name": "Finish.Galvanized",
+      "guid": "25b8c8d1-764c-4757-9b09-7c8d9b7222d9"
+    },
+    {
+      "name": "Finish.Primed",
+      "guid": "c68390b8-586f-481e-8299-eb94d3949ba7"
+    },
+    {
+      "name": "Finish.Stainless",
+      "guid": "08b7c0c2-ae36-48b0-be94-08333820aa02"
+    },
+    {
+      "name": "Finish.Black",
+      "guid": "6b4108c5-db69-4886-b0cd-643a9ce71b56"
+    },
+    {
+      "name": "Dimension.Panel.YY",
+      "guid": "d82e1a28-e33d-444c-a17d-7096fd510b2b"
+    },
+    {
+      "name": "Dimension.Panel.ZZ",
+      "guid": "3014fe3a-09b8-4424-8070-86e7ce1bf8e1"
+    },
+    {
+      "name": "Construction.Product.Host",
+      "guid": "d9aa7300-9b40-4c17-835b-35331d323a91"
+    },
+    {
+      "name": "REQD",
+      "guid": "22cbba6e-2d84-4748-afea-2105e0591462"
+    },
+    {
+      "name": "Dimension.Insul.XX",
+      "guid": "a1198668-0708-4035-b1df-1dbb5144e655"
+    },
+    {
+      "name": "Dimension.Insul.YY",
+      "guid": "a7d1523c-fe91-4408-a518-697143906d88"
+    },
+    {
+      "name": "Dimension.Insul.ZZ",
+      "guid": "0ee68b52-3adc-46d9-953d-11e799fde9a0"
+    },
+    {
+      "name": "Schedule.Area.Yes",
+      "guid": "5022c389-be42-4143-afbd-5dda3cead8ec"
+    },
+    {
+      "name": "Dimension.Area",
+      "guid": "5bd6c87f-93de-4ea0-b0b2-9096f64b9424"
+    },
+    {
+      "name": "Dimension.Volume",
+      "guid": "d33da6bb-567a-4051-af55-c517c95dda2a"
+    },
+    {
+      "name": "Schedule.Volume.Yes",
+      "guid": "6d236332-ea01-4ddc-9cb1-001ae7abb3a3"
+    },
+    {
+      "name": "Sheets",
+      "guid": "605ba0ed-3d15-4751-a6dd-ab4b01275058"
+    },
+    {
+      "name": "CONNECTOR_COMPONENT",
+      "guid": "56b5d05e-1ef8-4d3d-9bea-ef0a766b06b4"
+    },
+    {
+      "name": "DIM_WYTHE_OUTER",
+      "guid": "65beb052-44df-4a2e-a0bc-f51a4f07d3c5"
+    },
+    {
+      "name": "DIM_WYTHE_INSULATION",
+      "guid": "1a0f460d-f579-4898-9894-061955c46d76"
+    },
+    {
+      "name": "DIM_WYTHE_INNER",
+      "guid": "0dc591b2-beb9-4191-8e76-9df618fa103a"
+    },
+    {
+      "name": "FINISH_PRIMED",
+      "guid": "0db9c475-75f8-4a2b-8d33-1263b5ebde5d"
+    },
+    {
+      "name": "FINISH_PAINTED",
+      "guid": "18c76e60-9631-42e1-8689-6f08fc5aab55"
+    },
+    {
+      "name": "FINISH_OTHER",
+      "guid": "e0f9b258-d14b-433f-8e5d-723371e7f7c3"
+    },
+    {
+      "name": "FINISH_GALVANIZED",
+      "guid": "a187a12f-4db1-4364-aed0-e7e17b5cea01"
+    },
+    {
+      "name": "FINISH_BLACK",
+      "guid": "1a014ee9-85c8-4a41-a5a4-7e4d43fef40d"
+    },
+    {
+      "name": "FINISH_STAINLESS",
+      "guid": "d4615e4a-a7e7-464f-aabf-27cdff39d8b8"
+    },
+    {
+      "name": "BAR_BEND_RADIUS",
+      "guid": "361fb23d-c9c5-457a-ba1d-299cc5b37064"
+    },
+    {
+      "name": "BAR_DIAMETER",
+      "guid": "5ad01d3f-20e0-462d-81bc-e11e75d96424"
+    },
+    {
+      "name": "BAR_LENGTH_B",
+      "guid": "d0adea2f-84e7-4934-8967-434edaf65a06"
+    },
+    {
+      "name": "BAR_LENGTH_C",
+      "guid": "8999dc83-707a-42dd-8175-8efc0863a9b8"
+    },
+    {
+      "name": "BAR_SHAPE",
+      "guid": "8d710303-c26c-418d-a5f6-ee8ae7397f91"
+    },
+    {
+      "name": "BAR_LENGTH_D",
+      "guid": "82738e87-7f8f-42ba-9370-0c4716bfef65"
+    },
+    {
+      "name": "BAR_TYPE_CIP",
+      "guid": "00e5bb94-7e35-42a5-8374-017cd192abec"
+    },
+    {
+      "name": "BAR_TYPE_EMBED",
+      "guid": "57c216c0-5cad-40c0-96f4-d3b831c50f20"
+    },
+    {
+      "name": "BAR_TYPE_ERECTION",
+      "guid": "4881b986-7177-4eb1-9442-b74626eb9f4c"
+    },
+    {
+      "name": "BAR_TYPE_ENDREINFORCING",
+      "guid": "558eb435-f1a6-4021-a9c0-37de38b966ed"
+    },
+    {
+      "name": "BAR_TYPE_STRIPPING",
+      "guid": "3e8fd0e2-75ca-4e35-9bf4-7edce18de0db"
+    },
+    {
+      "name": "SCHEDULED_COMPONENT",
+      "guid": "b213d2a7-961c-4b97-b071-e7a46fe397a6"
+    },
+    {
+      "name": "BAR_LENGTH",
+      "guid": "e0bccdf2-14bc-4206-bddc-4feb3dcff175"
+    },
+    {
+      "name": "PROD_ERECT_SEQUENCE",
+      "guid": "01f2cf5e-6256-40ba-8019-9dc7525cdc42"
+    },
+    {
+      "name": "ASSEMBLY_CONTROL_NO",
+      "guid": "6ec4647c-d9f6-45a5-b01d-41056e9707ce"
+    },
+    {
+      "name": "ASSEMBLY_MARK_NUMBER",
+      "guid": "f81e433d-5bc8-41ad-afd5-9b0cee390594"
+    },
+    {
+      "name": "CONSTRUCTION_PRODUCT_HOST",
+      "guid": "37275c41-4d0c-48c6-b81a-5917cdbae577"
+    },
+    {
+      "name": "DIM_COUNT",
+      "guid": "3323cd15-4962-4f99-b4ea-37d7d17cc0c8"
+    },
+    {
+      "name": "PROJECT_CLIENT_ARCH_ENG",
+      "guid": "1ef1386c-4ae5-482b-98cc-935b4fff0c22"
+    },
+    {
+      "name": "PROJECT_CLIENT_CONTRCACTOR",
+      "guid": "ad5b0df0-7e41-4bb6-94be-13ef28db74c8"
+    },
+    {
+      "name": "SHT_DATE_CHECKED",
+      "guid": "cc57be66-0642-4f91-b466-c841d2b3c4e9"
+    },
+    {
+      "name": "DESIGNER_JOB_NUMBER",
+      "guid": "1e08a6e8-48b4-4f43-bf0b-8300969192dc"
+    },
+    {
+      "name": "BAR_LENGTH_A",
+      "guid": "dcb83c49-f5a6-463c-a93c-b75611fcedd6"
+    },
+    {
+      "name": "BAR_LENGTH_E",
+      "guid": "66018ed5-c18a-4652-9fb5-2a397e216ae7"
+    },
+    {
+      "name": "BAR_LENGTH_G",
+      "guid": "2adf7059-8a64-4cc7-983c-0b77cc0a9e92"
+    },
+    {
+      "name": "BAR_LENGTH_F",
+      "guid": "2ca56072-2f3b-4b96-af26-b39e3d087596"
+    },
+    {
+      "name": "Dimension.Bar.Length.Angle",
+      "guid": "2382e6ac-15e4-4bda-863f-c056d12e45cf"
+    },
+    {
+      "name": "BAR_LENGTH_H",
+      "guid": "75c29c44-7826-4e50-acfa-7f0152248f8e"
+    },
+    {
+      "name": "BAR_SPIRAL_TURNS",
+      "guid": "11246d21-e459-4122-afd2-28109146cb5d"
+    },
+    {
+      "name": "Part Description",
+      "guid": "1106c852-8721-446e-a7d5-3bb5f19b1f70"
+    },
+    {
+      "name": "Part Quantity",
+      "guid": "04284173-114a-432f-bb1b-7c5444f3352f"
+    },
+    {
+      "name": "Part Length",
+      "guid": "9f8e5ad1-6537-48e7-81e1-c99b0356d20f"
+    },
+    {
+      "name": "Part Thickness",
+      "guid": "9a908ce2-d1ea-4473-a915-cc0a25d07b59"
+    },
+    {
+      "name": "Part Width",
+      "guid": "17be15f9-cce7-42f8-843e-b419e5d4707e"
+    },
+    {
+      "name": "Part End Note",
+      "guid": "a9de65ee-6325-486e-a8af-89f3f48be92c"
+    },
+    {
+      "name": "Project.Client.Architect.Company",
+      "guid": "e537b0b1-b7f8-4733-a0f5-a3040be2ea32"
+    },
+    {
+      "name": "Project.Client.Architect.Contact",
+      "guid": "8a01ded0-f8f9-4a23-ac31-76ae9262b9ab"
+    },
+    {
+      "name": "Project.Client.Architect.Email",
+      "guid": "96137c2f-8950-4687-bace-c71a86d9af58"
+    },
+    {
+      "name": "Project.Client.Architect.Phone",
+      "guid": "15df017b-4613-4810-b90b-7e4e3be1b627"
+    },
+    {
+      "name": "Project.Client.Contractor.Company",
+      "guid": "cbcefac0-4505-4aa4-a35c-b7bc8742c5ca"
+    },
+    {
+      "name": "Project.Client.Contractor.Contact",
+      "guid": "bdd8b483-b0d8-457b-8224-05805e1d50c7"
+    },
+    {
+      "name": "Project.Client.Contractor.Email",
+      "guid": "c90ee7f7-0c72-4178-9e56-815c8c36b1b4"
+    },
+    {
+      "name": "Project.Client.Contractor.Phone",
+      "guid": "83b328b6-67ca-479b-bd94-735bc39d66a4"
+    },
+    {
+      "name": "Project.Client.Engineer.Company",
+      "guid": "f5cbd039-ee8d-45f3-b466-c6d07191994d"
+    },
+    {
+      "name": "Project.Client.Engineer.Contact",
+      "guid": "e2babc41-da6e-4607-961d-7cf11cce5429"
+    },
+    {
+      "name": "Project.Client.Engineer.Email",
+      "guid": "89ee0de2-6d5a-42b6-ac27-f7bcc5099b55"
+    },
+    {
+      "name": "Project.Client.Engineer.Phone",
+      "guid": "bddfec48-8231-4873-b779-dbba1027d6fc"
+    },
+    {
+      "name": "Project.Metromont.Coordinator",
+      "guid": "5babced7-4a38-445d-a11b-1141b1cd1a77"
+    },
+    {
+      "name": "Project.Metromont.Engineer",
+      "guid": "06571d2c-d9e5-47ca-8ff8-2392ca12d2b0"
+    },
+    {
+      "name": "Project.Metromont.Project Drafter",
+      "guid": "31ff6bf1-d837-4667-b4e1-55dd0d92f8db"
+    },
+    {
+      "name": "Project.Metromont.Project Manager",
+      "guid": "333928db-1283-4fc7-88af-4e780c1a51aa"
+    },
+    {
+      "name": "Project.Metromont.Ticket Drafter(s)",
+      "guid": "fabf8daa-e2b6-4064-9d39-c3b6bfd4297c"
+    },
+    {
+      "name": "Sheet.Drawing.Covers",
+      "guid": "f20dd440-f8eb-42c7-a8f9-7b7f1a1dd986"
+    },
+    {
+      "name": "Sheet.Date.Checked",
+      "guid": "2714abdd-9212-4764-9468-d5bcb4b463e6"
+    },
+    {
+      "name": "Ticket.Control.01",
+      "guid": "6fac8ee4-c786-4aa2-a9fe-ca61c0addb7d"
+    },
+    {
+      "name": "Ticket.Control.02",
+      "guid": "f6e2fc30-54a4-484b-84dd-ca7fcffa2dca"
+    },
+    {
+      "name": "Ticket.Control.03",
+      "guid": "730b90b1-92bd-4f0f-b3e3-660f3dc50cce"
+    },
+    {
+      "name": "Ticket.Control.04",
+      "guid": "b502b88e-16aa-4341-b908-fce89d4c00f9"
+    },
+    {
+      "name": "Ticket.Control.05",
+      "guid": "7df751cc-98a2-47bf-be95-8c9f7305485e"
+    },
+    {
+      "name": "Ticket.Control.06",
+      "guid": "40f2d3e6-17c9-4e8d-b64f-085a582bf4c0"
+    },
+    {
+      "name": "Ticket.Control.07",
+      "guid": "be094387-f85a-4006-a91a-e9e9dedd2673"
+    },
+    {
+      "name": "Ticket.Control.08",
+      "guid": "6f90860f-ed2f-4116-b170-bc5306de37e6"
+    },
+    {
+      "name": "Ticket.Control.09",
+      "guid": "fd3a9926-d856-4a03-9b88-84f1fb08dd2f"
+    },
+    {
+      "name": "Ticket.Control.10",
+      "guid": "cb930fb1-e55d-4d00-978b-76ef5c729543"
+    },
+    {
+      "name": "Ticket.Control.11",
+      "guid": "4d8e89ca-6fe6-4bcb-b829-2bef33be2267"
+    },
+    {
+      "name": "Ticket.Control.12",
+      "guid": "3a8320ec-d63f-4c92-968d-35390f9d07f5"
+    },
+    {
+      "name": "Ticket.Control.13",
+      "guid": "aa299c50-10d5-41df-ada1-94aa26b79cb9"
+    },
+    {
+      "name": "Ticket.Control.14",
+      "guid": "2e5a8bf4-7969-4557-854a-ebfff34581f9"
+    },
+    {
+      "name": "Ticket.Control.15",
+      "guid": "077cb168-4c31-46af-a024-ff91c715074c"
+    },
+    {
+      "name": "Ticket.Control.16",
+      "guid": "4de7f846-44c8-4720-860b-4a3524436f8b"
+    },
+    {
+      "name": "Ticket.Control.17",
+      "guid": "a7fd4d1d-ccd4-43fd-b651-937ff1fa2a40"
+    },
+    {
+      "name": "Ticket.Control.18",
+      "guid": "06eafb42-32b5-4eca-ab4a-92d1d78153fe"
+    },
+    {
+      "name": "Ticket.Control.19",
+      "guid": "63079ff7-73e4-4088-be0a-a258d662f4d5"
+    },
+    {
+      "name": "Ticket.Control.20",
+      "guid": "e32979a4-000b-40a3-8a23-51cfbd4caaf3"
+    },
+    {
+      "name": "Ticket.Issue.Number.01.Date",
+      "guid": "fc796bff-1c56-4fcf-bc0b-e3b8cfca1f73"
+    },
+    {
+      "name": "Ticket.Issue.Number.01.By",
+      "guid": "7d7c60a1-a2b6-42de-bcdd-3dd468424301"
+    },
+    {
+      "name": "Ticket.Issue.Number.01",
+      "guid": "b755f8a7-d690-4da1-9663-06a7c863d9b3"
+    },
+    {
+      "name": "Ticket.Issue.Number.01.Description",
+      "guid": "195307cb-f01b-4831-9e96-b9a3096cccca"
+    },
+    {
+      "name": "Ticket.Issue.Number.02.Date",
+      "guid": "f0dcca8f-94ee-486f-821c-47c319e086dc"
+    },
+    {
+      "name": "Ticket.Issue.Number.02.By",
+      "guid": "4900e301-a833-47cf-9afb-1980b0829211"
+    },
+    {
+      "name": "Ticket.Issue.Number.02",
+      "guid": "6db14ff7-ab86-41ef-b6a3-05a1e5b63e3f"
+    },
+    {
+      "name": "Ticket.Issue.Number.02.Description",
+      "guid": "8ac85257-71c7-4383-bca4-b25911ae21c2"
+    },
+    {
+      "name": "Ticket.Issue.Number.03.Date",
+      "guid": "5ec90e29-5b14-43ed-815b-336b1696304d"
+    },
+    {
+      "name": "Ticket.Issue.Number.03.By",
+      "guid": "523f0e35-1a89-4e9a-8f42-5621403171af"
+    },
+    {
+      "name": "Ticket.Issue.Number.03",
+      "guid": "fe379dd7-c1f4-42f5-9dee-195043fee1d1"
+    },
+    {
+      "name": "Ticket.Issue.Number.03.Description",
+      "guid": "f5fe7b5b-951c-43a0-b4a5-9ca1bb149ee9"
+    },
+    {
+      "name": "Ticket.Issue.Number.04.Date",
+      "guid": "9c70deaf-7738-4a73-8533-64aa33ed82a1"
+    },
+    {
+      "name": "Ticket.Issue.Number.04.By",
+      "guid": "c3e27249-2bb4-4fcd-8895-a1aba0d7b032"
+    },
+    {
+      "name": "Ticket.Issue.Number.04",
+      "guid": "6442ad9d-9570-43e9-b082-c059c3c0b728"
+    },
+    {
+      "name": "Ticket.Issue.Number.04.Description",
+      "guid": "0d003f64-8be9-4d37-bb64-563f48a4899f"
+    },
+    {
+      "name": "Ticket.Total.Required",
+      "guid": "a9bb5be1-86db-4ca0-8856-4712abd7fcea"
+    },
+    {
+      "name": "Ticket.Weight",
+      "guid": "64f9cb11-4ee7-49cb-8976-9ce0c96380c4"
+    },
+    {
+      "name": "Ticket.Finish.Face",
+      "guid": "103b1237-237d-4533-a3e2-69498725ff18"
+    },
+    {
+      "name": "Ticket.Finish.Back",
+      "guid": "48172296-a118-4bf5-9bd0-919c51b2198a"
+    },
+    {
+      "name": "Ticket.Finish.SF",
+      "guid": "0f078aeb-7c8f-49bc-95ae-e730b7a995f7"
+    },
+    {
+      "name": "Project.Client.Concrete.PlantCode",
+      "guid": "a4c44ac4-6f36-4580-89e2-cdf508156a95"
+    },
+    {
+      "name": "Ticket.Length",
+      "guid": "39a48481-e7d6-420b-9973-431040701641"
+    },
+    {
+      "name": "Ticket.Width",
+      "guid": "be6f375c-f2e5-4323-8244-5808f9d8c5cd"
+    },
+    {
+      "name": "Ticket.Addons",
+      "guid": "85a5fd65-33a5-493c-a58f-bfd15fbaaab9"
+    },
+    {
+      "name": "Ticket.Wash-Blast",
+      "guid": "a5889643-b228-4cff-9945-7757cf5c1b05"
+    },
+    {
+      "name": "Ticket.Other",
+      "guid": "e2147641-845c-49a0-a4c2-4c7133c120ab"
+    },
+    {
+      "name": "Ticket.Control.21",
+      "guid": "f87bc715-8b05-492c-859d-63577087a6ef"
+    },
+    {
+      "name": "Ticket.Control.22",
+      "guid": "49e6d391-7baa-4b72-b94b-a7f1de38b716"
+    },
+    {
+      "name": "Ticket.Control.23",
+      "guid": "6939713e-e0ad-4426-b7f7-26b515f1c80b"
+    },
+    {
+      "name": "Ticket.Control.24",
+      "guid": "50c2872e-5fc5-432b-8713-3ff50e967d49"
+    },
+    {
+      "name": "Ticket.Control.25",
+      "guid": "f1ed8bad-e9f3-41f0-a402-7189a5c1b4b6"
+    },
+    {
+      "name": "Ticket.Control.26",
+      "guid": "2d2f9c29-e666-49d0-9e9d-ad6bf16e6bb9"
+    },
+    {
+      "name": "Ticket.Control.27",
+      "guid": "97b93a77-2825-47f1-a013-32c31cdad29c"
+    },
+    {
+      "name": "Ticket.Control.28",
+      "guid": "74838e25-fd5f-4972-b2a5-27bf4d18d416"
+    },
+    {
+      "name": "Ticket.Control.29",
+      "guid": "19525374-809d-40c1-b4a9-9e8184b5080a"
+    },
+    {
+      "name": "Ticket.Control.30",
+      "guid": "f44beeb8-7582-472a-833f-8e7541f1816c"
+    },
+    {
+      "name": "TKT_CONTROL_01",
+      "guid": "bb1ebd7e-15a7-4861-8d12-5b4df2a7e16b"
+    },
+    {
+      "name": "TKT_CONTROL_02",
+      "guid": "9533b315-f72e-467c-b837-d7219e1ed344"
+    },
+    {
+      "name": "TKT_CONTROL_03",
+      "guid": "906e1c3a-7aa3-49c1-a487-6f639f9b3441"
+    },
+    {
+      "name": "TKT_CONTROL_04",
+      "guid": "4deafdff-0cd8-40ee-b1bf-93a83dc2f836"
+    },
+    {
+      "name": "TKT_CONTROL_05",
+      "guid": "58b9da13-d35b-4585-b70d-afbd60319a53"
+    },
+    {
+      "name": "TKT_CONTROL_06",
+      "guid": "02304dbb-f018-4a99-a827-a8dcc048241c"
+    },
+    {
+      "name": "TKT_CONTROL_07",
+      "guid": "77c5055c-02d8-4773-9b3a-98cd2ec94214"
+    },
+    {
+      "name": "TKT_CONTROL_08",
+      "guid": "66fc198f-3718-4c17-8415-428105f5a7c7"
+    },
+    {
+      "name": "TKT_CONTROL_09",
+      "guid": "d20f3672-8fa9-4a66-8879-bc299270a6c2"
+    },
+    {
+      "name": "TKT_CONTROL_10",
+      "guid": "5cfa5ffb-304f-4f8c-b9b8-b78abfa777dc"
+    },
+    {
+      "name": "TKT_CONTROL_11",
+      "guid": "c5d798bb-e871-414c-ba3e-a40f10203063"
+    },
+    {
+      "name": "TKT_CONTROL_12",
+      "guid": "3ccb5437-e293-4a18-a663-b12da1ccadbe"
+    },
+    {
+      "name": "TKT_CONTROL_13",
+      "guid": "7f3c62ee-96db-4e4c-8e8b-63bd1742480b"
+    },
+    {
+      "name": "TKT_CONTROL_14",
+      "guid": "a45f60ef-026f-48b5-a77a-f65414da1f0b"
+    },
+    {
+      "name": "TKT_CONTROL_15",
+      "guid": "c5b7c560-9bbc-4416-999e-286839d1542a"
+    },
+    {
+      "name": "TKT_CONTROL_16",
+      "guid": "08ffd767-fa2b-4a25-8682-71a28c0a1eb5"
+    },
+    {
+      "name": "TKT_CONTROL_17",
+      "guid": "8a126342-5afd-42a9-9db7-1449e7c7d077"
+    },
+    {
+      "name": "TKT_CONTROL_18",
+      "guid": "9767e63d-5309-46d8-a073-967518301ac5"
+    },
+    {
+      "name": "TKT_CONTROL_19",
+      "guid": "e815ca92-4fa6-46b4-aafe-a34a29ae6e76"
+    },
+    {
+      "name": "TKT_CONTROL_20",
+      "guid": "0bd2d0a2-5cf0-44a0-982f-c02594decff5"
+    },
+    {
+      "name": "TKT_CONTROL_21",
+      "guid": "44bcc3ab-bff7-42f9-885c-6f812177f05a"
+    },
+    {
+      "name": "TKT_CONTROL_22",
+      "guid": "12f8e8fc-d165-4d90-8fee-915d075dd1c2"
+    },
+    {
+      "name": "TKT_CONTROL_23",
+      "guid": "a71e7acf-7afa-4a37-90f4-40bcf87fcc24"
+    },
+    {
+      "name": "TKT_CONTROL_24",
+      "guid": "1fdb68a2-66e6-4ec9-beae-b51f9eba4553"
+    },
+    {
+      "name": "TKT_CONTROL_25",
+      "guid": "057625de-a277-4dad-a9a7-88f788a94325"
+    },
+    {
+      "name": "TKT_CONTROL_26",
+      "guid": "c1eaea77-f6be-4480-9225-280f92028512"
+    },
+    {
+      "name": "TKT_CONTROL_28",
+      "guid": "a652738c-1dc2-4cd2-9104-22dc997410b4"
+    },
+    {
+      "name": "TKT_CONTROL_27",
+      "guid": "8e145d7c-49d4-4d9f-b6e9-9c77682cf325"
+    },
+    {
+      "name": "TKT_CONTROL_29",
+      "guid": "eede9c0a-5a67-4523-8441-6dac8dd4efbe"
+    },
+    {
+      "name": "TKT_CONTROL_30",
+      "guid": "910b6f54-2738-45be-a999-35f981af0647"
+    },
+    {
+      "name": "TKT_LENGTH",
+      "guid": "f7a563c0-b09b-4ca7-abdb-eefd44e596d8"
+    },
+    {
+      "name": "TKT_WIDTH",
+      "guid": "44725785-665d-4e4a-95d8-a94ce84ef563"
+    },
+    {
+      "name": "TKT_ADDONS",
+      "guid": "abfb0fbe-6e9f-45d9-935c-af730631ffa0"
+    },
+    {
+      "name": "TKT_WASH_BLAST",
+      "guid": "b06ed4c9-e266-4f34-9a09-3de6ab425425"
+    },
+    {
+      "name": "TKT_OTHER",
+      "guid": "cc774cca-6752-411c-8d06-428bfb0cff72"
+    },
+    {
+      "name": "TKT_TOTAL_REQUIRED",
+      "guid": "997dc1ee-c551-4b9a-9851-f9b1ee5224ad"
+    },
+    {
+      "name": "TKT_WEIGHT",
+      "guid": "d172bd03-e511-40f0-a511-43a5754f1a91"
+    },
+    {
+      "name": "TKT_FINISH_FACE",
+      "guid": "adacd713-aa63-45c4-8711-7407dc765705"
+    },
+    {
+      "name": "TKT_FINISH_BACK",
+      "guid": "0c0ae993-7c9f-4677-9ab7-9c9168456a41"
+    },
+    {
+      "name": "TKT_FINISH_SF",
+      "guid": "b45d2f93-8644-44e4-bb1e-35cb23f64bc9"
+    },
+    {
+      "name": "PROJECT_CLIENT_CONCRETE_PLANTCODE",
+      "guid": "500c7945-1787-4103-a843-5752ce94a91a"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04_DATE",
+      "guid": "6e03a21c-77de-4fad-8d74-f1719c2e4645"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04_DESCRIPTION",
+      "guid": "4e64830d-feb4-4dc5-8d6e-9596289f4fac"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04_BY",
+      "guid": "b721bc26-816b-493e-a842-4cc137903649"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_04",
+      "guid": "bdcc91de-d1bd-4c00-843f-4e01395a5925"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03_DATE",
+      "guid": "8844b427-9837-4399-bada-3b8847302631"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03_BY",
+      "guid": "9d080e9c-df3a-4f78-9cc7-424f0ac21767"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03",
+      "guid": "60d15d26-6264-408c-a3e8-fe5b696c96b2"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_03_DESCRIPTION",
+      "guid": "de8d0bdf-a0dc-4e68-ac99-42bd366375ac"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02_DATE",
+      "guid": "efb0d409-dc96-47c4-aad9-c4602fb17a26"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02_BY",
+      "guid": "5bec24a5-3761-41b2-9c34-6828b2e44850"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02",
+      "guid": "b17190c9-e73d-4623-a9d9-cc9f1e29f9a7"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_02_DESCRIPTION",
+      "guid": "b7b9210d-32ce-4344-99dc-eb969b1fa8f0"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01_DATE",
+      "guid": "f36b8298-be79-423d-a81e-858190782086"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01_BY",
+      "guid": "54d6cffb-4df6-49c7-a151-6bbfe9e2d0eb"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01",
+      "guid": "c694cea4-02c1-4ffc-80c8-7a07f7fd5791"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER_01_DESCRIPTION",
+      "guid": "78da5d96-2fba-4bb8-94ed-05a105239e18"
+    },
+    {
+      "name": "SHT_DRAWING_COVERS",
+      "guid": "4e194a60-28c3-4da8-a152-0d2765ef58bb"
+    },
+    {
+      "name": "STRIPPING_STRENGTH",
+      "guid": "c1e35f05-c4b6-448d-8505-befa5202c802"
+    },
+    {
+      "name": "CODE",
+      "guid": "a2ca775b-70a3-4f3d-bcb7-bdc65ae475d5"
+    },
+    {
+      "name": "TKT_ISSUE_DESCRIPTION",
+      "guid": "49739a12-ba9c-44eb-a24e-5b3537acbd4b"
+    },
+    {
+      "name": "TKT_ISSUE_DATE_REVISED",
+      "guid": "6242443f-fcda-48a9-bc98-98485c4f8fd1"
+    },
+    {
+      "name": "TKT_ISSUE_DATE",
+      "guid": "64dab6b6-82ba-4279-abce-7962dd2428ff"
+    },
+    {
+      "name": "TKT_ISSUE_NUMBER",
+      "guid": "2a8695cb-33ea-4d22-94a5-6a0fe935ee12"
+    },
+    {
+      "name": "DIM_BRICK_LENGTH",
+      "guid": "3efd185d-40b8-4c37-9017-7d0ae4f73c1f"
+    },
+    {
+      "name": "DIM_BRICK_HEIGHT",
+      "guid": "1ce959f4-0fb4-4c39-9bdb-7490acdeaa44"
+    },
+    {
+      "name": "DIM_BRICK_THICKNESS",
+      "guid": "51bef52d-98c3-44f7-ba2f-5e0b41f4bb3c"
+    },
+    {
+      "name": "BRICK_SQ_FT",
+      "guid": "f451bb98-e8b7-4549-941f-96a3f8eabe6e"
+    },
+    {
+      "name": "BRICK_LINEAR_FT",
+      "guid": "76d18492-d24b-4590-8e33-3b7b08427072"
+    },
+    {
+      "name": "DIM_BRICK_RETURN",
+      "guid": "5359b3b2-970a-4416-b1eb-b5371d5543f3"
+    },
+    {
+      "name": "28_DAY_STRENGTH",
+      "guid": "83085fd2-1142-4245-9129-e32898d22d0d"
+    },
+    {
+      "name": "CONCRETE_TYPE",
+      "guid": "48d18f32-646a-4763-a4f6-878712b9de15"
+    },
+    {
+      "name": "MILL_DATE",
+      "guid": "0550d9f3-9458-42f9-aa60-2f49f242c5a3"
+    },
+    {
+      "name": "PRODUCT",
+      "guid": "3c0d8ae0-01bb-4fb2-b4f3-a8c2571509f1"
+    },
+    {
+      "name": "REBAR_GRADE",
+      "guid": "53cf9b52-36da-4a3b-aa12-a49197565532"
+    },
+    {
+      "name": "TKT_CONTROL_REQD_TOTAL",
+      "guid": "761679e4-27d5-4006-9c1d-b8a334017b17"
+    },
+    {
+      "name": "TKT_FINISH_LF",
+      "guid": "7c3512d8-dabf-4ba7-a279-592d8f192186"
+    },
+    {
+      "name": "TKT_ISSUE_BY",
+      "guid": "3cb2c746-6566-4740-8db1-2875784f9c7b"
+    },
+    {
+      "name": "TKT_REVISED",
+      "guid": "8161cffd-5d3b-458d-8bf4-630f4f68acf1"
+    },
+    {
+      "name": "WWF_FY",
+      "guid": "4192598f-6d49-4a4d-9392-beebe225b414"
+    },
+    {
+      "name": "BOM_PRODUCT_HOST",
+      "guid": "b5cd61cf-b98a-462c-877e-c77de8780a9f"
+    },
+    {
+      "name": "PROJECT_CLIENT_PRECAST_MANUFACTURER",
+      "guid": "4032866f-41d7-4089-9e81-053faf3240d6"
+    },
+    {
+      "name": "MODEL_EDITOR_ALLOW_LIST",
+      "guid": "bac5837d-2058-4ced-95f4-a6ecf2087747"
+    },
+    {
+      "name": "TICKET_DETAILED_DATE_CURRENT",
+      "guid": "3e8f9385-8190-4371-b3cb-ca33efaac425"
+    },
+    {
+      "name": "TICKET_DETAILED_DATE_INITIAL",
+      "guid": "baaf8f16-1a2c-44ea-809a-38cef3f5a0d8"
+    },
+    {
+      "name": "TICKET_DETAILED_USER_CURRENT",
+      "guid": "f9baf6ef-c0b9-41e2-9a39-6e1b7aaf7776"
+    },
+    {
+      "name": "TICKET_DETAILED_USER_INITIAL",
+      "guid": "e22663fb-40a3-4792-9066-7e5460f53acd"
+    },
+    {
+      "name": "TICKET_REINFORCED_DATE_CURRENT",
+      "guid": "b66f4553-19e4-4ad7-8cad-b85aee25d182"
+    },
+    {
+      "name": "TICKET_REINFORCED_DATE_INITIAL",
+      "guid": "e80994a0-68a3-4fa3-9459-091269964586"
+    },
+    {
+      "name": "TICKET_REINFORCED_USER_CURRENT",
+      "guid": "982ac00c-16fe-4483-94e6-90ceb91f0ec9"
+    },
+    {
+      "name": "TICKET_REINFORCED_USER_INITIAL",
+      "guid": "3d224d7e-be12-4a0e-ab03-28190638c402"
+    },
+    {
+      "name": "TICKET_CREATED_DATE_CURRENT",
+      "guid": "bce1661a-c7da-49af-a6b7-1651cec6103f"
+    },
+    {
+      "name": "TICKET_CREATED_DATE_INITIAL",
+      "guid": "15a62313-9d28-48d6-bcc1-d13735bd93d3"
+    },
+    {
+      "name": "TICKET_CREATED_USER_CURRENT",
+      "guid": "9ac35e18-302b-466e-845f-a860349709c9"
+    },
+    {
+      "name": "TICKET_CREATED_USER_INITIAL",
+      "guid": "b162dccb-99cf-47a3-8391-617615a84fda"
+    },
+    {
+      "name": "TICKET_RELEASED_DATE_CURRENT",
+      "guid": "c05bad80-daba-46e0-aa9e-847f1c02d93a"
+    },
+    {
+      "name": "TICKET_RELEASED_DATE_INITIAL",
+      "guid": "03b9525f-ccba-4d8a-810f-f1e68be7206d"
+    },
+    {
+      "name": "TICKET_RELEASED_USER_CURRENT",
+      "guid": "01c2682b-2be2-4e13-90e4-6647f21e18e1"
+    },
+    {
+      "name": "TICKET_RELEASED_USER_INITIAL",
+      "guid": "1c540ec6-4f1f-4ab0-ad41-89c1c778a1bd"
+    },
+    {
+      "name": "TICKET_EDIT_COMMENT",
+      "guid": "957af9fa-29a5-4666-82bd-d515a2e44267"
+    },
+    {
+      "name": "TICKET_DESCRIPTION",
+      "guid": "2b160eb3-e80c-4be0-a3cf-dc8822dba422"
+    },
+    {
+      "name": "TICKET_FLAGGED",
+      "guid": "f219cbd0-6352-40cc-bd3c-568a6a00f8b2"
+    },
+    {
+      "name": "DIM_DIAMETER",
+      "guid": "bfd275ce-405b-461a-9a56-267e6c8a391b"
+    },
+    {
+      "name": "STRUCTURAL_MATERIAL_BACK",
+      "guid": "fb12f7a6-c693-499a-a42b-383c4969251d"
+    },
+    {
+      "name": "COLUMN_STACKED",
+      "guid": "64f37702-1eb8-4367-8f3d-b8ea1f8a1c4e"
+    },
+    {
+      "name": "DESIGN",
+      "guid": "28130c1d-03dc-4914-ac86-f6928dea0029"
+    },
+    {
+      "name": "REBAR_UPDATER",
+      "guid": "8a20ec95-1d85-4f73-8a0a-c2a7625e2cb5"
+    },
+    {
+      "name": "DIM_WWF_YY",
+      "guid": "a9d99ecc-30ce-43b1-969a-1af70fe2ab4b"
+    },
+    {
+      "name": "DIM_WWF_XX",
+      "guid": "0ef1660e-2984-4614-ae17-8ab0e202ecf0"
+    },
+    {
+      "name": "DIM_AREA",
+      "guid": "ebf6db95-d1a7-40c3-a177-7e4cd1e6d61b"
+    },
+    {
+      "name": "COMMENT_MC",
+      "guid": "b14cb545-ed79-4623-b979-24ce8bd78ab4"
+    },
+    {
+      "name": "CLA_BEARING_NAME",
+      "guid": "37f44c97-90bb-4330-a42e-acec498c90db"
+    },
+    {
+      "name": "Schedule.Length.Yes",
+      "guid": "a0b664ea-ef60-4239-a909-d78604a113dd"
+    },
+    {
+      "name": "SCHEDULE_LENGTH",
+      "guid": "8acf4feb-979a-4606-b5d3-adf55af88a67"
+    },
+    {
+      "name": "DESIGN_NUMBER",
+      "guid": "5a8caba4-de71-4ccc-ba82-98a7a45c9370"
+    },
+    {
+      "name": "LOC_ID",
+      "guid": "bb4b68a9-35ad-4fdf-8c76-d504dd608a2c"
+    },
+    {
+      "name": "PRODUCT_CODE",
+      "guid": "bc8d2b77-068c-4b65-be7a-77f89053cf64"
+    },
+    {
+      "name": "HANDLING_CODE",
+      "guid": "f35df7cf-7da4-47f5-998e-0fd454fd2f02"
+    },
+    {
+      "name": "AW_1",
+      "guid": "5e965085-ca8a-47df-838a-13856ca65371"
+    },
+    {
+      "name": "AW_2",
+      "guid": "93778d30-e399-417f-b810-a100583a0f4f"
+    },
+    {
+      "name": "AW_3",
+      "guid": "f498f841-e190-4d3a-af8f-ddd536e9eed2"
+    },
+    {
+      "name": "AW_4",
+      "guid": "5b5556e1-9349-4c22-b549-8a837a74a2e6"
+    },
+    {
+      "name": "AW_5",
+      "guid": "31fd61f9-67fc-4df3-973a-fd55fedc4d44"
+    },
+    {
+      "name": "AW_6",
+      "guid": "8afddc2d-914a-4634-8ceb-5d8892c52638"
+    },
+    {
+      "name": "RELEASE_STRENGTH",
+      "guid": "66891c5b-f0c9-472b-ac28-14dd16f76d32"
+    },
+    {
+      "name": "FINAL_STRENGTH",
+      "guid": "00401e30-8627-4e55-85a0-b38f7506ae94"
+    },
+    {
+      "name": "FACE_MIX",
+      "guid": "55c7fa21-7472-4e8b-85e2-ac9602c234ea"
+    },
+    {
+      "name": "TYPICAL",
+      "guid": "acb83577-1f1d-4385-80b0-1e99aabc6f7b"
+    },
+    {
+      "name": "LOCATION_IN_FORM",
+      "guid": "8f21b56e-1f48-4c2c-b0fa-e3983a7f3c35"
+    },
+    {
+      "name": "TKT_CUYDS",
+      "guid": "7a19d113-2782-4a32-87fe-bec62ed3f97d"
+    },
+    {
+      "name": "TKT_WT",
+      "guid": "bee0f8bb-08ef-41e9-83fc-d5b54289a8a4"
+    },
+    {
+      "name": "TKT_DEPTH",
+      "guid": "33ca0b1c-740f-43ef-9085-68dc6441b465"
+    },
+    {
+      "name": "TKT_PROD_CODE",
+      "guid": "9c3abf34-c725-4a06-95f3-37ad27ac112c"
+    },
+    {
+      "name": "TKT_EREC_SEQ",
+      "guid": "3becbc42-faf6-44fd-a21e-dcbcf7068339"
+    },
+    {
+      "name": "TKT_STRUCT_MIX",
+      "guid": "73733f82-2ac2-4408-ae50-6780810acaa8"
+    },
+    {
+      "name": "TKT_ARCH_MIX_1",
+      "guid": "fc8aaf95-be1b-4e6f-aea6-1a9114d6967b"
+    },
+    {
+      "name": "TKT_ARCH_MIX_2",
+      "guid": "954d489b-d97b-403e-bd53-a0cfe7f0ddbc"
+    },
+    {
+      "name": "TKT_ARCH_MIX_3",
+      "guid": "4e1a84e7-6b92-41ad-be7d-b609558441f7"
+    },
+    {
+      "name": "TKT_ARCH_MIX_4",
+      "guid": "15c18ac4-2704-4d15-8c08-37589e6e6407"
+    },
+    {
+      "name": "TKT_TOP_FINISH",
+      "guid": "c88a5315-d866-40a6-ac0c-f6a7e66a1636"
+    },
+    {
+      "name": "TKT_TOTAL_RELEASED",
+      "guid": "a279a52a-e362-4d8d-8c56-a2055153f352"
+    },
+    {
+      "name": "TKT_TOTAL_CREATED",
+      "guid": "687c8fd7-bc6a-4c41-8d60-f023c4b8112c"
+    },
+    {
+      "name": "TKT_TOTAL_DETAILED",
+      "guid": "85c96171-738c-4a4e-85b9-accd864dedb3"
+    },
+    {
+      "name": "TKT_VIEWSHEET_COUNT",
+      "guid": "5ab95759-0bfc-4e8c-ba55-07b39c3c73a5"
+    },
+    {
+      "name": "TICKET_IS_REINFORCED",
+      "guid": "f480efdf-b127-4f59-b0f4-d8c9b2f82702"
+    },
+    {
+      "name": "TICKET_IS_DETAILED",
+      "guid": "50259bca-48a4-4087-a1d4-653855b5459f"
+    },
+    {
+      "name": "TICKET_IS_RELEASED",
+      "guid": "c51509e0-a51b-4b3f-a6a4-c059ed3d6e44"
+    },
+    {
+      "name": "HOST_GUID",
+      "guid": "01e6172c-8e57-4f63-aba1-54ac8e0502ff"
+    },
+    {
+      "name": "MAT_ID",
+      "guid": "45858813-88d7-427a-bc19-6ef4dd11714a"
+    },
+    {
+      "name": "MAT_CAT_ID",
+      "guid": "14d25f33-7f16-497b-b621-133532fdcc29"
+    },
+    {
+      "name": "ARCH_SF_1",
+      "guid": "e5e9f33f-cbf2-4a52-9d7d-b387808bbc47"
+    },
+    {
+      "name": "ARCH_SF_2",
+      "guid": "fa8a5fb1-ebc3-4987-af25-f610de1364d2"
+    },
+    {
+      "name": "ARCH_SF_3",
+      "guid": "5cb61b37-9d89-4c33-9328-e35d7158bc8f"
+    },
+    {
+      "name": "ARCH_SF_4",
+      "guid": "e24ff714-7048-4ac1-8f1b-d041444027e9"
+    },
+    {
+      "name": "MEMBER_VOLUME_CAST",
+      "guid": "88cce672-50e3-4529-981d-5bf0857ed3e5"
+    },
+    {
+      "name": "MEMBER_WEIGHT_CAST",
+      "guid": "86cb7035-ef7a-4aba-99e1-3bd28d8e6bab"
+    },
+    {
+      "name": "ORDER_BY",
+      "guid": "e70cf378-914a-46ed-abc9-916610ebc69e"
+    },
+    {
+      "name": "COUNT_MULTIPLIER",
+      "guid": "46e819d7-1b74-4a6c-8054-eb5bbb996111"
+    },
+    {
+      "name": "MULTIPLY_FOR_MARKS",
+      "guid": "3fbc2717-f20c-4ca0-8c4f-8115cb96ce87"
+    },
+    {
+      "name": "REBAR_MULTIPLY_FOR_MARKS",
+      "guid": "baefc1a7-abb0-4d44-a8f9-6ee9c6114188"
+    },
+    {
+      "name": "MESH_MULTIPLY_FOR_MARKS",
+      "guid": "320a2269-553d-4dca-844b-37c8e7c657cc"
+    },
+    {
+      "name": "LIFTING_MULTIPLY_FOR_MARKS",
+      "guid": "3d06e320-3b54-4bfa-bc70-7c8cd075a343"
+    },
+    {
+      "name": "TKT_ARCH_SF_1",
+      "guid": "2753ce59-baa1-4e70-8ea0-2d6f152c9136"
+    },
+    {
+      "name": "TKT_ARCH_SF_2",
+      "guid": "c19b5b9d-252e-44a9-a913-11e91c29fde4"
+    },
+    {
+      "name": "TKT_ARCH_SF_3",
+      "guid": "5ae5bcd0-dc00-4b1a-869b-269045ae4336"
+    },
+    {
+      "name": "TKT_ARCH_SF_4",
+      "guid": "0bdb640f-dcc1-44fa-b1ff-fd3c297498e0"
+    },
+    {
+      "name": "TKT_ARCH_VOL_1",
+      "guid": "bc7f1d7e-6b3b-4928-bae4-1de6fe21f0c4"
+    },
+    {
+      "name": "TKT_ARCH_VOL_2",
+      "guid": "e35082a8-4e5c-4fc9-8db6-b0175db02964"
+    },
+    {
+      "name": "TKT_ARCH_VOL_3",
+      "guid": "7602a6a7-840f-4b96-b200-b78fe3c66899"
+    },
+    {
+      "name": "TKT_ARCH_VOL_4",
+      "guid": "2aa024cc-1e65-4b8f-ba95-a25a69193a0a"
+    },
+    {
+      "name": "TKT_ARCH_VOL_TOT",
+      "guid": "92809786-2834-47d9-91b6-86b9990403ab"
+    },
+    {
+      "name": "TKT_STRUCT_CUYDS",
+      "guid": "c619c015-9feb-488d-bee1-2c51a361d055"
+    },
+    {
+      "name": "PROJ_PRODUCING_PLANT",
+      "guid": "5c24eca2-666f-40a7-adff-533c7d7bcc2e"
+    },
+    {
+      "name": "PIECE_PLANT",
+      "guid": "5cb801b3-fe0f-4d84-ac34-b08073fbf42a"
+    },
+    {
+      "name": "INSULATION_SCHEDULE_SHEETS",
+      "guid": "a56ce2ad-c656-4521-8ed6-25327eea6dc6"
+    },
+    {
+      "name": "MESH_SCHEDULE_SHEETS",
+      "guid": "f595b5b1-efb4-407d-b5c1-f3af501c5a7b"
+    },
+    {
+      "name": "DIM_DIAGONAL",
+      "guid": "38fafc92-5934-459d-ab29-373e5d6d647b"
+    },
+    {
+      "name": "TKT_DIM_DIAGONAL",
+      "guid": "0753ea54-a033-41fc-a76b-1bb4edebbc38"
+    },
+    {
+      "name": "DIM_SQFT",
+      "guid": "fe5d0027-3555-4ceb-8ba8-12986efd7e81"
+    },
+    {
+      "name": "FABRICATOR_NOTES",
+      "guid": "b611f82e-f5b0-405d-af09-771b7aa201ea"
+    },
+    {
+      "name": "ElementIdForCloud",
+      "guid": "cf37f7b4-0d6d-4edf-9dc3-08d9f86044df"
+    },
+    {
+      "name": "TKT_SQFT",
+      "guid": "300d3e0c-69e7-4e92-b89d-07c7c8c41a5c"
+    },
+    {
+      "name": "TKT_DESIGN_NUMBER",
+      "guid": "da90fcc9-2f7e-4289-b708-2a22bb74e993"
+    },
+    {
+      "name": "TKT_RELEASE_STRENGTH",
+      "guid": "af65428c-8ab7-4a60-b0a6-c679301076c2"
+    },
+    {
+      "name": "TKT_FINAL_STRENGTH",
+      "guid": "47ec1d12-3a55-478e-a65e-2f5d08819009"
+    },
+    {
+      "name": "RELEASE_STRENGTH",
+      "guid": "51b0bec6-e0e8-46f4-94b1-9c7c7d612d3f"
+    },
+    {
+      "name": "FINAL_STRENGTH",
+      "guid": "a41221ef-35cf-4a09-9731-663043f5a82d"
+    },
+    {
+      "name": "ERECTION_SEQUENCE",
+      "guid": "638bdfa4-5cf4-4de6-bcad-616cdab52201"
+    },
+    {
+      "name": "STRUCT_MIX_NUM",
+      "guid": "f806a8f2-9258-43a8-a8b0-db639827f240"
+    },
+    {
+      "name": "ARCH_MIX_NUM_1",
+      "guid": "91b51eb1-b73d-4cf1-b501-408bb58592a7"
+    },
+    {
+      "name": "ARCH_MIX_NUM_2",
+      "guid": "eb7a73ca-a683-4ac4-9f5c-aac7189bd257"
+    },
+    {
+      "name": "ARCH_MIX_NUM_3",
+      "guid": "792f2cb9-6d6c-47e5-b1b4-fc00e0a8ef0c"
+    },
+    {
+      "name": "ARCH_MIX_NUM_4",
+      "guid": "6cc4c46d-e122-4da2-8698-b177e062412b"
+    },
+    {
+      "name": "TOP_FINISH",
+      "guid": "28bff587-05c6-4c3e-9bc4-ca98c82dcd2a"
+    },
+    {
+      "name": "CROSS_SECTION",
+      "guid": "e8af785c-dd6b-46d3-9018-add8968cc0c7"
+    },
+    {
+      "name": "IS_CLOUD_VIEW",
+      "guid": "1987c3d5-73ab-48e9-89ab-75655186e6da"
+    },
+    {
+      "name": "IS_CLOUD_SHEET",
+      "guid": "89912e46-df92-4e17-b017-0bb8a69cecda"
+    },
+    {
+      "name": "QTY_MULTIPLIER",
+      "guid": "ec02d066-99ed-4f1b-9400-334a09d58154"
+    },
+    {
+      "name": "DAP",
+      "guid": "4cf62e13-9124-4a5a-ba48-912768ec1e1d"
+    },
+    {
+      "name": "FORM FACE HAUNCH",
+      "guid": "2ea4d2f7-28d3-4578-98fc-20c1ebf0b3f4"
+    },
+    {
+      "name": "UP FACE HAUNCH",
+      "guid": "65641408-d5b0-4f2a-9461-6ae45bcb97ff"
+    },
+    {
+      "name": "AUTO_WARP_DISPLACEMENT",
+      "guid": "8f5bd044-6943-4ae8-bad1-4d53ab3cb940"
+    },
+    {
+      "name": "IS_WARPABLE_SHAPE",
+      "guid": "241f9efe-cdcf-44b5-af52-b57c7b7573f2"
+    },
+    {
+      "name": "WARPABLE_FILTER_FLAG",
+      "guid": "c9adf933-f794-48af-976c-51b9849f9878"
+    },
+    {
+      "name": "ERP_SAVE_FOLDER_PATH",
+      "guid": "befabb4c-f96b-4c59-8822-b1f00ed8f046"
+    },
+    {
+      "name": "DIM_LENGTH_ACTUAL",
+      "guid": "efcf59c3-9c71-4947-8170-fb41e7587830"
+    },
+    {
+      "name": "DIM_WIDTH_ACTUAL",
+      "guid": "1e1139ee-2e0e-4dc1-a4fb-14790462b792"
+    },
+    {
+      "name": "DESIGN_SHEET",
+      "guid": "e308c454-5fca-4835-8c7a-9eae2ec6c3fc"
+    },
+    {
+      "name": "DESIGN_TYPE",
+      "guid": "b50b184a-641a-440b-9803-628c32d6fcc1"
+    },
+    {
+      "name": "AUTO_WARPING_CREATE_DIRECT_SHAPES",
+      "guid": "9c5b8079-0925-4cde-8f9e-c7b5e616c245"
+    },
+    {
+      "name": "CAM_PRODNO",
+      "guid": "5bcf1103-a67a-4489-b59a-aafbd49cfcbf"
+    },
+    {
+      "name": "CAM_ORDERNO",
+      "guid": "8d0ced80-0186-4e37-92e7-c247e7efdd72"
+    },
+    {
+      "name": "DAP",
+      "guid": "9a7344bb-eaa7-47d3-aad5-8d46ed07fd25"
+    },
+    {
+      "name": "DAP",
+      "guid": "963b37d7-7e99-42e2-9911-d2552e1405bc"
+    },
+    {
+      "name": "DIM_RETURN_THICKNESS_1",
+      "guid": "e11b685f-b2de-4bc4-9976-2ee8bb693400"
+    },
+    {
+      "name": "DIM_RETURN_THICKNESS_2",
+      "guid": "8f67e2f3-b5fb-4ef7-8a94-9633a53282b9"
+    },
+    {
+      "name": "ERECTION_SEQUENCE_NUMBER",
+      "guid": "e6d62255-6d7e-4a5b-9f52-2724ca8f1414"
+    },
+    {
+      "name": "ERECTION_SEQUENCE_ZONE_NUMBER",
+      "guid": "a427c07f-8a56-4421-8d5b-f4f3017e7b96"
+    },
+    {
+      "name": "ERECTION_SEQUENCE_ZONE_NAME",
+      "guid": "3a7d6659-57ea-4b8e-aa36-aac9a5baab51"
+    },
+    {
+      "name": "ON_HOLD",
+      "guid": "6dccdca0-bf92-4405-8d60-e4c6d5ff9346"
+    },
+    {
+      "name": "DO_NOT_SCHEDULE",
+      "guid": "3a046b68-1d68-4092-aeac-b3fd411be1fc"
+    },
+    {
+      "name": "HARDWARE_DETAIL",
+      "guid": "5d991976-4431-4321-a9a5-874ff2350348"
+    },
+    {
+      "name": "ELECTRICAL_CONTAINED",
+      "guid": "e9155261-5df4-4ece-824e-c3565772e779"
+    },
+    {
+      "name": "HW_COMPONENT_WEIGHT",
+      "guid": "05c3501e-ea0c-4c00-b887-56cf9be93a53"
+    },
+    {
+      "name": "TICKET_IS_CREATED",
+      "guid": "f1c7ce6e-d19e-4f64-a20a-28cff151f877"
+    },
+    {
+      "name": "INSULATION_HOST_GUID",
+      "guid": "c79f4937-98c1-48b8-8dad-2e891d1db726"
+    },
+    {
+      "name": "INSULATION_LOCK",
+      "guid": "76c532df-57e6-4575-a663-7be14348eb6c"
+    },
+    {
+      "name": "INSULATION_MARK",
+      "guid": "ca7ab761-bcaa-48b7-b770-e63c8fc0082a"
+    }
+  ],
+  "errors": []
+}

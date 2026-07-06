@@ -1,0 +1,22 @@
+{
+  "name": "get_current_view_elements",
+  "description": "Get elements from active Revit view; supports model category filters like OST_Walls.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "modelCategoryList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "includeHidden": {
+        "type": "boolean"
+      },
+      "limit": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "set_formula",
+  "description": "Family Editor: set a parameter formula string (e.g. \"Width / 2\"). Clear error if the parameter is not found.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameterName": {
+        "type": "string"
+      },
+      "formula": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parameterName",
+      "formula"
+    ],
+    "additionalProperties": false
+  }
+}

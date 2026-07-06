@@ -1,0 +1,650 @@
+{
+  "typeMissing": [
+    {
+      "srcFamily": "L_GIRDER (LGA)",
+      "srcType": "24LB36",
+      "tgtFamily": "L_GIRDER",
+      "tgtTypes": "32LB32, 18LB36"
+    },
+    {
+      "srcFamily": "L_GIRDER (LGA)",
+      "srcType": "32LB41",
+      "tgtFamily": "L_GIRDER",
+      "tgtTypes": "32LB32, 18LB36"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "8RB24",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "12RB14",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "24RB41",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "SPANDREL_BEARING_ADJ_LEDGE (SPA)",
+      "srcType": "8\" X 166\"",
+      "tgtFamily": "SPANDREL_BEARING_ADJ_LEDGE",
+      "tgtTypes": "8\" X 84\", 8\" X 106\""
+    },
+    {
+      "srcFamily": "COLUMN (CLA)",
+      "srcType": "24\" X 37\"",
+      "tgtFamily": "COLUMN",
+      "tgtTypes": "18\" X 18\", 24\" X 24\", 24\" X 33\", 33\" X 33\""
+    },
+    {
+      "srcFamily": "COLUMN (CLA)",
+      "srcType": "28\" X 28\"",
+      "tgtFamily": "COLUMN",
+      "tgtTypes": "18\" X 18\", 24\" X 24\", 24\" X 33\", 33\" X 33\""
+    },
+    {
+      "srcFamily": "COLUMN (CLA)",
+      "srcType": "30\" X 30\"",
+      "tgtFamily": "COLUMN",
+      "tgtTypes": "18\" X 18\", 24\" X 24\", 24\" X 33\", 33\" X 33\""
+    },
+    {
+      "srcFamily": "COLUMN (CLA)",
+      "srcType": "48\" X 19\"",
+      "tgtFamily": "COLUMN",
+      "tgtTypes": "18\" X 18\", 24\" X 24\", 24\" X 33\", 33\" X 33\""
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "srcType": "12 DT 32 (4\" FLANGE / 6\" STEM FILLER)",
+      "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+      "tgtTypes": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER), 12 DT 36 (2\" FLANGE), 13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER), 13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER), 13.33 DT 28 (2\" FLANGE), 13.33 DT 29 (3\" FLANGE), 13.33 DT 30 (4\" FLANGE), 14 DT 40 (2\" FLANGE / 7FT STEM SPACING)"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "8RB18",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "8RB30",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "12RB28",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "16RB30",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    },
+    {
+      "srcFamily": "METRODECK_FIELD_TOPPED (MDK)",
+      "srcType": "MDK 9.5\" FIELD",
+      "tgtFamily": "METRODECK_FIELD_TOPPED",
+      "tgtTypes": "10\", 11\", 12\", 9.5\""
+    },
+    {
+      "srcFamily": "METRODECK_FIELD_TOPPED (MDK)",
+      "srcType": "MDK 10\" FIELD",
+      "tgtFamily": "METRODECK_FIELD_TOPPED",
+      "tgtTypes": "10\", 11\", 12\", 9.5\""
+    },
+    {
+      "srcFamily": "METRODECK_FIELD_TOPPED (MDK)",
+      "srcType": "MDK 11\" FIELD",
+      "tgtFamily": "METRODECK_FIELD_TOPPED",
+      "tgtTypes": "10\", 11\", 12\", 9.5\""
+    },
+    {
+      "srcFamily": "METRODECK_FIELD_TOPPED (MDK)",
+      "srcType": "MDK 12\" FIELD",
+      "tgtFamily": "METRODECK_FIELD_TOPPED",
+      "tgtTypes": "10\", 11\", 12\", 9.5\""
+    },
+    {
+      "srcFamily": "T_GIRDER (TGA)",
+      "srcType": "44IT56",
+      "tgtFamily": "T_GIRDER",
+      "tgtTypes": "30IT36, 32IT32, 34IT32, 36IT36, 36IT54, 40IT42, 44IT64 (MOAB)"
+    },
+    {
+      "srcFamily": "L_GIRDER (LGA)",
+      "srcType": "34LB56",
+      "tgtFamily": "L_GIRDER",
+      "tgtTypes": "32LB32, 18LB36"
+    },
+    {
+      "srcFamily": "L_GIRDER (LGA)",
+      "srcType": "34LB64",
+      "tgtFamily": "L_GIRDER",
+      "tgtTypes": "32LB32, 18LB36"
+    },
+    {
+      "srcFamily": "COLUMN (CLA)",
+      "srcType": "37\" X 37\"",
+      "tgtFamily": "COLUMN",
+      "tgtTypes": "18\" X 18\", 24\" X 24\", 24\" X 33\", 33\" X 33\""
+    },
+    {
+      "srcFamily": "STAIR_LANDING (STF)",
+      "srcType": "06\"",
+      "tgtFamily": "STAIR_LANDING",
+      "tgtTypes": "6\", 8\""
+    },
+    {
+      "srcFamily": "STAIR_LANDING (STF)",
+      "srcType": "08\"",
+      "tgtFamily": "STAIR_LANDING",
+      "tgtTypes": "6\", 8\""
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 DT 48 (2\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 DT 49 (3\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 AT 40 (2\" FLANGE / 8\" STEM FILLER)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 AT 41 (3\" FLANGE / 8\" STEM FILLER)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 AT 49 (3\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 XT 34 (4\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 YT 28 (2\" FLANGE / 4\" STEM FILLER)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 YT 30 (2\" FLANGE / 2\" STEM FILLER)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 YT 30 (4\" FLANGE / 4\" STEM FILLER)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 YT 32 (2\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+      "srcType": "12 YT 34 (4\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_RADIUSED_NOMINAL",
+      "tgtTypes": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING), 10 DT 32 (2\" FLANGE / 5FT STEM SPACING), 12 AT 48 (2\" FLANGE), 12 XT 28 (2\" FLANGE / 4\" STEM FILLER), 12 XT 30 (4\" FLANGE / 4\" STEM FILLER), 12 XT 32 (2\" FLANGE), 12 ZT 40 (2\" FLANGE), 14 YT 28 (2\" FLANGE / 4\" STEM FILLER), 14 YT 32 (2\" FLANGE), 14 YT 34 (4\" FLANGE), 14 YT 30 (4\" FLANGE / 4\" STEM FILLER)"
+    },
+    {
+      "srcFamily": "INSULATED_WALL_PANEL (HORIZ) (WPBH)",
+      "srcType": "09.5\"",
+      "tgtFamily": "INSULATED WALL_PANEL (HORIZONTAL)",
+      "tgtTypes": "08\", 11\""
+    },
+    {
+      "srcFamily": "INSULATED_WALL_PANEL (HORIZ) (WPBH)_MITERED",
+      "srcType": "09.5\"",
+      "tgtFamily": "INSULATED WALL_PANEL (HORIZONTAL)",
+      "tgtTypes": "08\", 11\""
+    },
+    {
+      "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "srcType": "9\"",
+      "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+      "tgtTypes": "08\", 11\""
+    },
+    {
+      "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)_MITERED",
+      "srcType": "09.5\"",
+      "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+      "tgtTypes": "08\", 11\""
+    },
+    {
+      "srcFamily": "T_GIRDER (TGA)",
+      "srcType": "36IT48",
+      "tgtFamily": "T_GIRDER",
+      "tgtTypes": "30IT36, 32IT32, 34IT32, 36IT36, 36IT54, 40IT42, 44IT64 (MOAB)"
+    },
+    {
+      "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "srcType": "10\"",
+      "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+      "tgtTypes": "08\", 11\""
+    },
+    {
+      "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "srcType": "12 DT 37 (3\" FLANGE)",
+      "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+      "tgtTypes": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER), 12 DT 36 (2\" FLANGE), 13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER), 13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER), 13.33 DT 28 (2\" FLANGE), 13.33 DT 29 (3\" FLANGE), 13.33 DT 30 (4\" FLANGE), 14 DT 40 (2\" FLANGE / 7FT STEM SPACING)"
+    },
+    {
+      "srcFamily": "T_GIRDER (TGA)",
+      "srcType": "36IT48 OFFSET 1",
+      "tgtFamily": "T_GIRDER",
+      "tgtTypes": "30IT36, 32IT32, 34IT32, 36IT36, 36IT54, 40IT42, 44IT64 (MOAB)"
+    },
+    {
+      "srcFamily": "T_GIRDER (TGA)",
+      "srcType": "36IT48 OFFSET 2",
+      "tgtFamily": "T_GIRDER",
+      "tgtTypes": "30IT36, 32IT32, 34IT32, 36IT36, 36IT54, 40IT42, 44IT64 (MOAB)"
+    },
+    {
+      "srcFamily": "L_GIRDER (LGA)",
+      "srcType": "32LB48",
+      "tgtFamily": "L_GIRDER",
+      "tgtTypes": "32LB32, 18LB36"
+    },
+    {
+      "srcFamily": "R_BEAM (RBA)",
+      "srcType": "24RB48",
+      "tgtFamily": "R_BEAM",
+      "tgtTypes": "8x24, 12x14, 24x48"
+    }
+  ],
+  "unmatched": [
+    {
+      "family": "CABLE RAIL",
+      "type": "CABLE RAIL - IMPACT"
+    },
+    {
+      "family": "SHEAR_FRAME (SWF)",
+      "type": "24\" X 24\""
+    },
+    {
+      "family": "SHEARWALL_HORIZONTAL_VTOP_SLOPED_TOP (SWAH)",
+      "type": "12\""
+    },
+    {
+      "family": "SPANDREL_BEARING_NO_LEDGE_SLOPED (SPA)",
+      "type": "8\" X 84\""
+    },
+    {
+      "family": "INSULATED_WALL_PANEL_LSHAPE-H-LEDGE (HORIZ) (WPBH)",
+      "type": "8\""
+    },
+    {
+      "family": "INSULATED_WALL_PANEL_RADIAL (HORIZ) (WPBH)",
+      "type": "08\""
+    },
+    {
+      "family": "INSULATED_WALL_PANEL_RADIAL (VERT) (WPBV)",
+      "type": "08\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL (AFx-HORIZ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL (AFx-VERT)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_LSHAPE (ALx-HORIZ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_LSHAPE (ALx-VERT)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_LSHAPE_ANGLED (ALx-HORIZ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_LSHAPE_ANGLED (ALx-VERT)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_LSHAPE-H-LEDGE (ALx-HORIZ)",
+      "type": "6\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_RADIAL (AMx-HORIZ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_RADIAL (AMx-VERT)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_SLOPED_TOP (AFx-HORIZ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_SLOPED_TOP (AFx-VERT)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_USHAPE (AUx-HORIZ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_USHAPE (AUx-HORIZ-ADJ)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_USHAPE (AUx-VERT)",
+      "type": "06\""
+    },
+    {
+      "family": "PRECAST_WALL_PANEL_USHAPE (AUx-VERT-ADJ)",
+      "type": "06\""
+    },
+    {
+      "family": "SOLID_WALL_PANEL_LSHAPE-H-LEDGE (HORIZ) (WPAH)",
+      "type": "8\""
+    },
+    {
+      "family": "SOLID_WALL_PANEL_RADIAL (HORIZ) (WPAH)",
+      "type": "08\""
+    },
+    {
+      "family": "SOLID_WALL_PANEL_RADIAL (VERT) (WPAV)",
+      "type": "08\""
+    },
+    {
+      "family": "STADIA",
+      "type": "SINGLE STEM"
+    },
+    {
+      "family": "STADIA",
+      "type": "DOUBLE STEM"
+    },
+    {
+      "family": "STADIA",
+      "type": "TRIPLE STEM"
+    },
+    {
+      "family": "CORBEL 8D X 12W X 09T",
+      "type": "CORBEL 8D X 12W X 09T"
+    },
+    {
+      "family": "CORBEL 8D X 12W X 16T",
+      "type": "CORBEL 8D X 12W X 16T"
+    },
+    {
+      "family": "CORBEL 8D X 12W X 24T",
+      "type": "CORBEL 8D X 12W X 24T"
+    },
+    {
+      "family": "CORBEL Add On 8D X 12W X 16T",
+      "type": "CORBEL Add On 8D X 12W X 16T"
+    },
+    {
+      "family": "CORBEL ALP Quik Corbel",
+      "type": "CORBEL ALP Quik Corbel"
+    },
+    {
+      "family": "CORBEL Generic",
+      "type": "CORBEL"
+    },
+    {
+      "family": "CORBEL Heavy Loaded 12D X 24W X 48T",
+      "type": "CORBEL Heavy Loaded 12D X 24W X 48T"
+    },
+    {
+      "family": "CORBEL Heavy Loaded (Double) 12D X 24W X 48T",
+      "type": "CORBEL Heavy Loaded (Double) 12D X 24W X 48T"
+    },
+    {
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T"
+    },
+    {
+      "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T"
+    },
+    {
+      "family": "CORBEL Side Corbel 12D X 24W X 16T",
+      "type": "CORBEL Side Corbel 12D X 24W X 16T"
+    },
+    {
+      "family": "CORBEL Side Corbel (Double) 12D X 24W X 16T",
+      "type": "CORBEL Side Corbel (Double) 12D X 24W X 16T"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "FMD 08\" FACTORY"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "FMD 09\" FACTORY"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "FMD 10\" FACTORY"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "FMD 11\" FACTORY"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "FMD 12\" FACTORY"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 10\" FIELD"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 10.5\" FIELD"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 11\" FIELD"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 11.5\" FIELD"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 12\" FIELD"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 12.5\" FIELD"
+    },
+    {
+      "family": "METRODECK (FMD & SMD)",
+      "type": "SMD 13\" FIELD"
+    },
+    {
+      "family": "STEEL_HSS_BEAM",
+      "type": "14\" x 14\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM",
+      "type": "12\" x 12\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM",
+      "type": "10\" x 10\" x 3/8\""
+    },
+    {
+      "family": "CABLE RAIL",
+      "type": "CABLE RAIL - NON-IMPACT"
+    },
+    {
+      "family": "FENCE PANEL",
+      "type": "3' X 6' FENCE PANEL"
+    },
+    {
+      "family": "FENCING",
+      "type": "4' X CONT. FENCING"
+    },
+    {
+      "family": "FENCING",
+      "type": "6' X CONT. FENCING"
+    },
+    {
+      "family": "FENCE PANEL",
+      "type": "3' X 3' FENCE PANEL"
+    },
+    {
+      "family": "FUTURE OPENING",
+      "type": "FUTURE OPENING"
+    },
+    {
+      "family": "STEEL_HSS_BEAM - SGL BRG ASSY",
+      "type": "08\" x 08\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM - SGL BRG ASSY",
+      "type": "08\" x 10\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM - SGL BRG ASSY",
+      "type": "08\" x 12\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM - DBL BRG ASSY",
+      "type": "08\" x 08\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM - DBL BRG ASSY",
+      "type": "08\" x 10\" x 1/2\""
+    },
+    {
+      "family": "STEEL_HSS_BEAM - DBL BRG ASSY",
+      "type": "08\" x 12\" x 1/2\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 3/8\" x 3\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\" x 2\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\" x 1\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\" x 3\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 3/8\" x 2\""
+    },
+    {
+      "family": "SOLID_WALL_PILASTER_DOUBLE (HORIZ) (WPAH)",
+      "type": "08\""
+    },
+    {
+      "family": "SOLID_WALL_PILASTER_DOUBLE (VERT) (WPAV)",
+      "type": "08\""
+    },
+    {
+      "family": "SOLID_WALL_PILASTER_SINGLE (HORIZ) (WPAH)",
+      "type": "08\""
+    },
+    {
+      "family": "SOLID_WALL_PILASTER_SINGLE (VERT) (WPAV)",
+      "type": "08\""
+    },
+    {
+      "family": "INSULATED_WALL_PILASTER_DOUBLE (HORIZ) (WPBH)",
+      "type": "08\""
+    },
+    {
+      "family": "INSULATED_WALL_PILASTER_DOUBLE (VERT) (WPBV)",
+      "type": "08\""
+    },
+    {
+      "family": "INSULATED_WALL_PILASTER_SINGLE (HORIZ) (WPBH)",
+      "type": "08\""
+    },
+    {
+      "family": "INSULATED_WALL_PILASTER_SINGLE (VERT) (WPBV)",
+      "type": "08\""
+    },
+    {
+      "family": "ROOFTOP PLATFORM (DT)",
+      "type": "RTP 36"
+    },
+    {
+      "family": "ROOFTOP PLATFORM (DT)",
+      "type": "RTP 40"
+    },
+    {
+      "family": "ROOFTOP PLATFORM (DT)",
+      "type": "RTP 48"
+    },
+    {
+      "family": "STRONGBACK",
+      "type": "4\" x 4\" x 3/8\""
+    },
+    {
+      "family": "STRONGBACK",
+      "type": "6\" x 6\" x 3/8\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\" x 6\""
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\" x 3'6\" RECESS"
+    },
+    {
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\" x 4\""
+    }
+  ],
+  "ambiguous": [
+    {
+      "src": "VOID_TAPER_SLOPED :: VOID_TAPER_SLOPED (DOES NOT EXPORT)",
+      "cands": "VOID_TAPER_SLOPED | VOID_TAPER_SLOPED (DOES NOT EXPORT)"
+    },
+    {
+      "src": "VOID_TAPER_SLOPED_GRADE :: VOID_TAPER_SLOPED_GRADE (DOES NOT EXPORT)",
+      "cands": "VOID_TAPER_SLOPED_GRADE | VOID_TAPER_SLOPED_GRADE (DOES NOT EXPORT)"
+    }
+  ]
+}

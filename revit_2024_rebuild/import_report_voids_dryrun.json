@@ -1,0 +1,199 @@
+{
+  "summary": {
+    "mode": "dryrun",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_voids.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_gm.json",
+    "attempted": 18,
+    "placed": 18,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": -1,
+    "nextIndex": 20,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10044730,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "LEVEL 1",
+      "newHostId": 7321315,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10045287,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7326776,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10045537,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "LEVEL 1",
+      "newHostId": 7326779,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10045825,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7321327,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046409,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7326783,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046414,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7321335,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046430,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7326786,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046435,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7321341,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046449,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7326789,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046454,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7321347,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046517,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7321350,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046522,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7326792,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046539,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7321356,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046544,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7326795,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046561,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7321362,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10046566,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7326798,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10079222,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF",
+      "newHostId": 7326849,
+      "status": "resolved"
+    },
+    {
+      "srcId": 10081306,
+      "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+      "pass": 2,
+      "typeStatus": "exact",
+      "level": "ROOF HIGH POINT",
+      "newHostId": 7326852,
+      "status": "resolved"
+    }
+  ]
+}

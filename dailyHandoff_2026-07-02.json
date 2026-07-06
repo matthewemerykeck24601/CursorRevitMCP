@@ -1,0 +1,58 @@
+{
+  "date": "2026-07-02",
+  "versionBuilt": "v19",
+  "versionLive": "v19 (built, deployed, hash-verified, and LIVE-VALIDATED)",
+  "builtBy": "Claude Code",
+  "status": "EXTRACTION PHASE COMPLETE. group12 MODEL SNAPSHOT EXPORT (6 tools, v18-v19) all built, deployed, and live-validated. Next session moves to the Revit 2024 rebuild spec. No bridge rebuild until the P-fix decision (D1 + existing patchQueue).",
+
+  "validation": {
+    "result": "ALL PASS",
+    "export_instances": "5831 elements, 0 errors, 34.4MB (validated v18)",
+    "export_parameter_bindings": "236 bindings, 0 errors; CONSTRUCTION_PRODUCT_HOST / BOM_PRODUCT_HOST / MANUFACTURE_COMPONENT / IDENTITY_DESCRIPTION all confirmed as project bindings with GUIDs; allSharedParameterElements inventory complete",
+    "export_type_parameters": "260 types, 0 errors",
+    "export_materials": "146 materials, 0 errors",
+    "export_views": "150 views, 0 errors",
+    "read_export_record": "both modes confirmed against the 34.4MB instances file — elementId single-fetch works; CONTROL_MARK match found 44, returned 10, truncated flag correct"
+  },
+
+  "pinnedItems": {
+    "D1": {
+      "priority": "low",
+      "type": "code (TypeScript-only, no DLL rebuild)",
+      "title": "read_export_record needs optional arrayKey for secondary arrays",
+      "detail": "Today it only scans the primary array; allSharedParameterElements in the bindings file is unreachable. Fix = optional arrayKey input to readExportRecord in server.ts. Logged in project_scope.json patchQueue as D1.",
+      "status": "deferred pending P-fix decision"
+    },
+    "F1": {
+      "priority": "critical",
+      "type": "design rule (not code) — bake into the 2024 rebuild spec",
+      "title": "All write-side parameter matching MUST key on GUID, never name",
+      "detail": "Shared-param inventory has duplicate names with distinct GUIDs: DAP x3, PRODUCT TYPE x2, RELEASE_STRENGTH x2, FINAL_STRENGTH x2. Every 2024 rebuild parameter write must resolve the target by GUID from export_parameter_bindings.allSharedParameterElements, not LookupParameter(name). Recorded in project_scope.json rebuildSpec.designRules.F1_guidKeyedParameters."
+    }
+  },
+
+  "extractionArtifacts": {
+    "note": "void_hosts approach superseded by inline host data (hostElementId, hostFace, hostGuidDecodedId) in export_instances.",
+    "hostRelinkingDecision": "hostGuidDecodedId = PRIMARY host key; workPlaneName = cross-check only; disagreement -> manual review. faceResolved:false + hostElementId is the expected fallback for work-plane-hosted-on-reference-plane instances.",
+    "plannedExportDestination": "D:\\Autodesk\\AutodeskCache\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\revit_2024_rebuild\\"
+  },
+
+  "deployState": {
+    "activeDll": "RevitPublicMCPBridge.net8.v19.dll",
+    "sha256": "7457DF6D0A061E3AB6B23CF17541F27D32056B0192361348FD75DFD88E8B2519",
+    "size": "347,648 bytes",
+    "deployedTo": "%APPDATA%\\Autodesk\\Revit\\Addins\\2025\\RevitPublicMCPBridge-v2\\",
+    "manifest": "repointed to v19, hash-verified",
+    "totalToolCount": 78
+  },
+
+  "nextSession": {
+    "goal": "Author the Revit 2024 rebuild spec",
+    "inputs": [
+      "placement routing by placementType (OneLevelBased/TwoLevelsBased/WorkPlaneBased/FaceBased/CurveBased/CurveDrivenStructural) from export_instances",
+      "GUID-keyed parameter writes (F1)",
+      "Metromont 2024 project template as the starting document (bindings/materials/view templates already present -> verification data only)"
+    ],
+    "constraint": "No bridge rebuild until the P-fix decision is made (D1 + existing patchQueue P2-P10)."
+  }
+}

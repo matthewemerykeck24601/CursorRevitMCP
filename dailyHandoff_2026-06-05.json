@@ -1,0 +1,89 @@
+{
+  "date": "2026-06-05",
+  "versionBuilt": "v15",
+  "versionLive": "v12 (v15 pending Revit restart)",
+  "builtBy": "Claude Code",
+  "status": "v15 built clean, deployed, hash-verified, manifest repointed. Not tested.",
+
+  "versionsThisSession": {
+    "v12": "Group 5 fixes (reconstruct_profile_for_extrusion winding order + inner loops + useSelection) + Group 11 query tools (get_levels, get_grids, get_element_types, query_elements, get_element_by_id)",
+    "v13": "Group 6 — Model Element Creation (create_wall, create_floor, create_room, create_structural_column, create_beam, create_point_based_element, create_opening_by_boundary)",
+    "v14": "Group 7 — Modify and Edit (move_elements, rotate_elements, mirror_elements, copy_elements_to_level, set_element_parameters, delete_elements)",
+    "v15": "Group 8 — Views, Sheets and Sheet Audit (12 tools — see below)"
+  },
+
+  "groupsDelivered": {
+    "group6": {
+      "name": "Model Element Creation",
+      "version": "v13",
+      "status": "built, not yet tested",
+      "tools": ["create_wall", "create_floor", "create_room", "create_structural_column", "create_beam", "create_point_based_element", "create_opening_by_boundary"]
+    },
+    "group7": {
+      "name": "Modify and Edit",
+      "version": "v14",
+      "status": "built, not yet tested",
+      "tools": ["move_elements", "rotate_elements", "mirror_elements", "copy_elements_to_level", "set_element_parameters", "delete_elements"],
+      "flags": [
+        "mirror_elements with createCopy:true returns source IDs — Revit's MirrorElements doesn't hand back copy IDs",
+        "copy_elements_to_level applies one Z-translation to whole set aligned by first element's level elevation — mixed-level selections shift together, does not reassign level parameter",
+        "set_element_parameters matches by name via LookupParameter (first match), converts Length=mm / Angle=deg / Yes-No=bool; read-only/unknown/failed go to skipped with reason"
+      ]
+    },
+    "group8": {
+      "name": "Views, Sheets and Sheet Audit",
+      "version": "v15",
+      "status": "built, not yet tested",
+      "tools": {
+        "creation": ["create_floor_plan_view", "create_reflected_ceiling_plan", "create_section_view", "create_3d_view", "create_sheet", "place_view_on_sheet", "set_view_crop_region"],
+        "readAndAudit": ["get_sheets", "get_sheet_contents", "open_sheet", "get_view_contents", "compare_sheet_to_template"]
+      },
+      "flags": [
+        "create_section_view — orientation hardcoded: looks along +Y (view right=X, up=Z), centered on bbox, extents clamped to ≥100mm. Riskiest handler — verify orientation first",
+        "set_view_crop_region — min/max applied in crop box local X/Y keeping existing Z; approximate for rotated views",
+        "compare_sheet_to_template — view-type matching is whitespace/case-insensitive. minimumDimensions and requireAllElementsTagged aggregate across all views on sheet. Title-block/view-type/count failures = error; annotation/tag/text shortfalls = warning. Untagged samples capped at 50 issues",
+        "get_sheet_contents — reads title block as first OST_TitleBlocks instance on sheet; tags report first tagged element ID",
+        "create_sheet with no titleBlockTypeId creates sheet without title block — titleBlockParameters will be empty in audits"
+      ]
+    }
+  },
+
+  "validatedThisSession": {
+    "v12_group5_fixes": "reconstruct_profile_for_extrusion winding order fix confirmed — E, T, N, O, R letters extracted from logoo in-place elements and replicated as family extrusions",
+    "v12_group11": "get_levels (7 levels), get_grids (7 grids), query_elements (497 walls), get_element_by_id all confirmed live",
+    "extract_replicate_pipeline": "Full in-place → reconstruct_profile_for_extrusion → create_extrusion pipeline validated end to end against METROMONT logo letters",
+    "lock_constraint_fix": "Confirmed — labeled dimensions return idempotent success with note"
+  },
+
+  "buildResult": {
+    "csharp": "0 errors (13 pre-existing CS0618 warnings)",
+    "typescript": "clean",
+    "distRefreshed": true,
+    "dllSize": "323,584 bytes",
+    "sha256": "7206B223...0CC88E1F",
+    "dllName": "RevitPublicMCPBridge.net8.v15.dll"
+  },
+
+  "knownIssues": [
+    "work plane orientation in create_extrusion always defaults to Ref. Level — active view not respected",
+    "reconstruct_profile_for_extrusion: inner loop voids must be fired separately as isSolid:false — no auto-void support",
+    "mirror_elements copy IDs not returned",
+    "create_section_view orientation hardcoded to +Y — needs follow-up for elevations and other directions"
+  ],
+
+  "outstandingBeforeNextGroup": [
+    "Revit restart to load v15",
+    "Validate Group 6 — create_wall, create_floor, create_room using real level IDs from get_levels",
+    "Validate Group 7 — move, rotate, mirror, copy, set_element_parameters, delete",
+    "Validate Group 8 — get_sheets, get_sheet_contents, open_sheet, get_view_contents, compare_sheet_to_template",
+    "create_section_view orientation test — flag as highest risk item",
+    "Build deployment package installer (see prompt in project context) — target after Groups 6-8 validated",
+    "Groups 9, 10, remaining Group 11 tools (get_rooms, get_views, undo_last_action) still to build"
+  ],
+
+  "toolCountCumulative": {
+    "familyEditor": 23,
+    "projectTools": 30,
+    "total": 53
+  }
+}

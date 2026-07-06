@@ -1,0 +1,29 @@
+{
+  "name": "read_export_record",
+  "description": "Utility (server-side file I/O, no Revit required): fetch the matching record(s) from a large export JSON file without loading the whole file through the LLM. Scans the primary record array (instances/types/materials/views/bindings) and returns ONLY matches, capped at 10 with a truncated flag. Provide elementId (matched against elementId/id/typeId/viewId), and/or matchKey + matchValue (matched against a top-level field OR a parameters[matchKey].value/.raw, case-insensitive). At least one filter is required. filePath is an absolute path to a file the MCP server process can read.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "filePath": {
+        "type": "string"
+      },
+      "elementId": {
+        "type": "number"
+      },
+      "matchKey": {
+        "type": "string"
+      },
+      "matchValue": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
+    },
+    "required": [
+      "filePath"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "lock_constraint",
+  "description": "Family Editor: lock or unlock a dimension/alignment constraint (sets Dimension.IsLocked).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "constraintId": {
+        "type": "number"
+      },
+      "locked": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "constraintId",
+      "locked"
+    ],
+    "additionalProperties": false
+  }
+}

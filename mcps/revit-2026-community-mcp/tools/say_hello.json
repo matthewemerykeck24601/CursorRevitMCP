@@ -1,0 +1,15 @@
+{
+  "name": "say_hello",
+  "description": "Display a greeting dialog in Revit. Useful for testing the connection between Claude and Revit.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "Optional custom message to display in the dialog. Defaults to 'Hello MCP!'"
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

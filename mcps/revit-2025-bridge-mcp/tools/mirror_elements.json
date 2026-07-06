@@ -1,0 +1,43 @@
+{
+  "name": "mirror_elements",
+  "description": "Project: mirror one or more elements across a plane defined by an origin point and an axis normal (X, Y, or Z). Origin in millimetres. createCopy (default true) keeps the originals and adds mirrored copies; false mirrors in place.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "planeOriginX": {
+        "type": "number"
+      },
+      "planeOriginY": {
+        "type": "number"
+      },
+      "planeOriginZ": {
+        "type": "number"
+      },
+      "planeNormal": {
+        "type": "string",
+        "enum": [
+          "X",
+          "Y",
+          "Z"
+        ]
+      },
+      "createCopy": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "elementIds",
+      "planeOriginX",
+      "planeOriginY",
+      "planeOriginZ",
+      "planeNormal"
+    ],
+    "additionalProperties": false
+  }
+}

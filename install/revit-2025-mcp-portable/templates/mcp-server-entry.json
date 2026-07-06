@@ -1,0 +1,15 @@
+{
+  "revit-2025-bridge-mcp": {
+    "command": "cmd",
+    "args": [
+      "/c",
+      "npx",
+      "-y",
+      "tsx",
+      "{{MCP_SERVER_DIR}}\\src\\index.ts"
+    ],
+    "env": {
+      "REVIT_2025_BRIDGE_URL": "http://127.0.0.1:8767"
+    }
+  }
+}

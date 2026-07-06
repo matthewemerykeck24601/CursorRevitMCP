@@ -1,0 +1,34 @@
+{
+  "name": "select_elements",
+  "description": "Selects specific elements in the APS Viewer by their dbIds. Use this whenever the user says 'select', 'highlight', 'show', or 'find' elements. Do NOT add extra actions like isolate or zoom unless the user explicitly asks.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dbIds": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "minItems": 1
+      },
+      "clearFirst": {
+        "type": "boolean",
+        "default": true
+      },
+      "zoomToSelection": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "dbIds"
+    ]
+  }
+}

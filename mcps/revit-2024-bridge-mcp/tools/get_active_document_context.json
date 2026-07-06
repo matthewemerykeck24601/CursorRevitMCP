@@ -1,0 +1,9 @@
+{
+  "name": "get_active_document_context",
+  "description": "Diagnostic: report the active Revit document context — 'project', 'family_editor', or 'edit_in_place' — with the document title and (for family editor) the family category. Note: Revit's public API cannot reliably detect an in-place edit session, so in-place edits report as 'project' (see returned note).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

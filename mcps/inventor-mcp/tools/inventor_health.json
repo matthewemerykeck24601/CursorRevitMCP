@@ -1,0 +1,9 @@
+{
+  "name": "inventor_health",
+  "description": "Validate Inventor gateway connectivity.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

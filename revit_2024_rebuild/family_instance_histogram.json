@@ -1,0 +1,184 @@
+[
+  {
+    "family": "Floor",
+    "category": "OST_Floors",
+    "count": 1,
+    "pass1": 1,
+    "pass2": 0
+  },
+  {
+    "family": "REVEAL",
+    "category": "OST_GenericModel",
+    "count": 2333,
+    "pass1": 28,
+    "pass2": 2305
+  },
+  {
+    "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+    "category": "OST_GenericModel",
+    "count": 169,
+    "pass1": 0,
+    "pass2": 169
+  },
+  {
+    "family": "CORBEL Light Loaded 12D X 24W X 36T",
+    "category": "OST_GenericModel",
+    "count": 54,
+    "pass1": 9,
+    "pass2": 45
+  },
+  {
+    "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "category": "OST_GenericModel",
+    "count": 20,
+    "pass1": 2,
+    "pass2": 18
+  },
+  {
+    "family": "Personal Doors",
+    "category": "OST_GenericModel",
+    "count": 7,
+    "pass1": 0,
+    "pass2": 7
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 679,
+    "pass1": 679,
+    "pass2": 0
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "category": "OST_StructuralFraming",
+    "count": 679,
+    "pass1": 0,
+    "pass2": 679
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_WARPED (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 679,
+    "pass1": 679,
+    "pass2": 0
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "category": "OST_StructuralFraming",
+    "count": 262,
+    "pass1": 262,
+    "pass2": 0
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "category": "OST_StructuralFraming",
+    "count": 229,
+    "pass1": 229,
+    "pass2": 0
+  },
+  {
+    "family": "TGIRDER_WARPED (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 186,
+    "pass1": 186,
+    "pass2": 0
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "category": "OST_StructuralFraming",
+    "count": 186,
+    "pass1": 186,
+    "pass2": 0
+  },
+  {
+    "family": "TGIRDER_FLAT (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 186,
+    "pass1": 186,
+    "pass2": 0
+  },
+  {
+    "family": "SHEARWALL_HORIZONTAL (SWAH)",
+    "category": "OST_StructuralFraming",
+    "count": 57,
+    "pass1": 57,
+    "pass2": 0
+  },
+  {
+    "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "category": "OST_StructuralFraming",
+    "count": 30,
+    "pass1": 30,
+    "pass2": 0
+  },
+  {
+    "family": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "category": "OST_StructuralFraming",
+    "count": 10,
+    "pass1": 10,
+    "pass2": 0
+  },
+  {
+    "family": "STAIR_LANDING (STF)",
+    "category": "OST_StructuralFraming",
+    "count": 9,
+    "pass1": 9,
+    "pass2": 0
+  },
+  {
+    "family": "STAIR_DROP_IN (STA)",
+    "category": "OST_StructuralFraming",
+    "count": 8,
+    "pass1": 8,
+    "pass2": 0
+  },
+  {
+    "family": "LGIRDER_WARPED (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 7,
+    "pass1": 7,
+    "pass2": 0
+  },
+  {
+    "family": "RBEAM_WARPED (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 7,
+    "pass1": 7,
+    "pass2": 0
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "category": "OST_StructuralFraming",
+    "count": 7,
+    "pass1": 7,
+    "pass2": 0
+  },
+  {
+    "family": "RBEAM_FLAT (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 7,
+    "pass1": 7,
+    "pass2": 0
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "category": "OST_StructuralFraming",
+    "count": 7,
+    "pass1": 7,
+    "pass2": 0
+  },
+  {
+    "family": "LGIRDER_FLAT (DO NOT USE)",
+    "category": "OST_StructuralFraming",
+    "count": 7,
+    "pass1": 7,
+    "pass2": 0
+  },
+  {
+    "family": "FLAT_SLAB (FSA)",
+    "category": "OST_StructuralFraming",
+    "count": 5,
+    "pass1": 5,
+    "pass2": 0
+  }
+]

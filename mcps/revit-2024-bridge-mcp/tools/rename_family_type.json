@@ -1,0 +1,20 @@
+{
+  "name": "rename_family_type",
+  "description": "Family Editor: rename a family type.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "oldName": {
+        "type": "string"
+      },
+      "newName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "oldName",
+      "newName"
+    ],
+    "additionalProperties": false
+  }
+}

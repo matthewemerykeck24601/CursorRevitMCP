@@ -1,0 +1,81 @@
+{
+  "name": "create_point_based_element",
+  "description": "Create one or more point-based family instances in Revit 2026.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "typeId": {
+              "type": "number"
+            },
+            "locationPoint": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                },
+                "z": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y",
+                "z"
+              ],
+              "additionalProperties": false
+            },
+            "width": {
+              "type": "number"
+            },
+            "depth": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "baseLevel": {
+              "type": "number"
+            },
+            "baseOffset": {
+              "type": "number"
+            },
+            "rotation": {
+              "type": "number"
+            },
+            "hostWallId": {
+              "type": "number"
+            },
+            "facingFlipped": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "name",
+            "typeId",
+            "locationPoint",
+            "width",
+            "height",
+            "baseLevel",
+            "baseOffset"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "export_views",
+  "description": "Project: export all non-template views to a JSON file ON DISK. Per view: viewId, name, viewType, scale (null-safe), viewTemplateName, isOnSheet, sheetId, sheetNumber. Also includes a viewportMap (viewportId -> viewId) that joins against sheets_views.json viewportIds. Only a summary returns through MCP. outputPath is a caller-supplied absolute path.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "outputPath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "outputPath"
+    ],
+    "additionalProperties": false
+  }
+}

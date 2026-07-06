@@ -1,0 +1,42 @@
+[
+  {
+    "srcId": 10028269,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009904ed",
+    "newId": 7320556,
+    "family": "COLUMN (CLA)",
+    "type": "30\u0022 X 30\u0022",
+    "controlMark": "CLA                -01"
+  },
+  {
+    "srcId": 10031577,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009911d9",
+    "newId": 7320557,
+    "family": "T_GIRDER (TGA)",
+    "type": "36IT48",
+    "controlMark": "TGA                -01"
+  },
+  {
+    "srcId": 10038108,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00992b5c",
+    "newId": 7320560,
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "type": "10\u0022",
+    "controlMark": "WPB-V              -01"
+  },
+  {
+    "srcId": 10044662,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009944f6",
+    "newId": 7320562,
+    "family": "SHEARWALL_HORIZONTAL (SWAH)",
+    "type": "8\u0022",
+    "controlMark": "SWA-H              -02"
+  },
+  {
+    "srcId": 10044730,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099453a",
+    "newId": 7320564,
+    "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "controlMark": null
+  }
+]

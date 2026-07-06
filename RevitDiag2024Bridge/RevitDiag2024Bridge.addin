@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>RevitDiag2024Bridge</Name>
+    <Assembly>C:\Users\mstri\AppData\Roaming\Autodesk\Revit\Addins\2024\RevitDiag2024Bridge\RevitDiag2024Bridge.dll</Assembly>
+    <AddInId>17FE1154-82DC-4903-892E-981B3E94BFDF</AddInId>
+    <FullClassName>RevitDiag2024Bridge.DiagBridgeApp</FullClassName>
+    <VendorId>MSTRI</VendorId>
+    <VendorDescription>Read-only diagnostic bridge for Autodesk Revit 2024 (MCP).</VendorDescription>
+  </AddIn>
+</RevitAddIns>

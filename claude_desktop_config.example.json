@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "revit-2025-bridge-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "D:\\CursorRevitMCP\\revit-2025-community-bridge-mcp\\src\\index.ts"
+      ],
+      "env": {
+        "REVIT_2025_BRIDGE_URL": "http://127.0.0.1:8767"
+      }
+    },
+    "revit-2026-bridge-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "D:\\CursorRevitMCP\\revit-2026-community-bridge-mcp\\src\\index.ts"
+      ],
+      "env": {
+        "REVIT_2026_BRIDGE_URL": "http://127.0.0.1:8766"
+      }
+    }
+  }
+}

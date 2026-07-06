@@ -1,0 +1,9 @@
+[
+  {
+    "srcFamily": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "srcType": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "tgtFamily": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "tgtType": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "createTypeIfMissing": false
+  }
+]

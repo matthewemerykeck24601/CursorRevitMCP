@@ -1,0 +1,19 @@
+{
+  "name": "create_floor_plan_view",
+  "description": "Project: create a floor plan view for a level (uses the first Floor Plan view family type). Optional name (uniquified on clash).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "levelId": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "levelId"
+    ],
+    "additionalProperties": false
+  }
+}

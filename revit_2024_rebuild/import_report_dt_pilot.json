@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_dt_pilot.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_pass1.json",
+    "attempted": 4,
+    "placed": 4,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 3,
+    "nextIndex": 4,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10038485,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -04",
+      "typeStatus": "typemap",
+      "placedAs": "point (sloped work-plane)",
+      "slopeDeg": 1.1499999999999999,
+      "orientationResidual": {
+        "facingAngleDeg": 1.1499999999999999,
+        "sourceFacing": [
+          -8.1904215337950418E-29,
+          0.99979989998000385,
+          0.020003999599439867
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343939,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038540,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -04",
+      "typeStatus": "typemap",
+      "placedAs": "point (sloped work-plane)",
+      "slopeDeg": 1.1499999999999999,
+      "orientationResidual": {
+        "facingAngleDeg": 1.1499999999999999,
+        "sourceFacing": [
+          -8.2298934680052582E-29,
+          0.99979989998000385,
+          0.020003999599439867
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343946,
+      "status": "placed"
+    },
+    {
+      "srcId": 10036637,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "placedAs": "point (sloped work-plane)",
+      "slopeDeg": 0.95999999999999996,
+      "orientationResidual": {
+        "facingAngleDeg": 179.03999999999999,
+        "sourceFacing": [
+          -3.3674179823694792E-15,
+          -0.99986086196058965,
+          0.016681028728071191
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343949,
+      "status": "placed"
+    },
+    {
+      "srcId": 10036711,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "placedAs": "point (sloped work-plane)",
+      "slopeDeg": 0.95999999999999996,
+      "orientationResidual": {
+        "facingAngleDeg": 179.03999999999999,
+        "sourceFacing": [
+          -3.3674179823694796E-15,
+          -0.99986086196058965,
+          0.016681028728071191
+        ],
+        "resultFacing": [
+          0,
+          1,
+          0
+        ]
+      },
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343952,
+      "status": "placed"
+    }
+  ]
+}

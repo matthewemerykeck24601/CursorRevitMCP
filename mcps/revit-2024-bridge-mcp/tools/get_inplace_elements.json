@@ -1,0 +1,16 @@
+{
+  "name": "get_inplace_elements",
+  "description": "Inventory all in-place model family instances in the active project, optionally filtered by an OST category token (e.g. OST_GenericModel). Returns id, name, category, family name, and bounding-box center (mm). Use before extracting geometry to see what in-place geometry exists.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "category": {
+        "type": "string"
+      },
+      "limit": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

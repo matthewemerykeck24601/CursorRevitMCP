@@ -1,0 +1,35 @@
+{
+  "name": "create_structural_column",
+  "description": "Project: place a structural column (FamilySymbol id) at a 3D point on a level. Coordinates and heightMm in millimetres; heightMm omitted = family default top constraint. Use get_element_types (e.g. OST_StructuralColumns) to find familyTypeId.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "familyTypeId": {
+        "type": "number"
+      },
+      "locationX": {
+        "type": "number"
+      },
+      "locationY": {
+        "type": "number"
+      },
+      "locationZ": {
+        "type": "number"
+      },
+      "levelId": {
+        "type": "number"
+      },
+      "heightMm": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "familyTypeId",
+      "locationX",
+      "locationY",
+      "locationZ",
+      "levelId"
+    ],
+    "additionalProperties": false
+  }
+}

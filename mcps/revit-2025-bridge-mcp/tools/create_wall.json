@@ -1,0 +1,52 @@
+{
+  "name": "create_wall",
+  "description": "Project: create a straight wall between two 3D points on a base level. All coordinates and lengths are millimetres. wallTypeId omitted = project default wall type; height omitted = level-to-level (top constraint = next level above).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "startX": {
+        "type": "number"
+      },
+      "startY": {
+        "type": "number"
+      },
+      "startZ": {
+        "type": "number"
+      },
+      "endX": {
+        "type": "number"
+      },
+      "endY": {
+        "type": "number"
+      },
+      "endZ": {
+        "type": "number"
+      },
+      "levelId": {
+        "type": "number"
+      },
+      "wallTypeId": {
+        "type": "number"
+      },
+      "height": {
+        "type": "number"
+      },
+      "structural": {
+        "type": "boolean"
+      },
+      "flipped": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "startX",
+      "startY",
+      "startZ",
+      "endX",
+      "endY",
+      "endZ",
+      "levelId"
+    ],
+    "additionalProperties": false
+  }
+}

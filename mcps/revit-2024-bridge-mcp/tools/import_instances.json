@@ -1,0 +1,64 @@
+{
+  "name": "import_instances",
+  "description": "Project (v20, Revit 2024 rebuild): rebuild placed instances from an export_instances snapshot. The gateway reads instancesPath and sibling datasets (levels_grids.json, family_types.json, shared_project_parameters.json) directly from disk and writes a detailed per-element report plus an external remap file — NO element data crosses the MCP boundary; only a summary returns. Type resolution: exact (familyName+typeName) → typemap JSON (load family file + clone type with family_types params + overrides) → unresolved. Placement routes by placementType/host: hostPass 1 = level-hosted point/curve records; hostPass 2 = instance-hosted (reveals/voids) resolved through the remap file with a workPlaneName cross-check. Shared-parameter writes key on GUID (inventory), non-shared by name; raw is authoritative for Length (mm) and Angle (deg). mode 'dryrun' resolves everything and writes the report with NO transaction; 'execute' places in chunked, progressively-committed transactions. Long-running: use resumeFromIndex + the returned nextIndex/done to resume; optional maxElements bounds a call (a small maxElements, ≤64, also enables per-element orientation verification for pilot runs).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "instancesPath": {
+        "type": "string"
+      },
+      "typeMapPath": {
+        "type": "string"
+      },
+      "levelsGridsPath": {
+        "type": "string"
+      },
+      "familyTypesPath": {
+        "type": "string"
+      },
+      "sharedParamsPath": {
+        "type": "string"
+      },
+      "remapOutPath": {
+        "type": "string"
+      },
+      "reportPath": {
+        "type": "string"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "dryrun",
+          "execute",
+          "reapply"
+        ]
+      },
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "hostPass": {
+        "type": "number",
+        "enum": [
+          1,
+          2
+        ]
+      },
+      "resumeFromIndex": {
+        "type": "number"
+      },
+      "maxElements": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "instancesPath",
+      "remapOutPath",
+      "mode",
+      "hostPass"
+    ],
+    "additionalProperties": false
+  }
+}

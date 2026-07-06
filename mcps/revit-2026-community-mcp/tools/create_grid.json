@@ -1,0 +1,100 @@
+{
+  "name": "create_grid",
+  "description": "Create a grid system in Revit with smart spacing generation. Supports both X-axis (vertical) and Y-axis (horizontal) grids with customizable naming styles (alphabetic A,B,C or numeric 1,2,3). All units are in millimeters (mm).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "xCount": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "description": "Number of grid lines along X-axis (vertical grids)"
+      },
+      "xSpacing": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "description": "Spacing between X-axis grid lines in millimeters"
+      },
+      "xStartLabel": {
+        "type": "string",
+        "default": "A",
+        "description": "Starting label for X-axis grids (e.g., 'A' or '1')"
+      },
+      "xNamingStyle": {
+        "type": "string",
+        "enum": [
+          "alphabetic",
+          "numeric"
+        ],
+        "default": "alphabetic",
+        "description": "Naming style for X-axis: 'alphabetic' (A,B,C...) or 'numeric' (1,2,3...)"
+      },
+      "yCount": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "description": "Number of grid lines along Y-axis (horizontal grids)"
+      },
+      "ySpacing": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "description": "Spacing between Y-axis grid lines in millimeters"
+      },
+      "yStartLabel": {
+        "type": "string",
+        "default": "1",
+        "description": "Starting label for Y-axis grids (e.g., '1' or 'A')"
+      },
+      "yNamingStyle": {
+        "type": "string",
+        "enum": [
+          "alphabetic",
+          "numeric"
+        ],
+        "default": "numeric",
+        "description": "Naming style for Y-axis: 'alphabetic' (A,B,C...) or 'numeric' (1,2,3...)"
+      },
+      "xExtentMin": {
+        "type": "number",
+        "default": 0,
+        "description": "Minimum extent along X-axis in mm (where Y-axis grids start)"
+      },
+      "xExtentMax": {
+        "type": "number",
+        "default": 50000,
+        "description": "Maximum extent along X-axis in mm (where Y-axis grids end)"
+      },
+      "yExtentMin": {
+        "type": "number",
+        "default": 0,
+        "description": "Minimum extent along Y-axis in mm (where X-axis grids start)"
+      },
+      "yExtentMax": {
+        "type": "number",
+        "default": 50000,
+        "description": "Maximum extent along Y-axis in mm (where X-axis grids end)"
+      },
+      "elevation": {
+        "type": "number",
+        "default": 0,
+        "description": "Elevation for grid lines in mm (Z-coordinate)"
+      },
+      "xStartPosition": {
+        "type": "number",
+        "default": 0,
+        "description": "Starting position for first X-axis grid in mm"
+      },
+      "yStartPosition": {
+        "type": "number",
+        "default": 0,
+        "description": "Starting position for first Y-axis grid in mm"
+      }
+    },
+    "required": [
+      "xCount",
+      "xSpacing",
+      "yCount",
+      "ySpacing"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

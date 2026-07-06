@@ -1,0 +1,22 @@
+{
+  "name": "open_family_from_library",
+  "description": "Open a family document from library path or by query search in configured roots.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "familyPath": {
+        "type": "string"
+      },
+      "libraryRoots": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "query": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "modify_element_parameters",
+  "description": "Modify multiple parameters of multiple elements efficiently in one transaction",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "description": "Element IDs to modify parameters for",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "parameterModifications": {
+        "description": "Parameter modifications to apply",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "parameterName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      },
+      "revitInstanceId": {
+        "type": "integer",
+        "description": "Process ID of the Revit instance to call. Use get_running_revit_instances to list available instances."
+      }
+    },
+    "required": [
+      "elementIds",
+      "parameterModifications",
+      "revitInstanceId"
+    ]
+  }
+}

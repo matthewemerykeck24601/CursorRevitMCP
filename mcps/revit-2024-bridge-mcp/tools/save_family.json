@@ -1,0 +1,9 @@
+{
+  "name": "save_family",
+  "description": "Family Editor: save the active family document. Errors if it has no save path (use save_family_as first).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

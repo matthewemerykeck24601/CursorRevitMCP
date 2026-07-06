@@ -1,0 +1,27 @@
+{
+  "name": "set_element_parameters",
+  "description": "Project: set instance parameters on one element by name. Length values are millimetres, angles degrees, booleans for Yes/No. Read-only/unknown parameters are reported in skipped.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementId": {
+        "type": "number"
+      },
+      "parameters": {
+        "type": "object",
+        "additionalProperties": {
+          "type": [
+            "string",
+            "number",
+            "boolean"
+          ]
+        }
+      }
+    },
+    "required": [
+      "elementId",
+      "parameters"
+    ],
+    "additionalProperties": false
+  }
+}

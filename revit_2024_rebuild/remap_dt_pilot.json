@@ -1,0 +1,34 @@
+[
+  {
+    "srcId": 10036637,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-0099259d",
+    "newId": 7343956,
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 37 (3\u0022 FLANGE)",
+    "controlMark": "DT(3\u0022FLG)          -01"
+  },
+  {
+    "srcId": 10036711,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-009925e7",
+    "newId": 7343961,
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 37 (3\u0022 FLANGE)",
+    "controlMark": "DT(3\u0022FLG)          -01"
+  },
+  {
+    "srcId": 10038485,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00992cd5",
+    "newId": 7343941,
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 37 (3\u0022 FLANGE)",
+    "controlMark": "DT(3\u0022FLG)          -04"
+  },
+  {
+    "srcId": 10038540,
+    "srcUniqueId": "e7345488-9deb-4a9a-8116-d8687a6a6f6a-00992d0c",
+    "newId": 7343950,
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 37 (3\u0022 FLANGE)",
+    "controlMark": "DT(3\u0022FLG)          -04"
+  }
+]

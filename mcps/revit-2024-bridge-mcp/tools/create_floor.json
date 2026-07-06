@@ -1,0 +1,42 @@
+{
+  "name": "create_floor",
+  "description": "Project: create a floor from a closed XY boundary loop on a level. Coordinates in millimetres. floorTypeId omitted = project default floor type.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "levelId": {
+        "type": "number"
+      },
+      "floorTypeId": {
+        "type": "number"
+      },
+      "structural": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "profile",
+      "levelId"
+    ],
+    "additionalProperties": false
+  }
+}

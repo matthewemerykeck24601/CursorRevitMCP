@@ -1,0 +1,22 @@
+{
+  "name": "get_element_geometry",
+  "description": "Extract curve-loop sketch profiles and solid face/edge geometry from a selected or specified element. Works in project and Edit-In-Place contexts. Lines and arcs are returned as clean analytic curves (so reconstruction is crisp, not polyline-approximated); splines fall back to sampled points. Output is structured to feed create_extrusion / create_sweep. All coordinates, lengths, radii in mm; volumes in mm³.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementId": {
+        "type": "number"
+      },
+      "includeSketches": {
+        "type": "boolean"
+      },
+      "includeSolids": {
+        "type": "boolean"
+      },
+      "useSelection": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

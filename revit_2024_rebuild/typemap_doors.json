@@ -1,0 +1,9 @@
+[
+  {
+    "srcFamily": "Personal Doors",
+    "srcType": "Personal Doors",
+    "tgtFamily": "Personal Doors",
+    "tgtType": "Personal Doors",
+    "createTypeIfMissing": false
+  }
+]

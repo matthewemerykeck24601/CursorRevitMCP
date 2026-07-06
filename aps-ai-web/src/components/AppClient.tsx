@@ -69,8 +69,91 @@ type SessionResponse = {
   scope: string;
 };
 type WorkspaceTab = "folders" | "viewer" | "model-data" | "element-data" | "issues";
-type WorkspaceMode = "model" | "product-analysis" | "admin";
+type WorkspaceMode = "model" | "product-analysis" | "admin" | "form-builder";
 type ModelDataRow = { key: string; value: string; source: string };
+type FormTemplateType = "custom" | "inspection" | "quality" | "safety" | "daily_report";
+type FormBuilderFieldType =
+  | "text"
+  | "multiline_text"
+  | "number"
+  | "checkbox"
+  | "radio"
+  | "dropdown"
+  | "date"
+  | "signature"
+  | "section_heading"
+  | "table";
+type FormBuilderField = {
+  id: string;
+  sourceName: string;
+  label: string;
+  type: FormBuilderFieldType;
+  required: boolean;
+  options: string[];
+  confidence: number;
+  reviewState: "auto" | "needs_review" | "approved" | "rejected";
+  notes: string[];
+  readOnly?: boolean;
+  calculated?: boolean;
+  formula?: string;
+  groupKey?: string;
+  columnKey?: string;
+  rowIndex?: number;
+};
+type FormaTableColumn = {
+  key: string;
+  label: string;
+  type: FormBuilderFieldType;
+  calculated: boolean;
+  formula?: string;
+};
+type FormaElement =
+  | {
+      kind: "field";
+      fieldId: string;
+      label: string;
+      type: FormBuilderFieldType;
+      required: boolean;
+      options: string[];
+    }
+  | {
+      kind: "section";
+      sectionId: string;
+      title: string;
+      entryMode: "single" | "multiple";
+      fieldIds: string[];
+      rationale: string;
+    }
+  | {
+      kind: "table";
+      tableId: string;
+      title: string;
+      columns: FormaTableColumn[];
+      fieldIds: string[];
+      hasCalculatedColumns: boolean;
+      rationale: string;
+    };
+type FormaSchema = {
+  elements: FormaElement[];
+  sectionCount: number;
+  tableCount: number;
+  calculatedColumnCount: number;
+  notes: string[];
+};
+type FormBuilderAnalysis = {
+  analysisId: string;
+  accountId: string;
+  templateName: string;
+  templateType: FormTemplateType;
+  extractedTextSnippet: string;
+  extractedFieldCount: number;
+  confidenceScore: number;
+  status: "ready" | "needs_review";
+  fields: FormBuilderField[];
+  formaSchema?: FormaSchema;
+  reviewNotes: string[];
+  createdAt: string;
+};
 type ChatBimSelectionContext = {
   count: number;
   withControlMark: number;
@@ -188,6 +271,7 @@ export function AppClient() {
   const [chatPending, setChatPending] = useState(false);
   const modelChatInputRef = useRef<HTMLTextAreaElement | null>(null);
   const adminChatInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const formBuilderUploadInputRef = useRef<HTMLInputElement | null>(null);
   const productLayoutRef = useRef<HTMLDivElement | null>(null);
   const chatAbortControllerRef = useRef<AbortController | null>(null);
   const activeChatRequestIdRef = useRef(0);
@@ -259,6 +343,23 @@ export function AppClient() {
   const resizeStartYRef = useRef(0);
   const resizeStartHeightRef = useRef(0);
   const [workspaceMode, setWorkspaceMode] = useState<WorkspaceMode>("model");
+  const [formBuilderSourceType, setFormBuilderSourceType] = useState<
+    "upload" | "acc-version"
+  >("upload");
+  const [formBuilderTemplateName, setFormBuilderTemplateName] = useState("");
+  const [formBuilderTemplateType, setFormBuilderTemplateType] =
+    useState<FormTemplateType>("custom");
+  const [formBuilderUploadToken, setFormBuilderUploadToken] = useState("");
+  const [formBuilderProjectId, setFormBuilderProjectId] = useState("");
+  const [formBuilderVersionId, setFormBuilderVersionId] = useState("");
+  const [formBuilderSelectedFileName, setFormBuilderSelectedFileName] = useState("");
+  const [formBuilderAnalysis, setFormBuilderAnalysis] =
+    useState<FormBuilderAnalysis | null>(null);
+  const [formBuilderPublishing, setFormBuilderPublishing] = useState(false);
+  const [formBuilderAnalyzing, setFormBuilderAnalyzing] = useState(false);
+  const [formBuilderUploadPending, setFormBuilderUploadPending] = useState(false);
+  const [formBuilderMessage, setFormBuilderMessage] = useState("");
+  const [formBuilderError, setFormBuilderError] = useState("");
   const [assistantMode] = useState<AssistantMode>("agent");
   const [aiProvider, setAiProvider] = useState<AiProvider>("xai");
   const [aiModel, setAiModel] = useState<string>(AI_MODEL_OPTIONS.xai[0]);
@@ -513,6 +614,17 @@ export function AppClient() {
     if (!ext || ext.length > 10) return "";
     return `.${ext}`;
   }, [selectedProjectBrowserNode]);
+  useEffect(() => {
+    if (!selectedProject) return;
+    setFormBuilderProjectId((prev) => prev || selectedProject);
+  }, [selectedProject]);
+  useEffect(() => {
+    if (selectedProjectBrowserNode?.kind !== "file") return;
+    if (selectedProjectBrowserNode.versionId) {
+      setFormBuilderVersionId(selectedProjectBrowserNode.versionId);
+    }
+    setFormBuilderSelectedFileName(selectedProjectBrowserNode.name);
+  }, [selectedProjectBrowserNode]);
   const elementIdentityRows = useMemo(() => {
     const identityKeyOrder = [
       "internalElementID",
@@ -707,6 +819,45 @@ export function AppClient() {
   const selectedDesignFileVersions = useMemo(() => {
     return groupedDesignFiles.find((g) => g.baseName === selectedDesignFileBase)?.versions ?? [];
   }, [groupedDesignFiles, selectedDesignFileBase]);
+  const formBuilderProjectOptions = useMemo(() => {
+    return projects
+      .map((project) => {
+        const token = project.name.match(/^\s*([A-Za-z0-9._-]+)/)?.[1] ?? "";
+        return {
+          id: project.id,
+          label: token ? `${token} - ${project.name}` : project.name,
+        };
+      })
+      .sort((a, b) =>
+        a.label.localeCompare(b.label, undefined, { sensitivity: "base", numeric: true }),
+      );
+  }, [projects]);
+  const formBuilderFileOptions = useMemo(() => {
+    type Row = { versionId: string; label: string };
+    const out: Row[] = [];
+    const seen = new Set<string>();
+    const walk = (nodes: ProjectBrowserNode[], prefix: string) => {
+      for (const node of nodes) {
+        const nextPrefix = prefix ? `${prefix}/${node.name}` : node.name;
+        if (node.kind === "file" && node.versionId) {
+          const versionId = node.versionId.trim();
+          if (!versionId || seen.has(versionId)) continue;
+          seen.add(versionId);
+          out.push({
+            versionId,
+            label: nextPrefix,
+          });
+        }
+        if (node.children.length > 0) {
+          walk(node.children, nextPrefix);
+        }
+      }
+    };
+    walk(projectBrowserRoots, "");
+    return out.sort((a, b) =>
+      a.label.localeCompare(b.label, undefined, { sensitivity: "base", numeric: true }),
+    );
+  }, [projectBrowserRoots]);
 
   const loadSession = useCallback(async () => {
     setLoadingAuth(true);
@@ -1200,6 +1351,23 @@ export function AppClient() {
   }, [selectedHub, selectedProject, workspaceMode, workspaceTab, loadProjectBrowser]);
 
   useEffect(() => {
+    if (workspaceMode !== "form-builder") return;
+    if (formBuilderSourceType !== "acc-version") return;
+    if (!selectedHub || !formBuilderProjectId) return;
+    void loadProjectBrowser(selectedHub, formBuilderProjectId);
+  }, [
+    workspaceMode,
+    formBuilderSourceType,
+    selectedHub,
+    formBuilderProjectId,
+    loadProjectBrowser,
+  ]);
+
+  useEffect(() => {
+    setFormBuilderVersionId("");
+  }, [formBuilderProjectId]);
+
+  useEffect(() => {
     void loadModelData();
   }, [loadModelData]);
 
@@ -1301,6 +1469,294 @@ export function AppClient() {
     productTopPaneHeight,
   ]);
 
+  const publishBlockedByReview = useMemo(() => {
+    if (!formBuilderAnalysis) return true;
+    if (formBuilderAnalysis.fields.length === 0) return true;
+    return formBuilderAnalysis.fields.some((field) => field.reviewState === "needs_review");
+  }, [formBuilderAnalysis]);
+
+  const removeFormBuilderField = useCallback((fieldId: string) => {
+    setFormBuilderAnalysis((prev) =>
+      prev
+        ? { ...prev, fields: prev.fields.filter((f) => f.id !== fieldId) }
+        : prev,
+    );
+  }, []);
+
+  const moveFormBuilderField = useCallback(
+    (fieldId: string, direction: -1 | 1) => {
+      setFormBuilderAnalysis((prev) => {
+        if (!prev) return prev;
+        const idx = prev.fields.findIndex((f) => f.id === fieldId);
+        if (idx < 0) return prev;
+        const target = idx + direction;
+        if (target < 0 || target >= prev.fields.length) return prev;
+        const next = [...prev.fields];
+        const [moved] = next.splice(idx, 1);
+        next.splice(target, 0, moved);
+        return { ...prev, fields: next };
+      });
+    },
+    [],
+  );
+
+  /**
+   * Live Forma builder preview mirroring the server translator: repeated-row or
+   * calculated groups become tables; heading + repeating fillable rows become
+   * multiple-entries sections; everything else stays a single field.
+   */
+  const formBuilderStructurePreview = useMemo(() => {
+    const fields = formBuilderAnalysis?.fields ?? [];
+    type PreviewElement =
+      | { kind: "field"; label: string; type: string }
+      | {
+          kind: "section";
+          title: string;
+          entryMode: "single" | "multiple";
+          fieldCount: number;
+        }
+      | {
+          kind: "table";
+          title: string;
+          columnCount: number;
+          calculatedColumns: number;
+        };
+    const elements: PreviewElement[] = [];
+    const groups = new Map<string, FormBuilderField[]>();
+    const order: string[] = [];
+    for (const field of fields) {
+      const key = field.groupKey?.trim();
+      if (!key) continue;
+      if (!groups.has(key)) {
+        groups.set(key, []);
+        order.push(key);
+      }
+      groups.get(key)!.push(field);
+    }
+    const emitted = new Set<string>();
+    let sectionCount = 0;
+    let tableCount = 0;
+    let calculatedColumnCount = 0;
+    for (const field of fields) {
+      const key = field.groupKey?.trim();
+      if (!key) {
+        elements.push({ kind: "field", label: field.label, type: field.type });
+        continue;
+      }
+      if (emitted.has(key)) continue;
+      emitted.add(key);
+      const members = groups.get(key) ?? [];
+      const heading = members.find((m) => m.type === "section_heading");
+      const fillable = members.filter((m) => m.type !== "section_heading");
+      const distinctRows = new Set(
+        members
+          .map((m) => m.rowIndex)
+          .filter((r): r is number => typeof r === "number"),
+      );
+      const calculated = members.filter((m) => m.calculated || m.readOnly);
+      const isTable = distinctRows.size >= 2 || calculated.length > 0;
+      if (isTable) {
+        const cols = new Set(
+          (fillable.length > 0 ? fillable : members).map(
+            (m) => (m.columnKey || m.label || m.sourceName).toLowerCase(),
+          ),
+        );
+        const calcCols = calculated.length;
+        tableCount += 1;
+        calculatedColumnCount += calcCols;
+        elements.push({
+          kind: "table",
+          title: heading?.label || key,
+          columnCount: cols.size,
+          calculatedColumns: calcCols,
+        });
+        continue;
+      }
+      const homogeneous =
+        fillable.length >= 2 && new Set(fillable.map((m) => m.type)).size === 1;
+      const entryMode: "single" | "multiple" =
+        distinctRows.size >= 2 || (Boolean(heading) && homogeneous)
+          ? "multiple"
+          : "single";
+      sectionCount += 1;
+      elements.push({
+        kind: "section",
+        title: heading?.label || key,
+        entryMode,
+        fieldCount: fillable.length,
+      });
+    }
+    return { elements, sectionCount, tableCount, calculatedColumnCount };
+  }, [formBuilderAnalysis]);
+
+  const formBuilderStatusTone = useMemo(() => {
+    if (!formBuilderAnalysis) return "text-gray-700";
+    if (formBuilderAnalysis.status === "ready") return "text-green-700";
+    return "text-amber-700";
+  }, [formBuilderAnalysis]);
+
+  const onUploadFormBuilderPdf = useCallback(
+    async (file: File | null) => {
+      if (!file || formBuilderUploadPending) return;
+      setFormBuilderUploadPending(true);
+      setFormBuilderError("");
+      setFormBuilderMessage("");
+      try {
+        const body = new FormData();
+        body.set("file", file);
+        if (selectedHub) body.set("hubId", selectedHub);
+        if (selectedProject) body.set("projectId", selectedProject);
+        const response = await fetch("/api/admin/forms/upload", {
+          method: "POST",
+          body,
+        });
+        const json = (await response.json()) as {
+          uploadToken?: string;
+          fileName?: string;
+          error?: string;
+        };
+        if (!response.ok || !json.uploadToken) {
+          throw new Error(json.error || "Upload failed.");
+        }
+        setFormBuilderUploadToken(json.uploadToken);
+        setFormBuilderSelectedFileName(json.fileName || file.name);
+        setFormBuilderMessage("PDF uploaded. Ready for analysis.");
+      } catch (error) {
+        setFormBuilderError(error instanceof Error ? error.message : "Upload failed.");
+      } finally {
+        setFormBuilderUploadPending(false);
+      }
+    },
+    [formBuilderUploadPending, selectedHub, selectedProject],
+  );
+
+  const onAnalyzeFormBuilder = useCallback(async () => {
+    if (formBuilderAnalyzing) return;
+    setFormBuilderAnalyzing(true);
+    setFormBuilderError("");
+    setFormBuilderMessage("");
+    try {
+      const source =
+        formBuilderSourceType === "upload"
+          ? {
+              kind: "upload_token" as const,
+              uploadToken: formBuilderUploadToken.trim(),
+            }
+          : {
+              kind: "acc_version" as const,
+              projectId: formBuilderProjectId.trim(),
+              versionId: formBuilderVersionId.trim(),
+            };
+      if (
+        (source.kind === "upload_token" && !source.uploadToken) ||
+        (source.kind === "acc_version" && (!source.projectId || !source.versionId))
+      ) {
+        throw new Error("Provide a PDF source before running analysis.");
+      }
+      const response = await fetch("/api/admin/forms/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source,
+          hubId: selectedHub || undefined,
+          templateName: formBuilderTemplateName.trim() || undefined,
+          templateType: formBuilderTemplateType,
+        }),
+      });
+      const json = (await response.json()) as {
+        success?: boolean;
+        analysis?: FormBuilderAnalysis;
+        error?: string;
+      };
+      if (!response.ok || !json.analysis) {
+        throw new Error(json.error || "Analyze request failed.");
+      }
+      setFormBuilderAnalysis(json.analysis);
+      setFormBuilderTemplateName(json.analysis.templateName);
+      setFormBuilderTemplateType(json.analysis.templateType);
+      setFormBuilderMessage(
+        json.analysis.status === "ready"
+          ? "Analysis complete. Template is ready to publish."
+          : "Analysis complete. Review required fields before publish.",
+      );
+    } catch (error) {
+      setFormBuilderError(error instanceof Error ? error.message : "Analyze failed.");
+    } finally {
+      setFormBuilderAnalyzing(false);
+    }
+  }, [
+    formBuilderAnalyzing,
+    formBuilderProjectId,
+    formBuilderSourceType,
+    formBuilderTemplateName,
+    formBuilderTemplateType,
+    formBuilderUploadToken,
+    formBuilderVersionId,
+    selectedHub,
+  ]);
+
+  const onPublishFormBuilder = useCallback(async () => {
+    if (!formBuilderAnalysis || formBuilderPublishing || publishBlockedByReview) return;
+    setFormBuilderPublishing(true);
+    setFormBuilderError("");
+    setFormBuilderMessage("");
+    try {
+      const response = await fetch("/api/admin/forms/create-template", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          analysisId: formBuilderAnalysis.analysisId,
+          hubId: selectedHub || undefined,
+          templateName: formBuilderTemplateName.trim() || undefined,
+          templateType: formBuilderTemplateType,
+          orderedFieldIds: formBuilderAnalysis.fields.map((field) => field.id),
+          fieldOverrides: formBuilderAnalysis.fields.map((field) => ({
+            id: field.id,
+            label: field.label,
+            type: field.type,
+            required: field.required,
+            options: field.options,
+            reviewState: field.reviewState,
+            calculated: field.calculated ?? false,
+            ...(field.formula ? { formula: field.formula } : {}),
+            ...(field.groupKey ? { groupKey: field.groupKey } : {}),
+          })),
+        }),
+      });
+      const json = (await response.json()) as {
+        success?: boolean;
+        templateId?: string;
+        message?: string;
+        sectionsCreated?: number;
+        tablesCreated?: number;
+        calculatedColumns?: number;
+        error?: string;
+      };
+      if (!response.ok || !json.success) {
+        throw new Error(json.error || json.message || "Template publish failed.");
+      }
+      const structureSummary = `${json.sectionsCreated ?? 0} section(s), ${
+        json.tablesCreated ?? 0
+      } table(s), ${json.calculatedColumns ?? 0} calculated column(s)`;
+      setFormBuilderMessage(
+        json.templateId
+          ? `Template created (templateId: ${json.templateId}) — ${structureSummary}.`
+          : `Template created — ${structureSummary}.`,
+      );
+    } catch (error) {
+      setFormBuilderError(error instanceof Error ? error.message : "Publish failed.");
+    } finally {
+      setFormBuilderPublishing(false);
+    }
+  }, [
+    formBuilderAnalysis,
+    formBuilderPublishing,
+    formBuilderTemplateName,
+    formBuilderTemplateType,
+    publishBlockedByReview,
+    selectedHub,
+  ]);
+
   async function onLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     setAuth(null);
@@ -1347,6 +1803,19 @@ export function AppClient() {
         aiProvider,
         aiModel,
         workspaceMode,
+        formBuilder:
+          workspaceMode === "form-builder"
+            ? {
+                sourceType: formBuilderSourceType,
+                uploadToken: formBuilderUploadToken || undefined,
+                projectId:
+                  formBuilderProjectId || selectedProject || undefined,
+                versionId: formBuilderVersionId || undefined,
+                templateName: formBuilderTemplateName || undefined,
+                templateType: formBuilderTemplateType,
+                analysis: formBuilderAnalysis ?? undefined,
+              }
+            : undefined,
         productAnalysis: {
           rulesText: "",
           selectedDesignFile: selectedDesignFileData,
@@ -1944,6 +2413,14 @@ export function AppClient() {
               }`}
             >
               Admin
+            </button>
+            <button
+              onClick={() => setWorkspaceMode("form-builder")}
+              className={`rounded border px-2 py-1 text-xs ${
+                workspaceMode === "form-builder" ? "bg-black text-white" : "bg-white"
+              }`}
+            >
+              Form Builder
             </button>
           </div>
           <button
@@ -2973,6 +3450,525 @@ export function AppClient() {
               <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
                 <h3 className="mb-2 text-sm font-semibold">Admin Workspace</h3>
                 <div className="min-h-0 flex-1 rounded border border-dashed border-black/20 bg-gray-50" />
+              </section>
+            </div>
+          </div>
+          <div
+            className={`${
+              workspaceMode === "form-builder" ? "grid" : "hidden"
+            } min-h-0 grid-rows-1 ${
+              workspaceExpanded ? "h-[calc(100%-2.25rem)]" : "h-[72vh] min-h-[780px]"
+            }`}
+          >
+            <div className="grid h-full min-h-0 grid-cols-[minmax(280px,1fr)_minmax(0,3fr)] gap-3 overflow-hidden">
+              <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
+                <h3 className="mb-2 text-sm font-semibold">AI Chat</h3>
+                <div className="mb-2 rounded border border-indigo-300 bg-indigo-50 px-2 py-1 text-[11px] text-indigo-900">
+                  AI Form Builder Mode is active.
+                </div>
+                <div className="mb-2 grid grid-cols-3 gap-2">
+                  <div className="flex flex-col gap-1 text-xs">
+                    <span className="font-medium">Assistant</span>
+                    <div className="rounded border px-2 py-1.5 text-black bg-white">
+                      Monty
+                    </div>
+                  </div>
+                  <label className="flex flex-col gap-1 text-xs">
+                    <span className="font-medium">Service</span>
+                    <select
+                      value={aiProvider}
+                      onChange={(e) => {
+                        const nextProvider = e.target.value as AiProvider;
+                        setAiProvider(nextProvider);
+                        setAiModel(AI_MODEL_OPTIONS[nextProvider][0]);
+                      }}
+                      className="rounded border px-2 py-1.5 text-black bg-white"
+                    >
+                      <option value="xai">xAI (Grok)</option>
+                      <option value="openai">OpenAI</option>
+                      <option value="cursor">Cursor Beta</option>
+                    </select>
+                  </label>
+                  <label className="flex flex-col gap-1 text-xs">
+                    <span className="font-medium">Model</span>
+                    <select
+                      value={aiModel}
+                      onChange={(e) => setAiModel(e.target.value)}
+                      className="rounded border px-2 py-1.5 text-black bg-white"
+                    >
+                      {aiModelOptions.map((modelName) => (
+                        <option key={modelName} value={modelName}>
+                          {modelName}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className="mb-2 min-h-0 flex-1 overflow-y-auto rounded border border-black/10 bg-gray-50 p-2 text-sm text-black">
+                  {chatLog.length === 0 ? (
+                    <p className="text-black">
+                      Ask things like: &quot;analyze this PDF for a safety form&quot; or
+                      &quot;create the template from the latest analysis&quot;.
+                    </p>
+                  ) : (
+                    chatLog.map((line, idx) => (
+                      <p key={`${line}-${idx}`} className="mb-1">
+                        {line}
+                      </p>
+                    ))
+                  )}
+                  {chatPending ? (
+                    <p className="mt-2 text-xs text-gray-600">AI: Monty is thinking...</p>
+                  ) : null}
+                </div>
+                <div className="flex gap-2">
+                  <textarea
+                    ref={adminChatInputRef}
+                    value={chatInput}
+                    rows={1}
+                    onChange={(e) => handleChatInputChange(e.target.value, "admin")}
+                    disabled={chatPending}
+                    onKeyDown={handleChatInputKeyDown}
+                    className="min-h-[40px] flex-1 resize-none rounded border px-3 py-2 text-sm text-black placeholder:text-gray-600"
+                    placeholder="Ask form-builder tasks..."
+                  />
+                  <button
+                    onClick={() => {
+                      if (chatPending) onStopChat();
+                      else void onSendChat();
+                    }}
+                    className={`rounded px-3 py-2 text-sm text-white ${
+                      chatPending
+                        ? "bg-red-700 hover:bg-red-800"
+                        : "bg-black hover:bg-gray-800"
+                    }`}
+                  >
+                    {chatPending ? "Stop" : "Send"}
+                  </button>
+                </div>
+              </section>
+
+              <section className="flex h-full min-h-0 flex-col overflow-hidden rounded border border-black/10 bg-white p-3 text-black">
+                <div className="mb-2 flex items-center justify-between">
+                  <h3 className="text-sm font-semibold">Admin Form Builder</h3>
+                  <span className={`text-xs font-medium ${formBuilderStatusTone}`}>
+                    {formBuilderAnalysis
+                      ? `Status: ${formBuilderAnalysis.status}`
+                      : "Status: Waiting"}
+                  </span>
+                </div>
+                <div className="mb-3 grid grid-cols-2 gap-2 text-xs">
+                  <label className="flex flex-col gap-1">
+                    <span className="font-medium">Template Name</span>
+                    <input
+                      value={formBuilderTemplateName}
+                      onChange={(e) => setFormBuilderTemplateName(e.target.value)}
+                      className="rounded border px-2 py-1.5"
+                      placeholder="e.g. Daily Safety Walk"
+                    />
+                  </label>
+                  <label className="flex flex-col gap-1">
+                    <span className="font-medium">Template Type</span>
+                    <select
+                      value={formBuilderTemplateType}
+                      onChange={(e) =>
+                        setFormBuilderTemplateType(e.target.value as FormTemplateType)
+                      }
+                      className="rounded border px-2 py-1.5 bg-white"
+                    >
+                      <option value="custom">custom</option>
+                      <option value="inspection">inspection</option>
+                      <option value="quality">quality</option>
+                      <option value="safety">safety</option>
+                      <option value="daily_report">daily_report</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div className="mb-3 rounded border border-black/10 bg-gray-50 p-2 text-xs">
+                  <div className="mb-2 flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setFormBuilderSourceType("upload")}
+                      className={`rounded border px-2 py-1 ${
+                        formBuilderSourceType === "upload"
+                          ? "bg-black text-white"
+                          : "bg-white"
+                      }`}
+                    >
+                      Upload PDF
+                    </button>
+                    <button
+                      onClick={() => setFormBuilderSourceType("acc-version")}
+                      className={`rounded border px-2 py-1 ${
+                        formBuilderSourceType === "acc-version"
+                          ? "bg-black text-white"
+                          : "bg-white"
+                      }`}
+                    >
+                      ACC Docs Version
+                    </button>
+                  </div>
+                  {formBuilderSourceType === "upload" ? (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => formBuilderUploadInputRef.current?.click()}
+                        disabled={formBuilderUploadPending}
+                        className="rounded border bg-white px-3 py-1.5 hover:bg-gray-100 disabled:opacity-50"
+                      >
+                        {formBuilderUploadPending ? "Uploading..." : "Select PDF"}
+                      </button>
+                      <input
+                        ref={formBuilderUploadInputRef}
+                        type="file"
+                        accept="application/pdf,.pdf"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0] ?? null;
+                          if (!file) return;
+                          void onUploadFormBuilderPdf(file);
+                          e.currentTarget.value = "";
+                        }}
+                        className="hidden"
+                      />
+                      <span className="text-[11px] text-gray-700">
+                        {formBuilderSelectedFileName ||
+                          (formBuilderUploadPending ? "Uploading..." : "No file uploaded")}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-2">
+                      <label className="flex flex-col gap-1">
+                        <span className="font-medium">Project</span>
+                        <select
+                          value={formBuilderProjectId}
+                          onChange={(e) => setFormBuilderProjectId(e.target.value)}
+                          className="rounded border px-2 py-1 bg-white"
+                        >
+                          <option value="">
+                            {selectedHub
+                              ? loadingProjects
+                                ? "Loading projects..."
+                                : "Select project"
+                              : "Select hub first"}
+                          </option>
+                          {formBuilderProjectOptions.map((project) => (
+                            <option key={project.id} value={project.id}>
+                              {project.label}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <label className="flex flex-col gap-1">
+                        <span className="font-medium">File</span>
+                        <select
+                          value={formBuilderVersionId}
+                          onChange={(e) => setFormBuilderVersionId(e.target.value)}
+                          className="rounded border px-2 py-1 bg-white"
+                        >
+                          <option value="">
+                            {!formBuilderProjectId
+                              ? "Select project first"
+                              : loadingProjectBrowser
+                                ? "Loading files..."
+                                : "Select file"}
+                          </option>
+                          {formBuilderFileOptions.map((file) => (
+                            <option key={file.versionId} value={file.versionId}>
+                              {file.label}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mb-3 flex flex-wrap gap-2 text-xs">
+                  <button
+                    onClick={() => void onAnalyzeFormBuilder()}
+                    disabled={formBuilderAnalyzing || formBuilderUploadPending}
+                    className="rounded border bg-white px-3 py-1.5 hover:bg-gray-100 disabled:opacity-50"
+                  >
+                    {formBuilderAnalyzing ? "Analyzing..." : "Analyze PDF"}
+                  </button>
+                  <button
+                    onClick={() => void onPublishFormBuilder()}
+                    disabled={
+                      formBuilderPublishing ||
+                      !formBuilderAnalysis ||
+                      publishBlockedByReview
+                    }
+                    className="rounded bg-black px-3 py-1.5 text-white hover:bg-gray-800 disabled:opacity-50"
+                  >
+                    {formBuilderPublishing ? "Publishing..." : "Create Template"}
+                  </button>
+                  <span className="self-center text-[11px] text-gray-700">
+                    Target: Account-level form library
+                  </span>
+                </div>
+                {formBuilderError ? (
+                  <p className="mb-2 rounded border border-red-300 bg-red-50 px-2 py-1 text-xs text-red-700">
+                    {formBuilderError}
+                  </p>
+                ) : null}
+                {formBuilderMessage ? (
+                  <p className="mb-2 rounded border border-green-300 bg-green-50 px-2 py-1 text-xs text-green-700">
+                    {formBuilderMessage}
+                  </p>
+                ) : null}
+                <div className="min-h-0 flex-1 overflow-auto rounded border border-black/10 bg-gray-50 p-2 text-xs">
+                  {!formBuilderAnalysis ? (
+                    <p>No analysis yet. Upload/select a PDF, then click Analyze PDF.</p>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="rounded border border-black/10 bg-white px-2 py-1 text-[11px]">
+                        {`Fields: ${formBuilderAnalysis.extractedFieldCount} | Confidence: ${formBuilderAnalysis.confidenceScore}`}
+                      </div>
+                      {formBuilderAnalysis.reviewNotes.length > 0 ? (
+                        <div className="rounded border border-amber-300 bg-amber-50 px-2 py-1 text-[11px] text-amber-900">
+                          {formBuilderAnalysis.reviewNotes.join(" ")}
+                        </div>
+                      ) : null}
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr>
+                            <th className="border border-black/10 px-2 py-1 text-left">Field</th>
+                            <th className="border border-black/10 px-2 py-1 text-left">Type</th>
+                            <th className="border border-black/10 px-2 py-1 text-left">Group</th>
+                            <th className="border border-black/10 px-2 py-1 text-left">Calc</th>
+                            <th className="border border-black/10 px-2 py-1 text-left">State</th>
+                            <th className="border border-black/10 px-2 py-1 text-left">Conf.</th>
+                            <th className="border border-black/10 px-2 py-1 text-left">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {formBuilderAnalysis.fields.map((field, fieldIdx) => (
+                            <tr key={field.id}>
+                              <td className="border border-black/10 px-2 py-1">
+                                <input
+                                  value={field.label}
+                                  onChange={(e) =>
+                                    setFormBuilderAnalysis((prev) =>
+                                      prev
+                                        ? {
+                                            ...prev,
+                                            fields: prev.fields.map((row) =>
+                                              row.id === field.id
+                                                ? { ...row, label: e.target.value }
+                                                : row,
+                                            ),
+                                          }
+                                        : prev,
+                                    )
+                                  }
+                                  className="w-full rounded border px-1 py-0.5"
+                                />
+                              </td>
+                              <td className="border border-black/10 px-2 py-1">
+                                <select
+                                  value={field.type}
+                                  onChange={(e) =>
+                                    setFormBuilderAnalysis((prev) =>
+                                      prev
+                                        ? {
+                                            ...prev,
+                                            fields: prev.fields.map((row) =>
+                                              row.id === field.id
+                                                ? {
+                                                    ...row,
+                                                    type: e.target.value as FormBuilderField["type"],
+                                                  }
+                                                : row,
+                                            ),
+                                          }
+                                        : prev,
+                                    )
+                                  }
+                                  className="rounded border px-1 py-0.5 bg-white"
+                                >
+                                  <option value="text">text</option>
+                                  <option value="multiline_text">multiline_text</option>
+                                  <option value="number">number</option>
+                                  <option value="checkbox">checkbox</option>
+                                  <option value="radio">radio</option>
+                                  <option value="dropdown">dropdown</option>
+                                  <option value="date">date</option>
+                                  <option value="signature">signature</option>
+                                  <option value="section_heading">section_heading</option>
+                                  <option value="table">table</option>
+                                </select>
+                              </td>
+                              <td className="border border-black/10 px-2 py-1">
+                                <input
+                                  value={field.groupKey ?? ""}
+                                  onChange={(e) =>
+                                    setFormBuilderAnalysis((prev) =>
+                                      prev
+                                        ? {
+                                            ...prev,
+                                            fields: prev.fields.map((row) =>
+                                              row.id === field.id
+                                                ? { ...row, groupKey: e.target.value }
+                                                : row,
+                                            ),
+                                          }
+                                        : prev,
+                                    )
+                                  }
+                                  placeholder="(none)"
+                                  className="w-24 rounded border px-1 py-0.5"
+                                  title="Section/table group key — fields sharing a key are grouped"
+                                />
+                              </td>
+                              <td className="border border-black/10 px-2 py-1 text-center">
+                                <input
+                                  type="checkbox"
+                                  checked={Boolean(field.calculated)}
+                                  onChange={(e) =>
+                                    setFormBuilderAnalysis((prev) =>
+                                      prev
+                                        ? {
+                                            ...prev,
+                                            fields: prev.fields.map((row) =>
+                                              row.id === field.id
+                                                ? { ...row, calculated: e.target.checked }
+                                                : row,
+                                            ),
+                                          }
+                                        : prev,
+                                    )
+                                  }
+                                  title="Calculated cell (builds a calculated table column)"
+                                />
+                              </td>
+                              <td className="border border-black/10 px-2 py-1">
+                                <select
+                                  value={field.reviewState}
+                                  onChange={(e) =>
+                                    setFormBuilderAnalysis((prev) =>
+                                      prev
+                                        ? {
+                                            ...prev,
+                                            fields: prev.fields.map((row) =>
+                                              row.id === field.id
+                                                ? {
+                                                    ...row,
+                                                    reviewState:
+                                                      e.target.value as FormBuilderField["reviewState"],
+                                                  }
+                                                : row,
+                                            ),
+                                          }
+                                        : prev,
+                                    )
+                                  }
+                                  className="rounded border px-1 py-0.5 bg-white"
+                                >
+                                  <option value="auto">auto</option>
+                                  <option value="needs_review">needs_review</option>
+                                  <option value="approved">approved</option>
+                                  <option value="rejected">rejected</option>
+                                </select>
+                              </td>
+                              <td className="border border-black/10 px-2 py-1">
+                                {field.confidence}
+                              </td>
+                              <td className="border border-black/10 px-2 py-1">
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    type="button"
+                                    onClick={() => moveFormBuilderField(field.id, -1)}
+                                    disabled={fieldIdx === 0}
+                                    title="Move up"
+                                    className="rounded border px-1.5 py-0.5 hover:bg-gray-100 disabled:opacity-40"
+                                  >
+                                    ↑
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => moveFormBuilderField(field.id, 1)}
+                                    disabled={
+                                      fieldIdx === formBuilderAnalysis.fields.length - 1
+                                    }
+                                    title="Move down"
+                                    className="rounded border px-1.5 py-0.5 hover:bg-gray-100 disabled:opacity-40"
+                                  >
+                                    ↓
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeFormBuilderField(field.id)}
+                                    title="Remove field"
+                                    className="rounded border border-red-300 px-1.5 py-0.5 text-red-700 hover:bg-red-50"
+                                  >
+                                    ✕
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+
+                      <div className="rounded border border-indigo-200 bg-indigo-50 p-2">
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="font-semibold text-indigo-900">
+                            Forma structure preview
+                          </span>
+                          <span className="text-[11px] text-indigo-800">
+                            {`${formBuilderStructurePreview.sectionCount} section(s), ${formBuilderStructurePreview.tableCount} table(s), ${formBuilderStructurePreview.calculatedColumnCount} calc col(s)`}
+                          </span>
+                        </div>
+                        {formBuilderStructurePreview.elements.length === 0 ? (
+                          <p className="text-[11px] text-indigo-800">
+                            No structure yet. Set a shared Group key on related rows
+                            (and mark calculated cells) to form sections/tables.
+                          </p>
+                        ) : (
+                          <ul className="space-y-1 text-[11px] text-indigo-900">
+                            {formBuilderStructurePreview.elements.map((element, idx) => (
+                              <li
+                                key={`${element.kind}-${idx}`}
+                                className="rounded border border-indigo-200 bg-white px-2 py-1"
+                              >
+                                {element.kind === "field" ? (
+                                  <span>
+                                    Field · {element.label}{" "}
+                                    <span className="text-gray-500">({element.type})</span>
+                                  </span>
+                                ) : element.kind === "section" ? (
+                                  <span>
+                                    Section{" "}
+                                    <span className="font-medium">
+                                      {element.entryMode === "multiple"
+                                        ? "(multiple entries)"
+                                        : "(single)"}
+                                    </span>{" "}
+                                    · {element.title}{" "}
+                                    <span className="text-gray-500">
+                                      ({element.fieldCount} fields)
+                                    </span>
+                                  </span>
+                                ) : (
+                                  <span>
+                                    Table · {element.title}{" "}
+                                    <span className="text-gray-500">
+                                      ({element.columnCount} cols
+                                      {element.calculatedColumns > 0
+                                        ? `, ${element.calculatedColumns} calculated`
+                                        : ""}
+                                      )
+                                    </span>
+                                  </span>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </section>
             </div>
           </div>

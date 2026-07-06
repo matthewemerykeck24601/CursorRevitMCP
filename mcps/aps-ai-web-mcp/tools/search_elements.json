@@ -1,0 +1,18 @@
+{
+  "name": "search_elements",
+  "description": "Search selected elements by name/property text and return matching dbIds.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "selectedElements": {
+        "type": "array"
+      },
+      "query": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "query"
+    ]
+  }
+}

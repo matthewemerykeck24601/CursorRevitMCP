@@ -1,0 +1,60 @@
+﻿{
+    "success":  true,
+    "message":  "ok",
+    "data":  {
+                 "runningRevitYear":  2026,
+                 "targetYear":  2026,
+                 "sourceRoot":  "D:\\Revit Familes\\_PARTS\\ADD-ONS",
+                 "targetRoot":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS",
+                 "processed":  [
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_BULLNOSE.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_BULLNOSE.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_BULLNOSE_CURVED.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_BULLNOSE_CURVED.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_CORNICE.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_CORNICE.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_CORNICE_CONCAVE.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_CORNICE_CONCAVE.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_DT_WASH.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_DT_WASH.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_LEDGE.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_LEDGE.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_PROJECTION.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_PROJECTION.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   },
+                                   {
+                                       "sourcePath":  "D:\\Revit Familes\\_PARTS\\ADD-ONS\\ADDON_PROJECTION_CURVED.rfa",
+                                       "targetPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_PROJECTION_CURVED.rfa",
+                                       "upgraded":  false,
+                                       "note":  "Skipped existing target file (overwriteExisting=false)."
+                                   }
+                               ]
+             }
+}

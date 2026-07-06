@@ -1,0 +1,97 @@
+{
+  "name": "create_point_based_element",
+  "description": "Create one or more point-based elements in Revit such as doors, windows, or furniture. Supports batch creation with detailed parameters including family type ID, position, dimensions, and level information. All units are in millimeters (mm).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Description of the element (e.g., door, window)"
+            },
+            "typeId": {
+              "type": "number",
+              "description": "The ID of the family type to create."
+            },
+            "locationPoint": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number",
+                  "description": "X coordinate"
+                },
+                "y": {
+                  "type": "number",
+                  "description": "Y coordinate"
+                },
+                "z": {
+                  "type": "number",
+                  "description": "Z coordinate"
+                }
+              },
+              "required": [
+                "x",
+                "y",
+                "z"
+              ],
+              "additionalProperties": false,
+              "description": "The position coordinates where the element will be placed"
+            },
+            "width": {
+              "type": "number",
+              "description": "Width of the element in mm"
+            },
+            "depth": {
+              "type": "number",
+              "description": "Depth of the element in mm"
+            },
+            "height": {
+              "type": "number",
+              "description": "Height of the element in mm"
+            },
+            "baseLevel": {
+              "type": "number",
+              "description": "Base level height"
+            },
+            "baseOffset": {
+              "type": "number",
+              "description": "Offset from the base level"
+            },
+            "rotation": {
+              "type": "number",
+              "description": "Rotation angle in degrees (0-360)"
+            },
+            "hostWallId": {
+              "type": "number",
+              "description": "The ElementId of a specific wall to use as host for doors/windows. If not provided, the nearest wall will be auto-detected."
+            },
+            "facingFlipped": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to flip the facing direction of the door/window. When true, the element faces the opposite side of the wall."
+            }
+          },
+          "required": [
+            "name",
+            "locationPoint",
+            "width",
+            "height",
+            "baseLevel",
+            "baseOffset"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Array of point-based elements to create"
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

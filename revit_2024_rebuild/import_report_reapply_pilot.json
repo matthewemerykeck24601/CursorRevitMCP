@@ -1,0 +1,129 @@
+{
+  "summary": {
+    "mode": "reapply",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_pass1.json",
+    "attempted": 10,
+    "placed": 10,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 18,
+    "nextIndex": 19,
+    "done": false,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10028269,
+      "newId": 7320578,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031145,
+      "newId": 7320579,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031226,
+      "newId": 7320580,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031305,
+      "newId": 7320581,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031448,
+      "newId": 7320582,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031451,
+      "newId": 7320583,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031454,
+      "newId": 7320584,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031457,
+      "newId": 7320585,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031467,
+      "newId": 7320586,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    },
+    {
+      "srcId": 10031470,
+      "newId": 7320587,
+      "status": "reapplied",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ]
+    }
+  ]
+}

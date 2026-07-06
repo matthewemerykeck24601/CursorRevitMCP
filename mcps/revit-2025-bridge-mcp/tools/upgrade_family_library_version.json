@@ -1,0 +1,31 @@
+{
+  "name": "upgrade_family_library_version",
+  "description": "Upgrade source family files to the running Revit year and save to a target folder.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sourceRoot": {
+        "type": "string"
+      },
+      "targetRoot": {
+        "type": "string"
+      },
+      "query": {
+        "type": "string"
+      },
+      "sourceYear": {
+        "type": "number"
+      },
+      "targetYear": {
+        "type": "number"
+      },
+      "maxFiles": {
+        "type": "number"
+      },
+      "overwriteExisting": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

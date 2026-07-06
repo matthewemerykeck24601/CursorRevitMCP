@@ -1,0 +1,65 @@
+{
+  "name": "admin_add_users_to_projects",
+  "description": "Adds one or more emails to multiple ACC projects by project number using the selected hub project list.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      },
+      "project_numbers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "emails": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "role_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "products": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "region": {
+        "type": "string",
+        "enum": [
+          "US",
+          "EMEA"
+        ],
+        "default": "US"
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": false
+      },
+      "additional_user_payload": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "required": [
+      "project_numbers",
+      "emails"
+    ]
+  }
+}

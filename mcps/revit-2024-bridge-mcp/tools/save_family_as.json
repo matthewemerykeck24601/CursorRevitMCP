@@ -1,0 +1,16 @@
+{
+  "name": "save_family_as",
+  "description": "Family Editor: save the active family to a new .rfa path (overwrite allowed).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "filePath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "filePath"
+    ],
+    "additionalProperties": false
+  }
+}

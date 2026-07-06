@@ -92,6 +92,35 @@ export const env = {
     "true",
   /** Canonical backing store for admin lookup tables (phase-in target: firestore). */
   adminLookupStoreBackend: getEnv("ADMIN_LOOKUP_STORE_BACKEND", "oss_local").toLowerCase(),
+  /** ACC Forms API base URL for account-level template creation. */
+  apsFormsApiBaseUrl: getEnv(
+    "APS_FORMS_API_BASE_URL",
+    "https://developer.api.autodesk.com/construction/forms/v1",
+  ),
+  /**
+   * Path template appended to APS_FORMS_API_BASE_URL.
+   * Supports {accountId} token replacement.
+   */
+  apsFormsTemplateCreatePath: getEnv(
+    "APS_FORMS_TEMPLATE_CREATE_PATH",
+    "/accounts/{accountId}/form-templates",
+  ),
+  /**
+   * Google Document AI (form-layout parsing for the Form Builder).
+   * Reuses the Monty AI GCP project/processors. When a key file + processor are
+   * configured and GOOGLE_DOCAI_ENABLED=true, the Form Builder uses Document AI
+   * for layout-aware sections/tables, falling back to local AcroForm parsing.
+   */
+  googleDocAiEnabled: getEnv("GOOGLE_DOCAI_ENABLED", "").toLowerCase() === "true",
+  googleDocAiKeyFile: getEnv("GOOGLE_DOCAI_KEY_FILE"),
+  googleDocAiProjectId: getEnv("GOOGLE_DOCAI_PROJECT_ID"),
+  googleDocAiLocation: getEnv("GOOGLE_DOCAI_LOCATION", "us"),
+  googleDocAiProcessorId: getEnv(
+    "GOOGLE_DOCAI_PROCESSOR_ID",
+    // Monty default: castCamLayoutGeneralUs (Layout Parser). A Form Parser
+    // processor in the same project yields the best key/value + table results.
+    "4a6d5d2c368c68ed",
+  ),
   /** Design Automation: set DA_ENABLED=true to POST workitems from trigger_design_automation_mark_update */
   daEnabled: getEnv("DA_ENABLED", "").toLowerCase(),
   daRegion: getEnv("DA_REGION", "us-east"),

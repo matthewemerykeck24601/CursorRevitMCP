@@ -1,0 +1,16 @@
+{
+  "name": "inventor_show_ilogic_form",
+  "description": "Show a named iLogic form in the active Inventor document.",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "formName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "formName"
+    ],
+    "additionalProperties": false
+  }
+}

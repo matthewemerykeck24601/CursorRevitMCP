@@ -1,0 +1,23 @@
+{
+  "name": "copy_elements_to_level",
+  "description": "Project: copy one or more elements to a target level, translated in Z by the elevation difference (aligned using the first element's level as reference). Returns the new element ids.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "targetLevelId": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "elementIds",
+      "targetLevelId"
+    ],
+    "additionalProperties": false
+  }
+}

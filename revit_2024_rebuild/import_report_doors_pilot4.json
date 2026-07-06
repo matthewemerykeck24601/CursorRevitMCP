@@ -1,0 +1,31 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_doors.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_gm.json",
+    "attempted": 1,
+    "placed": 1,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 0,
+    "nextIndex": 1,
+    "done": false,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10065704,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7322731,
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7329901,
+      "status": "placed"
+    }
+  ]
+}

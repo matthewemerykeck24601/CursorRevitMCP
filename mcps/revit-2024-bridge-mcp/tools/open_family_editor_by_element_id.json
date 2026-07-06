@@ -1,0 +1,16 @@
+{
+  "name": "open_family_editor_by_element_id",
+  "description": "Open a family editor document by source element id in the active Revit model.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementId": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "elementId"
+    ],
+    "additionalProperties": false
+  }
+}

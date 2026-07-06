@@ -1,0 +1,9 @@
+{
+  "name": "inventor_get_active_document",
+  "description": "Get active Inventor document metadata.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "analyze_pdf_for_form_template",
+  "description": "Analyze an uploaded/ACC Docs PDF into normalized native form template fields with confidence scoring and review gating.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "account_id": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      },
+      "template_name": {
+        "type": "string"
+      },
+      "templateName": {
+        "type": "string"
+      },
+      "template_type": {
+        "type": "string"
+      },
+      "templateType": {
+        "type": "string"
+      },
+      "upload_token": {
+        "type": "string"
+      },
+      "uploadToken": {
+        "type": "string"
+      },
+      "project_id": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "version_id": {
+        "type": "string"
+      },
+      "versionId": {
+        "type": "string"
+      },
+      "pdf_base64": {
+        "type": "string"
+      },
+      "pdfBase64": {
+        "type": "string"
+      },
+      "pdf_url": {
+        "type": "string"
+      },
+      "pdfUrl": {
+        "type": "string"
+      }
+    },
+    "required": []
+  }
+}

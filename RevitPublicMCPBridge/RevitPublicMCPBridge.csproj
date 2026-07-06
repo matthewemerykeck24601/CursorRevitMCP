@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RevitYear Condition="'$(RevitYear)'==''">2027</RevitYear>
+    <!--
+      Revit 2024 runs on .NET Framework 4.8; 2025/2026 on .NET 8; 2027+ on .NET 10.
+      Build a specific year with:  dotnet build -c Release -p:RevitYear=2024
+    -->
+    <TargetFramework Condition="'$(TargetFramework)'=='' and '$(RevitYear)' == '2024'">net48</TargetFramework>
+    <TargetFramework Condition="'$(TargetFramework)'=='' and ('$(RevitYear)' == '2025' or '$(RevitYear)' == '2026')">net8.0-windows</TargetFramework>
+    <TargetFramework Condition="'$(TargetFramework)'=='' and '$(RevitYear)' != '2024' and '$(RevitYear)' != '2025' and '$(RevitYear)' != '2026'">net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyName>RevitPublicMCPBridge</AssemblyName>
+    <RootNamespace>RevitPublicMCPBridge</RootNamespace>
+    <RevitInstallDir Condition="'$(RevitInstallDir)'==''">C:\Program Files\Autodesk\Revit $(RevitYear)</RevitInstallDir>
+  </PropertyGroup>
+
+  <!--
+    Revit 2024 exposes the same Int64 ElementId API (ElementId.Value / ElementId(long)) as
+    2025+, so no ElementId shim is needed. Suppress CS0618 defensively in case any 2024 SDK
+    member is flagged obsolete.
+  -->
+  <PropertyGroup Condition="'$(RevitYear)' == '2024'">
+    <NoWarn>$(NoWarn);CS0618</NoWarn>
+  </PropertyGroup>
+
+  <!-- net48 has no System.Text.Json in the BCL, and needs modern C# language polyfills. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="PolySharp" Version="1.14.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <HintPath>$(RevitInstallDir)\RevitAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(RevitInstallDir)\RevitAPIUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

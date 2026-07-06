@@ -1,0 +1,16 @@
+{
+  "name": "export_parameter_bindings",
+  "description": "Project: export the project's parameter bindings and full shared-parameter inventory to a JSON file ON DISK. Per binding: name, isInstance, group, dataType (spec id), boundCategories, guid (for shared params), isShared. Also includes allSharedParameterElements (name + guid) — the complete shared-param set (CONTROL_MARK, MANUFACTURE_COMPONENT, CONSTRUCTION_PRODUCT_HOST, BOM_PRODUCT_HOST, …). Only a summary returns through MCP. outputPath is a caller-supplied absolute path.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "outputPath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "outputPath"
+    ],
+    "additionalProperties": false
+  }
+}

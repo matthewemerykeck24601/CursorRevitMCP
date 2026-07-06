@@ -1,0 +1,13 @@
+{
+  "name": "inventor_prepare_informed_design_publish",
+  "description": "Validate active Inventor document for manual Informed Design publish and return checklist.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "runLabel": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}

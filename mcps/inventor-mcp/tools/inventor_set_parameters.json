@@ -1,0 +1,50 @@
+{
+  "name": "inventor_set_parameters",
+  "description": "Set Inventor parameters and optionally run one iLogic rule.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameters": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "units": {
+              "type": "string"
+            },
+            "expression": {
+              "type": "string"
+            },
+            "value": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            },
+            "isKey": {
+              "type": "boolean"
+            },
+            "comment": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "runRuleAfterSet": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parameters"
+    ],
+    "additionalProperties": false
+  }
+}

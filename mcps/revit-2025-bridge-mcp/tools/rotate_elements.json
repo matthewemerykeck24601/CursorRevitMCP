@@ -1,0 +1,43 @@
+{
+  "name": "rotate_elements",
+  "description": "Project: rotate one or more elements about an axis through an origin point. Origin in millimetres; angleDeg in degrees; axis is X, Y, or Z (default Z).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "originX": {
+        "type": "number"
+      },
+      "originY": {
+        "type": "number"
+      },
+      "originZ": {
+        "type": "number"
+      },
+      "angleDeg": {
+        "type": "number"
+      },
+      "axis": {
+        "type": "string",
+        "enum": [
+          "X",
+          "Y",
+          "Z"
+        ]
+      }
+    },
+    "required": [
+      "elementIds",
+      "originX",
+      "originY",
+      "originZ",
+      "angleDeg"
+    ],
+    "additionalProperties": false
+  }
+}

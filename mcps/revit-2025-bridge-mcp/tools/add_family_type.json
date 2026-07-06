@@ -1,0 +1,29 @@
+{
+  "name": "add_family_type",
+  "description": "Family Editor: create a new family type, optionally cloning values from an existing type, then applying parameter overrides.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "typeName": {
+        "type": "string"
+      },
+      "cloneFromType": {
+        "type": "string"
+      },
+      "parameters": {
+        "type": "object",
+        "additionalProperties": {
+          "type": [
+            "string",
+            "number",
+            "boolean"
+          ]
+        }
+      }
+    },
+    "required": [
+      "typeName"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "create_datums",
+  "description": "Project (v20.1): batch-create levels and grids from a levels_grids.json file. The gateway reads the file from disk and creates every level (by elevationMm) and grid (by start/end mm) in a single transaction, skipping any whose name already exists (skipExisting, default true). Returns created/skipped counts + per-item errors. Establishes the rebuild reference frame / column lines. Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "levelsGridsPath": {
+        "type": "string"
+      },
+      "skipExisting": {
+        "type": "boolean"
+      },
+      "createLevels": {
+        "type": "boolean"
+      },
+      "createGrids": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "levelsGridsPath"
+    ],
+    "additionalProperties": false
+  }
+}

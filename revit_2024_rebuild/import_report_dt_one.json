@@ -1,0 +1,37 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_dt_one.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_dt_one.json",
+    "attempted": 1,
+    "placed": 1,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 0,
+    "nextIndex": 1,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10038485,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -04",
+      "typeStatus": "typemap",
+      "slopeDeg": 1.1499999999999999,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7347328,
+      "status": "placed"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "tag_all_rooms",
+  "description": "Create tags for all rooms in the current active view. Tags will be placed at the center point of each room, displaying the room name and number.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "useLeader": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to use a leader line when creating the tags"
+      },
+      "tagTypeId": {
+        "type": "string",
+        "description": "The ID of the specific room tag family type to use. If not provided, the default room tag type will be used"
+      },
+      "roomIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "description": "Optional array of specific room element IDs to tag. If not provided, all rooms in the current view will be tagged"
+      }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

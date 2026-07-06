@@ -1,0 +1,16 @@
+{
+  "name": "get_element_types",
+  "description": "Project: list loadable family types (FamilySymbols), optionally filtered by an OST category token (e.g. OST_Walls). Returns id, name, familyName, category, isActive, plus totalCount. Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "category": {
+        "type": "string"
+      },
+      "limit": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "analyze_products_and_mark",
+  "description": "Analyzes selected Structural Framing elements (or all WPA/WPB/COLUMN), runs mark verification using geometric bounds + intersecting elements, groups identical pieces, and assigns CONTROL_MARK starting at 100.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "product_prefix": {
+        "type": "string",
+        "enum": [
+          "WPA",
+          "WPB",
+          "CLA",
+          "COLUMN",
+          "ALL"
+        ]
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "product_prefix"
+    ]
+  }
+}

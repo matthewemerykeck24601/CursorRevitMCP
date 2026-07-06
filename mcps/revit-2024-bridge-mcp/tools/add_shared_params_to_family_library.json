@@ -1,0 +1,40 @@
+{
+  "name": "add_shared_params_to_family_library",
+  "description": "Add shared parameters from a shared parameter file/group into family files under a library folder.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sourceRoot": {
+        "type": "string"
+      },
+      "query": {
+        "type": "string"
+      },
+      "maxFiles": {
+        "type": "number"
+      },
+      "sharedParameterFilePath": {
+        "type": "string"
+      },
+      "groupName": {
+        "type": "string"
+      },
+      "parameterNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "parameterGroup": {
+        "type": "string"
+      },
+      "isInstance": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "parameterNames"
+    ],
+    "additionalProperties": false
+  }
+}

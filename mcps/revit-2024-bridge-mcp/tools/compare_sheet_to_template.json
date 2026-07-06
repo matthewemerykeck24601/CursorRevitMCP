@@ -1,0 +1,20 @@
+{
+  "name": "compare_sheet_to_template",
+  "description": "Project: audit a sheet against a JSON template (required title block fields, required view types/count, minimum dimensions, require-all-tagged, required text notes). Returns pass/fail and a list of issues. templateJson is a serialized SheetTemplate object.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sheetId": {
+        "type": "number"
+      },
+      "templateJson": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "sheetId",
+      "templateJson"
+    ],
+    "additionalProperties": false
+  }
+}

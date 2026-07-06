@@ -1,0 +1,26 @@
+{
+  "name": "aec_query",
+  "description": "Query AEC Data Model API and return flattened rows for table display.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accessToken": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "itemId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "accessToken",
+      "hubId",
+      "projectId"
+    ]
+  }
+}

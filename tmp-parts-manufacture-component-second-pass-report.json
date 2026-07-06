@@ -1,0 +1,19 @@
+﻿{
+    "timestamp":  "2026-05-18T13:05:30",
+    "retryDirs":  [
+                      "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                      "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\REBAR",
+                      "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\REBAR\\01",
+                      "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\WOOD_NAILER"
+                  ],
+    "retryKeysExtracted":  12,
+    "workbookPatchedRows":  11,
+    "remainingRetryIssues":  1,
+    "retryIssueSamples":  [
+                              {
+                                  "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\REBAR\\01",
+                                  "Scope":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\REBAR\\01\\01_03.rfa",
+                                  "Note":  "Retry request failed: The remote server returned an error: (500) Internal Server Error."
+                              }
+                          ]
+}

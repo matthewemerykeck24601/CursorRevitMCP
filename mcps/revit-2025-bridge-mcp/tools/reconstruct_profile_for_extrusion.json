@@ -1,0 +1,22 @@
+{
+  "name": "reconstruct_profile_for_extrusion",
+  "description": "Reconstruct clean, ordered, closed 2D loops from an extruded element's cap face — ready to feed create_extrusion. Picks the cap face (planar, axis-aligned, largest area), chains ALL its edge loops (outer boundary + interior voids) by endpoint matching, projects to 2D by dropping the extrusion axis, normalizes all loops to a shared origin, and forces consistent counter-clockwise winding (fixes mirrored output). Returns loops[] (each with isOuter + ordered points), extrusion depth (mm), and axis. Provide elementId or set useSelection=true. All lengths in mm.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementId": {
+        "type": "number"
+      },
+      "epsilonMm": {
+        "type": "number"
+      },
+      "normalizeToOrigin": {
+        "type": "boolean"
+      },
+      "useSelection": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

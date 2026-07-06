@@ -1,0 +1,96 @@
+<Window x:Class="RevitPublicMCPBridge.UI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revit Public MCP Bridge Settings"
+        Width="760"
+        Height="560"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanMinimize">
+    <Grid Margin="14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="110"/>
+        </Grid.ColumnDefinitions>
+
+        <CheckBox x:Name="AutoStartCheckbox"
+                  Grid.Row="0"
+                  Grid.ColumnSpan="3"
+                  Content="Auto-start Public MCP Server when Revit launches"
+                  Margin="0,0,0,8"/>
+
+        <CheckBox x:Name="StopOnShutdownCheckbox"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="3"
+                  Content="Stop server when Revit closes"
+                  Margin="0,0,0,8"/>
+
+        <CheckBox x:Name="AllowStopAnyCheckbox"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="3"
+                  Content="Allow Stop button to kill any running public MCP process"
+                  Margin="0,0,0,14"/>
+
+        <CheckBox x:Name="EnableProcessControlCheckbox"
+                  Grid.Row="3"
+                  Grid.ColumnSpan="3"
+                  Content="Allow bridge to start/stop MCP process (advanced fallback mode)"
+                  Margin="0,0,0,14"/>
+
+        <CheckBox x:Name="EnableGatewayCheckbox"
+                  Grid.Row="4"
+                  Grid.ColumnSpan="3"
+                  Content="Enable local Revit API gateway for 2027 community MCP tools"
+                  Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Text="Gateway port:" Margin="0,0,10,8"/>
+        <TextBox x:Name="GatewayPortTextBox" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Text="Public MCP port:" Margin="0,0,10,8"/>
+        <TextBox x:Name="PortTextBox" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Text="Server executable path:" Margin="0,0,10,8"/>
+        <TextBox x:Name="ExecutablePathTextBox" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="8" Grid.Column="0" VerticalAlignment="Center" Text="Additional server arguments:" Margin="0,0,10,8"/>
+        <TextBox x:Name="ArgsTextBox" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" Text="Default family library path:" Margin="0,0,10,8"/>
+        <TextBox x:Name="FamilyLibraryPathTextBox" Grid.Row="9" Grid.Column="1" Margin="0,0,8,8"/>
+        <Button Grid.Row="9" Grid.Column="2" Width="96" Content="Browse..." Click="OnBrowseLibraryPathClick" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="10" Grid.Column="0" VerticalAlignment="Center" Text="Default family upgrade output path:" Margin="0,0,10,8"/>
+        <TextBox x:Name="FamilyUpgradeOutputPathTextBox" Grid.Row="10" Grid.Column="1" Margin="0,0,8,8"/>
+        <Button Grid.Row="10" Grid.Column="2" Width="96" Content="Browse..." Click="OnBrowseUpgradePathClick" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="11" Grid.Column="0" VerticalAlignment="Top" Text="Help URL:" Margin="0,0,10,8"/>
+        <TextBox x:Name="HelpUrlTextBox"
+                 Grid.Row="11"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="2"
+                 VerticalAlignment="Top"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 MinHeight="90"/>
+
+        <StackPanel Grid.Row="12" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
+            <Button Width="90" Margin="0,0,8,0" IsDefault="True" Click="OnSaveClick">Save</Button>
+            <Button Width="90" IsCancel="True">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

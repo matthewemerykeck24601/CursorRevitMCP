@@ -1,0 +1,22 @@
+{
+  "name": "get_available_family_types",
+  "description": "List available family types with optional category/family-name filtering.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "categoryList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "familyNameFilter": {
+        "type": "string"
+      },
+      "limit": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

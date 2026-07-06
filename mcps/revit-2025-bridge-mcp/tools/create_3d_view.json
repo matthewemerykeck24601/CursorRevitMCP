@@ -1,0 +1,16 @@
+{
+  "name": "create_3d_view",
+  "description": "Project: create a 3D view. isOrthographic=true makes an isometric view; false (default) makes a perspective view. Optional name.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "isOrthographic": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

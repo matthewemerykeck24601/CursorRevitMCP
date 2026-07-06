@@ -48,6 +48,12 @@ import {
   createRevitCloudWorksharedModelTool,
   runCreateRevitCloudWorksharedModel,
 } from "./tools/revitCloudModelTools.js";
+import {
+  analyzePdfForFormTemplateTool,
+  createFormTemplateFromPdfTool,
+  runAnalyzePdfForFormTemplate,
+  runCreateFormTemplateFromPdf,
+} from "./tools/formTemplateTools.js";
 
 /** MCP listTools entries — names/descriptions stay in sync with apsQueryTools.ts */
 const apsQueryMcpTools = [
@@ -539,6 +545,64 @@ export function buildServer() {
           required: [],
         },
       },
+      {
+        name: analyzePdfForFormTemplateTool.name,
+        description: analyzePdfForFormTemplateTool.description,
+        inputSchema: {
+          type: "object",
+          properties: {
+            access_token: { type: "string" },
+            accessToken: { type: "string" },
+            account_id: { type: "string" },
+            accountId: { type: "string" },
+            hub_id: { type: "string" },
+            hubId: { type: "string" },
+            template_name: { type: "string" },
+            templateName: { type: "string" },
+            template_type: { type: "string" },
+            templateType: { type: "string" },
+            upload_token: { type: "string" },
+            uploadToken: { type: "string" },
+            project_id: { type: "string" },
+            projectId: { type: "string" },
+            version_id: { type: "string" },
+            versionId: { type: "string" },
+            pdf_base64: { type: "string" },
+            pdfBase64: { type: "string" },
+            pdf_url: { type: "string" },
+            pdfUrl: { type: "string" },
+          },
+          required: [],
+        },
+      },
+      {
+        name: createFormTemplateFromPdfTool.name,
+        description: createFormTemplateFromPdfTool.description,
+        inputSchema: {
+          type: "object",
+          properties: {
+            access_token: { type: "string" },
+            accessToken: { type: "string" },
+            account_id: { type: "string" },
+            accountId: { type: "string" },
+            hub_id: { type: "string" },
+            hubId: { type: "string" },
+            analysis_id: { type: "string" },
+            analysisId: { type: "string" },
+            template_name: { type: "string" },
+            templateName: { type: "string" },
+            template_type: { type: "string" },
+            templateType: { type: "string" },
+            dry_run: { type: "boolean", default: false },
+            dryRun: { type: "boolean" },
+            field_overrides: { type: "array", items: { type: "object" } },
+            fieldOverrides: { type: "array", items: { type: "object" } },
+            ordered_field_ids: { type: "array", items: { type: "string" } },
+            orderedFieldIds: { type: "array", items: { type: "string" } },
+          },
+          required: ["analysis_id"],
+        },
+      },
       ...apsQueryMcpTools,
       ...designAutomationMcpTools,
     ],
@@ -595,6 +659,12 @@ export function buildServer() {
     }
     if (name === "create_revit_cloud_workshared_model") {
       return textResult(await runCreateRevitCloudWorksharedModel(args, {}));
+    }
+    if (name === "analyze_pdf_for_form_template") {
+      return textResult(await runAnalyzePdfForFormTemplate(args, {}));
+    }
+    if (name === "create_form_template_from_pdf") {
+      return textResult(await runCreateFormTemplateFromPdf(args, {}));
     }
     if (name === "get_elements_by_category") {
       return textResult(await runGetElementsByCategory(args, {}));

@@ -1,0 +1,31 @@
+{
+  "name": "move_elements",
+  "description": "Project: translate one or more elements by a delta vector. Deltas in millimetres.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "deltaX": {
+        "type": "number"
+      },
+      "deltaY": {
+        "type": "number"
+      },
+      "deltaZ": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "elementIds",
+      "deltaX",
+      "deltaY",
+      "deltaZ"
+    ],
+    "additionalProperties": false
+  }
+}

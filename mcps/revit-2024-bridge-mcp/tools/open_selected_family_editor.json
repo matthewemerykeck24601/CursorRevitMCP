@@ -1,0 +1,9 @@
+{
+  "name": "open_selected_family_editor",
+  "description": "Open the selected family instance in Revit Family Editor (active selection required).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

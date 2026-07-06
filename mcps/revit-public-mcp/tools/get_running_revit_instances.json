@@ -1,0 +1,8 @@
+{
+  "name": "get_running_revit_instances",
+  "description": "Returns a list of all running Revit instances.\r\nEach record contains the Process ID of the instance and the name of the currently open document.\r\nUse the Process ID for the revitInstanceId parameter in tool calls.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "load_family_into_project",
+  "description": "Family Editor: load (and reload) the active family into the first open project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "overwriteParameterValues": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

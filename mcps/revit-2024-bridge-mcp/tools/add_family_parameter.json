@@ -1,0 +1,39 @@
+{
+  "name": "add_family_parameter",
+  "description": "Family Editor: add a new instance or type parameter to the active family. parameterType: Length|Angle|Number|Text|Boolean|Integer|Material|YesNo|MultilineText. parameterGroup: a BuiltInParameterGroup token (PG_GEOMETRY, PG_CONSTRAINTS, PG_IDENTITY_DATA, PG_OTHER, …).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "parameterType": {
+        "type": "string",
+        "enum": [
+          "Length",
+          "Angle",
+          "Number",
+          "Text",
+          "Boolean",
+          "Integer",
+          "Material",
+          "YesNo",
+          "MultilineText"
+        ]
+      },
+      "parameterGroup": {
+        "type": "string"
+      },
+      "isInstance": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "name",
+      "parameterType",
+      "parameterGroup",
+      "isInstance"
+    ],
+    "additionalProperties": false
+  }
+}

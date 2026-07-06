@@ -1,0 +1,55 @@
+{
+  "name": "ensure_shared_parameters",
+  "description": "Create or verify shared parameter definitions in a shared parameter file.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sharedParameterFilePath": {
+        "type": "string"
+      },
+      "groupName": {
+        "type": "string"
+      },
+      "parameters": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "dataType": {
+              "type": "string",
+              "enum": [
+                "text",
+                "integer",
+                "number",
+                "length",
+                "area",
+                "volume",
+                "yesno"
+              ]
+            },
+            "description": {
+              "type": "string"
+            },
+            "visible": {
+              "type": "boolean"
+            },
+            "userModifiable": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "parameters"
+    ],
+    "additionalProperties": false
+  }
+}

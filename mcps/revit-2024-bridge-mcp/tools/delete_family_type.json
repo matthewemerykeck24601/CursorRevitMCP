@@ -1,0 +1,16 @@
+{
+  "name": "delete_family_type",
+  "description": "Family Editor: delete a family type. Fails if it is the only type.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "typeName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "typeName"
+    ],
+    "additionalProperties": false
+  }
+}

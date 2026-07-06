@@ -1,0 +1,16 @@
+{
+  "name": "inventor_set_length_units",
+  "description": "Set the length units for the active document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "units": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "units"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "export_type_parameters",
+  "description": "Project: export all TYPE parameters of loaded family types (FamilySymbols) in the given categories to a JSON file ON DISK (written by the C# gateway). Per type: typeId, familyName, typeName, category, and every type parameter as {value, raw} (same shape as export_instances). Only a summary returns through MCP. categories are OST_* tokens; outputPath is a caller-supplied absolute path. Lengths mm, angles degrees.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "outputPath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "categories",
+      "outputPath"
+    ],
+    "additionalProperties": false
+  }
+}

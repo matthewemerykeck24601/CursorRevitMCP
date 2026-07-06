@@ -1,0 +1,9 @@
+{
+  "name": "get_family_document_info",
+  "description": "Family Editor: return metadata about the active family — name, category, conceptual/face-based flags, host/placement type, type count, file path.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

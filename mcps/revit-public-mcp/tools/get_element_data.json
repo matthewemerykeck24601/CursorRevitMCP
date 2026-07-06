@@ -1,0 +1,51 @@
+{
+  "name": "get_element_data",
+  "description": "Get comprehensive information for elements including parameter values, types, and modification capabilities",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "description": "Element IDs to analyze for complete parameter information",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "outputOptions": {
+        "description": "Output options controlling which element data to include. Default is BasicElementInfo.",
+        "type": "object",
+        "properties": {
+          "basicElementInfo": {
+            "description": "Include the element name, category, family, type and level in output",
+            "type": "boolean"
+          },
+          "elementClass": {
+            "description": "Include the element class in output",
+            "type": "boolean"
+          },
+          "boundingBox": {
+            "description": "Include element bounding box in output",
+            "type": "boolean"
+          },
+          "keyParameters": {
+            "description": "Include key parameters in output",
+            "type": "boolean"
+          },
+          "allParameters": {
+            "description": "Include all parameters in output",
+            "type": "boolean"
+          }
+        },
+        "default": null
+      },
+      "revitInstanceId": {
+        "type": "integer",
+        "description": "Process ID of the Revit instance to call. Use get_running_revit_instances to list available instances."
+      }
+    },
+    "required": [
+      "elementIds",
+      "revitInstanceId"
+    ]
+  }
+}

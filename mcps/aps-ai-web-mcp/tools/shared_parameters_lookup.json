@@ -1,0 +1,60 @@
+{
+  "name": "shared_parameters_lookup",
+  "description": "Look up Revit shared parameter GUID/datatype/group from bundled Shared_Params_2015_v01.txt (or SHARED_PARAMETERS_FILE_PATH). If no file hit, optional fallback: Autodesk Parameters API (https://aps.autodesk.com/developer/overview/parameters-api) when access_token + parameters_account_id + parameters_group_id + parameters_collection_id are provided (or APS_PARAMETERS_* env for IDs).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "exact",
+          "contains",
+          "prefix"
+        ],
+        "default": "contains"
+      },
+      "limit": {
+        "type": "integer",
+        "default": 30
+      },
+      "by_guid": {
+        "type": "boolean",
+        "default": false
+      },
+      "parameters_api_fallback": {
+        "type": "boolean",
+        "default": true
+      },
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "parameters_account_id": {
+        "type": "string"
+      },
+      "parametersAccountId": {
+        "type": "string"
+      },
+      "parameters_group_id": {
+        "type": "string"
+      },
+      "parametersGroupId": {
+        "type": "string"
+      },
+      "parameters_collection_id": {
+        "type": "string"
+      },
+      "parametersCollectionId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "query"
+    ]
+  }
+}

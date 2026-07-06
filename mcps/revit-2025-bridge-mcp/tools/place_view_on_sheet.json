@@ -1,0 +1,28 @@
+{
+  "name": "place_view_on_sheet",
+  "description": "Project: place a view on a sheet at a center point (millimetres in sheet space). A view can only be placed on one sheet.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sheetId": {
+        "type": "number"
+      },
+      "viewId": {
+        "type": "number"
+      },
+      "locationX": {
+        "type": "number"
+      },
+      "locationY": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "sheetId",
+      "viewId",
+      "locationX",
+      "locationY"
+    ],
+    "additionalProperties": false
+  }
+}

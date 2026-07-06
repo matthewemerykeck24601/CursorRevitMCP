@@ -1,0 +1,9 @@
+{
+  "name": "say_hello",
+  "description": "Validate the Revit 2027 local gateway connection.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

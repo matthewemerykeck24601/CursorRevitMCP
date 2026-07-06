@@ -1,0 +1,23 @@
+{
+  "name": "create_sheet",
+  "description": "Project: create a sheet with a sheet number and name. titleBlockTypeId optional (omit for no title block). Use get_element_types (OST_TitleBlocks) to find a title block type id.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sheetNumber": {
+        "type": "string"
+      },
+      "sheetName": {
+        "type": "string"
+      },
+      "titleBlockTypeId": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "sheetNumber",
+      "sheetName"
+    ],
+    "additionalProperties": false
+  }
+}

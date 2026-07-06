@@ -1,0 +1,93 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_dt_pilot.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_dt_pilot.json",
+    "attempted": 4,
+    "placed": 4,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 3,
+    "nextIndex": 4,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10038485,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -04",
+      "typeStatus": "typemap",
+      "slopeDeg": 1.1499999999999999,
+      "slopePlaneCreated": "DT_SLOPE_1979936008",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343941,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038540,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -04",
+      "typeStatus": "typemap",
+      "slopeDeg": 1.1499999999999999,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343950,
+      "status": "placed"
+    },
+    {
+      "srcId": 10036637,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "slopeDeg": 0.95999999999999996,
+      "slopePlaneCreated": "DT_SLOPE_1340549164",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343956,
+      "status": "placed"
+    },
+    {
+      "srcId": 10036711,
+      "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+      "type": "12 DT 37 (3\u0022 FLANGE)",
+      "pass": 1,
+      "controlMark": "DT(3\u0022FLG)          -01",
+      "typeStatus": "typemap",
+      "slopeDeg": 0.95999999999999996,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped"
+      ],
+      "newId": 7343961,
+      "status": "placed"
+    }
+  ]
+}

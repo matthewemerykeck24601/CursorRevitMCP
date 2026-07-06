@@ -1,0 +1,40 @@
+{
+  "name": "set_element_parameters_guarded",
+  "description": "Two-step guarded write for parameter edits (preview then explicit confirmation token).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "apply": {
+        "type": "boolean"
+      },
+      "confirmationToken": {
+        "type": "string"
+      },
+      "changes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "dbId": {
+              "type": "number"
+            },
+            "parameter": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dbId",
+            "parameter",
+            "value"
+          ]
+        }
+      }
+    },
+    "required": [
+      "changes"
+    ]
+  }
+}

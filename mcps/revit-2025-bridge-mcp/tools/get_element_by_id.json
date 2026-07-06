@@ -1,0 +1,19 @@
+{
+  "name": "get_element_by_id",
+  "description": "Project: full metadata and (optionally) all readable parameters for one element by id — name, category, familyName, typeName, location center (mm), and parameters as key/value pairs. Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementId": {
+        "type": "number"
+      },
+      "includeParameters": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "elementId"
+    ],
+    "additionalProperties": false
+  }
+}

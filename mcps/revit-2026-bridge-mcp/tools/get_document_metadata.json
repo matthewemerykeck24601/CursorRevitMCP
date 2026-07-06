@@ -1,0 +1,9 @@
+{
+  "name": "get_document_metadata",
+  "description": "Project/document provenance: worksharing central path, file save user/time, project info, current Revit user.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

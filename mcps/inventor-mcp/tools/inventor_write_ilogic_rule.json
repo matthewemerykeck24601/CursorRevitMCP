@@ -1,0 +1,23 @@
+{
+  "name": "inventor_write_ilogic_rule",
+  "description": "Create or update a named iLogic rule in active document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ruleName": {
+        "type": "string"
+      },
+      "code": {
+        "type": "string"
+      },
+      "overwrite": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "ruleName",
+      "code"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "create_revolve",
+  "description": "Family Editor: create a solid or void revolve of a 2D profile around a named axis reference plane. Angles in degrees.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "profile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "axisReferenceName": {
+        "type": "string"
+      },
+      "startAngleDeg": {
+        "type": "number"
+      },
+      "endAngleDeg": {
+        "type": "number"
+      },
+      "isSolid": {
+        "type": "boolean"
+      },
+      "workPlaneName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "profile",
+      "axisReferenceName",
+      "startAngleDeg",
+      "endAngleDeg",
+      "isSolid"
+    ],
+    "additionalProperties": false
+  }
+}

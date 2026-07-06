@@ -1,0 +1,50 @@
+{
+  "name": "export_views_to_image",
+  "description": "Export printable views to image files (PNG, JPG, BMP, TIFF).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementIds": {
+        "description": "The views ids to export. Required for 'ByViewList' mode, ignored for other modes.",
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "default": null
+      },
+      "directoryPath": {
+        "description": "The fully qualified directory path where the image files will be saved. Filenames are auto-generated. If not provided, saves to user's Documents folder.",
+        "type": "string",
+        "default": null
+      },
+      "imageFormat": {
+        "description": "Image format: PNG, JPG, BMP, TIFF. Default is PNG.",
+        "type": "string",
+        "enum": [
+          "PNG",
+          "JPG",
+          "BMP",
+          "TIFF"
+        ],
+        "default": "PNG"
+      },
+      "exportMode": {
+        "description": "Export mode: 'ByViewList' (export list of views by IDs, default), 'CurrentView' (export current active view), 'VisibleRegion' (export visible portion of current window as user sees it on screen). Default is 'ByViewList'.",
+        "type": "string",
+        "enum": [
+          "ByViewList",
+          "CurrentView",
+          "VisibleRegion"
+        ],
+        "default": "ByViewList"
+      },
+      "revitInstanceId": {
+        "type": "integer",
+        "description": "Process ID of the Revit instance to call. Use get_running_revit_instances to list available instances."
+      }
+    },
+    "required": [
+      "revitInstanceId"
+    ]
+  }
+}

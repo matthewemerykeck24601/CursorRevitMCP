@@ -1,0 +1,25 @@
+{
+  "name": "search_family_library",
+  "description": "Search one or more Revit family library folders for .rfa files matching a query.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "libraryRoots": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "query": {
+        "type": "string"
+      },
+      "maxResults": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_corbel_test.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_corbel_test.json",
+    "attempted": 1,
+    "placed": 1,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 0,
+    "nextIndex": 1,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10032222,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349245,
+      "status": "placed"
+    }
+  ]
+}

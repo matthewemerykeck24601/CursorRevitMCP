@@ -1,0 +1,16 @@
+{
+  "name": "inventor_get_parameters",
+  "description": "Get Inventor user/model parameters from active document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "includeModelParameters": {
+        "type": "boolean"
+      },
+      "includeUserParameters": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

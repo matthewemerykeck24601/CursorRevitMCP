@@ -1,0 +1,79 @@
+{
+  "name": "create_form_template_from_pdf",
+  "description": "Create a native account-level form template from a reviewed PDF analysis artifact. Supports field_overrides (label/type/required/options/reviewState/calculated/formula/groupKey) and ordered_field_ids (reorder + remove). Translates grouped fields into Forma sections (multiple-entries) and calculated tables. Blocks if unresolved review fields remain.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "account_id": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      },
+      "analysis_id": {
+        "type": "string"
+      },
+      "analysisId": {
+        "type": "string"
+      },
+      "template_name": {
+        "type": "string"
+      },
+      "templateName": {
+        "type": "string"
+      },
+      "template_type": {
+        "type": "string"
+      },
+      "templateType": {
+        "type": "string"
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": false
+      },
+      "dryRun": {
+        "type": "boolean"
+      },
+      "field_overrides": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "fieldOverrides": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "ordered_field_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "orderedFieldIds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "analysis_id"
+    ]
+  }
+}

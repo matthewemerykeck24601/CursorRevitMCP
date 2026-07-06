@@ -1,0 +1,22 @@
+{
+  "name": "get_view_contents",
+  "description": "Project: inventory of one view — model elements grouped by category, dimensions (labeled/unlabeled), tags and tagged element ids, untagged model elements, and text notes.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "viewId": {
+        "type": "number"
+      },
+      "includeElements": {
+        "type": "boolean"
+      },
+      "includeAnnotations": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "viewId"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "create_dimension",
+  "description": "Family Editor: create a linear dimension between exactly two references (currently reference planes) in the active family. Optionally label it with an existing family parameter. Points in mm.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "referenceIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "line": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y",
+              "z"
+            ],
+            "additionalProperties": false
+          },
+          "end": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              },
+              "z": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y",
+              "z"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "additionalProperties": false
+      },
+      "labelParameterName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "referenceIds",
+      "line"
+    ],
+    "additionalProperties": false
+  }
+}

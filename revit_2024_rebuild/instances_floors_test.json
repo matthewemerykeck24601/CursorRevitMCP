@@ -1,0 +1,132 @@
+{
+  "model": "26-0349 A101 (2026 07-01) - MODEL",
+  "exportedAt": "2026-07-02T16:20:53.1811910-04:00",
+  "categories": [
+    "OST_Floors"
+  ],
+  "elementCount": 1,
+  "errorCount": 0,
+  "instances": [
+    {
+      "elementId": 10080471,
+      "uniqueId": "00d09b6b-d514-4c5e-908b-8e55c5056407-0099d0d7",
+      "category": "OST_Floors",
+      "familyName": "Floor",
+      "typeName": "CONCRETE SLAB - 6\u0022",
+      "typeId": 7280754,
+      "levelName": "LEVEL 1",
+      "levelId": 30,
+      "placementType": null,
+      "placement": null,
+      "orientation": null,
+      "facingFlipped": null,
+      "handFlipped": null,
+      "mirrored": null,
+      "phaseCreated": "New Construction",
+      "phaseDemolished": "",
+      "hostElementId": null,
+      "hostFace": null,
+      "hostGuidParam": null,
+      "hostGuidDecodedId": null,
+      "parameters": {
+        "Category": {
+          "value": "",
+          "raw": -2000032
+        },
+        "Export to IFC": {
+          "value": "By Type",
+          "raw": 0
+        },
+        "IfcGUID": {
+          "value": "00q9jhrHHCNf2BZbN5dBJG",
+          "raw": null
+        },
+        "Has Association": {
+          "value": "No",
+          "raw": 0
+        },
+        "Design Option": {
+          "value": "",
+          "raw": null
+        },
+        "Volume": {
+          "value": "300658.38 CF",
+          "raw": 300658.37500000006
+        },
+        "Area": {
+          "value": "601317 SF",
+          "raw": 601316.75
+        },
+        "Phase Demolished": {
+          "value": "",
+          "raw": null
+        },
+        "Phase Created": {
+          "value": "New Construction",
+          "raw": 118390
+        },
+        "Level": {
+          "value": "LEVEL 1",
+          "raw": 30
+        },
+        "Family and Type": {
+          "value": "CONCRETE SLAB - 6\u0022",
+          "raw": 7280754
+        },
+        "Family": {
+          "value": "CONCRETE SLAB - 6\u0022",
+          "raw": 7280754
+        },
+        "Type": {
+          "value": "CONCRETE SLAB - 6\u0022",
+          "raw": 7280754
+        },
+        "Type Id": {
+          "value": "CONCRETE SLAB - 6\u0022",
+          "raw": 7280754
+        },
+        "Structural": {
+          "value": "No",
+          "raw": 0
+        },
+        "Perimeter": {
+          "value": "4078\u0027 - 0\u0022",
+          "raw": 1242974.4000000001
+        },
+        "Height Offset From Level": {
+          "value": "0\u0027 - 0\u0022",
+          "raw": 0
+        },
+        "Thickness": {
+          "value": "0\u0027 - 6\u0022",
+          "raw": 152.4
+        },
+        "Related to Mass": {
+          "value": "No",
+          "raw": 0
+        },
+        "Elevation at Bottom Core": {
+          "value": "-0\u0027 - 6\u0022",
+          "raw": -152.4
+        },
+        "Elevation at Top Core": {
+          "value": "0\u0027 - 0\u0022",
+          "raw": 0
+        },
+        "Elevation at Top": {
+          "value": "0\u0027 - 0\u0022",
+          "raw": 0
+        },
+        "Elevation at Bottom": {
+          "value": "-0\u0027 - 6\u0022",
+          "raw": -152.4
+        },
+        "Room Bounding": {
+          "value": "Yes",
+          "raw": 1
+        }
+      }
+    }
+  ],
+  "errors": []
+}

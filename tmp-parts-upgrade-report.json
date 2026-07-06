@@ -1,0 +1,795 @@
+﻿{
+    "timestamp":  "2026-05-18T08:53:35",
+    "source":  "D:\\Revit Familes\\_PARTS",
+    "target":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+    "initialMissing":  769,
+    "remainingMissing":  0,
+    "totalUpgraded":  769,
+    "totalProcessed":  963,
+    "totalErrors":  0,
+    "directoryResults":  [
+                             {
+                                 "dir":  "REBAR",
+                                 "status":  "ok",
+                                 "requested":  1,
+                                 "processed":  100,
+                                 "upgraded":  100,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\01",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\01A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\02",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\03",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\03A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\04",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\04A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\05",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\06",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\08",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\09",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\10",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\11",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\12",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\12A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\12B",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\13",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\14",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\14A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\14B",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\14B-HOOK",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\16",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\16A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\16-K0",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\16-K1",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\17",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\17A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\18",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\18A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19A\\Inside Angle",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19A\\Outside Angle",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19A-HOOK\\Inside Angle",
+                                 "status":  "ok",
+                                 "requested":  1,
+                                 "processed":  1,
+                                 "upgraded":  1,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19A-HOOK\\Outside Angle",
+                                 "status":  "ok",
+                                 "requested":  10,
+                                 "processed":  10,
+                                 "upgraded":  10,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19B",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19T",
+                                 "status":  "ok",
+                                 "requested":  8,
+                                 "processed":  8,
+                                 "upgraded":  8,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\19T-SHORT",
+                                 "status":  "ok",
+                                 "requested":  7,
+                                 "processed":  7,
+                                 "upgraded":  7,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\20",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\23",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\24",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\25",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\26",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\26A",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\26A-ANG",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\26A-BENT",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\26B",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\26C",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\CR2",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S1",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S11",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S2",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S3",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S4",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S5",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\S6",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\Straight Bars",
+                                 "status":  "ok",
+                                 "requested":  11,
+                                 "processed":  11,
+                                 "upgraded":  11,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T1",
+                                 "status":  "ok",
+                                 "requested":  7,
+                                 "processed":  7,
+                                 "upgraded":  7,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T100",
+                                 "status":  "ok",
+                                 "requested":  1,
+                                 "processed":  1,
+                                 "upgraded":  1,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T11",
+                                 "status":  "ok",
+                                 "requested":  2,
+                                 "processed":  2,
+                                 "upgraded":  2,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T13R",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T18",
+                                 "status":  "ok",
+                                 "requested":  2,
+                                 "processed":  2,
+                                 "upgraded":  2,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T2",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T2-Diamond",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T3",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T6",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T7",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T7A",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T7B",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\T9",
+                                 "status":  "ok",
+                                 "requested":  4,
+                                 "processed":  4,
+                                 "upgraded":  4,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "REBAR\\TH1-TopHat",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  9,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\PROFILES",
+                                 "status":  "ok",
+                                 "requested":  6,
+                                 "processed":  6,
+                                 "upgraded":  6,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_ANGLE",
+                                 "status":  "ok",
+                                 "requested":  15,
+                                 "processed":  27,
+                                 "upgraded":  27,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_ANGLE\\Requires Approval To Use",
+                                 "status":  "ok",
+                                 "requested":  12,
+                                 "processed":  12,
+                                 "upgraded":  0,
+                                 "skipped":  12,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_CHANNEL",
+                                 "status":  "ok",
+                                 "requested":  4,
+                                 "processed":  5,
+                                 "upgraded":  5,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_CHANNEL\\Requires Approval To Use",
+                                 "status":  "ok",
+                                 "requested":  1,
+                                 "processed":  1,
+                                 "upgraded":  0,
+                                 "skipped":  1,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_HSS",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  18,
+                                 "upgraded":  18,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_HSS\\Requires Approval To Use",
+                                 "status":  "ok",
+                                 "requested":  9,
+                                 "processed":  9,
+                                 "upgraded":  0,
+                                 "skipped":  9,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE",
+                                 "status":  "ok",
+                                 "requested":  38,
+                                 "processed":  100,
+                                 "upgraded":  100,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE\\Requires Approval To Use",
+                                 "status":  "ok",
+                                 "requested":  43,
+                                 "processed":  43,
+                                 "upgraded":  0,
+                                 "skipped":  43,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE\\Skewed Plates",
+                                 "status":  "ok",
+                                 "requested":  1,
+                                 "processed":  1,
+                                 "upgraded":  0,
+                                 "skipped":  1,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE\\STEEL_BENT_PLATE",
+                                 "status":  "ok",
+                                 "requested":  7,
+                                 "processed":  7,
+                                 "upgraded":  0,
+                                 "skipped":  7,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE\\STEEL_GUSSET",
+                                 "status":  "ok",
+                                 "requested":  27,
+                                 "processed":  38,
+                                 "upgraded":  27,
+                                 "skipped":  11,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE\\STEEL_GUSSET\\Requires Approval To Use",
+                                 "status":  "ok",
+                                 "requested":  11,
+                                 "processed":  11,
+                                 "upgraded":  0,
+                                 "skipped":  11,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_PLATE\\STEEL_PLATE_BASE_CAP",
+                                 "status":  "ok",
+                                 "requested":  19,
+                                 "processed":  19,
+                                 "upgraded":  19,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_U(NOT CHANNEL FRAME)",
+                                 "status":  "ok",
+                                 "requested":  1,
+                                 "processed":  1,
+                                 "upgraded":  1,
+                                 "skipped":  0,
+                                 "errors":  0
+                             },
+                             {
+                                 "dir":  "STEEL_SHAPES\\STEEL_W\\Requires Approval To Use",
+                                 "status":  "ok",
+                                 "requested":  2,
+                                 "processed":  2,
+                                 "upgraded":  2,
+                                 "skipped":  0,
+                                 "errors":  0
+                             }
+                         ]
+}

@@ -1,0 +1,21 @@
+﻿{
+    "timestamp":  "2026-05-18T09:46:57",
+    "source":  "D:\\Revit Familes\\_PRODUCTS",
+    "target":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PRODUCTS",
+    "initialMissing":  4,
+    "remainingMissing":  0,
+    "totalUpgraded":  0,
+    "totalProcessed":  4,
+    "totalErrors":  0,
+    "directoryResults":  [
+                             {
+                                 "dir":  "WALL_PANELS\\INSULATED\\Insulated Trough",
+                                 "status":  "ok",
+                                 "requested":  4,
+                                 "processed":  4,
+                                 "upgraded":  0,
+                                 "skipped":  4,
+                                 "errors":  0
+                             }
+                         ]
+}

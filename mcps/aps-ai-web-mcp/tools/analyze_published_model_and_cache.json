@@ -1,0 +1,55 @@
+{
+  "name": "analyze_published_model_and_cache",
+  "description": "Primary analyzer: tries AEC Data Model REST (get_elements_by_category) for live elements, groups for CONTROL_MARKs (starts at 100), caches for Design Automation; falls back to AEC GraphQL if REST returns no rows or fails. Pass access_token, hub_id, project_id, and model_urn for the REST path.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "product_prefix": {
+        "type": "string",
+        "enum": [
+          "WPA",
+          "WPB",
+          "CLA",
+          "COLUMN",
+          "ALL"
+        ],
+        "default": "ALL"
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": true
+      },
+      "model_urn": {
+        "type": "string"
+      },
+      "urn": {
+        "type": "string"
+      },
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      },
+      "project_id": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "item_id": {
+        "type": "string"
+      },
+      "itemId": {
+        "type": "string"
+      }
+    },
+    "required": []
+  }
+}

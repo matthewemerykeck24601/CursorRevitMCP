@@ -1,0 +1,91 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_doors.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_gm.json",
+    "attempted": 6,
+    "placed": 6,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 6,
+    "nextIndex": 7,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10065985,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7322778,
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7329904,
+      "status": "placed"
+    },
+    {
+      "srcId": 10066205,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7322712,
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7329907,
+      "status": "placed"
+    },
+    {
+      "srcId": 10066454,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7322712,
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7329910,
+      "status": "placed"
+    },
+    {
+      "srcId": 10095238,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7326925,
+      "placedAs": "point (face-host failed \u2014 no matching host face)",
+      "voidCut": "applied",
+      "newId": 7329911,
+      "status": "placed"
+    },
+    {
+      "srcId": 10095476,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7326926,
+      "placedAs": "point (face-host failed \u2014 no matching host face)",
+      "voidCut": "applied",
+      "newId": 7329912,
+      "status": "placed"
+    },
+    {
+      "srcId": 10095579,
+      "family": "Personal Doors",
+      "type": "Personal Doors",
+      "pass": 2,
+      "typeStatus": "exact",
+      "newHostId": 7326921,
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7329914,
+      "status": "placed"
+    }
+  ]
+}

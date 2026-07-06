@@ -1,0 +1,9 @@
+{
+  "name": "get_levels",
+  "description": "Project: list all levels with id, name, elevation (mm), and isGroundFloor (the level whose elevation is closest to 0). Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "trigger_design_automation_mark_update",
+  "description": "APS Design Automation: mark grouping (cached analysis) OR direct parameter edits. Use skip_analysis: true with parameter_patches, parameter_updates, and/or cached_selection.externalIds + updates[] (clear/set/toggle). Operations: modify_parameters | apply_marks | run_mark_analysis | apply_marks_and_modify | clear_cache (DA no-op audit).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "cache_id": {
+        "type": "string",
+        "description": "From analyze_published_model_and_cache. Omit when skip_analysis is true with parameter_patches, parameter_updates, or cached_selection + updates."
+      },
+      "confirm": {
+        "type": "boolean",
+        "default": false
+      },
+      "skip_analysis": {
+        "type": "boolean",
+        "description": "If true with edits (patches, parameter_updates, or cached_selection+updates), runs modify_parameters only — no mark analysis path."
+      },
+      "operation": {
+        "type": "string",
+        "description": "Revit dispatcher: modify_parameters, apply_marks, run_mark_analysis, apply_marks_and_modify, clear_cache."
+      },
+      "cached_selection": {
+        "type": "object",
+        "description": "Reusable selection: externalIds[] plus optional cache_id/provenance; pairs with updates[] for generic parameter actions.",
+        "properties": {
+          "cache_id": {
+            "type": "string"
+          },
+          "externalIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "aecElementIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "provenance": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "updates": {
+        "type": "array",
+        "description": "With cached_selection: [{ paramName, action: clear|set|toggle, value? }] applied to all externalIds.",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additional_updates": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "parameter_patches": {
+        "type": "array",
+        "description": "Generic instance edits: { externalIds[], set: { PARAM: value } } rows; Revit resolves by parameter name; use shared_parameter_guid_map only if duplicate definition names exist on elements.",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "parameter_updates": {
+        "type": "array",
+        "description": "Structured edits: { externalIds[], paramName, action: clear|set|toggle, value? } per row.",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "shared_parameter_guid_map": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Optional. Param name → Revit shared-parameter GUID, only when multiple parameters share the same definition name on an element."
+      }
+    },
+    "required": []
+  }
+}

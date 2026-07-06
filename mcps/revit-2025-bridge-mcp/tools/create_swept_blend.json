@@ -1,0 +1,83 @@
+{
+  "name": "create_swept_blend",
+  "description": "Family Editor: create a swept blend between a start and an end 2D profile along a path. Note: uses the first path segment only (the Revit API takes a single-curve path). Lengths in mm.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "path": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "z": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "startProfile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "endProfile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "isSolid": {
+        "type": "boolean"
+      },
+      "workPlaneName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "path",
+      "startProfile",
+      "endProfile",
+      "isSolid"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "create_level",
+  "description": "Project: create a level at a given elevation. elevationMm is millimetres. name omitted = Revit auto-names the level; a duplicate name will error (the level is still created).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elevationMm": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "elevationMm"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "get_sheets",
+  "description": "Project: list all sheets with id, sheet number, name, title block name, and the ids of viewports placed on each.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

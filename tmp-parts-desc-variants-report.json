@@ -1,0 +1,359 @@
+﻿{
+    "timestamp":  "2026-05-18T15:18:58",
+    "sourceRoot":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+    "workbook":  "D:\\CursorRevitMCP\\_PARTS.xlsx",
+    "rowsWritten":  1815,
+    "failureCount":  176,
+    "failureSamples":  [
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\Angle Master.rfa",
+                               "FamilyName":  "Angle Master",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_BULLNOSE.rfa",
+                               "FamilyName":  "ADDON_BULLNOSE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_BULLNOSE_CURVED.rfa",
+                               "FamilyName":  "ADDON_BULLNOSE_CURVED",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_CORNICE.rfa",
+                               "FamilyName":  "ADDON_CORNICE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_CORNICE_CONCAVE.rfa",
+                               "FamilyName":  "ADDON_CORNICE_CONCAVE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_DT_WASH.rfa",
+                               "FamilyName":  "ADDON_DT_WASH",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_LEDGE.rfa",
+                               "FamilyName":  "ADDON_LEDGE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_PROJECTION.rfa",
+                               "FamilyName":  "ADDON_PROJECTION",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\ADD-ONS\\ADDON_PROJECTION_CURVED.rfa",
+                               "FamilyName":  "ADDON_PROJECTION_CURVED",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\CABLE_RAIL\\CABLE_RAIL.rfa",
+                               "FamilyName":  "CABLE_RAIL",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\KNOCKOUT_W_CHAMFER_ADDON.rfa",
+                               "FamilyName":  "KNOCKOUT_W_CHAMFER_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_ACROSS_JOINT_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_ACROSS_JOINT_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_ANGLED_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_ANGLED_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_RECTANGULAR_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_RECTANGULAR_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_RING_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_RING_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_ROUND_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_ROUND_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_TAPERED_3_SIDES_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_TAPERED_3_SIDES_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\SOLID_ZONES\\SOLID_ZONE_TAPERED_ADDON.rfa",
+                               "FamilyName":  "SOLID_ZONE_TAPERED_ADDON",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STRAND\\STRAND_MC_Double_Tee.rfa",
+                               "FamilyName":  "STRAND_MC_Double_Tee",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID RECTANGULAR W WEDGE.rfa",
+                               "FamilyName":  "VOID RECTANGULAR W WEDGE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_ARC.rfa",
+                               "FamilyName":  "VOID_ARC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_BRICK_PANEL_RETURN_END.rfa",
+                               "FamilyName":  "VOID_BRICK_PANEL_RETURN_END",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_DT_STEM.rfa",
+                               "FamilyName":  "VOID_DT_STEM",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_FORMLINER_BRICK_STOP.rfa",
+                               "FamilyName":  "VOID_FORMLINER_BRICK_STOP",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_GENERAL_PURPOSE_OPENING_MC.rfa",
+                               "FamilyName":  "VOID_GENERAL_PURPOSE_OPENING_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_HALF_ROUND.rfa",
+                               "FamilyName":  "VOID_HALF_ROUND",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_MDK_INSULATION_CUTDOWN.rfa",
+                               "FamilyName":  "VOID_MDK_INSULATION_CUTDOWN",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_METRODECK_WALL_POCKET_MC.rfa",
+                               "FamilyName":  "VOID_METRODECK_WALL_POCKET_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_NEGATIVE_ARC.rfa",
+                               "FamilyName":  "VOID_NEGATIVE_ARC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_PLATE_RECESS_MC.rfa",
+                               "FamilyName":  "VOID_PLATE_RECESS_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_QUARK_MITER.rfa",
+                               "FamilyName":  "VOID_QUARK_MITER",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_QUARK_MITER_SHORT.rfa",
+                               "FamilyName":  "VOID_QUARK_MITER_SHORT",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_QUARTER_ROUND.rfa",
+                               "FamilyName":  "VOID_QUARTER_ROUND",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECESS.rfa",
+                               "FamilyName":  "VOID_RECESS",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECESS_3_SIDES.rfa",
+                               "FamilyName":  "VOID_RECESS_3_SIDES",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECESS_4_SIDES.rfa",
+                               "FamilyName":  "VOID_RECESS_4_SIDES",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECTANGULAR.rfa",
+                               "FamilyName":  "VOID_RECTANGULAR",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECTANGULAR_ADJUSTABLE_MC.rfa",
+                               "FamilyName":  "VOID_RECTANGULAR_ADJUSTABLE_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECTANGULAR_FIXED-MC.rfa",
+                               "FamilyName":  "VOID_RECTANGULAR_FIXED-MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_RECTANGULAR_RECESS_MC.rfa",
+                               "FamilyName":  "VOID_RECTANGULAR_RECESS_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_ARCHITECTURAL_MC.rfa",
+                               "FamilyName":  "VOID_REVEAL_ARCHITECTURAL_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_CHAMFER_MC.rfa",
+                               "FamilyName":  "VOID_REVEAL_CHAMFER_MC",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_CURVED.rfa",
+                               "FamilyName":  "VOID_REVEAL_CURVED",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_VEE.rfa",
+                               "FamilyName":  "VOID_REVEAL_VEE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_VEE_ARC_INSIDE.rfa",
+                               "FamilyName":  "VOID_REVEAL_VEE_ARC_INSIDE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_VEE_ARC_OUTSIDE.rfa",
+                               "FamilyName":  "VOID_REVEAL_VEE_ARC_OUTSIDE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_VEE_L.rfa",
+                               "FamilyName":  "VOID_REVEAL_VEE_L",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_VEE_PROFILE.rfa",
+                               "FamilyName":  "VOID_REVEAL_VEE_PROFILE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_VEE_RECTANGLE.rfa",
+                               "FamilyName":  "VOID_REVEAL_VEE_RECTANGLE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\VOIDS\\VOID_REVEAL_WIDE.rfa",
+                               "FamilyName":  "VOID_REVEAL_WIDE",
+                               "TypeName":  "",
+                               "Note":  "Description parameter \u0027IDENTITY_DESCRIPTION\u0027 not found."
+                           }
+                       ]
+}

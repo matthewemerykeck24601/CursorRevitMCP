@@ -1,0 +1,16 @@
+{
+  "name": "export_parameter_bindings",
+  "description": "Project: export all project parameter bindings and the full shared-parameter inventory to a JSON file on disk (written by the gateway; only a summary crosses MCP). Output contains bindings[] {name, isInstance, group, dataType, boundCategories[], guid, isShared} plus allSharedParameterElements[] {name, guid}. Used to GUID-verify the 2024 template's shared parameters against the extracted snapshot. Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "outputPath": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "outputPath"
+    ],
+    "additionalProperties": false
+  }
+}

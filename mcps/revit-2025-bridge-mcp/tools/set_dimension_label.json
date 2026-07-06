@@ -1,0 +1,20 @@
+{
+  "name": "set_dimension_label",
+  "description": "Family Editor: associate an existing dimension with a family parameter (label it).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dimensionId": {
+        "type": "number"
+      },
+      "parameterName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "dimensionId",
+      "parameterName"
+    ],
+    "additionalProperties": false
+  }
+}

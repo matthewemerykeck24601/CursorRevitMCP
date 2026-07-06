@@ -1,0 +1,104 @@
+{
+  "analysisId": "analysis_203fba56e30c445889d569b7a22f52d2",
+  "accountId": "test-account",
+  "templateName": "Safety Checklist",
+  "templateType": "safety",
+  "source": {
+    "kind": "pdf_base64",
+    "base64": "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",
+    "fileName": "safety.pdf"
+  },
+  "extractedTextSnippet": "",
+  "extractedFieldCount": 2,
+  "confidenceScore": 0.95,
+  "status": "ready",
+  "fields": [
+    {
+      "id": "inspector_name_1",
+      "sourceName": "inspector_name",
+      "label": "Inspector Name",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 47.5,
+        "y": 699.5,
+        "width": 221,
+        "height": 23
+      },
+      "readOnly": false,
+      "calculated": false,
+      "groupKey": "inspector",
+      "columnKey": "name"
+    },
+    {
+      "id": "approved_2",
+      "sourceName": "approved",
+      "label": "Approved",
+      "type": "checkbox",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 47.5,
+        "y": 659.5,
+        "width": 17,
+        "height": 17
+      },
+      "readOnly": false,
+      "calculated": false
+    }
+  ],
+  "formaSchema": {
+    "elements": [
+      {
+        "kind": "section",
+        "sectionId": "section_inspector",
+        "title": "Inspector",
+        "entryMode": "single",
+        "fieldIds": [
+          "inspector_name_1"
+        ],
+        "fields": [
+          {
+            "kind": "field",
+            "fieldId": "inspector_name_1",
+            "label": "Inspector Name",
+            "type": "text",
+            "required": false,
+            "options": []
+          }
+        ],
+        "rationale": "Grouped fields under a shared heading map to a single section."
+      },
+      {
+        "kind": "field",
+        "fieldId": "approved_2",
+        "label": "Approved",
+        "type": "checkbox",
+        "required": false,
+        "options": []
+      }
+    ],
+    "sectionCount": 1,
+    "tableCount": 0,
+    "calculatedColumnCount": 0,
+    "notes": [
+      "Group \"inspector\" mapped to a single-entry section."
+    ]
+  },
+  "reviewNotes": [
+    "Detected 1 section block(s)."
+  ],
+  "createdAt": "2026-05-29T14:02:44.572Z",
+  "pdfFilePath": "D:\\CursorRevitMCP\\aps-ai-web\\.design-files\\form-builder\\analysis\\analysis_203fba56e30c445889d569b7a22f52d2.pdf",
+  "sourceFileName": "safety.pdf",
+  "sourceMimeType": "application/pdf"
+}

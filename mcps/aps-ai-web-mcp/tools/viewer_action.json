@@ -1,0 +1,21 @@
+{
+  "name": "viewer_action",
+  "description": "Return fit/isolate/clear actions for caller to execute.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string"
+      },
+      "dbIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "required": [
+      "action"
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "name": "create_surface_based_element",
+  "description": "Create one or more surface-based elements in Revit such as floors, ceilings, or roofs. Supports batch creation with detailed parameters including family type ID, boundary lines, thickness, and level information. All units are in millimeters (mm).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Description of the element (e.g., floor, ceiling)"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "OST_Floors",
+                "OST_Ceilings",
+                "OST_Roofs"
+              ],
+              "description": "The Revit built-in category for the element. Use OST_Floors for floors, OST_Ceilings for ceilings, OST_Roofs for roofs. If not specified, will be determined from typeId."
+            },
+            "typeId": {
+              "type": "number",
+              "description": "The ID of the family type to create."
+            },
+            "boundary": {
+              "type": "object",
+              "properties": {
+                "outerLoop": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "p0": {
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "number",
+                            "description": "X coordinate of start point"
+                          },
+                          "y": {
+                            "type": "number",
+                            "description": "Y coordinate of start point"
+                          },
+                          "z": {
+                            "type": "number",
+                            "description": "Z coordinate of start point"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y",
+                          "z"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "p1": {
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "number",
+                            "description": "X coordinate of end point"
+                          },
+                          "y": {
+                            "type": "number",
+                            "description": "Y coordinate of end point"
+                          },
+                          "z": {
+                            "type": "number",
+                            "description": "Z coordinate of end point"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y",
+                          "z"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "p0",
+                      "p1"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 3,
+                  "description": "Array of line segments defining the boundary"
+                }
+              },
+              "required": [
+                "outerLoop"
+              ],
+              "additionalProperties": false,
+              "description": "Boundary definition with outer loop"
+            },
+            "thickness": {
+              "type": "number",
+              "description": "Thickness of the element"
+            },
+            "baseLevel": {
+              "type": "number",
+              "description": "Base level height"
+            },
+            "baseOffset": {
+              "type": "number",
+              "description": "Offset from the base level"
+            }
+          },
+          "required": [
+            "name",
+            "boundary",
+            "thickness",
+            "baseLevel",
+            "baseOffset"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Array of surface-based elements to create"
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "name": "create_reference_plane",
+  "description": "Family Editor: create a named reference plane in the active family document. Points are millimetres.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "bubbleEnd": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "z": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "z"
+        ],
+        "additionalProperties": false
+      },
+      "freeEnd": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "z": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "z"
+        ],
+        "additionalProperties": false
+      },
+      "cutVector": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "z": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "z"
+        ],
+        "additionalProperties": false
+      },
+      "isReference": {
+        "type": "string",
+        "enum": [
+          "NotAReference",
+          "Left",
+          "Right",
+          "Front",
+          "Back",
+          "Bottom",
+          "Top",
+          "Center",
+          "WeakReference",
+          "StrongReference"
+        ]
+      }
+    },
+    "required": [
+      "name",
+      "bubbleEnd",
+      "freeEnd"
+    ],
+    "additionalProperties": false
+  }
+}

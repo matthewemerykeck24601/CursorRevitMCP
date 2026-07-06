@@ -1,0 +1,16 @@
+{
+  "name": "get_sheet_contents",
+  "description": "Project: full inventory of one sheet — title block parameter values, viewports (view id/name/type, center mm, crop box mm), text notes, tags, and filled regions.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sheetId": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "sheetId"
+    ],
+    "additionalProperties": false
+  }
+}

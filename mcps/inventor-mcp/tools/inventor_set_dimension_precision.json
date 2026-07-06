@@ -1,0 +1,16 @@
+{
+  "name": "inventor_set_dimension_precision",
+  "description": "Set linear and/or angular dimension precision.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "linearPrecision": {
+        "type": "number"
+      },
+      "angularPrecision": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

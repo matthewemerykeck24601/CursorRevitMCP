@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Revit 2024 read-only diagnostic bridge add-in.
+    Revit 2024 runs on .NET Framework 4.8, so this targets net48 (the 2025 bridge's
+    net8.0-windows is for Revit 2025+). System.Text.Json is not in the net48 BCL, so it is
+    pulled in via NuGet and copied next to the assembly. The Revit API references are
+    copy-local=false (Revit loads them from its own install).
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyName>RevitDiag2024Bridge</AssemblyName>
+    <RootNamespace>RevitDiag2024Bridge</RootNamespace>
+    <!--
+      The int-based ElementId members (IntegerValue / ElementId(int)) are [Obsolete] in Revit
+      2024; this project uses the Int64 API (ElementId.Value / ElementId(long)) throughout, so
+      no CS0618 suppression is needed. If a CS0618 reappears, fix the deprecated call rather
+      than suppressing it.
+    -->
+    <RevitInstallDir Condition="'$(RevitInstallDir)'==''">C:\Program Files\Autodesk\Revit 2024</RevitInstallDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- net48 has no built-in System.Text.Json; bring it in (transitive deps copy-local). -->
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <HintPath>$(RevitInstallDir)\RevitAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(RevitInstallDir)\RevitAPIUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

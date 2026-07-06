@@ -1,0 +1,20 @@
+{
+  "name": "set_geometry_solid_void",
+  "description": "Family Editor: toggle an existing form (extrusion/blend/revolve/sweep/swept blend) between solid and void. Note: the Revit API exposes IsSolid as read-only; this attempts the 'Solid/Void' parameter and errors clearly if the form cannot be toggled in place.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "elementId": {
+        "type": "number"
+      },
+      "isSolid": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "elementId",
+      "isSolid"
+    ],
+    "additionalProperties": false
+  }
+}

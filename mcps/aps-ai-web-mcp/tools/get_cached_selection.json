@@ -1,0 +1,21 @@
+{
+  "name": "get_cached_selection",
+  "description": "Return dbIds, externalIds, and names for the current selection — build cached_selection + updates or parameter_updates for skip_analysis DA.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "selectedElements": {
+        "type": "array"
+      },
+      "dbIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "required": [
+      "selectedElements"
+    ]
+  }
+}

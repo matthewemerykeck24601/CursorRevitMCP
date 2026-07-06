@@ -1,0 +1,49 @@
+{
+  "name": "analyze_published_model_aecdm_cache",
+  "description": "Experimental: uses get_elements_by_category (AECDM REST) to pull elements, then caches a stub analysis for marking workflows. Prefer analyze_published_model_and_cache for AEC GraphQL + Design Automation contract.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "product_prefix": {
+        "type": "string",
+        "enum": [
+          "WPA",
+          "WPB",
+          "CLA",
+          "COLUMN",
+          "ALL"
+        ],
+        "default": "ALL"
+      },
+      "dry_run": {
+        "type": "boolean",
+        "default": true
+      },
+      "access_token": {
+        "type": "string"
+      },
+      "accessToken": {
+        "type": "string"
+      },
+      "model_urn": {
+        "type": "string"
+      },
+      "urn": {
+        "type": "string"
+      },
+      "project_id": {
+        "type": "string"
+      },
+      "projectId": {
+        "type": "string"
+      },
+      "hub_id": {
+        "type": "string"
+      },
+      "hubId": {
+        "type": "string"
+      }
+    },
+    "required": []
+  }
+}

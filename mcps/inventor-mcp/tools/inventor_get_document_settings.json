@@ -1,0 +1,9 @@
+{
+  "name": "inventor_get_document_settings",
+  "description": "Get current document units, precision, and display settings.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

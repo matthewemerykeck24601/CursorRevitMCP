@@ -1,0 +1,6424 @@
+{
+  "analysisId": "analysis_5755d9c891d64557823a17d54c061655",
+  "accountId": "f61b9f7b-5481-4d25-a552-365ba99077b8",
+  "templateName": "Extra Work Order - WIN 2",
+  "templateType": "custom",
+  "source": {
+    "kind": "upload_token",
+    "uploadToken": "pdf_24009322a39842d7a076e3c648322887"
+  },
+  "extractedTextSnippet": "",
+  "extractedFieldCount": 228,
+  "confidenceScore": 0.942,
+  "status": "needs_review",
+  "fields": [
+    {
+      "id": "DATE_1",
+      "sourceName": "DATE",
+      "label": "DATE",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 368.67,
+        "y": 697.99,
+        "width": 221.28,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "JOB NO_2",
+      "sourceName": "JOB NO",
+      "label": "JOB NO",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 66.54,
+        "y": 686,
+        "width": 140.81,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "PROJECT_3",
+      "sourceName": "PROJECT",
+      "label": "PROJECT",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 66.54,
+        "y": 674.01,
+        "width": 248.75,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "WO AUTHORIZED BY_4",
+      "sourceName": "WO AUTHORIZED BY",
+      "label": "WO AUTHORIZED BY",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 439.46,
+        "y": 674.01,
+        "width": 150.49,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text5_5",
+      "sourceName": "Text5",
+      "label": "Text5",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 66.54,
+        "y": 662.02,
+        "width": 248.75,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SIGNED_6",
+      "sourceName": "SIGNED",
+      "label": "SIGNED",
+      "type": "signature",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 395.75,
+        "y": 662.02,
+        "width": 194.2,
+        "height": 9.96
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "DESCRIPTION AND LOCATION OF WORK_7",
+      "sourceName": "DESCRIPTION AND LOCATION OF WORK",
+      "label": "DESCRIPTION AND LOCATION OF WORK",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 627.59,
+        "width": 563.26,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "DESCRIPTION AND LOCATION OF WORK (1)_8",
+      "sourceName": "DESCRIPTION AND LOCATION OF WORK (1)",
+      "label": "DESCRIPTION AND LOCATION OF WORK (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 615.6,
+        "width": 563.26,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text8_9",
+      "sourceName": "Text8",
+      "label": "Text8",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 603.6,
+        "width": 563.26,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "MON_10",
+      "sourceName": "MON",
+      "label": "MON",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TUE_11",
+      "sourceName": "TUE",
+      "label": "TUE",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "WED_12",
+      "sourceName": "WED",
+      "label": "WED",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "THU_13",
+      "sourceName": "THU",
+      "label": "THU",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "FRI_14",
+      "sourceName": "FRI",
+      "label": "FRI",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SAT_15",
+      "sourceName": "SAT",
+      "label": "SAT",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 564.53,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUN_16",
+      "sourceName": "SUN",
+      "label": "SUN",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 564.53,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "RATE_17",
+      "sourceName": "RATE",
+      "label": "RATE",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.5,
+      "reviewState": "needs_review",
+      "notes": [
+        "Duplicate label detected; confirm unique mapping."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 564.53,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Regular_18",
+      "sourceName": "Regular",
+      "label": "Regular",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 564.53,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Overtime_19",
+      "sourceName": "Overtime",
+      "label": "Overtime",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 564.53,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS_20",
+      "sourceName": "TOTALS",
+      "label": "TOTALS",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 564.53,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text20_21",
+      "sourceName": "Text20",
+      "label": "Text20",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 564.53,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "MON (1)_22",
+      "sourceName": "MON (1)",
+      "label": "MON (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TUE (1)_23",
+      "sourceName": "TUE (1)",
+      "label": "TUE (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "WED (1)_24",
+      "sourceName": "WED (1)",
+      "label": "WED (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "THU (1)_25",
+      "sourceName": "THU (1)",
+      "label": "THU (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "FRI (1)_26",
+      "sourceName": "FRI (1)",
+      "label": "FRI (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SAT (1)_27",
+      "sourceName": "SAT (1)",
+      "label": "SAT (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 552.54,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUN (1)_28",
+      "sourceName": "SUN (1)",
+      "label": "SUN (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 552.54,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "RATE (1)_29",
+      "sourceName": "RATE (1)",
+      "label": "RATE (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.5,
+      "reviewState": "needs_review",
+      "notes": [
+        "Duplicate label detected; confirm unique mapping."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 552.54,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Regular (1)_30",
+      "sourceName": "Regular (1)",
+      "label": "Regular (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 552.54,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Overtime (1)_31",
+      "sourceName": "Overtime (1)",
+      "label": "Overtime (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 552.54,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text31_32",
+      "sourceName": "Text31",
+      "label": "Text31",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 552.54,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text32_33",
+      "sourceName": "Text32",
+      "label": "Text32",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 552.54,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text33_34",
+      "sourceName": "Text33",
+      "label": "Text33",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text34_35",
+      "sourceName": "Text34",
+      "label": "Text34",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text35_36",
+      "sourceName": "Text35",
+      "label": "Text35",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text36_37",
+      "sourceName": "Text36",
+      "label": "Text36",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text37_38",
+      "sourceName": "Text37",
+      "label": "Text37",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text38_39",
+      "sourceName": "Text38",
+      "label": "Text38",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 540.55,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text39_40",
+      "sourceName": "Text39",
+      "label": "Text39",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 540.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text40_41",
+      "sourceName": "Text40",
+      "label": "Text40",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 540.55,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text41_42",
+      "sourceName": "Text41",
+      "label": "Text41",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 540.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text42_43",
+      "sourceName": "Text42",
+      "label": "Text42",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 540.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text43_44",
+      "sourceName": "Text43",
+      "label": "Text43",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 540.55,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text44_45",
+      "sourceName": "Text44",
+      "label": "Text44",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 540.55,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text45_46",
+      "sourceName": "Text45",
+      "label": "Text45",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text46_47",
+      "sourceName": "Text46",
+      "label": "Text46",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text47_48",
+      "sourceName": "Text47",
+      "label": "Text47",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text48_49",
+      "sourceName": "Text48",
+      "label": "Text48",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text49_50",
+      "sourceName": "Text49",
+      "label": "Text49",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text50_51",
+      "sourceName": "Text50",
+      "label": "Text50",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 528.55,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text51_52",
+      "sourceName": "Text51",
+      "label": "Text51",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 528.55,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text52_53",
+      "sourceName": "Text52",
+      "label": "Text52",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 528.55,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text53_54",
+      "sourceName": "Text53",
+      "label": "Text53",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 528.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text54_55",
+      "sourceName": "Text54",
+      "label": "Text54",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 528.55,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text55_56",
+      "sourceName": "Text55",
+      "label": "Text55",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 528.55,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text56_57",
+      "sourceName": "Text56",
+      "label": "Text56",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 528.55,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text57_58",
+      "sourceName": "Text57",
+      "label": "Text57",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text58_59",
+      "sourceName": "Text58",
+      "label": "Text58",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text59_60",
+      "sourceName": "Text59",
+      "label": "Text59",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text60_61",
+      "sourceName": "Text60",
+      "label": "Text60",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text61_62",
+      "sourceName": "Text61",
+      "label": "Text61",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text62_63",
+      "sourceName": "Text62",
+      "label": "Text62",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 516.56,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text63_64",
+      "sourceName": "Text63",
+      "label": "Text63",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 516.56,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text64_65",
+      "sourceName": "Text64",
+      "label": "Text64",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 516.56,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text65_66",
+      "sourceName": "Text65",
+      "label": "Text65",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 516.56,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text66_67",
+      "sourceName": "Text66",
+      "label": "Text66",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 516.56,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text67_68",
+      "sourceName": "Text67",
+      "label": "Text67",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 516.56,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text68_69",
+      "sourceName": "Text68",
+      "label": "Text68",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 516.56,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text69_70",
+      "sourceName": "Text69",
+      "label": "Text69",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text70_71",
+      "sourceName": "Text70",
+      "label": "Text70",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text71_72",
+      "sourceName": "Text71",
+      "label": "Text71",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text72_73",
+      "sourceName": "Text72",
+      "label": "Text72",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text73_74",
+      "sourceName": "Text73",
+      "label": "Text73",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text74_75",
+      "sourceName": "Text74",
+      "label": "Text74",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 504.18,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text75_76",
+      "sourceName": "Text75",
+      "label": "Text75",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 504.18,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text76_77",
+      "sourceName": "Text76",
+      "label": "Text76",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 504.18,
+        "width": 23.21,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text77_78",
+      "sourceName": "Text77",
+      "label": "Text77",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 504.18,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text78_79",
+      "sourceName": "Text78",
+      "label": "Text78",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 504.18,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text79_80",
+      "sourceName": "Text79",
+      "label": "Text79",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 504.18,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text80_81",
+      "sourceName": "Text80",
+      "label": "Text80",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 504.18,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text81_82",
+      "sourceName": "Text81",
+      "label": "Text81",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text82_83",
+      "sourceName": "Text82",
+      "label": "Text82",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text83_84",
+      "sourceName": "Text83",
+      "label": "Text83",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text84_85",
+      "sourceName": "Text84",
+      "label": "Text84",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text85_86",
+      "sourceName": "Text85",
+      "label": "Text85",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text86_87",
+      "sourceName": "Text86",
+      "label": "Text86",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 492.19,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text87_88",
+      "sourceName": "Text87",
+      "label": "Text87",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 492.19,
+        "width": 23.6,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text88_89",
+      "sourceName": "Text88",
+      "label": "Text88",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 492.19,
+        "width": 23.21,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text89_90",
+      "sourceName": "Text89",
+      "label": "Text89",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 492.19,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text90_91",
+      "sourceName": "Text90",
+      "label": "Text90",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 492.19,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text91_92",
+      "sourceName": "Text91",
+      "label": "Text91",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 492.19,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text92_93",
+      "sourceName": "Text92",
+      "label": "Text92",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 492.19,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text93_94",
+      "sourceName": "Text93",
+      "label": "Text93",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 208.51,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text94_95",
+      "sourceName": "Text94",
+      "label": "Text94",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 235.21,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text95_96",
+      "sourceName": "Text95",
+      "label": "Text95",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 262.29,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text96_97",
+      "sourceName": "Text96",
+      "label": "Text96",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 289.37,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text97_98",
+      "sourceName": "Text97",
+      "label": "Text97",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 316.44,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text98_99",
+      "sourceName": "Text98",
+      "label": "Text98",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 343.14,
+        "y": 480.58,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text99_100",
+      "sourceName": "Text99",
+      "label": "Text99",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 370.22,
+        "y": 480.58,
+        "width": 23.6,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text100_101",
+      "sourceName": "Text100",
+      "label": "Text100",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 397.68,
+        "y": 480.58,
+        "width": 23.21,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text101_102",
+      "sourceName": "Text101",
+      "label": "Text101",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 480.58,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text102_103",
+      "sourceName": "Text102",
+      "label": "Text102",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 480.58,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text103_104",
+      "sourceName": "Text103",
+      "label": "Text103",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 480.2,
+        "width": 34.04,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text104_105",
+      "sourceName": "Text104",
+      "label": "Text104",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 480.2,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUB TOTAL_106",
+      "sourceName": "SUB TOTAL",
+      "label": "SUB TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 468.2,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text106_107",
+      "sourceName": "Text106",
+      "label": "Text106",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 468.2,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUB TOTAL (1)_108",
+      "sourceName": "SUB TOTAL (1)",
+      "label": "SUB TOTAL (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 23.98,
+        "y": 456.6,
+        "width": 500.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text108_109",
+      "sourceName": "Text108",
+      "label": "Text108",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 456.6,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text109_110",
+      "sourceName": "Text109",
+      "label": "Text109",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 456.6,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "LABOR TOTAL_111",
+      "sourceName": "LABOR TOTAL",
+      "label": "LABOR TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 444.61,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text111_112",
+      "sourceName": "Text111",
+      "label": "Text111",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 444.61,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Quantity_113",
+      "sourceName": "Quantity",
+      "label": "Quantity",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 417.53,
+        "width": 40.23,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Unit_114",
+      "sourceName": "Unit",
+      "label": "Unit",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 417.53,
+        "width": 23.98,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS (1)_115",
+      "sourceName": "TOTALS (1)",
+      "label": "TOTALS (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 417.53,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text115_116",
+      "sourceName": "Text115",
+      "label": "Text115",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 417.53,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Quantity (1)_117",
+      "sourceName": "Quantity (1)",
+      "label": "Quantity (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 405.15,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Unit (1)_118",
+      "sourceName": "Unit (1)",
+      "label": "Unit (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 405.15,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS (2)_119",
+      "sourceName": "TOTALS (2)",
+      "label": "TOTALS (2)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 405.15,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text119_120",
+      "sourceName": "Text119",
+      "label": "Text119",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 405.15,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text120_121",
+      "sourceName": "Text120",
+      "label": "Text120",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 393.16,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text121_122",
+      "sourceName": "Text121",
+      "label": "Text121",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 393.16,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text122_123",
+      "sourceName": "Text122",
+      "label": "Text122",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 393.16,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text123_124",
+      "sourceName": "Text123",
+      "label": "Text123",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 393.16,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text124_125",
+      "sourceName": "Text124",
+      "label": "Text124",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 381.16,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text125_126",
+      "sourceName": "Text125",
+      "label": "Text125",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 381.16,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text126_127",
+      "sourceName": "Text126",
+      "label": "Text126",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 381.16,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text127_128",
+      "sourceName": "Text127",
+      "label": "Text127",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 381.16,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text128_129",
+      "sourceName": "Text128",
+      "label": "Text128",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 369.17,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text129_130",
+      "sourceName": "Text129",
+      "label": "Text129",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 369.17,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text130_131",
+      "sourceName": "Text130",
+      "label": "Text130",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 369.17,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text131_132",
+      "sourceName": "Text131",
+      "label": "Text131",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 369.17,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text132_133",
+      "sourceName": "Text132",
+      "label": "Text132",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 357.57,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text133_134",
+      "sourceName": "Text133",
+      "label": "Text133",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 357.57,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text134_135",
+      "sourceName": "Text134",
+      "label": "Text134",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 357.18,
+        "width": 34.04,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text135_136",
+      "sourceName": "Text135",
+      "label": "Text135",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 357.18,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUB TOTAL (2)_137",
+      "sourceName": "SUB TOTAL (2)",
+      "label": "SUB TOTAL (2)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 345.19,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text137_138",
+      "sourceName": "Text137",
+      "label": "Text137",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 345.19,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SALES TAX %_139",
+      "sourceName": "SALES TAX %",
+      "label": "SALES TAX %",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 333.58,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text139_140",
+      "sourceName": "Text139",
+      "label": "Text139",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 333.58,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "MATERIAL TOTAL_141",
+      "sourceName": "MATERIAL TOTAL",
+      "label": "MATERIAL TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 321.59,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text141_142",
+      "sourceName": "Text141",
+      "label": "Text141",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 321.59,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Hours_143",
+      "sourceName": "Hours",
+      "label": "Hours",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 294.12,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Rate_144",
+      "sourceName": "Rate",
+      "label": "Rate",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.5,
+      "reviewState": "needs_review",
+      "notes": [
+        "Duplicate label detected; confirm unique mapping."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 294.12,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS (3)_145",
+      "sourceName": "TOTALS (3)",
+      "label": "TOTALS (3)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 294.12,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text145_146",
+      "sourceName": "Text145",
+      "label": "Text145",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 294.12,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Hours (1)_147",
+      "sourceName": "Hours (1)",
+      "label": "Hours (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 282.13,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Rate (1)_148",
+      "sourceName": "Rate (1)",
+      "label": "Rate (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.5,
+      "reviewState": "needs_review",
+      "notes": [
+        "Duplicate label detected; confirm unique mapping."
+      ],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 282.13,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS (4)_149",
+      "sourceName": "TOTALS (4)",
+      "label": "TOTALS (4)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 282.13,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text149_150",
+      "sourceName": "Text149",
+      "label": "Text149",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 282.13,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text150_151",
+      "sourceName": "Text150",
+      "label": "Text150",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 270.14,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text151_152",
+      "sourceName": "Text151",
+      "label": "Text151",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 270.14,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text152_153",
+      "sourceName": "Text152",
+      "label": "Text152",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 270.14,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text153_154",
+      "sourceName": "Text153",
+      "label": "Text153",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 270.14,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text154_155",
+      "sourceName": "Text154",
+      "label": "Text154",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 258.14,
+        "width": 40.23,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text155_156",
+      "sourceName": "Text155",
+      "label": "Text155",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 258.14,
+        "width": 23.98,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text156_157",
+      "sourceName": "Text156",
+      "label": "Text156",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 258.14,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text157_158",
+      "sourceName": "Text157",
+      "label": "Text157",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 258.14,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text158_159",
+      "sourceName": "Text158",
+      "label": "Text158",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 441.01,
+        "y": 246.54,
+        "width": 40.23,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text159_160",
+      "sourceName": "Text159",
+      "label": "Text159",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 484.34,
+        "y": 246.54,
+        "width": 23.98,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text160_161",
+      "sourceName": "Text160",
+      "label": "Text160",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 246.15,
+        "width": 34.04,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text161_162",
+      "sourceName": "Text161",
+      "label": "Text161",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 246.15,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SUB TOTAL (3)_163",
+      "sourceName": "SUB TOTAL (3)",
+      "label": "SUB TOTAL (3)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 234.16,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text163_164",
+      "sourceName": "Text163",
+      "label": "Text163",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 234.16,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "SALES TAX % (1)_165",
+      "sourceName": "SALES TAX % (1)",
+      "label": "SALES TAX % (1)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 222.55,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text165_166",
+      "sourceName": "Text165",
+      "label": "Text165",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 222.55,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "EQUIPMENT TOTAL_167",
+      "sourceName": "EQUIPMENT TOTAL",
+      "label": "EQUIPMENT TOTAL",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 210.56,
+        "width": 34.43,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text167_168",
+      "sourceName": "Text167",
+      "label": "Text167",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 210.56,
+        "width": 21.28,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS (5)_169",
+      "sourceName": "TOTALS (5)",
+      "label": "TOTALS (5)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 183.09,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text169_170",
+      "sourceName": "Text169",
+      "label": "Text169",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 183.09,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTALS (6)_171",
+      "sourceName": "TOTALS (6)",
+      "label": "TOTALS (6)",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 171.1,
+        "width": 34.43,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text171_172",
+      "sourceName": "Text171",
+      "label": "Text171",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 171.1,
+        "width": 21.28,
+        "height": 8.9
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text172_173",
+      "sourceName": "Text172",
+      "label": "Text172",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 159.5,
+        "width": 34.43,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text173_174",
+      "sourceName": "Text173",
+      "label": "Text173",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 159.5,
+        "width": 21.28,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "TOTAL SUBCONTRACTOR COST_175",
+      "sourceName": "TOTAL SUBCONTRACTOR COST",
+      "label": "TOTAL SUBCONTRACTOR COST",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 146.34,
+        "width": 34.43,
+        "height": 9.28
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text175_176",
+      "sourceName": "Text175",
+      "label": "Text175",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 146.34,
+        "width": 21.28,
+        "height": 9.28
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text176_177",
+      "sourceName": "Text176",
+      "label": "Text176",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 564.53,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text177_178",
+      "sourceName": "Text177",
+      "label": "Text177",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 552.54,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text178_179",
+      "sourceName": "Text178",
+      "label": "Text178",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 540.55,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text179_180",
+      "sourceName": "Text179",
+      "label": "Text179",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 528.55,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text180_181",
+      "sourceName": "Text180",
+      "label": "Text180",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 516.56,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text181_182",
+      "sourceName": "Text181",
+      "label": "Text181",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 504.18,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text182_183",
+      "sourceName": "Text182",
+      "label": "Text182",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 492.19,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text183_184",
+      "sourceName": "Text183",
+      "label": "Text183",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 423.79,
+        "y": 480.58,
+        "width": 13.59,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text184_185",
+      "sourceName": "Text184",
+      "label": "Text184",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 417.53,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text185_186",
+      "sourceName": "Text185",
+      "label": "Text185",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 405.15,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text186_187",
+      "sourceName": "Text186",
+      "label": "Text186",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 393.16,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text187_188",
+      "sourceName": "Text187",
+      "label": "Text187",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 381.16,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text188_189",
+      "sourceName": "Text188",
+      "label": "Text188",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 369.17,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text189_190",
+      "sourceName": "Text189",
+      "label": "Text189",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 357.57,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text190_191",
+      "sourceName": "Text190",
+      "label": "Text190",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 294.12,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text191_192",
+      "sourceName": "Text191",
+      "label": "Text191",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 282.13,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text192_193",
+      "sourceName": "Text192",
+      "label": "Text192",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 270.14,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text193_194",
+      "sourceName": "Text193",
+      "label": "Text193",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 258.14,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text194_195",
+      "sourceName": "Text194",
+      "label": "Text194",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 511.01,
+        "y": 246.54,
+        "width": 13.59,
+        "height": 8.12
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text195_196",
+      "sourceName": "Text195",
+      "label": "Text195",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 129.97,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text196_197",
+      "sourceName": "Text196",
+      "label": "Text196",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 113.72,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text197_198",
+      "sourceName": "Text197",
+      "label": "Text197",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.83,
+        "y": 97.52,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text198_199",
+      "sourceName": "Text198",
+      "label": "Text198",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 81.26,
+        "width": 34.43,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text199_200",
+      "sourceName": "Text199",
+      "label": "Text199",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 528.44,
+        "y": 57.45,
+        "width": 34.43,
+        "height": 15.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text200_201",
+      "sourceName": "Text200",
+      "label": "Text200",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 129.97,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text201_202",
+      "sourceName": "Text201",
+      "label": "Text201",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 113.72,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text202_203",
+      "sourceName": "Text202",
+      "label": "Text202",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 97.52,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text203_204",
+      "sourceName": "Text203",
+      "label": "Text203",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 81.34,
+        "width": 21.28,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text204_205",
+      "sourceName": "Text204",
+      "label": "Text204",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 565.96,
+        "y": 57.45,
+        "width": 21.28,
+        "height": 15.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text205_206",
+      "sourceName": "Text205",
+      "label": "Text205",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 416.68,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text206_207",
+      "sourceName": "Text206",
+      "label": "Text206",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 404.69,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text207_208",
+      "sourceName": "Text207",
+      "label": "Text207",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 392.89,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text208_209",
+      "sourceName": "Text208",
+      "label": "Text208",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 380.7,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text209_210",
+      "sourceName": "Text209",
+      "label": "Text209",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 368.75,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text210_211",
+      "sourceName": "Text210",
+      "label": "Text210",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 357.18,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text211_212",
+      "sourceName": "Text211",
+      "label": "Text211",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 564.7,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text212_213",
+      "sourceName": "Text212",
+      "label": "Text212",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 552.54,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text213_214",
+      "sourceName": "Text213",
+      "label": "Text213",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 540.55,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text214_215",
+      "sourceName": "Text214",
+      "label": "Text214",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 528.55,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text215_216",
+      "sourceName": "Text215",
+      "label": "Text215",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 516.56,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text216_217",
+      "sourceName": "Text216",
+      "label": "Text216",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 504.18,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text217_218",
+      "sourceName": "Text217",
+      "label": "Text217",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 492.68,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text218_219",
+      "sourceName": "Text218",
+      "label": "Text218",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 31.95,
+        "y": 480.58,
+        "width": 172.34,
+        "height": 8.51
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text219_220",
+      "sourceName": "Text219",
+      "label": "Text219",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 293.64,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text220_221",
+      "sourceName": "Text220",
+      "label": "Text220",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 281.66,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text221_222",
+      "sourceName": "Text221",
+      "label": "Text221",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 269.86,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text222_223",
+      "sourceName": "Text222",
+      "label": "Text222",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 257.67,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text223_224",
+      "sourceName": "Text223",
+      "label": "Text223",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 245.72,
+        "width": 405.42,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text224_225",
+      "sourceName": "Text224",
+      "label": "Text224",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 182.68,
+        "width": 492.1,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text225_226",
+      "sourceName": "Text225",
+      "label": "Text225",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 170.7,
+        "width": 492.1,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text226_227",
+      "sourceName": "Text226",
+      "label": "Text226",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 32.5,
+        "y": 158.9,
+        "width": 492.1,
+        "height": 9.87
+      },
+      "readOnly": false,
+      "calculated": false
+    },
+    {
+      "id": "Text227_228",
+      "sourceName": "Text227",
+      "label": "Text227",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "confidence": 0.95,
+      "reviewState": "auto",
+      "notes": [],
+      "rect": {
+        "page": 0,
+        "x": 123.29,
+        "y": 700.08,
+        "width": 84.06,
+        "height": 7.88
+      },
+      "readOnly": false,
+      "calculated": false
+    }
+  ],
+  "formaSchema": {
+    "elements": [
+      {
+        "kind": "field",
+        "fieldId": "DATE_1",
+        "label": "DATE",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "JOB NO_2",
+        "label": "JOB NO",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "PROJECT_3",
+        "label": "PROJECT",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "WO AUTHORIZED BY_4",
+        "label": "WO AUTHORIZED BY",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text5_5",
+        "label": "Text5",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SIGNED_6",
+        "label": "SIGNED",
+        "type": "signature",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "DESCRIPTION AND LOCATION OF WORK_7",
+        "label": "DESCRIPTION AND LOCATION OF WORK",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "DESCRIPTION AND LOCATION OF WORK (1)_8",
+        "label": "DESCRIPTION AND LOCATION OF WORK (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text8_9",
+        "label": "Text8",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "MON_10",
+        "label": "MON",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TUE_11",
+        "label": "TUE",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "WED_12",
+        "label": "WED",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "THU_13",
+        "label": "THU",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "FRI_14",
+        "label": "FRI",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SAT_15",
+        "label": "SAT",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SUN_16",
+        "label": "SUN",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "RATE_17",
+        "label": "RATE",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Regular_18",
+        "label": "Regular",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Overtime_19",
+        "label": "Overtime",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS_20",
+        "label": "TOTALS",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text20_21",
+        "label": "Text20",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "MON (1)_22",
+        "label": "MON (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TUE (1)_23",
+        "label": "TUE (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "WED (1)_24",
+        "label": "WED (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "THU (1)_25",
+        "label": "THU (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "FRI (1)_26",
+        "label": "FRI (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SAT (1)_27",
+        "label": "SAT (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SUN (1)_28",
+        "label": "SUN (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "RATE (1)_29",
+        "label": "RATE (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Regular (1)_30",
+        "label": "Regular (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Overtime (1)_31",
+        "label": "Overtime (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text31_32",
+        "label": "Text31",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text32_33",
+        "label": "Text32",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text33_34",
+        "label": "Text33",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text34_35",
+        "label": "Text34",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text35_36",
+        "label": "Text35",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text36_37",
+        "label": "Text36",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text37_38",
+        "label": "Text37",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text38_39",
+        "label": "Text38",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text39_40",
+        "label": "Text39",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text40_41",
+        "label": "Text40",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text41_42",
+        "label": "Text41",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text42_43",
+        "label": "Text42",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text43_44",
+        "label": "Text43",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text44_45",
+        "label": "Text44",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text45_46",
+        "label": "Text45",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text46_47",
+        "label": "Text46",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text47_48",
+        "label": "Text47",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text48_49",
+        "label": "Text48",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text49_50",
+        "label": "Text49",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text50_51",
+        "label": "Text50",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text51_52",
+        "label": "Text51",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text52_53",
+        "label": "Text52",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text53_54",
+        "label": "Text53",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text54_55",
+        "label": "Text54",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text55_56",
+        "label": "Text55",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text56_57",
+        "label": "Text56",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text57_58",
+        "label": "Text57",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text58_59",
+        "label": "Text58",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text59_60",
+        "label": "Text59",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text60_61",
+        "label": "Text60",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text61_62",
+        "label": "Text61",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text62_63",
+        "label": "Text62",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text63_64",
+        "label": "Text63",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text64_65",
+        "label": "Text64",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text65_66",
+        "label": "Text65",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text66_67",
+        "label": "Text66",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text67_68",
+        "label": "Text67",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text68_69",
+        "label": "Text68",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text69_70",
+        "label": "Text69",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text70_71",
+        "label": "Text70",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text71_72",
+        "label": "Text71",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text72_73",
+        "label": "Text72",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text73_74",
+        "label": "Text73",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text74_75",
+        "label": "Text74",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text75_76",
+        "label": "Text75",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text76_77",
+        "label": "Text76",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text77_78",
+        "label": "Text77",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text78_79",
+        "label": "Text78",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text79_80",
+        "label": "Text79",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text80_81",
+        "label": "Text80",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text81_82",
+        "label": "Text81",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text82_83",
+        "label": "Text82",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text83_84",
+        "label": "Text83",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text84_85",
+        "label": "Text84",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text85_86",
+        "label": "Text85",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text86_87",
+        "label": "Text86",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text87_88",
+        "label": "Text87",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text88_89",
+        "label": "Text88",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text89_90",
+        "label": "Text89",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text90_91",
+        "label": "Text90",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text91_92",
+        "label": "Text91",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text92_93",
+        "label": "Text92",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text93_94",
+        "label": "Text93",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text94_95",
+        "label": "Text94",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text95_96",
+        "label": "Text95",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text96_97",
+        "label": "Text96",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text97_98",
+        "label": "Text97",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text98_99",
+        "label": "Text98",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text99_100",
+        "label": "Text99",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text100_101",
+        "label": "Text100",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text101_102",
+        "label": "Text101",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text102_103",
+        "label": "Text102",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text103_104",
+        "label": "Text103",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text104_105",
+        "label": "Text104",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SUB TOTAL_106",
+        "label": "SUB TOTAL",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text106_107",
+        "label": "Text106",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SUB TOTAL (1)_108",
+        "label": "SUB TOTAL (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text108_109",
+        "label": "Text108",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text109_110",
+        "label": "Text109",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "LABOR TOTAL_111",
+        "label": "LABOR TOTAL",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text111_112",
+        "label": "Text111",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Quantity_113",
+        "label": "Quantity",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Unit_114",
+        "label": "Unit",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS (1)_115",
+        "label": "TOTALS (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text115_116",
+        "label": "Text115",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Quantity (1)_117",
+        "label": "Quantity (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Unit (1)_118",
+        "label": "Unit (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS (2)_119",
+        "label": "TOTALS (2)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text119_120",
+        "label": "Text119",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text120_121",
+        "label": "Text120",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text121_122",
+        "label": "Text121",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text122_123",
+        "label": "Text122",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text123_124",
+        "label": "Text123",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text124_125",
+        "label": "Text124",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text125_126",
+        "label": "Text125",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text126_127",
+        "label": "Text126",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text127_128",
+        "label": "Text127",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text128_129",
+        "label": "Text128",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text129_130",
+        "label": "Text129",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text130_131",
+        "label": "Text130",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text131_132",
+        "label": "Text131",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text132_133",
+        "label": "Text132",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text133_134",
+        "label": "Text133",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text134_135",
+        "label": "Text134",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text135_136",
+        "label": "Text135",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SUB TOTAL (2)_137",
+        "label": "SUB TOTAL (2)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text137_138",
+        "label": "Text137",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SALES TAX %_139",
+        "label": "SALES TAX %",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text139_140",
+        "label": "Text139",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "MATERIAL TOTAL_141",
+        "label": "MATERIAL TOTAL",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text141_142",
+        "label": "Text141",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Hours_143",
+        "label": "Hours",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Rate_144",
+        "label": "Rate",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS (3)_145",
+        "label": "TOTALS (3)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text145_146",
+        "label": "Text145",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Hours (1)_147",
+        "label": "Hours (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Rate (1)_148",
+        "label": "Rate (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS (4)_149",
+        "label": "TOTALS (4)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text149_150",
+        "label": "Text149",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text150_151",
+        "label": "Text150",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text151_152",
+        "label": "Text151",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text152_153",
+        "label": "Text152",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text153_154",
+        "label": "Text153",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text154_155",
+        "label": "Text154",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text155_156",
+        "label": "Text155",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text156_157",
+        "label": "Text156",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text157_158",
+        "label": "Text157",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text158_159",
+        "label": "Text158",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text159_160",
+        "label": "Text159",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text160_161",
+        "label": "Text160",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text161_162",
+        "label": "Text161",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SUB TOTAL (3)_163",
+        "label": "SUB TOTAL (3)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text163_164",
+        "label": "Text163",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "SALES TAX % (1)_165",
+        "label": "SALES TAX % (1)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text165_166",
+        "label": "Text165",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "EQUIPMENT TOTAL_167",
+        "label": "EQUIPMENT TOTAL",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text167_168",
+        "label": "Text167",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS (5)_169",
+        "label": "TOTALS (5)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text169_170",
+        "label": "Text169",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTALS (6)_171",
+        "label": "TOTALS (6)",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text171_172",
+        "label": "Text171",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text172_173",
+        "label": "Text172",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text173_174",
+        "label": "Text173",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "TOTAL SUBCONTRACTOR COST_175",
+        "label": "TOTAL SUBCONTRACTOR COST",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text175_176",
+        "label": "Text175",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text176_177",
+        "label": "Text176",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text177_178",
+        "label": "Text177",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text178_179",
+        "label": "Text178",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text179_180",
+        "label": "Text179",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text180_181",
+        "label": "Text180",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text181_182",
+        "label": "Text181",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text182_183",
+        "label": "Text182",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text183_184",
+        "label": "Text183",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text184_185",
+        "label": "Text184",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text185_186",
+        "label": "Text185",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text186_187",
+        "label": "Text186",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text187_188",
+        "label": "Text187",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text188_189",
+        "label": "Text188",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text189_190",
+        "label": "Text189",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text190_191",
+        "label": "Text190",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text191_192",
+        "label": "Text191",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text192_193",
+        "label": "Text192",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text193_194",
+        "label": "Text193",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text194_195",
+        "label": "Text194",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text195_196",
+        "label": "Text195",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text196_197",
+        "label": "Text196",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text197_198",
+        "label": "Text197",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text198_199",
+        "label": "Text198",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text199_200",
+        "label": "Text199",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text200_201",
+        "label": "Text200",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text201_202",
+        "label": "Text201",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text202_203",
+        "label": "Text202",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text203_204",
+        "label": "Text203",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text204_205",
+        "label": "Text204",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text205_206",
+        "label": "Text205",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text206_207",
+        "label": "Text206",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text207_208",
+        "label": "Text207",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text208_209",
+        "label": "Text208",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text209_210",
+        "label": "Text209",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text210_211",
+        "label": "Text210",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text211_212",
+        "label": "Text211",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text212_213",
+        "label": "Text212",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text213_214",
+        "label": "Text213",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text214_215",
+        "label": "Text214",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text215_216",
+        "label": "Text215",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text216_217",
+        "label": "Text216",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text217_218",
+        "label": "Text217",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text218_219",
+        "label": "Text218",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text219_220",
+        "label": "Text219",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text220_221",
+        "label": "Text220",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text221_222",
+        "label": "Text221",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text222_223",
+        "label": "Text222",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text223_224",
+        "label": "Text223",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text224_225",
+        "label": "Text224",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text225_226",
+        "label": "Text225",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text226_227",
+        "label": "Text226",
+        "type": "text",
+        "required": false,
+        "options": []
+      },
+      {
+        "kind": "field",
+        "fieldId": "Text227_228",
+        "label": "Text227",
+        "type": "text",
+        "required": false,
+        "options": []
+      }
+    ],
+    "sectionCount": 0,
+    "tableCount": 0,
+    "calculatedColumnCount": 0,
+    "notes": []
+  },
+  "reviewNotes": [
+    "Document AI layout pass failed; used local AcroForm extraction only (undefined undefined: undefined).",
+    "Parsed with local AcroForm field extraction."
+  ],
+  "createdAt": "2026-05-29T15:10:07.003Z",
+  "pdfFilePath": "D:\\CursorRevitMCP\\aps-ai-web\\.design-files\\form-builder\\analysis\\analysis_5755d9c891d64557823a17d54c061655.pdf",
+  "sourceFileName": "Extra Work Order - WIN 2.pdf",
+  "sourceMimeType": "application/pdf"
+}

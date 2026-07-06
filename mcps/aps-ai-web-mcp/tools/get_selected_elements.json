@@ -1,0 +1,24 @@
+{
+  "name": "get_selected_elements",
+  "description": "Read selected elements and optionally filter returned properties.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "selectedElements": {
+        "type": "array"
+      },
+      "includeAll": {
+        "type": "boolean"
+      },
+      "requestedFields": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "selectedElements"
+    ]
+  }
+}

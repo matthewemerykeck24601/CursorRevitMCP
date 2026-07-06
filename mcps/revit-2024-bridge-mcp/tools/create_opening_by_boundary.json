@@ -1,0 +1,42 @@
+{
+  "name": "create_opening_by_boundary",
+  "description": "Project: cut an opening in a roof, floor, or ceiling host from a closed boundary loop. Coordinates in millimetres. projectOntHost (default true) projects the opening perpendicular onto the host face.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "hostId": {
+        "type": "number"
+      },
+      "profile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "z": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "projectOntHost": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "hostId",
+      "profile"
+    ],
+    "additionalProperties": false
+  }
+}

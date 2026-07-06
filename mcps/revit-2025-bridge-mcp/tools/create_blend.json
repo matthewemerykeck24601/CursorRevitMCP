@@ -1,0 +1,63 @@
+{
+  "name": "create_blend",
+  "description": "Family Editor: create a solid or void blend between a bottom and a top 2D profile in the active family document. Lengths in mm.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "bottomProfile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "topProfile": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "depth": {
+        "type": "number"
+      },
+      "isSolid": {
+        "type": "boolean"
+      },
+      "workPlaneName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "bottomProfile",
+      "topProfile",
+      "depth",
+      "isSolid"
+    ],
+    "additionalProperties": false
+  }
+}

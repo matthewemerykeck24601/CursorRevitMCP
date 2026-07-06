@@ -1,0 +1,27 @@
+{
+  "name": "set_family_parameter_value",
+  "description": "Family Editor: set the value of an existing family parameter on a type (defaults to the current type). Length values in mm, angles in degrees; string for Text, boolean for YesNo.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameterName": {
+        "type": "string"
+      },
+      "value": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      },
+      "typeName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parameterName",
+      "value"
+    ],
+    "additionalProperties": false
+  }
+}

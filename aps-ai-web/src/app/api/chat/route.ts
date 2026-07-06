@@ -35,6 +35,12 @@ import {
   seedHubReferenceCache,
   seedHubRoleCache,
 } from "@/lib/aps-admin";
+import {
+  analyzePdfForFormTemplate,
+  createFormTemplateFromAnalysis,
+  type FieldOverride,
+  type FormBuilderSource,
+} from "@/lib/acc-forms";
 import { createRevitCloudWorksharedModel } from "@/lib/revit-cloud-model-create";
 import {
   analyzePublishedModelAndCacheContract,
@@ -89,7 +95,26 @@ type ChatRequest = {
   aiProvider?: string;
   aiModel?: string;
   assistantMode?: string;
-  workspaceMode?: "model" | "product-analysis" | "admin";
+  workspaceMode?: "model" | "product-analysis" | "admin" | "form-builder";
+  formBuilder?: {
+    sourceType?: "upload" | "acc-version";
+    uploadToken?: string;
+    projectId?: string;
+    versionId?: string;
+    templateName?: string;
+    templateType?: string;
+    analysis?: {
+      analysisId?: string;
+      fields?: Array<{
+        id?: string;
+        label?: string;
+        type?: string;
+        required?: boolean;
+        options?: string[];
+        reviewState?: string;
+      }>;
+    };
+  };
   /** Supplemental BIM-selection table context (summary + sample rows). */
   bimSelectionContext?: {
     count?: number;
@@ -897,6 +922,9 @@ export async function POST(request: NextRequest) {
   if (workspaceMode === "admin") {
     externalContext = `${externalContext}\nWORKSPACE_MODE: admin`.trim();
   }
+  if (workspaceMode === "form-builder") {
+    externalContext = `${externalContext}\nWORKSPACE_MODE: form-builder`.trim();
+  }
 
   let modelViewsFromTool: Array<{ guid: string; name: string; role: string }> = [];
   let issuesSummaryText = "";
@@ -1470,6 +1498,183 @@ export async function POST(request: NextRequest) {
               externalContext =
                 `${externalContext}\nCREATE_REVIT_CLOUD_WORKSHARED_MODEL_RESULT: ${JSON.stringify(payload)}`.trim();
             }
+          }
+        }
+        if (call.tool === "analyze_pdf_for_form_template") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          try {
+            const source =
+              typeof args.upload_token === "string" && args.upload_token.trim()
+                ? ({
+                    kind: "upload_token",
+                    uploadToken: args.upload_token.trim(),
+                  } satisfies FormBuilderSource)
+                : typeof args.uploadToken === "string" && args.uploadToken.trim()
+                  ? ({
+                      kind: "upload_token",
+                      uploadToken: args.uploadToken.trim(),
+                    } satisfies FormBuilderSource)
+                  : typeof args.project_id === "string" &&
+                        args.project_id.trim() &&
+                      typeof args.version_id === "string" &&
+                      args.version_id.trim()
+                    ? ({
+                        kind: "acc_version",
+                        projectId: args.project_id.trim(),
+                        versionId: args.version_id.trim(),
+                      } satisfies FormBuilderSource)
+                    : typeof args.projectId === "string" &&
+                          args.projectId.trim() &&
+                        typeof args.versionId === "string" &&
+                        args.versionId.trim()
+                      ? ({
+                          kind: "acc_version",
+                          projectId: args.projectId.trim(),
+                          versionId: args.versionId.trim(),
+                        } satisfies FormBuilderSource)
+                      : body.formBuilder?.sourceType === "upload" &&
+                            body.formBuilder.uploadToken?.trim()
+                        ? ({
+                            kind: "upload_token",
+                            uploadToken: body.formBuilder.uploadToken.trim(),
+                          } satisfies FormBuilderSource)
+                        : body.formBuilder?.projectId?.trim() &&
+                              body.formBuilder?.versionId?.trim()
+                          ? ({
+                              kind: "acc_version",
+                              projectId: body.formBuilder.projectId.trim(),
+                              versionId: body.formBuilder.versionId.trim(),
+                            } satisfies FormBuilderSource)
+                          : null;
+            if (!source) {
+              throw new Error(
+                "No valid PDF source. Provide upload_token or project_id+version_id.",
+              );
+            }
+            const analysis = await analyzePdfForFormTemplate({
+              accessToken: auth.session.accessToken,
+              source,
+              templateName:
+                (typeof args.template_name === "string"
+                  ? args.template_name
+                  : typeof args.templateName === "string"
+                    ? args.templateName
+                    : body.formBuilder?.templateName) || undefined,
+              templateType:
+                (typeof args.template_type === "string"
+                  ? args.template_type
+                  : typeof args.templateType === "string"
+                    ? args.templateType
+                    : body.formBuilder?.templateType) || undefined,
+              hubId: selectedHubId || undefined,
+            });
+            queryResult.formBuilderAnalyze = analysis;
+            externalContext =
+              `${externalContext}\nFORM_BUILDER_ANALYZE_RESULT: ${JSON.stringify(analysis)}`.trim();
+          } catch (error) {
+            const payload = {
+              success: false,
+              error: error instanceof Error ? error.message : "Unknown error",
+            };
+            queryResult.formBuilderAnalyze = payload;
+            externalContext =
+              `${externalContext}\nFORM_BUILDER_ANALYZE_RESULT: ${JSON.stringify(payload)}`.trim();
+          }
+        }
+        if (call.tool === "create_form_template_from_pdf") {
+          const args =
+            call.args && typeof call.args === "object" && !Array.isArray(call.args)
+              ? (call.args as Record<string, unknown>)
+              : {};
+          try {
+            const analysisId =
+              (typeof args.analysis_id === "string" ? args.analysis_id : "") ||
+              (typeof args.analysisId === "string" ? args.analysisId : "") ||
+              body.formBuilder?.analysis?.analysisId ||
+              "";
+            if (!analysisId.trim()) {
+              throw new Error("analysis_id is required to create a template.");
+            }
+            const overrideRows = Array.isArray(args.field_overrides)
+              ? args.field_overrides
+              : Array.isArray(args.fieldOverrides)
+                ? args.fieldOverrides
+                : Array.isArray(body.formBuilder?.analysis?.fields)
+                  ? body.formBuilder.analysis.fields
+                  : [];
+            const fieldOverrides: FieldOverride[] = overrideRows
+              .map((row) => {
+                if (!row || typeof row !== "object" || Array.isArray(row)) return null;
+                const item = row as Record<string, unknown>;
+                const id = String(item.id ?? "").trim();
+                if (!id) return null;
+                const out: FieldOverride = { id };
+                if (typeof item.label === "string" && item.label.trim()) out.label = item.label;
+                if (typeof item.type === "string" && item.type.trim()) {
+                  out.type = item.type as FieldOverride["type"];
+                }
+                if (typeof item.required === "boolean") out.required = item.required;
+                if (typeof item.calculated === "boolean") out.calculated = item.calculated;
+                if (typeof item.formula === "string" && item.formula.trim()) {
+                  out.formula = item.formula;
+                }
+                if (typeof item.groupKey === "string" && item.groupKey.trim()) {
+                  out.groupKey = item.groupKey;
+                }
+                if (Array.isArray(item.options)) {
+                  out.options = item.options.map((v) => String(v)).filter(Boolean);
+                }
+                if (typeof item.reviewState === "string" && item.reviewState.trim()) {
+                  out.reviewState = item.reviewState as FieldOverride["reviewState"];
+                }
+                return out;
+              })
+              .filter((row): row is FieldOverride => row != null);
+            const orderedFieldIds = Array.isArray(args.ordered_field_ids)
+              ? args.ordered_field_ids.map((v) => String(v)).filter(Boolean)
+              : Array.isArray(args.orderedFieldIds)
+                ? args.orderedFieldIds.map((v) => String(v)).filter(Boolean)
+                : Array.isArray(body.formBuilder?.analysis?.fields)
+                  ? body.formBuilder.analysis.fields
+                      .map((f) => String(f?.id ?? "").trim())
+                      .filter(Boolean)
+                  : undefined;
+            const created = await createFormTemplateFromAnalysis({
+              accessToken: auth.session.accessToken,
+              analysisId: analysisId.trim(),
+              hubId: selectedHubId || undefined,
+              templateName:
+                (typeof args.template_name === "string"
+                  ? args.template_name
+                  : typeof args.templateName === "string"
+                    ? args.templateName
+                    : body.formBuilder?.templateName) || undefined,
+              templateType:
+                (typeof args.template_type === "string"
+                  ? args.template_type
+                  : typeof args.templateType === "string"
+                    ? args.templateType
+                    : body.formBuilder?.templateType) || undefined,
+              dryRun: Boolean(args.dry_run ?? args.dryRun ?? false),
+              fieldOverrides,
+              ...(orderedFieldIds && orderedFieldIds.length > 0
+                ? { orderedFieldIds }
+                : {}),
+            });
+            queryResult.formBuilderCreateTemplate = created;
+            externalContext =
+              `${externalContext}\nFORM_BUILDER_CREATE_TEMPLATE_RESULT: ${JSON.stringify(created)}`.trim();
+          } catch (error) {
+            const payload = {
+              success: false,
+              error: error instanceof Error ? error.message : "Unknown error",
+            };
+            queryResult.formBuilderCreateTemplate = payload;
+            externalContext =
+              `${externalContext}\nFORM_BUILDER_CREATE_TEMPLATE_RESULT: ${JSON.stringify(payload)}`.trim();
           }
         }
         if (call.tool === "analyze_published_model_and_cache") {

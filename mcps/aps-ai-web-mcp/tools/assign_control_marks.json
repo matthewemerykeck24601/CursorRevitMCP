@@ -1,0 +1,22 @@
+{
+  "name": "assign_control_marks",
+  "description": "Applies CONTROL_MARK to verified identical pieces (guarded write).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "mark_groups": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "start_number": {
+        "type": "integer",
+        "default": 100
+      }
+    },
+    "required": [
+      "mark_groups"
+    ]
+  }
+}

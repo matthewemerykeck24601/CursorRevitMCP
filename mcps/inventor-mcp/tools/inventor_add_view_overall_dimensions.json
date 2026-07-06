@@ -1,0 +1,25 @@
+{
+  "name": "inventor_add_view_overall_dimensions",
+  "description": "Add width/height dimensions to one drawing view.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "viewIndex": {
+        "type": "number"
+      },
+      "viewName": {
+        "type": "string"
+      },
+      "offsetInSheet": {
+        "type": "number"
+      },
+      "addWidth": {
+        "type": "boolean"
+      },
+      "addHeight": {
+        "type": "boolean"
+      }
+    },
+    "additionalProperties": false
+  }
+}

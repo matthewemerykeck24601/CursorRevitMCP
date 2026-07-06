@@ -1,0 +1,113 @@
+{
+  "name": "create_line_based_element",
+  "description": "Create one or more line-based elements in Revit such as walls, beams, or pipes. Supports batch creation with detailed parameters including family type ID, start and end points, thickness, height, and level information. All units are in millimeters (mm).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Revit built-in category (e.g., OST_Walls, OST_StructuralFraming, OST_DuctCurves)"
+            },
+            "typeId": {
+              "type": "number",
+              "description": "The ID of the family type to create."
+            },
+            "locationLine": {
+              "type": "object",
+              "properties": {
+                "p0": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "description": "X coordinate of start point"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "Y coordinate of start point"
+                    },
+                    "z": {
+                      "type": "number",
+                      "description": "Z coordinate of start point"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y",
+                    "z"
+                  ],
+                  "additionalProperties": false
+                },
+                "p1": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "description": "X coordinate of end point"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "Y coordinate of end point"
+                    },
+                    "z": {
+                      "type": "number",
+                      "description": "Z coordinate of end point"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y",
+                    "z"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "p0",
+                "p1"
+              ],
+              "additionalProperties": false,
+              "description": "The line defining the element's location"
+            },
+            "thickness": {
+              "type": "number",
+              "description": "Thickness/width of the element (e.g., wall thickness)"
+            },
+            "height": {
+              "type": "number",
+              "description": "Height of the element (e.g., wall height)"
+            },
+            "baseLevel": {
+              "type": "number",
+              "description": "Base level height"
+            },
+            "baseOffset": {
+              "type": "number",
+              "description": "Offset from the base level"
+            }
+          },
+          "required": [
+            "category",
+            "locationLine",
+            "thickness",
+            "height",
+            "baseLevel",
+            "baseOffset"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Array of line-based elements to create"
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

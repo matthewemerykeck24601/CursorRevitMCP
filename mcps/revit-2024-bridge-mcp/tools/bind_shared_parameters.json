@@ -1,0 +1,42 @@
+{
+  "name": "bind_shared_parameters",
+  "description": "Bind existing shared parameters to project categories as instance or type parameters.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sharedParameterFilePath": {
+        "type": "string"
+      },
+      "groupName": {
+        "type": "string"
+      },
+      "parameterNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "categoryList": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "bindingType": {
+        "type": "string",
+        "enum": [
+          "instance",
+          "type"
+        ]
+      },
+      "parameterGroup": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parameterNames",
+      "categoryList"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "get_element_parameters",
+  "description": "Return parameter values for selected elements using query aliases.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "selectedElements": {
+        "type": "array"
+      },
+      "dbIds": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "parameterQueries": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "selectedElements"
+    ]
+  }
+}

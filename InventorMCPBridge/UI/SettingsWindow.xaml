@@ -1,0 +1,60 @@
+<Window x:Class="InventorMCPBridge.UI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Inventor MCP Bridge Settings"
+        Width="620"
+        Height="360"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <Grid Margin="14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <CheckBox x:Name="EnableGatewayCheckbox"
+                  Grid.Row="0"
+                  Grid.ColumnSpan="2"
+                  Content="Enable local Inventor API gateway for MCP"
+                  Margin="0,0,0,8"/>
+
+        <CheckBox x:Name="AutoStartCheckbox"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  Content="Auto-start gateway when Inventor launches"
+                  Margin="0,0,0,8"/>
+
+        <CheckBox x:Name="VerbosePayloadCheckbox"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  Content="Verbose payload logging (for diagnostics)"
+                  Margin="0,0,0,14"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="Gateway port:" Margin="0,0,10,8"/>
+        <TextBox x:Name="GatewayPortTextBox" Grid.Row="3" Grid.Column="1" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="Help URL:" Margin="0,0,10,8"/>
+        <TextBox x:Name="HelpUrlTextBox" Grid.Row="4" Grid.Column="1" Margin="0,0,0,8"/>
+
+        <TextBlock Grid.Row="5"
+                   Grid.ColumnSpan="2"
+                   TextWrapping="Wrap"
+                   Foreground="Gray"
+                   Text="Phase 1 uses manual Informed Design publish. MCP validates model state and parameter readiness only."
+                   Margin="0,6,0,0"/>
+
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
+            <Button Width="90" Margin="0,0,8,0" IsDefault="True" Click="OnSaveClick">Save</Button>
+            <Button Width="90" IsCancel="True">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

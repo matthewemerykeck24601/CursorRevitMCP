@@ -4,9 +4,59 @@
       "command": "C:\\Program Files\\Autodesk\\Revit 2026\\Autodesk.RevitMcpServer.Stdio.exe",
       "args": []
     },
-    "revit-2026-community-mcp": {
+    "revit-2025-bridge-mcp": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "mcp-server-for-revit@1.0.0"]
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "D:\\CursorRevitMCP\\revit-2025-community-bridge-mcp\\src\\index.ts"
+      ],
+      "env": {
+        "REVIT_2025_BRIDGE_URL": "http://127.0.0.1:8767"
+      }
+    },
+    "revit-2026-bridge-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "D:\\CursorRevitMCP\\revit-2026-community-bridge-mcp\\src\\index.ts"
+      ],
+      "env": {
+        "REVIT_2026_BRIDGE_URL": "http://127.0.0.1:8766"
+      }
+    },
+    "revit-2027-community-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "D:\\CursorRevitMCP\\revit-2027-community-mcp\\src\\index.ts"
+      ],
+      "env": {
+        "REVIT_2027_BRIDGE_URL": "http://127.0.0.1:8766"
+      }
+    },
+    "inventor-mcp": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "tsx",
+        "D:\\CursorRevitMCP\\inventor-mcp\\src\\index.ts"
+      ],
+      "env": {
+        "INVENTOR_BRIDGE_URL": "http://127.0.0.1:8776",
+        "INVENTOR_PARAM_SOURCE": "excel",
+        "INVENTOR_EXCEL_PATH": "D:\\CursorRevitMCP\\data\\inventor-parameters.xlsx"
+      }
     },
     "aps-ai-web-mcp": {
       "command": "cmd",

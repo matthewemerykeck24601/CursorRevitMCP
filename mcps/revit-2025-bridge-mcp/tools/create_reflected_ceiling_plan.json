@@ -1,0 +1,19 @@
+{
+  "name": "create_reflected_ceiling_plan",
+  "description": "Project: create a reflected ceiling plan view for a level (uses the first Ceiling Plan view family type). Optional name.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "levelId": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "levelId"
+    ],
+    "additionalProperties": false
+  }
+}

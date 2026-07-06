@@ -1,0 +1,58 @@
+﻿[
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STEEL_SHAPES\\STEEL_ANGLE",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    },
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STEEL_SHAPES\\STEEL_PLATE",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    },
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STEEL_SHAPES\\STEEL_PLATE\\Requires Approval To Use",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    },
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STEEL_SHAPES\\STEEL_PLATE\\Skewed Plates",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    },
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STEEL_SHAPES\\STEEL_PLATE\\STEEL_BENT_PLATE",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    },
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\STEEL_SHAPES\\STEEL_PLATE\\STEEL_GUSSET",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    },
+    {
+        "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\WOOD_NAILER",
+        "Status":  "request_failed",
+        "Variants":  0,
+        "Failures":  0,
+        "MissingParamFailures":  0,
+        "RequestError":  "The request was aborted: The operation has timed out."
+    }
+]

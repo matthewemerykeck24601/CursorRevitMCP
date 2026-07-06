@@ -1,0 +1,16 @@
+{
+  "name": "get_family_parameters",
+  "description": "Read family-level type/instance parameters from the active Family Editor document (FamilyManager). Not for nested placed instances in a project. Optional parameterNames filter.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameterNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

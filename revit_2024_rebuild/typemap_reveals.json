@@ -1,0 +1,37 @@
+[
+ {
+  "srcFamily": "REVEAL",
+  "srcType": "REVEAL - 1/2\" x 1\"",
+  "tgtFamily": "REVEAL",
+  "tgtType": "REVEAL",
+  "createTypeIfMissing": false
+ },
+ {
+  "srcFamily": "REVEAL",
+  "srcType": "REVEAL - 1/2\" x 3\"",
+  "tgtFamily": "REVEAL",
+  "tgtType": "REVEAL",
+  "createTypeIfMissing": false
+ },
+ {
+  "srcFamily": "REVEAL",
+  "srcType": "REVEAL - 1/2\" x 3'6\" RECESS",
+  "tgtFamily": "REVEAL",
+  "tgtType": "REVEAL",
+  "createTypeIfMissing": false
+ },
+ {
+  "srcFamily": "REVEAL",
+  "srcType": "REVEAL - 1/2\" x 4\"",
+  "tgtFamily": "REVEAL",
+  "tgtType": "REVEAL",
+  "createTypeIfMissing": false
+ },
+ {
+  "srcFamily": "REVEAL",
+  "srcType": "REVEAL - 1/2\" x 6\"",
+  "tgtFamily": "REVEAL",
+  "tgtType": "REVEAL",
+  "createTypeIfMissing": false
+ }
+]

@@ -59,7 +59,9 @@ export type AgentToolName =
   | "poll_design_automation_status"
   | "analyze_products_and_mark"
   | "get_product_sameness_report"
-  | "assign_control_marks";
+  | "assign_control_marks"
+  | "analyze_pdf_for_form_template"
+  | "create_form_template_from_pdf";
 
 export type AgentToolCall = {
   tool: AgentToolName;
@@ -536,6 +538,8 @@ function parseToolPlannerResponse(raw: string): AgentToolCall[] {
     "analyze_products_and_mark",
     "get_product_sameness_report",
     "assign_control_marks",
+    "analyze_pdf_for_form_template",
+    "create_form_template_from_pdf",
   ];
   const out: AgentToolCall[] = [];
   for (const item of parsed.toolCalls) {
@@ -730,7 +734,7 @@ function buildToolPlannerPrompt(
     "You are a local tool planner for an APS Viewer AI assistant.",
     "Briefly note why tools may or may not be needed (plain text is fine).",
     "Then end with a single ```json code block containing ONLY:",
-    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "get_cached_selection" | "model_views" | "issues_list" | "issues_create" | "admin_add_users_to_projects" | "admin_seed_role_cache" | "admin_list_role_cache" | "admin_seed_reference_cache" | "admin_get_reference_cache_status" | "create_revit_cloud_workshared_model" | "get_elements_by_category" | "inspect_published_selection" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "poll_design_automation_status" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks", "reason": string, "args"?: object }> }',
+    '{ "toolCalls": Array<{ "tool": "aec_query" | "selected_element_parameters" | "get_cached_selection" | "model_views" | "issues_list" | "issues_create" | "admin_add_users_to_projects" | "admin_seed_role_cache" | "admin_list_role_cache" | "admin_seed_reference_cache" | "admin_get_reference_cache_status" | "create_revit_cloud_workshared_model" | "get_elements_by_category" | "inspect_published_selection" | "select_elements" | "analyze_published_model_and_cache" | "get_cached_mark_analysis" | "trigger_design_automation_mark_update" | "poll_design_automation_status" | "analyze_products_and_mark" | "get_product_sameness_report" | "assign_control_marks" | "analyze_pdf_for_form_template" | "create_form_template_from_pdf", "reason": string, "args"?: object }> }',
     "",
     "Tool selection guidance:",
     '- Use "get_elements_by_category" OR "inspect_published_selection" (Tool A — same implementation) when the user wants to select/find/highlight elements. Args: category?, family?, type?, limit?, product_prefix? (WPA|WPB|CLA|COLUMN|ALL), optional filters name_contains, control_mark_prefix, family_contains; highlight_in_viewer (default true) queues viewer selection; fit_to_view / zoom_to_selection to zoom; isolate_in_viewer to isolate. Requires hub/project/model context.',
@@ -755,9 +759,12 @@ function buildToolPlannerPrompt(
     '- Use "analyze_products_and_mark" for granular legacy mark analysis (args: { "product_prefix", "dry_run" }).',
     '- Use "get_product_sameness_report" when comparing specific element IDs (args: { "element_ids": string[] }).',
     '- Use "assign_control_marks" only after verified groups (args: { "mark_groups": object[], "start_number"?: number }).',
+    '- Use "analyze_pdf_for_form_template" in Form Builder mode to parse uploaded or ACC Docs PDFs into template field mappings with confidence + review status. Args can include upload_token, project_id+version_id, or pdf_base64.',
+    '- Use "create_form_template_from_pdf" only after analysis status is ready and no fields are needs_review. Include analysis_id and optional field_overrides.',
     "",
     "Rules:",
     "- Keep toolCalls length 0..6.",
+    '- If external context includes "WORKSPACE_MODE: form-builder", prioritize only form-builder tools unless the user explicitly asks for unrelated admin/model actions.',
     "- If no tool is needed, return empty array.",
     "",
     `Selected model: ${selectedModelName}`,

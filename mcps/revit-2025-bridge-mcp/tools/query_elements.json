@@ -1,0 +1,37 @@
+{
+  "name": "query_elements",
+  "description": "Project: general element query by category (OST token), level id, and/or bounding box (mm; provide all six bbox values to filter). Returns id, name, category, familyName, and bounding-box center (mm), plus totalCount. Requires an active project document.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "category": {
+        "type": "string"
+      },
+      "levelId": {
+        "type": "number"
+      },
+      "bboxMinX": {
+        "type": "number"
+      },
+      "bboxMinY": {
+        "type": "number"
+      },
+      "bboxMinZ": {
+        "type": "number"
+      },
+      "bboxMaxX": {
+        "type": "number"
+      },
+      "bboxMaxY": {
+        "type": "number"
+      },
+      "bboxMaxZ": {
+        "type": "number"
+      },
+      "limit": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Addin>
+  <!--Created for Autodesk Inventor Version 30.0+-->
+  <ClassId>{6EB7BD5E-C89E-4ED2-8DA0-3E065D70AB11}</ClassId>
+  <ClientId>{6EB7BD5E-C89E-4ED2-8DA0-3E065D70AB11}</ClientId>
+  <DisplayName>Inventor MCP Bridge</DisplayName>
+  <Description>Local gateway bridge for Inventor MCP and iLogic automation.</Description>
+  <Assembly>InventorMCPBridge.dll</Assembly>
+  <OSType>Win64</OSType>
+  <LoadAutomatically>1</LoadAutomatically>
+  <UserUnloadable>1</UserUnloadable>
+  <Hidden>0</Hidden>
+  <SupportedSoftwareVersionGreaterThan>29..</SupportedSoftwareVersionGreaterThan>
+  <DataVersion>1</DataVersion>
+  <LoadBehavior>2</LoadBehavior>
+  <UserInterfaceVersion>1</UserInterfaceVersion>
+</Addin>

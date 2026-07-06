@@ -1,0 +1,21 @@
+{
+  "name": "open_view",
+  "description": "Opens a specific view in the Revit UI by its ElementId. Use getViews to find available view IDs.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "viewId": {
+        "description": "The ElementId of the view to open",
+        "type": "integer"
+      },
+      "revitInstanceId": {
+        "type": "integer",
+        "description": "Process ID of the Revit instance to call. Use get_running_revit_instances to list available instances."
+      }
+    },
+    "required": [
+      "viewId",
+      "revitInstanceId"
+    ]
+  }
+}

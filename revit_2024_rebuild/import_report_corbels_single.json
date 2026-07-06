@@ -1,0 +1,792 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_corbels_single.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_corbels_real.json",
+    "attempted": 54,
+    "placed": 54,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 53,
+    "nextIndex": 54,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10032222,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349248,
+      "status": "placed"
+    },
+    {
+      "srcId": 10032224,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349250,
+      "status": "placed"
+    },
+    {
+      "srcId": 10032226,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349252,
+      "status": "placed"
+    },
+    {
+      "srcId": 10032228,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349254,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035960,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2175954490",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349257,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035961,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349260,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035962,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349262,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035963,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349264,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035979,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_3863005323",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349267,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035980,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349270,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035981,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349272,
+      "status": "placed"
+    },
+    {
+      "srcId": 10035982,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349274,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046644,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2175954588",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349277,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046645,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349280,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046646,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349282,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046647,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349284,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046695,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2713763926",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349287,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046696,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349290,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046697,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349292,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046698,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349294,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046707,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_4017726135",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349297,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046708,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349300,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046709,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349302,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046710,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349304,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046728,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2371912369",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349307,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046729,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349310,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046730,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349312,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046731,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349314,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046740,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_3360049876",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349317,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046741,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349320,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046742,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349322,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046743,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349324,
+      "status": "placed"
+    },
+    {
+      "srcId": 10055080,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_1119586126",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349327,
+      "status": "placed"
+    },
+    {
+      "srcId": 10055081,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349330,
+      "status": "placed"
+    },
+    {
+      "srcId": 10055082,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349332,
+      "status": "placed"
+    },
+    {
+      "srcId": 10055083,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349334,
+      "status": "placed"
+    },
+    {
+      "srcId": 10066714,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2620221597",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349337,
+      "status": "placed"
+    },
+    {
+      "srcId": 10067528,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_4017741094",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349341,
+      "status": "placed"
+    },
+    {
+      "srcId": 10067766,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2713779472",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349345,
+      "status": "placed"
+    },
+    {
+      "srcId": 10069278,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_3043709100",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349349,
+      "status": "placed"
+    },
+    {
+      "srcId": 10069882,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349352,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070324,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2175980366",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349355,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070411,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2175980816",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349359,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070459,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349362,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070466,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349364,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070475,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349366,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070480,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349368,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070670,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_2713779410",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349371,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070673,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349374,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070716,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349376,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070734,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349378,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070819,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_1679396809",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349381,
+      "status": "placed"
+    },
+    {
+      "srcId": 10070943,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "slopePlaneCreated": "DT_SLOPE_3602808413",
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349385,
+      "status": "placed"
+    },
+    {
+      "srcId": 10071634,
+      "family": "CORBEL Light Loaded 12D X 24W X 36T",
+      "type": "CORBEL Light Loaded 12D X 24W X 36T",
+      "pass": 1,
+      "typeStatus": "exact",
+      "slopeDeg": 90,
+      "placedAs": "sloped-refplane",
+      "paramFailures": [
+        "Material: elementId not remapped"
+      ],
+      "newId": 7349388,
+      "status": "placed"
+    }
+  ]
+}

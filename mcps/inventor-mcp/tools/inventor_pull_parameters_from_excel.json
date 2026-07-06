@@ -1,0 +1,22 @@
+{
+  "name": "inventor_pull_parameters_from_excel",
+  "description": "Pull parameter set from Excel source.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "parameterSetId": {
+        "type": "string"
+      },
+      "documentName": {
+        "type": "string"
+      },
+      "assemblyName": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "parameterSetId"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "extract_family_library_parameters",
+  "description": "Extract per-type parameter values from family files in a library folder.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sourceRoot": {
+        "type": "string"
+      },
+      "query": {
+        "type": "string"
+      },
+      "maxFiles": {
+        "type": "number"
+      },
+      "parameterNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "parameterNames"
+    ],
+    "additionalProperties": false
+  }
+}

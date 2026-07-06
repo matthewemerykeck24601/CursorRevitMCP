@@ -1,0 +1,422 @@
+[
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "12 DT 36 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "12 DT 36 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 28 (2\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 28 (2\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 29 (3\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 29 (3\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "13.33 DT 30 (4\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "13.33 DT 30 (4\" FLANGE)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "14 DT 40 (2\" FLANGE / 7FT STEM SPACING)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "14 DT 40 (2\" FLANGE / 7FT STEM SPACING)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "12 DT 32 (4\" FLANGE / 6\" STEM FILLER)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "12 DT 32 (4\" FLANGE / 6\" STEM FILLER)",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "srcType": "12 DT 37 (3\" FLANGE)",
+    "tgtFamily": "DOUBLE_TEE_CHAMFERED_NOMINAL",
+    "tgtType": "12 DT 37 (3\" FLANGE)",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "srcType": "08\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "srcType": "9\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "9\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "srcType": "11\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "11\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "srcType": "10\"",
+    "tgtFamily": "INSULATED WALL_PANEL (VERTICAL)",
+    "tgtType": "10\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "18\" X 18\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "18\" X 18\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "24\" X 24\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "24\" X 24\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "24\" X 33\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "24\" X 33\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "24\" X 37\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "24\" X 37\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "28\" X 28\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "28\" X 28\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "30\" X 30\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "30\" X 30\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "33\" X 33\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "33\" X 33\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "48\" X 19\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "48\" X 19\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "COLUMN (CLA)",
+    "srcType": "37\" X 37\"",
+    "tgtFamily": "COLUMN",
+    "tgtType": "37\" X 37\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "30IT36",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "30IT36",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "32IT32",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "32IT32",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "34IT32",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "34IT32",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT36",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT36",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT54",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT54",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "40IT42",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "40IT42",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "44IT64 (MOAB)",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "44IT64 (MOAB)",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "44IT56",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "44IT56",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT48",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT48",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT48 OFFSET 1",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT48 OFFSET 1",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "T_GIRDER (TGA)",
+    "srcType": "36IT48 OFFSET 2",
+    "tgtFamily": "T_GIRDER",
+    "tgtType": "36IT48 OFFSET 2",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "SHEARWALL_HORIZONTAL (SWAH)",
+    "srcType": "12\"",
+    "tgtFamily": "SHEARWALL_HORIZONTAL",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SHEARWALL_HORIZONTAL (SWAH)",
+    "srcType": "8\"",
+    "tgtFamily": "SHEARWALL_HORIZONTAL",
+    "tgtType": "8\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL (HORIZONTAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "srcType": "12\"",
+    "tgtFamily": "SOLID_WALL_PANEL (HORIZONTAL)",
+    "tgtType": "12\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "srcType": "08\"",
+    "tgtFamily": "SOLID_WALL_PANEL (VERTICAL)",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "srcType": "12\"",
+    "tgtFamily": "SOLID_WALL_PANEL (VERTICAL)",
+    "tgtType": "12\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "STAIR_LANDING (STF)",
+    "srcType": "06\"",
+    "tgtFamily": "STAIR_LANDING",
+    "tgtType": "06\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "STAIR_LANDING (STF)",
+    "srcType": "08\"",
+    "tgtFamily": "STAIR_LANDING",
+    "tgtType": "08\"",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "STAIR_DROP_IN (STA)",
+    "srcType": "DROP-IN STAIR",
+    "tgtFamily": "STAIR_DROP_IN",
+    "tgtType": "DROP-IN STAIR",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "18LB36",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "18LB36",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "24LB36",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "24LB36",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "32LB41",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "32LB41",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "34LB56",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "34LB56",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "34LB64",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "34LB64",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "L_GIRDER (LGA)",
+    "srcType": "32LB48",
+    "tgtFamily": "L_GIRDER",
+    "tgtType": "32LB48",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "8RB24",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "8RB24",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "12RB14",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "12RB14",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "24RB41",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "24RB41",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "8RB18",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "8RB18",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "8RB30",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "8RB30",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "12RB28",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "12RB28",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "16RB30",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "16RB30",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "R_BEAM (RBA)",
+    "srcType": "24RB48",
+    "tgtFamily": "R_BEAM",
+    "tgtType": "24RB48",
+    "createTypeIfMissing": true
+  },
+  {
+    "srcFamily": "FLAT_SLAB (FSA)",
+    "srcType": "06\"",
+    "tgtFamily": "FLAT_SLAB",
+    "tgtType": "06\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "FLAT_SLAB (FSA)",
+    "srcType": "08\"",
+    "tgtFamily": "FLAT_SLAB",
+    "tgtType": "08\"",
+    "createTypeIfMissing": false
+  },
+  {
+    "srcFamily": "FLAT_SLAB (FSA)",
+    "srcType": "12\"",
+    "tgtFamily": "FLAT_SLAB",
+    "tgtType": "12\"",
+    "createTypeIfMissing": false
+  }
+]

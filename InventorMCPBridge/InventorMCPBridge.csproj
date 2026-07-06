@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Platforms>x64</Platforms>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyName>InventorMCPBridge</AssemblyName>
+    <RootNamespace>InventorMCPBridge</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <InventorYear Condition="'$(InventorYear)'==''">2026</InventorYear>
+    <InventorInstallDir Condition="'$(InventorInstallDir)'==''">C:\Program Files\Autodesk\Inventor $(InventorYear)\Bin</InventorInstallDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Autodesk.Inventor.Interop">
+      <HintPath>$(InventorInstallDir)\Autodesk.Inventor.Interop.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

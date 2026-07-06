@@ -1,0 +1,84 @@
+{
+  "name": "create_room",
+  "description": "Create and place rooms in Revit at specified locations. Rooms are placed within enclosed wall boundaries and can be named and numbered. The location point should be inside an enclosed area bounded by walls. All coordinates are in millimeters (mm).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Room name (e.g., 'Server Room', 'Kitchen', 'Office')"
+            },
+            "number": {
+              "type": "string",
+              "description": "Room number (e.g., '101', 'A-01')"
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number",
+                  "description": "X coordinate in mm (should be inside enclosed walls)"
+                },
+                "y": {
+                  "type": "number",
+                  "description": "Y coordinate in mm (should be inside enclosed walls)"
+                },
+                "z": {
+                  "type": "number",
+                  "description": "Z coordinate in mm (typically 0 or level elevation)"
+                }
+              },
+              "required": [
+                "x",
+                "y",
+                "z"
+              ],
+              "additionalProperties": false,
+              "description": "The location point where the room will be placed - must be inside an enclosed area"
+            },
+            "levelId": {
+              "type": "number",
+              "description": "Revit Level ElementId. If not provided, uses the nearest level to the Z coordinate"
+            },
+            "upperLimitId": {
+              "type": "number",
+              "description": "Upper limit Level ElementId for room height"
+            },
+            "limitOffset": {
+              "type": "number",
+              "description": "Offset from upper limit in mm"
+            },
+            "baseOffset": {
+              "type": "number",
+              "description": "Offset from base level in mm"
+            },
+            "department": {
+              "type": "string",
+              "description": "Department the room belongs to"
+            },
+            "comments": {
+              "type": "string",
+              "description": "Additional comments for the room"
+            }
+          },
+          "required": [
+            "name",
+            "location"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Array of rooms to create"
+      }
+    },
+    "required": [
+      "data"
+    ],
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+}

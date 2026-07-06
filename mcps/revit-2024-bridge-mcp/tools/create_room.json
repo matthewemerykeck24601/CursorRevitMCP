@@ -1,0 +1,30 @@
+{
+  "name": "create_room",
+  "description": "Project: create a room at an XY placement point on a level (the point must lie inside a region bounded by room-bounding walls or separation lines). Coordinates in millimetres.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "levelId": {
+        "type": "number"
+      },
+      "locationX": {
+        "type": "number"
+      },
+      "locationY": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      },
+      "number": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "levelId",
+      "locationX",
+      "locationY"
+    ],
+    "additionalProperties": false
+  }
+}

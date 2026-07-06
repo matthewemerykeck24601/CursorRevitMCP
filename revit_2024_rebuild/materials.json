@@ -1,0 +1,2199 @@
+{
+  "model": "26-0349 A101 (2026 07-01) - MODEL",
+  "exportedAt": "2026-07-02T21:28:38.7669479-04:00",
+  "elementCount": 146,
+  "errorCount": 0,
+  "materials": [
+    {
+      "id": 18435,
+      "name": "Default",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 18436,
+      "name": "Default Floor",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 128,
+        "g": 128,
+        "b": 128
+      },
+      "transparency": 0,
+      "shininess": 10,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 18437,
+      "name": "Default Roof",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 88,
+        "g": 101,
+        "b": 114
+      },
+      "transparency": 0,
+      "shininess": 10,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 18438,
+      "name": "Default Wall",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 128,
+        "g": 128,
+        "b": 128
+      },
+      "transparency": 0,
+      "shininess": 10,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 18439,
+      "name": "Glass",
+      "materialClass": "Glass",
+      "color": {
+        "r": 0,
+        "g": 128,
+        "b": 192
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Glass - Soda Lime",
+      "appearanceAssetName": "Clear"
+    },
+    {
+      "id": 18935,
+      "name": "Earth",
+      "materialClass": "Generic",
+      "color": {
+        "r": 97,
+        "g": 75,
+        "b": 62
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Earth",
+      "appearanceAssetName": "Dirt - Dark Brown"
+    },
+    {
+      "id": 18939,
+      "name": "Concrete, Cast-in-Place gray",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 192,
+        "g": 192,
+        "b": 192
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete(1)",
+      "appearanceAssetName": "Flat - Gray 1"
+    },
+    {
+      "id": 18940,
+      "name": "Concrete, Precast",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 198,
+        "g": 187,
+        "b": 187
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 18941,
+      "name": "Brick, Common",
+      "materialClass": "Masonry",
+      "color": {
+        "r": 166,
+        "g": 40,
+        "b": 40
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Brick - Common",
+      "appearanceAssetName": "Non-Uniform Running - Burgundy"
+    },
+    {
+      "id": 18942,
+      "name": "Concrete Masonry Units",
+      "materialClass": "Masonry",
+      "color": {
+        "r": 227,
+        "g": 227,
+        "b": 227
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete(1)",
+      "appearanceAssetName": "Plain - Medium Gray"
+    },
+    {
+      "id": 18946,
+      "name": "Metal Stud Layer",
+      "materialClass": "Metal",
+      "color": {
+        "r": 199,
+        "g": 199,
+        "b": 199
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel(2)",
+      "appearanceAssetName": "Plate"
+    },
+    {
+      "id": 18949,
+      "name": "Metal Deck",
+      "materialClass": "Metal",
+      "color": {
+        "r": 199,
+        "g": 199,
+        "b": 199
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Steel(2)",
+      "appearanceAssetName": "Plate"
+    },
+    {
+      "id": 18953,
+      "name": "Aluminum",
+      "materialClass": "Metal",
+      "color": {
+        "r": 247,
+        "g": 247,
+        "b": 247
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Aluminum",
+      "appearanceAssetName": "Satin"
+    },
+    {
+      "id": 18954,
+      "name": "Metal Furring",
+      "materialClass": "Metal",
+      "color": {
+        "r": 199,
+        "g": 199,
+        "b": 199
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel(2)",
+      "appearanceAssetName": "Plate"
+    },
+    {
+      "id": 18957,
+      "name": "Plywood, Sheathing",
+      "materialClass": "Wood",
+      "color": {
+        "r": 212,
+        "g": 179,
+        "b": 113
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Plywood",
+      "appearanceAssetName": "Plywood - New"
+    },
+    {
+      "id": 18959,
+      "name": "Oak Flooring",
+      "materialClass": "Wood",
+      "color": {
+        "r": 216,
+        "g": 169,
+        "b": 114
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Oak - Red",
+      "appearanceAssetName": "Beechwood - Galliano"
+    },
+    {
+      "id": 18960,
+      "name": "Softwood, Lumber",
+      "materialClass": "Wood",
+      "color": {
+        "r": 223,
+        "g": 192,
+        "b": 134
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Softwood",
+      "appearanceAssetName": "Yellow Pine - Solid Natural Low Gloss"
+    },
+    {
+      "id": 18967,
+      "name": "EIFS, Exterior Insulation",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "EIFS - Exterior Insulation",
+      "appearanceAssetName": "Gray"
+    },
+    {
+      "id": 18974,
+      "name": "Air",
+      "materialClass": "Gas",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Air",
+      "appearanceAssetName": "Clear - Light"
+    },
+    {
+      "id": 18976,
+      "name": "Air Infiltration Barrier",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(1)"
+    },
+    {
+      "id": 18977,
+      "name": "Rigid insulation",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Polystyrene - Expanded EPS",
+      "appearanceAssetName": "Gray"
+    },
+    {
+      "id": 18982,
+      "name": "Vapor Retarder",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(1)"
+    },
+    {
+      "id": 18983,
+      "name": "Damp-proofing",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Damp-proofing",
+      "appearanceAssetName": "Black"
+    },
+    {
+      "id": 18984,
+      "name": "Glass, Clear Glazing",
+      "materialClass": "Glass",
+      "color": {
+        "r": 0,
+        "g": 128,
+        "b": 192
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Glass - Soda Lime",
+      "appearanceAssetName": "Clear"
+    },
+    {
+      "id": 18986,
+      "name": "Gypsum Wall Board",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Gypsum Wall Board",
+      "appearanceAssetName": "Gypsum Board - Painted White"
+    },
+    {
+      "id": 18989,
+      "name": "Tile, Mosaic, Gray",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Tile - Porcelain",
+      "appearanceAssetName": "Mosaic - Gray"
+    },
+    {
+      "id": 22806,
+      "name": "Phase - Demo",
+      "materialClass": "System",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 39,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 22807,
+      "name": "Phase - Exist",
+      "materialClass": "System",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 22808,
+      "name": "Phase - Temporary",
+      "materialClass": "System",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 127
+      },
+      "transparency": 39,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 24145,
+      "name": "Carpet (1)",
+      "materialClass": "Carpet",
+      "color": {
+        "r": 124,
+        "g": 80,
+        "b": 67
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Red"
+    },
+    {
+      "id": 24146,
+      "name": "Structure, Wood Joist/Rafter Layer",
+      "materialClass": "Wood",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(1)"
+    },
+    {
+      "id": 24184,
+      "name": "Vinyl Composition Tile",
+      "materialClass": "Generic",
+      "color": {
+        "r": 179,
+        "g": 160,
+        "b": 124
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Vinyl Flooring",
+      "appearanceAssetName": "Bisected - Squares"
+    },
+    {
+      "id": 24202,
+      "name": "Concrete, Lightweight",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 142,
+        "g": 141,
+        "b": 140
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": "LW Concrete 4 ksi",
+      "appearanceAssetName": "Flat - Gray 1"
+    },
+    {
+      "id": 24217,
+      "name": "Structure, Steel Bar Joist Layer",
+      "materialClass": "Metal",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(1)"
+    },
+    {
+      "id": 24243,
+      "name": "Structure, Wood Joist/Rafter Layer, Batt Insulation",
+      "materialClass": "Wood",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(1)"
+    },
+    {
+      "id": 24244,
+      "name": "Roofing, EPDM Membrane",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Smooth - Black"
+    },
+    {
+      "id": 24245,
+      "name": "Asphalt Shingle",
+      "materialClass": "Generic",
+      "color": {
+        "r": 155,
+        "g": 155,
+        "b": 155
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Asphalt Shingle",
+      "appearanceAssetName": "Shingle - Composition Gray"
+    },
+    {
+      "id": 27489,
+      "name": "Acoustic Ceiling Tile 24 x 48",
+      "materialClass": "Generic",
+      "color": {
+        "r": 229,
+        "g": 229,
+        "b": 229
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": "Acoustic Ceiling Tile",
+      "appearanceAssetName": "Acoustic Tile - Exposed Grid 2x4 Pebble White"
+    },
+    {
+      "id": 27492,
+      "name": "Acoustic Ceiling Tile 24 x 24",
+      "materialClass": "Generic",
+      "color": {
+        "r": 166,
+        "g": 40,
+        "b": 40
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": "Acoustic Ceiling Tile",
+      "appearanceAssetName": "Acoustic Tile - Exposed Grid 2x2 Pebble White"
+    },
+    {
+      "id": 29224,
+      "name": "Phase - New",
+      "materialClass": "System",
+      "color": {
+        "r": 80,
+        "g": 80,
+        "b": 80
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 34906,
+      "name": "Door - Frame",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 118,
+        "g": 70,
+        "b": 51
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Sienna"
+    },
+    {
+      "id": 34907,
+      "name": "Door - Panel",
+      "materialClass": "Wood",
+      "color": {
+        "r": 210,
+        "g": 159,
+        "b": 95
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Birch - Solid Stained Dark No Gloss"
+    },
+    {
+      "id": 35335,
+      "name": "Laminate, Ivory, Matte",
+      "materialClass": "Plastic",
+      "color": {
+        "r": 247,
+        "g": 247,
+        "b": 239
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Phenolic Resin",
+      "appearanceAssetName": "Smooth - Ivory"
+    },
+    {
+      "id": 35336,
+      "name": "Cherry",
+      "materialClass": "Wood",
+      "color": {
+        "r": 226,
+        "g": 177,
+        "b": 128
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Cherry",
+      "appearanceAssetName": "Cherry - Solid Stained Dark Medium Gloss"
+    },
+    {
+      "id": 35341,
+      "name": "Steel, Chrome Plated",
+      "materialClass": "Metal",
+      "color": {
+        "r": 17,
+        "g": 17,
+        "b": 17
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Steel ASTM A36",
+      "appearanceAssetName": "Chrome - Polished"
+    },
+    {
+      "id": 36282,
+      "name": "Sash",
+      "materialClass": "Wood",
+      "color": {
+        "r": 224,
+        "g": 178,
+        "b": 126
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Birch - Solid Stained Light No Gloss"
+    },
+    {
+      "id": 36879,
+      "name": "Parking Stripe",
+      "materialClass": "Paint",
+      "color": {
+        "r": 250,
+        "g": 250,
+        "b": 91
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Canary"
+    },
+    {
+      "id": 46500,
+      "name": "Brick, Soldier Course",
+      "materialClass": "Masonry",
+      "color": {
+        "r": 166,
+        "g": 40,
+        "b": 40
+      },
+      "transparency": 0,
+      "shininess": 128,
+      "smoothness": 50,
+      "structuralAssetName": "Brick - Common",
+      "appearanceAssetName": "Uniform Soldier - Burgundy"
+    },
+    {
+      "id": 56778,
+      "name": "Tile, Porcelain, 4in",
+      "materialClass": "Generic",
+      "color": {
+        "r": 89,
+        "g": 87,
+        "b": 158
+      },
+      "transparency": 0,
+      "shininess": 127,
+      "smoothness": 50,
+      "structuralAssetName": "Tile - Porcelain",
+      "appearanceAssetName": "3in Squares - White"
+    },
+    {
+      "id": 78544,
+      "name": "Poche",
+      "materialClass": "System",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(2)"
+    },
+    {
+      "id": 79117,
+      "name": "Default Mass Floor",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 101,
+        "g": 81,
+        "b": 204
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(2)"
+    },
+    {
+      "id": 128891,
+      "name": "Steel ASTM A992",
+      "materialClass": "Metal",
+      "color": {
+        "r": 199,
+        "g": 199,
+        "b": 199
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel ASTM A992-50",
+      "appearanceAssetName": "Stainless - Satin"
+    },
+    {
+      "id": 134488,
+      "name": "Polyvinyl Chloride, Rigid",
+      "materialClass": "Plastic",
+      "color": {
+        "r": 178,
+        "g": 178,
+        "b": 178
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Plastic",
+      "appearanceAssetName": "Smooth - Light Gray"
+    },
+    {
+      "id": 135528,
+      "name": "Default Light Source",
+      "materialClass": "Generic",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(3)"
+    },
+    {
+      "id": 145691,
+      "name": "Default Form",
+      "materialClass": "Generic",
+      "color": {
+        "r": 185,
+        "g": 189,
+        "b": 196
+      },
+      "transparency": 50,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(4)"
+    },
+    {
+      "id": 147649,
+      "name": "Default Mass Zone",
+      "materialClass": "Generic",
+      "color": {
+        "r": 74,
+        "g": 74,
+        "b": 255
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(5)"
+    },
+    {
+      "id": 147650,
+      "name": "Default Mass Exterior Wall",
+      "materialClass": "Generic",
+      "color": {
+        "r": 133,
+        "g": 178,
+        "b": 44
+      },
+      "transparency": 20,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(6)"
+    },
+    {
+      "id": 147651,
+      "name": "Default Mass Interior Wall",
+      "materialClass": "Generic",
+      "color": {
+        "r": 195,
+        "g": 229,
+        "b": 126
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(7)"
+    },
+    {
+      "id": 147652,
+      "name": "Default Mass Roof",
+      "materialClass": "Generic",
+      "color": {
+        "r": 38,
+        "g": 15,
+        "b": 153
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(8)"
+    },
+    {
+      "id": 147653,
+      "name": "Default Mass Opening",
+      "materialClass": "Generic",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      },
+      "transparency": 100,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(9)"
+    },
+    {
+      "id": 147655,
+      "name": "Default Mass Shade",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 144,
+        "g": 146,
+        "b": 138
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic"
+    },
+    {
+      "id": 147656,
+      "name": "Default Mass Skylight",
+      "materialClass": "System",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Glazing"
+    },
+    {
+      "id": 164753,
+      "name": "Steel, Carbon",
+      "materialClass": "Metal",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel - Carbon",
+      "appearanceAssetName": "Semi-Polished"
+    },
+    {
+      "id": 164754,
+      "name": "Copper",
+      "materialClass": "Metal",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Copper",
+      "appearanceAssetName": "Copper - Satin"
+    },
+    {
+      "id": 164755,
+      "name": "Iron, Ductile",
+      "materialClass": "Metal",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Iron - Ductile Cast A536 65-45-12",
+      "appearanceAssetName": "Iron Gray"
+    },
+    {
+      "id": 164756,
+      "name": "Stainless Steel",
+      "materialClass": "Metal",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Stainless Steel",
+      "appearanceAssetName": "Semi-Polished"
+    },
+    {
+      "id": 172829,
+      "name": "Analytical Floor Surface",
+      "materialClass": "Generic",
+      "color": {
+        "r": 128,
+        "g": 64,
+        "b": 0
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(2)"
+    },
+    {
+      "id": 176867,
+      "name": "Default Mass Glazing",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 178,
+        "g": 229,
+        "b": 255
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Default Mass Glazing"
+    },
+    {
+      "id": 182436,
+      "name": "Analytical Slab Surface",
+      "materialClass": "Generic",
+      "color": {
+        "r": 155,
+        "g": 187,
+        "b": 89
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(2)"
+    },
+    {
+      "id": 182437,
+      "name": "Analytical Wall Surface",
+      "materialClass": "Generic",
+      "color": {
+        "r": 0,
+        "g": 200,
+        "b": 200
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(2)"
+    },
+    {
+      "id": 308801,
+      "name": "Phase-Demo",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 40,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 308802,
+      "name": "Phase-Exist",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 308803,
+      "name": "Phase-Temp",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      },
+      "transparency": 40,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 308818,
+      "name": "PRECAST CONCRETE",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 198,
+        "g": 187,
+        "b": 187
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 308825,
+      "name": "NON-METALLIC NON-SHRINK GROUT",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 120,
+        "g": 120,
+        "b": 120
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 3.0 ksi",
+      "appearanceAssetName": "Non-Uniform - Warm Gray"
+    },
+    {
+      "id": 335298,
+      "name": "NON-STAINING NON-SHRINK GROUT",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 120,
+        "g": 120,
+        "b": 120
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 3.0 ksi",
+      "appearanceAssetName": "Non-Uniform - Warm Gray(1)"
+    },
+    {
+      "id": 335301,
+      "name": "SS MORTAR GROUT",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 120,
+        "g": 120,
+        "b": 120
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 3.0 ksi(1)",
+      "appearanceAssetName": "Non-Uniform - Warm Gray(2)"
+    },
+    {
+      "id": 339128,
+      "name": "BEADBOARD (MDK)",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Polystyrene - Expanded EPS(1)",
+      "appearanceAssetName": "Gray(1)"
+    },
+    {
+      "id": 388328,
+      "name": "BEADBOARD (SQ)",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Polystyrene - Expanded EPS(2)",
+      "appearanceAssetName": "Gray(2)"
+    },
+    {
+      "id": 388332,
+      "name": "BEADBOARD (B1)",
+      "materialClass": "Generic",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Polystyrene - Expanded EPS(1)",
+      "appearanceAssetName": "Gray(1)"
+    },
+    {
+      "id": 388334,
+      "name": "CONNECTOR",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 128,
+        "g": 128,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Default (1)"
+    },
+    {
+      "id": 417736,
+      "name": "Concrete, Precast (White)",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 198,
+        "g": 187,
+        "b": 187
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 433991,
+      "name": "Steel ASTM A36",
+      "materialClass": "Metal",
+      "color": {
+        "r": 199,
+        "g": 199,
+        "b": 199
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel ASTM A36",
+      "appearanceAssetName": "Plate(1)"
+    },
+    {
+      "id": 438851,
+      "name": "Rebar, ASTM A706, Grade 60",
+      "materialClass": "Metal",
+      "color": {
+        "r": 120,
+        "g": 120,
+        "b": 120
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel ASTM A615-60",
+      "appearanceAssetName": "Stainless - Satin"
+    },
+    {
+      "id": 471659,
+      "name": "Render Material 255-255-255",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 471662,
+      "name": "Render Material 165-0-0",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 165,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 471665,
+      "name": "Render Material 165-82-82",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 165,
+        "g": 82,
+        "b": 82
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 471668,
+      "name": "Render Material 127-255-127",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 127,
+        "g": 255,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 471671,
+      "name": "Render Material 255-0-0",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 472345,
+      "name": "Render Material 128-128-128",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 128,
+        "g": 128,
+        "b": 128
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 473049,
+      "name": "THIN BRICK VENEER",
+      "materialClass": "Masonry",
+      "color": {
+        "r": 166,
+        "g": 40,
+        "b": 40
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Brick - Common(1)",
+      "appearanceAssetName": "Non-Uniform Running - Red"
+    },
+    {
+      "id": 473248,
+      "name": "THIN BRICK VENEER SOLDIER COURSE",
+      "materialClass": "Masonry",
+      "color": {
+        "r": 166,
+        "g": 40,
+        "b": 40
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Brick - Common(1)",
+      "appearanceAssetName": "Non-Uniform Running - Red"
+    },
+    {
+      "id": 581945,
+      "name": "Render Material 159-127-255",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 159,
+        "g": 127,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 623816,
+      "name": "Brick",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Brick"
+    },
+    {
+      "id": 625667,
+      "name": "Brick Returned",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 128,
+        "g": 0,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Brick Returned"
+    },
+    {
+      "id": 643483,
+      "name": "PRECAST CONCRETE (FACE)",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 198,
+        "g": 187,
+        "b": 187
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 643484,
+      "name": "PRECAST CONCRETE (BACK)",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 192,
+        "g": 192,
+        "b": 192
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 730467,
+      "name": "Concrete, Precast Patch",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 788479,
+      "name": "Pine, Southern",
+      "materialClass": "Wood",
+      "color": {
+        "r": 120,
+        "g": 120,
+        "b": 120
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Pine - Southern",
+      "appearanceAssetName": "Yellow Pine - Stained Dark Medium Gloss"
+    },
+    {
+      "id": 968721,
+      "name": "Render Material 63-127-95",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 63,
+        "g": 127,
+        "b": 95
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 1851470,
+      "name": "ARCHITECTURAL PRECAST CONCRETE",
+      "materialClass": "Concrete",
+      "color": {
+        "r": 198,
+        "g": 187,
+        "b": 187
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Concrete 5.0 ksi",
+      "appearanceAssetName": "Smooth Precast Structural"
+    },
+    {
+      "id": 6298150,
+      "name": "System-Zones",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 94,
+        "g": 94,
+        "b": 205
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "System-Zones"
+    },
+    {
+      "id": 6310747,
+      "name": "Analytical Spaces",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 0,
+        "g": 200,
+        "b": 200
+      },
+      "transparency": 85,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Spaces"
+    },
+    {
+      "id": 6310749,
+      "name": "Exterior Walls",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 133,
+        "g": 178,
+        "b": 44
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Exterior Walls"
+    },
+    {
+      "id": 6310751,
+      "name": "Roofs",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 38,
+        "g": 15,
+        "b": 153
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Roofs"
+    },
+    {
+      "id": 6310753,
+      "name": "Slabs on Grade",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 101,
+        "g": 81,
+        "b": 204
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Slabs on Grade"
+    },
+    {
+      "id": 6310755,
+      "name": "Interior Walls",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 195,
+        "g": 229,
+        "b": 126
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Interior Walls"
+    },
+    {
+      "id": 6310757,
+      "name": "Interior Floors",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 101,
+        "g": 81,
+        "b": 204
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Interior Floors"
+    },
+    {
+      "id": 6310759,
+      "name": "Ceilings",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 191,
+        "g": 178,
+        "b": 255
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Ceilings"
+    },
+    {
+      "id": 6310761,
+      "name": "Air Surfaces",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 190,
+        "g": 210,
+        "b": 220
+      },
+      "transparency": 90,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Air Surfaces"
+    },
+    {
+      "id": 6310763,
+      "name": "Underground Walls",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 178,
+        "g": 111,
+        "b": 44
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Underground Walls"
+    },
+    {
+      "id": 6310765,
+      "name": "Operable Windows",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 178,
+        "g": 229,
+        "b": 255
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Operable Windows"
+    },
+    {
+      "id": 6310767,
+      "name": "Operable Skylights",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 178,
+        "g": 229,
+        "b": 255
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Operable Skylights"
+    },
+    {
+      "id": 6310769,
+      "name": "Sliding Doors",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 178,
+        "b": 178
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Sliding Doors"
+    },
+    {
+      "id": 6310771,
+      "name": "Air Openings",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      },
+      "transparency": 100,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Air Openings"
+    },
+    {
+      "id": 6310773,
+      "name": "Shades",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 144,
+        "g": 146,
+        "b": 138
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Shades"
+    },
+    {
+      "id": 7332629,
+      "name": "Analytical Panels",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 251,
+        "g": 197,
+        "b": 153
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Panels"
+    },
+    {
+      "id": 7332708,
+      "name": "Electrical Analytical Loads",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 94,
+        "g": 94,
+        "b": 205
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Electrical Analytical Loads"
+    },
+    {
+      "id": 7355793,
+      "name": "Electrical Load Zones",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 94,
+        "g": 94,
+        "b": 205
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Electrical Load Zones"
+    },
+    {
+      "id": 7608430,
+      "name": "Analytical Surface - Exterior Walls",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 133,
+        "g": 178,
+        "b": 44
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Exterior Walls"
+    },
+    {
+      "id": 7608432,
+      "name": "Analytical Surface - Roofs",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 38,
+        "g": 15,
+        "b": 153
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Roofs"
+    },
+    {
+      "id": 7608434,
+      "name": "Analytical Surface - Slabs on Grade",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 101,
+        "g": 81,
+        "b": 204
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Slabs on Grade"
+    },
+    {
+      "id": 7608436,
+      "name": "Analytical Surface - Interior Walls",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 195,
+        "g": 229,
+        "b": 126
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Interior Walls"
+    },
+    {
+      "id": 7608438,
+      "name": "Analytical Surface - Interior Floors",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 101,
+        "g": 81,
+        "b": 204
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Interior Floors"
+    },
+    {
+      "id": 7608440,
+      "name": "Analytical Surface - Ceilings",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 191,
+        "g": 178,
+        "b": 255
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Ceilings"
+    },
+    {
+      "id": 7608442,
+      "name": "Analytical Surface - Air Surfaces",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 190,
+        "g": 210,
+        "b": 220
+      },
+      "transparency": 90,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Air Surfaces"
+    },
+    {
+      "id": 7608444,
+      "name": "Analytical Surface - Underground Walls",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 178,
+        "g": 111,
+        "b": 44
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Underground Walls"
+    },
+    {
+      "id": 7608446,
+      "name": "Analytical Surface - Operable Windows",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 178,
+        "g": 229,
+        "b": 255
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Operable Windows"
+    },
+    {
+      "id": 7608448,
+      "name": "Analytical Surface - Operable Skylights",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 178,
+        "g": 229,
+        "b": 255
+      },
+      "transparency": 75,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Operable Skylights"
+    },
+    {
+      "id": 7608450,
+      "name": "Analytical Surface - Sliding Doors",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 178,
+        "b": 178
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Sliding Doors"
+    },
+    {
+      "id": 7608452,
+      "name": "Analytical Surface - Air Openings",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255
+      },
+      "transparency": 100,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Air Openings"
+    },
+    {
+      "id": 7608454,
+      "name": "Analytical Surface - Shades",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 144,
+        "g": 146,
+        "b": 138
+      },
+      "transparency": 50,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Analytical Surface - Shades"
+    },
+    {
+      "id": 9136600,
+      "name": "Default New Material",
+      "materialClass": "Generic",
+      "color": {
+        "r": 120,
+        "g": 120,
+        "b": 120
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Chain Link Fencing 1"
+    },
+    {
+      "id": 9485366,
+      "name": "Liner",
+      "materialClass": "Masonry",
+      "color": {
+        "r": 146,
+        "g": 146,
+        "b": 146
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Brick - Common(2)",
+      "appearanceAssetName": "Non-Uniform Running - Burgundy(1)"
+    },
+    {
+      "id": 9583474,
+      "name": "Steel ASTM A500, Grade B, Rectangular and Square",
+      "materialClass": "Metal",
+      "color": {
+        "r": 199,
+        "g": 199,
+        "b": 199
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": "Steel ASTM A500B-42",
+      "appearanceAssetName": "Stainless - Satin"
+    },
+    {
+      "id": 9727785,
+      "name": "Render Material 255-255-0",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727786,
+      "name": "Render Material 0-255-0",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727787,
+      "name": "Render Material 0-0-255",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 0,
+        "g": 0,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727788,
+      "name": "Render Material 0-255-255",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 0,
+        "g": 255,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727789,
+      "name": "Render Material 255-0-255",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 0,
+        "b": 255
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727790,
+      "name": "Render Material 192-192-192",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 192,
+        "g": 192,
+        "b": 192
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727797,
+      "name": "Render Material 38-19-19",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 38,
+        "g": 19,
+        "b": 19
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9727810,
+      "name": "YELLOW PLAST_10_",
+      "materialClass": "Unassigned",
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 0
+      },
+      "transparency": 0,
+      "shininess": 0,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": null
+    },
+    {
+      "id": 9891302,
+      "name": "Sandblast",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 180,
+        "g": 165,
+        "b": 147
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(29)"
+    },
+    {
+      "id": 9891366,
+      "name": "Retarder",
+      "materialClass": "Miscellaneous",
+      "color": {
+        "r": 180,
+        "g": 165,
+        "b": 147
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Generic(30)"
+    },
+    {
+      "id": 9998761,
+      "name": "Steel ASTM A500",
+      "materialClass": "Metal",
+      "color": {
+        "r": 127,
+        "g": 127,
+        "b": 127
+      },
+      "transparency": 0,
+      "shininess": 64,
+      "smoothness": 50,
+      "structuralAssetName": null,
+      "appearanceAssetName": "Default (1)"
+    }
+  ],
+  "errors": []
+}

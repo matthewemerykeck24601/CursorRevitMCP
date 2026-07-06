@@ -1,0 +1,1562 @@
+[
+  {
+    "family": "Personal Doors",
+    "type": "Personal Doors",
+    "typeId": 5126361,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_ARC (DOES NOT EXPORT)",
+    "type": "VOID_ARC (DOES NOT EXPORT)",
+    "typeId": 5127295,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_HALF_ROUND (DOES NOT EXPORT)",
+    "type": "VOID_ROUND (DOES NOT EXPORT)",
+    "typeId": 5128200,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "Overhead Doors",
+    "type": "Overhead Doors",
+    "typeId": 5133989,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_RECTANGULAR_ADJUSTABLE-MC (DOES NOT EXPORT)",
+    "type": "VOID_RECTANGULAR_ADJUSTABLE-MC (DOES NOT EXPORT)",
+    "typeId": 5137748,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_ROUND (DOES NOT EXPORT)",
+    "type": "VOID_ROUND (DOES NOT EXPORT)",
+    "typeId": 5138683,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_SKEWED (DOES NOT EXPORT)",
+    "type": "VOID_SKEWED (DOES NOT EXPORT)",
+    "typeId": 5139584,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_TAPER_SLOPED (DOES NOT EXPORT)",
+    "type": "VOID_TAPER_SLOPED (DOES NOT EXPORT)",
+    "typeId": 5147387,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_TAPER (DOES NOT EXPORT)",
+    "type": "VOID_TAPER (DOES NOT EXPORT)",
+    "typeId": 5224186,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_TAPER_SLOPED_GRADE (DOES NOT EXPORT)",
+    "type": "VOID_TAPER_SLOPED_GRADE (DOES NOT EXPORT)",
+    "typeId": 5236610,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_TAPER_SLOPED",
+    "type": "VOID_TAPER_SLOPED (DOES NOT EXPORT)",
+    "typeId": 6382135,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_TAPER_SLOPED_GRADE",
+    "type": "VOID_TAPER_SLOPED_GRADE (DOES NOT EXPORT)",
+    "typeId": 6403128,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_RECTANGULAR",
+    "type": "VOID_RECTANGULAR",
+    "typeId": 7143318,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "type": "VOID_RECTANGULAR (DOES NOT EXPORT)",
+    "typeId": 7288952,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CABLE RAIL",
+    "type": "CABLE RAIL - IMPACT",
+    "typeId": 7609424,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "WALL_PANEL_LSHAPE_ADJUSTABLE_GROUT",
+    "type": "WALL_PANEL_LSHAPE_ADJUSTABLE_GROUT",
+    "typeId": 8975509,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE)",
+    "type": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE)",
+    "typeId": 9158602,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_WARPED (DO NOT USE)",
+    "type": "DOUBLE_TEE_CHAMFERED_WARPED (DO NOT USE)",
+    "typeId": 9158615,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 32 (2\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9158920,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 36 (2\" FLANGE)",
+    "typeId": 9158922,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "13.33 DT 24 (2\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9158924,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "13.33 DT 26 (4\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9158926,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "13.33 DT 28 (2\" FLANGE)",
+    "typeId": 9158928,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "13.33 DT 29 (3\" FLANGE)",
+    "typeId": 9158930,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "13.33 DT 30 (4\" FLANGE)",
+    "typeId": 9158932,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "14 DT 40 (2\" FLANGE / 7FT STEM SPACING)",
+    "typeId": 9158934,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_WARPED (DO NOT USE) TAPERED",
+    "type": "DOUBLE_TEE_CHAMFERED_WARPED (DO NOT USE) TAPERED",
+    "typeId": 9169443,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE) TAPERED",
+    "type": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE) TAPERED",
+    "typeId": 9169461,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE) TAPERED_SKEWED",
+    "type": "DOUBLE_TEE_CHAMFERED_FLAT (DO NOT USE) TAPERED_SKEWED",
+    "typeId": 9169493,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL_TAPERED_FLANGE_SKEWED_END (DT)",
+    "type": "13.33 DT 28 (2\" FLANGE)",
+    "typeId": 9169876,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "FLAT_SLAB (FSA)",
+    "type": "06\"",
+    "typeId": 9184357,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "FLAT_SLAB (FSA)",
+    "type": "08\"",
+    "typeId": 9184359,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "FLAT_SLAB (FSA)",
+    "type": "12\"",
+    "typeId": 9184361,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEAR_FRAME (SWF)",
+    "type": "24\" X 24\"",
+    "typeId": 9186768,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "LGIRDER_FLAT (DO NOT USE)",
+    "type": "LGIRDER_FLAT (DO NOT USE)",
+    "typeId": 9192117,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "LGIRDER_WARPED (DO NOT USE)",
+    "type": "LGIRDER_WARPED (DO NOT USE)",
+    "typeId": 9192129,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "type": "18LB36",
+    "typeId": 9192247,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "type": "24LB36",
+    "typeId": 9192249,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "type": "32LB41",
+    "typeId": 9192251,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "MDK_INSULATION",
+    "type": "MDK_INSULATION",
+    "typeId": 9201891,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "MDK_INSULATION_CUTDOWN",
+    "type": "MDK_INSULATION_CUTDOWN",
+    "typeId": 9201908,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "METROWALL_HORIZONTAL (MWH)",
+    "type": "08\"",
+    "typeId": 9224614,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_HORIZONTAL (MWH)",
+    "type": "10\"",
+    "typeId": 9224616,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_HORIZONTAL_SLOPED_TOP (MWH)",
+    "type": "08\"",
+    "typeId": 9226784,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_HORIZONTAL_SLOPED_TOP (MWH)",
+    "type": "10\"",
+    "typeId": 9226786,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_VERTICAL (MWV)",
+    "type": "08\"",
+    "typeId": 9228918,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_VERTICAL (MWV)",
+    "type": "10\"",
+    "typeId": 9228920,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_VERTICAL_SLOPED_TOP (MWV)",
+    "type": "08\"",
+    "typeId": 9231124,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METROWALL_VERTICAL_SLOPED_TOP (MWV)",
+    "type": "10\"",
+    "typeId": 9231126,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "RBEAM_FLAT (DO NOT USE)",
+    "type": "RBEAM_FLAT (DO NOT USE)",
+    "typeId": 9236355,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "RBEAM_WARPED (DO NOT USE)",
+    "type": "RBEAM_WARPED (DO NOT USE)",
+    "typeId": 9236365,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "8RB24",
+    "typeId": 9236480,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "12RB14",
+    "typeId": 9236482,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "24RB41",
+    "typeId": 9236484,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEARWALL_HORIZONTAL (SWAH)",
+    "type": "12\"",
+    "typeId": 9248350,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEARWALL_HORIZONTAL_SLOPED_TOP (SWAH)",
+    "type": "12\"",
+    "typeId": 9250474,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEARWALL_HORIZONTAL_VTOP_SLOPED_TOP (SWAH)",
+    "type": "12\"",
+    "typeId": 9252611,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEARWALL_VERTICAL (SWAV)",
+    "type": "12\"",
+    "typeId": 9255744,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEARWALL_VERTICAL_SLOPED_TOP (SWAV)",
+    "type": "12\"",
+    "typeId": 9257867,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING (SPA)",
+    "type": "8\" X 84\"",
+    "typeId": 9260693,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING_ADJ_LEDGE (SPA)",
+    "type": "8\" X 84\"",
+    "typeId": 9263480,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING_ADJ_LEDGE (SPA)",
+    "type": "8\" X 106\"",
+    "typeId": 9263482,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING_ADJ_LEDGE (SPA)",
+    "type": "8\" X 166\"",
+    "typeId": 9263484,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING_NO_LEDGE (SPA)",
+    "type": "8\" X 84\"",
+    "typeId": 9266277,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING_NO_LEDGE_SLOPED (SPA)",
+    "type": "8\" X 84\"",
+    "typeId": 9269048,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_BEARING_SLOPED (SPA)",
+    "type": "8\" X 84\"",
+    "typeId": 9271874,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_GRADE (FCA)",
+    "type": "8\" X 84\"",
+    "typeId": 9275978,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_NONBEARING (FCA)",
+    "type": "8\" X 84\"",
+    "typeId": 9278754,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_NONBEARING (FCA)",
+    "type": "8\" X 106\"",
+    "typeId": 9278756,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_NONBEARING_SLOPED (FCA)",
+    "type": "8\" X 84\"",
+    "typeId": 9281538,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SPANDREL_Z_NONBEARING (FCA)",
+    "type": "8\" X 74\"",
+    "typeId": 9283981,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_BASE_UNIT (STZ)",
+    "type": "STAIR BASE UNIT",
+    "typeId": 9292076,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_BOTTOM_LANDING (STZ)",
+    "type": "STAIR BOTTOM LANDING",
+    "typeId": 9294871,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_DROP_IN (STA)",
+    "type": "DROP-IN STAIR",
+    "typeId": 9297657,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_DROP_IN_BASE_UNIT (STA)",
+    "type": "STAIR DROP IN BASE UNIT",
+    "typeId": 9300469,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_TOP_LANDING (STZ)",
+    "type": "STAIR TOP LANDING",
+    "typeId": 9303311,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_Z (STZ)",
+    "type": "Z-STAIR",
+    "typeId": 9306180,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "TGIRDER_FLAT (DO NOT USE)",
+    "type": "TGIRDER_FLAT (DO NOT USE)",
+    "typeId": 9311508,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "TGIRDER_WARPED (DO NOT USE)",
+    "type": "TGIRDER_WARPED (DO NOT USE)",
+    "typeId": 9311509,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "30IT36",
+    "typeId": 9311633,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "32IT32",
+    "typeId": 9311635,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "34IT32",
+    "typeId": 9311637,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "36IT36",
+    "typeId": 9311639,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "36IT54",
+    "typeId": 9311641,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "40IT42",
+    "typeId": 9311643,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "44IT64 (MOAB)",
+    "typeId": 9311645,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_LSHAPE (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9333344,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_LSHAPE (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9335443,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_LSHAPE_ANGLED (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9337663,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_LSHAPE_ANGLED (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9339883,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_LSHAPE-H-LEDGE (HORIZ) (WPBH)",
+    "type": "8\"",
+    "typeId": 9342711,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_RADIAL (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9344891,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_RADIAL (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9347069,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_SLOPED_TOP (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9349205,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_SLOPED_TOP (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9351341,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_USHAPE (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9353519,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_USHAPE (HORIZ-ADJ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9355700,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_USHAPE (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9357880,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL_USHAPE (VERT-ADJ) (WPBV)",
+    "type": "08\"",
+    "typeId": 9360061,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL (AFx-HORIZ)",
+    "type": "06\"",
+    "typeId": 9362157,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL (AFx-VERT)",
+    "type": "06\"",
+    "typeId": 9364257,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_LSHAPE (ALx-HORIZ)",
+    "type": "06\"",
+    "typeId": 9366354,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_LSHAPE (ALx-VERT)",
+    "type": "06\"",
+    "typeId": 9368453,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_LSHAPE_ANGLED (ALx-HORIZ)",
+    "type": "06\"",
+    "typeId": 9370673,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_LSHAPE_ANGLED (ALx-VERT)",
+    "type": "06\"",
+    "typeId": 9372893,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_LSHAPE-H-LEDGE (ALx-HORIZ)",
+    "type": "6\"",
+    "typeId": 9375721,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_RADIAL (AMx-HORIZ)",
+    "type": "06\"",
+    "typeId": 9377899,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_RADIAL (AMx-VERT)",
+    "type": "06\"",
+    "typeId": 9380077,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_SLOPED_TOP (AFx-HORIZ)",
+    "type": "06\"",
+    "typeId": 9382213,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_SLOPED_TOP (AFx-VERT)",
+    "type": "06\"",
+    "typeId": 9384349,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_USHAPE (AUx-HORIZ)",
+    "type": "06\"",
+    "typeId": 9386527,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_USHAPE (AUx-HORIZ-ADJ)",
+    "type": "06\"",
+    "typeId": 9388708,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_USHAPE (AUx-VERT)",
+    "type": "06\"",
+    "typeId": 9390886,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "PRECAST_WALL_PANEL_USHAPE (AUx-VERT-ADJ)",
+    "type": "06\"",
+    "typeId": 9393069,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_LSHAPE (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9399384,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_LSHAPE (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9401483,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_LSHAPE_ANGLED (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9403703,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_LSHAPE_ANGLED (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9405923,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_LSHAPE-H-LEDGE (HORIZ) (WPAH)",
+    "type": "8\"",
+    "typeId": 9408751,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_RADIAL (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9410931,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_RADIAL (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9413109,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_SLOPED_TOP (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9415245,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_SLOPED_TOP (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9417381,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_USHAPE (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9419559,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_USHAPE (HORIZ-ADJ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9421740,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_USHAPE (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9423918,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL_USHAPE (VERT-ADJ) (WPAV)",
+    "type": "08\"",
+    "typeId": 9428282,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "18\" X 18\"",
+    "typeId": 9448203,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "24\" X 24\"",
+    "typeId": 9448205,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "24\" X 33\"",
+    "typeId": 9448207,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "24\" X 37\"",
+    "typeId": 9448209,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "28\" X 28\"",
+    "typeId": 9448211,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "30\" X 30\"",
+    "typeId": 9448213,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "33\" X 33\"",
+    "typeId": 9448215,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "48\" X 19\"",
+    "typeId": 9448217,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 32 (4\" FLANGE / 6\" STEM FILLER)",
+    "typeId": 9449873,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STADIA",
+    "type": "SINGLE STEM",
+    "typeId": 9474852,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STADIA",
+    "type": "DOUBLE STEM",
+    "typeId": 9474854,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STADIA",
+    "type": "TRIPLE STEM",
+    "typeId": 9474856,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "8RB18",
+    "typeId": 9475143,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "8RB30",
+    "typeId": 9475145,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "12RB28",
+    "typeId": 9475147,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "16RB30",
+    "typeId": 9475149,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "CORBEL 8D X 12W X 09T",
+    "type": "CORBEL 8D X 12W X 09T",
+    "typeId": 9487703,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL 8D X 12W X 16T",
+    "type": "CORBEL 8D X 12W X 16T",
+    "typeId": 9489762,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL 8D X 12W X 24T",
+    "type": "CORBEL 8D X 12W X 24T",
+    "typeId": 9491697,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Add On 8D X 12W X 16T",
+    "type": "CORBEL Add On 8D X 12W X 16T",
+    "typeId": 9493738,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL ALP Quik Corbel",
+    "type": "CORBEL ALP Quik Corbel",
+    "typeId": 9495730,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Generic",
+    "type": "CORBEL",
+    "typeId": 9497687,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Heavy Loaded 12D X 24W X 48T",
+    "type": "CORBEL Heavy Loaded 12D X 24W X 48T",
+    "typeId": 9503862,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Heavy Loaded (Double) 12D X 24W X 48T",
+    "type": "CORBEL Heavy Loaded (Double) 12D X 24W X 48T",
+    "typeId": 9506052,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Light Loaded 12D X 24W X 36T",
+    "type": "CORBEL Light Loaded 12D X 24W X 36T",
+    "typeId": 9508006,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+    "type": "CORBEL Light Loaded (Double) 12D X 24W X 36T",
+    "typeId": 9509926,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Side Corbel 12D X 24W X 16T",
+    "type": "CORBEL Side Corbel 12D X 24W X 16T",
+    "typeId": 9511867,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "CORBEL Side Corbel (Double) 12D X 24W X 16T",
+    "type": "CORBEL Side Corbel (Double) 12D X 24W X 16T",
+    "typeId": 9513780,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "METRODECK_FIELD_TOPPED (MDK)",
+    "type": "MDK 9.5\" FIELD",
+    "typeId": 9540909,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK_FIELD_TOPPED (MDK)",
+    "type": "MDK 10\" FIELD",
+    "typeId": 9540911,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK_FIELD_TOPPED (MDK)",
+    "type": "MDK 11\" FIELD",
+    "typeId": 9540913,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK_FIELD_TOPPED (MDK)",
+    "type": "MDK 12\" FIELD",
+    "typeId": 9540915,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "FMD 08\" FACTORY",
+    "typeId": 9550954,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "FMD 09\" FACTORY",
+    "typeId": 9550956,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "FMD 10\" FACTORY",
+    "typeId": 9550958,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "FMD 11\" FACTORY",
+    "typeId": 9550960,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "FMD 12\" FACTORY",
+    "typeId": 9550962,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 10\" FIELD",
+    "typeId": 9550964,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 10.5\" FIELD",
+    "typeId": 9550966,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 11\" FIELD",
+    "typeId": 9550968,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 11.5\" FIELD",
+    "typeId": 9550970,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 12\" FIELD",
+    "typeId": 9550972,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 12.5\" FIELD",
+    "typeId": 9550974,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "METRODECK (FMD & SMD)",
+    "type": "SMD 13\" FIELD",
+    "typeId": 9550976,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "44IT56",
+    "typeId": 9551647,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "type": "34LB56",
+    "typeId": 9551980,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "type": "34LB64",
+    "typeId": 9551982,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "COLUMN (CLA)",
+    "type": "37\" X 37\"",
+    "typeId": 9555442,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM",
+    "type": "14\" x 14\" x 1/2\"",
+    "typeId": 9584539,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM",
+    "type": "12\" x 12\" x 1/2\"",
+    "typeId": 9584541,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM",
+    "type": "10\" x 10\" x 3/8\"",
+    "typeId": 9584543,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "CABLE RAIL",
+    "type": "CABLE RAIL - NON-IMPACT",
+    "typeId": 9612161,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "FENCE PANEL",
+    "type": "3' X 6' FENCE PANEL",
+    "typeId": 9623084,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "FENCING",
+    "type": "4' X CONT. FENCING",
+    "typeId": 9624149,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "FENCING",
+    "type": "6' X CONT. FENCING",
+    "typeId": 9640612,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "FENCE PANEL",
+    "type": "3' X 3' FENCE PANEL",
+    "typeId": 9640632,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "FUTURE OPENING",
+    "type": "FUTURE OPENING",
+    "typeId": 9647378,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "STEEL_HSS_BEAM - SGL BRG ASSY",
+    "type": "08\" x 08\" x 1/2\"",
+    "typeId": 9663736,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM - SGL BRG ASSY",
+    "type": "08\" x 10\" x 1/2\"",
+    "typeId": 9663738,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM - SGL BRG ASSY",
+    "type": "08\" x 12\" x 1/2\"",
+    "typeId": 9663740,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM - DBL BRG ASSY",
+    "type": "08\" x 08\" x 1/2\"",
+    "typeId": 9664882,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM - DBL BRG ASSY",
+    "type": "08\" x 10\" x 1/2\"",
+    "typeId": 9664884,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STEEL_HSS_BEAM - DBL BRG ASSY",
+    "type": "08\" x 12\" x 1/2\"",
+    "typeId": 9664886,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_LANDING (STF)",
+    "type": "06\"",
+    "typeId": 9710783,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STAIR_LANDING (STF)",
+    "type": "08\"",
+    "typeId": 9710785,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 3/8\" x 3\"",
+    "typeId": 9713189,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 1/2\" x 2\"",
+    "typeId": 9713191,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 1/2\" x 1\"",
+    "typeId": 9713193,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 1/2\" x 3\"",
+    "typeId": 9713195,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 3/8\" x 2\"",
+    "typeId": 9713197,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "SOLID_WALL_PILASTER_DOUBLE (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9911124,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PILASTER_DOUBLE (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9913307,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PILASTER_SINGLE (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9915447,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PILASTER_SINGLE (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9917583,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PILASTER_DOUBLE (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9919768,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PILASTER_DOUBLE (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9921951,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PILASTER_SINGLE (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9924091,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PILASTER_SINGLE (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9926227,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_WARPED (DO NOT USE)",
+    "type": "DOUBLE_TEE_RADIUSED_WARPED (DO NOT USE)",
+    "typeId": 9943100,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_FLAT (DO NOT USE)",
+    "type": "DOUBLE_TEE_RADIUSED_FLAT (DO NOT USE)",
+    "typeId": 9943115,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "8 DT 32 (2\" FLANGE / 4FT STEM SPACING)",
+    "typeId": 9943388,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "10 DT 32 (2\" FLANGE / 5FT STEM SPACING)",
+    "typeId": 9943390,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 DT 48 (2\" FLANGE)",
+    "typeId": 9943392,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 DT 49 (3\" FLANGE)",
+    "typeId": 9943394,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 AT 40 (2\" FLANGE / 8\" STEM FILLER)",
+    "typeId": 9943396,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 AT 41 (3\" FLANGE / 8\" STEM FILLER)",
+    "typeId": 9943398,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 AT 48 (2\" FLANGE)",
+    "typeId": 9943400,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 AT 49 (3\" FLANGE)",
+    "typeId": 9943402,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 XT 28 (2\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9943404,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 XT 30 (4\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9943406,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 XT 32 (2\" FLANGE)",
+    "typeId": 9943408,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 XT 34 (4\" FLANGE)",
+    "typeId": 9943410,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 YT 28 (2\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9943412,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 YT 30 (2\" FLANGE / 2\" STEM FILLER)",
+    "typeId": 9943414,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 YT 30 (4\" FLANGE / 4\" STEM FILLER)",
+    "typeId": 9943416,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 YT 32 (2\" FLANGE)",
+    "typeId": 9943418,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "DOUBLE_TEE_RADIUSED_NOMINAL (DT)",
+    "type": "12 YT 34 (4\" FLANGE)",
+    "typeId": 9943420,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "ROOFTOP PLATFORM (DT)",
+    "type": "RTP 36",
+    "typeId": 9952554,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "ROOFTOP PLATFORM (DT)",
+    "type": "RTP 40",
+    "typeId": 9952556,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "ROOFTOP PLATFORM (DT)",
+    "type": "RTP 48",
+    "typeId": 9952558,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "type": "08\"",
+    "typeId": 9976230,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+    "type": "12\"",
+    "typeId": 9976232,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)_MITERED",
+    "type": "08\"",
+    "typeId": 9978383,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)_MITERED",
+    "type": "12\"",
+    "typeId": 9978385,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "type": "08\"",
+    "typeId": 9986895,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (VERT) (WPAV)",
+    "type": "12\"",
+    "typeId": 9986897,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (VERT) (WPAV)_MITERED",
+    "type": "08\"",
+    "typeId": 9989043,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SOLID_WALL_PANEL (VERT) (WPAV)_MITERED",
+    "type": "12\"",
+    "typeId": 9989045,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (HORIZ) (WPBH)",
+    "type": "08\"",
+    "typeId": 9991144,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (HORIZ) (WPBH)",
+    "type": "09.5\"",
+    "typeId": 9991146,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (HORIZ) (WPBH)",
+    "type": "11\"",
+    "typeId": 9991148,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (HORIZ) (WPBH)_MITERED",
+    "type": "08\"",
+    "typeId": 9993294,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (HORIZ) (WPBH)_MITERED",
+    "type": "09.5\"",
+    "typeId": 9993296,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (HORIZ) (WPBH)_MITERED",
+    "type": "11\"",
+    "typeId": 9993298,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "type": "08\"",
+    "typeId": 9995416,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "type": "9\"",
+    "typeId": 9995418,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "type": "11\"",
+    "typeId": 9995420,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)_MITERED",
+    "type": "08\"",
+    "typeId": 9997575,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)_MITERED",
+    "type": "09.5\"",
+    "typeId": 9997577,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)_MITERED",
+    "type": "11\"",
+    "typeId": 9997579,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "STRONGBACK",
+    "type": "4\" x 4\" x 3/8\"",
+    "typeId": 10001791,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "STRONGBACK",
+    "type": "6\" x 6\" x 3/8\"",
+    "typeId": 10001793,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "36IT48",
+    "typeId": 10031567,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+    "type": "10\"",
+    "typeId": 10032513,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 1/2\" x 6\"",
+    "typeId": 10032906,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 1/2\" x 3'6\" RECESS",
+    "typeId": 10033281,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "REVEAL",
+    "type": "REVEAL - 1/2\" x 4\"",
+    "typeId": 10035365,
+    "category": "OST_GenericModel"
+  },
+  {
+    "family": "DOUBLE_TEE_CHAMFERED_NOMINAL (DT)",
+    "type": "12 DT 37 (3\" FLANGE)",
+    "typeId": 10036499,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "36IT48 OFFSET 1",
+    "typeId": 10043692,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "T_GIRDER (TGA)",
+    "type": "36IT48 OFFSET 2",
+    "typeId": 10043715,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "SHEARWALL_HORIZONTAL (SWAH)",
+    "type": "8\"",
+    "typeId": 10044214,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "L_GIRDER (LGA)",
+    "type": "32LB48",
+    "typeId": 10069393,
+    "category": "OST_StructuralFraming"
+  },
+  {
+    "family": "R_BEAM (RBA)",
+    "type": "24RB48",
+    "typeId": 10071349,
+    "category": "OST_StructuralFraming"
+  }
+]

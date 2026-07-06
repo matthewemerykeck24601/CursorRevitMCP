@@ -1,0 +1,48 @@
+﻿{
+    "timestamp":  "2026-05-18T11:33:53",
+    "sourceRoot":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+    "workbook":  "D:\\CursorRevitMCP\\_PARTS.xlsx",
+    "parameter":  "MANUFACTURE_COMPONENT",
+    "keysExtracted":  1526,
+    "rowsUpdated":  1526,
+    "rowsUnmatched":  13,
+    "extractionFailures":  6,
+    "failureSamples":  [
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS",
+                               "FamilyPath":  "",
+                               "FamilyName":  "",
+                               "Note":  "Request failed: The remote server returned an error: (500) Internal Server Error."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\MANUFACTURED_PARTS\\MEADOWBURKE\\RAPID_LIFT_SYSTEM_ANCHORS",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\MANUFACTURED_PARTS\\MEADOWBURKE\\RAPID_LIFT_SYSTEM_ANCHORS\\PATCH\\RL_PATCH.rfa",
+                               "FamilyName":  "RL_PATCH",
+                               "Note":  "No family types found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\MANUFACTURED_PARTS\\MEADOWBURKE\\RAPID_LIFT_SYSTEM_ANCHORS\\PATCH",
+                               "FamilyPath":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\MANUFACTURED_PARTS\\MEADOWBURKE\\RAPID_LIFT_SYSTEM_ANCHORS\\PATCH\\RL_PATCH.rfa",
+                               "FamilyName":  "RL_PATCH",
+                               "Note":  "No family types found."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\REBAR",
+                               "FamilyPath":  "",
+                               "FamilyName":  "",
+                               "Note":  "Request failed: The remote server returned an error: (500) Internal Server Error."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\REBAR\\01",
+                               "FamilyPath":  "",
+                               "FamilyName":  "",
+                               "Note":  "Request failed: The remote server returned an error: (500) Internal Server Error."
+                           },
+                           {
+                               "Directory":  "C:\\Users\\mstri\\DC\\ACCDocs\\Metromont\\01 - Metromont Standards\\Project Files\\002 - Families\\2026\\_PARTS\\WOOD_NAILER",
+                               "FamilyPath":  "",
+                               "FamilyName":  "",
+                               "Note":  "Request failed: The remote server returned an error: (500) Internal Server Error."
+                           }
+                       ]
+}

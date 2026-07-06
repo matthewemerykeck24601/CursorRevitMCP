@@ -1,0 +1,3033 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 1,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_mirrored_sf.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_pass1.json",
+    "attempted": 170,
+    "placed": 170,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 174,
+    "nextIndex": 175,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10038119,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326747,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038130,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326749,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038141,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326750,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038152,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326751,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038163,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326752,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038174,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326753,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038185,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326754,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038196,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326755,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038207,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326756,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038218,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326757,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038229,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326758,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038240,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326759,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038251,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326760,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038262,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326761,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038273,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326762,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038284,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326763,
+      "status": "placed"
+    },
+    {
+      "srcId": 10038295,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326764,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041337,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326765,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041348,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326766,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041355,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326767,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041362,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326768,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041414,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326769,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041425,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326770,
+      "status": "placed"
+    },
+    {
+      "srcId": 10041436,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -05",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326771,
+      "status": "placed"
+    },
+    {
+      "srcId": 10042921,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326772,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045282,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326773,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045284,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326775,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045286,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326776,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045479,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326777,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045481,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326778,
+      "status": "placed"
+    },
+    {
+      "srcId": 10045483,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326779,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046329,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -08",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326780,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046406,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326781,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046407,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326782,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046408,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326783,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046427,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326784,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046428,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326785,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046429,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326786,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046446,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326787,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046447,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326788,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046448,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326789,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046519,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326790,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046520,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326791,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046521,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326792,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046541,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326793,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046542,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326794,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046543,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326795,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046563,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326796,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046564,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326797,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046565,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326798,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046640,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326799,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046641,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326801,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046642,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326802,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046643,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326803,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046703,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326804,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046704,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326805,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046705,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326806,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046706,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326807,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046736,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326808,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046737,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -02",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326809,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046738,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -03",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326810,
+      "status": "placed"
+    },
+    {
+      "srcId": 10046739,
+      "family": "COLUMN (CLA)",
+      "type": "30\u0022 X 30\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326811,
+      "status": "placed"
+    },
+    {
+      "srcId": 10048046,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326812,
+      "status": "placed"
+    },
+    {
+      "srcId": 10048928,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326813,
+      "status": "placed"
+    },
+    {
+      "srcId": 10049796,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326814,
+      "status": "placed"
+    },
+    {
+      "srcId": 10051539,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326815,
+      "status": "placed"
+    },
+    {
+      "srcId": 10051559,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326816,
+      "status": "placed"
+    },
+    {
+      "srcId": 10051658,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326817,
+      "status": "placed"
+    },
+    {
+      "srcId": 10051680,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326818,
+      "status": "placed"
+    },
+    {
+      "srcId": 10051746,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -11",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326819,
+      "status": "placed"
+    },
+    {
+      "srcId": 10052026,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326820,
+      "status": "placed"
+    },
+    {
+      "srcId": 10052044,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326821,
+      "status": "placed"
+    },
+    {
+      "srcId": 10052089,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326822,
+      "status": "placed"
+    },
+    {
+      "srcId": 10052100,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326823,
+      "status": "placed"
+    },
+    {
+      "srcId": 10052111,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -11",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326824,
+      "status": "placed"
+    },
+    {
+      "srcId": 10053780,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326825,
+      "status": "placed"
+    },
+    {
+      "srcId": 10053800,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326826,
+      "status": "placed"
+    },
+    {
+      "srcId": 10053830,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -14",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326827,
+      "status": "placed"
+    },
+    {
+      "srcId": 10054109,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326828,
+      "status": "placed"
+    },
+    {
+      "srcId": 10054127,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326829,
+      "status": "placed"
+    },
+    {
+      "srcId": 10054145,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -15",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326830,
+      "status": "placed"
+    },
+    {
+      "srcId": 10055738,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -01",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326831,
+      "status": "placed"
+    },
+    {
+      "srcId": 10055758,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -19",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326832,
+      "status": "placed"
+    },
+    {
+      "srcId": 10057169,
+      "family": "COLUMN (CLA)",
+      "type": "24\u0022 X 24\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -05",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326833,
+      "status": "placed"
+    },
+    {
+      "srcId": 10057170,
+      "family": "COLUMN (CLA)",
+      "type": "24\u0022 X 24\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326835,
+      "status": "placed"
+    },
+    {
+      "srcId": 10057171,
+      "family": "COLUMN (CLA)",
+      "type": "24\u0022 X 24\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -07",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326837,
+      "status": "placed"
+    },
+    {
+      "srcId": 10057172,
+      "family": "COLUMN (CLA)",
+      "type": "24\u0022 X 24\u0022",
+      "pass": 1,
+      "controlMark": "CLA                -08",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326839,
+      "status": "placed"
+    },
+    {
+      "srcId": 10063003,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -08",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326841,
+      "status": "placed"
+    },
+    {
+      "srcId": 10063005,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326844,
+      "status": "placed"
+    },
+    {
+      "srcId": 10063007,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -08",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326845,
+      "status": "placed"
+    },
+    {
+      "srcId": 10063009,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -10",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326846,
+      "status": "placed"
+    },
+    {
+      "srcId": 10079219,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326847,
+      "status": "placed"
+    },
+    {
+      "srcId": 10079220,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326848,
+      "status": "placed"
+    },
+    {
+      "srcId": 10079221,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326849,
+      "status": "placed"
+    },
+    {
+      "srcId": 10081303,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326850,
+      "status": "placed"
+    },
+    {
+      "srcId": 10081304,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -04",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326851,
+      "status": "placed"
+    },
+    {
+      "srcId": 10081305,
+      "family": "SHEARWALL_HORIZONTAL (SWAH)",
+      "type": "8\u0022",
+      "pass": 1,
+      "controlMark": "SWA-H              -07",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326852,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090431,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326853,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090449,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326854,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090487,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326855,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090498,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326856,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090509,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326857,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090529,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326858,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090540,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326859,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090551,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326860,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090569,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326861,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090580,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326862,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090591,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326863,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090609,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326864,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090620,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326865,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090631,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326866,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090651,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326867,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090662,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326868,
+      "status": "placed"
+    },
+    {
+      "srcId": 10090673,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326869,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091009,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326870,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091029,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326871,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091071,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326872,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091082,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326873,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091093,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326874,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091109,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326875,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091120,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326876,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091131,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326877,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091151,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326878,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091162,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326879,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091173,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326880,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091191,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326881,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091202,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326882,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091213,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326883,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091233,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326884,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091244,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326885,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091255,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -09",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326886,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091606,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326887,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091626,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326888,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091663,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326889,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091674,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326890,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091685,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326891,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091705,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326892,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091716,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326893,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091727,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326894,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091747,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326895,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091758,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326896,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091769,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326897,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091787,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326898,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091798,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326899,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091809,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326900,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091829,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326901,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091840,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326902,
+      "status": "placed"
+    },
+    {
+      "srcId": 10091851,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326903,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092152,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326904,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092170,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326905,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092206,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326906,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092217,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326907,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092228,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326908,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092246,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326909,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092257,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326910,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092268,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326911,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092288,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326912,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092299,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326913,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092310,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326914,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092328,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326915,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092339,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326916,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092350,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326917,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092368,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326918,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092379,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326919,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092390,
+      "family": "INSULATED_WALL_PANEL (VERT) (WPBV)",
+      "type": "10\u0022",
+      "pass": 1,
+      "controlMark": "WPB-V              -06",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326920,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092863,
+      "family": "SOLID_WALL_PANEL (VERT) (WPAV)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-V              -10",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326921,
+      "status": "placed"
+    },
+    {
+      "srcId": 10092893,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -15",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326923,
+      "status": "placed"
+    },
+    {
+      "srcId": 10094038,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -15",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326924,
+      "status": "placed"
+    },
+    {
+      "srcId": 10094046,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -16",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326925,
+      "status": "placed"
+    },
+    {
+      "srcId": 10094139,
+      "family": "SOLID_WALL_PANEL (HORIZ) (WPAH)",
+      "type": "08\u0022",
+      "pass": 1,
+      "controlMark": "WPA-H              -17",
+      "typeStatus": "typemap",
+      "placedAs": "point",
+      "paramFailures": [
+        "Rebar Cover - Bottom Face: elementId not remapped",
+        "Rebar Cover - Top Face: elementId not remapped",
+        "Rebar Cover - Other Faces: elementId not remapped",
+        "Structural Material: elementId not remapped",
+        "Grout_Material: elementId not remapped"
+      ],
+      "newId": 7326926,
+      "status": "placed"
+    }
+  ]
+}

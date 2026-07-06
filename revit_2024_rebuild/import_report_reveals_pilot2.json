@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "mode": "execute",
+    "hostPass": 2,
+    "instancesPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\instances_reveals_pilot.json",
+    "remapOutPath": "D:\\CursorRevitMCP\\revit_2024_rebuild\\remap_gm.json",
+    "attempted": 2,
+    "placed": 2,
+    "skipped": 0,
+    "failed": 0,
+    "lastCommittedIndex": 1,
+    "nextIndex": 2,
+    "done": true,
+    "hostCrossCheckFailures": 0
+  },
+  "unresolvedTypes": [],
+  "elements": [
+    {
+      "srcId": 10033762,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 2,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7332273,
+      "status": "placed"
+    },
+    {
+      "srcId": 10033919,
+      "family": "REVEAL",
+      "type": "REVEAL - 1/2\u0022 x 6\u0022",
+      "pass": 2,
+      "typeStatus": "typemap",
+      "newHostId": 7320760,
+      "faceHost": {
+        "solids": 1,
+        "parallelFacesInTol": 2,
+        "nullRefFaces": 0,
+        "method": "face-reference"
+      },
+      "placedAs": "face-hosted",
+      "voidCut": "applied",
+      "newId": 7332276,
+      "status": "placed"
+    }
+  ]
+}

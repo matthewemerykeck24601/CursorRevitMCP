@@ -1,0 +1,31 @@
+{
+  "name": "create_grid",
+  "description": "Project: create a straight grid line between two points in plan. startX/startY/endX/endY are millimetres (Z is not used for grids). name omitted = Revit auto-names the grid (next in sequence); a duplicate name will error (the grid is still created).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "startX": {
+        "type": "number"
+      },
+      "startY": {
+        "type": "number"
+      },
+      "endX": {
+        "type": "number"
+      },
+      "endY": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "startX",
+      "startY",
+      "endX",
+      "endY"
+    ],
+    "additionalProperties": false
+  }
+}
