@@ -91,6 +91,25 @@ export async function refreshApsToken(
   return (await response.json()) as ApsTokenResponse;
 }
 
+export async function validateApsAccessToken(accessToken: string): Promise<boolean> {
+  const token = accessToken.trim();
+  if (!token) return false;
+
+  try {
+    const response = await fetch(`${APS_BASE}/userprofile/v1/users/@me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+      cache: "no-store",
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 export function buildAuthorizeUrl(state: string): string {
   assertApsCredentials();
   const url = new URL(`${APS_BASE}/authentication/v2/authorize`);
