@@ -73,7 +73,7 @@ export const parameterToolDefs = [
         parameterSetId: { type: "string" },
         documentName: { type: "string" },
         assemblyName: { type: "string" },
-        parameters: { type: "array", items: { type: "object" } },
+        parameters: { type: "array", minItems: 1, items: { type: "object" } },
       },
       required: ["parameterSetId", "parameters"],
       additionalProperties: false,
@@ -135,7 +135,9 @@ export async function invokeParameterTool(
 
   if (name === "inventor_push_parameters_to_excel") {
     const request = SyncRequestSchema.extend({
-      parameters: z.array(z.object({ name: z.string().min(1) }).passthrough()),
+      parameters: z
+        .array(z.object({ name: z.string().min(1) }).passthrough())
+        .min(1, "parameters must contain at least one row."),
     }).parse(args);
 
     const outcome = await source.push({

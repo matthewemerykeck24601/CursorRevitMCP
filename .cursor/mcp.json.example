@@ -40,7 +40,7 @@
         "D:\\CursorRevitMCP\\revit-2027-community-mcp\\src\\index.ts"
       ],
       "env": {
-        "REVIT_2027_BRIDGE_URL": "http://127.0.0.1:8766"
+        "REVIT_2027_BRIDGE_URL": "http://127.0.0.1:8768"
       }
     },
     "inventor-mcp": {
