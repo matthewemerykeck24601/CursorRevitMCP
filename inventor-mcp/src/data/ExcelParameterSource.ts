@@ -34,6 +34,11 @@ export class ExcelParameterSource implements IParameterSource {
   }
 
   public async push(request: ParameterSyncRequest): Promise<{ updated: number }> {
+    const parameters = request.parameters ?? [];
+    if (parameters.length === 0) {
+      throw new Error("Refusing to replace an Excel parameter set with an empty parameter list.");
+    }
+
     this.ensureWorkbook();
     const workbook = xlsx.readFile(this.workbookPath);
     const rows = this.readRows(workbook).filter(
@@ -41,7 +46,7 @@ export class ExcelParameterSource implements IParameterSource {
     );
 
     const now = new Date().toISOString();
-    for (const p of request.parameters ?? []) {
+    for (const p of parameters) {
       rows.push({
         parameterSetId: request.parameterSetId,
         documentName: request.documentName ?? "",
@@ -61,7 +66,7 @@ export class ExcelParameterSource implements IParameterSource {
       workbook.SheetNames.push(SHEET_NAME);
     }
     xlsx.writeFile(workbook, this.workbookPath);
-    return { updated: request.parameters?.length ?? 0 };
+    return { updated: parameters.length };
   }
 
   private readRows(workbook: xlsx.WorkBook): Record<string, unknown>[] {
