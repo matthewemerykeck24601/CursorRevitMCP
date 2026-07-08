@@ -24,6 +24,15 @@ function extractXaiResponseText(json: XaiResponsesPayload): string {
   return parts.join("\n").trim();
 }
 
+export function isAuthorizedGatewayRequest(
+  expectedSecret: string,
+  receivedSecret: string | undefined,
+): boolean {
+  const expected = expectedSecret.trim();
+  if (!expected) return false;
+  return receivedSecret === expected;
+}
+
 export const aiGateway = onRequest(
   {
     region: "us-central1",
@@ -37,12 +46,10 @@ export const aiGateway = onRequest(
     }
 
     const expectedSecret = AI_GATEWAY_SHARED_SECRET.value();
-    if (expectedSecret) {
-      const receivedSecret = req.header("x-ai-gateway-secret") ?? "";
-      if (!receivedSecret || receivedSecret !== expectedSecret) {
-        res.status(401).json({ error: "Unauthorized AI gateway request." });
-        return;
-      }
+    const receivedSecret = req.header("x-ai-gateway-secret");
+    if (!isAuthorizedGatewayRequest(expectedSecret, receivedSecret)) {
+      res.status(401).json({ error: "Unauthorized AI gateway request." });
+      return;
     }
 
     const body =
