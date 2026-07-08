@@ -63,7 +63,6 @@ export async function POST(request: NextRequest) {
       expiresIn: token.expires_in,
       scope: token.scope ?? "",
       accessToken: token.access_token,
-      refreshToken: token.refresh_token ?? "",
     });
 
     writeSessionCookies(response, {
