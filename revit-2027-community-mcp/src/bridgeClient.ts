@@ -1,6 +1,6 @@
 export type JsonObject = Record<string, unknown>;
 
-const DEFAULT_BASE_URL = process.env.REVIT_2027_BRIDGE_URL?.trim() || "http://127.0.0.1:8766";
+const DEFAULT_BASE_URL = process.env.REVIT_2027_BRIDGE_URL?.trim() || "http://127.0.0.1:8768";
 
 interface GatewayEnvelope<T> {
   success: boolean;

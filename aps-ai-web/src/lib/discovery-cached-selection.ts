@@ -113,9 +113,9 @@ export function buildDiscoveryCachedSelection(
   const withDb = rows.filter(
     (r) => r.dbId != null && Number.isFinite(r.dbId),
   ) as Array<AecdmElementListRow & { dbId: number }>;
-  const externalIds = withDb
-    .map((r) => (r.externalId ? String(r.externalId).trim() : ""))
-    .filter(Boolean);
+  const externalIds = withDb.map((r) =>
+    r.externalId ? String(r.externalId).trim() : "",
+  );
   const dbIds = withDb.map((r) => Math.trunc(r.dbId as number));
   const element_preview = withDb.slice(0, 50).map((r) => ({
     dbId: Math.trunc(r.dbId as number),
@@ -229,15 +229,13 @@ export function subsetDiscoveryByDbIds(
   const want = new Set(dbIds.map((n) => Math.trunc(n)));
   const prev = d.element_preview.filter((e) => want.has(e.dbId));
   let dbOut = prev.map((e) => e.dbId);
-  let extOut = prev.map((e) => e.externalId).filter(Boolean);
+  let extOut = prev.map((e) => e.externalId);
   if (prev.length === 0 && d.dbIds.length > 0) {
     const idxs = d.dbIds
       .map((id, i) => (want.has(Math.trunc(id)) ? i : -1))
       .filter((i) => i >= 0);
     dbOut = idxs.map((i) => Math.trunc(d.dbIds[i]!));
-    extOut = idxs
-      .map((i) => (d.externalIds[i] ? String(d.externalIds[i]) : ""))
-      .filter(Boolean);
+    extOut = idxs.map((i) => (d.externalIds[i] ? String(d.externalIds[i]) : ""));
   }
   const preview =
     prev.length > 0
