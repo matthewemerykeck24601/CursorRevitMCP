@@ -12,6 +12,18 @@ type XaiResponsesPayload = {
   }>;
 };
 
+export function normalizeGatewaySharedSecret(value: string | undefined): string {
+  return (value ?? "").trim();
+}
+
+export function isAuthorizedGatewayRequest(
+  expectedSecret: string | undefined,
+  receivedSecret: string | undefined,
+): boolean {
+  const configuredSecret = normalizeGatewaySharedSecret(expectedSecret);
+  return Boolean(configuredSecret) && receivedSecret === configuredSecret;
+}
+
 function extractXaiResponseText(json: XaiResponsesPayload): string {
   const parts: string[] = [];
   for (const item of json.output ?? []) {
@@ -36,13 +48,20 @@ export const aiGateway = onRequest(
       return;
     }
 
-    const expectedSecret = AI_GATEWAY_SHARED_SECRET.value();
-    if (expectedSecret) {
-      const receivedSecret = req.header("x-ai-gateway-secret") ?? "";
-      if (!receivedSecret || receivedSecret !== expectedSecret) {
-        res.status(401).json({ error: "Unauthorized AI gateway request." });
-        return;
-      }
+    const expectedSecret = normalizeGatewaySharedSecret(
+      AI_GATEWAY_SHARED_SECRET.value(),
+    );
+    if (!expectedSecret) {
+      res
+        .status(500)
+        .json({ error: "AI_GATEWAY_SHARED_SECRET secret is not configured." });
+      return;
+    }
+
+    const receivedSecret = req.header("x-ai-gateway-secret") ?? "";
+    if (!isAuthorizedGatewayRequest(expectedSecret, receivedSecret)) {
+      res.status(401).json({ error: "Unauthorized AI gateway request." });
+      return;
     }
 
     const body =
