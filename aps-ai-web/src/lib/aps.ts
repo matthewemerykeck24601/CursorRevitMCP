@@ -91,6 +91,22 @@ export async function refreshApsToken(
   return (await response.json()) as ApsTokenResponse;
 }
 
+export async function validateApsAccessToken(accessToken: string): Promise<void> {
+  const response = await fetch(`${APS_BASE}/userprofile/v1/users/@me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Failed APS bearer validation: ${response.status} ${text}`);
+  }
+}
+
 export function buildAuthorizeUrl(state: string): string {
   assertApsCredentials();
   const url = new URL(`${APS_BASE}/authentication/v2/authorize`);
