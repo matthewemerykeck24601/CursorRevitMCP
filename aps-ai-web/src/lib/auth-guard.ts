@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { refreshApsToken } from "@/lib/aps";
+import { refreshApsToken, validateApsAccessToken } from "@/lib/aps";
 import {
   clearSessionCookies,
   readSessionCookies,
@@ -28,17 +28,30 @@ function bearerAccessToken(request: NextRequest): string | null {
 export async function requireSession(request: NextRequest): Promise<AuthResult> {
   const bearer = bearerAccessToken(request);
   if (bearer) {
-    const response = NextResponse.next();
-    return {
-      ok: true,
-      session: {
-        accessToken: bearer,
-        refreshToken: undefined,
-        expiresAt: Number.MAX_SAFE_INTEGER,
-        scope: "",
-      },
-      response,
-    };
+    try {
+      await validateApsAccessToken(bearer);
+      const response = NextResponse.next();
+      return {
+        ok: true,
+        session: {
+          accessToken: bearer,
+          refreshToken: undefined,
+          expiresAt: Number.MAX_SAFE_INTEGER,
+          scope: "",
+        },
+        response,
+      };
+    } catch {
+      if (!readSessionCookies(request)) {
+        return {
+          ok: false,
+          response: NextResponse.json(
+            { error: "Invalid bearer token" },
+            { status: 401 },
+          ),
+        };
+      }
+    }
   }
 
   const session = readSessionCookies(request);
