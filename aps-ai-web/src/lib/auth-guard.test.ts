@@ -55,7 +55,7 @@ test("requireSession rejects invalid bearer tokens without cookies", async () =>
 test("requireSession falls back to cookies when bearer token is stale", async () => {
   mockFetch(new Response("Unauthorized", { status: 401 }));
 
-  const expiresAt = Date.now() + 60_000;
+  const expiresAt = Date.now() + 120_000;
   const auth = await requireSession(
     makeRequest({
       authorization: "Bearer stale-token",
