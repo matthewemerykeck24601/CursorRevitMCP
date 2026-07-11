@@ -9,6 +9,9 @@ import {
 } from "@/lib/session";
 
 const REFRESH_BUFFER_MS = 60_000;
+const BEARER_SESSION_TTL_MS = 60 * 60 * 1000;
+const APS_USER_PROFILE_URL =
+  "https://developer.api.autodesk.com/userprofile/v1/users/@me";
 
 type AuthResult =
   | { ok: true; session: UserSession; response: NextResponse }
@@ -21,6 +24,22 @@ function bearerAccessToken(request: NextRequest): string | null {
   return m?.[1]?.trim() || null;
 }
 
+async function validateBearerAccessToken(accessToken: string): Promise<boolean> {
+  try {
+    const response = await fetch(APS_USER_PROFILE_URL, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json",
+      },
+      cache: "no-store",
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Session from HttpOnly cookies, or `Authorization: Bearer` (Monty iOS standalone —
  * client holds tokens; no cookie refresh on server).
@@ -28,13 +47,24 @@ function bearerAccessToken(request: NextRequest): string | null {
 export async function requireSession(request: NextRequest): Promise<AuthResult> {
   const bearer = bearerAccessToken(request);
   if (bearer) {
+    const validBearer = await validateBearerAccessToken(bearer);
+    if (!validBearer) {
+      return {
+        ok: false,
+        response: NextResponse.json(
+          { error: "Invalid bearer session" },
+          { status: 401 },
+        ),
+      };
+    }
+
     const response = NextResponse.next();
     return {
       ok: true,
       session: {
         accessToken: bearer,
         refreshToken: undefined,
-        expiresAt: Number.MAX_SAFE_INTEGER,
+        expiresAt: Date.now() + BEARER_SESSION_TTL_MS,
         scope: "",
       },
       response,
