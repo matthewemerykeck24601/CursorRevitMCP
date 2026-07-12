@@ -206,7 +206,6 @@ export type FieldOverride = {
   type?: NativeFormFieldType;
   required?: boolean;
   options?: string[];
-  reviewState?: FormBuilderReviewState;
   calculated?: boolean;
   formula?: string;
   /** Explicit grouping override so reviewers can force a section/table. */
@@ -435,21 +434,9 @@ async function resolveSourcePdf(
     };
   }
   if (source.kind === "pdf_url") {
-    const res = await fetch(source.url, {
-      method: "GET",
-      headers: source.headers ?? {},
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      throw new Error(`Failed downloading pdf_url (${res.status}).`);
-    }
-    const contentType = res.headers.get("content-type") || "application/pdf";
-    const arr = await res.arrayBuffer();
-    return {
-      buffer: Buffer.from(arr),
-      fileName: `url_${Date.now()}.pdf`,
-      mimeType: contentType,
-    };
+    throw new Error(
+      "pdf_url sources are disabled. Use upload_token, pdf_base64, or acc_version instead.",
+    );
   }
   const inputArg = await buildVersionOssGetArgument({
     accessToken,
@@ -699,7 +686,6 @@ function applyFieldOverrides(
       type: patch.type ?? field.type,
       required: patch.required ?? field.required,
       options: patch.options ? normalizeFieldOptions(patch.options) : field.options,
-      reviewState: patch.reviewState ?? field.reviewState,
       calculated: patch.calculated ?? field.calculated,
       formula: typeof patch.formula === "string" ? patch.formula : field.formula,
       groupKey:
@@ -1233,7 +1219,9 @@ export async function createFormTemplateFromAnalysis(params: {
     };
   }
 
-  const hasReviewBlocks = overridden.some((f) => f.reviewState === "needs_review");
+  const hasReviewBlocks = overridden.some(
+    (f) => f.reviewState === "needs_review" || f.reviewState === "rejected",
+  );
   if (hasReviewBlocks) {
     return {
       success: false,
@@ -1247,7 +1235,7 @@ export async function createFormTemplateFromAnalysis(params: {
       tablesCreated: formaSchema.tableCount,
       calculatedColumns: formaSchema.calculatedColumnCount,
       message:
-        "Template creation blocked: one or more fields are still marked needs_review.",
+        "Template creation blocked: one or more fields are still marked needs_review or rejected.",
     };
   }
 

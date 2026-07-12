@@ -35,15 +35,6 @@ function parseSource(raw: unknown): FormBuilderSource | null {
     const fileName = String(source.fileName ?? "").trim();
     return base64 ? { kind, base64, ...(fileName ? { fileName } : {}) } : null;
   }
-  if (kind === "pdf_url") {
-    const url = String(source.url ?? "").trim();
-    if (!url) return null;
-    const headers =
-      source.headers && typeof source.headers === "object" && !Array.isArray(source.headers)
-        ? (source.headers as Record<string, string>)
-        : undefined;
-    return { kind, url, ...(headers ? { headers } : {}) };
-  }
   return null;
 }
 

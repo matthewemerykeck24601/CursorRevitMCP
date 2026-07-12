@@ -56,8 +56,6 @@ const analyzePdfParams = z.object({
   versionId: z.string().optional(),
   pdf_base64: z.string().optional(),
   pdfBase64: z.string().optional(),
-  pdf_url: z.string().optional(),
-  pdfUrl: z.string().optional(),
 });
 
 const createTemplateParams = z.object({
@@ -87,8 +85,7 @@ type CreateTemplateParams = z.infer<typeof createTemplateParams>;
 type AnalyzeSource =
   | { kind: "upload_token"; uploadToken: string }
   | { kind: "acc_version"; projectId: string; versionId: string }
-  | { kind: "pdf_base64"; base64: string }
-  | { kind: "pdf_url"; url: string };
+  | { kind: "pdf_base64"; base64: string };
 
 function buildAnalyzeSource(params: AnalyzePdfParams): AnalyzeSource {
   const uploadToken = (params.upload_token ?? params.uploadToken ?? "").trim();
@@ -104,12 +101,8 @@ function buildAnalyzeSource(params: AnalyzePdfParams): AnalyzeSource {
   if (base64) {
     return { kind: "pdf_base64", base64 };
   }
-  const url = (params.pdf_url ?? params.pdfUrl ?? "").trim();
-  if (url) {
-    return { kind: "pdf_url", url };
-  }
   throw new Error(
-    "Provide one source: upload_token, project_id+version_id, pdf_base64, or pdf_url.",
+    "Provide one source: upload_token, project_id+version_id, or pdf_base64.",
   );
 }
 
@@ -170,7 +163,7 @@ export const analyzePdfForFormTemplateTool = {
 export const createFormTemplateFromPdfTool = {
   name: "create_form_template_from_pdf" as const,
   description:
-    "Create a native account-level form template from a reviewed PDF analysis artifact. Supports field_overrides (label/type/required/options/reviewState/calculated/formula/groupKey) and ordered_field_ids (reorder + remove). Translates grouped fields into Forma sections (multiple-entries) and calculated tables. Blocks if unresolved review fields remain.",
+    "Create a native account-level form template from a reviewed PDF analysis artifact. Supports field_overrides (label/type/required/options/calculated/formula/groupKey) and ordered_field_ids (reorder + remove). Translates grouped fields into Forma sections (multiple-entries) and calculated tables. Blocks if unresolved review fields remain.",
   parameters: createTemplateParams,
   async handler(params: CreateTemplateParams, context: ToolContext) {
     const accessToken = resolveAccessToken(params, context);

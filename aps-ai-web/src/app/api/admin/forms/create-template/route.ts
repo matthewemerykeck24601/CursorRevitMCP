@@ -29,7 +29,6 @@ function parseOverrides(raw: unknown): FieldOverride[] {
       if (!id) return null;
       const label = String(row.label ?? "").trim();
       const type = String(row.type ?? "").trim();
-      const reviewState = String(row.reviewState ?? "").trim();
       const groupKey = String(row.groupKey ?? "").trim();
       const formula = String(row.formula ?? "").trim();
       const required =
@@ -48,7 +47,6 @@ function parseOverrides(raw: unknown): FieldOverride[] {
         ...(formula ? { formula } : {}),
         ...(groupKey ? { groupKey } : {}),
         ...(options ? { options } : {}),
-        ...(reviewState ? { reviewState: reviewState as FieldOverride["reviewState"] } : {}),
       };
     })
     .filter((row): row is FieldOverride => row != null);
