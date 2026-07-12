@@ -47,6 +47,57 @@ async function createSamplePdfBase64(): Promise<string> {
   return Buffer.from(bytes).toString("base64");
 }
 
+async function createDuplicateLabelPdfBase64(): Promise<string> {
+  const doc = await PDFDocument.create();
+  const page = doc.addPage([612, 792]);
+  const form = doc.getForm();
+
+  const lower = form.createTextField("duplicate");
+  lower.addToPage(page, {
+    x: 48,
+    y: 700,
+    width: 220,
+    height: 22,
+  });
+  const upper = form.createTextField("Duplicate");
+  upper.addToPage(page, {
+    x: 48,
+    y: 660,
+    width: 220,
+    height: 22,
+  });
+
+  const bytes = await doc.save();
+  return Buffer.from(bytes).toString("base64");
+}
+
+test("analyze_pdf_for_form_template rejects caller supplied pdf_url without fetching", async () => {
+  const originalFetch = globalThis.fetch;
+  let fetched = false;
+  globalThis.fetch = (async () => {
+    fetched = true;
+    throw new Error("fetch should not be called for pdf_url sources");
+  }) as typeof fetch;
+
+  try {
+    await assert.rejects(
+      analyzePdfForFormTemplate({
+        accessToken: "test-token",
+        accountId: "test-account",
+        source: {
+          kind: "pdf_url",
+          url: "http://169.254.169.254/latest/meta-data/",
+          headers: { "Metadata-Flavor": "Google" },
+        },
+      }),
+      /pdf_url sources are disabled/i,
+    );
+    assert.equal(fetched, false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("analyze_pdf_for_form_template parses acroform fields", async () => {
   const base64 = await createSamplePdfBase64();
   const result = await analyzePdfForFormTemplate({
@@ -68,8 +119,8 @@ test("analyze_pdf_for_form_template parses acroform fields", async () => {
   assert.ok(result.fields.some((field) => field.type === "checkbox"));
 });
 
-test("create_form_template_from_pdf blocks unresolved review rows", async () => {
-  const base64 = await createSamplePdfBase64();
+test("create_form_template_from_pdf does not trust client review-state overrides", async () => {
+  const base64 = await createDuplicateLabelPdfBase64();
   const analysis = await analyzePdfForFormTemplate({
     accessToken: "test-token",
     accountId: "test-account",
@@ -81,29 +132,22 @@ test("create_form_template_from_pdf blocks unresolved review rows", async () => 
       fileName: "safety.pdf",
     },
   });
-
-  const firstField = analysis.fields[0];
-  assert.ok(firstField);
+  assert.equal(analysis.status, "needs_review");
+  assert.ok(analysis.fields.some((field) => field.reviewState === "needs_review"));
+  const unsafeClientOverrides = analysis.fields.map((field) => ({
+    id: field.id,
+    reviewState: "approved",
+  })) as unknown as Parameters<typeof createFormTemplateFromAnalysis>[0]["fieldOverrides"];
 
   const blocked = await createFormTemplateFromAnalysis({
     accessToken: "test-token",
     analysisId: analysis.analysisId,
     accountId: analysis.accountId,
     dryRun: true,
-    fieldOverrides: [{ id: firstField.id, reviewState: "needs_review" }],
+    fieldOverrides: unsafeClientOverrides,
   });
   assert.equal(blocked.success, false);
-  assert.match(blocked.message, /blocked/i);
-
-  const dryRunOk = await createFormTemplateFromAnalysis({
-    accessToken: "test-token",
-    analysisId: analysis.analysisId,
-    accountId: analysis.accountId,
-    dryRun: true,
-    fieldOverrides: [{ id: firstField.id, reviewState: "approved" }],
-  });
-  assert.equal(dryRunOk.success, true);
-  assert.equal(dryRunOk.dryRun, true);
+  assert.match(blocked.message, /needs_review or rejected/i);
 });
 
 test("parseFieldNameHierarchy detects group/row/column", () => {

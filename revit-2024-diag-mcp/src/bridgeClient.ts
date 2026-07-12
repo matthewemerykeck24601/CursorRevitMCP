@@ -1,12 +1,9 @@
 export type JsonObject = Record<string, unknown>;
 
-// The C# gateway listens on 127.0.0.1:14001 (distinct from the 2025 bridge's 14000).
-// Override with REVIT_2024_BRIDGE_URL (preferred, matches the 2025 bridge naming) or the
-// legacy REVIT_2024_DIAG_URL if the add-in is configured on another port.
+// The diagnostic gateway is read-only and listens on 127.0.0.1:14001 by default.
+// Keep it separate from REVIT_2024_BRIDGE_URL, which targets the write-capable bridge.
 const DEFAULT_BASE_URL =
-  process.env.REVIT_2024_BRIDGE_URL?.trim() ||
-  process.env.REVIT_2024_DIAG_URL?.trim() ||
-  "http://127.0.0.1:14001";
+  process.env.REVIT_2024_DIAG_URL?.trim() || "http://127.0.0.1:14001";
 
 interface GatewayEnvelope<T> {
   success: boolean;
