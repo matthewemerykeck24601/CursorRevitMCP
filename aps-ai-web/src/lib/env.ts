@@ -92,6 +92,8 @@ export const env = {
     "true",
   /** Canonical backing store for admin lookup tables (phase-in target: firestore). */
   adminLookupStoreBackend: getEnv("ADMIN_LOOKUP_STORE_BACKEND", "oss_local").toLowerCase(),
+  /** Shared secret required before server-side Firestore lookup ingest can run. */
+  adminLookupIngestSecret: getEnv("ADMIN_LOOKUP_INGEST_SECRET"),
   /** ACC Forms API base URL for account-level template creation. */
   apsFormsApiBaseUrl: getEnv(
     "APS_FORMS_API_BASE_URL",
@@ -162,7 +164,8 @@ export function assertApsCredentials(): void {
 export function hasAnyAiProviderKey(): boolean {
   if (
     env.aiGatewayMode === "firebase_functions" &&
-    Boolean(env.aiGatewayFunctionUrl.trim())
+    Boolean(env.aiGatewayFunctionUrl.trim()) &&
+    Boolean(env.aiGatewaySharedSecret.trim())
   ) {
     return true;
   }
