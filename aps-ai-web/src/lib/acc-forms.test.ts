@@ -82,6 +82,7 @@ test("analyze_pdf_for_form_template rejects pdf_url without fetching", async (t)
   await assert.rejects(
     analyzePdfForFormTemplate({
       accessToken: "test-token",
+      accountId: "test-account",
       source: {
         kind: "pdf_url",
         url: "http://169.254.169.254/latest/meta-data",
