@@ -68,6 +68,32 @@ test("analyze_pdf_for_form_template parses acroform fields", async () => {
   assert.ok(result.fields.some((field) => field.type === "checkbox"));
 });
 
+test("analyze_pdf_for_form_template rejects pdf_url without fetching", async (t) => {
+  const originalFetch = globalThis.fetch;
+  let fetchCalled = false;
+  globalThis.fetch = (async () => {
+    fetchCalled = true;
+    return new Response("not a pdf");
+  }) as typeof fetch;
+  t.after(() => {
+    globalThis.fetch = originalFetch;
+  });
+
+  await assert.rejects(
+    analyzePdfForFormTemplate({
+      accessToken: "test-token",
+      accountId: "test-account",
+      source: {
+        kind: "pdf_url",
+        url: "http://169.254.169.254/latest/meta-data",
+        headers: { "Metadata-Flavor": "Google" },
+      },
+    }),
+    /pdf_url sources are not supported/i,
+  );
+  assert.equal(fetchCalled, false);
+});
+
 test("create_form_template_from_pdf blocks unresolved review rows", async () => {
   const base64 = await createSamplePdfBase64();
   const analysis = await analyzePdfForFormTemplate({

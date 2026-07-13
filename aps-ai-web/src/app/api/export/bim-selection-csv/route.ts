@@ -9,6 +9,13 @@ const FILE_NAME = "bim-selection-export.csv";
  * e.g. aps-ai-web/bim-selection-export.csv — useful for local dev / automation.
  */
 export async function POST(request: Request) {
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json(
+      { ok: false, error: "Server-side CSV export is disabled in production." },
+      { status: 404 },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();

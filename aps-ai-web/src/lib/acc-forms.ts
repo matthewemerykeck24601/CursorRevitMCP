@@ -435,21 +435,7 @@ async function resolveSourcePdf(
     };
   }
   if (source.kind === "pdf_url") {
-    const res = await fetch(source.url, {
-      method: "GET",
-      headers: source.headers ?? {},
-      cache: "no-store",
-    });
-    if (!res.ok) {
-      throw new Error(`Failed downloading pdf_url (${res.status}).`);
-    }
-    const contentType = res.headers.get("content-type") || "application/pdf";
-    const arr = await res.arrayBuffer();
-    return {
-      buffer: Buffer.from(arr),
-      fileName: `url_${Date.now()}.pdf`,
-      mimeType: contentType,
-    };
+    throw new Error("pdf_url sources are not supported for form analysis.");
   }
   const inputArg = await buildVersionOssGetArgument({
     accessToken,
