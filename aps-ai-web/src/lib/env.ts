@@ -160,12 +160,21 @@ export function assertApsCredentials(): void {
 }
 
 export function hasAnyAiProviderKey(): boolean {
-  if (
-    env.aiGatewayMode === "firebase_functions" &&
-    Boolean(env.aiGatewayFunctionUrl.trim())
-  ) {
-    return true;
+  return hasAnyAiProviderKeyForEnv(env);
+}
+
+export function hasAnyAiProviderKeyForEnv(config: {
+  aiGatewayMode: string;
+  aiGatewayFunctionUrl: string;
+  aiGatewaySharedSecret: string;
+  aiOpenAiKey: string;
+  aiXaiKey: string;
+}): boolean {
+  if (config.aiGatewayMode === "firebase_functions") {
+    return Boolean(
+      config.aiGatewayFunctionUrl.trim() && config.aiGatewaySharedSecret.trim(),
+    );
   }
-  return Boolean(env.aiOpenAiKey || env.aiXaiKey);
+  return Boolean(config.aiOpenAiKey || config.aiXaiKey);
 }
 
