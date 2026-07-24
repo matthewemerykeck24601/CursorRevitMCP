@@ -1,6 +1,6 @@
 import {
   prepareInformedDesignPublish,
-  replicateParametersFromRevitPayload,
+  setParameters,
 } from "../bridgeClient.js";
 import type { JsonObject } from "../types/contracts.js";
 import { mapRevitToInventorParameters, normalizeRevitPayload } from "../utils/validation.js";
@@ -69,11 +69,8 @@ export async function invokeRevitInteropTool(
     const payload = normalizeRevitPayload(args.revitPayload);
     const mappedParameters = mapRevitToInventorParameters(payload);
     const paritySelectors = summarizeParitySelectors(mappedParameters);
-    return replicateParametersFromRevitPayload({
-      payload: {
-        ...payload,
-        parameters: payload.parameters,
-      },
+    return setParameters({
+      parameters: mappedParameters,
       runRuleAfterSet:
         typeof args.runRuleAfterSet === "string" ? args.runRuleAfterSet : undefined,
     }).then((result) => ({
