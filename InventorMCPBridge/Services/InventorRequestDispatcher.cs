@@ -28,7 +28,7 @@ public sealed class InventorRequestDispatcher
 
     public Task<T> Enqueue<T>(Func<T> action, int timeoutMs = 15000)
     {
-        var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var request = new QueuedRequest<T>(action);
         SynchronizationContext? context;
         Dispatcher? dispatcher;
         lock (_sync)
@@ -37,19 +37,7 @@ public sealed class InventorRequestDispatcher
             dispatcher = _uiDispatcher;
         }
 
-        _pending.Enqueue(() =>
-        {
-            try
-            {
-                tcs.TrySetResult(action());
-            }
-            catch (Exception ex)
-            {
-                tcs.TrySetException(ex);
-            }
-
-            return null;
-        });
+        _pending.Enqueue(request.Execute);
 
         void DrainQueue()
         {
@@ -73,17 +61,67 @@ public sealed class InventorRequestDispatcher
                 "Inventor UI synchronization context is not initialized.");
         }
 
-        return WaitWithTimeout(tcs.Task, timeoutMs);
+        return WaitWithTimeout(request, timeoutMs);
     }
 
-    private static async Task<T> WaitWithTimeout<T>(Task<T> task, int timeoutMs)
+    private static async Task<T> WaitWithTimeout<T>(QueuedRequest<T> request, int timeoutMs)
     {
+        var task = request.Completion.Task;
         var completed = await Task.WhenAny(task, Task.Delay(timeoutMs));
-        if (completed != task)
+        if (completed != task && request.TryCancel())
         {
             throw new TimeoutException("Timed out waiting for Inventor API execution.");
         }
 
+        // Once Inventor has started the action it cannot be cancelled safely. Wait for
+        // its real result so callers never retry a mutation that is still executing.
         return await task;
+    }
+
+    private sealed class QueuedRequest<T>
+    {
+        private const int Pending = 0;
+        private const int Running = 1;
+        private const int Finished = 2;
+        private const int Cancelled = 3;
+        private readonly Func<T> _action;
+        private int _state = Pending;
+
+        public QueuedRequest(Func<T> action)
+        {
+            _action = action;
+            Completion = new TaskCompletionSource<T>(
+                TaskCreationOptions.RunContinuationsAsynchronously);
+        }
+
+        public TaskCompletionSource<T> Completion { get; }
+
+        public object? Execute()
+        {
+            if (Interlocked.CompareExchange(ref _state, Running, Pending) != Pending)
+            {
+                return null;
+            }
+
+            try
+            {
+                Completion.TrySetResult(_action());
+            }
+            catch (Exception ex)
+            {
+                Completion.TrySetException(ex);
+            }
+            finally
+            {
+                Volatile.Write(ref _state, Finished);
+            }
+
+            return null;
+        }
+
+        public bool TryCancel()
+        {
+            return Interlocked.CompareExchange(ref _state, Cancelled, Pending) == Pending;
+        }
     }
 }
