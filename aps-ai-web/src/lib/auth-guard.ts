@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { refreshApsToken } from "@/lib/aps";
+import { refreshApsToken, validateApsAccessToken } from "@/lib/aps";
 import {
   clearSessionCookies,
   readSessionCookies,
@@ -22,23 +22,28 @@ function bearerAccessToken(request: NextRequest): string | null {
 }
 
 /**
- * Session from HttpOnly cookies, or `Authorization: Bearer` (Monty iOS standalone —
- * client holds tokens; no cookie refresh on server).
+ * Session from a validated `Authorization: Bearer` token (Monty iOS standalone),
+ * or HttpOnly cookies that the server can refresh.
  */
 export async function requireSession(request: NextRequest): Promise<AuthResult> {
   const bearer = bearerAccessToken(request);
   if (bearer) {
-    const response = NextResponse.next();
-    return {
-      ok: true,
-      session: {
-        accessToken: bearer,
-        refreshToken: undefined,
-        expiresAt: Number.MAX_SAFE_INTEGER,
-        scope: "",
-      },
-      response,
-    };
+    try {
+      await validateApsAccessToken(bearer);
+      const response = NextResponse.next();
+      return {
+        ok: true,
+        session: {
+          accessToken: bearer,
+          refreshToken: undefined,
+          expiresAt: Number.MAX_SAFE_INTEGER,
+          scope: "",
+        },
+        response,
+      };
+    } catch {
+      // A stale native token should not mask a refreshable cookie session.
+    }
   }
 
   const session = readSessionCookies(request);
@@ -46,7 +51,7 @@ export async function requireSession(request: NextRequest): Promise<AuthResult> 
     return {
       ok: false,
       response: NextResponse.json(
-        { error: "Not authenticated" },
+        { error: bearer ? "Invalid bearer token" : "Not authenticated" },
         { status: 401 },
       ),
     };
