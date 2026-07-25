@@ -15,7 +15,7 @@ This server does not replace Autodesk's `revit-public-mcp`. It complements it by
 
 - Revit 2027 running with `RevitPublicMCPBridge` loaded
 - Bridge gateway enabled in add-in settings (default on)
-- Gateway URL reachable (default `http://127.0.0.1:8766`)
+- Gateway URL reachable (default `http://127.0.0.1:8768`)
 
 ## Local development
 
@@ -41,7 +41,7 @@ npm run start
       "command": "cmd",
       "args": ["/c", "npx", "-y", "tsx", "D:\\CursorRevitMCP\\revit-2027-community-mcp\\src\\index.ts"],
       "env": {
-        "REVIT_2027_BRIDGE_URL": "http://127.0.0.1:8766"
+        "REVIT_2027_BRIDGE_URL": "http://127.0.0.1:8768"
       }
     }
   }
