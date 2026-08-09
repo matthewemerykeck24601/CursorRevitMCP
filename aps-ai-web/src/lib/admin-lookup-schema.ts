@@ -87,6 +87,11 @@ export function normalizeLookupEmail(value: string): string {
   return String(value ?? "").trim().toLowerCase();
 }
 
+export function canonicalTenantIdForHubId(hubId: string): string {
+  const trimmed = hubId.trim();
+  return trimmed.startsWith("b.") ? trimmed.slice(2) : trimmed;
+}
+
 export function lookupDocPaths(tenantId: string, hubId: string) {
   const base = `tenants/${tenantId}/hubs/${hubId}`;
   return {
