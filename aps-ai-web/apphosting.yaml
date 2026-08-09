@@ -60,7 +60,7 @@ env:
       - RUNTIME
 
   - variable: CHAT_LOG_LEVEL
-    value: "full"
+    value: "warn"
     availability:
       - BUILD
       - RUNTIME
