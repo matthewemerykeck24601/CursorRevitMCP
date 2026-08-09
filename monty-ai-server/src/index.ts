@@ -11,11 +11,34 @@ const XAI_MODEL = (process.env.XAI_MODEL || "grok-3-latest").trim();
 const REQUIRE_BEARER =
   (process.env.MONTY_REQUIRE_BEARER || "1").trim() === "1" ||
   (process.env.MONTY_REQUIRE_BEARER || "").toLowerCase() === "true";
+const APS_USER_PROFILE_URL = "https://developer.api.autodesk.com/userprofile/v1/users/@me";
 
 function bearerToken(authHeader: string | undefined): string | null {
   if (!authHeader) return null;
   const m = /^Bearer\s+(.+)$/i.exec(authHeader.trim());
   return m?.[1]?.trim() || null;
+}
+
+async function isValidApsBearerToken(token: string): Promise<boolean> {
+  try {
+    const response = await fetch(APS_USER_PROFILE_URL, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function requireValidBearer(authHeader: string | undefined): Promise<boolean> {
+  if (!REQUIRE_BEARER) return true;
+  const token = bearerToken(authHeader);
+  if (!token) return false;
+  return isValidApsBearerToken(token);
 }
 
 type ChatBody = {
@@ -65,9 +88,8 @@ app.get("/health", (c) =>
 );
 
 /** Matches aps-ai-web `GET /api/auth/session` enough for Monty `APSAPIClient.fetchSessionStatus`. */
-app.get("/api/auth/session", (c) => {
-  const token = bearerToken(c.req.header("Authorization"));
-  if (REQUIRE_BEARER && !token) {
+app.get("/api/auth/session", async (c) => {
+  if (!(await requireValidBearer(c.req.header("Authorization")))) {
     return c.json({ error: "Not authenticated" }, 401);
   }
   const requestId = randomUUID();
@@ -81,8 +103,7 @@ app.get("/api/auth/session", (c) => {
 
 app.post("/api/chat", async (c) => {
   const requestId = randomUUID();
-  const token = bearerToken(c.req.header("Authorization"));
-  if (REQUIRE_BEARER && !token) {
+  if (!(await requireValidBearer(c.req.header("Authorization")))) {
     return c.json({ error: "Not authenticated", requestId }, 401);
   }
 
