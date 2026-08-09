@@ -1676,6 +1676,15 @@ async function patchProjectUser(
 }
 
 
+function sanitizeAdditionalUserPayload(
+  payload: Record<string, unknown>,
+): Record<string, unknown> {
+  const protectedKeys = new Set(["email", "roleIds", "role_ids", "products"]);
+  return Object.fromEntries(
+    Object.entries(payload).filter(([key]) => !protectedKeys.has(key)),
+  );
+}
+
 export async function addUsersToProjectsByNumber(params: {
   accessToken: string;
   hubId: string;
@@ -1794,7 +1803,7 @@ export async function addUsersToProjectsByNumber(params: {
   const normalizedProducts = normalizeProductAssignments(products);
   const additionalUserPayload =
     params.additionalUserPayload && typeof params.additionalUserPayload === "object"
-      ? params.additionalUserPayload
+      ? sanitizeAdditionalUserPayload(params.additionalUserPayload)
       : {};
 
   const dryRun = Boolean(params.dryRun);
@@ -1875,10 +1884,10 @@ export async function addUsersToProjectsByNumber(params: {
           response: {
             dry_run: true,
             payload_preview: {
+              ...additionalUserPayload,
               email,
               ...(resolvedRoleIds.length > 0 ? { roleIds: resolvedRoleIds } : {}),
               ...(normalizedProducts.length > 0 ? { products: normalizedProducts } : {}),
-              ...additionalUserPayload,
             },
           },
         });
@@ -1886,10 +1895,10 @@ export async function addUsersToProjectsByNumber(params: {
       }
 
       const body: Record<string, unknown> = {
+        ...additionalUserPayload,
         email,
         ...(resolvedRoleIds.length > 0 ? { roleIds: resolvedRoleIds } : {}),
         ...(normalizedProducts.length > 0 ? { products: normalizedProducts } : {}),
-        ...additionalUserPayload,
       };
       const assigned = await postProjectUser(
         params.accessToken,

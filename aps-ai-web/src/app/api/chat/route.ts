@@ -1153,6 +1153,7 @@ export async function POST(request: NextRequest) {
                       !Array.isArray(args.additionalUserPayload)
                     ? (args.additionalUserPayload as Record<string, unknown>)
                     : undefined;
+              const dryRunArg = args.dry_run ?? args.dryRun;
               const result = await addUsersToProjectsByNumber({
                 accessToken: auth.session.accessToken,
                 hubId: selectedHubId,
@@ -1169,7 +1170,7 @@ export async function POST(request: NextRequest) {
                   String(args.region ?? "US").toUpperCase() === "EMEA"
                     ? "EMEA"
                     : "US",
-                dryRun: Boolean(args.dry_run ?? args.dryRun ?? false),
+                dryRun: typeof dryRunArg === "boolean" ? dryRunArg : true,
                 cacheOnly: preferCacheOnly,
                 additionalUserPayload: additionalPayload,
               });

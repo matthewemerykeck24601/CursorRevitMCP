@@ -77,6 +77,7 @@ Open `http://localhost:3000`.
 
 - `POST /api/admin/add-users-to-projects`
   - JSON body: `{ "hubId": string, "projectNumbers": string[], "emails": string[], "roleNames"?: string[], "region"?: "US"|"EMEA", "dryRun"?: boolean }`
+  - `dryRun` defaults to `true`; pass `false` only for confirmed live ACC membership writes.
   - Same backend as chat tool `admin_add_users_to_projects` (`addUsersToProjectsByNumber` in `src/lib/aps-admin.ts`). Used by Monty iOS and other structured clients without MCP.
 
 ### Chat + Actions

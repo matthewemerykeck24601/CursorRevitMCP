@@ -745,7 +745,7 @@ function buildToolPlannerPrompt(
     '- Use "model_views" only when asked for model views/metadata/sheets listing.',
     '- Use "issues_list" when the user asks to list/show/open project issues.',
     '- Use "issues_create" when the user asks to create a new issue.',
-    '- Use "admin_add_users_to_projects" for ACC admin membership actions by project number or business unit. Args: { "project_numbers"?: string[], "business_unit_id"?: string, "business_unit_name"?: string, "emails": string[], "role_names"?: string[], "role_ids"?: string[], "products"?: Array<object>, "region"?: "US"|"EMEA", "dry_run"?: boolean, "cache_only"?: boolean, "additional_user_payload"?: object }. Prefer role_names from user language; backend resolves from hub role cache and project-user discovery.',
+    '- Use "admin_add_users_to_projects" for ACC admin membership actions by project number or business unit. Args: { "project_numbers"?: string[], "business_unit_id"?: string, "business_unit_name"?: string, "emails": string[], "role_names"?: string[], "role_ids"?: string[], "products"?: Array<object>, "region"?: "US"|"EMEA", "dry_run"?: boolean, "cache_only"?: boolean, "additional_user_payload"?: object }. Prefer role_names from user language; backend resolves from hub role cache and project-user discovery. Omit or set dry_run:true for previews; set dry_run:false only when the user explicitly asks to perform live writes.',
     '- Use "admin_seed_role_cache" when user asks to seed/refresh role GUID library for the selected hub. Args: { "region"?: "US"|"EMEA" }. This flow is read-only against existing completed Data Connector extractions and never triggers new extraction jobs.',
     '- Use "admin_list_role_cache" when user asks to inspect/show/export the cached hub role GUID library. Args optional: { "limit"?: number }.',
     '- Use "admin_seed_reference_cache" when user asks to preload/refresh project ID cache for selected hub before bulk admin operations. Args optional: { "include_role_seed"?: boolean, "region"?: "US"|"EMEA" }.',
@@ -822,13 +822,17 @@ async function callFirebaseFunctionsAiGateway(
       "AI gateway mode is firebase_functions but AI_GATEWAY_FUNCTION_URL is not configured.",
     );
   }
+  const sharedSecret = env.aiGatewaySharedSecret.trim();
+  if (!sharedSecret) {
+    throw new Error(
+      "AI gateway mode is firebase_functions but AI_GATEWAY_SHARED_SECRET is not configured.",
+    );
+  }
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...(env.aiGatewaySharedSecret
-        ? { "x-ai-gateway-secret": env.aiGatewaySharedSecret }
-        : {}),
+      "x-ai-gateway-secret": sharedSecret,
     },
     body: JSON.stringify({
       provider: backend,

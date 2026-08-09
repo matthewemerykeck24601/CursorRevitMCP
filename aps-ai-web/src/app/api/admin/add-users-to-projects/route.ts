@@ -24,6 +24,11 @@ function asStringArray(v: unknown): string[] {
   return v.map((x) => String(x).trim()).filter(Boolean);
 }
 
+function asDryRun(v: unknown): boolean {
+  if (typeof v === "boolean") return v;
+  return true;
+}
+
 /**
  * Direct ACC admin: add users to projects by project number (same backend as chat tool `admin_add_users_to_projects`).
  * Used by Monty iOS and other structured clients — no MCP or LLM required.
@@ -61,7 +66,7 @@ export async function POST(request: NextRequest) {
     typeof body.businessUnitName === "string" ? body.businessUnitName.trim() : "";
   const regionRaw = String(body.region ?? "US").toUpperCase();
   const region = regionRaw === "EMEA" ? "EMEA" : "US";
-  const dryRun = Boolean(body.dryRun);
+  const dryRun = asDryRun(body.dryRun);
   const cacheOnlyArg = body.cacheOnly;
   const preferCacheOnly =
     cacheOnlyArg == null ? projectNumbers.length >= 5 : Boolean(cacheOnlyArg);
