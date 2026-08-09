@@ -1,5 +1,9 @@
 import { onRequest } from "firebase-functions/v2/https";
 import { defineSecret } from "firebase-functions/params";
+import {
+  getRequiredGatewaySecret,
+  isGatewaySecretMatch,
+} from "./gateway-auth";
 
 const XAI_API_KEY = defineSecret("XAI_API_KEY");
 const OPENAI_API_KEY = defineSecret("OPENAI_API_KEY");
@@ -36,13 +40,15 @@ export const aiGateway = onRequest(
       return;
     }
 
-    const expectedSecret = AI_GATEWAY_SHARED_SECRET.value();
-    if (expectedSecret) {
-      const receivedSecret = req.header("x-ai-gateway-secret") ?? "";
-      if (!receivedSecret || receivedSecret !== expectedSecret) {
-        res.status(401).json({ error: "Unauthorized AI gateway request." });
-        return;
-      }
+    const expectedSecret = getRequiredGatewaySecret(AI_GATEWAY_SHARED_SECRET.value());
+    if (!expectedSecret) {
+      res.status(500).json({ error: "AI_GATEWAY_SHARED_SECRET secret is not configured." });
+      return;
+    }
+    const receivedSecret = req.header("x-ai-gateway-secret") ?? "";
+    if (!isGatewaySecretMatch(expectedSecret, receivedSecret)) {
+      res.status(401).json({ error: "Unauthorized AI gateway request." });
+      return;
     }
 
     const body =
