@@ -160,11 +160,11 @@ export function assertApsCredentials(): void {
 }
 
 export function hasAnyAiProviderKey(): boolean {
-  if (
-    env.aiGatewayMode === "firebase_functions" &&
-    Boolean(env.aiGatewayFunctionUrl.trim())
-  ) {
-    return true;
+  if (env.aiGatewayMode === "firebase_functions") {
+    return Boolean(
+      env.aiGatewayFunctionUrl.trim() &&
+        env.aiGatewaySharedSecret.trim(),
+    );
   }
   return Boolean(env.aiOpenAiKey || env.aiXaiKey);
 }
