@@ -230,7 +230,7 @@ internal static class RevitAutomationDispatcher
         Log("info", "Transaction committed successfully.");
         var swcAttempted = TrySynchronizeWithCentral(doc, audit, Log);
         PostRunVerify(doc, audit, Log, transactionCommitted: true, swcAttempted);
-        var (bizOk, bizErr) = ComputeBusinessOutcome(audit, runModify, transactionCommitted: true);
+        var (bizOk, bizErr) = ComputeBusinessOutcome(audit, runMarks, runModify, transactionCommitted: true);
         StampAuditOutcome(audit, bizOk, bizErr);
         WriteAuditArtifacts(audit);
 
@@ -349,9 +349,10 @@ internal static class RevitAutomationDispatcher
         WriteAuditArtifacts(audit);
     }
 
-    /// <summary>False when SWC failed, no elements resolved despite attempts, or all modify actions failed.</summary>
+    /// <summary>False when SWC failed, requested marks/edits resolved no writes, or all modify actions failed.</summary>
     private static (bool ok, string err) ComputeBusinessOutcome(
         JObject audit,
+        bool runMarks,
         bool runModify,
         bool transactionCommitted)
     {
@@ -362,6 +363,20 @@ internal static class RevitAutomationDispatcher
         var swcSt = swc?["status"]?.ToString()?.ToLowerInvariant() ?? "";
         if (swcSt == "failed")
             return (false, "SyncWithCentral failed with errors: " + (swc?["error"]?.ToString() ?? "unknown"));
+
+        if (runMarks)
+        {
+            var marks = audit["marks"] as JObject;
+            var markAttempts = marks?["external_id_attempts"]?.Value<int>() ?? 0;
+            var markSet = marks?["parameters_set"]?.Value<int>() ?? 0;
+            var markMissed = marks?["elements_missed"]?.Value<int>() ?? 0;
+            var markMatched = marks?["elements_matched"]?.Value<int>() ?? 0;
+            var markReadonly = marks?["parameters_skipped_readonly"]?.Value<int>() ?? 0;
+
+            if (markAttempts > 0 && markSet == 0)
+                return (false,
+                    $"No CONTROL_MARK values were applied from mark analysis ({markAttempts} id(s) tried, {markMissed} missed, {markMatched} matched, {markReadonly} read-only).");
+        }
 
         if (!runModify)
             return (true, null);
